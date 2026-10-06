@@ -1,0 +1,1576 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.GUI.PreviewRenderer
+  commentId: T:Prowl.Editor.GUI.PreviewRenderer
+  id: PreviewRenderer
+  parent: Prowl.Editor.GUI
+  children:
+  - Prowl.Editor.GUI.PreviewRenderer.#ctor(System.Int32,System.Int32)
+  - Prowl.Editor.GUI.PreviewRenderer.CanAnimate
+  - Prowl.Editor.GUI.PreviewRenderer.Clips
+  - Prowl.Editor.GUI.PreviewRenderer.Dispose
+  - Prowl.Editor.GUI.PreviewRenderer.DrawPreview(Prowl.PaperUI.Paper,System.String,System.Single,System.Single,System.Action{Prowl.Quill.Canvas,Prowl.Vector.Rect},System.Action{Prowl.Vector.Float2})
+  - Prowl.Editor.GUI.PreviewRenderer.Height
+  - Prowl.Editor.GUI.PreviewRenderer.PoseAt(Prowl.Runtime.AnimationClip,System.Single)
+  - Prowl.Editor.GUI.PreviewRenderer.Render
+  - Prowl.Editor.GUI.PreviewRenderer.Resize(System.Int32,System.Int32)
+  - Prowl.Editor.GUI.PreviewRenderer.Result
+  - Prowl.Editor.GUI.PreviewRenderer.SetupForMaterial(Prowl.Runtime.Resources.Material)
+  - Prowl.Editor.GUI.PreviewRenderer.SetupForMesh(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material)
+  - Prowl.Editor.GUI.PreviewRenderer.SetupForPrefab(Prowl.Runtime.Resources.PrefabAsset)
+  - Prowl.Editor.GUI.PreviewRenderer.ShowGrid
+  - Prowl.Editor.GUI.PreviewRenderer.Skeleton
+  - Prowl.Editor.GUI.PreviewRenderer.TransparentBackground
+  - Prowl.Editor.GUI.PreviewRenderer.TryProjectBone(System.Int32,Prowl.Vector.Float2@)
+  - Prowl.Editor.GUI.PreviewRenderer.Width
+  langs:
+  - csharp
+  - vb
+  name: PreviewRenderer
+  nameWithType: PreviewRenderer
+  fullName: Prowl.Editor.GUI.PreviewRenderer
+  type: Class
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PreviewRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PreviewRenderer
+    path: ../Prowl/Prowl.Editor/GUI/PreviewRenderer.cs
+    startLine: 22
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI
+  summary: >-
+    Renders 3D previews of assets (models, materials, meshes) to a RenderTexture.
+
+    Creates an isolated Scene with camera + light for clean rendering.
+
+    Supports orbit camera for interactive previews.
+  example: []
+  syntax:
+    content: 'public class PreviewRenderer : IDisposable'
+    content.vb: Public Class PreviewRenderer Implements IDisposable
+  inheritance:
+  - System.Object
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Editor.GUI.PreviewRenderer.ShowGrid
+  commentId: P:Prowl.Editor.GUI.PreviewRenderer.ShowGrid
+  id: ShowGrid
+  parent: Prowl.Editor.GUI.PreviewRenderer
+  langs:
+  - csharp
+  - vb
+  name: ShowGrid
+  nameWithType: PreviewRenderer.ShowGrid
+  fullName: Prowl.Editor.GUI.PreviewRenderer.ShowGrid
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PreviewRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShowGrid
+    path: ../Prowl/Prowl.Editor/GUI/PreviewRenderer.cs
+    startLine: 38
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI
+  summary: Whether to draw a grid plane in the preview.
+  example: []
+  syntax:
+    content: public bool ShowGrid { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ShowGrid As Boolean
+  overload: Prowl.Editor.GUI.PreviewRenderer.ShowGrid*
+- uid: Prowl.Editor.GUI.PreviewRenderer.TransparentBackground
+  commentId: P:Prowl.Editor.GUI.PreviewRenderer.TransparentBackground
+  id: TransparentBackground
+  parent: Prowl.Editor.GUI.PreviewRenderer
+  langs:
+  - csharp
+  - vb
+  name: TransparentBackground
+  nameWithType: PreviewRenderer.TransparentBackground
+  fullName: Prowl.Editor.GUI.PreviewRenderer.TransparentBackground
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PreviewRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TransparentBackground
+    path: ../Prowl/Prowl.Editor/GUI/PreviewRenderer.cs
+    startLine: 41
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI
+  summary: Clear to transparent instead of the skybox, so only the subject has alpha.
+  example: []
+  syntax:
+    content: public bool TransparentBackground { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property TransparentBackground As Boolean
+  overload: Prowl.Editor.GUI.PreviewRenderer.TransparentBackground*
+- uid: Prowl.Editor.GUI.PreviewRenderer.Result
+  commentId: P:Prowl.Editor.GUI.PreviewRenderer.Result
+  id: Result
+  parent: Prowl.Editor.GUI.PreviewRenderer
+  langs:
+  - csharp
+  - vb
+  name: Result
+  nameWithType: PreviewRenderer.Result
+  fullName: Prowl.Editor.GUI.PreviewRenderer.Result
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PreviewRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Result
+    path: ../Prowl/Prowl.Editor/GUI/PreviewRenderer.cs
+    startLine: 58
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI
+  summary: Gets the rendered RenderTexture, or null if not yet created.
+  example: []
+  syntax:
+    content: public RenderTexture? Result { get; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.Resources.RenderTexture
+    content.vb: Public ReadOnly Property Result As RenderTexture
+  overload: Prowl.Editor.GUI.PreviewRenderer.Result*
+- uid: Prowl.Editor.GUI.PreviewRenderer.Width
+  commentId: P:Prowl.Editor.GUI.PreviewRenderer.Width
+  id: Width
+  parent: Prowl.Editor.GUI.PreviewRenderer
+  langs:
+  - csharp
+  - vb
+  name: Width
+  nameWithType: PreviewRenderer.Width
+  fullName: Prowl.Editor.GUI.PreviewRenderer.Width
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PreviewRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Width
+    path: ../Prowl/Prowl.Editor/GUI/PreviewRenderer.cs
+    startLine: 60
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI
+  summary: Gets the width of the preview render target in pixels.
+  example: []
+  syntax:
+    content: public int Width { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Width As Integer
+  overload: Prowl.Editor.GUI.PreviewRenderer.Width*
+- uid: Prowl.Editor.GUI.PreviewRenderer.Height
+  commentId: P:Prowl.Editor.GUI.PreviewRenderer.Height
+  id: Height
+  parent: Prowl.Editor.GUI.PreviewRenderer
+  langs:
+  - csharp
+  - vb
+  name: Height
+  nameWithType: PreviewRenderer.Height
+  fullName: Prowl.Editor.GUI.PreviewRenderer.Height
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PreviewRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Height
+    path: ../Prowl/Prowl.Editor/GUI/PreviewRenderer.cs
+    startLine: 62
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI
+  summary: Gets the height of the preview render target in pixels.
+  example: []
+  syntax:
+    content: public int Height { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Height As Integer
+  overload: Prowl.Editor.GUI.PreviewRenderer.Height*
+- uid: Prowl.Editor.GUI.PreviewRenderer.#ctor(System.Int32,System.Int32)
+  commentId: M:Prowl.Editor.GUI.PreviewRenderer.#ctor(System.Int32,System.Int32)
+  id: '#ctor(System.Int32,System.Int32)'
+  parent: Prowl.Editor.GUI.PreviewRenderer
+  langs:
+  - csharp
+  - vb
+  name: PreviewRenderer(int, int)
+  nameWithType: PreviewRenderer.PreviewRenderer(int, int)
+  fullName: Prowl.Editor.GUI.PreviewRenderer.PreviewRenderer(int, int)
+  type: Constructor
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PreviewRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: .ctor
+    path: ../Prowl/Prowl.Editor/GUI/PreviewRenderer.cs
+    startLine: 65
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI
+  summary: Creates a new PreviewRenderer with the given render target dimensions. Sets up an isolated Scene with a camera and directional light.
+  example: []
+  syntax:
+    content: public PreviewRenderer(int width = 256, int height = 256)
+    parameters:
+    - id: width
+      type: System.Int32
+    - id: height
+      type: System.Int32
+    content.vb: Public Sub New(width As Integer = 256, height As Integer = 256)
+  overload: Prowl.Editor.GUI.PreviewRenderer.#ctor*
+  nameWithType.vb: PreviewRenderer.New(Integer, Integer)
+  fullName.vb: Prowl.Editor.GUI.PreviewRenderer.New(Integer, Integer)
+  name.vb: New(Integer, Integer)
+- uid: Prowl.Editor.GUI.PreviewRenderer.SetupForMesh(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material)
+  commentId: M:Prowl.Editor.GUI.PreviewRenderer.SetupForMesh(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material)
+  id: SetupForMesh(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material)
+  parent: Prowl.Editor.GUI.PreviewRenderer
+  langs:
+  - csharp
+  - vb
+  name: SetupForMesh(Mesh, Material?)
+  nameWithType: PreviewRenderer.SetupForMesh(Mesh, Material?)
+  fullName: Prowl.Editor.GUI.PreviewRenderer.SetupForMesh(Prowl.Runtime.Resources.Mesh, Prowl.Runtime.Resources.Material?)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PreviewRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetupForMesh
+    path: ../Prowl/Prowl.Editor/GUI/PreviewRenderer.cs
+    startLine: 99
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI
+  summary: Set up the preview to show a Mesh with a material.
+  example: []
+  syntax:
+    content: public void SetupForMesh(Mesh mesh, Material? material = null)
+    parameters:
+    - id: mesh
+      type: Prowl.Runtime.Resources.Mesh
+    - id: material
+      type: Prowl.Runtime.Resources.Material
+    content.vb: Public Sub SetupForMesh(mesh As Mesh, material As Material = Nothing)
+  overload: Prowl.Editor.GUI.PreviewRenderer.SetupForMesh*
+  nameWithType.vb: PreviewRenderer.SetupForMesh(Mesh, Material)
+  fullName.vb: Prowl.Editor.GUI.PreviewRenderer.SetupForMesh(Prowl.Runtime.Resources.Mesh, Prowl.Runtime.Resources.Material)
+  name.vb: SetupForMesh(Mesh, Material)
+- uid: Prowl.Editor.GUI.PreviewRenderer.Clips
+  commentId: P:Prowl.Editor.GUI.PreviewRenderer.Clips
+  id: Clips
+  parent: Prowl.Editor.GUI.PreviewRenderer
+  langs:
+  - csharp
+  - vb
+  name: Clips
+  nameWithType: PreviewRenderer.Clips
+  fullName: Prowl.Editor.GUI.PreviewRenderer.Clips
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PreviewRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Clips
+    path: ../Prowl/Prowl.Editor/GUI/PreviewRenderer.cs
+    startLine: 117
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI
+  summary: The clips the subject's animator can play, empty when it has none.
+  example: []
+  syntax:
+    content: public IReadOnlyList<AnimationClip> Clips { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.AnimationClip}
+    content.vb: Public ReadOnly Property Clips As IReadOnlyList(Of AnimationClip)
+  overload: Prowl.Editor.GUI.PreviewRenderer.Clips*
+- uid: Prowl.Editor.GUI.PreviewRenderer.Skeleton
+  commentId: P:Prowl.Editor.GUI.PreviewRenderer.Skeleton
+  id: Skeleton
+  parent: Prowl.Editor.GUI.PreviewRenderer
+  langs:
+  - csharp
+  - vb
+  name: Skeleton
+  nameWithType: PreviewRenderer.Skeleton
+  fullName: Prowl.Editor.GUI.PreviewRenderer.Skeleton
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PreviewRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Skeleton
+    path: ../Prowl/Prowl.Editor/GUI/PreviewRenderer.cs
+    startLine: 120
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI
+  summary: The rig the subject is bound to, or null when it has none.
+  example: []
+  syntax:
+    content: public Skeleton? Skeleton { get; }
+    parameters: []
+    return:
+      type: Prowl.Motion.Skeleton
+    content.vb: Public ReadOnly Property Skeleton As Skeleton
+  overload: Prowl.Editor.GUI.PreviewRenderer.Skeleton*
+- uid: Prowl.Editor.GUI.PreviewRenderer.TryProjectBone(System.Int32,Prowl.Vector.Float2@)
+  commentId: M:Prowl.Editor.GUI.PreviewRenderer.TryProjectBone(System.Int32,Prowl.Vector.Float2@)
+  id: TryProjectBone(System.Int32,Prowl.Vector.Float2@)
+  parent: Prowl.Editor.GUI.PreviewRenderer
+  langs:
+  - csharp
+  - vb
+  name: TryProjectBone(int, out Float2)
+  nameWithType: PreviewRenderer.TryProjectBone(int, out Float2)
+  fullName: Prowl.Editor.GUI.PreviewRenderer.TryProjectBone(int, out Prowl.Vector.Float2)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PreviewRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TryProjectBone
+    path: ../Prowl/Prowl.Editor/GUI/PreviewRenderer.cs
+    startLine: 126
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI
+  summary: >-
+    Where a bone lands in the preview image, as a fraction across and down it. False when the rig
+
+    does not have that bone, or when it sits behind the camera.
+  example: []
+  syntax:
+    content: public bool TryProjectBone(int boneIndex, out Float2 normalized)
+    parameters:
+    - id: boneIndex
+      type: System.Int32
+    - id: normalized
+      type: Prowl.Vector.Float2
+    return:
+      type: System.Boolean
+    content.vb: Public Function TryProjectBone(boneIndex As Integer, normalized As Float2) As Boolean
+  overload: Prowl.Editor.GUI.PreviewRenderer.TryProjectBone*
+  nameWithType.vb: PreviewRenderer.TryProjectBone(Integer, Float2)
+  fullName.vb: Prowl.Editor.GUI.PreviewRenderer.TryProjectBone(Integer, Prowl.Vector.Float2)
+  name.vb: TryProjectBone(Integer, Float2)
+- uid: Prowl.Editor.GUI.PreviewRenderer.CanAnimate
+  commentId: P:Prowl.Editor.GUI.PreviewRenderer.CanAnimate
+  id: CanAnimate
+  parent: Prowl.Editor.GUI.PreviewRenderer
+  langs:
+  - csharp
+  - vb
+  name: CanAnimate
+  nameWithType: PreviewRenderer.CanAnimate
+  fullName: Prowl.Editor.GUI.PreviewRenderer.CanAnimate
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PreviewRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CanAnimate
+    path: ../Prowl/Prowl.Editor/GUI/PreviewRenderer.cs
+    startLine: 144
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI
+  summary: True when the subject carries a rig this preview can pose.
+  example: []
+  syntax:
+    content: public bool CanAnimate { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property CanAnimate As Boolean
+  overload: Prowl.Editor.GUI.PreviewRenderer.CanAnimate*
+- uid: Prowl.Editor.GUI.PreviewRenderer.PoseAt(Prowl.Runtime.AnimationClip,System.Single)
+  commentId: M:Prowl.Editor.GUI.PreviewRenderer.PoseAt(Prowl.Runtime.AnimationClip,System.Single)
+  id: PoseAt(Prowl.Runtime.AnimationClip,System.Single)
+  parent: Prowl.Editor.GUI.PreviewRenderer
+  langs:
+  - csharp
+  - vb
+  name: PoseAt(AnimationClip?, float)
+  nameWithType: PreviewRenderer.PoseAt(AnimationClip?, float)
+  fullName: Prowl.Editor.GUI.PreviewRenderer.PoseAt(Prowl.Runtime.AnimationClip?, float)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PreviewRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PoseAt
+    path: ../Prowl/Prowl.Editor/GUI/PreviewRenderer.cs
+    startLine: 151
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI
+  summary: >-
+    Poses the subject at a point through a clip, from 0 at its first frame to 1 at its last. Sampling
+
+    rather than playing is what makes the preview scrub: any time is one call, in any order, and it
+
+    works outside play mode where nothing is ticking.
+  example: []
+  syntax:
+    content: public void PoseAt(AnimationClip? clip, float normalizedTime)
+    parameters:
+    - id: clip
+      type: Prowl.Runtime.AnimationClip
+    - id: normalizedTime
+      type: System.Single
+    content.vb: Public Sub PoseAt(clip As AnimationClip, normalizedTime As Single)
+  overload: Prowl.Editor.GUI.PreviewRenderer.PoseAt*
+  nameWithType.vb: PreviewRenderer.PoseAt(AnimationClip, Single)
+  fullName.vb: Prowl.Editor.GUI.PreviewRenderer.PoseAt(Prowl.Runtime.AnimationClip, Single)
+  name.vb: PoseAt(AnimationClip, Single)
+- uid: Prowl.Editor.GUI.PreviewRenderer.SetupForPrefab(Prowl.Runtime.Resources.PrefabAsset)
+  commentId: M:Prowl.Editor.GUI.PreviewRenderer.SetupForPrefab(Prowl.Runtime.Resources.PrefabAsset)
+  id: SetupForPrefab(Prowl.Runtime.Resources.PrefabAsset)
+  parent: Prowl.Editor.GUI.PreviewRenderer
+  langs:
+  - csharp
+  - vb
+  name: SetupForPrefab(PrefabAsset)
+  nameWithType: PreviewRenderer.SetupForPrefab(PrefabAsset)
+  fullName: Prowl.Editor.GUI.PreviewRenderer.SetupForPrefab(Prowl.Runtime.Resources.PrefabAsset)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PreviewRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetupForPrefab
+    path: ../Prowl/Prowl.Editor/GUI/PreviewRenderer.cs
+    startLine: 172
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI
+  summary: Set up the preview to show a Prefab's serialized GameObject hierarchy.
+  example: []
+  syntax:
+    content: public void SetupForPrefab(PrefabAsset prefab)
+    parameters:
+    - id: prefab
+      type: Prowl.Runtime.Resources.PrefabAsset
+    content.vb: Public Sub SetupForPrefab(prefab As PrefabAsset)
+  overload: Prowl.Editor.GUI.PreviewRenderer.SetupForPrefab*
+- uid: Prowl.Editor.GUI.PreviewRenderer.SetupForMaterial(Prowl.Runtime.Resources.Material)
+  commentId: M:Prowl.Editor.GUI.PreviewRenderer.SetupForMaterial(Prowl.Runtime.Resources.Material)
+  id: SetupForMaterial(Prowl.Runtime.Resources.Material)
+  parent: Prowl.Editor.GUI.PreviewRenderer
+  langs:
+  - csharp
+  - vb
+  name: SetupForMaterial(Material)
+  nameWithType: PreviewRenderer.SetupForMaterial(Material)
+  fullName: Prowl.Editor.GUI.PreviewRenderer.SetupForMaterial(Prowl.Runtime.Resources.Material)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PreviewRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetupForMaterial
+    path: ../Prowl/Prowl.Editor/GUI/PreviewRenderer.cs
+    startLine: 221
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI
+  summary: Set up the preview to show a Material on a sphere.
+  example: []
+  syntax:
+    content: public void SetupForMaterial(Material material)
+    parameters:
+    - id: material
+      type: Prowl.Runtime.Resources.Material
+    content.vb: Public Sub SetupForMaterial(material As Material)
+  overload: Prowl.Editor.GUI.PreviewRenderer.SetupForMaterial*
+- uid: Prowl.Editor.GUI.PreviewRenderer.Render
+  commentId: M:Prowl.Editor.GUI.PreviewRenderer.Render
+  id: Render
+  parent: Prowl.Editor.GUI.PreviewRenderer
+  langs:
+  - csharp
+  - vb
+  name: Render()
+  nameWithType: PreviewRenderer.Render()
+  fullName: Prowl.Editor.GUI.PreviewRenderer.Render()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PreviewRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Render
+    path: ../Prowl/Prowl.Editor/GUI/PreviewRenderer.cs
+    startLine: 243
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI
+  summary: Render the preview to the RenderTexture.
+  example: []
+  syntax:
+    content: public void Render()
+    content.vb: Public Sub Render()
+  overload: Prowl.Editor.GUI.PreviewRenderer.Render*
+- uid: Prowl.Editor.GUI.PreviewRenderer.Resize(System.Int32,System.Int32)
+  commentId: M:Prowl.Editor.GUI.PreviewRenderer.Resize(System.Int32,System.Int32)
+  id: Resize(System.Int32,System.Int32)
+  parent: Prowl.Editor.GUI.PreviewRenderer
+  langs:
+  - csharp
+  - vb
+  name: Resize(int, int)
+  nameWithType: PreviewRenderer.Resize(int, int)
+  fullName: Prowl.Editor.GUI.PreviewRenderer.Resize(int, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PreviewRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Resize
+    path: ../Prowl/Prowl.Editor/GUI/PreviewRenderer.cs
+    startLine: 254
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI
+  summary: Resize the preview render target.
+  example: []
+  syntax:
+    content: public void Resize(int width, int height)
+    parameters:
+    - id: width
+      type: System.Int32
+    - id: height
+      type: System.Int32
+    content.vb: Public Sub Resize(width As Integer, height As Integer)
+  overload: Prowl.Editor.GUI.PreviewRenderer.Resize*
+  nameWithType.vb: PreviewRenderer.Resize(Integer, Integer)
+  fullName.vb: Prowl.Editor.GUI.PreviewRenderer.Resize(Integer, Integer)
+  name.vb: Resize(Integer, Integer)
+- uid: Prowl.Editor.GUI.PreviewRenderer.DrawPreview(Prowl.PaperUI.Paper,System.String,System.Single,System.Single,System.Action{Prowl.Quill.Canvas,Prowl.Vector.Rect},System.Action{Prowl.Vector.Float2})
+  commentId: M:Prowl.Editor.GUI.PreviewRenderer.DrawPreview(Prowl.PaperUI.Paper,System.String,System.Single,System.Single,System.Action{Prowl.Quill.Canvas,Prowl.Vector.Rect},System.Action{Prowl.Vector.Float2})
+  id: DrawPreview(Prowl.PaperUI.Paper,System.String,System.Single,System.Single,System.Action{Prowl.Quill.Canvas,Prowl.Vector.Rect},System.Action{Prowl.Vector.Float2})
+  parent: Prowl.Editor.GUI.PreviewRenderer
+  langs:
+  - csharp
+  - vb
+  name: DrawPreview(Paper, string, float, float, Action<Canvas, Rect>?, Action<Float2>?)
+  nameWithType: PreviewRenderer.DrawPreview(Paper, string, float, float, Action<Canvas, Rect>?, Action<Float2>?)
+  fullName: Prowl.Editor.GUI.PreviewRenderer.DrawPreview(Prowl.PaperUI.Paper, string, float, float, System.Action<Prowl.Quill.Canvas, Prowl.Vector.Rect>?, System.Action<Prowl.Vector.Float2>?)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PreviewRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DrawPreview
+    path: ../Prowl/Prowl.Editor/GUI/PreviewRenderer.cs
+    startLine: 269
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI
+  summary: Draw the preview into a Paper element area. Resizes and renders the preview, then displays it with orbit controls via drag and scroll.
+  example: []
+  syntax:
+    content: public void DrawPreview(Paper paper, string id, float width, float height, Action<Canvas, Rect>? overlay = null, Action<Float2>? onClick = null)
+    parameters:
+    - id: paper
+      type: Prowl.PaperUI.Paper
+    - id: id
+      type: System.String
+    - id: width
+      type: System.Single
+    - id: height
+      type: System.Single
+    - id: overlay
+      type: System.Action{Prowl.Quill.Canvas,Prowl.Vector.Rect}
+    - id: onClick
+      type: System.Action{Prowl.Vector.Float2}
+    content.vb: Public Sub DrawPreview(paper As Paper, id As String, width As Single, height As Single, overlay As Action(Of Canvas, Rect) = Nothing, onClick As Action(Of Float2) = Nothing)
+  overload: Prowl.Editor.GUI.PreviewRenderer.DrawPreview*
+  nameWithType.vb: PreviewRenderer.DrawPreview(Paper, String, Single, Single, Action(Of Canvas, Rect), Action(Of Float2))
+  fullName.vb: Prowl.Editor.GUI.PreviewRenderer.DrawPreview(Prowl.PaperUI.Paper, String, Single, Single, System.Action(Of Prowl.Quill.Canvas, Prowl.Vector.Rect), System.Action(Of Prowl.Vector.Float2))
+  name.vb: DrawPreview(Paper, String, Single, Single, Action(Of Canvas, Rect), Action(Of Float2))
+- uid: Prowl.Editor.GUI.PreviewRenderer.Dispose
+  commentId: M:Prowl.Editor.GUI.PreviewRenderer.Dispose
+  id: Dispose
+  parent: Prowl.Editor.GUI.PreviewRenderer
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: PreviewRenderer.Dispose()
+  fullName: Prowl.Editor.GUI.PreviewRenderer.Dispose()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PreviewRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Dispose
+    path: ../Prowl/Prowl.Editor/GUI/PreviewRenderer.cs
+    startLine: 460
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI
+  summary: Releases all resources held by this PreviewRenderer, including the subject, render texture, scene, camera and light.
+  example: []
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose()
+  overload: Prowl.Editor.GUI.PreviewRenderer.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+references:
+- uid: Prowl.Editor.GUI
+  commentId: N:Prowl.Editor.GUI
+  name: Prowl.Editor.GUI
+  nameWithType: Prowl.Editor.GUI
+  fullName: Prowl.Editor.GUI
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.GUI
+    name: GUI
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.GUI
+    name: GUI
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Editor.GUI.PreviewRenderer.ShowGrid*
+  commentId: Overload:Prowl.Editor.GUI.PreviewRenderer.ShowGrid
+  href: Prowl.Editor.GUI.PreviewRenderer.html#Prowl_Editor_GUI_PreviewRenderer_ShowGrid
+  name: ShowGrid
+  nameWithType: PreviewRenderer.ShowGrid
+  fullName: Prowl.Editor.GUI.PreviewRenderer.ShowGrid
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Editor.GUI.PreviewRenderer.TransparentBackground*
+  commentId: Overload:Prowl.Editor.GUI.PreviewRenderer.TransparentBackground
+  href: Prowl.Editor.GUI.PreviewRenderer.html#Prowl_Editor_GUI_PreviewRenderer_TransparentBackground
+  name: TransparentBackground
+  nameWithType: PreviewRenderer.TransparentBackground
+  fullName: Prowl.Editor.GUI.PreviewRenderer.TransparentBackground
+- uid: Prowl.Editor.GUI.PreviewRenderer.Result*
+  commentId: Overload:Prowl.Editor.GUI.PreviewRenderer.Result
+  href: Prowl.Editor.GUI.PreviewRenderer.html#Prowl_Editor_GUI_PreviewRenderer_Result
+  name: Result
+  nameWithType: PreviewRenderer.Result
+  fullName: Prowl.Editor.GUI.PreviewRenderer.Result
+- uid: Prowl.Runtime.Resources.RenderTexture
+  commentId: T:Prowl.Runtime.Resources.RenderTexture
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.RenderTexture.html
+  name: RenderTexture
+  nameWithType: RenderTexture
+  fullName: Prowl.Runtime.Resources.RenderTexture
+- uid: Prowl.Runtime.Resources
+  commentId: N:Prowl.Runtime.Resources
+  name: Prowl.Runtime.Resources
+  nameWithType: Prowl.Runtime.Resources
+  fullName: Prowl.Runtime.Resources
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+- uid: Prowl.Editor.GUI.PreviewRenderer.Width*
+  commentId: Overload:Prowl.Editor.GUI.PreviewRenderer.Width
+  href: Prowl.Editor.GUI.PreviewRenderer.html#Prowl_Editor_GUI_PreviewRenderer_Width
+  name: Width
+  nameWithType: PreviewRenderer.Width
+  fullName: Prowl.Editor.GUI.PreviewRenderer.Width
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Editor.GUI.PreviewRenderer.Height*
+  commentId: Overload:Prowl.Editor.GUI.PreviewRenderer.Height
+  href: Prowl.Editor.GUI.PreviewRenderer.html#Prowl_Editor_GUI_PreviewRenderer_Height
+  name: Height
+  nameWithType: PreviewRenderer.Height
+  fullName: Prowl.Editor.GUI.PreviewRenderer.Height
+- uid: Prowl.Editor.GUI.PreviewRenderer.#ctor*
+  commentId: Overload:Prowl.Editor.GUI.PreviewRenderer.#ctor
+  href: Prowl.Editor.GUI.PreviewRenderer.html#Prowl_Editor_GUI_PreviewRenderer__ctor_System_Int32_System_Int32_
+  name: PreviewRenderer
+  nameWithType: PreviewRenderer.PreviewRenderer
+  fullName: Prowl.Editor.GUI.PreviewRenderer.PreviewRenderer
+  nameWithType.vb: PreviewRenderer.New
+  fullName.vb: Prowl.Editor.GUI.PreviewRenderer.New
+  name.vb: New
+- uid: Prowl.Editor.GUI.PreviewRenderer.SetupForMesh*
+  commentId: Overload:Prowl.Editor.GUI.PreviewRenderer.SetupForMesh
+  href: Prowl.Editor.GUI.PreviewRenderer.html#Prowl_Editor_GUI_PreviewRenderer_SetupForMesh_Prowl_Runtime_Resources_Mesh_Prowl_Runtime_Resources_Material_
+  name: SetupForMesh
+  nameWithType: PreviewRenderer.SetupForMesh
+  fullName: Prowl.Editor.GUI.PreviewRenderer.SetupForMesh
+- uid: Prowl.Runtime.Resources.Mesh
+  commentId: T:Prowl.Runtime.Resources.Mesh
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.Mesh.html
+  name: Mesh
+  nameWithType: Mesh
+  fullName: Prowl.Runtime.Resources.Mesh
+- uid: Prowl.Runtime.Resources.Material
+  commentId: T:Prowl.Runtime.Resources.Material
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.Material.html
+  name: Material
+  nameWithType: Material
+  fullName: Prowl.Runtime.Resources.Material
+- uid: Prowl.Editor.GUI.PreviewRenderer.Clips*
+  commentId: Overload:Prowl.Editor.GUI.PreviewRenderer.Clips
+  href: Prowl.Editor.GUI.PreviewRenderer.html#Prowl_Editor_GUI_PreviewRenderer_Clips
+  name: Clips
+  nameWithType: PreviewRenderer.Clips
+  fullName: Prowl.Editor.GUI.PreviewRenderer.Clips
+- uid: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.AnimationClip}
+  commentId: T:System.Collections.Generic.IReadOnlyList{Prowl.Runtime.AnimationClip}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<AnimationClip>
+  nameWithType: IReadOnlyList<AnimationClip>
+  fullName: System.Collections.Generic.IReadOnlyList<Prowl.Runtime.AnimationClip>
+  nameWithType.vb: IReadOnlyList(Of AnimationClip)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.AnimationClip)
+  name.vb: IReadOnlyList(Of AnimationClip)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Runtime.AnimationClip
+    name: AnimationClip
+    href: Prowl.Runtime.AnimationClip.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.AnimationClip
+    name: AnimationClip
+    href: Prowl.Runtime.AnimationClip.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Prowl.Editor.GUI.PreviewRenderer.Skeleton*
+  commentId: Overload:Prowl.Editor.GUI.PreviewRenderer.Skeleton
+  href: Prowl.Editor.GUI.PreviewRenderer.html#Prowl_Editor_GUI_PreviewRenderer_Skeleton
+  name: Skeleton
+  nameWithType: PreviewRenderer.Skeleton
+  fullName: Prowl.Editor.GUI.PreviewRenderer.Skeleton
+- uid: Prowl.Motion.Skeleton
+  commentId: T:Prowl.Motion.Skeleton
+  parent: Prowl.Motion
+  isExternal: true
+  name: Skeleton
+  nameWithType: Skeleton
+  fullName: Prowl.Motion.Skeleton
+- uid: Prowl.Motion
+  commentId: N:Prowl.Motion
+  isExternal: true
+  name: Prowl.Motion
+  nameWithType: Prowl.Motion
+  fullName: Prowl.Motion
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+    isExternal: true
+  - name: .
+  - uid: Prowl.Motion
+    name: Motion
+    isExternal: true
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+    isExternal: true
+  - name: .
+  - uid: Prowl.Motion
+    name: Motion
+    isExternal: true
+- uid: Prowl.Editor.GUI.PreviewRenderer.TryProjectBone*
+  commentId: Overload:Prowl.Editor.GUI.PreviewRenderer.TryProjectBone
+  href: Prowl.Editor.GUI.PreviewRenderer.html#Prowl_Editor_GUI_PreviewRenderer_TryProjectBone_System_Int32_Prowl_Vector_Float2__
+  name: TryProjectBone
+  nameWithType: PreviewRenderer.TryProjectBone
+  fullName: Prowl.Editor.GUI.PreviewRenderer.TryProjectBone
+- uid: Prowl.Vector.Float2
+  commentId: T:Prowl.Vector.Float2
+  parent: Prowl.Vector
+  isExternal: true
+  name: Float2
+  nameWithType: Float2
+  fullName: Prowl.Vector.Float2
+- uid: Prowl.Vector
+  commentId: N:Prowl.Vector
+  name: Prowl.Vector
+  nameWithType: Prowl.Vector
+  fullName: Prowl.Vector
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+- uid: Prowl.Editor.GUI.PreviewRenderer.CanAnimate*
+  commentId: Overload:Prowl.Editor.GUI.PreviewRenderer.CanAnimate
+  href: Prowl.Editor.GUI.PreviewRenderer.html#Prowl_Editor_GUI_PreviewRenderer_CanAnimate
+  name: CanAnimate
+  nameWithType: PreviewRenderer.CanAnimate
+  fullName: Prowl.Editor.GUI.PreviewRenderer.CanAnimate
+- uid: Prowl.Editor.GUI.PreviewRenderer.PoseAt*
+  commentId: Overload:Prowl.Editor.GUI.PreviewRenderer.PoseAt
+  href: Prowl.Editor.GUI.PreviewRenderer.html#Prowl_Editor_GUI_PreviewRenderer_PoseAt_Prowl_Runtime_AnimationClip_System_Single_
+  name: PoseAt
+  nameWithType: PreviewRenderer.PoseAt
+  fullName: Prowl.Editor.GUI.PreviewRenderer.PoseAt
+- uid: Prowl.Runtime.AnimationClip
+  commentId: T:Prowl.Runtime.AnimationClip
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.AnimationClip.html
+  name: AnimationClip
+  nameWithType: AnimationClip
+  fullName: Prowl.Runtime.AnimationClip
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: Prowl.Editor.GUI.PreviewRenderer.SetupForPrefab*
+  commentId: Overload:Prowl.Editor.GUI.PreviewRenderer.SetupForPrefab
+  href: Prowl.Editor.GUI.PreviewRenderer.html#Prowl_Editor_GUI_PreviewRenderer_SetupForPrefab_Prowl_Runtime_Resources_PrefabAsset_
+  name: SetupForPrefab
+  nameWithType: PreviewRenderer.SetupForPrefab
+  fullName: Prowl.Editor.GUI.PreviewRenderer.SetupForPrefab
+- uid: Prowl.Runtime.Resources.PrefabAsset
+  commentId: T:Prowl.Runtime.Resources.PrefabAsset
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.PrefabAsset.html
+  name: PrefabAsset
+  nameWithType: PrefabAsset
+  fullName: Prowl.Runtime.Resources.PrefabAsset
+- uid: Prowl.Editor.GUI.PreviewRenderer.SetupForMaterial*
+  commentId: Overload:Prowl.Editor.GUI.PreviewRenderer.SetupForMaterial
+  href: Prowl.Editor.GUI.PreviewRenderer.html#Prowl_Editor_GUI_PreviewRenderer_SetupForMaterial_Prowl_Runtime_Resources_Material_
+  name: SetupForMaterial
+  nameWithType: PreviewRenderer.SetupForMaterial
+  fullName: Prowl.Editor.GUI.PreviewRenderer.SetupForMaterial
+- uid: Prowl.Editor.GUI.PreviewRenderer.Render*
+  commentId: Overload:Prowl.Editor.GUI.PreviewRenderer.Render
+  href: Prowl.Editor.GUI.PreviewRenderer.html#Prowl_Editor_GUI_PreviewRenderer_Render
+  name: Render
+  nameWithType: PreviewRenderer.Render
+  fullName: Prowl.Editor.GUI.PreviewRenderer.Render
+- uid: Prowl.Editor.GUI.PreviewRenderer.Resize*
+  commentId: Overload:Prowl.Editor.GUI.PreviewRenderer.Resize
+  href: Prowl.Editor.GUI.PreviewRenderer.html#Prowl_Editor_GUI_PreviewRenderer_Resize_System_Int32_System_Int32_
+  name: Resize
+  nameWithType: PreviewRenderer.Resize
+  fullName: Prowl.Editor.GUI.PreviewRenderer.Resize
+- uid: Prowl.Editor.GUI.PreviewRenderer.DrawPreview*
+  commentId: Overload:Prowl.Editor.GUI.PreviewRenderer.DrawPreview
+  href: Prowl.Editor.GUI.PreviewRenderer.html#Prowl_Editor_GUI_PreviewRenderer_DrawPreview_Prowl_PaperUI_Paper_System_String_System_Single_System_Single_System_Action_Prowl_Quill_Canvas_Prowl_Vector_Rect__System_Action_Prowl_Vector_Float2__
+  name: DrawPreview
+  nameWithType: PreviewRenderer.DrawPreview
+  fullName: Prowl.Editor.GUI.PreviewRenderer.DrawPreview
+- uid: Prowl.PaperUI.Paper
+  commentId: T:Prowl.PaperUI.Paper
+  parent: Prowl.PaperUI
+  isExternal: true
+  name: Paper
+  nameWithType: Paper
+  fullName: Prowl.PaperUI.Paper
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Action{Prowl.Quill.Canvas,Prowl.Vector.Rect}
+  commentId: T:System.Action{Prowl.Quill.Canvas,Prowl.Vector.Rect}
+  parent: System
+  definition: System.Action`2
+  href: https://learn.microsoft.com/dotnet/api/system.action-2
+  name: Action<Canvas, Rect>
+  nameWithType: Action<Canvas, Rect>
+  fullName: System.Action<Prowl.Quill.Canvas, Prowl.Vector.Rect>
+  nameWithType.vb: Action(Of Canvas, Rect)
+  fullName.vb: System.Action(Of Prowl.Quill.Canvas, Prowl.Vector.Rect)
+  name.vb: Action(Of Canvas, Rect)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: <
+  - uid: Prowl.Quill.Canvas
+    name: Canvas
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Prowl.Vector.Rect
+    name: Rect
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Quill.Canvas
+    name: Canvas
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Prowl.Vector.Rect
+    name: Rect
+    isExternal: true
+  - name: )
+- uid: System.Action{Prowl.Vector.Float2}
+  commentId: T:System.Action{Prowl.Vector.Float2}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<Float2>
+  nameWithType: Action<Float2>
+  fullName: System.Action<Prowl.Vector.Float2>
+  nameWithType.vb: Action(Of Float2)
+  fullName.vb: System.Action(Of Prowl.Vector.Float2)
+  name.vb: Action(Of Float2)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: Prowl.Vector.Float2
+    name: Float2
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Vector.Float2
+    name: Float2
+    isExternal: true
+  - name: )
+- uid: Prowl.PaperUI
+  commentId: N:Prowl.PaperUI
+  isExternal: true
+  name: Prowl.PaperUI
+  nameWithType: Prowl.PaperUI
+  fullName: Prowl.PaperUI
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+    isExternal: true
+  - name: .
+  - uid: Prowl.PaperUI
+    name: PaperUI
+    isExternal: true
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+    isExternal: true
+  - name: .
+  - uid: Prowl.PaperUI
+    name: PaperUI
+    isExternal: true
+- uid: System.Action`2
+  commentId: T:System.Action`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-2
+  name: Action<T1, T2>
+  nameWithType: Action<T1, T2>
+  fullName: System.Action<T1, T2>
+  nameWithType.vb: Action(Of T1, T2)
+  fullName.vb: System.Action(Of T1, T2)
+  name.vb: Action(Of T1, T2)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: <
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Editor.GUI.PreviewRenderer.Dispose*
+  commentId: Overload:Prowl.Editor.GUI.PreviewRenderer.Dispose
+  href: Prowl.Editor.GUI.PreviewRenderer.html#Prowl_Editor_GUI_PreviewRenderer_Dispose
+  name: Dispose
+  nameWithType: PreviewRenderer.Dispose
+  fullName: Prowl.Editor.GUI.PreviewRenderer.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )

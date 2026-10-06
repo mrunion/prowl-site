@@ -1,0 +1,743 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.ITerrainHeightProvider
+  commentId: T:Prowl.Runtime.ITerrainHeightProvider
+  id: ITerrainHeightProvider
+  parent: Prowl.Runtime
+  children:
+  - Prowl.Runtime.ITerrainHeightProvider.CellSize
+  - Prowl.Runtime.ITerrainHeightProvider.Height
+  - Prowl.Runtime.ITerrainHeightProvider.IsCellHole(System.Int32,System.Int32)
+  - Prowl.Runtime.ITerrainHeightProvider.IsValidCell(System.Int32,System.Int32)
+  - Prowl.Runtime.ITerrainHeightProvider.LocalToWorld
+  - Prowl.Runtime.ITerrainHeightProvider.TryGetCellRange(Jitter2.LinearMath.JBoundingBox@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)
+  - Prowl.Runtime.ITerrainHeightProvider.TryGetHeight(System.Int32,System.Int32,System.Single@)
+  - Prowl.Runtime.ITerrainHeightProvider.TryGetWorldCorners(System.Int32,System.Int32,Jitter2.LinearMath.JVector@,Jitter2.LinearMath.JVector@,Jitter2.LinearMath.JVector@,Jitter2.LinearMath.JVector@)
+  - Prowl.Runtime.ITerrainHeightProvider.Width
+  - Prowl.Runtime.ITerrainHeightProvider.WorldBounds
+  - Prowl.Runtime.ITerrainHeightProvider.WorldToLocal
+  langs:
+  - csharp
+  - vb
+  name: ITerrainHeightProvider
+  nameWithType: ITerrainHeightProvider
+  fullName: Prowl.Runtime.ITerrainHeightProvider
+  type: Interface
+  source:
+    remote:
+      path: Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ITerrainHeightProvider
+    path: ../Prowl/Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+    startLine: 203
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Supplies the height grid and where it sits in the world.
+
+
+    <p></p>
+
+
+    The grid itself is defined in terrain-local space: cell (x,z) sits at <code>(x, height, z) * CellSize</code>
+
+    with no rotation, scale or offset baked in. <xref href="Prowl.Runtime.ITerrainHeightProvider.LocalToWorld" data-throw-if-not-resolved="false"></xref> carries all of that, which is
+
+    what lets terrain be rotated arbitrarily - queries are brought into local space, walked on the
+
+    axis-aligned grid there, and their results taken back out.
+  example: []
+  syntax:
+    content: public interface ITerrainHeightProvider
+    content.vb: Public Interface ITerrainHeightProvider
+  derivedClasses:
+  - Prowl.Runtime.TerrainCollider
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.ITerrainHeightProvider.TryGetHeight(System.Int32,System.Int32,System.Single@)
+  commentId: M:Prowl.Runtime.ITerrainHeightProvider.TryGetHeight(System.Int32,System.Int32,System.Single@)
+  id: TryGetHeight(System.Int32,System.Int32,System.Single@)
+  parent: Prowl.Runtime.ITerrainHeightProvider
+  langs:
+  - csharp
+  - vb
+  name: TryGetHeight(int, int, out float)
+  nameWithType: ITerrainHeightProvider.TryGetHeight(int, int, out float)
+  fullName: Prowl.Runtime.ITerrainHeightProvider.TryGetHeight(int, int, out float)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TryGetHeight
+    path: ../Prowl/Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+    startLine: 210
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Height at integer grid coordinates, in terrain-local units. Scale and world offset are not
+
+    applied here; they come from <xref href="Prowl.Runtime.ITerrainHeightProvider.LocalToWorld" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: bool TryGetHeight(int x, int z, out float height)
+    parameters:
+    - id: x
+      type: System.Int32
+    - id: z
+      type: System.Int32
+    - id: height
+      type: System.Single
+    return:
+      type: System.Boolean
+      description: True if the coordinates are valid and height was retrieved.
+    content.vb: Function TryGetHeight(x As Integer, z As Integer, height As Single) As Boolean
+  overload: Prowl.Runtime.ITerrainHeightProvider.TryGetHeight*
+  nameWithType.vb: ITerrainHeightProvider.TryGetHeight(Integer, Integer, Single)
+  fullName.vb: Prowl.Runtime.ITerrainHeightProvider.TryGetHeight(Integer, Integer, Single)
+  name.vb: TryGetHeight(Integer, Integer, Single)
+- uid: Prowl.Runtime.ITerrainHeightProvider.IsValidCell(System.Int32,System.Int32)
+  commentId: M:Prowl.Runtime.ITerrainHeightProvider.IsValidCell(System.Int32,System.Int32)
+  id: IsValidCell(System.Int32,System.Int32)
+  parent: Prowl.Runtime.ITerrainHeightProvider
+  langs:
+  - csharp
+  - vb
+  name: IsValidCell(int, int)
+  nameWithType: ITerrainHeightProvider.IsValidCell(int, int)
+  fullName: Prowl.Runtime.ITerrainHeightProvider.IsValidCell(int, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsValidCell
+    path: ../Prowl/Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+    startLine: 213
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Whether a cell exists. Cells are indexed 0..Width-2 and 0..Height-2, one per quad.
+  example: []
+  syntax:
+    content: bool IsValidCell(int x, int z)
+    parameters:
+    - id: x
+      type: System.Int32
+    - id: z
+      type: System.Int32
+    return:
+      type: System.Boolean
+    content.vb: Function IsValidCell(x As Integer, z As Integer) As Boolean
+  overload: Prowl.Runtime.ITerrainHeightProvider.IsValidCell*
+  nameWithType.vb: ITerrainHeightProvider.IsValidCell(Integer, Integer)
+  fullName.vb: Prowl.Runtime.ITerrainHeightProvider.IsValidCell(Integer, Integer)
+  name.vb: IsValidCell(Integer, Integer)
+- uid: Prowl.Runtime.ITerrainHeightProvider.IsCellHole(System.Int32,System.Int32)
+  commentId: M:Prowl.Runtime.ITerrainHeightProvider.IsCellHole(System.Int32,System.Int32)
+  id: IsCellHole(System.Int32,System.Int32)
+  parent: Prowl.Runtime.ITerrainHeightProvider
+  langs:
+  - csharp
+  - vb
+  name: IsCellHole(int, int)
+  nameWithType: ITerrainHeightProvider.IsCellHole(int, int)
+  fullName: Prowl.Runtime.ITerrainHeightProvider.IsCellHole(int, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsCellHole
+    path: ../Prowl/Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+    startLine: 216
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Check if a cell is a hole (should skip collision). Default false.
+  example: []
+  syntax:
+    content: bool IsCellHole(int x, int z)
+    parameters:
+    - id: x
+      type: System.Int32
+    - id: z
+      type: System.Int32
+    return:
+      type: System.Boolean
+    content.vb: Function IsCellHole(x As Integer, z As Integer) As Boolean
+  overload: Prowl.Runtime.ITerrainHeightProvider.IsCellHole*
+  nameWithType.vb: ITerrainHeightProvider.IsCellHole(Integer, Integer)
+  fullName.vb: Prowl.Runtime.ITerrainHeightProvider.IsCellHole(Integer, Integer)
+  name.vb: IsCellHole(Integer, Integer)
+- uid: Prowl.Runtime.ITerrainHeightProvider.Width
+  commentId: P:Prowl.Runtime.ITerrainHeightProvider.Width
+  id: Width
+  parent: Prowl.Runtime.ITerrainHeightProvider
+  langs:
+  - csharp
+  - vb
+  name: Width
+  nameWithType: ITerrainHeightProvider.Width
+  fullName: Prowl.Runtime.ITerrainHeightProvider.Width
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Width
+    path: ../Prowl/Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+    startLine: 219
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Number of height samples along X.
+  example: []
+  syntax:
+    content: int Width { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property Width As Integer
+  overload: Prowl.Runtime.ITerrainHeightProvider.Width*
+- uid: Prowl.Runtime.ITerrainHeightProvider.Height
+  commentId: P:Prowl.Runtime.ITerrainHeightProvider.Height
+  id: Height
+  parent: Prowl.Runtime.ITerrainHeightProvider
+  langs:
+  - csharp
+  - vb
+  name: Height
+  nameWithType: ITerrainHeightProvider.Height
+  fullName: Prowl.Runtime.ITerrainHeightProvider.Height
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Height
+    path: ../Prowl/Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+    startLine: 222
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Number of height samples along Z.
+  example: []
+  syntax:
+    content: int Height { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property Height As Integer
+  overload: Prowl.Runtime.ITerrainHeightProvider.Height*
+- uid: Prowl.Runtime.ITerrainHeightProvider.CellSize
+  commentId: P:Prowl.Runtime.ITerrainHeightProvider.CellSize
+  id: CellSize
+  parent: Prowl.Runtime.ITerrainHeightProvider
+  langs:
+  - csharp
+  - vb
+  name: CellSize
+  nameWithType: ITerrainHeightProvider.CellSize
+  fullName: Prowl.Runtime.ITerrainHeightProvider.CellSize
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CellSize
+    path: ../Prowl/Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+    startLine: 225
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Spacing between height samples, in terrain-local units.
+  example: []
+  syntax:
+    content: float CellSize { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: ReadOnly Property CellSize As Single
+  overload: Prowl.Runtime.ITerrainHeightProvider.CellSize*
+- uid: Prowl.Runtime.ITerrainHeightProvider.LocalToWorld
+  commentId: P:Prowl.Runtime.ITerrainHeightProvider.LocalToWorld
+  id: LocalToWorld
+  parent: Prowl.Runtime.ITerrainHeightProvider
+  langs:
+  - csharp
+  - vb
+  name: LocalToWorld
+  nameWithType: ITerrainHeightProvider.LocalToWorld
+  fullName: Prowl.Runtime.ITerrainHeightProvider.LocalToWorld
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LocalToWorld
+    path: ../Prowl/Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+    startLine: 232
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Terrain-local to world, carrying position, rotation and scale. Read per query, so the terrain can
+
+    be moved, turned or scaled after registration; cached on the main thread by the implementation,
+
+    because the broad phase samples it from worker threads.
+  example: []
+  syntax:
+    content: Float4x4 LocalToWorld { get; }
+    parameters: []
+    return:
+      type: Prowl.Vector.Float4x4
+    content.vb: ReadOnly Property LocalToWorld As Float4x4
+  overload: Prowl.Runtime.ITerrainHeightProvider.LocalToWorld*
+- uid: Prowl.Runtime.ITerrainHeightProvider.WorldToLocal
+  commentId: P:Prowl.Runtime.ITerrainHeightProvider.WorldToLocal
+  id: WorldToLocal
+  parent: Prowl.Runtime.ITerrainHeightProvider
+  langs:
+  - csharp
+  - vb
+  name: WorldToLocal
+  nameWithType: ITerrainHeightProvider.WorldToLocal
+  fullName: Prowl.Runtime.ITerrainHeightProvider.WorldToLocal
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WorldToLocal
+    path: ../Prowl/Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+    startLine: 235
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The inverse of <xref href="Prowl.Runtime.ITerrainHeightProvider.LocalToWorld" data-throw-if-not-resolved="false"></xref>, for bringing world queries into the grid.
+  example: []
+  syntax:
+    content: Float4x4 WorldToLocal { get; }
+    parameters: []
+    return:
+      type: Prowl.Vector.Float4x4
+    content.vb: ReadOnly Property WorldToLocal As Float4x4
+  overload: Prowl.Runtime.ITerrainHeightProvider.WorldToLocal*
+- uid: Prowl.Runtime.ITerrainHeightProvider.WorldBounds
+  commentId: P:Prowl.Runtime.ITerrainHeightProvider.WorldBounds
+  id: WorldBounds
+  parent: Prowl.Runtime.ITerrainHeightProvider
+  langs:
+  - csharp
+  - vb
+  name: WorldBounds
+  nameWithType: ITerrainHeightProvider.WorldBounds
+  fullName: Prowl.Runtime.ITerrainHeightProvider.WorldBounds
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WorldBounds
+    path: ../Prowl/Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+    startLine: 238
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: World-space bounds enclosing the terrain at its full height range, rotation included.
+  example: []
+  syntax:
+    content: JBoundingBox WorldBounds { get; }
+    parameters: []
+    return:
+      type: Jitter2.LinearMath.JBoundingBox
+    content.vb: ReadOnly Property WorldBounds As JBoundingBox
+  overload: Prowl.Runtime.ITerrainHeightProvider.WorldBounds*
+- uid: Prowl.Runtime.ITerrainHeightProvider.TryGetCellRange(Jitter2.LinearMath.JBoundingBox@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)
+  commentId: M:Prowl.Runtime.ITerrainHeightProvider.TryGetCellRange(Jitter2.LinearMath.JBoundingBox@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)
+  id: TryGetCellRange(Jitter2.LinearMath.JBoundingBox@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)
+  parent: Prowl.Runtime.ITerrainHeightProvider
+  langs:
+  - csharp
+  - vb
+  name: TryGetCellRange(in JBoundingBox, out int, out int, out int, out int)
+  nameWithType: ITerrainHeightProvider.TryGetCellRange(in JBoundingBox, out int, out int, out int, out int)
+  fullName: Prowl.Runtime.ITerrainHeightProvider.TryGetCellRange(in Jitter2.LinearMath.JBoundingBox, out int, out int, out int, out int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TryGetCellRange
+    path: ../Prowl/Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+    startLine: 249
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    The range of cells a world-space bounding box could touch, clamped to the grid. Upper bounds are
+
+    exclusive, so callers iterate <code>x &lt; maxX</code>.
+
+
+    <p></p>
+
+
+    The box is brought into local space corner by corner and re-bounded there, because a rotated
+
+    terrain turns an axis-aligned world box into an oriented one. Re-bounding is conservative, which
+
+    is what a broad-phase range has to be.
+  example: []
+  syntax:
+    content: bool TryGetCellRange(in JBoundingBox worldBounds, out int minX, out int minZ, out int maxX, out int maxZ)
+    parameters:
+    - id: worldBounds
+      type: Jitter2.LinearMath.JBoundingBox
+    - id: minX
+      type: System.Int32
+    - id: minZ
+      type: System.Int32
+    - id: maxX
+      type: System.Int32
+    - id: maxZ
+      type: System.Int32
+    return:
+      type: System.Boolean
+      description: False when the box cannot touch the grid at all.
+    content.vb: Function TryGetCellRange(worldBounds As JBoundingBox, minX As Integer, minZ As Integer, maxX As Integer, maxZ As Integer) As Boolean
+  overload: Prowl.Runtime.ITerrainHeightProvider.TryGetCellRange*
+  nameWithType.vb: ITerrainHeightProvider.TryGetCellRange(JBoundingBox, Integer, Integer, Integer, Integer)
+  fullName.vb: Prowl.Runtime.ITerrainHeightProvider.TryGetCellRange(Jitter2.LinearMath.JBoundingBox, Integer, Integer, Integer, Integer)
+  name.vb: TryGetCellRange(JBoundingBox, Integer, Integer, Integer, Integer)
+- uid: Prowl.Runtime.ITerrainHeightProvider.TryGetWorldCorners(System.Int32,System.Int32,Jitter2.LinearMath.JVector@,Jitter2.LinearMath.JVector@,Jitter2.LinearMath.JVector@,Jitter2.LinearMath.JVector@)
+  commentId: M:Prowl.Runtime.ITerrainHeightProvider.TryGetWorldCorners(System.Int32,System.Int32,Jitter2.LinearMath.JVector@,Jitter2.LinearMath.JVector@,Jitter2.LinearMath.JVector@,Jitter2.LinearMath.JVector@)
+  id: TryGetWorldCorners(System.Int32,System.Int32,Jitter2.LinearMath.JVector@,Jitter2.LinearMath.JVector@,Jitter2.LinearMath.JVector@,Jitter2.LinearMath.JVector@)
+  parent: Prowl.Runtime.ITerrainHeightProvider
+  langs:
+  - csharp
+  - vb
+  name: TryGetWorldCorners(int, int, out JVector, out JVector, out JVector, out JVector)
+  nameWithType: ITerrainHeightProvider.TryGetWorldCorners(int, int, out JVector, out JVector, out JVector, out JVector)
+  fullName: Prowl.Runtime.ITerrainHeightProvider.TryGetWorldCorners(int, int, out Jitter2.LinearMath.JVector, out Jitter2.LinearMath.JVector, out Jitter2.LinearMath.JVector, out Jitter2.LinearMath.JVector)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TryGetWorldCorners
+    path: ../Prowl/Prowl.Runtime/Physics/TerrainHeightmapProxy.cs
+    startLine: 284
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    The four world-space corners of one cell, laid out as
+
+    <code>a</code>=(x,z), <code>b</code>=(x+1,z), <code>c</code>=(x+1,z+1), <code>d</code>=(x,z+1).
+  example: []
+  syntax:
+    content: bool TryGetWorldCorners(int x, int z, out JVector a, out JVector b, out JVector c, out JVector d)
+    parameters:
+    - id: x
+      type: System.Int32
+    - id: z
+      type: System.Int32
+    - id: a
+      type: Jitter2.LinearMath.JVector
+    - id: b
+      type: Jitter2.LinearMath.JVector
+    - id: c
+      type: Jitter2.LinearMath.JVector
+    - id: d
+      type: Jitter2.LinearMath.JVector
+    return:
+      type: System.Boolean
+      description: False when any corner has no height, so the cell should be skipped.
+    content.vb: Function TryGetWorldCorners(x As Integer, z As Integer, a As JVector, b As JVector, c As JVector, d As JVector) As Boolean
+  overload: Prowl.Runtime.ITerrainHeightProvider.TryGetWorldCorners*
+  nameWithType.vb: ITerrainHeightProvider.TryGetWorldCorners(Integer, Integer, JVector, JVector, JVector, JVector)
+  fullName.vb: Prowl.Runtime.ITerrainHeightProvider.TryGetWorldCorners(Integer, Integer, Jitter2.LinearMath.JVector, Jitter2.LinearMath.JVector, Jitter2.LinearMath.JVector, Jitter2.LinearMath.JVector)
+  name.vb: TryGetWorldCorners(Integer, Integer, JVector, JVector, JVector, JVector)
+references:
+- uid: Prowl.Runtime.ITerrainHeightProvider.LocalToWorld
+  commentId: P:Prowl.Runtime.ITerrainHeightProvider.LocalToWorld
+  parent: Prowl.Runtime.ITerrainHeightProvider
+  href: Prowl.Runtime.ITerrainHeightProvider.html#Prowl_Runtime_ITerrainHeightProvider_LocalToWorld
+  name: LocalToWorld
+  nameWithType: ITerrainHeightProvider.LocalToWorld
+  fullName: Prowl.Runtime.ITerrainHeightProvider.LocalToWorld
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.ITerrainHeightProvider
+  commentId: T:Prowl.Runtime.ITerrainHeightProvider
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.ITerrainHeightProvider.html
+  name: ITerrainHeightProvider
+  nameWithType: ITerrainHeightProvider
+  fullName: Prowl.Runtime.ITerrainHeightProvider
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime.ITerrainHeightProvider.TryGetHeight*
+  commentId: Overload:Prowl.Runtime.ITerrainHeightProvider.TryGetHeight
+  href: Prowl.Runtime.ITerrainHeightProvider.html#Prowl_Runtime_ITerrainHeightProvider_TryGetHeight_System_Int32_System_Int32_System_Single__
+  name: TryGetHeight
+  nameWithType: ITerrainHeightProvider.TryGetHeight
+  fullName: Prowl.Runtime.ITerrainHeightProvider.TryGetHeight
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.ITerrainHeightProvider.IsValidCell*
+  commentId: Overload:Prowl.Runtime.ITerrainHeightProvider.IsValidCell
+  href: Prowl.Runtime.ITerrainHeightProvider.html#Prowl_Runtime_ITerrainHeightProvider_IsValidCell_System_Int32_System_Int32_
+  name: IsValidCell
+  nameWithType: ITerrainHeightProvider.IsValidCell
+  fullName: Prowl.Runtime.ITerrainHeightProvider.IsValidCell
+- uid: Prowl.Runtime.ITerrainHeightProvider.IsCellHole*
+  commentId: Overload:Prowl.Runtime.ITerrainHeightProvider.IsCellHole
+  href: Prowl.Runtime.ITerrainHeightProvider.html#Prowl_Runtime_ITerrainHeightProvider_IsCellHole_System_Int32_System_Int32_
+  name: IsCellHole
+  nameWithType: ITerrainHeightProvider.IsCellHole
+  fullName: Prowl.Runtime.ITerrainHeightProvider.IsCellHole
+- uid: Prowl.Runtime.ITerrainHeightProvider.Width*
+  commentId: Overload:Prowl.Runtime.ITerrainHeightProvider.Width
+  href: Prowl.Runtime.ITerrainHeightProvider.html#Prowl_Runtime_ITerrainHeightProvider_Width
+  name: Width
+  nameWithType: ITerrainHeightProvider.Width
+  fullName: Prowl.Runtime.ITerrainHeightProvider.Width
+- uid: Prowl.Runtime.ITerrainHeightProvider.Height*
+  commentId: Overload:Prowl.Runtime.ITerrainHeightProvider.Height
+  href: Prowl.Runtime.ITerrainHeightProvider.html#Prowl_Runtime_ITerrainHeightProvider_Height
+  name: Height
+  nameWithType: ITerrainHeightProvider.Height
+  fullName: Prowl.Runtime.ITerrainHeightProvider.Height
+- uid: Prowl.Runtime.ITerrainHeightProvider.CellSize*
+  commentId: Overload:Prowl.Runtime.ITerrainHeightProvider.CellSize
+  href: Prowl.Runtime.ITerrainHeightProvider.html#Prowl_Runtime_ITerrainHeightProvider_CellSize
+  name: CellSize
+  nameWithType: ITerrainHeightProvider.CellSize
+  fullName: Prowl.Runtime.ITerrainHeightProvider.CellSize
+- uid: Prowl.Runtime.ITerrainHeightProvider.LocalToWorld*
+  commentId: Overload:Prowl.Runtime.ITerrainHeightProvider.LocalToWorld
+  href: Prowl.Runtime.ITerrainHeightProvider.html#Prowl_Runtime_ITerrainHeightProvider_LocalToWorld
+  name: LocalToWorld
+  nameWithType: ITerrainHeightProvider.LocalToWorld
+  fullName: Prowl.Runtime.ITerrainHeightProvider.LocalToWorld
+- uid: Prowl.Vector.Float4x4
+  commentId: T:Prowl.Vector.Float4x4
+  parent: Prowl.Vector
+  isExternal: true
+  name: Float4x4
+  nameWithType: Float4x4
+  fullName: Prowl.Vector.Float4x4
+- uid: Prowl.Vector
+  commentId: N:Prowl.Vector
+  name: Prowl.Vector
+  nameWithType: Prowl.Vector
+  fullName: Prowl.Vector
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+- uid: Prowl.Runtime.ITerrainHeightProvider.WorldToLocal*
+  commentId: Overload:Prowl.Runtime.ITerrainHeightProvider.WorldToLocal
+  href: Prowl.Runtime.ITerrainHeightProvider.html#Prowl_Runtime_ITerrainHeightProvider_WorldToLocal
+  name: WorldToLocal
+  nameWithType: ITerrainHeightProvider.WorldToLocal
+  fullName: Prowl.Runtime.ITerrainHeightProvider.WorldToLocal
+- uid: Prowl.Runtime.ITerrainHeightProvider.WorldBounds*
+  commentId: Overload:Prowl.Runtime.ITerrainHeightProvider.WorldBounds
+  href: Prowl.Runtime.ITerrainHeightProvider.html#Prowl_Runtime_ITerrainHeightProvider_WorldBounds
+  name: WorldBounds
+  nameWithType: ITerrainHeightProvider.WorldBounds
+  fullName: Prowl.Runtime.ITerrainHeightProvider.WorldBounds
+- uid: Jitter2.LinearMath.JBoundingBox
+  commentId: T:Jitter2.LinearMath.JBoundingBox
+  parent: Jitter2.LinearMath
+  isExternal: true
+  name: JBoundingBox
+  nameWithType: JBoundingBox
+  fullName: Jitter2.LinearMath.JBoundingBox
+- uid: Jitter2.LinearMath
+  commentId: N:Jitter2.LinearMath
+  isExternal: true
+  name: Jitter2.LinearMath
+  nameWithType: Jitter2.LinearMath
+  fullName: Jitter2.LinearMath
+  spec.csharp:
+  - uid: Jitter2
+    name: Jitter2
+    isExternal: true
+  - name: .
+  - uid: Jitter2.LinearMath
+    name: LinearMath
+    isExternal: true
+  spec.vb:
+  - uid: Jitter2
+    name: Jitter2
+    isExternal: true
+  - name: .
+  - uid: Jitter2.LinearMath
+    name: LinearMath
+    isExternal: true
+- uid: Prowl.Runtime.ITerrainHeightProvider.TryGetCellRange*
+  commentId: Overload:Prowl.Runtime.ITerrainHeightProvider.TryGetCellRange
+  href: Prowl.Runtime.ITerrainHeightProvider.html#Prowl_Runtime_ITerrainHeightProvider_TryGetCellRange_Jitter2_LinearMath_JBoundingBox__System_Int32__System_Int32__System_Int32__System_Int32__
+  name: TryGetCellRange
+  nameWithType: ITerrainHeightProvider.TryGetCellRange
+  fullName: Prowl.Runtime.ITerrainHeightProvider.TryGetCellRange
+- uid: Prowl.Runtime.ITerrainHeightProvider.TryGetWorldCorners*
+  commentId: Overload:Prowl.Runtime.ITerrainHeightProvider.TryGetWorldCorners
+  href: Prowl.Runtime.ITerrainHeightProvider.html#Prowl_Runtime_ITerrainHeightProvider_TryGetWorldCorners_System_Int32_System_Int32_Jitter2_LinearMath_JVector__Jitter2_LinearMath_JVector__Jitter2_LinearMath_JVector__Jitter2_LinearMath_JVector__
+  name: TryGetWorldCorners
+  nameWithType: ITerrainHeightProvider.TryGetWorldCorners
+  fullName: Prowl.Runtime.ITerrainHeightProvider.TryGetWorldCorners
+- uid: Jitter2.LinearMath.JVector
+  commentId: T:Jitter2.LinearMath.JVector
+  parent: Jitter2.LinearMath
+  isExternal: true
+  name: JVector
+  nameWithType: JVector
+  fullName: Jitter2.LinearMath.JVector

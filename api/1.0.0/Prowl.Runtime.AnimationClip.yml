@@ -5,16 +5,23 @@ items:
   id: AnimationClip
   parent: Prowl.Runtime
   children:
-  - Prowl.Runtime.AnimationClip.AddBone(Prowl.Runtime.AnimationClip.AnimBone)
-  - Prowl.Runtime.AnimationClip.Bones
-  - Prowl.Runtime.AnimationClip.Deserialize(Prowl.Runtime.SerializedProperty,Prowl.Runtime.Serializer.SerializationContext)
+  - Prowl.Runtime.AnimationClip.#ctor
+  - Prowl.Runtime.AnimationClip.Avatar
+  - Prowl.Runtime.AnimationClip.Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
   - Prowl.Runtime.AnimationClip.Duration
-  - Prowl.Runtime.AnimationClip.DurationInTicks
-  - Prowl.Runtime.AnimationClip.EnsureQuaternionContinuity
-  - Prowl.Runtime.AnimationClip.GetBone(System.String)
-  - Prowl.Runtime.AnimationClip.Serialize(Prowl.Runtime.Serializer.SerializationContext)
-  - Prowl.Runtime.AnimationClip.TicksPerSecond
-  - Prowl.Runtime.AnimationClip.Wrap
+  - Prowl.Runtime.AnimationClip.EstimateBytes
+  - Prowl.Runtime.AnimationClip.Events
+  - Prowl.Runtime.AnimationClip.EventsChanged
+  - Prowl.Runtime.AnimationClip.FrameCount
+  - Prowl.Runtime.AnimationClip.FromHumanoid(Prowl.Motion.HumanoidClip,Prowl.Runtime.Avatar,System.String,System.Collections.Generic.IEnumerable{Prowl.Runtime.ClipEvent})
+  - Prowl.Runtime.AnimationClip.FromSkeletal(Prowl.Motion.AnimationClipBase,Prowl.Runtime.Avatar,System.String,System.Collections.Generic.IEnumerable{Prowl.Runtime.ClipEvent})
+  - Prowl.Runtime.AnimationClip.GetClip(Prowl.Motion.Avatar)
+  - Prowl.Runtime.AnimationClip.Kind
+  - Prowl.Runtime.AnimationClip.Loop
+  - Prowl.Runtime.AnimationClip.OnUnload
+  - Prowl.Runtime.AnimationClip.Serialize(Prowl.Echo.EchoObject@,Prowl.Echo.SerializationContext)
+  - Prowl.Runtime.AnimationClip.SourceName
+  - Prowl.Runtime.AnimationClip.TakeStart
   langs:
   - csharp
   - vb
@@ -24,55 +31,262 @@ items:
   type: Class
   source:
     remote:
-      path: Prowl.Runtime/Resources/AnimationClip.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      path: Prowl.Runtime/Animation/AnimationClip.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: AnimationClip
-    path: ../Prowl/Prowl.Runtime/Resources/AnimationClip.cs
-    startLine: 16
+    path: ../Prowl/Prowl.Runtime/Animation/AnimationClip.cs
+    startLine: 25
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: 'An animation clip: the encoded Motion clip, the rig it was authored on, and its settings.'
+  example: []
+  syntax:
+    content: 'public sealed class AnimationClip : Asset, IDisposable, ISerializable'
+    content.vb: Public NotInheritable Class AnimationClip Inherits Asset Implements IDisposable, ISerializable
+  inheritance:
+  - System.Object
+  - Prowl.Runtime.EngineObject
+  - Prowl.Runtime.Asset
+  implements:
+  - System.IDisposable
+  - Prowl.Echo.ISerializable
+  inheritedMembers:
+  - Prowl.Runtime.Asset.AssetID
+  - Prowl.Runtime.Asset.AssetPath
+  - Prowl.Runtime.Asset.State
+  - Prowl.Runtime.Asset.ContentVersion
+  - Prowl.Runtime.Asset.IsFromDatabase
+  - Prowl.Runtime.Asset.IsLoaded
+  - Prowl.Runtime.Asset.IsMissing
+  - Prowl.Runtime.Asset.Load
+  - Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+  - Prowl.Runtime.Asset.HasChanged(System.Int32@)
+  - Prowl.Runtime.EngineObject.InstanceID
+  - Prowl.Runtime.EngineObject.Name
+  - Prowl.Runtime.EngineObject.IsDisposed
+  - Prowl.Runtime.EngineObject.CreatedInstance
+  - Prowl.Runtime.EngineObject.OnValidate
+  - Prowl.Runtime.EngineObject.Dispose
+  - Prowl.Runtime.EngineObject.Destroy
+  - Prowl.Runtime.EngineObject.IsDestroyQueued
+  - Prowl.Runtime.EngineObject.ProcessDestroyed
+  - Prowl.Runtime.EngineObject.Equals(System.Object)
+  - Prowl.Runtime.EngineObject.GetHashCode
+  - Prowl.Runtime.EngineObject.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  extensionMethods:
+  - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsNotValid
+  - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsValid
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.AnimationClip.Avatar
+  commentId: F:Prowl.Runtime.AnimationClip.Avatar
+  id: Avatar
+  parent: Prowl.Runtime.AnimationClip
+  langs:
+  - csharp
+  - vb
+  name: Avatar
+  nameWithType: AnimationClip.Avatar
+  fullName: Prowl.Runtime.AnimationClip.Avatar
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Animation/AnimationClip.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Avatar
+    path: ../Prowl/Prowl.Runtime/Animation/AnimationClip.cs
+    startLine: 28
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The rig the clip was authored on. A humanoid clip uses it only to preview.
+  example: []
+  syntax:
+    content: public Avatar? Avatar
+    return:
+      type: Prowl.Runtime.Avatar
+    content.vb: Public Avatar As Avatar
+- uid: Prowl.Runtime.AnimationClip.Loop
+  commentId: F:Prowl.Runtime.AnimationClip.Loop
+  id: Loop
+  parent: Prowl.Runtime.AnimationClip
+  langs:
+  - csharp
+  - vb
+  name: Loop
+  nameWithType: AnimationClip.Loop
+  fullName: Prowl.Runtime.AnimationClip.Loop
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Animation/AnimationClip.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Loop
+    path: ../Prowl/Prowl.Runtime/Animation/AnimationClip.cs
+    startLine: 31
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Whether playback wraps or holds the final pose.
+  example: []
+  syntax:
+    content: public bool Loop
+    return:
+      type: System.Boolean
+    content.vb: Public [Loop] As Boolean
+- uid: Prowl.Runtime.AnimationClip.SourceName
+  commentId: F:Prowl.Runtime.AnimationClip.SourceName
+  id: SourceName
+  parent: Prowl.Runtime.AnimationClip
+  langs:
+  - csharp
+  - vb
+  name: SourceName
+  nameWithType: AnimationClip.SourceName
+  fullName: Prowl.Runtime.AnimationClip.SourceName
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Animation/AnimationClip.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SourceName
+    path: ../Prowl/Prowl.Runtime/Animation/AnimationClip.cs
+    startLine: 34
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The clip's name in the file it was imported from, which its import settings are keyed on.
+  example: []
+  syntax:
+    content: public string SourceName
+    return:
+      type: System.String
+    content.vb: Public SourceName As String
+- uid: Prowl.Runtime.AnimationClip.Events
+  commentId: F:Prowl.Runtime.AnimationClip.Events
+  id: Events
+  parent: Prowl.Runtime.AnimationClip
+  langs:
+  - csharp
+  - vb
+  name: Events
+  nameWithType: AnimationClip.Events
+  fullName: Prowl.Runtime.AnimationClip.Events
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Animation/AnimationClip.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Events
+    path: ../Prowl/Prowl.Runtime/Animation/AnimationClip.cs
+    startLine: 37
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The clip's markers, handed to Motion when the clip is decoded.
+  example: []
+  syntax:
+    content: public List<ClipEvent> Events
+    return:
+      type: System.Collections.Generic.List{Prowl.Runtime.ClipEvent}
+    content.vb: Public Events As List(Of ClipEvent)
+- uid: Prowl.Runtime.AnimationClip.TakeStart
+  commentId: F:Prowl.Runtime.AnimationClip.TakeStart
+  id: TakeStart
+  parent: Prowl.Runtime.AnimationClip
+  langs:
+  - csharp
+  - vb
+  name: TakeStart
+  nameWithType: AnimationClip.TakeStart
+  fullName: Prowl.Runtime.AnimationClip.TakeStart
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Animation/AnimationClip.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TakeStart
+    path: ../Prowl/Prowl.Runtime/Animation/AnimationClip.cs
+    startLine: 40
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Where in the take the clip starts, in seconds, as the import cut it.
+  example: []
+  syntax:
+    content: public float TakeStart
+    return:
+      type: System.Single
+    content.vb: Public TakeStart As Single
+- uid: Prowl.Runtime.AnimationClip.#ctor
+  commentId: M:Prowl.Runtime.AnimationClip.#ctor
+  id: '#ctor'
+  parent: Prowl.Runtime.AnimationClip
+  langs:
+  - csharp
+  - vb
+  name: AnimationClip()
+  nameWithType: AnimationClip.AnimationClip()
+  fullName: Prowl.Runtime.AnimationClip.AnimationClip()
+  type: Constructor
+  source:
+    remote:
+      path: Prowl.Runtime/Animation/AnimationClip.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: .ctor
+    path: ../Prowl/Prowl.Runtime/Animation/AnimationClip.cs
+    startLine: 52
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: 'public sealed class AnimationClip : EngineObject, IDisposable, ISerializable'
-    content.vb: Public NotInheritable Class AnimationClip Inherits EngineObject Implements IDisposable, ISerializable
-  inheritance:
-  - System.Object
-  - Prowl.Runtime.EngineObject
-  implements:
-  - System.IDisposable
-  - Prowl.Runtime.ISerializable
-  inheritedMembers:
-  - Prowl.Runtime.EngineObject.InstanceID
-  - Prowl.Runtime.EngineObject.AssetID
-  - Prowl.Runtime.EngineObject.FileID
-  - Prowl.Runtime.EngineObject.Name
-  - Prowl.Runtime.EngineObject.IsDestroyed
-  - Prowl.Runtime.EngineObject.CreatedInstance
-  - Prowl.Runtime.EngineObject.OnValidate
-  - Prowl.Runtime.EngineObject.FindObjectOfType``1
-  - Prowl.Runtime.EngineObject.FindObjectsOfType``1
-  - Prowl.Runtime.EngineObject.FindObjectByID``1(System.Int32)
-  - Prowl.Runtime.EngineObject.Foreach``1(System.Action{{T}})
-  - Prowl.Runtime.EngineObject.Destroy
-  - Prowl.Runtime.EngineObject.DestroyImmediate
-  - Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-  - Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-  - Prowl.Runtime.EngineObject.HandleDestroyed
-  - Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject,System.Boolean)
-  - Prowl.Runtime.EngineObject.Dispose
-  - Prowl.Runtime.EngineObject.OnDispose
-  - Prowl.Runtime.EngineObject.ToString
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  extensionMethods:
-  - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.Null
-  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+    content: public AnimationClip()
+    content.vb: Public Sub New()
+  overload: Prowl.Runtime.AnimationClip.#ctor*
+  nameWithType.vb: AnimationClip.New()
+  fullName.vb: Prowl.Runtime.AnimationClip.New()
+  name.vb: New()
+- uid: Prowl.Runtime.AnimationClip.Kind
+  commentId: P:Prowl.Runtime.AnimationClip.Kind
+  id: Kind
+  parent: Prowl.Runtime.AnimationClip
+  langs:
+  - csharp
+  - vb
+  name: Kind
+  nameWithType: AnimationClip.Kind
+  fullName: Prowl.Runtime.AnimationClip.Kind
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Animation/AnimationClip.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Kind
+    path: ../Prowl/Prowl.Runtime/Animation/AnimationClip.cs
+    startLine: 54
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public AnimationClipKind Kind { get; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.AnimationClipKind
+    content.vb: Public ReadOnly Property Kind As AnimationClipKind
+  overload: Prowl.Runtime.AnimationClip.Kind*
 - uid: Prowl.Runtime.AnimationClip.Duration
-  commentId: F:Prowl.Runtime.AnimationClip.Duration
+  commentId: P:Prowl.Runtime.AnimationClip.Duration
   id: Duration
   parent: Prowl.Runtime.AnimationClip
   langs:
@@ -81,313 +295,359 @@ items:
   name: Duration
   nameWithType: AnimationClip.Duration
   fullName: Prowl.Runtime.AnimationClip.Duration
-  type: Field
-  source:
-    remote:
-      path: Prowl.Runtime/Resources/AnimationClip.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Duration
-    path: ../Prowl/Prowl.Runtime/Resources/AnimationClip.cs
-    startLine: 18
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public double Duration
-    return:
-      type: System.Double
-    content.vb: Public Duration As Double
-- uid: Prowl.Runtime.AnimationClip.TicksPerSecond
-  commentId: F:Prowl.Runtime.AnimationClip.TicksPerSecond
-  id: TicksPerSecond
-  parent: Prowl.Runtime.AnimationClip
-  langs:
-  - csharp
-  - vb
-  name: TicksPerSecond
-  nameWithType: AnimationClip.TicksPerSecond
-  fullName: Prowl.Runtime.AnimationClip.TicksPerSecond
-  type: Field
-  source:
-    remote:
-      path: Prowl.Runtime/Resources/AnimationClip.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: TicksPerSecond
-    path: ../Prowl/Prowl.Runtime/Resources/AnimationClip.cs
-    startLine: 19
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public double TicksPerSecond
-    return:
-      type: System.Double
-    content.vb: Public TicksPerSecond As Double
-- uid: Prowl.Runtime.AnimationClip.DurationInTicks
-  commentId: F:Prowl.Runtime.AnimationClip.DurationInTicks
-  id: DurationInTicks
-  parent: Prowl.Runtime.AnimationClip
-  langs:
-  - csharp
-  - vb
-  name: DurationInTicks
-  nameWithType: AnimationClip.DurationInTicks
-  fullName: Prowl.Runtime.AnimationClip.DurationInTicks
-  type: Field
-  source:
-    remote:
-      path: Prowl.Runtime/Resources/AnimationClip.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: DurationInTicks
-    path: ../Prowl/Prowl.Runtime/Resources/AnimationClip.cs
-    startLine: 20
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public double DurationInTicks
-    return:
-      type: System.Double
-    content.vb: Public DurationInTicks As Double
-- uid: Prowl.Runtime.AnimationClip.Wrap
-  commentId: F:Prowl.Runtime.AnimationClip.Wrap
-  id: Wrap
-  parent: Prowl.Runtime.AnimationClip
-  langs:
-  - csharp
-  - vb
-  name: Wrap
-  nameWithType: AnimationClip.Wrap
-  fullName: Prowl.Runtime.AnimationClip.Wrap
-  type: Field
-  source:
-    remote:
-      path: Prowl.Runtime/Resources/AnimationClip.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Wrap
-    path: ../Prowl/Prowl.Runtime/Resources/AnimationClip.cs
-    startLine: 22
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public AnimationWrapMode Wrap
-    return:
-      type: Prowl.Runtime.AnimationWrapMode
-    content.vb: Public Wrap As AnimationWrapMode
-- uid: Prowl.Runtime.AnimationClip.Bones
-  commentId: P:Prowl.Runtime.AnimationClip.Bones
-  id: Bones
-  parent: Prowl.Runtime.AnimationClip
-  langs:
-  - csharp
-  - vb
-  name: Bones
-  nameWithType: AnimationClip.Bones
-  fullName: Prowl.Runtime.AnimationClip.Bones
   type: Property
   source:
     remote:
-      path: Prowl.Runtime/Resources/AnimationClip.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Bones
-    path: ../Prowl/Prowl.Runtime/Resources/AnimationClip.cs
-    startLine: 24
+      path: Prowl.Runtime/Animation/AnimationClip.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Duration
+    path: ../Prowl/Prowl.Runtime/Animation/AnimationClip.cs
+    startLine: 57
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: Clip length in seconds, readable without decoding the payload.
+  example: []
   syntax:
-    content: public List<AnimationClip.AnimBone> Bones { get; }
+    content: public float Duration { get; }
     parameters: []
     return:
-      type: System.Collections.Generic.List{Prowl.Runtime.AnimationClip.AnimBone}
-    content.vb: Public Property Bones As List(Of AnimationClip.AnimBone)
-  overload: Prowl.Runtime.AnimationClip.Bones*
-- uid: Prowl.Runtime.AnimationClip.AddBone(Prowl.Runtime.AnimationClip.AnimBone)
-  commentId: M:Prowl.Runtime.AnimationClip.AddBone(Prowl.Runtime.AnimationClip.AnimBone)
-  id: AddBone(Prowl.Runtime.AnimationClip.AnimBone)
+      type: System.Single
+    content.vb: Public ReadOnly Property Duration As Single
+  overload: Prowl.Runtime.AnimationClip.Duration*
+- uid: Prowl.Runtime.AnimationClip.FrameCount
+  commentId: P:Prowl.Runtime.AnimationClip.FrameCount
+  id: FrameCount
   parent: Prowl.Runtime.AnimationClip
   langs:
   - csharp
   - vb
-  name: AddBone(AnimBone)
-  nameWithType: AnimationClip.AddBone(AnimationClip.AnimBone)
-  fullName: Prowl.Runtime.AnimationClip.AddBone(Prowl.Runtime.AnimationClip.AnimBone)
-  type: Method
+  name: FrameCount
+  nameWithType: AnimationClip.FrameCount
+  fullName: Prowl.Runtime.AnimationClip.FrameCount
+  type: Property
   source:
     remote:
-      path: Prowl.Runtime/Resources/AnimationClip.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: AddBone
-    path: ../Prowl/Prowl.Runtime/Resources/AnimationClip.cs
-    startLine: 28
+      path: Prowl.Runtime/Animation/AnimationClip.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FrameCount
+    path: ../Prowl/Prowl.Runtime/Animation/AnimationClip.cs
+    startLine: 59
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public void AddBone(AnimationClip.AnimBone bone)
-    parameters:
-    - id: bone
-      type: Prowl.Runtime.AnimationClip.AnimBone
-    content.vb: Public Sub AddBone(bone As AnimationClip.AnimBone)
-  overload: Prowl.Runtime.AnimationClip.AddBone*
-- uid: Prowl.Runtime.AnimationClip.GetBone(System.String)
-  commentId: M:Prowl.Runtime.AnimationClip.GetBone(System.String)
-  id: GetBone(System.String)
+    content: public int FrameCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property FrameCount As Integer
+  overload: Prowl.Runtime.AnimationClip.FrameCount*
+- uid: Prowl.Runtime.AnimationClip.GetClip(Prowl.Motion.Avatar)
+  commentId: M:Prowl.Runtime.AnimationClip.GetClip(Prowl.Motion.Avatar)
+  id: GetClip(Prowl.Motion.Avatar)
   parent: Prowl.Runtime.AnimationClip
   langs:
   - csharp
   - vb
-  name: GetBone(string)
-  nameWithType: AnimationClip.GetBone(string)
-  fullName: Prowl.Runtime.AnimationClip.GetBone(string)
+  name: GetClip(Avatar?)
+  nameWithType: AnimationClip.GetClip(Avatar?)
+  fullName: Prowl.Runtime.AnimationClip.GetClip(Prowl.Motion.Avatar?)
   type: Method
   source:
     remote:
-      path: Prowl.Runtime/Resources/AnimationClip.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: GetBone
-    path: ../Prowl/Prowl.Runtime/Resources/AnimationClip.cs
-    startLine: 34
+      path: Prowl.Runtime/Animation/AnimationClip.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetClip
+    path: ../Prowl/Prowl.Runtime/Animation/AnimationClip.cs
+    startLine: 65
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: >-
+    The clip Motion plays, decoded on first use and bound to <code class="paramref">target</code> when humanoid.
+
+    Null while a skeletal clip's rig is still loading, or when the payload is missing.
+  example: []
   syntax:
-    content: public AnimationClip.AnimBone? GetBone(string name)
+    content: public AnimationClipBase? GetClip(Avatar? target)
     parameters:
+    - id: target
+      type: Prowl.Motion.Avatar
+    return:
+      type: Prowl.Motion.AnimationClipBase
+    content.vb: Public Function GetClip(target As Avatar) As AnimationClipBase
+  overload: Prowl.Runtime.AnimationClip.GetClip*
+  nameWithType.vb: AnimationClip.GetClip(Avatar)
+  fullName.vb: Prowl.Runtime.AnimationClip.GetClip(Prowl.Motion.Avatar)
+  name.vb: GetClip(Avatar)
+- uid: Prowl.Runtime.AnimationClip.EventsChanged
+  commentId: M:Prowl.Runtime.AnimationClip.EventsChanged
+  id: EventsChanged
+  parent: Prowl.Runtime.AnimationClip
+  langs:
+  - csharp
+  - vb
+  name: EventsChanged()
+  nameWithType: AnimationClip.EventsChanged()
+  fullName: Prowl.Runtime.AnimationClip.EventsChanged()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Animation/AnimationClip.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EventsChanged
+    path: ../Prowl/Prowl.Runtime/Animation/AnimationClip.cs
+    startLine: 111
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Drops the decoded clip, so the next use picks up the current events.
+  example: []
+  syntax:
+    content: public void EventsChanged()
+    content.vb: Public Sub EventsChanged()
+  overload: Prowl.Runtime.AnimationClip.EventsChanged*
+- uid: Prowl.Runtime.AnimationClip.FromSkeletal(Prowl.Motion.AnimationClipBase,Prowl.Runtime.Avatar,System.String,System.Collections.Generic.IEnumerable{Prowl.Runtime.ClipEvent})
+  commentId: M:Prowl.Runtime.AnimationClip.FromSkeletal(Prowl.Motion.AnimationClipBase,Prowl.Runtime.Avatar,System.String,System.Collections.Generic.IEnumerable{Prowl.Runtime.ClipEvent})
+  id: FromSkeletal(Prowl.Motion.AnimationClipBase,Prowl.Runtime.Avatar,System.String,System.Collections.Generic.IEnumerable{Prowl.Runtime.ClipEvent})
+  parent: Prowl.Runtime.AnimationClip
+  langs:
+  - csharp
+  - vb
+  name: FromSkeletal(AnimationClipBase, Avatar?, string?, IEnumerable<ClipEvent>?)
+  nameWithType: AnimationClip.FromSkeletal(AnimationClipBase, Avatar?, string?, IEnumerable<ClipEvent>?)
+  fullName: Prowl.Runtime.AnimationClip.FromSkeletal(Prowl.Motion.AnimationClipBase, Prowl.Runtime.Avatar?, string?, System.Collections.Generic.IEnumerable<Prowl.Runtime.ClipEvent>?)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Animation/AnimationClip.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FromSkeletal
+    path: ../Prowl/Prowl.Runtime/Animation/AnimationClip.cs
+    startLine: 135
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Builds an asset around a clip authored for one skeleton.
+  example: []
+  syntax:
+    content: public static AnimationClip FromSkeletal(AnimationClipBase clip, Avatar? avatar, string? name = null, IEnumerable<ClipEvent>? events = null)
+    parameters:
+    - id: clip
+      type: Prowl.Motion.AnimationClipBase
+    - id: avatar
+      type: Prowl.Runtime.Avatar
     - id: name
       type: System.String
+    - id: events
+      type: System.Collections.Generic.IEnumerable{Prowl.Runtime.ClipEvent}
     return:
-      type: Prowl.Runtime.AnimationClip.AnimBone
-    content.vb: Public Function GetBone(name As String) As AnimationClip.AnimBone
-  overload: Prowl.Runtime.AnimationClip.GetBone*
-  nameWithType.vb: AnimationClip.GetBone(String)
-  fullName.vb: Prowl.Runtime.AnimationClip.GetBone(String)
-  name.vb: GetBone(String)
-- uid: Prowl.Runtime.AnimationClip.EnsureQuaternionContinuity
-  commentId: M:Prowl.Runtime.AnimationClip.EnsureQuaternionContinuity
-  id: EnsureQuaternionContinuity
+      type: Prowl.Runtime.AnimationClip
+    content.vb: Public Shared Function FromSkeletal(clip As AnimationClipBase, avatar As Avatar, name As String = Nothing, events As IEnumerable(Of ClipEvent) = Nothing) As AnimationClip
+  overload: Prowl.Runtime.AnimationClip.FromSkeletal*
+  nameWithType.vb: AnimationClip.FromSkeletal(AnimationClipBase, Avatar, String, IEnumerable(Of ClipEvent))
+  fullName.vb: Prowl.Runtime.AnimationClip.FromSkeletal(Prowl.Motion.AnimationClipBase, Prowl.Runtime.Avatar, String, System.Collections.Generic.IEnumerable(Of Prowl.Runtime.ClipEvent))
+  name.vb: FromSkeletal(AnimationClipBase, Avatar, String, IEnumerable(Of ClipEvent))
+- uid: Prowl.Runtime.AnimationClip.FromHumanoid(Prowl.Motion.HumanoidClip,Prowl.Runtime.Avatar,System.String,System.Collections.Generic.IEnumerable{Prowl.Runtime.ClipEvent})
+  commentId: M:Prowl.Runtime.AnimationClip.FromHumanoid(Prowl.Motion.HumanoidClip,Prowl.Runtime.Avatar,System.String,System.Collections.Generic.IEnumerable{Prowl.Runtime.ClipEvent})
+  id: FromHumanoid(Prowl.Motion.HumanoidClip,Prowl.Runtime.Avatar,System.String,System.Collections.Generic.IEnumerable{Prowl.Runtime.ClipEvent})
   parent: Prowl.Runtime.AnimationClip
   langs:
   - csharp
   - vb
-  name: EnsureQuaternionContinuity()
-  nameWithType: AnimationClip.EnsureQuaternionContinuity()
-  fullName: Prowl.Runtime.AnimationClip.EnsureQuaternionContinuity()
+  name: FromHumanoid(HumanoidClip, Avatar?, string?, IEnumerable<ClipEvent>?)
+  nameWithType: AnimationClip.FromHumanoid(HumanoidClip, Avatar?, string?, IEnumerable<ClipEvent>?)
+  fullName: Prowl.Runtime.AnimationClip.FromHumanoid(Prowl.Motion.HumanoidClip, Prowl.Runtime.Avatar?, string?, System.Collections.Generic.IEnumerable<Prowl.Runtime.ClipEvent>?)
   type: Method
   source:
     remote:
-      path: Prowl.Runtime/Resources/AnimationClip.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: EnsureQuaternionContinuity
-    path: ../Prowl/Prowl.Runtime/Resources/AnimationClip.cs
-    startLine: 42
+      path: Prowl.Runtime/Animation/AnimationClip.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FromHumanoid
+    path: ../Prowl/Prowl.Runtime/Animation/AnimationClip.cs
+    startLine: 144
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: Builds an asset around a clip baked into muscle space.
+  example: []
   syntax:
-    content: public void EnsureQuaternionContinuity()
-    content.vb: Public Sub EnsureQuaternionContinuity()
-  overload: Prowl.Runtime.AnimationClip.EnsureQuaternionContinuity*
-- uid: Prowl.Runtime.AnimationClip.Deserialize(Prowl.Runtime.SerializedProperty,Prowl.Runtime.Serializer.SerializationContext)
-  commentId: M:Prowl.Runtime.AnimationClip.Deserialize(Prowl.Runtime.SerializedProperty,Prowl.Runtime.Serializer.SerializationContext)
-  id: Deserialize(Prowl.Runtime.SerializedProperty,Prowl.Runtime.Serializer.SerializationContext)
+    content: public static AnimationClip FromHumanoid(HumanoidClip clip, Avatar? avatar, string? name = null, IEnumerable<ClipEvent>? events = null)
+    parameters:
+    - id: clip
+      type: Prowl.Motion.HumanoidClip
+    - id: avatar
+      type: Prowl.Runtime.Avatar
+    - id: name
+      type: System.String
+    - id: events
+      type: System.Collections.Generic.IEnumerable{Prowl.Runtime.ClipEvent}
+    return:
+      type: Prowl.Runtime.AnimationClip
+    content.vb: Public Shared Function FromHumanoid(clip As HumanoidClip, avatar As Avatar, name As String = Nothing, events As IEnumerable(Of ClipEvent) = Nothing) As AnimationClip
+  overload: Prowl.Runtime.AnimationClip.FromHumanoid*
+  nameWithType.vb: AnimationClip.FromHumanoid(HumanoidClip, Avatar, String, IEnumerable(Of ClipEvent))
+  fullName.vb: Prowl.Runtime.AnimationClip.FromHumanoid(Prowl.Motion.HumanoidClip, Prowl.Runtime.Avatar, String, System.Collections.Generic.IEnumerable(Of Prowl.Runtime.ClipEvent))
+  name.vb: FromHumanoid(HumanoidClip, Avatar, String, IEnumerable(Of ClipEvent))
+- uid: Prowl.Runtime.AnimationClip.OnUnload
+  commentId: M:Prowl.Runtime.AnimationClip.OnUnload
+  id: OnUnload
   parent: Prowl.Runtime.AnimationClip
   langs:
   - csharp
   - vb
-  name: Deserialize(SerializedProperty, SerializationContext)
-  nameWithType: AnimationClip.Deserialize(SerializedProperty, Serializer.SerializationContext)
-  fullName: Prowl.Runtime.AnimationClip.Deserialize(Prowl.Runtime.SerializedProperty, Prowl.Runtime.Serializer.SerializationContext)
+  name: OnUnload()
+  nameWithType: AnimationClip.OnUnload()
+  fullName: Prowl.Runtime.AnimationClip.OnUnload()
   type: Method
   source:
     remote:
-      path: Prowl.Runtime/Resources/AnimationClip.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Deserialize
-    path: ../Prowl/Prowl.Runtime/Resources/AnimationClip.cs
-    startLine: 85
+      path: Prowl.Runtime/Animation/AnimationClip.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnUnload
+    path: ../Prowl/Prowl.Runtime/Animation/AnimationClip.cs
+    startLine: 172
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Frees native resources and anything derived from the payload. Runs when the asset unloads, before a refill
+
+    and when a runtime asset is disposed. The database resets every field to its shell value afterwards.
+  example: []
+  syntax:
+    content: protected override void OnUnload()
+    content.vb: Protected Overrides Sub OnUnload()
+  overridden: Prowl.Runtime.Asset.OnUnload
+  overload: Prowl.Runtime.AnimationClip.OnUnload*
+- uid: Prowl.Runtime.AnimationClip.EstimateBytes
+  commentId: M:Prowl.Runtime.AnimationClip.EstimateBytes
+  id: EstimateBytes
+  parent: Prowl.Runtime.AnimationClip
+  langs:
+  - csharp
+  - vb
+  name: EstimateBytes()
+  nameWithType: AnimationClip.EstimateBytes()
+  fullName: Prowl.Runtime.AnimationClip.EstimateBytes()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Animation/AnimationClip.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EstimateBytes
+    path: ../Prowl/Prowl.Runtime/Animation/AnimationClip.cs
+    startLine: 179
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Roughly how many bytes the loaded payload keeps alive, for the memory budget.
+  example: []
+  syntax:
+    content: protected override long EstimateBytes()
+    return:
+      type: System.Int64
+    content.vb: Protected Overrides Function EstimateBytes() As Long
+  overridden: Prowl.Runtime.Asset.EstimateBytes
+  overload: Prowl.Runtime.AnimationClip.EstimateBytes*
+- uid: Prowl.Runtime.AnimationClip.Serialize(Prowl.Echo.EchoObject@,Prowl.Echo.SerializationContext)
+  commentId: M:Prowl.Runtime.AnimationClip.Serialize(Prowl.Echo.EchoObject@,Prowl.Echo.SerializationContext)
+  id: Serialize(Prowl.Echo.EchoObject@,Prowl.Echo.SerializationContext)
+  parent: Prowl.Runtime.AnimationClip
+  langs:
+  - csharp
+  - vb
+  name: Serialize(ref EchoObject, SerializationContext)
+  nameWithType: AnimationClip.Serialize(ref EchoObject, SerializationContext)
+  fullName: Prowl.Runtime.AnimationClip.Serialize(ref Prowl.Echo.EchoObject, Prowl.Echo.SerializationContext)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Animation/AnimationClip.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Serialize
+    path: ../Prowl/Prowl.Runtime/Animation/AnimationClip.cs
+    startLine: 181
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   example: []
   syntax:
-    content: public void Deserialize(SerializedProperty value, Serializer.SerializationContext ctx)
+    content: public void Serialize(ref EchoObject value, SerializationContext ctx)
     parameters:
     - id: value
-      type: Prowl.Runtime.SerializedProperty
+      type: Prowl.Echo.EchoObject
     - id: ctx
-      type: Prowl.Runtime.Serializer.SerializationContext
-    content.vb: Public Sub Deserialize(value As SerializedProperty, ctx As Serializer.SerializationContext)
-  overload: Prowl.Runtime.AnimationClip.Deserialize*
+      type: Prowl.Echo.SerializationContext
+    content.vb: Public Sub Serialize(value As EchoObject, ctx As SerializationContext)
+  overload: Prowl.Runtime.AnimationClip.Serialize*
   implements:
-  - Prowl.Runtime.ISerializable.Deserialize(Prowl.Runtime.SerializedProperty,Prowl.Runtime.Serializer.SerializationContext)
-- uid: Prowl.Runtime.AnimationClip.Serialize(Prowl.Runtime.Serializer.SerializationContext)
-  commentId: M:Prowl.Runtime.AnimationClip.Serialize(Prowl.Runtime.Serializer.SerializationContext)
-  id: Serialize(Prowl.Runtime.Serializer.SerializationContext)
+  - Prowl.Echo.ISerializable.Serialize(Prowl.Echo.EchoObject@,Prowl.Echo.SerializationContext)
+  nameWithType.vb: AnimationClip.Serialize(EchoObject, SerializationContext)
+  fullName.vb: Prowl.Runtime.AnimationClip.Serialize(Prowl.Echo.EchoObject, Prowl.Echo.SerializationContext)
+  name.vb: Serialize(EchoObject, SerializationContext)
+- uid: Prowl.Runtime.AnimationClip.Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
+  commentId: M:Prowl.Runtime.AnimationClip.Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
+  id: Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
   parent: Prowl.Runtime.AnimationClip
   langs:
   - csharp
   - vb
-  name: Serialize(SerializationContext)
-  nameWithType: AnimationClip.Serialize(Serializer.SerializationContext)
-  fullName: Prowl.Runtime.AnimationClip.Serialize(Prowl.Runtime.Serializer.SerializationContext)
+  name: Deserialize(EchoObject, SerializationContext)
+  nameWithType: AnimationClip.Deserialize(EchoObject, SerializationContext)
+  fullName: Prowl.Runtime.AnimationClip.Deserialize(Prowl.Echo.EchoObject, Prowl.Echo.SerializationContext)
   type: Method
   source:
     remote:
-      path: Prowl.Runtime/Resources/AnimationClip.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Serialize
-    path: ../Prowl/Prowl.Runtime/Resources/AnimationClip.cs
-    startLine: 119
+      path: Prowl.Runtime/Animation/AnimationClip.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Deserialize
+    path: ../Prowl/Prowl.Runtime/Animation/AnimationClip.cs
+    startLine: 195
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   example: []
   syntax:
-    content: public SerializedProperty Serialize(Serializer.SerializationContext ctx)
+    content: public void Deserialize(EchoObject value, SerializationContext ctx)
     parameters:
+    - id: value
+      type: Prowl.Echo.EchoObject
     - id: ctx
-      type: Prowl.Runtime.Serializer.SerializationContext
-    return:
-      type: Prowl.Runtime.SerializedProperty
-    content.vb: Public Function Serialize(ctx As Serializer.SerializationContext) As SerializedProperty
-  overload: Prowl.Runtime.AnimationClip.Serialize*
+      type: Prowl.Echo.SerializationContext
+    content.vb: Public Sub Deserialize(value As EchoObject, ctx As SerializationContext)
+  overload: Prowl.Runtime.AnimationClip.Deserialize*
   implements:
-  - Prowl.Runtime.ISerializable.Serialize(Prowl.Runtime.Serializer.SerializationContext)
+  - Prowl.Echo.ISerializable.Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
 references:
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
-  href: Prowl.html
   name: Prowl.Runtime
   nameWithType: Prowl.Runtime
   fullName: Prowl.Runtime
   spec.csharp:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
   spec.vb:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -406,6 +666,13 @@ references:
   name: EngineObject
   nameWithType: EngineObject
   fullName: Prowl.Runtime.EngineObject
+- uid: Prowl.Runtime.Asset
+  commentId: T:Prowl.Runtime.Asset
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.Asset.html
+  name: Asset
+  nameWithType: Asset
+  fullName: Prowl.Runtime.Asset
 - uid: System.IDisposable
   commentId: T:System.IDisposable
   parent: System
@@ -414,13 +681,142 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
-- uid: Prowl.Runtime.ISerializable
-  commentId: T:Prowl.Runtime.ISerializable
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.ISerializable.html
+- uid: Prowl.Echo.ISerializable
+  commentId: T:Prowl.Echo.ISerializable
+  parent: Prowl.Echo
+  isExternal: true
   name: ISerializable
   nameWithType: ISerializable
-  fullName: Prowl.Runtime.ISerializable
+  fullName: Prowl.Echo.ISerializable
+- uid: Prowl.Runtime.Asset.AssetID
+  commentId: P:Prowl.Runtime.Asset.AssetID
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_AssetID
+  name: AssetID
+  nameWithType: Asset.AssetID
+  fullName: Prowl.Runtime.Asset.AssetID
+- uid: Prowl.Runtime.Asset.AssetPath
+  commentId: P:Prowl.Runtime.Asset.AssetPath
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_AssetPath
+  name: AssetPath
+  nameWithType: Asset.AssetPath
+  fullName: Prowl.Runtime.Asset.AssetPath
+- uid: Prowl.Runtime.Asset.State
+  commentId: P:Prowl.Runtime.Asset.State
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_State
+  name: State
+  nameWithType: Asset.State
+  fullName: Prowl.Runtime.Asset.State
+- uid: Prowl.Runtime.Asset.ContentVersion
+  commentId: P:Prowl.Runtime.Asset.ContentVersion
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_ContentVersion
+  name: ContentVersion
+  nameWithType: Asset.ContentVersion
+  fullName: Prowl.Runtime.Asset.ContentVersion
+- uid: Prowl.Runtime.Asset.IsFromDatabase
+  commentId: P:Prowl.Runtime.Asset.IsFromDatabase
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_IsFromDatabase
+  name: IsFromDatabase
+  nameWithType: Asset.IsFromDatabase
+  fullName: Prowl.Runtime.Asset.IsFromDatabase
+- uid: Prowl.Runtime.Asset.IsLoaded
+  commentId: P:Prowl.Runtime.Asset.IsLoaded
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_IsLoaded
+  name: IsLoaded
+  nameWithType: Asset.IsLoaded
+  fullName: Prowl.Runtime.Asset.IsLoaded
+- uid: Prowl.Runtime.Asset.IsMissing
+  commentId: P:Prowl.Runtime.Asset.IsMissing
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_IsMissing
+  name: IsMissing
+  nameWithType: Asset.IsMissing
+  fullName: Prowl.Runtime.Asset.IsMissing
+- uid: Prowl.Runtime.Asset.Load
+  commentId: M:Prowl.Runtime.Asset.Load
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_Load
+  name: Load()
+  nameWithType: Asset.Load()
+  fullName: Prowl.Runtime.Asset.Load()
+  spec.csharp:
+  - uid: Prowl.Runtime.Asset.Load
+    name: Load
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_Load
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Asset.Load
+    name: Load
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_Load
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+  commentId: M:Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+  parent: Prowl.Runtime.Asset
+  isExternal: true
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_LoadAsync_System_Threading_CancellationToken_
+  name: LoadAsync(CancellationToken)
+  nameWithType: Asset.LoadAsync(CancellationToken)
+  fullName: Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+    name: LoadAsync
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_LoadAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+    name: LoadAsync
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_LoadAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: Prowl.Runtime.Asset.HasChanged(System.Int32@)
+  commentId: M:Prowl.Runtime.Asset.HasChanged(System.Int32@)
+  parent: Prowl.Runtime.Asset
+  isExternal: true
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_HasChanged_System_Int32__
+  name: HasChanged(ref int)
+  nameWithType: Asset.HasChanged(ref int)
+  fullName: Prowl.Runtime.Asset.HasChanged(ref int)
+  nameWithType.vb: Asset.HasChanged(Integer)
+  fullName.vb: Prowl.Runtime.Asset.HasChanged(Integer)
+  name.vb: HasChanged(Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Asset.HasChanged(System.Int32@)
+    name: HasChanged
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_HasChanged_System_Int32__
+  - name: (
+  - name: ref
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Asset.HasChanged(System.Int32@)
+    name: HasChanged
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_HasChanged_System_Int32__
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
 - uid: Prowl.Runtime.EngineObject.InstanceID
   commentId: P:Prowl.Runtime.EngineObject.InstanceID
   parent: Prowl.Runtime.EngineObject
@@ -428,20 +824,6 @@ references:
   name: InstanceID
   nameWithType: EngineObject.InstanceID
   fullName: Prowl.Runtime.EngineObject.InstanceID
-- uid: Prowl.Runtime.EngineObject.AssetID
-  commentId: F:Prowl.Runtime.EngineObject.AssetID
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_AssetID
-  name: AssetID
-  nameWithType: EngineObject.AssetID
-  fullName: Prowl.Runtime.EngineObject.AssetID
-- uid: Prowl.Runtime.EngineObject.FileID
-  commentId: F:Prowl.Runtime.EngineObject.FileID
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FileID
-  name: FileID
-  nameWithType: EngineObject.FileID
-  fullName: Prowl.Runtime.EngineObject.FileID
 - uid: Prowl.Runtime.EngineObject.Name
   commentId: F:Prowl.Runtime.EngineObject.Name
   parent: Prowl.Runtime.EngineObject
@@ -449,13 +831,13 @@ references:
   name: Name
   nameWithType: EngineObject.Name
   fullName: Prowl.Runtime.EngineObject.Name
-- uid: Prowl.Runtime.EngineObject.IsDestroyed
-  commentId: F:Prowl.Runtime.EngineObject.IsDestroyed
+- uid: Prowl.Runtime.EngineObject.IsDisposed
+  commentId: P:Prowl.Runtime.EngineObject.IsDisposed
   parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_IsDestroyed
-  name: IsDestroyed
-  nameWithType: EngineObject.IsDestroyed
-  fullName: Prowl.Runtime.EngineObject.IsDestroyed
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_IsDisposed
+  name: IsDisposed
+  nameWithType: EngineObject.IsDisposed
+  fullName: Prowl.Runtime.EngineObject.IsDisposed
 - uid: Prowl.Runtime.EngineObject.CreatedInstance
   commentId: M:Prowl.Runtime.EngineObject.CreatedInstance
   parent: Prowl.Runtime.EngineObject
@@ -494,151 +876,24 @@ references:
     href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnValidate
   - name: (
   - name: )
-- uid: Prowl.Runtime.EngineObject.FindObjectOfType``1
-  commentId: M:Prowl.Runtime.EngineObject.FindObjectOfType``1
+- uid: Prowl.Runtime.EngineObject.Dispose
+  commentId: M:Prowl.Runtime.EngineObject.Dispose
   parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectOfType__1
-  name: FindObjectOfType<T>()
-  nameWithType: EngineObject.FindObjectOfType<T>()
-  fullName: Prowl.Runtime.EngineObject.FindObjectOfType<T>()
-  nameWithType.vb: EngineObject.FindObjectOfType(Of T)()
-  fullName.vb: Prowl.Runtime.EngineObject.FindObjectOfType(Of T)()
-  name.vb: FindObjectOfType(Of T)()
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
+  name: Dispose()
+  nameWithType: EngineObject.Dispose()
+  fullName: Prowl.Runtime.EngineObject.Dispose()
   spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.FindObjectOfType``1
-    name: FindObjectOfType
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectOfType__1
-  - name: <
-  - name: T
-  - name: '>'
+  - uid: Prowl.Runtime.EngineObject.Dispose
+    name: Dispose
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
   - name: (
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.EngineObject.FindObjectOfType``1
-    name: FindObjectOfType
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectOfType__1
+  - uid: Prowl.Runtime.EngineObject.Dispose
+    name: Dispose
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
   - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.EngineObject.FindObjectsOfType``1
-  commentId: M:Prowl.Runtime.EngineObject.FindObjectsOfType``1
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectsOfType__1
-  name: FindObjectsOfType<T>()
-  nameWithType: EngineObject.FindObjectsOfType<T>()
-  fullName: Prowl.Runtime.EngineObject.FindObjectsOfType<T>()
-  nameWithType.vb: EngineObject.FindObjectsOfType(Of T)()
-  fullName.vb: Prowl.Runtime.EngineObject.FindObjectsOfType(Of T)()
-  name.vb: FindObjectsOfType(Of T)()
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.FindObjectsOfType``1
-    name: FindObjectsOfType
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectsOfType__1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.FindObjectsOfType``1
-    name: FindObjectsOfType
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectsOfType__1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.EngineObject.FindObjectByID``1(System.Int32)
-  commentId: M:Prowl.Runtime.EngineObject.FindObjectByID``1(System.Int32)
-  parent: Prowl.Runtime.EngineObject
-  isExternal: true
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectByID__1_System_Int32_
-  name: FindObjectByID<T>(int)
-  nameWithType: EngineObject.FindObjectByID<T>(int)
-  fullName: Prowl.Runtime.EngineObject.FindObjectByID<T>(int)
-  nameWithType.vb: EngineObject.FindObjectByID(Of T)(Integer)
-  fullName.vb: Prowl.Runtime.EngineObject.FindObjectByID(Of T)(Integer)
-  name.vb: FindObjectByID(Of T)(Integer)
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.FindObjectByID``1(System.Int32)
-    name: FindObjectByID
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectByID__1_System_Int32_
-  - name: <
-  - name: T
-  - name: '>'
-  - name: (
-  - uid: System.Int32
-    name: int
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.FindObjectByID``1(System.Int32)
-    name: FindObjectByID
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectByID__1_System_Int32_
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: (
-  - uid: System.Int32
-    name: Integer
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: )
-- uid: Prowl.Runtime.EngineObject.Foreach``1(System.Action{{T}})
-  commentId: M:Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-  parent: Prowl.Runtime.EngineObject
-  definition: Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Foreach__1_System_Action___0__
-  name: Foreach<T>(Action<T>)
-  nameWithType: EngineObject.Foreach<T>(Action<T>)
-  fullName: Prowl.Runtime.EngineObject.Foreach<T>(System.Action<T>)
-  nameWithType.vb: EngineObject.Foreach(Of T)(Action(Of T))
-  fullName.vb: Prowl.Runtime.EngineObject.Foreach(Of T)(System.Action(Of T))
-  name.vb: Foreach(Of T)(Action(Of T))
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-    name: Foreach
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Foreach__1_System_Action___0__
-  - name: <
-  - name: T
-  - name: '>'
-  - name: (
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-    name: Foreach
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Foreach__1_System_Action___0__
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: (
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
   - name: )
 - uid: Prowl.Runtime.EngineObject.Destroy
   commentId: M:Prowl.Runtime.EngineObject.Destroy
@@ -659,171 +914,80 @@ references:
     href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
   - name: (
   - name: )
-- uid: Prowl.Runtime.EngineObject.DestroyImmediate
-  commentId: M:Prowl.Runtime.EngineObject.DestroyImmediate
+- uid: Prowl.Runtime.EngineObject.IsDestroyQueued
+  commentId: P:Prowl.Runtime.EngineObject.IsDestroyQueued
   parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DestroyImmediate
-  name: DestroyImmediate()
-  nameWithType: EngineObject.DestroyImmediate()
-  fullName: Prowl.Runtime.EngineObject.DestroyImmediate()
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_IsDestroyQueued
+  name: IsDestroyQueued
+  nameWithType: EngineObject.IsDestroyQueued
+  fullName: Prowl.Runtime.EngineObject.IsDestroyQueued
+- uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+  commentId: M:Prowl.Runtime.EngineObject.ProcessDestroyed
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
+  name: ProcessDestroyed()
+  nameWithType: EngineObject.ProcessDestroyed()
+  fullName: Prowl.Runtime.EngineObject.ProcessDestroyed()
   spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.DestroyImmediate
-    name: DestroyImmediate
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DestroyImmediate
+  - uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+    name: ProcessDestroyed
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
   - name: (
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.EngineObject.DestroyImmediate
-    name: DestroyImmediate
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DestroyImmediate
+  - uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+    name: ProcessDestroyed
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
   - name: (
   - name: )
-- uid: Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-  commentId: M:Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy_Prowl_Runtime_EngineObject_
-  name: Destroy(EngineObject)
-  nameWithType: EngineObject.Destroy(EngineObject)
-  fullName: Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-    name: Destroy
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy_Prowl_Runtime_EngineObject_
-  - name: (
-  - uid: Prowl.Runtime.EngineObject
-    name: EngineObject
-    href: Prowl.Runtime.EngineObject.html
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-    name: Destroy
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy_Prowl_Runtime_EngineObject_
-  - name: (
-  - uid: Prowl.Runtime.EngineObject
-    name: EngineObject
-    href: Prowl.Runtime.EngineObject.html
-  - name: )
-- uid: Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-  commentId: M:Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DestroyImmediate_Prowl_Runtime_EngineObject_
-  name: DestroyImmediate(EngineObject)
-  nameWithType: EngineObject.DestroyImmediate(EngineObject)
-  fullName: Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-    name: DestroyImmediate
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DestroyImmediate_Prowl_Runtime_EngineObject_
-  - name: (
-  - uid: Prowl.Runtime.EngineObject
-    name: EngineObject
-    href: Prowl.Runtime.EngineObject.html
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-    name: DestroyImmediate
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DestroyImmediate_Prowl_Runtime_EngineObject_
-  - name: (
-  - uid: Prowl.Runtime.EngineObject
-    name: EngineObject
-    href: Prowl.Runtime.EngineObject.html
-  - name: )
-- uid: Prowl.Runtime.EngineObject.HandleDestroyed
-  commentId: M:Prowl.Runtime.EngineObject.HandleDestroyed
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_HandleDestroyed
-  name: HandleDestroyed()
-  nameWithType: EngineObject.HandleDestroyed()
-  fullName: Prowl.Runtime.EngineObject.HandleDestroyed()
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.HandleDestroyed
-    name: HandleDestroyed
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_HandleDestroyed
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.HandleDestroyed
-    name: HandleDestroyed
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_HandleDestroyed
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject,System.Boolean)
-  commentId: M:Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject,System.Boolean)
+- uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+  commentId: M:Prowl.Runtime.EngineObject.Equals(System.Object)
   parent: Prowl.Runtime.EngineObject
   isExternal: true
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Instantiate_Prowl_Runtime_EngineObject_System_Boolean_
-  name: Instantiate(EngineObject, bool)
-  nameWithType: EngineObject.Instantiate(EngineObject, bool)
-  fullName: Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject, bool)
-  nameWithType.vb: EngineObject.Instantiate(EngineObject, Boolean)
-  fullName.vb: Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject, Boolean)
-  name.vb: Instantiate(EngineObject, Boolean)
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
+  name: Equals(object)
+  nameWithType: EngineObject.Equals(object)
+  fullName: Prowl.Runtime.EngineObject.Equals(object)
+  nameWithType.vb: EngineObject.Equals(Object)
+  fullName.vb: Prowl.Runtime.EngineObject.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject,System.Boolean)
-    name: Instantiate
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Instantiate_Prowl_Runtime_EngineObject_System_Boolean_
+  - uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+    name: Equals
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
   - name: (
-  - uid: Prowl.Runtime.EngineObject
-    name: EngineObject
-    href: Prowl.Runtime.EngineObject.html
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: bool
+  - uid: System.Object
+    name: object
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject,System.Boolean)
-    name: Instantiate
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Instantiate_Prowl_Runtime_EngineObject_System_Boolean_
+  - uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+    name: Equals
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
   - name: (
-  - uid: Prowl.Runtime.EngineObject
-    name: EngineObject
-    href: Prowl.Runtime.EngineObject.html
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: Boolean
+  - uid: System.Object
+    name: Object
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-- uid: Prowl.Runtime.EngineObject.Dispose
-  commentId: M:Prowl.Runtime.EngineObject.Dispose
+- uid: Prowl.Runtime.EngineObject.GetHashCode
+  commentId: M:Prowl.Runtime.EngineObject.GetHashCode
   parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
-  name: Dispose()
-  nameWithType: EngineObject.Dispose()
-  fullName: Prowl.Runtime.EngineObject.Dispose()
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
+  name: GetHashCode()
+  nameWithType: EngineObject.GetHashCode()
+  fullName: Prowl.Runtime.EngineObject.GetHashCode()
   spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.Dispose
-    name: Dispose
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
+  - uid: Prowl.Runtime.EngineObject.GetHashCode
+    name: GetHashCode
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
   - name: (
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.EngineObject.Dispose
-    name: Dispose
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.EngineObject.OnDispose
-  commentId: M:Prowl.Runtime.EngineObject.OnDispose
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnDispose
-  name: OnDispose()
-  nameWithType: EngineObject.OnDispose()
-  fullName: Prowl.Runtime.EngineObject.OnDispose()
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.OnDispose
-    name: OnDispose
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnDispose
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.OnDispose
-    name: OnDispose
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnDispose
+  - uid: Prowl.Runtime.EngineObject.GetHashCode
+    name: GetHashCode
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
   - name: (
   - name: )
 - uid: Prowl.Runtime.EngineObject.ToString
@@ -844,39 +1008,6 @@ references:
     name: ToString
     href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ToString
   - name: (
-  - name: )
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
-  name: Equals(object)
-  nameWithType: object.Equals(object)
-  fullName: object.Equals(object)
-  nameWithType.vb: Object.Equals(Object)
-  fullName.vb: Object.Equals(Object)
-  name.vb: Equals(Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
-  - name: (
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
-  - name: (
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
@@ -922,30 +1053,6 @@ references:
     name: Object
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
-  name: GetHashCode()
-  nameWithType: object.GetHashCode()
-  fullName: object.GetHashCode()
-  nameWithType.vb: Object.GetHashCode()
-  fullName.vb: Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
-  - name: (
   - name: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
@@ -1016,27 +1123,53 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-- uid: Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.Null
-  commentId: M:Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
+- uid: Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsNotValid
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
   parent: Prowl.Runtime.EngineObjectExtensions
-  definition: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
-  name: Null(EngineObject)
-  nameWithType: EngineObjectExtensions.Null(EngineObject)
-  fullName: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
+  definition: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  name: IsNotValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsNotValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
   spec.csharp:
-  - uid: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-    name: "Null"
-    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
   - name: (
   - uid: Prowl.Runtime.EngineObject
     name: EngineObject
     href: Prowl.Runtime.EngineObject.html
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-    name: "Null"
-    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsValid
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  parent: Prowl.Runtime.EngineObjectExtensions
+  definition: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  name: IsValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
   - name: (
   - uid: Prowl.Runtime.EngineObject
     name: EngineObject
@@ -1080,71 +1213,42 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-  commentId: M:Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-  isExternal: true
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Foreach__1_System_Action___0__
-  name: Foreach<T>(Action<T>)
-  nameWithType: EngineObject.Foreach<T>(Action<T>)
-  fullName: Prowl.Runtime.EngineObject.Foreach<T>(System.Action<T>)
-  nameWithType.vb: EngineObject.Foreach(Of T)(Action(Of T))
-  fullName.vb: Prowl.Runtime.EngineObject.Foreach(Of T)(System.Action(Of T))
-  name.vb: Foreach(Of T)(Action(Of T))
+- uid: Prowl.Echo
+  commentId: N:Prowl.Echo
+  name: Prowl.Echo
+  nameWithType: Prowl.Echo
+  fullName: Prowl.Echo
   spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-    name: Foreach
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Foreach__1_System_Action___0__
-  - name: <
-  - name: T
-  - name: '>'
-  - name: (
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: )
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
   spec.vb:
-  - uid: Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-    name: Foreach
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Foreach__1_System_Action___0__
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: (
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: )
-- uid: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-  commentId: M:Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
-  name: Null(EngineObject)
-  nameWithType: EngineObjectExtensions.Null(EngineObject)
-  fullName: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
+- uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  name: IsNotValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsNotValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
   spec.csharp:
-  - uid: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-    name: "Null"
-    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
   - name: (
   - uid: Prowl.Runtime.EngineObject
     name: EngineObject
     href: Prowl.Runtime.EngineObject.html
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-    name: "Null"
-    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
   - name: (
   - uid: Prowl.Runtime.EngineObject
     name: EngineObject
@@ -1157,6 +1261,30 @@ references:
   name: EngineObjectExtensions
   nameWithType: EngineObjectExtensions
   fullName: Prowl.Runtime.EngineObjectExtensions
+- uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  name: IsValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
 - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
   commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
   isExternal: true
@@ -1194,54 +1322,55 @@ references:
   name: RuntimeUtils
   nameWithType: RuntimeUtils
   fullName: Prowl.Runtime.RuntimeUtils
-- uid: System.Double
-  commentId: T:System.Double
+- uid: Prowl.Runtime.Avatar
+  commentId: T:Prowl.Runtime.Avatar
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.Avatar.html
+  name: Avatar
+  nameWithType: Avatar
+  fullName: Prowl.Runtime.Avatar
+- uid: System.Boolean
+  commentId: T:System.Boolean
   parent: System
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.double
-  name: double
-  nameWithType: double
-  fullName: double
-  nameWithType.vb: Double
-  fullName.vb: Double
-  name.vb: Double
-- uid: Prowl.Runtime.AnimationWrapMode
-  commentId: T:Prowl.Runtime.AnimationWrapMode
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.AnimationWrapMode.html
-  name: AnimationWrapMode
-  nameWithType: AnimationWrapMode
-  fullName: Prowl.Runtime.AnimationWrapMode
-- uid: Prowl.Runtime.AnimationClip.Bones*
-  commentId: Overload:Prowl.Runtime.AnimationClip.Bones
-  href: Prowl.Runtime.AnimationClip.html#Prowl_Runtime_AnimationClip_Bones
-  name: Bones
-  nameWithType: AnimationClip.Bones
-  fullName: Prowl.Runtime.AnimationClip.Bones
-- uid: System.Collections.Generic.List{Prowl.Runtime.AnimationClip.AnimBone}
-  commentId: T:System.Collections.Generic.List{Prowl.Runtime.AnimationClip.AnimBone}
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Collections.Generic.List{Prowl.Runtime.ClipEvent}
+  commentId: T:System.Collections.Generic.List{Prowl.Runtime.ClipEvent}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.List`1
   href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  name: List<AnimationClip.AnimBone>
-  nameWithType: List<AnimationClip.AnimBone>
-  fullName: System.Collections.Generic.List<Prowl.Runtime.AnimationClip.AnimBone>
-  nameWithType.vb: List(Of AnimationClip.AnimBone)
-  fullName.vb: System.Collections.Generic.List(Of Prowl.Runtime.AnimationClip.AnimBone)
-  name.vb: List(Of AnimationClip.AnimBone)
+  name: List<ClipEvent>
+  nameWithType: List<ClipEvent>
+  fullName: System.Collections.Generic.List<Prowl.Runtime.ClipEvent>
+  nameWithType.vb: List(Of ClipEvent)
+  fullName.vb: System.Collections.Generic.List(Of Prowl.Runtime.ClipEvent)
+  name.vb: List(Of ClipEvent)
   spec.csharp:
   - uid: System.Collections.Generic.List`1
     name: List
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
   - name: <
-  - uid: Prowl.Runtime.AnimationClip
-    name: AnimationClip
-    href: Prowl.Runtime.AnimationClip.html
-  - name: .
-  - uid: Prowl.Runtime.AnimationClip.AnimBone
-    name: AnimBone
-    href: Prowl.Runtime.AnimationClip.AnimBone.html
+  - uid: Prowl.Runtime.ClipEvent
+    name: ClipEvent
+    href: Prowl.Runtime.ClipEvent.html
   - name: '>'
   spec.vb:
   - uid: System.Collections.Generic.List`1
@@ -1251,13 +1380,9 @@ references:
   - name: (
   - name: Of
   - name: " "
-  - uid: Prowl.Runtime.AnimationClip
-    name: AnimationClip
-    href: Prowl.Runtime.AnimationClip.html
-  - name: .
-  - uid: Prowl.Runtime.AnimationClip.AnimBone
-    name: AnimBone
-    href: Prowl.Runtime.AnimationClip.AnimBone.html
+  - uid: Prowl.Runtime.ClipEvent
+    name: ClipEvent
+    href: Prowl.Runtime.ClipEvent.html
   - name: )
 - uid: System.Collections.Generic.List`1
   commentId: T:System.Collections.Generic.List`1
@@ -1324,157 +1449,356 @@ references:
     name: Generic
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic
-- uid: Prowl.Runtime.AnimationClip.AddBone*
-  commentId: Overload:Prowl.Runtime.AnimationClip.AddBone
-  href: Prowl.Runtime.AnimationClip.html#Prowl_Runtime_AnimationClip_AddBone_Prowl_Runtime_AnimationClip_AnimBone_
-  name: AddBone
-  nameWithType: AnimationClip.AddBone
-  fullName: Prowl.Runtime.AnimationClip.AddBone
-- uid: Prowl.Runtime.AnimationClip.AnimBone
-  commentId: T:Prowl.Runtime.AnimationClip.AnimBone
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.AnimationClip.html
-  name: AnimationClip.AnimBone
-  nameWithType: AnimationClip.AnimBone
-  fullName: Prowl.Runtime.AnimationClip.AnimBone
-  spec.csharp:
-  - uid: Prowl.Runtime.AnimationClip
-    name: AnimationClip
-    href: Prowl.Runtime.AnimationClip.html
-  - name: .
-  - uid: Prowl.Runtime.AnimationClip.AnimBone
-    name: AnimBone
-    href: Prowl.Runtime.AnimationClip.AnimBone.html
-  spec.vb:
-  - uid: Prowl.Runtime.AnimationClip
-    name: AnimationClip
-    href: Prowl.Runtime.AnimationClip.html
-  - name: .
-  - uid: Prowl.Runtime.AnimationClip.AnimBone
-    name: AnimBone
-    href: Prowl.Runtime.AnimationClip.AnimBone.html
-- uid: Prowl.Runtime.AnimationClip.GetBone*
-  commentId: Overload:Prowl.Runtime.AnimationClip.GetBone
-  href: Prowl.Runtime.AnimationClip.html#Prowl_Runtime_AnimationClip_GetBone_System_String_
-  name: GetBone
-  nameWithType: AnimationClip.GetBone
-  fullName: Prowl.Runtime.AnimationClip.GetBone
-- uid: System.String
-  commentId: T:System.String
+- uid: System.Single
+  commentId: T:System.Single
   parent: System
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
-- uid: Prowl.Runtime.AnimationClip.EnsureQuaternionContinuity*
-  commentId: Overload:Prowl.Runtime.AnimationClip.EnsureQuaternionContinuity
-  href: Prowl.Runtime.AnimationClip.html#Prowl_Runtime_AnimationClip_EnsureQuaternionContinuity
-  name: EnsureQuaternionContinuity
-  nameWithType: AnimationClip.EnsureQuaternionContinuity
-  fullName: Prowl.Runtime.AnimationClip.EnsureQuaternionContinuity
-- uid: Prowl.Runtime.AnimationClip.Deserialize*
-  commentId: Overload:Prowl.Runtime.AnimationClip.Deserialize
-  href: Prowl.Runtime.AnimationClip.html#Prowl_Runtime_AnimationClip_Deserialize_Prowl_Runtime_SerializedProperty_Prowl_Runtime_Serializer_SerializationContext_
-  name: Deserialize
-  nameWithType: AnimationClip.Deserialize
-  fullName: Prowl.Runtime.AnimationClip.Deserialize
-- uid: Prowl.Runtime.ISerializable.Deserialize(Prowl.Runtime.SerializedProperty,Prowl.Runtime.Serializer.SerializationContext)
-  commentId: M:Prowl.Runtime.ISerializable.Deserialize(Prowl.Runtime.SerializedProperty,Prowl.Runtime.Serializer.SerializationContext)
-  parent: Prowl.Runtime.ISerializable
-  href: Prowl.Runtime.ISerializable.html#Prowl_Runtime_ISerializable_Deserialize_Prowl_Runtime_SerializedProperty_Prowl_Runtime_Serializer_SerializationContext_
-  name: Deserialize(SerializedProperty, SerializationContext)
-  nameWithType: ISerializable.Deserialize(SerializedProperty, Serializer.SerializationContext)
-  fullName: Prowl.Runtime.ISerializable.Deserialize(Prowl.Runtime.SerializedProperty, Prowl.Runtime.Serializer.SerializationContext)
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: Prowl.Runtime.AnimationClip.#ctor*
+  commentId: Overload:Prowl.Runtime.AnimationClip.#ctor
+  href: Prowl.Runtime.AnimationClip.html#Prowl_Runtime_AnimationClip__ctor
+  name: AnimationClip
+  nameWithType: AnimationClip.AnimationClip
+  fullName: Prowl.Runtime.AnimationClip.AnimationClip
+  nameWithType.vb: AnimationClip.New
+  fullName.vb: Prowl.Runtime.AnimationClip.New
+  name.vb: New
+- uid: Prowl.Runtime.AnimationClip.Kind*
+  commentId: Overload:Prowl.Runtime.AnimationClip.Kind
+  href: Prowl.Runtime.AnimationClip.html#Prowl_Runtime_AnimationClip_Kind
+  name: Kind
+  nameWithType: AnimationClip.Kind
+  fullName: Prowl.Runtime.AnimationClip.Kind
+- uid: Prowl.Runtime.AnimationClipKind
+  commentId: T:Prowl.Runtime.AnimationClipKind
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.AnimationClipKind.html
+  name: AnimationClipKind
+  nameWithType: AnimationClipKind
+  fullName: Prowl.Runtime.AnimationClipKind
+- uid: Prowl.Runtime.AnimationClip.Duration*
+  commentId: Overload:Prowl.Runtime.AnimationClip.Duration
+  href: Prowl.Runtime.AnimationClip.html#Prowl_Runtime_AnimationClip_Duration
+  name: Duration
+  nameWithType: AnimationClip.Duration
+  fullName: Prowl.Runtime.AnimationClip.Duration
+- uid: Prowl.Runtime.AnimationClip.FrameCount*
+  commentId: Overload:Prowl.Runtime.AnimationClip.FrameCount
+  href: Prowl.Runtime.AnimationClip.html#Prowl_Runtime_AnimationClip_FrameCount
+  name: FrameCount
+  nameWithType: AnimationClip.FrameCount
+  fullName: Prowl.Runtime.AnimationClip.FrameCount
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Runtime.AnimationClip.GetClip*
+  commentId: Overload:Prowl.Runtime.AnimationClip.GetClip
+  href: Prowl.Runtime.AnimationClip.html#Prowl_Runtime_AnimationClip_GetClip_Prowl_Motion_Avatar_
+  name: GetClip
+  nameWithType: AnimationClip.GetClip
+  fullName: Prowl.Runtime.AnimationClip.GetClip
+- uid: Prowl.Motion.Avatar
+  commentId: T:Prowl.Motion.Avatar
+  parent: Prowl.Motion
+  isExternal: true
+  name: Avatar
+  nameWithType: Avatar
+  fullName: Prowl.Motion.Avatar
+- uid: Prowl.Motion.AnimationClipBase
+  commentId: T:Prowl.Motion.AnimationClipBase
+  parent: Prowl.Motion
+  isExternal: true
+  name: AnimationClipBase
+  nameWithType: AnimationClipBase
+  fullName: Prowl.Motion.AnimationClipBase
+- uid: Prowl.Motion
+  commentId: N:Prowl.Motion
+  isExternal: true
+  name: Prowl.Motion
+  nameWithType: Prowl.Motion
+  fullName: Prowl.Motion
   spec.csharp:
-  - uid: Prowl.Runtime.ISerializable.Deserialize(Prowl.Runtime.SerializedProperty,Prowl.Runtime.Serializer.SerializationContext)
-    name: Deserialize
-    href: Prowl.Runtime.ISerializable.html#Prowl_Runtime_ISerializable_Deserialize_Prowl_Runtime_SerializedProperty_Prowl_Runtime_Serializer_SerializationContext_
+  - uid: Prowl
+    name: Prowl
+    isExternal: true
+  - name: .
+  - uid: Prowl.Motion
+    name: Motion
+    isExternal: true
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+    isExternal: true
+  - name: .
+  - uid: Prowl.Motion
+    name: Motion
+    isExternal: true
+- uid: Prowl.Runtime.AnimationClip.EventsChanged*
+  commentId: Overload:Prowl.Runtime.AnimationClip.EventsChanged
+  href: Prowl.Runtime.AnimationClip.html#Prowl_Runtime_AnimationClip_EventsChanged
+  name: EventsChanged
+  nameWithType: AnimationClip.EventsChanged
+  fullName: Prowl.Runtime.AnimationClip.EventsChanged
+- uid: Prowl.Runtime.AnimationClip.FromSkeletal*
+  commentId: Overload:Prowl.Runtime.AnimationClip.FromSkeletal
+  href: Prowl.Runtime.AnimationClip.html#Prowl_Runtime_AnimationClip_FromSkeletal_Prowl_Motion_AnimationClipBase_Prowl_Runtime_Avatar_System_String_System_Collections_Generic_IEnumerable_Prowl_Runtime_ClipEvent__
+  name: FromSkeletal
+  nameWithType: AnimationClip.FromSkeletal
+  fullName: Prowl.Runtime.AnimationClip.FromSkeletal
+- uid: System.Collections.Generic.IEnumerable{Prowl.Runtime.ClipEvent}
+  commentId: T:System.Collections.Generic.IEnumerable{Prowl.Runtime.ClipEvent}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<ClipEvent>
+  nameWithType: IEnumerable<ClipEvent>
+  fullName: System.Collections.Generic.IEnumerable<Prowl.Runtime.ClipEvent>
+  nameWithType.vb: IEnumerable(Of ClipEvent)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of Prowl.Runtime.ClipEvent)
+  name.vb: IEnumerable(Of ClipEvent)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: Prowl.Runtime.ClipEvent
+    name: ClipEvent
+    href: Prowl.Runtime.ClipEvent.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
   - name: (
-  - uid: Prowl.Runtime.SerializedProperty
-    name: SerializedProperty
-    href: Prowl.Runtime.SerializedProperty.html
-  - name: ','
+  - name: Of
   - name: " "
-  - uid: Prowl.Runtime.Serializer.SerializationContext
-    name: SerializationContext
-    href: Prowl.Runtime.Serializer.SerializationContext.html
+  - uid: Prowl.Runtime.ClipEvent
+    name: ClipEvent
+    href: Prowl.Runtime.ClipEvent.html
+  - name: )
+- uid: Prowl.Runtime.AnimationClip
+  commentId: T:Prowl.Runtime.AnimationClip
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.AnimationClip.html
+  name: AnimationClip
+  nameWithType: AnimationClip
+  fullName: Prowl.Runtime.AnimationClip
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Runtime.AnimationClip.FromHumanoid*
+  commentId: Overload:Prowl.Runtime.AnimationClip.FromHumanoid
+  href: Prowl.Runtime.AnimationClip.html#Prowl_Runtime_AnimationClip_FromHumanoid_Prowl_Motion_HumanoidClip_Prowl_Runtime_Avatar_System_String_System_Collections_Generic_IEnumerable_Prowl_Runtime_ClipEvent__
+  name: FromHumanoid
+  nameWithType: AnimationClip.FromHumanoid
+  fullName: Prowl.Runtime.AnimationClip.FromHumanoid
+- uid: Prowl.Motion.HumanoidClip
+  commentId: T:Prowl.Motion.HumanoidClip
+  parent: Prowl.Motion
+  isExternal: true
+  name: HumanoidClip
+  nameWithType: HumanoidClip
+  fullName: Prowl.Motion.HumanoidClip
+- uid: Prowl.Runtime.Asset.OnUnload
+  commentId: M:Prowl.Runtime.Asset.OnUnload
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_OnUnload
+  name: OnUnload()
+  nameWithType: Asset.OnUnload()
+  fullName: Prowl.Runtime.Asset.OnUnload()
+  spec.csharp:
+  - uid: Prowl.Runtime.Asset.OnUnload
+    name: OnUnload
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_OnUnload
+  - name: (
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.ISerializable.Deserialize(Prowl.Runtime.SerializedProperty,Prowl.Runtime.Serializer.SerializationContext)
-    name: Deserialize
-    href: Prowl.Runtime.ISerializable.html#Prowl_Runtime_ISerializable_Deserialize_Prowl_Runtime_SerializedProperty_Prowl_Runtime_Serializer_SerializationContext_
+  - uid: Prowl.Runtime.Asset.OnUnload
+    name: OnUnload
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_OnUnload
   - name: (
-  - uid: Prowl.Runtime.SerializedProperty
-    name: SerializedProperty
-    href: Prowl.Runtime.SerializedProperty.html
-  - name: ','
-  - name: " "
-  - uid: Prowl.Runtime.Serializer.SerializationContext
-    name: SerializationContext
-    href: Prowl.Runtime.Serializer.SerializationContext.html
   - name: )
-- uid: Prowl.Runtime.SerializedProperty
-  commentId: T:Prowl.Runtime.SerializedProperty
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.SerializedProperty.html
-  name: SerializedProperty
-  nameWithType: SerializedProperty
-  fullName: Prowl.Runtime.SerializedProperty
-- uid: Prowl.Runtime.Serializer.SerializationContext
-  commentId: T:Prowl.Runtime.Serializer.SerializationContext
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.Serializer.html
-  name: Serializer.SerializationContext
-  nameWithType: Serializer.SerializationContext
-  fullName: Prowl.Runtime.Serializer.SerializationContext
+- uid: Prowl.Runtime.AnimationClip.OnUnload*
+  commentId: Overload:Prowl.Runtime.AnimationClip.OnUnload
+  href: Prowl.Runtime.AnimationClip.html#Prowl_Runtime_AnimationClip_OnUnload
+  name: OnUnload
+  nameWithType: AnimationClip.OnUnload
+  fullName: Prowl.Runtime.AnimationClip.OnUnload
+- uid: Prowl.Runtime.Asset.EstimateBytes
+  commentId: M:Prowl.Runtime.Asset.EstimateBytes
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_EstimateBytes
+  name: EstimateBytes()
+  nameWithType: Asset.EstimateBytes()
+  fullName: Prowl.Runtime.Asset.EstimateBytes()
   spec.csharp:
-  - uid: Prowl.Runtime.Serializer
-    name: Serializer
-    href: Prowl.Runtime.Serializer.html
-  - name: .
-  - uid: Prowl.Runtime.Serializer.SerializationContext
-    name: SerializationContext
-    href: Prowl.Runtime.Serializer.SerializationContext.html
+  - uid: Prowl.Runtime.Asset.EstimateBytes
+    name: EstimateBytes
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_EstimateBytes
+  - name: (
+  - name: )
   spec.vb:
-  - uid: Prowl.Runtime.Serializer
-    name: Serializer
-    href: Prowl.Runtime.Serializer.html
-  - name: .
-  - uid: Prowl.Runtime.Serializer.SerializationContext
-    name: SerializationContext
-    href: Prowl.Runtime.Serializer.SerializationContext.html
+  - uid: Prowl.Runtime.Asset.EstimateBytes
+    name: EstimateBytes
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_EstimateBytes
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.AnimationClip.EstimateBytes*
+  commentId: Overload:Prowl.Runtime.AnimationClip.EstimateBytes
+  href: Prowl.Runtime.AnimationClip.html#Prowl_Runtime_AnimationClip_EstimateBytes
+  name: EstimateBytes
+  nameWithType: AnimationClip.EstimateBytes
+  fullName: Prowl.Runtime.AnimationClip.EstimateBytes
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
 - uid: Prowl.Runtime.AnimationClip.Serialize*
   commentId: Overload:Prowl.Runtime.AnimationClip.Serialize
-  href: Prowl.Runtime.AnimationClip.html#Prowl_Runtime_AnimationClip_Serialize_Prowl_Runtime_Serializer_SerializationContext_
+  href: Prowl.Runtime.AnimationClip.html#Prowl_Runtime_AnimationClip_Serialize_Prowl_Echo_EchoObject__Prowl_Echo_SerializationContext_
   name: Serialize
   nameWithType: AnimationClip.Serialize
   fullName: Prowl.Runtime.AnimationClip.Serialize
-- uid: Prowl.Runtime.ISerializable.Serialize(Prowl.Runtime.Serializer.SerializationContext)
-  commentId: M:Prowl.Runtime.ISerializable.Serialize(Prowl.Runtime.Serializer.SerializationContext)
-  parent: Prowl.Runtime.ISerializable
-  href: Prowl.Runtime.ISerializable.html#Prowl_Runtime_ISerializable_Serialize_Prowl_Runtime_Serializer_SerializationContext_
-  name: Serialize(SerializationContext)
-  nameWithType: ISerializable.Serialize(Serializer.SerializationContext)
-  fullName: Prowl.Runtime.ISerializable.Serialize(Prowl.Runtime.Serializer.SerializationContext)
+- uid: Prowl.Echo.ISerializable.Serialize(Prowl.Echo.EchoObject@,Prowl.Echo.SerializationContext)
+  commentId: M:Prowl.Echo.ISerializable.Serialize(Prowl.Echo.EchoObject@,Prowl.Echo.SerializationContext)
+  parent: Prowl.Echo.ISerializable
+  isExternal: true
+  name: Serialize(ref EchoObject, SerializationContext)
+  nameWithType: ISerializable.Serialize(ref EchoObject, SerializationContext)
+  fullName: Prowl.Echo.ISerializable.Serialize(ref Prowl.Echo.EchoObject, Prowl.Echo.SerializationContext)
+  nameWithType.vb: ISerializable.Serialize(EchoObject, SerializationContext)
+  fullName.vb: Prowl.Echo.ISerializable.Serialize(Prowl.Echo.EchoObject, Prowl.Echo.SerializationContext)
+  name.vb: Serialize(EchoObject, SerializationContext)
   spec.csharp:
-  - uid: Prowl.Runtime.ISerializable.Serialize(Prowl.Runtime.Serializer.SerializationContext)
+  - uid: Prowl.Echo.ISerializable.Serialize(Prowl.Echo.EchoObject@,Prowl.Echo.SerializationContext)
     name: Serialize
-    href: Prowl.Runtime.ISerializable.html#Prowl_Runtime_ISerializable_Serialize_Prowl_Runtime_Serializer_SerializationContext_
+    isExternal: true
   - name: (
-  - uid: Prowl.Runtime.Serializer.SerializationContext
+  - name: ref
+  - name: " "
+  - uid: Prowl.Echo.EchoObject
+    name: EchoObject
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Prowl.Echo.SerializationContext
     name: SerializationContext
-    href: Prowl.Runtime.Serializer.SerializationContext.html
+    isExternal: true
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.ISerializable.Serialize(Prowl.Runtime.Serializer.SerializationContext)
+  - uid: Prowl.Echo.ISerializable.Serialize(Prowl.Echo.EchoObject@,Prowl.Echo.SerializationContext)
     name: Serialize
-    href: Prowl.Runtime.ISerializable.html#Prowl_Runtime_ISerializable_Serialize_Prowl_Runtime_Serializer_SerializationContext_
+    isExternal: true
   - name: (
-  - uid: Prowl.Runtime.Serializer.SerializationContext
+  - uid: Prowl.Echo.EchoObject
+    name: EchoObject
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Prowl.Echo.SerializationContext
     name: SerializationContext
-    href: Prowl.Runtime.Serializer.SerializationContext.html
+    isExternal: true
+  - name: )
+- uid: Prowl.Echo.EchoObject
+  commentId: T:Prowl.Echo.EchoObject
+  parent: Prowl.Echo
+  isExternal: true
+  name: EchoObject
+  nameWithType: EchoObject
+  fullName: Prowl.Echo.EchoObject
+- uid: Prowl.Echo.SerializationContext
+  commentId: T:Prowl.Echo.SerializationContext
+  parent: Prowl.Echo
+  isExternal: true
+  name: SerializationContext
+  nameWithType: SerializationContext
+  fullName: Prowl.Echo.SerializationContext
+- uid: Prowl.Runtime.AnimationClip.Deserialize*
+  commentId: Overload:Prowl.Runtime.AnimationClip.Deserialize
+  href: Prowl.Runtime.AnimationClip.html#Prowl_Runtime_AnimationClip_Deserialize_Prowl_Echo_EchoObject_Prowl_Echo_SerializationContext_
+  name: Deserialize
+  nameWithType: AnimationClip.Deserialize
+  fullName: Prowl.Runtime.AnimationClip.Deserialize
+- uid: Prowl.Echo.ISerializable.Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
+  commentId: M:Prowl.Echo.ISerializable.Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
+  parent: Prowl.Echo.ISerializable
+  isExternal: true
+  name: Deserialize(EchoObject, SerializationContext)
+  nameWithType: ISerializable.Deserialize(EchoObject, SerializationContext)
+  fullName: Prowl.Echo.ISerializable.Deserialize(Prowl.Echo.EchoObject, Prowl.Echo.SerializationContext)
+  spec.csharp:
+  - uid: Prowl.Echo.ISerializable.Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
+    name: Deserialize
+    isExternal: true
+  - name: (
+  - uid: Prowl.Echo.EchoObject
+    name: EchoObject
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Prowl.Echo.SerializationContext
+    name: SerializationContext
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Prowl.Echo.ISerializable.Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
+    name: Deserialize
+    isExternal: true
+  - name: (
+  - uid: Prowl.Echo.EchoObject
+    name: EchoObject
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Prowl.Echo.SerializationContext
+    name: SerializationContext
+    isExternal: true
   - name: )

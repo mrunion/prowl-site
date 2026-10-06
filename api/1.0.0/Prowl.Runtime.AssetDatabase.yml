@@ -1,0 +1,3051 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.AssetDatabase
+  commentId: T:Prowl.Runtime.AssetDatabase
+  id: AssetDatabase
+  parent: Prowl.Runtime
+  children:
+  - Prowl.Runtime.AssetDatabase.AddRoot(System.Object)
+  - Prowl.Runtime.AssetDatabase.All
+  - Prowl.Runtime.AssetDatabase.Backend
+  - Prowl.Runtime.AssetDatabase.CreateShell(System.Type)
+  - Prowl.Runtime.AssetDatabase.EndFrame
+  - Prowl.Runtime.AssetDatabase.EvictionEnabled
+  - Prowl.Runtime.AssetDatabase.Explain(Prowl.Runtime.Asset)
+  - Prowl.Runtime.AssetDatabase.FindAllResources``1(System.String)
+  - Prowl.Runtime.AssetDatabase.FindResourceAsync``1(System.String,System.Threading.CancellationToken)
+  - Prowl.Runtime.AssetDatabase.FindResourceGuid(System.String,System.Type)
+  - Prowl.Runtime.AssetDatabase.FindResourceGuid``1(System.String)
+  - Prowl.Runtime.AssetDatabase.FindResource``1(System.String)
+  - Prowl.Runtime.AssetDatabase.Get(System.Guid)
+  - Prowl.Runtime.AssetDatabase.GetAssetType(System.Guid)
+  - Prowl.Runtime.AssetDatabase.GetLoadPath(System.String,System.String)
+  - Prowl.Runtime.AssetDatabase.Get``1(System.Guid)
+  - Prowl.Runtime.AssetDatabase.GracePeriod
+  - Prowl.Runtime.AssetDatabase.Hold(Prowl.Runtime.Asset,System.Object)
+  - Prowl.Runtime.AssetDatabase.IsBuiltIn(Prowl.Runtime.Asset)
+  - Prowl.Runtime.AssetDatabase.LoadAsync``1(System.Guid,System.Threading.CancellationToken)
+  - Prowl.Runtime.AssetDatabase.LoadEverythingReached
+  - Prowl.Runtime.AssetDatabase.LoadGroup(System.Collections.Generic.IEnumerable{Prowl.Runtime.Asset},System.Boolean)
+  - Prowl.Runtime.AssetDatabase.Load``1(System.Guid)
+  - Prowl.Runtime.AssetDatabase.Loaded
+  - Prowl.Runtime.AssetDatabase.MarkMissing(System.Guid)
+  - Prowl.Runtime.AssetDatabase.MemoryBudget
+  - Prowl.Runtime.AssetDatabase.Mount(Prowl.Runtime.AssetBackend)
+  - Prowl.Runtime.AssetDatabase.Mounts
+  - Prowl.Runtime.AssetDatabase.Preload(Prowl.Runtime.Resources.SceneAsset)
+  - Prowl.Runtime.AssetDatabase.Pump
+  - Prowl.Runtime.AssetDatabase.RecordReachPaths
+  - Prowl.Runtime.AssetDatabase.Refill(Prowl.Runtime.Asset,Prowl.Echo.EchoObject,Prowl.Runtime.ReloadReason)
+  - Prowl.Runtime.AssetDatabase.Refill(Prowl.Runtime.Asset,Prowl.Runtime.ReloadReason)
+  - Prowl.Runtime.AssetDatabase.Register(Prowl.Runtime.Asset,System.Guid,System.String)
+  - Prowl.Runtime.AssetDatabase.Release(Prowl.Runtime.Asset,System.Object)
+  - Prowl.Runtime.AssetDatabase.ReleaseAll(System.Object)
+  - Prowl.Runtime.AssetDatabase.Reload(Prowl.Runtime.Asset)
+  - Prowl.Runtime.AssetDatabase.Reloaded
+  - Prowl.Runtime.AssetDatabase.RemoveRoot(System.Object)
+  - Prowl.Runtime.AssetDatabase.ResidentBytes
+  - Prowl.Runtime.AssetDatabase.Retire(System.Guid)
+  - Prowl.Runtime.AssetDatabase.Shutdown
+  - Prowl.Runtime.AssetDatabase.SourceOf(System.Guid)
+  - Prowl.Runtime.AssetDatabase.TryGetExisting(System.Guid,Prowl.Runtime.Asset@)
+  - Prowl.Runtime.AssetDatabase.Unload(Prowl.Runtime.Asset)
+  - Prowl.Runtime.AssetDatabase.UnloadUnused
+  - Prowl.Runtime.AssetDatabase.Unloaded
+  - Prowl.Runtime.AssetDatabase.Unmount(Prowl.Runtime.AssetBackend)
+  - Prowl.Runtime.AssetDatabase.Walk
+  - Prowl.Runtime.AssetDatabase.WalkInterval
+  - Prowl.Runtime.AssetDatabase.WalkingRoots
+  langs:
+  - csharp
+  - vb
+  name: AssetDatabase
+  nameWithType: AssetDatabase
+  fullName: Prowl.Runtime.AssetDatabase
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AssetDatabase
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 31
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Every asset by GUID, one object each for the whole session. Assets stay loaded while something reaches them:
+
+    a live scene, an object kept with DontDestroyOnLoad, a hold, a root, or a load group. A walk from
+
+    those roots runs about once a second, and an asset nothing reached for <xref href="Prowl.Runtime.AssetDatabase.GracePeriod" data-throw-if-not-resolved="false"></xref> has its payload
+
+    freed, sooner when over <xref href="Prowl.Runtime.AssetDatabase.MemoryBudget" data-throw-if-not-resolved="false"></xref>. Reading an unloaded asset loads it again.
+  example: []
+  syntax:
+    content: public static class AssetDatabase
+    content.vb: Public Module AssetDatabase
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Prowl.Runtime.AssetDatabase.Backend
+  commentId: P:Prowl.Runtime.AssetDatabase.Backend
+  id: Backend
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Backend
+  nameWithType: AssetDatabase.Backend
+  fullName: Prowl.Runtime.AssetDatabase.Backend
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Backend
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 39
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The project's or the player's own content. Mounted sources are asked before it, so they can add to it or override it.
+  example: []
+  syntax:
+    content: public static AssetBackend? Backend { get; set; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.AssetBackend
+    content.vb: Public Shared Property Backend As AssetBackend
+  overload: Prowl.Runtime.AssetDatabase.Backend*
+- uid: Prowl.Runtime.AssetDatabase.Mounts
+  commentId: P:Prowl.Runtime.AssetDatabase.Mounts
+  id: Mounts
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Mounts
+  nameWithType: AssetDatabase.Mounts
+  fullName: Prowl.Runtime.AssetDatabase.Mounts
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Mounts
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 45
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: 'Extra sources of assets, newest first: content packs, mods, files on disk or on a web server.'
+  example: []
+  syntax:
+    content: public static IReadOnlyList<AssetBackend> Mounts { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.AssetBackend}
+    content.vb: Public Shared ReadOnly Property Mounts As IReadOnlyList(Of AssetBackend)
+  overload: Prowl.Runtime.AssetDatabase.Mounts*
+- uid: Prowl.Runtime.AssetDatabase.Mount(Prowl.Runtime.AssetBackend)
+  commentId: M:Prowl.Runtime.AssetDatabase.Mount(Prowl.Runtime.AssetBackend)
+  id: Mount(Prowl.Runtime.AssetBackend)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Mount(AssetBackend)
+  nameWithType: AssetDatabase.Mount(AssetBackend)
+  fullName: Prowl.Runtime.AssetDatabase.Mount(Prowl.Runtime.AssetBackend)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Mount
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 51
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Adds a source of assets for the rest of the session or until <xref href="Prowl.Runtime.AssetDatabase.Unmount(Prowl.Runtime.AssetBackend)" data-throw-if-not-resolved="false"></xref>. A GUID or load path that
+
+    several sources know comes from the one mounted last, so a patch or a content pack can replace what came before.
+  example: []
+  syntax:
+    content: public static void Mount(AssetBackend source)
+    parameters:
+    - id: source
+      type: Prowl.Runtime.AssetBackend
+    content.vb: Public Shared Sub Mount(source As AssetBackend)
+  overload: Prowl.Runtime.AssetDatabase.Mount*
+- uid: Prowl.Runtime.AssetDatabase.Unmount(Prowl.Runtime.AssetBackend)
+  commentId: M:Prowl.Runtime.AssetDatabase.Unmount(Prowl.Runtime.AssetBackend)
+  id: Unmount(Prowl.Runtime.AssetBackend)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Unmount(AssetBackend)
+  nameWithType: AssetDatabase.Unmount(AssetBackend)
+  fullName: Prowl.Runtime.AssetDatabase.Unmount(Prowl.Runtime.AssetBackend)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Unmount
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 65
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Removes a mounted source. Its assets that no other source provides become missing, keeping their GUIDs so
+
+    whatever refers to them finds them again if the source comes back.
+  example: []
+  syntax:
+    content: public static void Unmount(AssetBackend source)
+    parameters:
+    - id: source
+      type: Prowl.Runtime.AssetBackend
+    content.vb: Public Shared Sub Unmount(source As AssetBackend)
+  overload: Prowl.Runtime.AssetDatabase.Unmount*
+- uid: Prowl.Runtime.AssetDatabase.SourceOf(System.Guid)
+  commentId: M:Prowl.Runtime.AssetDatabase.SourceOf(System.Guid)
+  id: SourceOf(System.Guid)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: SourceOf(Guid)
+  nameWithType: AssetDatabase.SourceOf(Guid)
+  fullName: Prowl.Runtime.AssetDatabase.SourceOf(System.Guid)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SourceOf
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 89
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: "The source an asset's content comes from: the newest mount that knows the GUID, then <xref href=\"Prowl.Runtime.AssetDatabase.Backend\" data-throw-if-not-resolved=\"false\"></xref>."
+  example: []
+  syntax:
+    content: public static AssetBackend? SourceOf(Guid assetId)
+    parameters:
+    - id: assetId
+      type: System.Guid
+    return:
+      type: Prowl.Runtime.AssetBackend
+    content.vb: Public Shared Function SourceOf(assetId As Guid) As AssetBackend
+  overload: Prowl.Runtime.AssetDatabase.SourceOf*
+- uid: Prowl.Runtime.AssetDatabase.Loaded
+  commentId: E:Prowl.Runtime.AssetDatabase.Loaded
+  id: Loaded
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Loaded
+  nameWithType: AssetDatabase.Loaded
+  fullName: Prowl.Runtime.AssetDatabase.Loaded
+  type: Event
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Loaded
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 98
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static event Action<Asset>? Loaded
+    return:
+      type: System.Action{Prowl.Runtime.Asset}
+    content.vb: Public Shared Event Loaded As Action(Of Asset)
+- uid: Prowl.Runtime.AssetDatabase.Reloaded
+  commentId: E:Prowl.Runtime.AssetDatabase.Reloaded
+  id: Reloaded
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Reloaded
+  nameWithType: AssetDatabase.Reloaded
+  fullName: Prowl.Runtime.AssetDatabase.Reloaded
+  type: Event
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Reloaded
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 99
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static event Action<Asset, ReloadReason>? Reloaded
+    return:
+      type: System.Action{Prowl.Runtime.Asset,Prowl.Runtime.ReloadReason}
+    content.vb: Public Shared Event Reloaded As Action(Of Asset, ReloadReason)
+- uid: Prowl.Runtime.AssetDatabase.Unloaded
+  commentId: E:Prowl.Runtime.AssetDatabase.Unloaded
+  id: Unloaded
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Unloaded
+  nameWithType: AssetDatabase.Unloaded
+  fullName: Prowl.Runtime.AssetDatabase.Unloaded
+  type: Event
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Unloaded
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 100
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static event Action<Asset>? Unloaded
+    return:
+      type: System.Action{Prowl.Runtime.Asset}
+    content.vb: Public Shared Event Unloaded As Action(Of Asset)
+- uid: Prowl.Runtime.AssetDatabase.Get(System.Guid)
+  commentId: M:Prowl.Runtime.AssetDatabase.Get(System.Guid)
+  id: Get(System.Guid)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Get(Guid)
+  nameWithType: AssetDatabase.Get(Guid)
+  fullName: Prowl.Runtime.AssetDatabase.Get(System.Guid)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Get
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 105
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The asset with this GUID, loaded or not. Never loads. Null for a GUID nothing knows.
+  example: []
+  syntax:
+    content: public static Asset? Get(Guid assetId)
+    parameters:
+    - id: assetId
+      type: System.Guid
+    return:
+      type: Prowl.Runtime.Asset
+    content.vb: Public Shared Function [Get](assetId As Guid) As Asset
+  overload: Prowl.Runtime.AssetDatabase.Get*
+- uid: Prowl.Runtime.AssetDatabase.Get``1(System.Guid)
+  commentId: M:Prowl.Runtime.AssetDatabase.Get``1(System.Guid)
+  id: Get``1(System.Guid)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Get<T>(Guid)
+  nameWithType: AssetDatabase.Get<T>(Guid)
+  fullName: Prowl.Runtime.AssetDatabase.Get<T>(System.Guid)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Get
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 115
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The asset with this GUID as <code class="typeparamref">T</code>. Never loads. A GUID nothing knows gives a missing <code class="typeparamref">T</code>.
+  example: []
+  syntax:
+    content: 'public static T? Get<T>(Guid assetId) where T : Asset'
+    parameters:
+    - id: assetId
+      type: System.Guid
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Public Shared Function [Get](Of T As Asset)(assetId As Guid) As T
+  overload: Prowl.Runtime.AssetDatabase.Get*
+  nameWithType.vb: AssetDatabase.Get(Of T)(Guid)
+  fullName.vb: Prowl.Runtime.AssetDatabase.Get(Of T)(System.Guid)
+  name.vb: Get(Of T)(Guid)
+- uid: Prowl.Runtime.AssetDatabase.Load``1(System.Guid)
+  commentId: M:Prowl.Runtime.AssetDatabase.Load``1(System.Guid)
+  id: Load``1(System.Guid)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Load<T>(Guid)
+  nameWithType: AssetDatabase.Load<T>(Guid)
+  fullName: Prowl.Runtime.AssetDatabase.Load<T>(System.Guid)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Load
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 118
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The asset with this GUID, loaded. Blocks.
+  example: []
+  syntax:
+    content: 'public static T? Load<T>(Guid assetId) where T : Asset'
+    parameters:
+    - id: assetId
+      type: System.Guid
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Public Shared Function Load(Of T As Asset)(assetId As Guid) As T
+  overload: Prowl.Runtime.AssetDatabase.Load*
+  nameWithType.vb: AssetDatabase.Load(Of T)(Guid)
+  fullName.vb: Prowl.Runtime.AssetDatabase.Load(Of T)(System.Guid)
+  name.vb: Load(Of T)(Guid)
+- uid: Prowl.Runtime.AssetDatabase.LoadAsync``1(System.Guid,System.Threading.CancellationToken)
+  commentId: M:Prowl.Runtime.AssetDatabase.LoadAsync``1(System.Guid,System.Threading.CancellationToken)
+  id: LoadAsync``1(System.Guid,System.Threading.CancellationToken)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: LoadAsync<T>(Guid, CancellationToken)
+  nameWithType: AssetDatabase.LoadAsync<T>(Guid, CancellationToken)
+  fullName: Prowl.Runtime.AssetDatabase.LoadAsync<T>(System.Guid, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LoadAsync
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 125
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: 'public static Task<T?> LoadAsync<T>(Guid assetId, CancellationToken cancel = default) where T : Asset'
+    parameters:
+    - id: assetId
+      type: System.Guid
+    - id: cancel
+      type: System.Threading.CancellationToken
+    typeParameters:
+    - id: T
+    return:
+      type: System.Threading.Tasks.Task{{T}}
+    content.vb: Public Shared Function LoadAsync(Of T As Asset)(assetId As Guid, cancel As CancellationToken = Nothing) As Task(Of T)
+  overload: Prowl.Runtime.AssetDatabase.LoadAsync*
+  nameWithType.vb: AssetDatabase.LoadAsync(Of T)(Guid, CancellationToken)
+  fullName.vb: Prowl.Runtime.AssetDatabase.LoadAsync(Of T)(System.Guid, System.Threading.CancellationToken)
+  name.vb: LoadAsync(Of T)(Guid, CancellationToken)
+- uid: Prowl.Runtime.AssetDatabase.CreateShell(System.Type)
+  commentId: M:Prowl.Runtime.AssetDatabase.CreateShell(System.Type)
+  id: CreateShell(System.Type)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: CreateShell(Type)
+  nameWithType: AssetDatabase.CreateShell(Type)
+  fullName: Prowl.Runtime.AssetDatabase.CreateShell(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CreateShell
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 186
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: An empty object of an asset type, made with its parameterless constructor, which must touch nothing.
+  example: []
+  syntax:
+    content: public static Asset CreateShell(Type type)
+    parameters:
+    - id: type
+      type: System.Type
+    return:
+      type: Prowl.Runtime.Asset
+    content.vb: Public Shared Function CreateShell(type As Type) As Asset
+  overload: Prowl.Runtime.AssetDatabase.CreateShell*
+- uid: Prowl.Runtime.AssetDatabase.Register(Prowl.Runtime.Asset,System.Guid,System.String)
+  commentId: M:Prowl.Runtime.AssetDatabase.Register(Prowl.Runtime.Asset,System.Guid,System.String)
+  id: Register(Prowl.Runtime.Asset,System.Guid,System.String)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Register(Asset, Guid, string)
+  nameWithType: AssetDatabase.Register(Asset, Guid, string)
+  fullName: Prowl.Runtime.AssetDatabase.Register(Prowl.Runtime.Asset, System.Guid, string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Register
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 193
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Makes <code class="paramref">asset</code>, already built in memory, the stable object for a GUID the backend has just
+
+    learned about. Whatever held the GUID before becomes this object.
+  example: []
+  syntax:
+    content: public static void Register(Asset asset, Guid assetId, string path)
+    parameters:
+    - id: asset
+      type: Prowl.Runtime.Asset
+    - id: assetId
+      type: System.Guid
+    - id: path
+      type: System.String
+    content.vb: Public Shared Sub Register(asset As Asset, assetId As Guid, path As String)
+  overload: Prowl.Runtime.AssetDatabase.Register*
+  nameWithType.vb: AssetDatabase.Register(Asset, Guid, String)
+  fullName.vb: Prowl.Runtime.AssetDatabase.Register(Prowl.Runtime.Asset, System.Guid, String)
+  name.vb: Register(Asset, Guid, String)
+- uid: Prowl.Runtime.AssetDatabase.TryGetExisting(System.Guid,Prowl.Runtime.Asset@)
+  commentId: M:Prowl.Runtime.AssetDatabase.TryGetExisting(System.Guid,Prowl.Runtime.Asset@)
+  id: TryGetExisting(System.Guid,Prowl.Runtime.Asset@)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: TryGetExisting(Guid, out Asset)
+  nameWithType: AssetDatabase.TryGetExisting(Guid, out Asset)
+  fullName: Prowl.Runtime.AssetDatabase.TryGetExisting(System.Guid, out Prowl.Runtime.Asset)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TryGetExisting
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 217
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Whether a GUID has a stable object yet, without making one.
+  example: []
+  syntax:
+    content: public static bool TryGetExisting(Guid assetId, out Asset asset)
+    parameters:
+    - id: assetId
+      type: System.Guid
+    - id: asset
+      type: Prowl.Runtime.Asset
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function TryGetExisting(assetId As Guid, asset As Asset) As Boolean
+  overload: Prowl.Runtime.AssetDatabase.TryGetExisting*
+  nameWithType.vb: AssetDatabase.TryGetExisting(Guid, Asset)
+  fullName.vb: Prowl.Runtime.AssetDatabase.TryGetExisting(System.Guid, Prowl.Runtime.Asset)
+  name.vb: TryGetExisting(Guid, Asset)
+- uid: Prowl.Runtime.AssetDatabase.All
+  commentId: P:Prowl.Runtime.AssetDatabase.All
+  id: All
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: All
+  nameWithType: AssetDatabase.All
+  fullName: Prowl.Runtime.AssetDatabase.All
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: All
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 220
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Every stable object made so far this session.
+  example: []
+  syntax:
+    content: public static IEnumerable<Asset> All { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{Prowl.Runtime.Asset}
+    content.vb: Public Shared ReadOnly Property All As IEnumerable(Of Asset)
+  overload: Prowl.Runtime.AssetDatabase.All*
+- uid: Prowl.Runtime.AssetDatabase.GetAssetType(System.Guid)
+  commentId: M:Prowl.Runtime.AssetDatabase.GetAssetType(System.Guid)
+  id: GetAssetType(System.Guid)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: GetAssetType(Guid)
+  nameWithType: AssetDatabase.GetAssetType(Guid)
+  fullName: Prowl.Runtime.AssetDatabase.GetAssetType(System.Guid)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetAssetType
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 222
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static Type? GetAssetType(Guid assetId)
+    parameters:
+    - id: assetId
+      type: System.Guid
+    return:
+      type: System.Type
+    content.vb: Public Shared Function GetAssetType(assetId As Guid) As Type
+  overload: Prowl.Runtime.AssetDatabase.GetAssetType*
+- uid: Prowl.Runtime.AssetDatabase.IsBuiltIn(Prowl.Runtime.Asset)
+  commentId: M:Prowl.Runtime.AssetDatabase.IsBuiltIn(Prowl.Runtime.Asset)
+  id: IsBuiltIn(Prowl.Runtime.Asset)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: IsBuiltIn(Asset)
+  nameWithType: AssetDatabase.IsBuiltIn(Asset)
+  fullName: Prowl.Runtime.AssetDatabase.IsBuiltIn(Prowl.Runtime.Asset)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsBuiltIn
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 228
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static bool IsBuiltIn(Asset asset)
+    parameters:
+    - id: asset
+      type: Prowl.Runtime.Asset
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsBuiltIn(asset As Asset) As Boolean
+  overload: Prowl.Runtime.AssetDatabase.IsBuiltIn*
+- uid: Prowl.Runtime.AssetDatabase.Refill(Prowl.Runtime.Asset,Prowl.Runtime.ReloadReason)
+  commentId: M:Prowl.Runtime.AssetDatabase.Refill(Prowl.Runtime.Asset,Prowl.Runtime.ReloadReason)
+  id: Refill(Prowl.Runtime.Asset,Prowl.Runtime.ReloadReason)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Refill(Asset, ReloadReason)
+  nameWithType: AssetDatabase.Refill(Asset, ReloadReason)
+  fullName: Prowl.Runtime.AssetDatabase.Refill(Prowl.Runtime.Asset, Prowl.Runtime.ReloadReason)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Refill
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 277
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Fills a loaded asset again from its source, after a reimport, a save or a revert. An asset that is not
+
+    loaded is left as it is, and reads the new content when it next loads.
+  example: []
+  syntax:
+    content: public static void Refill(Asset asset, ReloadReason reason)
+    parameters:
+    - id: asset
+      type: Prowl.Runtime.Asset
+    - id: reason
+      type: Prowl.Runtime.ReloadReason
+    content.vb: Public Shared Sub Refill(asset As Asset, reason As ReloadReason)
+  overload: Prowl.Runtime.AssetDatabase.Refill*
+- uid: Prowl.Runtime.AssetDatabase.Reload(Prowl.Runtime.Asset)
+  commentId: M:Prowl.Runtime.AssetDatabase.Reload(Prowl.Runtime.Asset)
+  id: Reload(Prowl.Runtime.Asset)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Reload(Asset)
+  nameWithType: AssetDatabase.Reload(Asset)
+  fullName: Prowl.Runtime.AssetDatabase.Reload(Prowl.Runtime.Asset)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Reload
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 320
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Frees an asset's payload and reads it again, so nothing built on its old content, such as a listener on one of its
+
+    objects, carries on. For leaving play mode.
+  example: []
+  syntax:
+    content: public static void Reload(Asset asset)
+    parameters:
+    - id: asset
+      type: Prowl.Runtime.Asset
+    content.vb: Public Shared Sub Reload(asset As Asset)
+  overload: Prowl.Runtime.AssetDatabase.Reload*
+- uid: Prowl.Runtime.AssetDatabase.Refill(Prowl.Runtime.Asset,Prowl.Echo.EchoObject,Prowl.Runtime.ReloadReason)
+  commentId: M:Prowl.Runtime.AssetDatabase.Refill(Prowl.Runtime.Asset,Prowl.Echo.EchoObject,Prowl.Runtime.ReloadReason)
+  id: Refill(Prowl.Runtime.Asset,Prowl.Echo.EchoObject,Prowl.Runtime.ReloadReason)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Refill(Asset, EchoObject, ReloadReason)
+  nameWithType: AssetDatabase.Refill(Asset, EchoObject, ReloadReason)
+  fullName: Prowl.Runtime.AssetDatabase.Refill(Prowl.Runtime.Asset, Prowl.Echo.EchoObject, Prowl.Runtime.ReloadReason)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Refill
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 329
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Fills an asset from a tree written earlier with the asset as its root, for undo and play mode revert.
+  example: []
+  syntax:
+    content: public static void Refill(Asset asset, EchoObject content, ReloadReason reason)
+    parameters:
+    - id: asset
+      type: Prowl.Runtime.Asset
+    - id: content
+      type: Prowl.Echo.EchoObject
+    - id: reason
+      type: Prowl.Runtime.ReloadReason
+    content.vb: Public Shared Sub Refill(asset As Asset, content As EchoObject, reason As ReloadReason)
+  overload: Prowl.Runtime.AssetDatabase.Refill*
+- uid: Prowl.Runtime.AssetDatabase.MarkMissing(System.Guid)
+  commentId: M:Prowl.Runtime.AssetDatabase.MarkMissing(System.Guid)
+  id: MarkMissing(System.Guid)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: MarkMissing(Guid)
+  nameWithType: AssetDatabase.MarkMissing(Guid)
+  fullName: Prowl.Runtime.AssetDatabase.MarkMissing(System.Guid)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MarkMissing
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 338
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Frees an asset's payload for a GUID that no longer exists. It keeps its GUID, so references to it survive.
+  example: []
+  syntax:
+    content: public static void MarkMissing(Guid assetId)
+    parameters:
+    - id: assetId
+      type: System.Guid
+    content.vb: Public Shared Sub MarkMissing(assetId As Guid)
+  overload: Prowl.Runtime.AssetDatabase.MarkMissing*
+- uid: Prowl.Runtime.AssetDatabase.Retire(System.Guid)
+  commentId: M:Prowl.Runtime.AssetDatabase.Retire(System.Guid)
+  id: Retire(System.Guid)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Retire(Guid)
+  nameWithType: AssetDatabase.Retire(Guid)
+  fullName: Prowl.Runtime.AssetDatabase.Retire(System.Guid)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Retire
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 348
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Takes a GUID's object out of the registry, as missing, so the next lookup makes a new one. For an asset whose type changed.
+  example: []
+  syntax:
+    content: public static void Retire(Guid assetId)
+    parameters:
+    - id: assetId
+      type: System.Guid
+    content.vb: Public Shared Sub Retire(assetId As Guid)
+  overload: Prowl.Runtime.AssetDatabase.Retire*
+- uid: Prowl.Runtime.AssetDatabase.LoadGroup(System.Collections.Generic.IEnumerable{Prowl.Runtime.Asset},System.Boolean)
+  commentId: M:Prowl.Runtime.AssetDatabase.LoadGroup(System.Collections.Generic.IEnumerable{Prowl.Runtime.Asset},System.Boolean)
+  id: LoadGroup(System.Collections.Generic.IEnumerable{Prowl.Runtime.Asset},System.Boolean)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: LoadGroup(IEnumerable<Asset>, bool)
+  nameWithType: AssetDatabase.LoadGroup(IEnumerable<Asset>, bool)
+  fullName: Prowl.Runtime.AssetDatabase.LoadGroup(System.Collections.Generic.IEnumerable<Prowl.Runtime.Asset>, bool)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LoadGroup
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 380
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Loads a set of assets, and by default everything they depend on, holding them all until the group is disposed.
+  example: []
+  syntax:
+    content: public static AssetGroup LoadGroup(IEnumerable<Asset> assets, bool withDependencies = true)
+    parameters:
+    - id: assets
+      type: System.Collections.Generic.IEnumerable{Prowl.Runtime.Asset}
+    - id: withDependencies
+      type: System.Boolean
+    return:
+      type: Prowl.Runtime.AssetGroup
+    content.vb: Public Shared Function LoadGroup(assets As IEnumerable(Of Asset), withDependencies As Boolean = True) As AssetGroup
+  overload: Prowl.Runtime.AssetDatabase.LoadGroup*
+  nameWithType.vb: AssetDatabase.LoadGroup(IEnumerable(Of Asset), Boolean)
+  fullName.vb: Prowl.Runtime.AssetDatabase.LoadGroup(System.Collections.Generic.IEnumerable(Of Prowl.Runtime.Asset), Boolean)
+  name.vb: LoadGroup(IEnumerable(Of Asset), Boolean)
+- uid: Prowl.Runtime.AssetDatabase.Preload(Prowl.Runtime.Resources.SceneAsset)
+  commentId: M:Prowl.Runtime.AssetDatabase.Preload(Prowl.Runtime.Resources.SceneAsset)
+  id: Preload(Prowl.Runtime.Resources.SceneAsset)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Preload(SceneAsset)
+  nameWithType: AssetDatabase.Preload(SceneAsset)
+  fullName: Prowl.Runtime.AssetDatabase.Preload(Prowl.Runtime.Resources.SceneAsset)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Preload
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 384
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Loads a scene's stored data and everything it depends on, without instantiating it.
+  example: []
+  syntax:
+    content: public static AssetGroup Preload(SceneAsset scene)
+    parameters:
+    - id: scene
+      type: Prowl.Runtime.Resources.SceneAsset
+    return:
+      type: Prowl.Runtime.AssetGroup
+    content.vb: Public Shared Function Preload(scene As SceneAsset) As AssetGroup
+  overload: Prowl.Runtime.AssetDatabase.Preload*
+- uid: Prowl.Runtime.AssetDatabase.Pump
+  commentId: M:Prowl.Runtime.AssetDatabase.Pump
+  id: Pump
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Pump()
+  nameWithType: AssetDatabase.Pump()
+  fullName: Prowl.Runtime.AssetDatabase.Pump()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Pump
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 409
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Publishes finished background loads. Called at the start of every frame.
+  example: []
+  syntax:
+    content: public static void Pump()
+    content.vb: Public Shared Sub Pump()
+  overload: Prowl.Runtime.AssetDatabase.Pump*
+- uid: Prowl.Runtime.AssetDatabase.Shutdown
+  commentId: M:Prowl.Runtime.AssetDatabase.Shutdown
+  id: Shutdown
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Shutdown()
+  nameWithType: AssetDatabase.Shutdown()
+  fullName: Prowl.Runtime.AssetDatabase.Shutdown()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Shutdown
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 412
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Stops loading and frees every payload while graphics and audio are still up.
+  example: []
+  syntax:
+    content: public static void Shutdown()
+    content.vb: Public Shared Sub Shutdown()
+  overload: Prowl.Runtime.AssetDatabase.Shutdown*
+- uid: Prowl.Runtime.AssetDatabase.FindResource``1(System.String)
+  commentId: M:Prowl.Runtime.AssetDatabase.FindResource``1(System.String)
+  id: FindResource``1(System.String)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: FindResource<T>(string)
+  nameWithType: AssetDatabase.FindResource<T>(string)
+  fullName: Prowl.Runtime.AssetDatabase.FindResource<T>(string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FindResource
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 437
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    The asset at a load path, loaded. A load path is the asset's path below its nearest Resources folder without
+
+    the extension, with "#Name" for a sub asset. A project path inside a Resources folder works too. Blocks.
+  example: []
+  syntax:
+    content: 'public static T? FindResource<T>(string loadPath) where T : Asset'
+    parameters:
+    - id: loadPath
+      type: System.String
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Public Shared Function FindResource(Of T As Asset)(loadPath As String) As T
+  overload: Prowl.Runtime.AssetDatabase.FindResource*
+  nameWithType.vb: AssetDatabase.FindResource(Of T)(String)
+  fullName.vb: Prowl.Runtime.AssetDatabase.FindResource(Of T)(String)
+  name.vb: FindResource(Of T)(String)
+- uid: Prowl.Runtime.AssetDatabase.FindResourceAsync``1(System.String,System.Threading.CancellationToken)
+  commentId: M:Prowl.Runtime.AssetDatabase.FindResourceAsync``1(System.String,System.Threading.CancellationToken)
+  id: FindResourceAsync``1(System.String,System.Threading.CancellationToken)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: FindResourceAsync<T>(string, CancellationToken)
+  nameWithType: AssetDatabase.FindResourceAsync<T>(string, CancellationToken)
+  fullName: Prowl.Runtime.AssetDatabase.FindResourceAsync<T>(string, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FindResourceAsync
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 444
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: 'public static Task<T?> FindResourceAsync<T>(string loadPath, CancellationToken cancel = default) where T : Asset'
+    parameters:
+    - id: loadPath
+      type: System.String
+    - id: cancel
+      type: System.Threading.CancellationToken
+    typeParameters:
+    - id: T
+    return:
+      type: System.Threading.Tasks.Task{{T}}
+    content.vb: Public Shared Function FindResourceAsync(Of T As Asset)(loadPath As String, cancel As CancellationToken = Nothing) As Task(Of T)
+  overload: Prowl.Runtime.AssetDatabase.FindResourceAsync*
+  nameWithType.vb: AssetDatabase.FindResourceAsync(Of T)(String, CancellationToken)
+  fullName.vb: Prowl.Runtime.AssetDatabase.FindResourceAsync(Of T)(String, System.Threading.CancellationToken)
+  name.vb: FindResourceAsync(Of T)(String, CancellationToken)
+- uid: Prowl.Runtime.AssetDatabase.FindAllResources``1(System.String)
+  commentId: M:Prowl.Runtime.AssetDatabase.FindAllResources``1(System.String)
+  id: FindAllResources``1(System.String)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: FindAllResources<T>(string)
+  nameWithType: AssetDatabase.FindAllResources<T>(string)
+  fullName: Prowl.Runtime.AssetDatabase.FindAllResources<T>(string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FindAllResources
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 452
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Every asset of type <code class="typeparamref">T</code> under a Resources folder, or under a folder below one, loaded.
+  example: []
+  syntax:
+    content: 'public static List<T> FindAllResources<T>(string folder = "") where T : Asset'
+    parameters:
+    - id: folder
+      type: System.String
+    typeParameters:
+    - id: T
+    return:
+      type: System.Collections.Generic.List{{T}}
+    content.vb: Public Shared Function FindAllResources(Of T As Asset)(folder As String = "") As List(Of T)
+  overload: Prowl.Runtime.AssetDatabase.FindAllResources*
+  nameWithType.vb: AssetDatabase.FindAllResources(Of T)(String)
+  fullName.vb: Prowl.Runtime.AssetDatabase.FindAllResources(Of T)(String)
+  name.vb: FindAllResources(Of T)(String)
+- uid: Prowl.Runtime.AssetDatabase.FindResourceGuid``1(System.String)
+  commentId: M:Prowl.Runtime.AssetDatabase.FindResourceGuid``1(System.String)
+  id: FindResourceGuid``1(System.String)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: FindResourceGuid<T>(string)
+  nameWithType: AssetDatabase.FindResourceGuid<T>(string)
+  fullName: Prowl.Runtime.AssetDatabase.FindResourceGuid<T>(string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FindResourceGuid
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 466
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The GUID at a load path, or empty. Nothing is loaded.
+  example: []
+  syntax:
+    content: 'public static Guid FindResourceGuid<T>(string loadPath) where T : Asset'
+    parameters:
+    - id: loadPath
+      type: System.String
+    typeParameters:
+    - id: T
+    return:
+      type: System.Guid
+    content.vb: Public Shared Function FindResourceGuid(Of T As Asset)(loadPath As String) As Guid
+  overload: Prowl.Runtime.AssetDatabase.FindResourceGuid*
+  nameWithType.vb: AssetDatabase.FindResourceGuid(Of T)(String)
+  fullName.vb: Prowl.Runtime.AssetDatabase.FindResourceGuid(Of T)(String)
+  name.vb: FindResourceGuid(Of T)(String)
+- uid: Prowl.Runtime.AssetDatabase.FindResourceGuid(System.String,System.Type)
+  commentId: M:Prowl.Runtime.AssetDatabase.FindResourceGuid(System.String,System.Type)
+  id: FindResourceGuid(System.String,System.Type)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: FindResourceGuid(string, Type)
+  nameWithType: AssetDatabase.FindResourceGuid(string, Type)
+  fullName: Prowl.Runtime.AssetDatabase.FindResourceGuid(string, System.Type)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FindResourceGuid
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 510
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The GUID at a load path for an asset of <code class="paramref">type</code>, or empty. Nothing is loaded.
+  example: []
+  syntax:
+    content: public static Guid FindResourceGuid(string loadPath, Type type)
+    parameters:
+    - id: loadPath
+      type: System.String
+    - id: type
+      type: System.Type
+    return:
+      type: System.Guid
+    content.vb: Public Shared Function FindResourceGuid(loadPath As String, type As Type) As Guid
+  overload: Prowl.Runtime.AssetDatabase.FindResourceGuid*
+  nameWithType.vb: AssetDatabase.FindResourceGuid(String, Type)
+  fullName.vb: Prowl.Runtime.AssetDatabase.FindResourceGuid(String, System.Type)
+  name.vb: FindResourceGuid(String, Type)
+- uid: Prowl.Runtime.AssetDatabase.GetLoadPath(System.String,System.String)
+  commentId: M:Prowl.Runtime.AssetDatabase.GetLoadPath(System.String,System.String)
+  id: GetLoadPath(System.String,System.String)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: GetLoadPath(string, string?)
+  nameWithType: AssetDatabase.GetLoadPath(string, string?)
+  fullName: Prowl.Runtime.AssetDatabase.GetLoadPath(string, string?)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetLoadPath
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 559
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    The load path of an asset at <code class="paramref">assetPath</code> (relative to Assets), or of its sub asset named
+
+    <code class="paramref">subAssetName</code>. Null when the asset is not inside a Resources folder.
+  example: []
+  syntax:
+    content: public static string? GetLoadPath(string assetPath, string? subAssetName = null)
+    parameters:
+    - id: assetPath
+      type: System.String
+    - id: subAssetName
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetLoadPath(assetPath As String, subAssetName As String = Nothing) As String
+  overload: Prowl.Runtime.AssetDatabase.GetLoadPath*
+  nameWithType.vb: AssetDatabase.GetLoadPath(String, String)
+  fullName.vb: Prowl.Runtime.AssetDatabase.GetLoadPath(String, String)
+  name.vb: GetLoadPath(String, String)
+- uid: Prowl.Runtime.AssetDatabase.Hold(Prowl.Runtime.Asset,System.Object)
+  commentId: M:Prowl.Runtime.AssetDatabase.Hold(Prowl.Runtime.Asset,System.Object)
+  id: Hold(Prowl.Runtime.Asset,System.Object)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Hold(Asset, object)
+  nameWithType: AssetDatabase.Hold(Asset, object)
+  fullName: Prowl.Runtime.AssetDatabase.Hold(Prowl.Runtime.Asset, object)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Hold
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 622
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Keeps an asset loaded while <code class="paramref">owner</code> is alive, or until released. Holding twice is one hold.
+  example: []
+  syntax:
+    content: public static void Hold(Asset asset, object owner)
+    parameters:
+    - id: asset
+      type: Prowl.Runtime.Asset
+    - id: owner
+      type: System.Object
+    content.vb: Public Shared Sub Hold(asset As Asset, owner As Object)
+  overload: Prowl.Runtime.AssetDatabase.Hold*
+  nameWithType.vb: AssetDatabase.Hold(Asset, Object)
+  fullName.vb: Prowl.Runtime.AssetDatabase.Hold(Prowl.Runtime.Asset, Object)
+  name.vb: Hold(Asset, Object)
+- uid: Prowl.Runtime.AssetDatabase.Release(Prowl.Runtime.Asset,System.Object)
+  commentId: M:Prowl.Runtime.AssetDatabase.Release(Prowl.Runtime.Asset,System.Object)
+  id: Release(Prowl.Runtime.Asset,System.Object)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Release(Asset, object)
+  nameWithType: AssetDatabase.Release(Asset, object)
+  fullName: Prowl.Runtime.AssetDatabase.Release(Prowl.Runtime.Asset, object)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Release
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 629
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static void Release(Asset asset, object owner)
+    parameters:
+    - id: asset
+      type: Prowl.Runtime.Asset
+    - id: owner
+      type: System.Object
+    content.vb: Public Shared Sub Release(asset As Asset, owner As Object)
+  overload: Prowl.Runtime.AssetDatabase.Release*
+  nameWithType.vb: AssetDatabase.Release(Asset, Object)
+  fullName.vb: Prowl.Runtime.AssetDatabase.Release(Prowl.Runtime.Asset, Object)
+  name.vb: Release(Asset, Object)
+- uid: Prowl.Runtime.AssetDatabase.ReleaseAll(System.Object)
+  commentId: M:Prowl.Runtime.AssetDatabase.ReleaseAll(System.Object)
+  id: ReleaseAll(System.Object)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: ReleaseAll(object)
+  nameWithType: AssetDatabase.ReleaseAll(object)
+  fullName: Prowl.Runtime.AssetDatabase.ReleaseAll(object)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ReleaseAll
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 636
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static void ReleaseAll(object owner)
+    parameters:
+    - id: owner
+      type: System.Object
+    content.vb: Public Shared Sub ReleaseAll(owner As Object)
+  overload: Prowl.Runtime.AssetDatabase.ReleaseAll*
+  nameWithType.vb: AssetDatabase.ReleaseAll(Object)
+  fullName.vb: Prowl.Runtime.AssetDatabase.ReleaseAll(Object)
+  name.vb: ReleaseAll(Object)
+- uid: Prowl.Runtime.AssetDatabase.AddRoot(System.Object)
+  commentId: M:Prowl.Runtime.AssetDatabase.AddRoot(System.Object)
+  id: AddRoot(System.Object)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: AddRoot(object)
+  nameWithType: AssetDatabase.AddRoot(object)
+  fullName: Prowl.Runtime.AssetDatabase.AddRoot(object)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddRoot
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 642
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Walks an object's fields like a scene's, for something with many asset fields that lives outside a scene.
+  example: []
+  syntax:
+    content: public static void AddRoot(object root)
+    parameters:
+    - id: root
+      type: System.Object
+    content.vb: Public Shared Sub AddRoot(root As Object)
+  overload: Prowl.Runtime.AssetDatabase.AddRoot*
+  nameWithType.vb: AssetDatabase.AddRoot(Object)
+  fullName.vb: Prowl.Runtime.AssetDatabase.AddRoot(Object)
+  name.vb: AddRoot(Object)
+- uid: Prowl.Runtime.AssetDatabase.RemoveRoot(System.Object)
+  commentId: M:Prowl.Runtime.AssetDatabase.RemoveRoot(System.Object)
+  id: RemoveRoot(System.Object)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: RemoveRoot(object)
+  nameWithType: AssetDatabase.RemoveRoot(object)
+  fullName: Prowl.Runtime.AssetDatabase.RemoveRoot(object)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RemoveRoot
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 653
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static void RemoveRoot(object root)
+    parameters:
+    - id: root
+      type: System.Object
+    content.vb: Public Shared Sub RemoveRoot(root As Object)
+  overload: Prowl.Runtime.AssetDatabase.RemoveRoot*
+  nameWithType.vb: AssetDatabase.RemoveRoot(Object)
+  fullName.vb: Prowl.Runtime.AssetDatabase.RemoveRoot(Object)
+  name.vb: RemoveRoot(Object)
+- uid: Prowl.Runtime.AssetDatabase.GracePeriod
+  commentId: P:Prowl.Runtime.AssetDatabase.GracePeriod
+  id: GracePeriod
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: GracePeriod
+  nameWithType: AssetDatabase.GracePeriod
+  fullName: Prowl.Runtime.AssetDatabase.GracePeriod
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GracePeriod
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 673
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: How long an asset nothing reaches stays loaded.
+  example: []
+  syntax:
+    content: public static TimeSpan GracePeriod { get; set; }
+    parameters: []
+    return:
+      type: System.TimeSpan
+    content.vb: Public Shared Property GracePeriod As TimeSpan
+  overload: Prowl.Runtime.AssetDatabase.GracePeriod*
+- uid: Prowl.Runtime.AssetDatabase.WalkInterval
+  commentId: P:Prowl.Runtime.AssetDatabase.WalkInterval
+  id: WalkInterval
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: WalkInterval
+  nameWithType: AssetDatabase.WalkInterval
+  fullName: Prowl.Runtime.AssetDatabase.WalkInterval
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WalkInterval
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 675
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static TimeSpan WalkInterval { get; set; }
+    parameters: []
+    return:
+      type: System.TimeSpan
+    content.vb: Public Shared Property WalkInterval As TimeSpan
+  overload: Prowl.Runtime.AssetDatabase.WalkInterval*
+- uid: Prowl.Runtime.AssetDatabase.MemoryBudget
+  commentId: P:Prowl.Runtime.AssetDatabase.MemoryBudget
+  id: MemoryBudget
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: MemoryBudget
+  nameWithType: AssetDatabase.MemoryBudget
+  fullName: Prowl.Runtime.AssetDatabase.MemoryBudget
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MemoryBudget
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 678
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Loaded bytes past which unreached assets are freed without waiting out the grace period. Zero for no budget.
+  example: []
+  syntax:
+    content: public static long MemoryBudget { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public Shared Property MemoryBudget As Long
+  overload: Prowl.Runtime.AssetDatabase.MemoryBudget*
+- uid: Prowl.Runtime.AssetDatabase.ResidentBytes
+  commentId: P:Prowl.Runtime.AssetDatabase.ResidentBytes
+  id: ResidentBytes
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: ResidentBytes
+  nameWithType: AssetDatabase.ResidentBytes
+  fullName: Prowl.Runtime.AssetDatabase.ResidentBytes
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ResidentBytes
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 681
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Estimated bytes held by loaded database assets, as of the last walk.
+  example: []
+  syntax:
+    content: public static long ResidentBytes { get; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public Shared Property ResidentBytes As Long
+  overload: Prowl.Runtime.AssetDatabase.ResidentBytes*
+- uid: Prowl.Runtime.AssetDatabase.EvictionEnabled
+  commentId: P:Prowl.Runtime.AssetDatabase.EvictionEnabled
+  id: EvictionEnabled
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: EvictionEnabled
+  nameWithType: AssetDatabase.EvictionEnabled
+  fullName: Prowl.Runtime.AssetDatabase.EvictionEnabled
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EvictionEnabled
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 684
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: False to keep everything loaded, as tests that count loads do.
+  example: []
+  syntax:
+    content: public static bool EvictionEnabled { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Property EvictionEnabled As Boolean
+  overload: Prowl.Runtime.AssetDatabase.EvictionEnabled*
+- uid: Prowl.Runtime.AssetDatabase.WalkingRoots
+  commentId: E:Prowl.Runtime.AssetDatabase.WalkingRoots
+  id: WalkingRoots
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: WalkingRoots
+  nameWithType: AssetDatabase.WalkingRoots
+  fullName: Prowl.Runtime.AssetDatabase.WalkingRoots
+  type: Event
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WalkingRoots
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 687
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Extra objects to walk, such as the editor's windows and selection.
+  example: []
+  syntax:
+    content: public static event Action<AssetWalker>? WalkingRoots
+    return:
+      type: System.Action{Prowl.Runtime.AssetWalker}
+    content.vb: Public Shared Event WalkingRoots As Action(Of AssetWalker)
+- uid: Prowl.Runtime.AssetDatabase.EndFrame
+  commentId: M:Prowl.Runtime.AssetDatabase.EndFrame
+  id: EndFrame
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: EndFrame()
+  nameWithType: AssetDatabase.EndFrame()
+  fullName: Prowl.Runtime.AssetDatabase.EndFrame()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EndFrame
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 696
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Runs the walk when it is due and frees what nothing reaches. Called at the end of every frame.
+  example: []
+  syntax:
+    content: public static void EndFrame()
+    content.vb: Public Shared Sub EndFrame()
+  overload: Prowl.Runtime.AssetDatabase.EndFrame*
+- uid: Prowl.Runtime.AssetDatabase.Walk
+  commentId: M:Prowl.Runtime.AssetDatabase.Walk
+  id: Walk
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Walk()
+  nameWithType: AssetDatabase.Walk()
+  fullName: Prowl.Runtime.AssetDatabase.Walk()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Walk
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 705
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Walks every root now and marks what it reaches.
+  example: []
+  syntax:
+    content: public static void Walk()
+    content.vb: Public Shared Sub Walk()
+  overload: Prowl.Runtime.AssetDatabase.Walk*
+- uid: Prowl.Runtime.AssetDatabase.LoadEverythingReached
+  commentId: M:Prowl.Runtime.AssetDatabase.LoadEverythingReached
+  id: LoadEverythingReached
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: LoadEverythingReached()
+  nameWithType: AssetDatabase.LoadEverythingReached()
+  fullName: Prowl.Runtime.AssetDatabase.LoadEverythingReached()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LoadEverythingReached
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 750
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Walks now and loads, blocking, everything the walk reached that is not loaded yet.
+  example: []
+  syntax:
+    content: public static void LoadEverythingReached()
+    content.vb: Public Shared Sub LoadEverythingReached()
+  overload: Prowl.Runtime.AssetDatabase.LoadEverythingReached*
+- uid: Prowl.Runtime.AssetDatabase.UnloadUnused
+  commentId: M:Prowl.Runtime.AssetDatabase.UnloadUnused
+  id: UnloadUnused
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: UnloadUnused()
+  nameWithType: AssetDatabase.UnloadUnused()
+  fullName: Prowl.Runtime.AssetDatabase.UnloadUnused()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: UnloadUnused
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 764
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Walks now and frees every unreached asset, without waiting out the grace period. Returns how many were freed.
+  example: []
+  syntax:
+    content: public static int UnloadUnused()
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function UnloadUnused() As Integer
+  overload: Prowl.Runtime.AssetDatabase.UnloadUnused*
+- uid: Prowl.Runtime.AssetDatabase.Unload(Prowl.Runtime.Asset)
+  commentId: M:Prowl.Runtime.AssetDatabase.Unload(Prowl.Runtime.Asset)
+  id: Unload(Prowl.Runtime.Asset)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Unload(Asset)
+  nameWithType: AssetDatabase.Unload(Asset)
+  fullName: Prowl.Runtime.AssetDatabase.Unload(Prowl.Runtime.Asset)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Unload
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 771
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Frees one asset's payload now, even if something reaches it. It loads again on its next use.
+  example: []
+  syntax:
+    content: public static bool Unload(Asset asset)
+    parameters:
+    - id: asset
+      type: Prowl.Runtime.Asset
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function Unload(asset As Asset) As Boolean
+  overload: Prowl.Runtime.AssetDatabase.Unload*
+- uid: Prowl.Runtime.AssetDatabase.Explain(Prowl.Runtime.Asset)
+  commentId: M:Prowl.Runtime.AssetDatabase.Explain(Prowl.Runtime.Asset)
+  id: Explain(Prowl.Runtime.Asset)
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: Explain(Asset)
+  nameWithType: AssetDatabase.Explain(Asset)
+  fullName: Prowl.Runtime.AssetDatabase.Explain(Prowl.Runtime.Asset)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Explain
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 830
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: State, size, holders and whether the last walk reached the asset.
+  example: []
+  syntax:
+    content: public static AssetResidency Explain(Asset asset)
+    parameters:
+    - id: asset
+      type: Prowl.Runtime.Asset
+    return:
+      type: Prowl.Runtime.AssetResidency
+    content.vb: Public Shared Function Explain(asset As Asset) As AssetResidency
+  overload: Prowl.Runtime.AssetDatabase.Explain*
+- uid: Prowl.Runtime.AssetDatabase.RecordReachPaths
+  commentId: P:Prowl.Runtime.AssetDatabase.RecordReachPaths
+  id: RecordReachPaths
+  parent: Prowl.Runtime.AssetDatabase
+  langs:
+  - csharp
+  - vb
+  name: RecordReachPaths
+  nameWithType: AssetDatabase.RecordReachPaths
+  fullName: Prowl.Runtime.AssetDatabase.RecordReachPaths
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/AssetDatabase.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RecordReachPaths
+    path: ../Prowl/Prowl.Runtime/AssetDatabase.cs
+    startLine: 839
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Records the first object that reached each asset in a walk, for <xref href="Prowl.Runtime.AssetDatabase.Explain(Prowl.Runtime.Asset)" data-throw-if-not-resolved="false"></xref>. Costs a little per walk.
+  example: []
+  syntax:
+    content: public static bool RecordReachPaths { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Property RecordReachPaths As Boolean
+  overload: Prowl.Runtime.AssetDatabase.RecordReachPaths*
+references:
+- uid: Prowl.Runtime.AssetDatabase.GracePeriod
+  commentId: P:Prowl.Runtime.AssetDatabase.GracePeriod
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_GracePeriod
+  name: GracePeriod
+  nameWithType: AssetDatabase.GracePeriod
+  fullName: Prowl.Runtime.AssetDatabase.GracePeriod
+- uid: Prowl.Runtime.AssetDatabase.MemoryBudget
+  commentId: P:Prowl.Runtime.AssetDatabase.MemoryBudget
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_MemoryBudget
+  name: MemoryBudget
+  nameWithType: AssetDatabase.MemoryBudget
+  fullName: Prowl.Runtime.AssetDatabase.MemoryBudget
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.AssetDatabase.Backend*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.Backend
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Backend
+  name: Backend
+  nameWithType: AssetDatabase.Backend
+  fullName: Prowl.Runtime.AssetDatabase.Backend
+- uid: Prowl.Runtime.AssetBackend
+  commentId: T:Prowl.Runtime.AssetBackend
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.AssetBackend.html
+  name: AssetBackend
+  nameWithType: AssetBackend
+  fullName: Prowl.Runtime.AssetBackend
+- uid: Prowl.Runtime.AssetDatabase.Mounts*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.Mounts
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Mounts
+  name: Mounts
+  nameWithType: AssetDatabase.Mounts
+  fullName: Prowl.Runtime.AssetDatabase.Mounts
+- uid: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.AssetBackend}
+  commentId: T:System.Collections.Generic.IReadOnlyList{Prowl.Runtime.AssetBackend}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<AssetBackend>
+  nameWithType: IReadOnlyList<AssetBackend>
+  fullName: System.Collections.Generic.IReadOnlyList<Prowl.Runtime.AssetBackend>
+  nameWithType.vb: IReadOnlyList(Of AssetBackend)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.AssetBackend)
+  name.vb: IReadOnlyList(Of AssetBackend)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Runtime.AssetBackend
+    name: AssetBackend
+    href: Prowl.Runtime.AssetBackend.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.AssetBackend
+    name: AssetBackend
+    href: Prowl.Runtime.AssetBackend.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Prowl.Runtime.AssetDatabase.Unmount(Prowl.Runtime.AssetBackend)
+  commentId: M:Prowl.Runtime.AssetDatabase.Unmount(Prowl.Runtime.AssetBackend)
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Unmount_Prowl_Runtime_AssetBackend_
+  name: Unmount(AssetBackend)
+  nameWithType: AssetDatabase.Unmount(AssetBackend)
+  fullName: Prowl.Runtime.AssetDatabase.Unmount(Prowl.Runtime.AssetBackend)
+  spec.csharp:
+  - uid: Prowl.Runtime.AssetDatabase.Unmount(Prowl.Runtime.AssetBackend)
+    name: Unmount
+    href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Unmount_Prowl_Runtime_AssetBackend_
+  - name: (
+  - uid: Prowl.Runtime.AssetBackend
+    name: AssetBackend
+    href: Prowl.Runtime.AssetBackend.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.AssetDatabase.Unmount(Prowl.Runtime.AssetBackend)
+    name: Unmount
+    href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Unmount_Prowl_Runtime_AssetBackend_
+  - name: (
+  - uid: Prowl.Runtime.AssetBackend
+    name: AssetBackend
+    href: Prowl.Runtime.AssetBackend.html
+  - name: )
+- uid: Prowl.Runtime.AssetDatabase.Mount*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.Mount
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Mount_Prowl_Runtime_AssetBackend_
+  name: Mount
+  nameWithType: AssetDatabase.Mount
+  fullName: Prowl.Runtime.AssetDatabase.Mount
+- uid: Prowl.Runtime.AssetDatabase.Unmount*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.Unmount
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Unmount_Prowl_Runtime_AssetBackend_
+  name: Unmount
+  nameWithType: AssetDatabase.Unmount
+  fullName: Prowl.Runtime.AssetDatabase.Unmount
+- uid: Prowl.Runtime.AssetDatabase.Backend
+  commentId: P:Prowl.Runtime.AssetDatabase.Backend
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Backend
+  name: Backend
+  nameWithType: AssetDatabase.Backend
+  fullName: Prowl.Runtime.AssetDatabase.Backend
+- uid: Prowl.Runtime.AssetDatabase.SourceOf*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.SourceOf
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_SourceOf_System_Guid_
+  name: SourceOf
+  nameWithType: AssetDatabase.SourceOf
+  fullName: Prowl.Runtime.AssetDatabase.SourceOf
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: System.Action{Prowl.Runtime.Asset}
+  commentId: T:System.Action{Prowl.Runtime.Asset}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<Asset>
+  nameWithType: Action<Asset>
+  fullName: System.Action<Prowl.Runtime.Asset>
+  nameWithType.vb: Action(Of Asset)
+  fullName.vb: System.Action(Of Prowl.Runtime.Asset)
+  name.vb: Action(Of Asset)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: Prowl.Runtime.Asset
+    name: Asset
+    href: Prowl.Runtime.Asset.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Asset
+    name: Asset
+    href: Prowl.Runtime.Asset.html
+  - name: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Action{Prowl.Runtime.Asset,Prowl.Runtime.ReloadReason}
+  commentId: T:System.Action{Prowl.Runtime.Asset,Prowl.Runtime.ReloadReason}
+  parent: System
+  definition: System.Action`2
+  href: https://learn.microsoft.com/dotnet/api/system.action-2
+  name: Action<Asset, ReloadReason>
+  nameWithType: Action<Asset, ReloadReason>
+  fullName: System.Action<Prowl.Runtime.Asset, Prowl.Runtime.ReloadReason>
+  nameWithType.vb: Action(Of Asset, ReloadReason)
+  fullName.vb: System.Action(Of Prowl.Runtime.Asset, Prowl.Runtime.ReloadReason)
+  name.vb: Action(Of Asset, ReloadReason)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: <
+  - uid: Prowl.Runtime.Asset
+    name: Asset
+    href: Prowl.Runtime.Asset.html
+  - name: ','
+  - name: " "
+  - uid: Prowl.Runtime.ReloadReason
+    name: ReloadReason
+    href: Prowl.Runtime.ReloadReason.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Asset
+    name: Asset
+    href: Prowl.Runtime.Asset.html
+  - name: ','
+  - name: " "
+  - uid: Prowl.Runtime.ReloadReason
+    name: ReloadReason
+    href: Prowl.Runtime.ReloadReason.html
+  - name: )
+- uid: System.Action`2
+  commentId: T:System.Action`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-2
+  name: Action<T1, T2>
+  nameWithType: Action<T1, T2>
+  fullName: System.Action<T1, T2>
+  nameWithType.vb: Action(Of T1, T2)
+  fullName.vb: System.Action(Of T1, T2)
+  name.vb: Action(Of T1, T2)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: <
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+- uid: Prowl.Runtime.AssetDatabase.Get*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.Get
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Get_System_Guid_
+  name: Get
+  nameWithType: AssetDatabase.Get
+  fullName: Prowl.Runtime.AssetDatabase.Get
+- uid: Prowl.Runtime.Asset
+  commentId: T:Prowl.Runtime.Asset
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.Asset.html
+  name: Asset
+  nameWithType: Asset
+  fullName: Prowl.Runtime.Asset
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: Prowl.Runtime.AssetDatabase.Load*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.Load
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Load__1_System_Guid_
+  name: Load
+  nameWithType: AssetDatabase.Load
+  fullName: Prowl.Runtime.AssetDatabase.Load
+- uid: Prowl.Runtime.AssetDatabase.LoadAsync*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.LoadAsync
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_LoadAsync__1_System_Guid_System_Threading_CancellationToken_
+  name: LoadAsync
+  nameWithType: AssetDatabase.LoadAsync
+  fullName: Prowl.Runtime.AssetDatabase.LoadAsync
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task{{T}}
+  commentId: T:System.Threading.Tasks.Task{``0}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<T>
+  nameWithType: Task<T>
+  fullName: System.Threading.Tasks.Task<T>
+  nameWithType.vb: Task(Of T)
+  fullName.vb: System.Threading.Tasks.Task(Of T)
+  name.vb: Task(Of T)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Prowl.Runtime.AssetDatabase.CreateShell*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.CreateShell
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_CreateShell_System_Type_
+  name: CreateShell
+  nameWithType: AssetDatabase.CreateShell
+  fullName: Prowl.Runtime.AssetDatabase.CreateShell
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: Prowl.Runtime.AssetDatabase.Register*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.Register
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Register_Prowl_Runtime_Asset_System_Guid_System_String_
+  name: Register
+  nameWithType: AssetDatabase.Register
+  fullName: Prowl.Runtime.AssetDatabase.Register
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Prowl.Runtime.AssetDatabase.TryGetExisting*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.TryGetExisting
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_TryGetExisting_System_Guid_Prowl_Runtime_Asset__
+  name: TryGetExisting
+  nameWithType: AssetDatabase.TryGetExisting
+  fullName: Prowl.Runtime.AssetDatabase.TryGetExisting
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Runtime.AssetDatabase.All*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.All
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_All
+  name: All
+  nameWithType: AssetDatabase.All
+  fullName: Prowl.Runtime.AssetDatabase.All
+- uid: System.Collections.Generic.IEnumerable{Prowl.Runtime.Asset}
+  commentId: T:System.Collections.Generic.IEnumerable{Prowl.Runtime.Asset}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<Asset>
+  nameWithType: IEnumerable<Asset>
+  fullName: System.Collections.Generic.IEnumerable<Prowl.Runtime.Asset>
+  nameWithType.vb: IEnumerable(Of Asset)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of Prowl.Runtime.Asset)
+  name.vb: IEnumerable(Of Asset)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: Prowl.Runtime.Asset
+    name: Asset
+    href: Prowl.Runtime.Asset.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Asset
+    name: Asset
+    href: Prowl.Runtime.Asset.html
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Runtime.AssetDatabase.GetAssetType*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.GetAssetType
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_GetAssetType_System_Guid_
+  name: GetAssetType
+  nameWithType: AssetDatabase.GetAssetType
+  fullName: Prowl.Runtime.AssetDatabase.GetAssetType
+- uid: Prowl.Runtime.AssetDatabase.IsBuiltIn*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.IsBuiltIn
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_IsBuiltIn_Prowl_Runtime_Asset_
+  name: IsBuiltIn
+  nameWithType: AssetDatabase.IsBuiltIn
+  fullName: Prowl.Runtime.AssetDatabase.IsBuiltIn
+- uid: Prowl.Runtime.AssetDatabase.Refill*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.Refill
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Refill_Prowl_Runtime_Asset_Prowl_Runtime_ReloadReason_
+  name: Refill
+  nameWithType: AssetDatabase.Refill
+  fullName: Prowl.Runtime.AssetDatabase.Refill
+- uid: Prowl.Runtime.ReloadReason
+  commentId: T:Prowl.Runtime.ReloadReason
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.ReloadReason.html
+  name: ReloadReason
+  nameWithType: ReloadReason
+  fullName: Prowl.Runtime.ReloadReason
+- uid: Prowl.Runtime.AssetDatabase.Reload*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.Reload
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Reload_Prowl_Runtime_Asset_
+  name: Reload
+  nameWithType: AssetDatabase.Reload
+  fullName: Prowl.Runtime.AssetDatabase.Reload
+- uid: Prowl.Echo.EchoObject
+  commentId: T:Prowl.Echo.EchoObject
+  parent: Prowl.Echo
+  isExternal: true
+  name: EchoObject
+  nameWithType: EchoObject
+  fullName: Prowl.Echo.EchoObject
+- uid: Prowl.Echo
+  commentId: N:Prowl.Echo
+  name: Prowl.Echo
+  nameWithType: Prowl.Echo
+  fullName: Prowl.Echo
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
+- uid: Prowl.Runtime.AssetDatabase.MarkMissing*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.MarkMissing
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_MarkMissing_System_Guid_
+  name: MarkMissing
+  nameWithType: AssetDatabase.MarkMissing
+  fullName: Prowl.Runtime.AssetDatabase.MarkMissing
+- uid: Prowl.Runtime.AssetDatabase.Retire*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.Retire
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Retire_System_Guid_
+  name: Retire
+  nameWithType: AssetDatabase.Retire
+  fullName: Prowl.Runtime.AssetDatabase.Retire
+- uid: Prowl.Runtime.AssetDatabase.LoadGroup*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.LoadGroup
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_LoadGroup_System_Collections_Generic_IEnumerable_Prowl_Runtime_Asset__System_Boolean_
+  name: LoadGroup
+  nameWithType: AssetDatabase.LoadGroup
+  fullName: Prowl.Runtime.AssetDatabase.LoadGroup
+- uid: Prowl.Runtime.AssetGroup
+  commentId: T:Prowl.Runtime.AssetGroup
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.AssetGroup.html
+  name: AssetGroup
+  nameWithType: AssetGroup
+  fullName: Prowl.Runtime.AssetGroup
+- uid: Prowl.Runtime.AssetDatabase.Preload*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.Preload
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Preload_Prowl_Runtime_Resources_SceneAsset_
+  name: Preload
+  nameWithType: AssetDatabase.Preload
+  fullName: Prowl.Runtime.AssetDatabase.Preload
+- uid: Prowl.Runtime.Resources.SceneAsset
+  commentId: T:Prowl.Runtime.Resources.SceneAsset
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.SceneAsset.html
+  name: SceneAsset
+  nameWithType: SceneAsset
+  fullName: Prowl.Runtime.Resources.SceneAsset
+- uid: Prowl.Runtime.Resources
+  commentId: N:Prowl.Runtime.Resources
+  name: Prowl.Runtime.Resources
+  nameWithType: Prowl.Runtime.Resources
+  fullName: Prowl.Runtime.Resources
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+- uid: Prowl.Runtime.AssetDatabase.Pump*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.Pump
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Pump
+  name: Pump
+  nameWithType: AssetDatabase.Pump
+  fullName: Prowl.Runtime.AssetDatabase.Pump
+- uid: Prowl.Runtime.AssetDatabase.Shutdown*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.Shutdown
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Shutdown
+  name: Shutdown
+  nameWithType: AssetDatabase.Shutdown
+  fullName: Prowl.Runtime.AssetDatabase.Shutdown
+- uid: Prowl.Runtime.AssetDatabase.FindResource*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.FindResource
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_FindResource__1_System_String_
+  name: FindResource
+  nameWithType: AssetDatabase.FindResource
+  fullName: Prowl.Runtime.AssetDatabase.FindResource
+- uid: Prowl.Runtime.AssetDatabase.FindResourceAsync*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.FindResourceAsync
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_FindResourceAsync__1_System_String_System_Threading_CancellationToken_
+  name: FindResourceAsync
+  nameWithType: AssetDatabase.FindResourceAsync
+  fullName: Prowl.Runtime.AssetDatabase.FindResourceAsync
+- uid: Prowl.Runtime.AssetDatabase.FindAllResources*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.FindAllResources
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_FindAllResources__1_System_String_
+  name: FindAllResources
+  nameWithType: AssetDatabase.FindAllResources
+  fullName: Prowl.Runtime.AssetDatabase.FindAllResources
+- uid: System.Collections.Generic.List{{T}}
+  commentId: T:System.Collections.Generic.List{``0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Runtime.AssetDatabase.FindResourceGuid*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.FindResourceGuid
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_FindResourceGuid__1_System_String_
+  name: FindResourceGuid
+  nameWithType: AssetDatabase.FindResourceGuid
+  fullName: Prowl.Runtime.AssetDatabase.FindResourceGuid
+- uid: Prowl.Runtime.AssetDatabase.GetLoadPath*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.GetLoadPath
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_GetLoadPath_System_String_System_String_
+  name: GetLoadPath
+  nameWithType: AssetDatabase.GetLoadPath
+  fullName: Prowl.Runtime.AssetDatabase.GetLoadPath
+- uid: Prowl.Runtime.AssetDatabase.Hold*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.Hold
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Hold_Prowl_Runtime_Asset_System_Object_
+  name: Hold
+  nameWithType: AssetDatabase.Hold
+  fullName: Prowl.Runtime.AssetDatabase.Hold
+- uid: Prowl.Runtime.AssetDatabase.Release*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.Release
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Release_Prowl_Runtime_Asset_System_Object_
+  name: Release
+  nameWithType: AssetDatabase.Release
+  fullName: Prowl.Runtime.AssetDatabase.Release
+- uid: Prowl.Runtime.AssetDatabase.ReleaseAll*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.ReleaseAll
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_ReleaseAll_System_Object_
+  name: ReleaseAll
+  nameWithType: AssetDatabase.ReleaseAll
+  fullName: Prowl.Runtime.AssetDatabase.ReleaseAll
+- uid: Prowl.Runtime.AssetDatabase.AddRoot*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.AddRoot
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_AddRoot_System_Object_
+  name: AddRoot
+  nameWithType: AssetDatabase.AddRoot
+  fullName: Prowl.Runtime.AssetDatabase.AddRoot
+- uid: Prowl.Runtime.AssetDatabase.RemoveRoot*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.RemoveRoot
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_RemoveRoot_System_Object_
+  name: RemoveRoot
+  nameWithType: AssetDatabase.RemoveRoot
+  fullName: Prowl.Runtime.AssetDatabase.RemoveRoot
+- uid: Prowl.Runtime.AssetDatabase.GracePeriod*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.GracePeriod
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_GracePeriod
+  name: GracePeriod
+  nameWithType: AssetDatabase.GracePeriod
+  fullName: Prowl.Runtime.AssetDatabase.GracePeriod
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.timespan
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: Prowl.Runtime.AssetDatabase.WalkInterval*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.WalkInterval
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_WalkInterval
+  name: WalkInterval
+  nameWithType: AssetDatabase.WalkInterval
+  fullName: Prowl.Runtime.AssetDatabase.WalkInterval
+- uid: Prowl.Runtime.AssetDatabase.MemoryBudget*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.MemoryBudget
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_MemoryBudget
+  name: MemoryBudget
+  nameWithType: AssetDatabase.MemoryBudget
+  fullName: Prowl.Runtime.AssetDatabase.MemoryBudget
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: Prowl.Runtime.AssetDatabase.ResidentBytes*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.ResidentBytes
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_ResidentBytes
+  name: ResidentBytes
+  nameWithType: AssetDatabase.ResidentBytes
+  fullName: Prowl.Runtime.AssetDatabase.ResidentBytes
+- uid: Prowl.Runtime.AssetDatabase.EvictionEnabled*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.EvictionEnabled
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_EvictionEnabled
+  name: EvictionEnabled
+  nameWithType: AssetDatabase.EvictionEnabled
+  fullName: Prowl.Runtime.AssetDatabase.EvictionEnabled
+- uid: System.Action{Prowl.Runtime.AssetWalker}
+  commentId: T:System.Action{Prowl.Runtime.AssetWalker}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<AssetWalker>
+  nameWithType: Action<AssetWalker>
+  fullName: System.Action<Prowl.Runtime.AssetWalker>
+  nameWithType.vb: Action(Of AssetWalker)
+  fullName.vb: System.Action(Of Prowl.Runtime.AssetWalker)
+  name.vb: Action(Of AssetWalker)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: Prowl.Runtime.AssetWalker
+    name: AssetWalker
+    href: Prowl.Runtime.AssetWalker.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.AssetWalker
+    name: AssetWalker
+    href: Prowl.Runtime.AssetWalker.html
+  - name: )
+- uid: Prowl.Runtime.AssetDatabase.EndFrame*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.EndFrame
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_EndFrame
+  name: EndFrame
+  nameWithType: AssetDatabase.EndFrame
+  fullName: Prowl.Runtime.AssetDatabase.EndFrame
+- uid: Prowl.Runtime.AssetDatabase.Walk*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.Walk
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Walk
+  name: Walk
+  nameWithType: AssetDatabase.Walk
+  fullName: Prowl.Runtime.AssetDatabase.Walk
+- uid: Prowl.Runtime.AssetDatabase.LoadEverythingReached*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.LoadEverythingReached
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_LoadEverythingReached
+  name: LoadEverythingReached
+  nameWithType: AssetDatabase.LoadEverythingReached
+  fullName: Prowl.Runtime.AssetDatabase.LoadEverythingReached
+- uid: Prowl.Runtime.AssetDatabase.UnloadUnused*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.UnloadUnused
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_UnloadUnused
+  name: UnloadUnused
+  nameWithType: AssetDatabase.UnloadUnused
+  fullName: Prowl.Runtime.AssetDatabase.UnloadUnused
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Runtime.AssetDatabase.Unload*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.Unload
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Unload_Prowl_Runtime_Asset_
+  name: Unload
+  nameWithType: AssetDatabase.Unload
+  fullName: Prowl.Runtime.AssetDatabase.Unload
+- uid: Prowl.Runtime.AssetDatabase.Explain*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.Explain
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Explain_Prowl_Runtime_Asset_
+  name: Explain
+  nameWithType: AssetDatabase.Explain
+  fullName: Prowl.Runtime.AssetDatabase.Explain
+- uid: Prowl.Runtime.AssetResidency
+  commentId: T:Prowl.Runtime.AssetResidency
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.AssetResidency.html
+  name: AssetResidency
+  nameWithType: AssetResidency
+  fullName: Prowl.Runtime.AssetResidency
+- uid: Prowl.Runtime.AssetDatabase.Explain(Prowl.Runtime.Asset)
+  commentId: M:Prowl.Runtime.AssetDatabase.Explain(Prowl.Runtime.Asset)
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Explain_Prowl_Runtime_Asset_
+  name: Explain(Asset)
+  nameWithType: AssetDatabase.Explain(Asset)
+  fullName: Prowl.Runtime.AssetDatabase.Explain(Prowl.Runtime.Asset)
+  spec.csharp:
+  - uid: Prowl.Runtime.AssetDatabase.Explain(Prowl.Runtime.Asset)
+    name: Explain
+    href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Explain_Prowl_Runtime_Asset_
+  - name: (
+  - uid: Prowl.Runtime.Asset
+    name: Asset
+    href: Prowl.Runtime.Asset.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.AssetDatabase.Explain(Prowl.Runtime.Asset)
+    name: Explain
+    href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_Explain_Prowl_Runtime_Asset_
+  - name: (
+  - uid: Prowl.Runtime.Asset
+    name: Asset
+    href: Prowl.Runtime.Asset.html
+  - name: )
+- uid: Prowl.Runtime.AssetDatabase.RecordReachPaths*
+  commentId: Overload:Prowl.Runtime.AssetDatabase.RecordReachPaths
+  href: Prowl.Runtime.AssetDatabase.html#Prowl_Runtime_AssetDatabase_RecordReachPaths
+  name: RecordReachPaths
+  nameWithType: AssetDatabase.RecordReachPaths
+  fullName: Prowl.Runtime.AssetDatabase.RecordReachPaths

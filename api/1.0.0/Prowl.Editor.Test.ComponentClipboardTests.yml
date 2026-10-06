@@ -1,0 +1,2639 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.Test.ComponentClipboardTests
+  commentId: T:Prowl.Editor.Test.ComponentClipboardTests
+  id: ComponentClipboardTests
+  parent: Prowl.Editor.Test
+  children:
+  - Prowl.Editor.Test.ComponentClipboardTests.#ctor
+  - Prowl.Editor.Test.ComponentClipboardTests.CanPasteValues_OnlyForMatchingType
+  - Prowl.Editor.Test.ComponentClipboardTests.CopiedComponent_IsUnmodifiedByCopy
+  - Prowl.Editor.Test.ComponentClipboardTests.Copy_PasteAsNew_CopiesFieldValues
+  - Prowl.Editor.Test.ComponentClipboardTests.DetachedTransformReference_IsDropped_NotCloned
+  - Prowl.Editor.Test.ComponentClipboardTests.EmptyClipboard_PasteIsNoOp
+  - Prowl.Editor.Test.ComponentClipboardTests.ForeignClipboardText_IsIgnored
+  - Prowl.Editor.Test.ComponentClipboardTests.MalformedPayload_FailsGracefully
+  - Prowl.Editor.Test.ComponentClipboardTests.NestedSceneReferences_ResolveToOriginals
+  - Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_GetsFreshIdentifier
+  - Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_ISerializableComponent_CopiesCustomState
+  - Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_OntoSameGameObject_AddsSecondInstance
+  - Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_OntoSameGameObject_RealEngineComponent
+  - Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Redo_AfterTargetDeleted_FailsGracefully
+  - Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Undo_AfterTargetDeleted_FailsGracefully
+  - Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Undo_Redo
+  - Prowl.Editor.Test.ComponentClipboardTests.PasteValues_CopiesEnabledState
+  - Prowl.Editor.Test.ComponentClipboardTests.PasteValues_DoesNotChangeSiblingIndex
+  - Prowl.Editor.Test.ComponentClipboardTests.PasteValues_ISerializableComponent_CopiesCustomState
+  - Prowl.Editor.Test.ComponentClipboardTests.PasteValues_ISerializable_Undo_RestoresCustomState
+  - Prowl.Editor.Test.ComponentClipboardTests.PasteValues_OnDetachedComponent_DoesNotThrow
+  - Prowl.Editor.Test.ComponentClipboardTests.PasteValues_OverwritesDataButKeepsIdentity
+  - Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_AfterComponentRemoved_FailsGracefully
+  - Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_RestoresPreviousValues
+  - Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_RestoresSceneReferences
+  - Prowl.Editor.Test.ComponentClipboardTests.PasteValues_WrongType_IsRejected
+  - Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_PastedIntoDifferentScene_AreNull
+  - Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_ResolveToOriginalObjects_NotClones
+  - Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_SurviveSceneSerializationRoundTrip
+  - Prowl.Editor.Test.ComponentClipboardTests.UnknownComponentType_FailsGracefully
+  langs:
+  - csharp
+  - vb
+  name: ComponentClipboardTests
+  nameWithType: ComponentClipboardTests
+  fullName: Prowl.Editor.Test.ComponentClipboardTests
+  type: Class
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ComponentClipboardTests
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 103
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: >-
+    Tests for <xref href="Prowl.Editor.Core.ComponentClipboard" data-throw-if-not-resolved="false"></xref>: value round-trips, identity preservation on
+
+    paste-values, undo/redo, and - the part most likely to regress - scene-object reference fields,
+
+    which must resolve by identifier rather than being deep-cloned into orphans.
+  example: []
+  syntax:
+    content: 'public class ComponentClipboardTests : EditorTestHarness, IDisposable'
+    content.vb: Public Class ComponentClipboardTests Inherits EditorTestHarness Implements IDisposable
+  inheritance:
+  - System.Object
+  - Prowl.Editor.Test.EditorTestHarness
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - Prowl.Editor.Test.EditorTestHarness.Project
+  - Prowl.Editor.Test.EditorTestHarness.Assets
+  - Prowl.Editor.Test.EditorTestHarness.Load``1(System.Guid)
+  - Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(System.String)
+  - Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid,System.String,System.Action{Prowl.Runtime.GameObject})
+  - Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+  - Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.ReopenDatabase
+  - Prowl.Editor.Test.EditorTestHarness.WriteScript(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.AssemblyBytesResolver
+  - Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly
+  - Prowl.Editor.Test.EditorTestHarness.EnterPlayMode
+  - Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(System.String,Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  - Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(System.String)
+  - Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid,Prowl.Runtime.AssetPackagingMode)
+  - Prowl.Editor.Test.EditorTestHarness.CompileLibrary(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(System.String,System.Int32)
+  - Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(System.String)
+  - Prowl.Editor.Test.EditorTestHarness.RunDotnet(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.Dispose
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Editor.Test.ComponentClipboardTests.#ctor
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.#ctor
+  id: '#ctor'
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: ComponentClipboardTests()
+  nameWithType: ComponentClipboardTests.ComponentClipboardTests()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.ComponentClipboardTests()
+  type: Constructor
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: .ctor
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 107
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: public ComponentClipboardTests()
+    content.vb: Public Sub New()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.#ctor*
+  nameWithType.vb: ComponentClipboardTests.New()
+  fullName.vb: Prowl.Editor.Test.ComponentClipboardTests.New()
+  name.vb: New()
+- uid: Prowl.Editor.Test.ComponentClipboardTests.Copy_PasteAsNew_CopiesFieldValues
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.Copy_PasteAsNew_CopiesFieldValues
+  id: Copy_PasteAsNew_CopiesFieldValues
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: Copy_PasteAsNew_CopiesFieldValues()
+  nameWithType: ComponentClipboardTests.Copy_PasteAsNew_CopiesFieldValues()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.Copy_PasteAsNew_CopiesFieldValues()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Copy_PasteAsNew_CopiesFieldValues
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 133
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Copy_PasteAsNew_CopiesFieldValues()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Copy_PasteAsNew_CopiesFieldValues()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.Copy_PasteAsNew_CopiesFieldValues*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_GetsFreshIdentifier
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_GetsFreshIdentifier
+  id: PasteAsNew_GetsFreshIdentifier
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: PasteAsNew_GetsFreshIdentifier()
+  nameWithType: ComponentClipboardTests.PasteAsNew_GetsFreshIdentifier()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_GetsFreshIdentifier()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PasteAsNew_GetsFreshIdentifier
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 152
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PasteAsNew_GetsFreshIdentifier()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PasteAsNew_GetsFreshIdentifier()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_GetsFreshIdentifier*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_OntoSameGameObject_AddsSecondInstance
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_OntoSameGameObject_AddsSecondInstance
+  id: PasteAsNew_OntoSameGameObject_AddsSecondInstance
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: PasteAsNew_OntoSameGameObject_AddsSecondInstance()
+  nameWithType: ComponentClipboardTests.PasteAsNew_OntoSameGameObject_AddsSecondInstance()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_OntoSameGameObject_AddsSecondInstance()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PasteAsNew_OntoSameGameObject_AddsSecondInstance
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 165
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PasteAsNew_OntoSameGameObject_AddsSecondInstance()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PasteAsNew_OntoSameGameObject_AddsSecondInstance()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_OntoSameGameObject_AddsSecondInstance*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_OntoSameGameObject_RealEngineComponent
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_OntoSameGameObject_RealEngineComponent
+  id: PasteAsNew_OntoSameGameObject_RealEngineComponent
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: PasteAsNew_OntoSameGameObject_RealEngineComponent()
+  nameWithType: ComponentClipboardTests.PasteAsNew_OntoSameGameObject_RealEngineComponent()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_OntoSameGameObject_RealEngineComponent()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PasteAsNew_OntoSameGameObject_RealEngineComponent
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 180
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PasteAsNew_OntoSameGameObject_RealEngineComponent()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PasteAsNew_OntoSameGameObject_RealEngineComponent()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_OntoSameGameObject_RealEngineComponent*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.CopiedComponent_IsUnmodifiedByCopy
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.CopiedComponent_IsUnmodifiedByCopy
+  id: CopiedComponent_IsUnmodifiedByCopy
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: CopiedComponent_IsUnmodifiedByCopy()
+  nameWithType: ComponentClipboardTests.CopiedComponent_IsUnmodifiedByCopy()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.CopiedComponent_IsUnmodifiedByCopy()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CopiedComponent_IsUnmodifiedByCopy
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 199
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void CopiedComponent_IsUnmodifiedByCopy()
+    content.vb: >-
+      <Fact>
+
+      Public Sub CopiedComponent_IsUnmodifiedByCopy()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.CopiedComponent_IsUnmodifiedByCopy*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.CanPasteValues_OnlyForMatchingType
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.CanPasteValues_OnlyForMatchingType
+  id: CanPasteValues_OnlyForMatchingType
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: CanPasteValues_OnlyForMatchingType()
+  nameWithType: ComponentClipboardTests.CanPasteValues_OnlyForMatchingType()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.CanPasteValues_OnlyForMatchingType()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CanPasteValues_OnlyForMatchingType
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 219
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void CanPasteValues_OnlyForMatchingType()
+    content.vb: >-
+      <Fact>
+
+      Public Sub CanPasteValues_OnlyForMatchingType()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.CanPasteValues_OnlyForMatchingType*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_WrongType_IsRejected
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.PasteValues_WrongType_IsRejected
+  id: PasteValues_WrongType_IsRejected
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: PasteValues_WrongType_IsRejected()
+  nameWithType: ComponentClipboardTests.PasteValues_WrongType_IsRejected()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_WrongType_IsRejected()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PasteValues_WrongType_IsRejected
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 230
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PasteValues_WrongType_IsRejected()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PasteValues_WrongType_IsRejected()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_WrongType_IsRejected*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.EmptyClipboard_PasteIsNoOp
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.EmptyClipboard_PasteIsNoOp
+  id: EmptyClipboard_PasteIsNoOp
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: EmptyClipboard_PasteIsNoOp()
+  nameWithType: ComponentClipboardTests.EmptyClipboard_PasteIsNoOp()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.EmptyClipboard_PasteIsNoOp()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EmptyClipboard_PasteIsNoOp
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 242
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void EmptyClipboard_PasteIsNoOp()
+    content.vb: >-
+      <Fact>
+
+      Public Sub EmptyClipboard_PasteIsNoOp()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.EmptyClipboard_PasteIsNoOp*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.ForeignClipboardText_IsIgnored
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.ForeignClipboardText_IsIgnored
+  id: ForeignClipboardText_IsIgnored
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: ForeignClipboardText_IsIgnored()
+  nameWithType: ComponentClipboardTests.ForeignClipboardText_IsIgnored()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.ForeignClipboardText_IsIgnored()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ForeignClipboardText_IsIgnored
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 250
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ForeignClipboardText_IsIgnored()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ForeignClipboardText_IsIgnored()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.ForeignClipboardText_IsIgnored*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_OverwritesDataButKeepsIdentity
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.PasteValues_OverwritesDataButKeepsIdentity
+  id: PasteValues_OverwritesDataButKeepsIdentity
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: PasteValues_OverwritesDataButKeepsIdentity()
+  nameWithType: ComponentClipboardTests.PasteValues_OverwritesDataButKeepsIdentity()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_OverwritesDataButKeepsIdentity()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PasteValues_OverwritesDataButKeepsIdentity
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 262
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PasteValues_OverwritesDataButKeepsIdentity()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PasteValues_OverwritesDataButKeepsIdentity()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_OverwritesDataButKeepsIdentity*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_CopiesEnabledState
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.PasteValues_CopiesEnabledState
+  id: PasteValues_CopiesEnabledState
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: PasteValues_CopiesEnabledState()
+  nameWithType: ComponentClipboardTests.PasteValues_CopiesEnabledState()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_CopiesEnabledState()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PasteValues_CopiesEnabledState
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 284
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PasteValues_CopiesEnabledState()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PasteValues_CopiesEnabledState()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_CopiesEnabledState*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_DoesNotChangeSiblingIndex
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.PasteValues_DoesNotChangeSiblingIndex
+  id: PasteValues_DoesNotChangeSiblingIndex
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: PasteValues_DoesNotChangeSiblingIndex()
+  nameWithType: ComponentClipboardTests.PasteValues_DoesNotChangeSiblingIndex()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_DoesNotChangeSiblingIndex()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PasteValues_DoesNotChangeSiblingIndex
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 301
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PasteValues_DoesNotChangeSiblingIndex()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PasteValues_DoesNotChangeSiblingIndex()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_DoesNotChangeSiblingIndex*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_ResolveToOriginalObjects_NotClones
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_ResolveToOriginalObjects_NotClones
+  id: SceneReferences_ResolveToOriginalObjects_NotClones
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: SceneReferences_ResolveToOriginalObjects_NotClones()
+  nameWithType: ComponentClipboardTests.SceneReferences_ResolveToOriginalObjects_NotClones()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_ResolveToOriginalObjects_NotClones()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SceneReferences_ResolveToOriginalObjects_NotClones
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 322
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void SceneReferences_ResolveToOriginalObjects_NotClones()
+    content.vb: >-
+      <Fact>
+
+      Public Sub SceneReferences_ResolveToOriginalObjects_NotClones()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_ResolveToOriginalObjects_NotClones*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_PastedIntoDifferentScene_AreNull
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_PastedIntoDifferentScene_AreNull
+  id: SceneReferences_PastedIntoDifferentScene_AreNull
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: SceneReferences_PastedIntoDifferentScene_AreNull()
+  nameWithType: ComponentClipboardTests.SceneReferences_PastedIntoDifferentScene_AreNull()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_PastedIntoDifferentScene_AreNull()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SceneReferences_PastedIntoDifferentScene_AreNull
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 346
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void SceneReferences_PastedIntoDifferentScene_AreNull()
+    content.vb: >-
+      <Fact>
+
+      Public Sub SceneReferences_PastedIntoDifferentScene_AreNull()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_PastedIntoDifferentScene_AreNull*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_SurviveSceneSerializationRoundTrip
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_SurviveSceneSerializationRoundTrip
+  id: SceneReferences_SurviveSceneSerializationRoundTrip
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: SceneReferences_SurviveSceneSerializationRoundTrip()
+  nameWithType: ComponentClipboardTests.SceneReferences_SurviveSceneSerializationRoundTrip()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_SurviveSceneSerializationRoundTrip()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SceneReferences_SurviveSceneSerializationRoundTrip
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 374
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void SceneReferences_SurviveSceneSerializationRoundTrip()
+    content.vb: >-
+      <Fact>
+
+      Public Sub SceneReferences_SurviveSceneSerializationRoundTrip()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_SurviveSceneSerializationRoundTrip*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.DetachedTransformReference_IsDropped_NotCloned
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.DetachedTransformReference_IsDropped_NotCloned
+  id: DetachedTransformReference_IsDropped_NotCloned
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: DetachedTransformReference_IsDropped_NotCloned()
+  nameWithType: ComponentClipboardTests.DetachedTransformReference_IsDropped_NotCloned()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.DetachedTransformReference_IsDropped_NotCloned()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DetachedTransformReference_IsDropped_NotCloned
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 402
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DetachedTransformReference_IsDropped_NotCloned()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DetachedTransformReference_IsDropped_NotCloned()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.DetachedTransformReference_IsDropped_NotCloned*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.NestedSceneReferences_ResolveToOriginals
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.NestedSceneReferences_ResolveToOriginals
+  id: NestedSceneReferences_ResolveToOriginals
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: NestedSceneReferences_ResolveToOriginals()
+  nameWithType: ComponentClipboardTests.NestedSceneReferences_ResolveToOriginals()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.NestedSceneReferences_ResolveToOriginals()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NestedSceneReferences_ResolveToOriginals
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 422
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void NestedSceneReferences_ResolveToOriginals()
+    content.vb: >-
+      <Fact>
+
+      Public Sub NestedSceneReferences_ResolveToOriginals()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.NestedSceneReferences_ResolveToOriginals*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_ISerializableComponent_CopiesCustomState
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.PasteValues_ISerializableComponent_CopiesCustomState
+  id: PasteValues_ISerializableComponent_CopiesCustomState
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: PasteValues_ISerializableComponent_CopiesCustomState()
+  nameWithType: ComponentClipboardTests.PasteValues_ISerializableComponent_CopiesCustomState()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_ISerializableComponent_CopiesCustomState()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PasteValues_ISerializableComponent_CopiesCustomState
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 451
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PasteValues_ISerializableComponent_CopiesCustomState()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PasteValues_ISerializableComponent_CopiesCustomState()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_ISerializableComponent_CopiesCustomState*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_ISerializableComponent_CopiesCustomState
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_ISerializableComponent_CopiesCustomState
+  id: PasteAsNew_ISerializableComponent_CopiesCustomState
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: PasteAsNew_ISerializableComponent_CopiesCustomState()
+  nameWithType: ComponentClipboardTests.PasteAsNew_ISerializableComponent_CopiesCustomState()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_ISerializableComponent_CopiesCustomState()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PasteAsNew_ISerializableComponent_CopiesCustomState
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 471
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PasteAsNew_ISerializableComponent_CopiesCustomState()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PasteAsNew_ISerializableComponent_CopiesCustomState()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_ISerializableComponent_CopiesCustomState*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_ISerializable_Undo_RestoresCustomState
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.PasteValues_ISerializable_Undo_RestoresCustomState
+  id: PasteValues_ISerializable_Undo_RestoresCustomState
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: PasteValues_ISerializable_Undo_RestoresCustomState()
+  nameWithType: ComponentClipboardTests.PasteValues_ISerializable_Undo_RestoresCustomState()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_ISerializable_Undo_RestoresCustomState()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PasteValues_ISerializable_Undo_RestoresCustomState
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 486
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PasteValues_ISerializable_Undo_RestoresCustomState()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PasteValues_ISerializable_Undo_RestoresCustomState()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_ISerializable_Undo_RestoresCustomState*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.UnknownComponentType_FailsGracefully
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.UnknownComponentType_FailsGracefully
+  id: UnknownComponentType_FailsGracefully
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: UnknownComponentType_FailsGracefully()
+  nameWithType: ComponentClipboardTests.UnknownComponentType_FailsGracefully()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.UnknownComponentType_FailsGracefully()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: UnknownComponentType_FailsGracefully
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 511
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void UnknownComponentType_FailsGracefully()
+    content.vb: >-
+      <Fact>
+
+      Public Sub UnknownComponentType_FailsGracefully()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.UnknownComponentType_FailsGracefully*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.MalformedPayload_FailsGracefully
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.MalformedPayload_FailsGracefully
+  id: MalformedPayload_FailsGracefully
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: MalformedPayload_FailsGracefully()
+  nameWithType: ComponentClipboardTests.MalformedPayload_FailsGracefully()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.MalformedPayload_FailsGracefully()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MalformedPayload_FailsGracefully
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 523
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void MalformedPayload_FailsGracefully()
+    content.vb: >-
+      <Fact>
+
+      Public Sub MalformedPayload_FailsGracefully()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.MalformedPayload_FailsGracefully*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_OnDetachedComponent_DoesNotThrow
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.PasteValues_OnDetachedComponent_DoesNotThrow
+  id: PasteValues_OnDetachedComponent_DoesNotThrow
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: PasteValues_OnDetachedComponent_DoesNotThrow()
+  nameWithType: ComponentClipboardTests.PasteValues_OnDetachedComponent_DoesNotThrow()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_OnDetachedComponent_DoesNotThrow()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PasteValues_OnDetachedComponent_DoesNotThrow
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 544
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PasteValues_OnDetachedComponent_DoesNotThrow()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PasteValues_OnDetachedComponent_DoesNotThrow()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_OnDetachedComponent_DoesNotThrow*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Undo_Redo
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Undo_Redo
+  id: PasteAsNew_Undo_Redo
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: PasteAsNew_Undo_Redo()
+  nameWithType: ComponentClipboardTests.PasteAsNew_Undo_Redo()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Undo_Redo()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PasteAsNew_Undo_Redo
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 560
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PasteAsNew_Undo_Redo()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PasteAsNew_Undo_Redo()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Undo_Redo*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Redo_AfterTargetDeleted_FailsGracefully
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Redo_AfterTargetDeleted_FailsGracefully
+  id: PasteAsNew_Redo_AfterTargetDeleted_FailsGracefully
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: PasteAsNew_Redo_AfterTargetDeleted_FailsGracefully()
+  nameWithType: ComponentClipboardTests.PasteAsNew_Redo_AfterTargetDeleted_FailsGracefully()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Redo_AfterTargetDeleted_FailsGracefully()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PasteAsNew_Redo_AfterTargetDeleted_FailsGracefully
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 582
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PasteAsNew_Redo_AfterTargetDeleted_FailsGracefully()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PasteAsNew_Redo_AfterTargetDeleted_FailsGracefully()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Redo_AfterTargetDeleted_FailsGracefully*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Undo_AfterTargetDeleted_FailsGracefully
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Undo_AfterTargetDeleted_FailsGracefully
+  id: PasteAsNew_Undo_AfterTargetDeleted_FailsGracefully
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: PasteAsNew_Undo_AfterTargetDeleted_FailsGracefully()
+  nameWithType: ComponentClipboardTests.PasteAsNew_Undo_AfterTargetDeleted_FailsGracefully()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Undo_AfterTargetDeleted_FailsGracefully()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PasteAsNew_Undo_AfterTargetDeleted_FailsGracefully
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 603
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PasteAsNew_Undo_AfterTargetDeleted_FailsGracefully()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PasteAsNew_Undo_AfterTargetDeleted_FailsGracefully()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Undo_AfterTargetDeleted_FailsGracefully*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_AfterComponentRemoved_FailsGracefully
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_AfterComponentRemoved_FailsGracefully
+  id: PasteValues_Undo_AfterComponentRemoved_FailsGracefully
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: PasteValues_Undo_AfterComponentRemoved_FailsGracefully()
+  nameWithType: ComponentClipboardTests.PasteValues_Undo_AfterComponentRemoved_FailsGracefully()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_AfterComponentRemoved_FailsGracefully()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PasteValues_Undo_AfterComponentRemoved_FailsGracefully
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 620
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PasteValues_Undo_AfterComponentRemoved_FailsGracefully()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PasteValues_Undo_AfterComponentRemoved_FailsGracefully()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_AfterComponentRemoved_FailsGracefully*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_RestoresPreviousValues
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_RestoresPreviousValues
+  id: PasteValues_Undo_RestoresPreviousValues
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: PasteValues_Undo_RestoresPreviousValues()
+  nameWithType: ComponentClipboardTests.PasteValues_Undo_RestoresPreviousValues()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_RestoresPreviousValues()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PasteValues_Undo_RestoresPreviousValues
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 640
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PasteValues_Undo_RestoresPreviousValues()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PasteValues_Undo_RestoresPreviousValues()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_RestoresPreviousValues*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_RestoresSceneReferences
+  commentId: M:Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_RestoresSceneReferences
+  id: PasteValues_Undo_RestoresSceneReferences
+  parent: Prowl.Editor.Test.ComponentClipboardTests
+  langs:
+  - csharp
+  - vb
+  name: PasteValues_Undo_RestoresSceneReferences()
+  nameWithType: ComponentClipboardTests.PasteValues_Undo_RestoresSceneReferences()
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_RestoresSceneReferences()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/ComponentClipboardTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PasteValues_Undo_RestoresSceneReferences
+    path: ../Prowl/Prowl.Editor.Test/ComponentClipboardTests.cs
+    startLine: 667
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PasteValues_Undo_RestoresSceneReferences()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PasteValues_Undo_RestoresSceneReferences()
+  overload: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_RestoresSceneReferences*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+references:
+- uid: Prowl.Editor.Core.ComponentClipboard
+  commentId: T:Prowl.Editor.Core.ComponentClipboard
+  href: Prowl.Editor.Core.ComponentClipboard.html
+  name: ComponentClipboard
+  nameWithType: ComponentClipboard
+  fullName: Prowl.Editor.Core.ComponentClipboard
+- uid: Prowl.Editor.Test
+  commentId: N:Prowl.Editor.Test
+  name: Prowl.Editor.Test
+  nameWithType: Prowl.Editor.Test
+  fullName: Prowl.Editor.Test
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Test
+    name: Test
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Test
+    name: Test
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.Editor.Test.EditorTestHarness
+  commentId: T:Prowl.Editor.Test.EditorTestHarness
+  parent: Prowl.Editor.Test
+  href: Prowl.Editor.Test.EditorTestHarness.html
+  name: EditorTestHarness
+  nameWithType: EditorTestHarness
+  fullName: Prowl.Editor.Test.EditorTestHarness
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Prowl.Editor.Test.EditorTestHarness.Project
+  commentId: P:Prowl.Editor.Test.EditorTestHarness.Project
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Project
+  name: Project
+  nameWithType: EditorTestHarness.Project
+  fullName: Prowl.Editor.Test.EditorTestHarness.Project
+- uid: Prowl.Editor.Test.EditorTestHarness.Assets
+  commentId: P:Prowl.Editor.Test.EditorTestHarness.Assets
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Assets
+  name: Assets
+  nameWithType: EditorTestHarness.Assets
+  fullName: Prowl.Editor.Test.EditorTestHarness.Assets
+- uid: Prowl.Editor.Test.EditorTestHarness.Load``1(System.Guid)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.Load``1(System.Guid)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Load__1_System_Guid_
+  name: Load<T>(Guid)
+  nameWithType: EditorTestHarness.Load<T>(Guid)
+  fullName: Prowl.Editor.Test.EditorTestHarness.Load<T>(System.Guid)
+  nameWithType.vb: EditorTestHarness.Load(Of T)(Guid)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.Load(Of T)(System.Guid)
+  name.vb: Load(Of T)(Guid)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.Load``1(System.Guid)
+    name: Load
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Load__1_System_Guid_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.Load``1(System.Guid)
+    name: Load
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Load__1_System_Guid_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AssetAbsolutePath_System_String_
+  name: AssetAbsolutePath(string)
+  nameWithType: EditorTestHarness.AssetAbsolutePath(string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(string)
+  nameWithType.vb: EditorTestHarness.AssetAbsolutePath(String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(String)
+  name.vb: AssetAbsolutePath(String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(System.String)
+    name: AssetAbsolutePath
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AssetAbsolutePath_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(System.String)
+    name: AssetAbsolutePath
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AssetAbsolutePath_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CreatePrefabAsset_Prowl_Runtime_GameObject_System_String_
+  name: CreatePrefabAsset(GameObject, string)
+  nameWithType: EditorTestHarness.CreatePrefabAsset(GameObject, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject, string)
+  nameWithType.vb: EditorTestHarness.CreatePrefabAsset(GameObject, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject, String)
+  name.vb: CreatePrefabAsset(GameObject, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject,System.String)
+    name: CreatePrefabAsset
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CreatePrefabAsset_Prowl_Runtime_GameObject_System_String_
+  - name: (
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject,System.String)
+    name: CreatePrefabAsset
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CreatePrefabAsset_Prowl_Runtime_GameObject_System_String_
+  - name: (
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WritePrefabFileRaw_Prowl_Runtime_GameObject_System_String_
+  name: WritePrefabFileRaw(GameObject, string)
+  nameWithType: EditorTestHarness.WritePrefabFileRaw(GameObject, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject, string)
+  nameWithType.vb: EditorTestHarness.WritePrefabFileRaw(GameObject, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject, String)
+  name.vb: WritePrefabFileRaw(GameObject, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+    name: WritePrefabFileRaw
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WritePrefabFileRaw_Prowl_Runtime_GameObject_System_String_
+  - name: (
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+    name: WritePrefabFileRaw
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WritePrefabFileRaw_Prowl_Runtime_GameObject_System_String_
+  - name: (
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid,System.String,System.Action{Prowl.Runtime.GameObject})
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid,System.String,System.Action{Prowl.Runtime.GameObject})
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_EditPrefabSource_System_Guid_System_String_System_Action_Prowl_Runtime_GameObject__
+  name: EditPrefabSource(Guid, string, Action<GameObject>)
+  nameWithType: EditorTestHarness.EditPrefabSource(Guid, string, Action<GameObject>)
+  fullName: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid, string, System.Action<Prowl.Runtime.GameObject>)
+  nameWithType.vb: EditorTestHarness.EditPrefabSource(Guid, String, Action(Of GameObject))
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid, String, System.Action(Of Prowl.Runtime.GameObject))
+  name.vb: EditPrefabSource(Guid, String, Action(Of GameObject))
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid,System.String,System.Action{Prowl.Runtime.GameObject})
+    name: EditPrefabSource
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_EditPrefabSource_System_Guid_System_String_System_Action_Prowl_Runtime_GameObject__
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid,System.String,System.Action{Prowl.Runtime.GameObject})
+    name: EditPrefabSource
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_EditPrefabSource_System_Guid_System_String_System_Action_Prowl_Runtime_GameObject__
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: )
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_GetPrefab_System_Guid_
+  name: GetPrefab(Guid)
+  nameWithType: EditorTestHarness.GetPrefab(Guid)
+  fullName: Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+    name: GetPrefab
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_GetPrefab_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+    name: GetPrefab
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_GetPrefab_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CreateSceneAsset_Prowl_Runtime_Resources_Scene_System_String_
+  name: CreateSceneAsset(Scene, string)
+  nameWithType: EditorTestHarness.CreateSceneAsset(Scene, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene, string)
+  nameWithType.vb: EditorTestHarness.CreateSceneAsset(Scene, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene, String)
+  name.vb: CreateSceneAsset(Scene, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene,System.String)
+    name: CreateSceneAsset
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CreateSceneAsset_Prowl_Runtime_Resources_Scene_System_String_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+    href: Prowl.Runtime.Resources.Scene.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene,System.String)
+    name: CreateSceneAsset
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CreateSceneAsset_Prowl_Runtime_Resources_Scene_System_String_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+    href: Prowl.Runtime.Resources.Scene.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.ReopenDatabase
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.ReopenDatabase
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_ReopenDatabase
+  name: ReopenDatabase()
+  nameWithType: EditorTestHarness.ReopenDatabase()
+  fullName: Prowl.Editor.Test.EditorTestHarness.ReopenDatabase()
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.ReopenDatabase
+    name: ReopenDatabase
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_ReopenDatabase
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.ReopenDatabase
+    name: ReopenDatabase
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_ReopenDatabase
+  - name: (
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.WriteScript(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.WriteScript(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WriteScript_System_String_System_String_
+  name: WriteScript(string, string)
+  nameWithType: EditorTestHarness.WriteScript(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.WriteScript(string, string)
+  nameWithType.vb: EditorTestHarness.WriteScript(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.WriteScript(String, String)
+  name.vb: WriteScript(String, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.WriteScript(System.String,System.String)
+    name: WriteScript
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WriteScript_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.WriteScript(System.String,System.String)
+    name: WriteScript
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WriteScript_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileGameAssembly_System_String_System_String_
+  name: CompileGameAssembly(string, string)
+  nameWithType: EditorTestHarness.CompileGameAssembly(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(string, string)
+  nameWithType.vb: EditorTestHarness.CompileGameAssembly(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(String, String)
+  name.vb: CompileGameAssembly(String, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(System.String,System.String)
+    name: CompileGameAssembly
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileGameAssembly_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(System.String,System.String)
+    name: CompileGameAssembly
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileGameAssembly_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.AssemblyBytesResolver
+  commentId: P:Prowl.Editor.Test.EditorTestHarness.AssemblyBytesResolver
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AssemblyBytesResolver
+  name: AssemblyBytesResolver
+  nameWithType: EditorTestHarness.AssemblyBytesResolver
+  fullName: Prowl.Editor.Test.EditorTestHarness.AssemblyBytesResolver
+- uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileGameAssembly
+  name: CompileGameAssembly()
+  nameWithType: EditorTestHarness.CompileGameAssembly()
+  fullName: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly()
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly
+    name: CompileGameAssembly
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileGameAssembly
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly
+    name: CompileGameAssembly
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileGameAssembly
+  - name: (
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.EnterPlayMode
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.EnterPlayMode
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_EnterPlayMode
+  name: EnterPlayMode()
+  nameWithType: EditorTestHarness.EnterPlayMode()
+  fullName: Prowl.Editor.Test.EditorTestHarness.EnterPlayMode()
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.EnterPlayMode
+    name: EnterPlayMode
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_EnterPlayMode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.EnterPlayMode
+    name: EnterPlayMode
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_EnterPlayMode
+  - name: (
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Tick(Scene, int)
+  nameWithType: EditorTestHarness.Tick(Scene, int)
+  fullName: Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: EditorTestHarness.Tick(Scene, Integer)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Tick(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+    href: Prowl.Runtime.Resources.Scene.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+    href: Prowl.Runtime.Resources.Scene.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_UpdateScene_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: UpdateScene(Scene, int)
+  nameWithType: EditorTestHarness.UpdateScene(Scene, int)
+  fullName: Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: EditorTestHarness.UpdateScene(Scene, Integer)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: UpdateScene(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: UpdateScene
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_UpdateScene_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+    href: Prowl.Runtime.Resources.Scene.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: UpdateScene
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_UpdateScene_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+    href: Prowl.Runtime.Resources.Scene.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(System.String,Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(System.String,Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WriteAssemblyDefinition_System_String_Prowl_Editor_Projects_Scripting_AssemblyDefinition_
+  name: WriteAssemblyDefinition(string, AssemblyDefinition)
+  nameWithType: EditorTestHarness.WriteAssemblyDefinition(string, AssemblyDefinition)
+  fullName: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(string, Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  nameWithType.vb: EditorTestHarness.WriteAssemblyDefinition(String, AssemblyDefinition)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(String, Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  name.vb: WriteAssemblyDefinition(String, AssemblyDefinition)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(System.String,Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+    name: WriteAssemblyDefinition
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WriteAssemblyDefinition_System_String_Prowl_Editor_Projects_Scripting_AssemblyDefinition_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Prowl.Editor.Projects.Scripting.AssemblyDefinition
+    name: AssemblyDefinition
+    href: Prowl.Editor.Projects.Scripting.AssemblyDefinition.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(System.String,Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+    name: WriteAssemblyDefinition
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WriteAssemblyDefinition_System_String_Prowl_Editor_Projects_Scripting_AssemblyDefinition_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Prowl.Editor.Projects.Scripting.AssemblyDefinition
+    name: AssemblyDefinition
+    href: Prowl.Editor.Projects.Scripting.AssemblyDefinition.html
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CopyIntoAssets_System_String_System_String_
+  name: CopyIntoAssets(string, string)
+  nameWithType: EditorTestHarness.CopyIntoAssets(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(string, string)
+  nameWithType.vb: EditorTestHarness.CopyIntoAssets(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(String, String)
+  name.vb: CopyIntoAssets(String, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(System.String,System.String)
+    name: CopyIntoAssets
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CopyIntoAssets_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(System.String,System.String)
+    name: CopyIntoAssets
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CopyIntoAssets_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AuthorEmptyScene_System_String_
+  name: AuthorEmptyScene(string)
+  nameWithType: EditorTestHarness.AuthorEmptyScene(string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(string)
+  nameWithType.vb: EditorTestHarness.AuthorEmptyScene(String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(String)
+  name.vb: AuthorEmptyScene(String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(System.String)
+    name: AuthorEmptyScene
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AuthorEmptyScene_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(System.String)
+    name: AuthorEmptyScene
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AuthorEmptyScene_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AuthorSceneWithComponent_System_String_System_String_
+  name: AuthorSceneWithComponent(string, string)
+  nameWithType: EditorTestHarness.AuthorSceneWithComponent(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(string, string)
+  nameWithType.vb: EditorTestHarness.AuthorSceneWithComponent(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(String, String)
+  name.vb: AuthorSceneWithComponent(String, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(System.String,System.String)
+    name: AuthorSceneWithComponent
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AuthorSceneWithComponent_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(System.String,System.String)
+    name: AuthorSceneWithComponent
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AuthorSceneWithComponent_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid,Prowl.Runtime.AssetPackagingMode)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid,Prowl.Runtime.AssetPackagingMode)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunBuild_System_Guid_Prowl_Runtime_AssetPackagingMode_
+  name: RunBuild(Guid, AssetPackagingMode)
+  nameWithType: EditorTestHarness.RunBuild(Guid, AssetPackagingMode)
+  fullName: Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid, Prowl.Runtime.AssetPackagingMode)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid,Prowl.Runtime.AssetPackagingMode)
+    name: RunBuild
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunBuild_System_Guid_Prowl_Runtime_AssetPackagingMode_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: Prowl.Runtime.AssetPackagingMode
+    name: AssetPackagingMode
+    href: Prowl.Runtime.AssetPackagingMode.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid,Prowl.Runtime.AssetPackagingMode)
+    name: RunBuild
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunBuild_System_Guid_Prowl_Runtime_AssetPackagingMode_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: Prowl.Runtime.AssetPackagingMode
+    name: AssetPackagingMode
+    href: Prowl.Runtime.AssetPackagingMode.html
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.CompileLibrary(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CompileLibrary(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileLibrary_System_String_System_String_
+  name: CompileLibrary(string, string)
+  nameWithType: EditorTestHarness.CompileLibrary(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.CompileLibrary(string, string)
+  nameWithType.vb: EditorTestHarness.CompileLibrary(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.CompileLibrary(String, String)
+  name.vb: CompileLibrary(String, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CompileLibrary(System.String,System.String)
+    name: CompileLibrary
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileLibrary_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CompileLibrary(System.String,System.String)
+    name: CompileLibrary
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileLibrary_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(System.String,System.Int32)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(System.String,System.Int32)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunPlayerHeadless_System_String_System_Int32_
+  name: RunPlayerHeadless(string, int)
+  nameWithType: EditorTestHarness.RunPlayerHeadless(string, int)
+  fullName: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(string, int)
+  nameWithType.vb: EditorTestHarness.RunPlayerHeadless(String, Integer)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(String, Integer)
+  name.vb: RunPlayerHeadless(String, Integer)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(System.String,System.Int32)
+    name: RunPlayerHeadless
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunPlayerHeadless_System_String_System_Int32_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(System.String,System.Int32)
+    name: RunPlayerHeadless
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunPlayerHeadless_System_String_System_Int32_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_TryDeleteDir_System_String_
+  name: TryDeleteDir(string)
+  nameWithType: EditorTestHarness.TryDeleteDir(string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(string)
+  nameWithType.vb: EditorTestHarness.TryDeleteDir(String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(String)
+  name.vb: TryDeleteDir(String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(System.String)
+    name: TryDeleteDir
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_TryDeleteDir_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(System.String)
+    name: TryDeleteDir
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_TryDeleteDir_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.RunDotnet(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.RunDotnet(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunDotnet_System_String_System_String_
+  name: RunDotnet(string, string)
+  nameWithType: EditorTestHarness.RunDotnet(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.RunDotnet(string, string)
+  nameWithType.vb: EditorTestHarness.RunDotnet(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.RunDotnet(String, String)
+  name.vb: RunDotnet(String, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.RunDotnet(System.String,System.String)
+    name: RunDotnet
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunDotnet_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.RunDotnet(System.String,System.String)
+    name: RunDotnet
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunDotnet_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.Dispose
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.Dispose
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Dispose
+  name: Dispose()
+  nameWithType: EditorTestHarness.Dispose()
+  fullName: Prowl.Editor.Test.EditorTestHarness.Dispose()
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.Dispose
+    name: Dispose
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.Dispose
+    name: Dispose
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Dispose
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Editor.Test.ComponentClipboardTests.#ctor*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.#ctor
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests__ctor
+  name: ComponentClipboardTests
+  nameWithType: ComponentClipboardTests.ComponentClipboardTests
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.ComponentClipboardTests
+  nameWithType.vb: ComponentClipboardTests.New
+  fullName.vb: Prowl.Editor.Test.ComponentClipboardTests.New
+  name.vb: New
+- uid: Prowl.Editor.Test.ComponentClipboardTests.Copy_PasteAsNew_CopiesFieldValues*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.Copy_PasteAsNew_CopiesFieldValues
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_Copy_PasteAsNew_CopiesFieldValues
+  name: Copy_PasteAsNew_CopiesFieldValues
+  nameWithType: ComponentClipboardTests.Copy_PasteAsNew_CopiesFieldValues
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.Copy_PasteAsNew_CopiesFieldValues
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_GetsFreshIdentifier*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_GetsFreshIdentifier
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_PasteAsNew_GetsFreshIdentifier
+  name: PasteAsNew_GetsFreshIdentifier
+  nameWithType: ComponentClipboardTests.PasteAsNew_GetsFreshIdentifier
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_GetsFreshIdentifier
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_OntoSameGameObject_AddsSecondInstance*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_OntoSameGameObject_AddsSecondInstance
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_PasteAsNew_OntoSameGameObject_AddsSecondInstance
+  name: PasteAsNew_OntoSameGameObject_AddsSecondInstance
+  nameWithType: ComponentClipboardTests.PasteAsNew_OntoSameGameObject_AddsSecondInstance
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_OntoSameGameObject_AddsSecondInstance
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_OntoSameGameObject_RealEngineComponent*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_OntoSameGameObject_RealEngineComponent
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_PasteAsNew_OntoSameGameObject_RealEngineComponent
+  name: PasteAsNew_OntoSameGameObject_RealEngineComponent
+  nameWithType: ComponentClipboardTests.PasteAsNew_OntoSameGameObject_RealEngineComponent
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_OntoSameGameObject_RealEngineComponent
+- uid: Prowl.Editor.Test.ComponentClipboardTests.CopiedComponent_IsUnmodifiedByCopy*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.CopiedComponent_IsUnmodifiedByCopy
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_CopiedComponent_IsUnmodifiedByCopy
+  name: CopiedComponent_IsUnmodifiedByCopy
+  nameWithType: ComponentClipboardTests.CopiedComponent_IsUnmodifiedByCopy
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.CopiedComponent_IsUnmodifiedByCopy
+- uid: Prowl.Editor.Test.ComponentClipboardTests.CanPasteValues_OnlyForMatchingType*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.CanPasteValues_OnlyForMatchingType
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_CanPasteValues_OnlyForMatchingType
+  name: CanPasteValues_OnlyForMatchingType
+  nameWithType: ComponentClipboardTests.CanPasteValues_OnlyForMatchingType
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.CanPasteValues_OnlyForMatchingType
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_WrongType_IsRejected*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.PasteValues_WrongType_IsRejected
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_PasteValues_WrongType_IsRejected
+  name: PasteValues_WrongType_IsRejected
+  nameWithType: ComponentClipboardTests.PasteValues_WrongType_IsRejected
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_WrongType_IsRejected
+- uid: Prowl.Editor.Test.ComponentClipboardTests.EmptyClipboard_PasteIsNoOp*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.EmptyClipboard_PasteIsNoOp
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_EmptyClipboard_PasteIsNoOp
+  name: EmptyClipboard_PasteIsNoOp
+  nameWithType: ComponentClipboardTests.EmptyClipboard_PasteIsNoOp
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.EmptyClipboard_PasteIsNoOp
+- uid: Prowl.Editor.Test.ComponentClipboardTests.ForeignClipboardText_IsIgnored*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.ForeignClipboardText_IsIgnored
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_ForeignClipboardText_IsIgnored
+  name: ForeignClipboardText_IsIgnored
+  nameWithType: ComponentClipboardTests.ForeignClipboardText_IsIgnored
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.ForeignClipboardText_IsIgnored
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_OverwritesDataButKeepsIdentity*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.PasteValues_OverwritesDataButKeepsIdentity
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_PasteValues_OverwritesDataButKeepsIdentity
+  name: PasteValues_OverwritesDataButKeepsIdentity
+  nameWithType: ComponentClipboardTests.PasteValues_OverwritesDataButKeepsIdentity
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_OverwritesDataButKeepsIdentity
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_CopiesEnabledState*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.PasteValues_CopiesEnabledState
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_PasteValues_CopiesEnabledState
+  name: PasteValues_CopiesEnabledState
+  nameWithType: ComponentClipboardTests.PasteValues_CopiesEnabledState
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_CopiesEnabledState
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_DoesNotChangeSiblingIndex*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.PasteValues_DoesNotChangeSiblingIndex
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_PasteValues_DoesNotChangeSiblingIndex
+  name: PasteValues_DoesNotChangeSiblingIndex
+  nameWithType: ComponentClipboardTests.PasteValues_DoesNotChangeSiblingIndex
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_DoesNotChangeSiblingIndex
+- uid: Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_ResolveToOriginalObjects_NotClones*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_ResolveToOriginalObjects_NotClones
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_SceneReferences_ResolveToOriginalObjects_NotClones
+  name: SceneReferences_ResolveToOriginalObjects_NotClones
+  nameWithType: ComponentClipboardTests.SceneReferences_ResolveToOriginalObjects_NotClones
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_ResolveToOriginalObjects_NotClones
+- uid: Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_PastedIntoDifferentScene_AreNull*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_PastedIntoDifferentScene_AreNull
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_SceneReferences_PastedIntoDifferentScene_AreNull
+  name: SceneReferences_PastedIntoDifferentScene_AreNull
+  nameWithType: ComponentClipboardTests.SceneReferences_PastedIntoDifferentScene_AreNull
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_PastedIntoDifferentScene_AreNull
+- uid: Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_SurviveSceneSerializationRoundTrip*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_SurviveSceneSerializationRoundTrip
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_SceneReferences_SurviveSceneSerializationRoundTrip
+  name: SceneReferences_SurviveSceneSerializationRoundTrip
+  nameWithType: ComponentClipboardTests.SceneReferences_SurviveSceneSerializationRoundTrip
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.SceneReferences_SurviveSceneSerializationRoundTrip
+- uid: Prowl.Editor.Test.ComponentClipboardTests.DetachedTransformReference_IsDropped_NotCloned*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.DetachedTransformReference_IsDropped_NotCloned
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_DetachedTransformReference_IsDropped_NotCloned
+  name: DetachedTransformReference_IsDropped_NotCloned
+  nameWithType: ComponentClipboardTests.DetachedTransformReference_IsDropped_NotCloned
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.DetachedTransformReference_IsDropped_NotCloned
+- uid: Prowl.Editor.Test.ComponentClipboardTests.NestedSceneReferences_ResolveToOriginals*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.NestedSceneReferences_ResolveToOriginals
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_NestedSceneReferences_ResolveToOriginals
+  name: NestedSceneReferences_ResolveToOriginals
+  nameWithType: ComponentClipboardTests.NestedSceneReferences_ResolveToOriginals
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.NestedSceneReferences_ResolveToOriginals
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_ISerializableComponent_CopiesCustomState*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.PasteValues_ISerializableComponent_CopiesCustomState
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_PasteValues_ISerializableComponent_CopiesCustomState
+  name: PasteValues_ISerializableComponent_CopiesCustomState
+  nameWithType: ComponentClipboardTests.PasteValues_ISerializableComponent_CopiesCustomState
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_ISerializableComponent_CopiesCustomState
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_ISerializableComponent_CopiesCustomState*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_ISerializableComponent_CopiesCustomState
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_PasteAsNew_ISerializableComponent_CopiesCustomState
+  name: PasteAsNew_ISerializableComponent_CopiesCustomState
+  nameWithType: ComponentClipboardTests.PasteAsNew_ISerializableComponent_CopiesCustomState
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_ISerializableComponent_CopiesCustomState
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_ISerializable_Undo_RestoresCustomState*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.PasteValues_ISerializable_Undo_RestoresCustomState
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_PasteValues_ISerializable_Undo_RestoresCustomState
+  name: PasteValues_ISerializable_Undo_RestoresCustomState
+  nameWithType: ComponentClipboardTests.PasteValues_ISerializable_Undo_RestoresCustomState
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_ISerializable_Undo_RestoresCustomState
+- uid: Prowl.Editor.Test.ComponentClipboardTests.UnknownComponentType_FailsGracefully*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.UnknownComponentType_FailsGracefully
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_UnknownComponentType_FailsGracefully
+  name: UnknownComponentType_FailsGracefully
+  nameWithType: ComponentClipboardTests.UnknownComponentType_FailsGracefully
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.UnknownComponentType_FailsGracefully
+- uid: Prowl.Editor.Test.ComponentClipboardTests.MalformedPayload_FailsGracefully*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.MalformedPayload_FailsGracefully
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_MalformedPayload_FailsGracefully
+  name: MalformedPayload_FailsGracefully
+  nameWithType: ComponentClipboardTests.MalformedPayload_FailsGracefully
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.MalformedPayload_FailsGracefully
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_OnDetachedComponent_DoesNotThrow*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.PasteValues_OnDetachedComponent_DoesNotThrow
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_PasteValues_OnDetachedComponent_DoesNotThrow
+  name: PasteValues_OnDetachedComponent_DoesNotThrow
+  nameWithType: ComponentClipboardTests.PasteValues_OnDetachedComponent_DoesNotThrow
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_OnDetachedComponent_DoesNotThrow
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Undo_Redo*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Undo_Redo
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_PasteAsNew_Undo_Redo
+  name: PasteAsNew_Undo_Redo
+  nameWithType: ComponentClipboardTests.PasteAsNew_Undo_Redo
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Undo_Redo
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Redo_AfterTargetDeleted_FailsGracefully*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Redo_AfterTargetDeleted_FailsGracefully
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_PasteAsNew_Redo_AfterTargetDeleted_FailsGracefully
+  name: PasteAsNew_Redo_AfterTargetDeleted_FailsGracefully
+  nameWithType: ComponentClipboardTests.PasteAsNew_Redo_AfterTargetDeleted_FailsGracefully
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Redo_AfterTargetDeleted_FailsGracefully
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Undo_AfterTargetDeleted_FailsGracefully*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Undo_AfterTargetDeleted_FailsGracefully
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_PasteAsNew_Undo_AfterTargetDeleted_FailsGracefully
+  name: PasteAsNew_Undo_AfterTargetDeleted_FailsGracefully
+  nameWithType: ComponentClipboardTests.PasteAsNew_Undo_AfterTargetDeleted_FailsGracefully
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteAsNew_Undo_AfterTargetDeleted_FailsGracefully
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_AfterComponentRemoved_FailsGracefully*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_AfterComponentRemoved_FailsGracefully
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_PasteValues_Undo_AfterComponentRemoved_FailsGracefully
+  name: PasteValues_Undo_AfterComponentRemoved_FailsGracefully
+  nameWithType: ComponentClipboardTests.PasteValues_Undo_AfterComponentRemoved_FailsGracefully
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_AfterComponentRemoved_FailsGracefully
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_RestoresPreviousValues*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_RestoresPreviousValues
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_PasteValues_Undo_RestoresPreviousValues
+  name: PasteValues_Undo_RestoresPreviousValues
+  nameWithType: ComponentClipboardTests.PasteValues_Undo_RestoresPreviousValues
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_RestoresPreviousValues
+- uid: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_RestoresSceneReferences*
+  commentId: Overload:Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_RestoresSceneReferences
+  href: Prowl.Editor.Test.ComponentClipboardTests.html#Prowl_Editor_Test_ComponentClipboardTests_PasteValues_Undo_RestoresSceneReferences
+  name: PasteValues_Undo_RestoresSceneReferences
+  nameWithType: ComponentClipboardTests.PasteValues_Undo_RestoresSceneReferences
+  fullName: Prowl.Editor.Test.ComponentClipboardTests.PasteValues_Undo_RestoresSceneReferences

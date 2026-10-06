@@ -1,0 +1,878 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.Rendering.LightBVHTextures
+  commentId: T:Prowl.Runtime.Rendering.LightBVHTextures
+  id: LightBVHTextures
+  parent: Prowl.Runtime.Rendering
+  children:
+  - Prowl.Runtime.Rendering.LightBVHTextures.Dispose
+  - Prowl.Runtime.Rendering.LightBVHTextures.InitialDimension
+  - Prowl.Runtime.Rendering.LightBVHTextures.LightCount
+  - Prowl.Runtime.Rendering.LightBVHTextures.LightDataTexture
+  - Prowl.Runtime.Rendering.LightBVHTextures.LightTextureSize
+  - Prowl.Runtime.Rendering.LightBVHTextures.MaxDimension
+  - Prowl.Runtime.Rendering.LightBVHTextures.NodeCount
+  - Prowl.Runtime.Rendering.LightBVHTextures.NodeDataTexture
+  - Prowl.Runtime.Rendering.LightBVHTextures.NodeTextureSize
+  - Prowl.Runtime.Rendering.LightBVHTextures.RootNode
+  - Prowl.Runtime.Rendering.LightBVHTextures.Sync(Prowl.Runtime.Rendering.LightBVH)
+  langs:
+  - csharp
+  - vb
+  name: LightBVHTextures
+  nameWithType: LightBVHTextures
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVHTextures.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LightBVHTextures
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVHTextures.cs
+    startLine: 16
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: >-
+    Owns the GPU mirror of a single <xref href="Prowl.Runtime.Rendering.LightBVH" data-throw-if-not-resolved="false"></xref>: one RGBA32F texture for per-light
+
+    data (5 texels per slot) and one for the BVH nodes (2 texels per node). Both textures are
+
+    square and grow on demand by doubling the dimension; the CPU keeps a staging buffer so we
+
+    can issue exactly one <code>glTexSubImage2D</code> per frame, covering only the affected rows.
+  example: []
+  syntax:
+    content: 'public sealed class LightBVHTextures : IDisposable'
+    content.vb: Public NotInheritable Class LightBVHTextures Implements IDisposable
+  inheritance:
+  - System.Object
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.InitialDimension
+  commentId: F:Prowl.Runtime.Rendering.LightBVHTextures.InitialDimension
+  id: InitialDimension
+  parent: Prowl.Runtime.Rendering.LightBVHTextures
+  langs:
+  - csharp
+  - vb
+  name: InitialDimension
+  nameWithType: LightBVHTextures.InitialDimension
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.InitialDimension
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVHTextures.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: InitialDimension
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVHTextures.cs
+    startLine: 19
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Smallest size we ever allocate. 32x32 RGBA32F = 16 KB and packs ~204 lights / ~256 leaves.
+  example: []
+  syntax:
+    content: public const int InitialDimension = 32
+    return:
+      type: System.Int32
+    content.vb: Public Const InitialDimension As Integer = 32
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.MaxDimension
+  commentId: F:Prowl.Runtime.Rendering.LightBVHTextures.MaxDimension
+  id: MaxDimension
+  parent: Prowl.Runtime.Rendering.LightBVHTextures
+  langs:
+  - csharp
+  - vb
+  name: MaxDimension
+  nameWithType: LightBVHTextures.MaxDimension
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.MaxDimension
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVHTextures.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MaxDimension
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVHTextures.cs
+    startLine: 22
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Hard upper bound on either texture dimension. GL 4.1 guarantees 16384 minimum.
+  example: []
+  syntax:
+    content: public const int MaxDimension = 16384
+    return:
+      type: System.Int32
+    content.vb: Public Const MaxDimension As Integer = 16384
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.LightTextureSize
+  commentId: P:Prowl.Runtime.Rendering.LightBVHTextures.LightTextureSize
+  id: LightTextureSize
+  parent: Prowl.Runtime.Rendering.LightBVHTextures
+  langs:
+  - csharp
+  - vb
+  name: LightTextureSize
+  nameWithType: LightBVHTextures.LightTextureSize
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.LightTextureSize
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVHTextures.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LightTextureSize
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVHTextures.cs
+    startLine: 28
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Width = height = power of 2.
+  example: []
+  syntax:
+    content: public int LightTextureSize { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property LightTextureSize As Integer
+  overload: Prowl.Runtime.Rendering.LightBVHTextures.LightTextureSize*
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.NodeTextureSize
+  commentId: P:Prowl.Runtime.Rendering.LightBVHTextures.NodeTextureSize
+  id: NodeTextureSize
+  parent: Prowl.Runtime.Rendering.LightBVHTextures
+  langs:
+  - csharp
+  - vb
+  name: NodeTextureSize
+  nameWithType: LightBVHTextures.NodeTextureSize
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.NodeTextureSize
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVHTextures.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NodeTextureSize
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVHTextures.cs
+    startLine: 31
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Width = height = power of 2.
+  example: []
+  syntax:
+    content: public int NodeTextureSize { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property NodeTextureSize As Integer
+  overload: Prowl.Runtime.Rendering.LightBVHTextures.NodeTextureSize*
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.LightCount
+  commentId: P:Prowl.Runtime.Rendering.LightBVHTextures.LightCount
+  id: LightCount
+  parent: Prowl.Runtime.Rendering.LightBVHTextures
+  langs:
+  - csharp
+  - vb
+  name: LightCount
+  nameWithType: LightBVHTextures.LightCount
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.LightCount
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVHTextures.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LightCount
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVHTextures.cs
+    startLine: 34
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Live light count uploaded last <xref href="Prowl.Runtime.Rendering.LightBVHTextures.Sync(Prowl.Runtime.Rendering.LightBVH)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public int LightCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property LightCount As Integer
+  overload: Prowl.Runtime.Rendering.LightBVHTextures.LightCount*
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.NodeCount
+  commentId: P:Prowl.Runtime.Rendering.LightBVHTextures.NodeCount
+  id: NodeCount
+  parent: Prowl.Runtime.Rendering.LightBVHTextures
+  langs:
+  - csharp
+  - vb
+  name: NodeCount
+  nameWithType: LightBVHTextures.NodeCount
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.NodeCount
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVHTextures.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NodeCount
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVHTextures.cs
+    startLine: 37
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Live BVH node count uploaded last <xref href="Prowl.Runtime.Rendering.LightBVHTextures.Sync(Prowl.Runtime.Rendering.LightBVH)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public int NodeCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property NodeCount As Integer
+  overload: Prowl.Runtime.Rendering.LightBVHTextures.NodeCount*
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.RootNode
+  commentId: P:Prowl.Runtime.Rendering.LightBVHTextures.RootNode
+  id: RootNode
+  parent: Prowl.Runtime.Rendering.LightBVHTextures
+  langs:
+  - csharp
+  - vb
+  name: RootNode
+  nameWithType: LightBVHTextures.RootNode
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.RootNode
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVHTextures.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RootNode
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVHTextures.cs
+    startLine: 40
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Index of the BVH root, or -1 if the tree is empty. Always 0 in the current builder.
+  example: []
+  syntax:
+    content: public int RootNode { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property RootNode As Integer
+  overload: Prowl.Runtime.Rendering.LightBVHTextures.RootNode*
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.LightDataTexture
+  commentId: P:Prowl.Runtime.Rendering.LightBVHTextures.LightDataTexture
+  id: LightDataTexture
+  parent: Prowl.Runtime.Rendering.LightBVHTextures
+  langs:
+  - csharp
+  - vb
+  name: LightDataTexture
+  nameWithType: LightBVHTextures.LightDataTexture
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.LightDataTexture
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVHTextures.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LightDataTexture
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVHTextures.cs
+    startLine: 43
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Texture sampled by the shader for per-light data. <code>texelFetch</code>-only.
+  example: []
+  syntax:
+    content: public Texture2D LightDataTexture { get; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.Resources.Texture2D
+    content.vb: Public ReadOnly Property LightDataTexture As Texture2D
+  overload: Prowl.Runtime.Rendering.LightBVHTextures.LightDataTexture*
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.NodeDataTexture
+  commentId: P:Prowl.Runtime.Rendering.LightBVHTextures.NodeDataTexture
+  id: NodeDataTexture
+  parent: Prowl.Runtime.Rendering.LightBVHTextures
+  langs:
+  - csharp
+  - vb
+  name: NodeDataTexture
+  nameWithType: LightBVHTextures.NodeDataTexture
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.NodeDataTexture
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVHTextures.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NodeDataTexture
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVHTextures.cs
+    startLine: 46
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Texture sampled by the shader for BVH nodes. <code>texelFetch</code>-only.
+  example: []
+  syntax:
+    content: public Texture2D NodeDataTexture { get; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.Resources.Texture2D
+    content.vb: Public ReadOnly Property NodeDataTexture As Texture2D
+  overload: Prowl.Runtime.Rendering.LightBVHTextures.NodeDataTexture*
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.Sync(Prowl.Runtime.Rendering.LightBVH)
+  commentId: M:Prowl.Runtime.Rendering.LightBVHTextures.Sync(Prowl.Runtime.Rendering.LightBVH)
+  id: Sync(Prowl.Runtime.Rendering.LightBVH)
+  parent: Prowl.Runtime.Rendering.LightBVHTextures
+  langs:
+  - csharp
+  - vb
+  name: Sync(LightBVH)
+  nameWithType: LightBVHTextures.Sync(LightBVH)
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.Sync(Prowl.Runtime.Rendering.LightBVH)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVHTextures.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Sync
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVHTextures.cs
+    startLine: 57
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: >-
+    Pull dirty rows out of <code class="paramref">bvh</code> and upload them. Resizes textures if the
+
+    BVH outgrew the current allocation; resize forces a full re-upload of every active row.
+  example: []
+  syntax:
+    content: public void Sync(LightBVH bvh)
+    parameters:
+    - id: bvh
+      type: Prowl.Runtime.Rendering.LightBVH
+    content.vb: Public Sub Sync(bvh As LightBVH)
+  overload: Prowl.Runtime.Rendering.LightBVHTextures.Sync*
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.Dispose
+  commentId: M:Prowl.Runtime.Rendering.LightBVHTextures.Dispose
+  id: Dispose
+  parent: Prowl.Runtime.Rendering.LightBVHTextures
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: LightBVHTextures.Dispose()
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.Dispose()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVHTextures.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Dispose
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVHTextures.cs
+    startLine: 103
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+  example: []
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose()
+  overload: Prowl.Runtime.Rendering.LightBVHTextures.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+references:
+- uid: Prowl.Runtime.Rendering.LightBVH
+  commentId: T:Prowl.Runtime.Rendering.LightBVH
+  parent: Prowl.Runtime.Rendering
+  href: Prowl.Runtime.Rendering.LightBVH.html
+  name: LightBVH
+  nameWithType: LightBVH
+  fullName: Prowl.Runtime.Rendering.LightBVH
+- uid: Prowl.Runtime.Rendering
+  commentId: N:Prowl.Runtime.Rendering
+  name: Prowl.Runtime.Rendering
+  nameWithType: Prowl.Runtime.Rendering
+  fullName: Prowl.Runtime.Rendering
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Rendering
+    name: Rendering
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Rendering
+    name: Rendering
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.LightTextureSize*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVHTextures.LightTextureSize
+  href: Prowl.Runtime.Rendering.LightBVHTextures.html#Prowl_Runtime_Rendering_LightBVHTextures_LightTextureSize
+  name: LightTextureSize
+  nameWithType: LightBVHTextures.LightTextureSize
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.LightTextureSize
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.NodeTextureSize*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVHTextures.NodeTextureSize
+  href: Prowl.Runtime.Rendering.LightBVHTextures.html#Prowl_Runtime_Rendering_LightBVHTextures_NodeTextureSize
+  name: NodeTextureSize
+  nameWithType: LightBVHTextures.NodeTextureSize
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.NodeTextureSize
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.Sync(Prowl.Runtime.Rendering.LightBVH)
+  commentId: M:Prowl.Runtime.Rendering.LightBVHTextures.Sync(Prowl.Runtime.Rendering.LightBVH)
+  href: Prowl.Runtime.Rendering.LightBVHTextures.html#Prowl_Runtime_Rendering_LightBVHTextures_Sync_Prowl_Runtime_Rendering_LightBVH_
+  name: Sync(LightBVH)
+  nameWithType: LightBVHTextures.Sync(LightBVH)
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.Sync(Prowl.Runtime.Rendering.LightBVH)
+  spec.csharp:
+  - uid: Prowl.Runtime.Rendering.LightBVHTextures.Sync(Prowl.Runtime.Rendering.LightBVH)
+    name: Sync
+    href: Prowl.Runtime.Rendering.LightBVHTextures.html#Prowl_Runtime_Rendering_LightBVHTextures_Sync_Prowl_Runtime_Rendering_LightBVH_
+  - name: (
+  - uid: Prowl.Runtime.Rendering.LightBVH
+    name: LightBVH
+    href: Prowl.Runtime.Rendering.LightBVH.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Rendering.LightBVHTextures.Sync(Prowl.Runtime.Rendering.LightBVH)
+    name: Sync
+    href: Prowl.Runtime.Rendering.LightBVHTextures.html#Prowl_Runtime_Rendering_LightBVHTextures_Sync_Prowl_Runtime_Rendering_LightBVH_
+  - name: (
+  - uid: Prowl.Runtime.Rendering.LightBVH
+    name: LightBVH
+    href: Prowl.Runtime.Rendering.LightBVH.html
+  - name: )
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.LightCount*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVHTextures.LightCount
+  href: Prowl.Runtime.Rendering.LightBVHTextures.html#Prowl_Runtime_Rendering_LightBVHTextures_LightCount
+  name: LightCount
+  nameWithType: LightBVHTextures.LightCount
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.LightCount
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.NodeCount*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVHTextures.NodeCount
+  href: Prowl.Runtime.Rendering.LightBVHTextures.html#Prowl_Runtime_Rendering_LightBVHTextures_NodeCount
+  name: NodeCount
+  nameWithType: LightBVHTextures.NodeCount
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.NodeCount
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.RootNode*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVHTextures.RootNode
+  href: Prowl.Runtime.Rendering.LightBVHTextures.html#Prowl_Runtime_Rendering_LightBVHTextures_RootNode
+  name: RootNode
+  nameWithType: LightBVHTextures.RootNode
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.RootNode
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.LightDataTexture*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVHTextures.LightDataTexture
+  href: Prowl.Runtime.Rendering.LightBVHTextures.html#Prowl_Runtime_Rendering_LightBVHTextures_LightDataTexture
+  name: LightDataTexture
+  nameWithType: LightBVHTextures.LightDataTexture
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.LightDataTexture
+- uid: Prowl.Runtime.Resources.Texture2D
+  commentId: T:Prowl.Runtime.Resources.Texture2D
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.Texture2D.html
+  name: Texture2D
+  nameWithType: Texture2D
+  fullName: Prowl.Runtime.Resources.Texture2D
+- uid: Prowl.Runtime.Resources
+  commentId: N:Prowl.Runtime.Resources
+  name: Prowl.Runtime.Resources
+  nameWithType: Prowl.Runtime.Resources
+  fullName: Prowl.Runtime.Resources
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.NodeDataTexture*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVHTextures.NodeDataTexture
+  href: Prowl.Runtime.Rendering.LightBVHTextures.html#Prowl_Runtime_Rendering_LightBVHTextures_NodeDataTexture
+  name: NodeDataTexture
+  nameWithType: LightBVHTextures.NodeDataTexture
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.NodeDataTexture
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.Sync*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVHTextures.Sync
+  href: Prowl.Runtime.Rendering.LightBVHTextures.html#Prowl_Runtime_Rendering_LightBVHTextures_Sync_Prowl_Runtime_Rendering_LightBVH_
+  name: Sync
+  nameWithType: LightBVHTextures.Sync
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.Sync
+- uid: Prowl.Runtime.Rendering.LightBVHTextures.Dispose*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVHTextures.Dispose
+  href: Prowl.Runtime.Rendering.LightBVHTextures.html#Prowl_Runtime_Rendering_LightBVHTextures_Dispose
+  name: Dispose
+  nameWithType: LightBVHTextures.Dispose
+  fullName: Prowl.Runtime.Rendering.LightBVHTextures.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )

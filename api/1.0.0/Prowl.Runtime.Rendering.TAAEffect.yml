@@ -1,0 +1,1026 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.Rendering.TAAEffect
+  commentId: T:Prowl.Runtime.Rendering.TAAEffect
+  id: TAAEffect
+  parent: Prowl.Runtime.Rendering
+  children:
+  - Prowl.Runtime.Rendering.TAAEffect.BlendFactor
+  - Prowl.Runtime.Rendering.TAAEffect.Jitter
+  - Prowl.Runtime.Rendering.TAAEffect.JitterSpread
+  - Prowl.Runtime.Rendering.TAAEffect.MotionBlendFactor
+  - Prowl.Runtime.Rendering.TAAEffect.MotionScale
+  - Prowl.Runtime.Rendering.TAAEffect.OnDisable
+  - Prowl.Runtime.Rendering.TAAEffect.OnPostRender(Prowl.Runtime.Camera)
+  - Prowl.Runtime.Rendering.TAAEffect.OnPreCull(Prowl.Runtime.Camera)
+  - Prowl.Runtime.Rendering.TAAEffect.OnRenderEffect(Prowl.Runtime.Rendering.RenderContext)
+  - Prowl.Runtime.Rendering.TAAEffect.PreviousJitter
+  - Prowl.Runtime.Rendering.TAAEffect.Sharpness
+  - Prowl.Runtime.Rendering.TAAEffect.Stage
+  langs:
+  - csharp
+  - vb
+  name: TAAEffect
+  nameWithType: TAAEffect
+  fullName: Prowl.Runtime.Rendering.TAAEffect
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TAAEffect
+    path: ../Prowl/Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+    startLine: 26
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: >-
+    Temporal Anti-Aliasing image effect.
+
+    Jitters the camera projection matrix each frame using a Halton sequence and
+
+    accumulates samples over time, using motion vectors to reproject the previous
+
+    frame's result.
+
+
+    Usage:
+      1. Add TAAEffect to Camera.Effects.
+      2. Motion vectors are always produced by the unified prepass.
+      3. OnPreCull applies the sub-pixel jitter to the camera's ProjectionMatrix
+         while NonJitteredProjectionMatrix stays clean.
+      4. OnRenderEffect resolves the jittered frame against the reprojected history.
+  example: []
+  syntax:
+    content: 'public sealed class TAAEffect : ImageEffect'
+    content.vb: Public NotInheritable Class TAAEffect Inherits ImageEffect
+  inheritance:
+  - System.Object
+  - Prowl.Runtime.ImageEffect
+  inheritedMembers:
+  - Prowl.Runtime.ImageEffect.Enabled
+  - Prowl.Runtime.ImageEffect.TransformsToLDR
+  - Prowl.Runtime.ImageEffect.OnPreRender(Prowl.Runtime.Camera)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.Rendering.TAAEffect.Stage
+  commentId: P:Prowl.Runtime.Rendering.TAAEffect.Stage
+  id: Stage
+  parent: Prowl.Runtime.Rendering.TAAEffect
+  langs:
+  - csharp
+  - vb
+  name: Stage
+  nameWithType: TAAEffect.Stage
+  fullName: Prowl.Runtime.Rendering.TAAEffect.Stage
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Stage
+    path: ../Prowl/Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+    startLine: 28
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: >-
+    Defines at which stage of the rendering pipeline this effect should run.
+
+    AfterOpaques: runs after opaque geometry, before transparents (GTAO, SSR).
+
+    PostProcess: runs after all rendering (tonemapping, bloom, FXAA).
+  example: []
+  syntax:
+    content: public override RenderStage Stage { get; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.Rendering.RenderStage
+    content.vb: Public Overrides ReadOnly Property Stage As RenderStage
+  overridden: Prowl.Runtime.ImageEffect.Stage
+  overload: Prowl.Runtime.Rendering.TAAEffect.Stage*
+- uid: Prowl.Runtime.Rendering.TAAEffect.BlendFactor
+  commentId: F:Prowl.Runtime.Rendering.TAAEffect.BlendFactor
+  id: BlendFactor
+  parent: Prowl.Runtime.Rendering.TAAEffect
+  langs:
+  - csharp
+  - vb
+  name: BlendFactor
+  nameWithType: TAAEffect.BlendFactor
+  fullName: Prowl.Runtime.Rendering.TAAEffect.BlendFactor
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: BlendFactor
+    path: ../Prowl/Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+    startLine: 31
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: How much of the history to keep (0..0.99). Higher = smoother but ghosts more.
+  example: []
+  syntax:
+    content: public float BlendFactor
+    return:
+      type: System.Single
+    content.vb: Public BlendFactor As Single
+- uid: Prowl.Runtime.Rendering.TAAEffect.MotionBlendFactor
+  commentId: F:Prowl.Runtime.Rendering.TAAEffect.MotionBlendFactor
+  id: MotionBlendFactor
+  parent: Prowl.Runtime.Rendering.TAAEffect
+  langs:
+  - csharp
+  - vb
+  name: MotionBlendFactor
+  nameWithType: TAAEffect.MotionBlendFactor
+  fullName: Prowl.Runtime.Rendering.TAAEffect.MotionBlendFactor
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MotionBlendFactor
+    path: ../Prowl/Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+    startLine: 35
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: >-
+    How much history to keep where the image moves fast (0..0.99). Lower trails less on
+        fast pans; it stays above zero so moving pixels are still anti-aliased instead of shimmering.
+  example: []
+  syntax:
+    content: public float MotionBlendFactor
+    return:
+      type: System.Single
+    content.vb: Public MotionBlendFactor As Single
+- uid: Prowl.Runtime.Rendering.TAAEffect.MotionScale
+  commentId: F:Prowl.Runtime.Rendering.TAAEffect.MotionScale
+  id: MotionScale
+  parent: Prowl.Runtime.Rendering.TAAEffect
+  langs:
+  - csharp
+  - vb
+  name: MotionScale
+  nameWithType: TAAEffect.MotionScale
+  fullName: Prowl.Runtime.Rendering.TAAEffect.MotionScale
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MotionScale
+    path: ../Prowl/Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+    startLine: 38
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Scale for motion-based neighborhood tightening. Higher = more aggressive ghosting rejection.
+  example: []
+  syntax:
+    content: public float MotionScale
+    return:
+      type: System.Single
+    content.vb: Public MotionScale As Single
+- uid: Prowl.Runtime.Rendering.TAAEffect.Sharpness
+  commentId: F:Prowl.Runtime.Rendering.TAAEffect.Sharpness
+  id: Sharpness
+  parent: Prowl.Runtime.Rendering.TAAEffect
+  langs:
+  - csharp
+  - vb
+  name: Sharpness
+  nameWithType: TAAEffect.Sharpness
+  fullName: Prowl.Runtime.Rendering.TAAEffect.Sharpness
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Sharpness
+    path: ../Prowl/Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+    startLine: 41
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Post-resolve sharpening amount (0 = none, 1 = strong).
+  example: []
+  syntax:
+    content: public float Sharpness
+    return:
+      type: System.Single
+    content.vb: Public Sharpness As Single
+- uid: Prowl.Runtime.Rendering.TAAEffect.JitterSpread
+  commentId: F:Prowl.Runtime.Rendering.TAAEffect.JitterSpread
+  id: JitterSpread
+  parent: Prowl.Runtime.Rendering.TAAEffect
+  langs:
+  - csharp
+  - vb
+  name: JitterSpread
+  nameWithType: TAAEffect.JitterSpread
+  fullName: Prowl.Runtime.Rendering.TAAEffect.JitterSpread
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: JitterSpread
+    path: ../Prowl/Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+    startLine: 44
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Number of Halton samples in the jitter sequence before repeating.
+  example: []
+  syntax:
+    content: public int JitterSpread
+    return:
+      type: System.Int32
+    content.vb: Public JitterSpread As Integer
+- uid: Prowl.Runtime.Rendering.TAAEffect.Jitter
+  commentId: P:Prowl.Runtime.Rendering.TAAEffect.Jitter
+  id: Jitter
+  parent: Prowl.Runtime.Rendering.TAAEffect
+  langs:
+  - csharp
+  - vb
+  name: Jitter
+  nameWithType: TAAEffect.Jitter
+  fullName: Prowl.Runtime.Rendering.TAAEffect.Jitter
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Jitter
+    path: ../Prowl/Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+    startLine: 58
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Current sub-pixel jitter offset in pixel coordinates.
+  example: []
+  syntax:
+    content: public Float2 Jitter { get; }
+    parameters: []
+    return:
+      type: Prowl.Vector.Float2
+    content.vb: Public ReadOnly Property Jitter As Float2
+  overload: Prowl.Runtime.Rendering.TAAEffect.Jitter*
+- uid: Prowl.Runtime.Rendering.TAAEffect.PreviousJitter
+  commentId: P:Prowl.Runtime.Rendering.TAAEffect.PreviousJitter
+  id: PreviousJitter
+  parent: Prowl.Runtime.Rendering.TAAEffect
+  langs:
+  - csharp
+  - vb
+  name: PreviousJitter
+  nameWithType: TAAEffect.PreviousJitter
+  fullName: Prowl.Runtime.Rendering.TAAEffect.PreviousJitter
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PreviousJitter
+    path: ../Prowl/Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+    startLine: 63
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Previous frame's jitter offset in pixel coordinates.
+  example: []
+  syntax:
+    content: public Float2 PreviousJitter { get; }
+    parameters: []
+    return:
+      type: Prowl.Vector.Float2
+    content.vb: Public ReadOnly Property PreviousJitter As Float2
+  overload: Prowl.Runtime.Rendering.TAAEffect.PreviousJitter*
+- uid: Prowl.Runtime.Rendering.TAAEffect.OnPreCull(Prowl.Runtime.Camera)
+  commentId: M:Prowl.Runtime.Rendering.TAAEffect.OnPreCull(Prowl.Runtime.Camera)
+  id: OnPreCull(Prowl.Runtime.Camera)
+  parent: Prowl.Runtime.Rendering.TAAEffect
+  langs:
+  - csharp
+  - vb
+  name: OnPreCull(Camera)
+  nameWithType: TAAEffect.OnPreCull(Camera)
+  fullName: Prowl.Runtime.Rendering.TAAEffect.OnPreCull(Prowl.Runtime.Camera)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnPreCull
+    path: ../Prowl/Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+    startLine: 65
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Called before culling for this camera.
+  example: []
+  syntax:
+    content: public override void OnPreCull(Camera camera)
+    parameters:
+    - id: camera
+      type: Prowl.Runtime.Camera
+    content.vb: Public Overrides Sub OnPreCull(camera As Camera)
+  overridden: Prowl.Runtime.ImageEffect.OnPreCull(Prowl.Runtime.Camera)
+  overload: Prowl.Runtime.Rendering.TAAEffect.OnPreCull*
+- uid: Prowl.Runtime.Rendering.TAAEffect.OnPostRender(Prowl.Runtime.Camera)
+  commentId: M:Prowl.Runtime.Rendering.TAAEffect.OnPostRender(Prowl.Runtime.Camera)
+  id: OnPostRender(Prowl.Runtime.Camera)
+  parent: Prowl.Runtime.Rendering.TAAEffect
+  langs:
+  - csharp
+  - vb
+  name: OnPostRender(Camera)
+  nameWithType: TAAEffect.OnPostRender(Camera)
+  fullName: Prowl.Runtime.Rendering.TAAEffect.OnPostRender(Prowl.Runtime.Camera)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnPostRender
+    path: ../Prowl/Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+    startLine: 114
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Called after all rendering is complete for this camera.
+  example: []
+  syntax:
+    content: public override void OnPostRender(Camera camera)
+    parameters:
+    - id: camera
+      type: Prowl.Runtime.Camera
+    content.vb: Public Overrides Sub OnPostRender(camera As Camera)
+  overridden: Prowl.Runtime.ImageEffect.OnPostRender(Prowl.Runtime.Camera)
+  overload: Prowl.Runtime.Rendering.TAAEffect.OnPostRender*
+- uid: Prowl.Runtime.Rendering.TAAEffect.OnRenderEffect(Prowl.Runtime.Rendering.RenderContext)
+  commentId: M:Prowl.Runtime.Rendering.TAAEffect.OnRenderEffect(Prowl.Runtime.Rendering.RenderContext)
+  id: OnRenderEffect(Prowl.Runtime.Rendering.RenderContext)
+  parent: Prowl.Runtime.Rendering.TAAEffect
+  langs:
+  - csharp
+  - vb
+  name: OnRenderEffect(RenderContext)
+  nameWithType: TAAEffect.OnRenderEffect(RenderContext)
+  fullName: Prowl.Runtime.Rendering.TAAEffect.OnRenderEffect(Prowl.Runtime.Rendering.RenderContext)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnRenderEffect
+    path: ../Prowl/Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+    startLine: 123
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Called during rendering with access to render targets.
+  example: []
+  syntax:
+    content: public override void OnRenderEffect(RenderContext context)
+    parameters:
+    - id: context
+      type: Prowl.Runtime.Rendering.RenderContext
+    content.vb: Public Overrides Sub OnRenderEffect(context As RenderContext)
+  overridden: Prowl.Runtime.ImageEffect.OnRenderEffect(Prowl.Runtime.Rendering.RenderContext)
+  overload: Prowl.Runtime.Rendering.TAAEffect.OnRenderEffect*
+- uid: Prowl.Runtime.Rendering.TAAEffect.OnDisable
+  commentId: M:Prowl.Runtime.Rendering.TAAEffect.OnDisable
+  id: OnDisable
+  parent: Prowl.Runtime.Rendering.TAAEffect
+  langs:
+  - csharp
+  - vb
+  name: OnDisable()
+  nameWithType: TAAEffect.OnDisable()
+  fullName: Prowl.Runtime.Rendering.TAAEffect.OnDisable()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnDisable
+    path: ../Prowl/Prowl.Runtime/Rendering/Image Effects/TAAEffect.cs
+    startLine: 178
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: >-
+    Called when the effect transitions from active to inactive (Enabled = false,
+
+    or removed from Camera.Effects). Override to release GPU resources such as
+
+    materials, persistent RenderTextures, or shader-program handles.
+  example: []
+  syntax:
+    content: public override void OnDisable()
+    content.vb: Public Overrides Sub OnDisable()
+  overridden: Prowl.Runtime.ImageEffect.OnDisable
+  overload: Prowl.Runtime.Rendering.TAAEffect.OnDisable*
+references:
+- uid: Prowl.Runtime.Rendering
+  commentId: N:Prowl.Runtime.Rendering
+  name: Prowl.Runtime.Rendering
+  nameWithType: Prowl.Runtime.Rendering
+  fullName: Prowl.Runtime.Rendering
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Rendering
+    name: Rendering
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Rendering
+    name: Rendering
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.Runtime.ImageEffect
+  commentId: T:Prowl.Runtime.ImageEffect
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.ImageEffect.html
+  name: ImageEffect
+  nameWithType: ImageEffect
+  fullName: Prowl.Runtime.ImageEffect
+- uid: Prowl.Runtime.ImageEffect.Enabled
+  commentId: F:Prowl.Runtime.ImageEffect.Enabled
+  parent: Prowl.Runtime.ImageEffect
+  href: Prowl.Runtime.ImageEffect.html#Prowl_Runtime_ImageEffect_Enabled
+  name: Enabled
+  nameWithType: ImageEffect.Enabled
+  fullName: Prowl.Runtime.ImageEffect.Enabled
+- uid: Prowl.Runtime.ImageEffect.TransformsToLDR
+  commentId: P:Prowl.Runtime.ImageEffect.TransformsToLDR
+  parent: Prowl.Runtime.ImageEffect
+  href: Prowl.Runtime.ImageEffect.html#Prowl_Runtime_ImageEffect_TransformsToLDR
+  name: TransformsToLDR
+  nameWithType: ImageEffect.TransformsToLDR
+  fullName: Prowl.Runtime.ImageEffect.TransformsToLDR
+- uid: Prowl.Runtime.ImageEffect.OnPreRender(Prowl.Runtime.Camera)
+  commentId: M:Prowl.Runtime.ImageEffect.OnPreRender(Prowl.Runtime.Camera)
+  parent: Prowl.Runtime.ImageEffect
+  href: Prowl.Runtime.ImageEffect.html#Prowl_Runtime_ImageEffect_OnPreRender_Prowl_Runtime_Camera_
+  name: OnPreRender(Camera)
+  nameWithType: ImageEffect.OnPreRender(Camera)
+  fullName: Prowl.Runtime.ImageEffect.OnPreRender(Prowl.Runtime.Camera)
+  spec.csharp:
+  - uid: Prowl.Runtime.ImageEffect.OnPreRender(Prowl.Runtime.Camera)
+    name: OnPreRender
+    href: Prowl.Runtime.ImageEffect.html#Prowl_Runtime_ImageEffect_OnPreRender_Prowl_Runtime_Camera_
+  - name: (
+  - uid: Prowl.Runtime.Camera
+    name: Camera
+    href: Prowl.Runtime.Camera.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.ImageEffect.OnPreRender(Prowl.Runtime.Camera)
+    name: OnPreRender
+    href: Prowl.Runtime.ImageEffect.html#Prowl_Runtime_ImageEffect_OnPreRender_Prowl_Runtime_Camera_
+  - name: (
+  - uid: Prowl.Runtime.Camera
+    name: Camera
+    href: Prowl.Runtime.Camera.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime.ImageEffect.Stage
+  commentId: P:Prowl.Runtime.ImageEffect.Stage
+  parent: Prowl.Runtime.ImageEffect
+  href: Prowl.Runtime.ImageEffect.html#Prowl_Runtime_ImageEffect_Stage
+  name: Stage
+  nameWithType: ImageEffect.Stage
+  fullName: Prowl.Runtime.ImageEffect.Stage
+- uid: Prowl.Runtime.Rendering.TAAEffect.Stage*
+  commentId: Overload:Prowl.Runtime.Rendering.TAAEffect.Stage
+  href: Prowl.Runtime.Rendering.TAAEffect.html#Prowl_Runtime_Rendering_TAAEffect_Stage
+  name: Stage
+  nameWithType: TAAEffect.Stage
+  fullName: Prowl.Runtime.Rendering.TAAEffect.Stage
+- uid: Prowl.Runtime.Rendering.RenderStage
+  commentId: T:Prowl.Runtime.Rendering.RenderStage
+  parent: Prowl.Runtime.Rendering
+  href: Prowl.Runtime.Rendering.RenderStage.html
+  name: RenderStage
+  nameWithType: RenderStage
+  fullName: Prowl.Runtime.Rendering.RenderStage
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Runtime.Rendering.TAAEffect.Jitter*
+  commentId: Overload:Prowl.Runtime.Rendering.TAAEffect.Jitter
+  href: Prowl.Runtime.Rendering.TAAEffect.html#Prowl_Runtime_Rendering_TAAEffect_Jitter
+  name: Jitter
+  nameWithType: TAAEffect.Jitter
+  fullName: Prowl.Runtime.Rendering.TAAEffect.Jitter
+- uid: Prowl.Vector.Float2
+  commentId: T:Prowl.Vector.Float2
+  parent: Prowl.Vector
+  isExternal: true
+  name: Float2
+  nameWithType: Float2
+  fullName: Prowl.Vector.Float2
+- uid: Prowl.Vector
+  commentId: N:Prowl.Vector
+  name: Prowl.Vector
+  nameWithType: Prowl.Vector
+  fullName: Prowl.Vector
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+- uid: Prowl.Runtime.Rendering.TAAEffect.PreviousJitter*
+  commentId: Overload:Prowl.Runtime.Rendering.TAAEffect.PreviousJitter
+  href: Prowl.Runtime.Rendering.TAAEffect.html#Prowl_Runtime_Rendering_TAAEffect_PreviousJitter
+  name: PreviousJitter
+  nameWithType: TAAEffect.PreviousJitter
+  fullName: Prowl.Runtime.Rendering.TAAEffect.PreviousJitter
+- uid: Prowl.Runtime.ImageEffect.OnPreCull(Prowl.Runtime.Camera)
+  commentId: M:Prowl.Runtime.ImageEffect.OnPreCull(Prowl.Runtime.Camera)
+  parent: Prowl.Runtime.ImageEffect
+  href: Prowl.Runtime.ImageEffect.html#Prowl_Runtime_ImageEffect_OnPreCull_Prowl_Runtime_Camera_
+  name: OnPreCull(Camera)
+  nameWithType: ImageEffect.OnPreCull(Camera)
+  fullName: Prowl.Runtime.ImageEffect.OnPreCull(Prowl.Runtime.Camera)
+  spec.csharp:
+  - uid: Prowl.Runtime.ImageEffect.OnPreCull(Prowl.Runtime.Camera)
+    name: OnPreCull
+    href: Prowl.Runtime.ImageEffect.html#Prowl_Runtime_ImageEffect_OnPreCull_Prowl_Runtime_Camera_
+  - name: (
+  - uid: Prowl.Runtime.Camera
+    name: Camera
+    href: Prowl.Runtime.Camera.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.ImageEffect.OnPreCull(Prowl.Runtime.Camera)
+    name: OnPreCull
+    href: Prowl.Runtime.ImageEffect.html#Prowl_Runtime_ImageEffect_OnPreCull_Prowl_Runtime_Camera_
+  - name: (
+  - uid: Prowl.Runtime.Camera
+    name: Camera
+    href: Prowl.Runtime.Camera.html
+  - name: )
+- uid: Prowl.Runtime.Rendering.TAAEffect.OnPreCull*
+  commentId: Overload:Prowl.Runtime.Rendering.TAAEffect.OnPreCull
+  href: Prowl.Runtime.Rendering.TAAEffect.html#Prowl_Runtime_Rendering_TAAEffect_OnPreCull_Prowl_Runtime_Camera_
+  name: OnPreCull
+  nameWithType: TAAEffect.OnPreCull
+  fullName: Prowl.Runtime.Rendering.TAAEffect.OnPreCull
+- uid: Prowl.Runtime.Camera
+  commentId: T:Prowl.Runtime.Camera
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.Camera.html
+  name: Camera
+  nameWithType: Camera
+  fullName: Prowl.Runtime.Camera
+- uid: Prowl.Runtime.ImageEffect.OnPostRender(Prowl.Runtime.Camera)
+  commentId: M:Prowl.Runtime.ImageEffect.OnPostRender(Prowl.Runtime.Camera)
+  parent: Prowl.Runtime.ImageEffect
+  href: Prowl.Runtime.ImageEffect.html#Prowl_Runtime_ImageEffect_OnPostRender_Prowl_Runtime_Camera_
+  name: OnPostRender(Camera)
+  nameWithType: ImageEffect.OnPostRender(Camera)
+  fullName: Prowl.Runtime.ImageEffect.OnPostRender(Prowl.Runtime.Camera)
+  spec.csharp:
+  - uid: Prowl.Runtime.ImageEffect.OnPostRender(Prowl.Runtime.Camera)
+    name: OnPostRender
+    href: Prowl.Runtime.ImageEffect.html#Prowl_Runtime_ImageEffect_OnPostRender_Prowl_Runtime_Camera_
+  - name: (
+  - uid: Prowl.Runtime.Camera
+    name: Camera
+    href: Prowl.Runtime.Camera.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.ImageEffect.OnPostRender(Prowl.Runtime.Camera)
+    name: OnPostRender
+    href: Prowl.Runtime.ImageEffect.html#Prowl_Runtime_ImageEffect_OnPostRender_Prowl_Runtime_Camera_
+  - name: (
+  - uid: Prowl.Runtime.Camera
+    name: Camera
+    href: Prowl.Runtime.Camera.html
+  - name: )
+- uid: Prowl.Runtime.Rendering.TAAEffect.OnPostRender*
+  commentId: Overload:Prowl.Runtime.Rendering.TAAEffect.OnPostRender
+  href: Prowl.Runtime.Rendering.TAAEffect.html#Prowl_Runtime_Rendering_TAAEffect_OnPostRender_Prowl_Runtime_Camera_
+  name: OnPostRender
+  nameWithType: TAAEffect.OnPostRender
+  fullName: Prowl.Runtime.Rendering.TAAEffect.OnPostRender
+- uid: Prowl.Runtime.ImageEffect.OnRenderEffect(Prowl.Runtime.Rendering.RenderContext)
+  commentId: M:Prowl.Runtime.ImageEffect.OnRenderEffect(Prowl.Runtime.Rendering.RenderContext)
+  parent: Prowl.Runtime.ImageEffect
+  href: Prowl.Runtime.ImageEffect.html#Prowl_Runtime_ImageEffect_OnRenderEffect_Prowl_Runtime_Rendering_RenderContext_
+  name: OnRenderEffect(RenderContext)
+  nameWithType: ImageEffect.OnRenderEffect(RenderContext)
+  fullName: Prowl.Runtime.ImageEffect.OnRenderEffect(Prowl.Runtime.Rendering.RenderContext)
+  spec.csharp:
+  - uid: Prowl.Runtime.ImageEffect.OnRenderEffect(Prowl.Runtime.Rendering.RenderContext)
+    name: OnRenderEffect
+    href: Prowl.Runtime.ImageEffect.html#Prowl_Runtime_ImageEffect_OnRenderEffect_Prowl_Runtime_Rendering_RenderContext_
+  - name: (
+  - uid: Prowl.Runtime.Rendering.RenderContext
+    name: RenderContext
+    href: Prowl.Runtime.Rendering.RenderContext.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.ImageEffect.OnRenderEffect(Prowl.Runtime.Rendering.RenderContext)
+    name: OnRenderEffect
+    href: Prowl.Runtime.ImageEffect.html#Prowl_Runtime_ImageEffect_OnRenderEffect_Prowl_Runtime_Rendering_RenderContext_
+  - name: (
+  - uid: Prowl.Runtime.Rendering.RenderContext
+    name: RenderContext
+    href: Prowl.Runtime.Rendering.RenderContext.html
+  - name: )
+- uid: Prowl.Runtime.Rendering.TAAEffect.OnRenderEffect*
+  commentId: Overload:Prowl.Runtime.Rendering.TAAEffect.OnRenderEffect
+  href: Prowl.Runtime.Rendering.TAAEffect.html#Prowl_Runtime_Rendering_TAAEffect_OnRenderEffect_Prowl_Runtime_Rendering_RenderContext_
+  name: OnRenderEffect
+  nameWithType: TAAEffect.OnRenderEffect
+  fullName: Prowl.Runtime.Rendering.TAAEffect.OnRenderEffect
+- uid: Prowl.Runtime.Rendering.RenderContext
+  commentId: T:Prowl.Runtime.Rendering.RenderContext
+  parent: Prowl.Runtime.Rendering
+  href: Prowl.Runtime.Rendering.RenderContext.html
+  name: RenderContext
+  nameWithType: RenderContext
+  fullName: Prowl.Runtime.Rendering.RenderContext
+- uid: Prowl.Runtime.ImageEffect.OnDisable
+  commentId: M:Prowl.Runtime.ImageEffect.OnDisable
+  parent: Prowl.Runtime.ImageEffect
+  href: Prowl.Runtime.ImageEffect.html#Prowl_Runtime_ImageEffect_OnDisable
+  name: OnDisable()
+  nameWithType: ImageEffect.OnDisable()
+  fullName: Prowl.Runtime.ImageEffect.OnDisable()
+  spec.csharp:
+  - uid: Prowl.Runtime.ImageEffect.OnDisable
+    name: OnDisable
+    href: Prowl.Runtime.ImageEffect.html#Prowl_Runtime_ImageEffect_OnDisable
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.ImageEffect.OnDisable
+    name: OnDisable
+    href: Prowl.Runtime.ImageEffect.html#Prowl_Runtime_ImageEffect_OnDisable
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Rendering.TAAEffect.OnDisable*
+  commentId: Overload:Prowl.Runtime.Rendering.TAAEffect.OnDisable
+  href: Prowl.Runtime.Rendering.TAAEffect.html#Prowl_Runtime_Rendering_TAAEffect_OnDisable
+  name: OnDisable
+  nameWithType: TAAEffect.OnDisable
+  fullName: Prowl.Runtime.Rendering.TAAEffect.OnDisable

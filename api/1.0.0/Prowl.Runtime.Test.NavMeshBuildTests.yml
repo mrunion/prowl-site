@@ -1,0 +1,1678 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.Test.NavMeshBuildTests
+  commentId: T:Prowl.Runtime.Test.NavMeshBuildTests
+  id: NavMeshBuildTests
+  parent: Prowl.Runtime.Test
+  children:
+  - Prowl.Runtime.Test.NavMeshBuildTests.AreaCosts_BiasPathSelection
+  - Prowl.Runtime.Test.NavMeshBuildTests.BuildTilesInBounds_HonorsPerSourceAreas
+  - Prowl.Runtime.Test.NavMeshBuildTests.Build_AppliesDefaultAreaToPolys
+  - Prowl.Runtime.Test.NavMeshBuildTests.Build_HonorsPerSourceAreas
+  - Prowl.Runtime.Test.NavMeshBuildTests.Build_IsDeterministic_SingleThreaded
+  - Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksAcrossTileBoundary_Instantiate(System.Int32,System.Single)
+  - Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksArrivingFromEveryNeighbour_Instantiate(System.Int32)
+  - Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksCrowdingATileBoundary_AllCross(System.Int32,System.Single)
+  - Prowl.Runtime.Test.NavMeshBuildTests.Build_MinRegionArea_CullsSmallIslands(System.Single,System.Boolean)
+  - Prowl.Runtime.Test.NavMeshBuildTests.Build_Threaded_MatchesSingleThreaded
+  - Prowl.Runtime.Test.NavMeshBuildTests.Build_WithNoGeometry_ReturnsNull
+  - Prowl.Runtime.Test.NavMeshBuildTests.Build_WithWorldBounds_SizesGridFromBounds
+  - Prowl.Runtime.Test.NavMeshBuildTests.Build_WithoutDetailMesh_BakesAndQueries
+  - Prowl.Runtime.Test.NavMeshBuildTests.CalculateTriangulation_EmptyResult_HasEveryArrayInitialized
+  - Prowl.Runtime.Test.NavMeshBuildTests.CreateTileCache_IsDeterministicAcrossRegistrations
+  - Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_DownFacingWinding_ReturnsNull
+  - Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_MirroredTransform_ProducesWalkablePolys
+  - Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_UpFacingWinding_ProducesWalkablePolys
+  - Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_CalculateTriangulation_WorksWithoutRegistration
+  - Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_EchoRoundTrip_PreservesTilesAndSettings
+  - Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_FromAnUnreadableFormat_SaysWhichVersionsItReads
+  - Prowl.Runtime.Test.NavMeshBuildTests.RebuiltTiles_ThatStackANewLayer_AllReachTheNavMesh
+  - Prowl.Runtime.Test.NavMeshBuildTests.RecastLogSink_ForwardsWarningsAndDropsProgress
+  - Prowl.Runtime.Test.NavMeshBuildTests.SeparatedQuads_BothBake
+  langs:
+  - csharp
+  - vb
+  name: NavMeshBuildTests
+  nameWithType: NavMeshBuildTests
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NavMeshBuildTests
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 18
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: public class NavMeshBuildTests
+    content.vb: Public Class NavMeshBuildTests
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.CreateTileCache_IsDeterministicAcrossRegistrations
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.CreateTileCache_IsDeterministicAcrossRegistrations
+  id: CreateTileCache_IsDeterministicAcrossRegistrations
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: CreateTileCache_IsDeterministicAcrossRegistrations()
+  nameWithType: NavMeshBuildTests.CreateTileCache_IsDeterministicAcrossRegistrations()
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.CreateTileCache_IsDeterministicAcrossRegistrations()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CreateTileCache_IsDeterministicAcrossRegistrations
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 62
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Registration meshes its tiles on the thread pool, so the same asset has to instantiate to
+
+    the same navmesh every time. A race in the split build would show up here as tiles that
+
+    differ between two registrations of one asset — and the surface would then depend on how
+
+    the pool happened to schedule.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void CreateTileCache_IsDeterministicAcrossRegistrations()
+    content.vb: >-
+      <Fact>
+
+      Public Sub CreateTileCache_IsDeterministicAcrossRegistrations()
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.CreateTileCache_IsDeterministicAcrossRegistrations*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_MirroredTransform_ProducesWalkablePolys
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_MirroredTransform_ProducesWalkablePolys
+  id: FlatQuad_MirroredTransform_ProducesWalkablePolys
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: FlatQuad_MirroredTransform_ProducesWalkablePolys()
+  nameWithType: NavMeshBuildTests.FlatQuad_MirroredTransform_ProducesWalkablePolys()
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_MirroredTransform_ProducesWalkablePolys()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FlatQuad_MirroredTransform_ProducesWalkablePolys
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 106
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    The slope test reads a triangle's normal from its winding, so a floor under a
+        mirroring transform faces down and rasterizes as a ceiling unless the winding is flipped
+        back. A mirrored floor is ordinary authoring — a room prefab scaled -1 to make its pair.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void FlatQuad_MirroredTransform_ProducesWalkablePolys()
+    content.vb: >-
+      <Fact>
+
+      Public Sub FlatQuad_MirroredTransform_ProducesWalkablePolys()
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_MirroredTransform_ProducesWalkablePolys*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_FromAnUnreadableFormat_SaysWhichVersionsItReads
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_FromAnUnreadableFormat_SaysWhichVersionsItReads
+  id: NavMeshData_FromAnUnreadableFormat_SaysWhichVersionsItReads
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: NavMeshData_FromAnUnreadableFormat_SaysWhichVersionsItReads()
+  nameWithType: NavMeshBuildTests.NavMeshData_FromAnUnreadableFormat_SaysWhichVersionsItReads()
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_FromAnUnreadableFormat_SaysWhichVersionsItReads()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NavMeshData_FromAnUnreadableFormat_SaysWhichVersionsItReads
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 128
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    An asset whose tiles are in a format this engine cannot read says so, naming the versions,
+
+    rather than handing bytes to Detour that mean something else now. Nothing in the engine
+
+    produces such an asset — the guard exists for the next time the tile format changes, and
+
+    this is what keeps it honest until then.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void NavMeshData_FromAnUnreadableFormat_SaysWhichVersionsItReads()
+    content.vb: >-
+      <Fact>
+
+      Public Sub NavMeshData_FromAnUnreadableFormat_SaysWhichVersionsItReads()
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_FromAnUnreadableFormat_SaysWhichVersionsItReads*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_UpFacingWinding_ProducesWalkablePolys
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_UpFacingWinding_ProducesWalkablePolys
+  id: FlatQuad_UpFacingWinding_ProducesWalkablePolys
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: FlatQuad_UpFacingWinding_ProducesWalkablePolys()
+  nameWithType: NavMeshBuildTests.FlatQuad_UpFacingWinding_ProducesWalkablePolys()
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_UpFacingWinding_ProducesWalkablePolys()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FlatQuad_UpFacingWinding_ProducesWalkablePolys
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 145
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    The winding gate: Recast derives walkability from triangle face normals, so a total
+
+    winding/handedness mismatch fails as "the bake produced nothing" rather than an error.
+
+    This test existing and passing is what proves the coordinate conventions line up.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void FlatQuad_UpFacingWinding_ProducesWalkablePolys()
+    content.vb: >-
+      <Fact>
+
+      Public Sub FlatQuad_UpFacingWinding_ProducesWalkablePolys()
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_UpFacingWinding_ProducesWalkablePolys*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_DownFacingWinding_ReturnsNull
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_DownFacingWinding_ReturnsNull
+  id: FlatQuad_DownFacingWinding_ReturnsNull
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: FlatQuad_DownFacingWinding_ReturnsNull()
+  nameWithType: NavMeshBuildTests.FlatQuad_DownFacingWinding_ReturnsNull()
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_DownFacingWinding_ReturnsNull()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FlatQuad_DownFacingWinding_ReturnsNull
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 168
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    The inverse gate: a downward-facing quad must produce nothing walkable — and
+        "nothing walkable" is a null return, never an empty NavMeshData (an empty one registers
+        nowhere and draws nothing, silently).
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void FlatQuad_DownFacingWinding_ReturnsNull()
+    content.vb: >-
+      <Fact>
+
+      Public Sub FlatQuad_DownFacingWinding_ReturnsNull()
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_DownFacingWinding_ReturnsNull*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_WithWorldBounds_SizesGridFromBounds
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.Build_WithWorldBounds_SizesGridFromBounds
+  id: Build_WithWorldBounds_SizesGridFromBounds
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: Build_WithWorldBounds_SizesGridFromBounds()
+  nameWithType: NavMeshBuildTests.Build_WithWorldBounds_SizesGridFromBounds()
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_WithWorldBounds_SizesGridFromBounds()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Build_WithWorldBounds_SizesGridFromBounds
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 185
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Explicit world bounds: a bake whose geometry covers a corner of a much larger world
+
+    must size its bounds and tile grid from the supplied extent, not the geometry —
+
+    otherwise later partial rebuilds outside the initial geometry are silently discarded
+
+    (the destructible-map case: one open spawn cavern in a sealed map).
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Build_WithWorldBounds_SizesGridFromBounds()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Build_WithWorldBounds_SizesGridFromBounds()
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.Build_WithWorldBounds_SizesGridFromBounds*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_WithNoGeometry_ReturnsNull
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.Build_WithNoGeometry_ReturnsNull
+  id: Build_WithNoGeometry_ReturnsNull
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: Build_WithNoGeometry_ReturnsNull()
+  nameWithType: NavMeshBuildTests.Build_WithNoGeometry_ReturnsNull()
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_WithNoGeometry_ReturnsNull()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Build_WithNoGeometry_ReturnsNull
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 204
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Build_WithNoGeometry_ReturnsNull()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Build_WithNoGeometry_ReturnsNull()
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.Build_WithNoGeometry_ReturnsNull*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.RebuiltTiles_ThatStackANewLayer_AllReachTheNavMesh
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.RebuiltTiles_ThatStackANewLayer_AllReachTheNavMesh
+  id: RebuiltTiles_ThatStackANewLayer_AllReachTheNavMesh
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: RebuiltTiles_ThatStackANewLayer_AllReachTheNavMesh()
+  nameWithType: NavMeshBuildTests.RebuiltTiles_ThatStackANewLayer_AllReachTheNavMesh()
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.RebuiltTiles_ThatStackANewLayer_AllReachTheNavMesh()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RebuiltTiles_ThatStackANewLayer_AllReachTheNavMesh
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 216
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A navmesh tile slot holds one vertical layer, so a flat bake has to budget room for the
+
+    layers a later rebuild stacks. Sized from the grid alone, a flat 20x20 floor budgets
+
+    exactly the four layers it bakes, and a platform added at runtime has nowhere to go:
+
+    the cache takes the blobs and DtNavMesh silently drops half the tiles on commit.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RebuiltTiles_ThatStackANewLayer_AllReachTheNavMesh()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RebuiltTiles_ThatStackANewLayer_AllReachTheNavMesh()
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.RebuiltTiles_ThatStackANewLayer_AllReachTheNavMesh*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_AppliesDefaultAreaToPolys
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.Build_AppliesDefaultAreaToPolys
+  id: Build_AppliesDefaultAreaToPolys
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: Build_AppliesDefaultAreaToPolys()
+  nameWithType: NavMeshBuildTests.Build_AppliesDefaultAreaToPolys()
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_AppliesDefaultAreaToPolys()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Build_AppliesDefaultAreaToPolys
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 252
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Build_AppliesDefaultAreaToPolys()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Build_AppliesDefaultAreaToPolys()
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.Build_AppliesDefaultAreaToPolys*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.SeparatedQuads_BothBake
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.SeparatedQuads_BothBake
+  id: SeparatedQuads_BothBake
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: SeparatedQuads_BothBake()
+  nameWithType: NavMeshBuildTests.SeparatedQuads_BothBake()
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.SeparatedQuads_BothBake()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SeparatedQuads_BothBake
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 273
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Two quads separated by a gap wider than the agent: same tile grid, but paths must not
+
+    cross the gap. Locks in that disconnected geometry stays disconnected.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void SeparatedQuads_BothBake()
+    content.vb: >-
+      <Fact>
+
+      Public Sub SeparatedQuads_BothBake()
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.SeparatedQuads_BothBake*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_EchoRoundTrip_PreservesTilesAndSettings
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_EchoRoundTrip_PreservesTilesAndSettings
+  id: NavMeshData_EchoRoundTrip_PreservesTilesAndSettings
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: NavMeshData_EchoRoundTrip_PreservesTilesAndSettings()
+  nameWithType: NavMeshBuildTests.NavMeshData_EchoRoundTrip_PreservesTilesAndSettings()
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_EchoRoundTrip_PreservesTilesAndSettings()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NavMeshData_EchoRoundTrip_PreservesTilesAndSettings
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 285
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void NavMeshData_EchoRoundTrip_PreservesTilesAndSettings()
+    content.vb: >-
+      <Fact>
+
+      Public Sub NavMeshData_EchoRoundTrip_PreservesTilesAndSettings()
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_EchoRoundTrip_PreservesTilesAndSettings*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_HonorsPerSourceAreas
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.Build_HonorsPerSourceAreas
+  id: Build_HonorsPerSourceAreas
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: Build_HonorsPerSourceAreas()
+  nameWithType: NavMeshBuildTests.Build_HonorsPerSourceAreas()
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_HonorsPerSourceAreas()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Build_HonorsPerSourceAreas
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 357
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    The per-source-area gate: NavMeshGeometrySource.Area must survive the bake
+        into Detour poly areas, on the correct side, without breaking adjacency.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Build_HonorsPerSourceAreas()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Build_HonorsPerSourceAreas()
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.Build_HonorsPerSourceAreas*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.BuildTilesInBounds_HonorsPerSourceAreas
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.BuildTilesInBounds_HonorsPerSourceAreas
+  id: BuildTilesInBounds_HonorsPerSourceAreas
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: BuildTilesInBounds_HonorsPerSourceAreas()
+  nameWithType: NavMeshBuildTests.BuildTilesInBounds_HonorsPerSourceAreas()
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.BuildTilesInBounds_HonorsPerSourceAreas()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: BuildTilesInBounds_HonorsPerSourceAreas
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 378
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Per-source areas must also survive the partial-rebuild path (the drill path
+        builds its provider separately).
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void BuildTilesInBounds_HonorsPerSourceAreas()
+    content.vb: >-
+      <Fact>
+
+      Public Sub BuildTilesInBounds_HonorsPerSourceAreas()
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.BuildTilesInBounds_HonorsPerSourceAreas*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.AreaCosts_BiasPathSelection
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.AreaCosts_BiasPathSelection
+  id: AreaCosts_BiasPathSelection
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: AreaCosts_BiasPathSelection()
+  nameWithType: NavMeshBuildTests.AreaCosts_BiasPathSelection()
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.AreaCosts_BiasPathSelection()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AreaCosts_BiasPathSelection
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 436
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Higher area cost must bias route choice: with a cheap detour available around
+        an expensive strip, the path avoids the strip; with uniform costs it goes straight.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AreaCosts_BiasPathSelection()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AreaCosts_BiasPathSelection()
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.AreaCosts_BiasPathSelection*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_WithoutDetailMesh_BakesAndQueries
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.Build_WithoutDetailMesh_BakesAndQueries
+  id: Build_WithoutDetailMesh_BakesAndQueries
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: Build_WithoutDetailMesh_BakesAndQueries()
+  nameWithType: NavMeshBuildTests.Build_WithoutDetailMesh_BakesAndQueries()
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_WithoutDetailMesh_BakesAndQueries()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Build_WithoutDetailMesh_BakesAndQueries
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 468
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Tiles carry no detail mesh — heights come from the polygon planes, which is exact on flat
+
+    geometry. Locks in that such a bake builds, serializes, round-trips, and answers queries.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Build_WithoutDetailMesh_BakesAndQueries()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Build_WithoutDetailMesh_BakesAndQueries()
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.Build_WithoutDetailMesh_BakesAndQueries*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_IsDeterministic_SingleThreaded
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.Build_IsDeterministic_SingleThreaded
+  id: Build_IsDeterministic_SingleThreaded
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: Build_IsDeterministic_SingleThreaded()
+  nameWithType: NavMeshBuildTests.Build_IsDeterministic_SingleThreaded()
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_IsDeterministic_SingleThreaded()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Build_IsDeterministic_SingleThreaded
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 492
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: Same input twice must produce byte-identical tiles (single-threaded build).
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Build_IsDeterministic_SingleThreaded()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Build_IsDeterministic_SingleThreaded()
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.Build_IsDeterministic_SingleThreaded*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_Threaded_MatchesSingleThreaded
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.Build_Threaded_MatchesSingleThreaded
+  id: Build_Threaded_MatchesSingleThreaded
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: Build_Threaded_MatchesSingleThreaded()
+  nameWithType: NavMeshBuildTests.Build_Threaded_MatchesSingleThreaded()
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_Threaded_MatchesSingleThreaded()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Build_Threaded_MatchesSingleThreaded
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 514
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A threaded bake produces byte-identical tiles to a serial one. Every surface bake is
+
+    threaded, and workers build through their own reusable scratch — so a partition carrying
+
+    state between the tiles it builds, or writing results out of order, would show up here.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Build_Threaded_MatchesSingleThreaded()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Build_Threaded_MatchesSingleThreaded()
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.Build_Threaded_MatchesSingleThreaded*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_CalculateTriangulation_WorksWithoutRegistration
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_CalculateTriangulation_WorksWithoutRegistration
+  id: NavMeshData_CalculateTriangulation_WorksWithoutRegistration
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: NavMeshData_CalculateTriangulation_WorksWithoutRegistration()
+  nameWithType: NavMeshBuildTests.NavMeshData_CalculateTriangulation_WorksWithoutRegistration()
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_CalculateTriangulation_WorksWithoutRegistration()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NavMeshData_CalculateTriangulation_WorksWithoutRegistration
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 537
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A baked asset triangulates without being registered with any scene or world, which is what
+
+    lets the editor draw the surface overlay outside play mode where nothing registers it.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void NavMeshData_CalculateTriangulation_WorksWithoutRegistration()
+    content.vb: >-
+      <Fact>
+
+      Public Sub NavMeshData_CalculateTriangulation_WorksWithoutRegistration()
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_CalculateTriangulation_WorksWithoutRegistration*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.CalculateTriangulation_EmptyResult_HasEveryArrayInitialized
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.CalculateTriangulation_EmptyResult_HasEveryArrayInitialized
+  id: CalculateTriangulation_EmptyResult_HasEveryArrayInitialized
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: CalculateTriangulation_EmptyResult_HasEveryArrayInitialized()
+  nameWithType: NavMeshBuildTests.CalculateTriangulation_EmptyResult_HasEveryArrayInitialized()
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.CalculateTriangulation_EmptyResult_HasEveryArrayInitialized()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CalculateTriangulation_EmptyResult_HasEveryArrayInitialized
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 555
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Callers iterate Edges and Connections without null-checking, so a "nothing to
+        triangulate" answer with only some of its six arrays set throws on the first foreach.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void CalculateTriangulation_EmptyResult_HasEveryArrayInitialized()
+    content.vb: >-
+      <Fact>
+
+      Public Sub CalculateTriangulation_EmptyResult_HasEveryArrayInitialized()
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.CalculateTriangulation_EmptyResult_HasEveryArrayInitialized*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksAcrossTileBoundary_Instantiate(System.Int32,System.Single)
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksAcrossTileBoundary_Instantiate(System.Int32,System.Single)
+  id: Build_LinksAcrossTileBoundary_Instantiate(System.Int32,System.Single)
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: Build_LinksAcrossTileBoundary_Instantiate(int, float)
+  nameWithType: NavMeshBuildTests.Build_LinksAcrossTileBoundary_Instantiate(int, float)
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksAcrossTileBoundary_Instantiate(int, float)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Build_LinksAcrossTileBoundary_Instantiate
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 586
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Links whose endpoints fall in DIFFERENT tiles have to bake AND instantiate, however many
+
+    of them cross the same boundary. Detour sizes a tile's link pool when the tile is built
+
+    and does not fully budget connections that leave it, so past a handful the pool overflows
+
+    and AddTile throws IndexOutOfRange — at load, on an asset that baked and saved cleanly.
+
+    The trigger is the count crossing one boundary, not the width: a single Width=5 link and
+
+    five separate zero-width links failed identically. The tile builder now rations them, so
+
+    the excess is dropped with a warning rather than taking the whole navmesh down.
+  example: []
+  syntax:
+    content: >-
+      [Theory]
+
+      [InlineData(new object[] { 1, 0 })]
+
+      [InlineData(new object[] { 1, 5 })]
+
+      [InlineData(new object[] { 5, 0 })]
+
+      [InlineData(new object[] { 40, 0 })]
+
+      [InlineData(new object[] { 8, 12 })]
+
+      public void Build_LinksAcrossTileBoundary_Instantiate(int linkCount, float width)
+    parameters:
+    - id: linkCount
+      type: System.Int32
+    - id: width
+      type: System.Single
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() { 1, 0 })>
+
+      <InlineData(New Object() { 1, 5 })>
+
+      <InlineData(New Object() { 5, 0 })>
+
+      <InlineData(New Object() { 40, 0 })>
+
+      <InlineData(New Object() { 8, 12 })>
+
+      Public Sub Build_LinksAcrossTileBoundary_Instantiate(linkCount As Integer, width As Single)
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksAcrossTileBoundary_Instantiate*
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
+  nameWithType.vb: NavMeshBuildTests.Build_LinksAcrossTileBoundary_Instantiate(Integer, Single)
+  fullName.vb: Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksAcrossTileBoundary_Instantiate(Integer, Single)
+  name.vb: Build_LinksAcrossTileBoundary_Instantiate(Integer, Single)
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksArrivingFromEveryNeighbour_Instantiate(System.Int32)
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksArrivingFromEveryNeighbour_Instantiate(System.Int32)
+  id: Build_LinksArrivingFromEveryNeighbour_Instantiate(System.Int32)
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: Build_LinksArrivingFromEveryNeighbour_Instantiate(int)
+  nameWithType: NavMeshBuildTests.Build_LinksArrivingFromEveryNeighbour_Instantiate(int)
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksArrivingFromEveryNeighbour_Instantiate(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Build_LinksArrivingFromEveryNeighbour_Instantiate
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 623
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A tile's link pool is spent by connections ARRIVING from its eight neighbours as well as by
+
+    its own, and Detour budgets nothing for arrivals — so a destination can be swamped by
+
+    sources that are individually modest. This drives every neighbour at one destination at once.
+  example: []
+  syntax:
+    content: >-
+      [Theory]
+
+      [InlineData(new object[] { 1 })]
+
+      [InlineData(new object[] { 2 })]
+
+      [InlineData(new object[] { 4 })]
+
+      [InlineData(new object[] { 8 })]
+
+      public void Build_LinksArrivingFromEveryNeighbour_Instantiate(int perNeighbour)
+    parameters:
+    - id: perNeighbour
+      type: System.Int32
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() { 1 })>
+
+      <InlineData(New Object() { 2 })>
+
+      <InlineData(New Object() { 4 })>
+
+      <InlineData(New Object() { 8 })>
+
+      Public Sub Build_LinksArrivingFromEveryNeighbour_Instantiate(perNeighbour As Integer)
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksArrivingFromEveryNeighbour_Instantiate*
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
+  nameWithType.vb: NavMeshBuildTests.Build_LinksArrivingFromEveryNeighbour_Instantiate(Integer)
+  fullName.vb: Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksArrivingFromEveryNeighbour_Instantiate(Integer)
+  name.vb: Build_LinksArrivingFromEveryNeighbour_Instantiate(Integer)
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksCrowdingATileBoundary_AllCross(System.Int32,System.Single)
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksCrowdingATileBoundary_AllCross(System.Int32,System.Single)
+  id: Build_LinksCrowdingATileBoundary_AllCross(System.Int32,System.Single)
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: Build_LinksCrowdingATileBoundary_AllCross(int, float)
+  nameWithType: NavMeshBuildTests.Build_LinksCrowdingATileBoundary_AllCross(int, float)
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksCrowdingATileBoundary_AllCross(int, float)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Build_LinksCrowdingATileBoundary_AllCross
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 667
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Links crowding one tile boundary all cross, however many there are and however wide.
+
+    Detour sizes a tile's link pool from the connections stored in the tile and budgets nothing
+
+    for those arriving from neighbours, so a crowded boundary is where the pool runs out.
+  example: []
+  syntax:
+    content: >-
+      [Theory]
+
+      [InlineData(new object[] { 1, 5 })]
+
+      [InlineData(new object[] { 1, 20 })]
+
+      [InlineData(new object[] { 4, 0 })]
+
+      [InlineData(new object[] { 6, 0 })]
+
+      [InlineData(new object[] { 12, 0 })]
+
+      public void Build_LinksCrowdingATileBoundary_AllCross(int linkCount, float width)
+    parameters:
+    - id: linkCount
+      type: System.Int32
+    - id: width
+      type: System.Single
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() { 1, 5 })>
+
+      <InlineData(New Object() { 1, 20 })>
+
+      <InlineData(New Object() { 4, 0 })>
+
+      <InlineData(New Object() { 6, 0 })>
+
+      <InlineData(New Object() { 12, 0 })>
+
+      Public Sub Build_LinksCrowdingATileBoundary_AllCross(linkCount As Integer, width As Single)
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksCrowdingATileBoundary_AllCross*
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
+  nameWithType.vb: NavMeshBuildTests.Build_LinksCrowdingATileBoundary_AllCross(Integer, Single)
+  fullName.vb: Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksCrowdingATileBoundary_AllCross(Integer, Single)
+  name.vb: Build_LinksCrowdingATileBoundary_AllCross(Integer, Single)
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_MinRegionArea_CullsSmallIslands(System.Single,System.Boolean)
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.Build_MinRegionArea_CullsSmallIslands(System.Single,System.Boolean)
+  id: Build_MinRegionArea_CullsSmallIslands(System.Single,System.Boolean)
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: Build_MinRegionArea_CullsSmallIslands(float, bool)
+  nameWithType: NavMeshBuildTests.Build_MinRegionArea_CullsSmallIslands(float, bool)
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_MinRegionArea_CullsSmallIslands(float, bool)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Build_MinRegionArea_CullsSmallIslands
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 717
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Min Region Area culls islands too small to be worth standing on. The layers a
+
+    carving bake stores are partitioned at runtime, so the cull has to happen at bake time
+
+    or not at all — this pins that it happens, and that turning it off keeps the island.
+  example: []
+  syntax:
+    content: >-
+      [Theory]
+
+      [InlineData(new object[] { 20, false })]
+
+      [InlineData(new object[] { 0, true })]
+
+      public void Build_MinRegionArea_CullsSmallIslands(float minRegionArea, bool islandSurvives)
+    parameters:
+    - id: minRegionArea
+      type: System.Single
+    - id: islandSurvives
+      type: System.Boolean
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() { 20, False })>
+
+      <InlineData(New Object() { 0, True })>
+
+      Public Sub Build_MinRegionArea_CullsSmallIslands(minRegionArea As Single, islandSurvives As Boolean)
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.Build_MinRegionArea_CullsSmallIslands*
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
+  nameWithType.vb: NavMeshBuildTests.Build_MinRegionArea_CullsSmallIslands(Single, Boolean)
+  fullName.vb: Prowl.Runtime.Test.NavMeshBuildTests.Build_MinRegionArea_CullsSmallIslands(Single, Boolean)
+  name.vb: Build_MinRegionArea_CullsSmallIslands(Single, Boolean)
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.RecastLogSink_ForwardsWarningsAndDropsProgress
+  commentId: M:Prowl.Runtime.Test.NavMeshBuildTests.RecastLogSink_ForwardsWarningsAndDropsProgress
+  id: RecastLogSink_ForwardsWarningsAndDropsProgress
+  parent: Prowl.Runtime.Test.NavMeshBuildTests
+  langs:
+  - csharp
+  - vb
+  name: RecastLogSink_ForwardsWarningsAndDropsProgress()
+  nameWithType: NavMeshBuildTests.RecastLogSink_ForwardsWarningsAndDropsProgress()
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.RecastLogSink_ForwardsWarningsAndDropsProgress()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshBuildTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RecastLogSink_ForwardsWarningsAndDropsProgress
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshBuildTests.cs
+    startLine: 757
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Recast's own log calls reach Prowl's Debug rather than stdout, and its per-polygon
+        progress chatter is dropped.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RecastLogSink_ForwardsWarningsAndDropsProgress()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RecastLogSink_ForwardsWarningsAndDropsProgress()
+  overload: Prowl.Runtime.Test.NavMeshBuildTests.RecastLogSink_ForwardsWarningsAndDropsProgress*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+references:
+- uid: Prowl.Runtime.Test
+  commentId: N:Prowl.Runtime.Test
+  name: Prowl.Runtime.Test
+  nameWithType: Prowl.Runtime.Test
+  fullName: Prowl.Runtime.Test
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.CreateTileCache_IsDeterministicAcrossRegistrations*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.CreateTileCache_IsDeterministicAcrossRegistrations
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_CreateTileCache_IsDeterministicAcrossRegistrations
+  name: CreateTileCache_IsDeterministicAcrossRegistrations
+  nameWithType: NavMeshBuildTests.CreateTileCache_IsDeterministicAcrossRegistrations
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.CreateTileCache_IsDeterministicAcrossRegistrations
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_MirroredTransform_ProducesWalkablePolys*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_MirroredTransform_ProducesWalkablePolys
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_FlatQuad_MirroredTransform_ProducesWalkablePolys
+  name: FlatQuad_MirroredTransform_ProducesWalkablePolys
+  nameWithType: NavMeshBuildTests.FlatQuad_MirroredTransform_ProducesWalkablePolys
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_MirroredTransform_ProducesWalkablePolys
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_FromAnUnreadableFormat_SaysWhichVersionsItReads*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_FromAnUnreadableFormat_SaysWhichVersionsItReads
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_NavMeshData_FromAnUnreadableFormat_SaysWhichVersionsItReads
+  name: NavMeshData_FromAnUnreadableFormat_SaysWhichVersionsItReads
+  nameWithType: NavMeshBuildTests.NavMeshData_FromAnUnreadableFormat_SaysWhichVersionsItReads
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_FromAnUnreadableFormat_SaysWhichVersionsItReads
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_UpFacingWinding_ProducesWalkablePolys*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_UpFacingWinding_ProducesWalkablePolys
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_FlatQuad_UpFacingWinding_ProducesWalkablePolys
+  name: FlatQuad_UpFacingWinding_ProducesWalkablePolys
+  nameWithType: NavMeshBuildTests.FlatQuad_UpFacingWinding_ProducesWalkablePolys
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_UpFacingWinding_ProducesWalkablePolys
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_DownFacingWinding_ReturnsNull*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_DownFacingWinding_ReturnsNull
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_FlatQuad_DownFacingWinding_ReturnsNull
+  name: FlatQuad_DownFacingWinding_ReturnsNull
+  nameWithType: NavMeshBuildTests.FlatQuad_DownFacingWinding_ReturnsNull
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.FlatQuad_DownFacingWinding_ReturnsNull
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_WithWorldBounds_SizesGridFromBounds*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.Build_WithWorldBounds_SizesGridFromBounds
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_Build_WithWorldBounds_SizesGridFromBounds
+  name: Build_WithWorldBounds_SizesGridFromBounds
+  nameWithType: NavMeshBuildTests.Build_WithWorldBounds_SizesGridFromBounds
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_WithWorldBounds_SizesGridFromBounds
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_WithNoGeometry_ReturnsNull*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.Build_WithNoGeometry_ReturnsNull
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_Build_WithNoGeometry_ReturnsNull
+  name: Build_WithNoGeometry_ReturnsNull
+  nameWithType: NavMeshBuildTests.Build_WithNoGeometry_ReturnsNull
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_WithNoGeometry_ReturnsNull
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.RebuiltTiles_ThatStackANewLayer_AllReachTheNavMesh*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.RebuiltTiles_ThatStackANewLayer_AllReachTheNavMesh
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_RebuiltTiles_ThatStackANewLayer_AllReachTheNavMesh
+  name: RebuiltTiles_ThatStackANewLayer_AllReachTheNavMesh
+  nameWithType: NavMeshBuildTests.RebuiltTiles_ThatStackANewLayer_AllReachTheNavMesh
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.RebuiltTiles_ThatStackANewLayer_AllReachTheNavMesh
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_AppliesDefaultAreaToPolys*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.Build_AppliesDefaultAreaToPolys
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_Build_AppliesDefaultAreaToPolys
+  name: Build_AppliesDefaultAreaToPolys
+  nameWithType: NavMeshBuildTests.Build_AppliesDefaultAreaToPolys
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_AppliesDefaultAreaToPolys
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.SeparatedQuads_BothBake*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.SeparatedQuads_BothBake
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_SeparatedQuads_BothBake
+  name: SeparatedQuads_BothBake
+  nameWithType: NavMeshBuildTests.SeparatedQuads_BothBake
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.SeparatedQuads_BothBake
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_EchoRoundTrip_PreservesTilesAndSettings*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_EchoRoundTrip_PreservesTilesAndSettings
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_NavMeshData_EchoRoundTrip_PreservesTilesAndSettings
+  name: NavMeshData_EchoRoundTrip_PreservesTilesAndSettings
+  nameWithType: NavMeshBuildTests.NavMeshData_EchoRoundTrip_PreservesTilesAndSettings
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_EchoRoundTrip_PreservesTilesAndSettings
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_HonorsPerSourceAreas*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.Build_HonorsPerSourceAreas
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_Build_HonorsPerSourceAreas
+  name: Build_HonorsPerSourceAreas
+  nameWithType: NavMeshBuildTests.Build_HonorsPerSourceAreas
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_HonorsPerSourceAreas
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.BuildTilesInBounds_HonorsPerSourceAreas*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.BuildTilesInBounds_HonorsPerSourceAreas
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_BuildTilesInBounds_HonorsPerSourceAreas
+  name: BuildTilesInBounds_HonorsPerSourceAreas
+  nameWithType: NavMeshBuildTests.BuildTilesInBounds_HonorsPerSourceAreas
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.BuildTilesInBounds_HonorsPerSourceAreas
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.AreaCosts_BiasPathSelection*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.AreaCosts_BiasPathSelection
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_AreaCosts_BiasPathSelection
+  name: AreaCosts_BiasPathSelection
+  nameWithType: NavMeshBuildTests.AreaCosts_BiasPathSelection
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.AreaCosts_BiasPathSelection
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_WithoutDetailMesh_BakesAndQueries*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.Build_WithoutDetailMesh_BakesAndQueries
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_Build_WithoutDetailMesh_BakesAndQueries
+  name: Build_WithoutDetailMesh_BakesAndQueries
+  nameWithType: NavMeshBuildTests.Build_WithoutDetailMesh_BakesAndQueries
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_WithoutDetailMesh_BakesAndQueries
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_IsDeterministic_SingleThreaded*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.Build_IsDeterministic_SingleThreaded
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_Build_IsDeterministic_SingleThreaded
+  name: Build_IsDeterministic_SingleThreaded
+  nameWithType: NavMeshBuildTests.Build_IsDeterministic_SingleThreaded
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_IsDeterministic_SingleThreaded
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_Threaded_MatchesSingleThreaded*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.Build_Threaded_MatchesSingleThreaded
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_Build_Threaded_MatchesSingleThreaded
+  name: Build_Threaded_MatchesSingleThreaded
+  nameWithType: NavMeshBuildTests.Build_Threaded_MatchesSingleThreaded
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_Threaded_MatchesSingleThreaded
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_CalculateTriangulation_WorksWithoutRegistration*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_CalculateTriangulation_WorksWithoutRegistration
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_NavMeshData_CalculateTriangulation_WorksWithoutRegistration
+  name: NavMeshData_CalculateTriangulation_WorksWithoutRegistration
+  nameWithType: NavMeshBuildTests.NavMeshData_CalculateTriangulation_WorksWithoutRegistration
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.NavMeshData_CalculateTriangulation_WorksWithoutRegistration
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.CalculateTriangulation_EmptyResult_HasEveryArrayInitialized*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.CalculateTriangulation_EmptyResult_HasEveryArrayInitialized
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_CalculateTriangulation_EmptyResult_HasEveryArrayInitialized
+  name: CalculateTriangulation_EmptyResult_HasEveryArrayInitialized
+  nameWithType: NavMeshBuildTests.CalculateTriangulation_EmptyResult_HasEveryArrayInitialized
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.CalculateTriangulation_EmptyResult_HasEveryArrayInitialized
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksAcrossTileBoundary_Instantiate*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksAcrossTileBoundary_Instantiate
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_Build_LinksAcrossTileBoundary_Instantiate_System_Int32_System_Single_
+  name: Build_LinksAcrossTileBoundary_Instantiate
+  nameWithType: NavMeshBuildTests.Build_LinksAcrossTileBoundary_Instantiate
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksAcrossTileBoundary_Instantiate
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksArrivingFromEveryNeighbour_Instantiate*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksArrivingFromEveryNeighbour_Instantiate
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_Build_LinksArrivingFromEveryNeighbour_Instantiate_System_Int32_
+  name: Build_LinksArrivingFromEveryNeighbour_Instantiate
+  nameWithType: NavMeshBuildTests.Build_LinksArrivingFromEveryNeighbour_Instantiate
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksArrivingFromEveryNeighbour_Instantiate
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksCrowdingATileBoundary_AllCross*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksCrowdingATileBoundary_AllCross
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_Build_LinksCrowdingATileBoundary_AllCross_System_Int32_System_Single_
+  name: Build_LinksCrowdingATileBoundary_AllCross
+  nameWithType: NavMeshBuildTests.Build_LinksCrowdingATileBoundary_AllCross
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_LinksCrowdingATileBoundary_AllCross
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.Build_MinRegionArea_CullsSmallIslands*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.Build_MinRegionArea_CullsSmallIslands
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_Build_MinRegionArea_CullsSmallIslands_System_Single_System_Boolean_
+  name: Build_MinRegionArea_CullsSmallIslands
+  nameWithType: NavMeshBuildTests.Build_MinRegionArea_CullsSmallIslands
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.Build_MinRegionArea_CullsSmallIslands
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Runtime.Test.NavMeshBuildTests.RecastLogSink_ForwardsWarningsAndDropsProgress*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshBuildTests.RecastLogSink_ForwardsWarningsAndDropsProgress
+  href: Prowl.Runtime.Test.NavMeshBuildTests.html#Prowl_Runtime_Test_NavMeshBuildTests_RecastLogSink_ForwardsWarningsAndDropsProgress
+  name: RecastLogSink_ForwardsWarningsAndDropsProgress
+  nameWithType: NavMeshBuildTests.RecastLogSink_ForwardsWarningsAndDropsProgress
+  fullName: Prowl.Runtime.Test.NavMeshBuildTests.RecastLogSink_ForwardsWarningsAndDropsProgress

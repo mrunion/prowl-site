@@ -1,0 +1,870 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.Build.StageGraph
+  commentId: T:Prowl.Editor.Build.StageGraph
+  id: StageGraph
+  parent: Prowl.Editor.Build
+  children:
+  - Prowl.Editor.Build.StageGraph.#ctor(System.Collections.Generic.IEnumerable{Prowl.Editor.Build.StageNode})
+  - Prowl.Editor.Build.StageGraph.Item(Prowl.Editor.Build.BuildStage)
+  - Prowl.Editor.Build.StageGraph.Nodes
+  - Prowl.Editor.Build.StageGraph.Ready(System.Collections.Generic.IReadOnlySet{Prowl.Editor.Build.BuildStage})
+  - Prowl.Editor.Build.StageGraph.TopologicalOrder
+  langs:
+  - csharp
+  - vb
+  name: StageGraph
+  nameWithType: StageGraph
+  fullName: Prowl.Editor.Build.StageGraph
+  type: Class
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Planning/StageGraph.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: StageGraph
+    path: ../Prowl/Prowl.Editor/Projects/Build/Planning/StageGraph.cs
+    startLine: 27
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: The stages of one build and their ordering constraints.
+  remarks: >-
+    Built per request rather than per pipeline, because the shape genuinely changes with the request. A
+
+    desktop build that embeds assets into the assembly has to process them before the player project is
+
+    generated, while one that packs them alongside has to wait until after publish, since publish clears
+
+    the output directory. Those are different graphs from the same pipeline.
+  example: []
+  syntax:
+    content: public sealed class StageGraph
+    content.vb: Public NotInheritable Class StageGraph
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Editor.Build.StageGraph.#ctor(System.Collections.Generic.IEnumerable{Prowl.Editor.Build.StageNode})
+  commentId: M:Prowl.Editor.Build.StageGraph.#ctor(System.Collections.Generic.IEnumerable{Prowl.Editor.Build.StageNode})
+  id: '#ctor(System.Collections.Generic.IEnumerable{Prowl.Editor.Build.StageNode})'
+  parent: Prowl.Editor.Build.StageGraph
+  langs:
+  - csharp
+  - vb
+  name: StageGraph(IEnumerable<StageNode>)
+  nameWithType: StageGraph.StageGraph(IEnumerable<StageNode>)
+  fullName: Prowl.Editor.Build.StageGraph.StageGraph(System.Collections.Generic.IEnumerable<Prowl.Editor.Build.StageNode>)
+  type: Constructor
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Planning/StageGraph.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: .ctor
+    path: ../Prowl/Prowl.Editor/Projects/Build/Planning/StageGraph.cs
+    startLine: 32
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Validates that no stage is declared twice, all dependencies exist in the graph, and there are no cycles. Throws ArgumentException when any of those conditions is violated.
+  example: []
+  syntax:
+    content: public StageGraph(IEnumerable<StageNode> nodes)
+    parameters:
+    - id: nodes
+      type: System.Collections.Generic.IEnumerable{Prowl.Editor.Build.StageNode}
+    content.vb: Public Sub New(nodes As IEnumerable(Of StageNode))
+  overload: Prowl.Editor.Build.StageGraph.#ctor*
+  nameWithType.vb: StageGraph.New(IEnumerable(Of StageNode))
+  fullName.vb: Prowl.Editor.Build.StageGraph.New(System.Collections.Generic.IEnumerable(Of Prowl.Editor.Build.StageNode))
+  name.vb: New(IEnumerable(Of StageNode))
+- uid: Prowl.Editor.Build.StageGraph.Nodes
+  commentId: P:Prowl.Editor.Build.StageGraph.Nodes
+  id: Nodes
+  parent: Prowl.Editor.Build.StageGraph
+  langs:
+  - csharp
+  - vb
+  name: Nodes
+  nameWithType: StageGraph.Nodes
+  fullName: Prowl.Editor.Build.StageGraph.Nodes
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Planning/StageGraph.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Nodes
+    path: ../Prowl/Prowl.Editor/Projects/Build/Planning/StageGraph.cs
+    startLine: 52
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  syntax:
+    content: public IReadOnlyCollection<StageNode> Nodes { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyCollection{Prowl.Editor.Build.StageNode}
+    content.vb: Public ReadOnly Property Nodes As IReadOnlyCollection(Of StageNode)
+  overload: Prowl.Editor.Build.StageGraph.Nodes*
+- uid: Prowl.Editor.Build.StageGraph.Item(Prowl.Editor.Build.BuildStage)
+  commentId: P:Prowl.Editor.Build.StageGraph.Item(Prowl.Editor.Build.BuildStage)
+  id: Item(Prowl.Editor.Build.BuildStage)
+  parent: Prowl.Editor.Build.StageGraph
+  langs:
+  - csharp
+  - vb
+  name: this[BuildStage]
+  nameWithType: StageGraph.this[BuildStage]
+  fullName: Prowl.Editor.Build.StageGraph.this[Prowl.Editor.Build.BuildStage]
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Planning/StageGraph.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: this[]
+    path: ../Prowl/Prowl.Editor/Projects/Build/Planning/StageGraph.cs
+    startLine: 54
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  syntax:
+    content: public StageNode this[BuildStage stage] { get; }
+    parameters:
+    - id: stage
+      type: Prowl.Editor.Build.BuildStage
+    return:
+      type: Prowl.Editor.Build.StageNode
+    content.vb: Public ReadOnly Default Property this[](stage As BuildStage) As StageNode
+  overload: Prowl.Editor.Build.StageGraph.Item*
+  nameWithType.vb: StageGraph.this[](BuildStage)
+  fullName.vb: Prowl.Editor.Build.StageGraph.this[](Prowl.Editor.Build.BuildStage)
+  name.vb: this[](BuildStage)
+- uid: Prowl.Editor.Build.StageGraph.Ready(System.Collections.Generic.IReadOnlySet{Prowl.Editor.Build.BuildStage})
+  commentId: M:Prowl.Editor.Build.StageGraph.Ready(System.Collections.Generic.IReadOnlySet{Prowl.Editor.Build.BuildStage})
+  id: Ready(System.Collections.Generic.IReadOnlySet{Prowl.Editor.Build.BuildStage})
+  parent: Prowl.Editor.Build.StageGraph
+  langs:
+  - csharp
+  - vb
+  name: Ready(IReadOnlySet<BuildStage>)
+  nameWithType: StageGraph.Ready(IReadOnlySet<BuildStage>)
+  fullName: Prowl.Editor.Build.StageGraph.Ready(System.Collections.Generic.IReadOnlySet<Prowl.Editor.Build.BuildStage>)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Planning/StageGraph.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Ready
+    path: ../Prowl/Prowl.Editor/Projects/Build/Planning/StageGraph.cs
+    startLine: 57
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Stages whose dependencies are all in <code class="paramref">completed</code> and which have not run.
+  example: []
+  syntax:
+    content: public IEnumerable<StageNode> Ready(IReadOnlySet<BuildStage> completed)
+    parameters:
+    - id: completed
+      type: System.Collections.Generic.IReadOnlySet{Prowl.Editor.Build.BuildStage}
+    return:
+      type: System.Collections.Generic.IEnumerable{Prowl.Editor.Build.StageNode}
+    content.vb: Public Function Ready(completed As IReadOnlySet(Of BuildStage)) As IEnumerable(Of StageNode)
+  overload: Prowl.Editor.Build.StageGraph.Ready*
+  nameWithType.vb: StageGraph.Ready(IReadOnlySet(Of BuildStage))
+  fullName.vb: Prowl.Editor.Build.StageGraph.Ready(System.Collections.Generic.IReadOnlySet(Of Prowl.Editor.Build.BuildStage))
+  name.vb: Ready(IReadOnlySet(Of BuildStage))
+- uid: Prowl.Editor.Build.StageGraph.TopologicalOrder
+  commentId: M:Prowl.Editor.Build.StageGraph.TopologicalOrder
+  id: TopologicalOrder
+  parent: Prowl.Editor.Build.StageGraph
+  langs:
+  - csharp
+  - vb
+  name: TopologicalOrder()
+  nameWithType: StageGraph.TopologicalOrder()
+  fullName: Prowl.Editor.Build.StageGraph.TopologicalOrder()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Planning/StageGraph.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TopologicalOrder
+    path: ../Prowl/Prowl.Editor/Projects/Build/Planning/StageGraph.cs
+    startLine: 63
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: A dependency respecting order, or null when the graph has a cycle.
+  example: []
+  syntax:
+    content: public IReadOnlyList<BuildStage>? TopologicalOrder()
+    return:
+      type: System.Collections.Generic.IReadOnlyList{Prowl.Editor.Build.BuildStage}
+    content.vb: Public Function TopologicalOrder() As IReadOnlyList(Of BuildStage)
+  overload: Prowl.Editor.Build.StageGraph.TopologicalOrder*
+references:
+- uid: Prowl.Editor.Build
+  commentId: N:Prowl.Editor.Build
+  name: Prowl.Editor.Build
+  nameWithType: Prowl.Editor.Build
+  fullName: Prowl.Editor.Build
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Build
+    name: Build
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Build
+    name: Build
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Editor.Build.StageGraph.#ctor*
+  commentId: Overload:Prowl.Editor.Build.StageGraph.#ctor
+  href: Prowl.Editor.Build.StageGraph.html#Prowl_Editor_Build_StageGraph__ctor_System_Collections_Generic_IEnumerable_Prowl_Editor_Build_StageNode__
+  name: StageGraph
+  nameWithType: StageGraph.StageGraph
+  fullName: Prowl.Editor.Build.StageGraph.StageGraph
+  nameWithType.vb: StageGraph.New
+  fullName.vb: Prowl.Editor.Build.StageGraph.New
+  name.vb: New
+- uid: System.Collections.Generic.IEnumerable{Prowl.Editor.Build.StageNode}
+  commentId: T:System.Collections.Generic.IEnumerable{Prowl.Editor.Build.StageNode}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<StageNode>
+  nameWithType: IEnumerable<StageNode>
+  fullName: System.Collections.Generic.IEnumerable<Prowl.Editor.Build.StageNode>
+  nameWithType.vb: IEnumerable(Of StageNode)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of Prowl.Editor.Build.StageNode)
+  name.vb: IEnumerable(Of StageNode)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: Prowl.Editor.Build.StageNode
+    name: StageNode
+    href: Prowl.Editor.Build.StageNode.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Editor.Build.StageNode
+    name: StageNode
+    href: Prowl.Editor.Build.StageNode.html
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Prowl.Editor.Build.StageGraph.Nodes*
+  commentId: Overload:Prowl.Editor.Build.StageGraph.Nodes
+  href: Prowl.Editor.Build.StageGraph.html#Prowl_Editor_Build_StageGraph_Nodes
+  name: Nodes
+  nameWithType: StageGraph.Nodes
+  fullName: Prowl.Editor.Build.StageGraph.Nodes
+- uid: System.Collections.Generic.IReadOnlyCollection{Prowl.Editor.Build.StageNode}
+  commentId: T:System.Collections.Generic.IReadOnlyCollection{Prowl.Editor.Build.StageNode}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyCollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  name: IReadOnlyCollection<StageNode>
+  nameWithType: IReadOnlyCollection<StageNode>
+  fullName: System.Collections.Generic.IReadOnlyCollection<Prowl.Editor.Build.StageNode>
+  nameWithType.vb: IReadOnlyCollection(Of StageNode)
+  fullName.vb: System.Collections.Generic.IReadOnlyCollection(Of Prowl.Editor.Build.StageNode)
+  name.vb: IReadOnlyCollection(Of StageNode)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  - name: <
+  - uid: Prowl.Editor.Build.StageNode
+    name: StageNode
+    href: Prowl.Editor.Build.StageNode.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Editor.Build.StageNode
+    name: StageNode
+    href: Prowl.Editor.Build.StageNode.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyCollection`1
+  commentId: T:System.Collections.Generic.IReadOnlyCollection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  name: IReadOnlyCollection<T>
+  nameWithType: IReadOnlyCollection<T>
+  fullName: System.Collections.Generic.IReadOnlyCollection<T>
+  nameWithType.vb: IReadOnlyCollection(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyCollection(Of T)
+  name.vb: IReadOnlyCollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Editor.Build.StageGraph.Item*
+  commentId: Overload:Prowl.Editor.Build.StageGraph.Item
+  href: Prowl.Editor.Build.StageGraph.html#Prowl_Editor_Build_StageGraph_Item_Prowl_Editor_Build_BuildStage_
+  name: this
+  nameWithType: StageGraph.this
+  fullName: Prowl.Editor.Build.StageGraph.this
+  nameWithType.vb: StageGraph.this[]
+  fullName.vb: Prowl.Editor.Build.StageGraph.this[]
+  name.vb: this[]
+- uid: Prowl.Editor.Build.BuildStage
+  commentId: T:Prowl.Editor.Build.BuildStage
+  parent: Prowl.Editor.Build
+  href: Prowl.Editor.Build.BuildStage.html
+  name: BuildStage
+  nameWithType: BuildStage
+  fullName: Prowl.Editor.Build.BuildStage
+- uid: Prowl.Editor.Build.StageNode
+  commentId: T:Prowl.Editor.Build.StageNode
+  parent: Prowl.Editor.Build
+  href: Prowl.Editor.Build.StageNode.html
+  name: StageNode
+  nameWithType: StageNode
+  fullName: Prowl.Editor.Build.StageNode
+- uid: Prowl.Editor.Build.StageGraph.Ready*
+  commentId: Overload:Prowl.Editor.Build.StageGraph.Ready
+  href: Prowl.Editor.Build.StageGraph.html#Prowl_Editor_Build_StageGraph_Ready_System_Collections_Generic_IReadOnlySet_Prowl_Editor_Build_BuildStage__
+  name: Ready
+  nameWithType: StageGraph.Ready
+  fullName: Prowl.Editor.Build.StageGraph.Ready
+- uid: System.Collections.Generic.IReadOnlySet{Prowl.Editor.Build.BuildStage}
+  commentId: T:System.Collections.Generic.IReadOnlySet{Prowl.Editor.Build.BuildStage}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlySet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlyset-1
+  name: IReadOnlySet<BuildStage>
+  nameWithType: IReadOnlySet<BuildStage>
+  fullName: System.Collections.Generic.IReadOnlySet<Prowl.Editor.Build.BuildStage>
+  nameWithType.vb: IReadOnlySet(Of BuildStage)
+  fullName.vb: System.Collections.Generic.IReadOnlySet(Of Prowl.Editor.Build.BuildStage)
+  name.vb: IReadOnlySet(Of BuildStage)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlySet`1
+    name: IReadOnlySet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlyset-1
+  - name: <
+  - uid: Prowl.Editor.Build.BuildStage
+    name: BuildStage
+    href: Prowl.Editor.Build.BuildStage.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlySet`1
+    name: IReadOnlySet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlyset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Editor.Build.BuildStage
+    name: BuildStage
+    href: Prowl.Editor.Build.BuildStage.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlySet`1
+  commentId: T:System.Collections.Generic.IReadOnlySet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlyset-1
+  name: IReadOnlySet<T>
+  nameWithType: IReadOnlySet<T>
+  fullName: System.Collections.Generic.IReadOnlySet<T>
+  nameWithType.vb: IReadOnlySet(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlySet(Of T)
+  name.vb: IReadOnlySet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlySet`1
+    name: IReadOnlySet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlyset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlySet`1
+    name: IReadOnlySet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlyset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Editor.Build.StageGraph.TopologicalOrder*
+  commentId: Overload:Prowl.Editor.Build.StageGraph.TopologicalOrder
+  href: Prowl.Editor.Build.StageGraph.html#Prowl_Editor_Build_StageGraph_TopologicalOrder
+  name: TopologicalOrder
+  nameWithType: StageGraph.TopologicalOrder
+  fullName: Prowl.Editor.Build.StageGraph.TopologicalOrder
+- uid: System.Collections.Generic.IReadOnlyList{Prowl.Editor.Build.BuildStage}
+  commentId: T:System.Collections.Generic.IReadOnlyList{Prowl.Editor.Build.BuildStage}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<BuildStage>
+  nameWithType: IReadOnlyList<BuildStage>
+  fullName: System.Collections.Generic.IReadOnlyList<Prowl.Editor.Build.BuildStage>
+  nameWithType.vb: IReadOnlyList(Of BuildStage)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Prowl.Editor.Build.BuildStage)
+  name.vb: IReadOnlyList(Of BuildStage)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Editor.Build.BuildStage
+    name: BuildStage
+    href: Prowl.Editor.Build.BuildStage.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Editor.Build.BuildStage
+    name: BuildStage
+    href: Prowl.Editor.Build.BuildStage.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

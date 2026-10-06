@@ -5,12 +5,12 @@ items:
   id: DebugStackFrame
   parent: Prowl.Runtime
   children:
-  - Prowl.Runtime.DebugStackFrame.#ctor(System.Int32,System.Int32,System.String,System.Reflection.MethodBase)
+  - Prowl.Runtime.DebugStackFrame.#ctor(System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)
+  - Prowl.Runtime.DebugStackFrame.Column
+  - Prowl.Runtime.DebugStackFrame.FileName
+  - Prowl.Runtime.DebugStackFrame.Line
+  - Prowl.Runtime.DebugStackFrame.Method
   - Prowl.Runtime.DebugStackFrame.ToString
-  - Prowl.Runtime.DebugStackFrame.column
-  - Prowl.Runtime.DebugStackFrame.fileName
-  - Prowl.Runtime.DebugStackFrame.line
-  - Prowl.Runtime.DebugStackFrame.methodBase
   langs:
   - csharp
   - vb
@@ -21,11 +21,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: DebugStackFrame
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 26
+    startLine: 33
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -45,160 +45,160 @@ items:
   - System.Object.ReferenceEquals(System.Object,System.Object)
   extensionMethods:
   - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
-- uid: Prowl.Runtime.DebugStackFrame.#ctor(System.Int32,System.Int32,System.String,System.Reflection.MethodBase)
-  commentId: M:Prowl.Runtime.DebugStackFrame.#ctor(System.Int32,System.Int32,System.String,System.Reflection.MethodBase)
-  id: '#ctor(System.Int32,System.Int32,System.String,System.Reflection.MethodBase)'
+- uid: Prowl.Runtime.DebugStackFrame.#ctor(System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)
+  commentId: M:Prowl.Runtime.DebugStackFrame.#ctor(System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)
+  id: '#ctor(System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)'
   parent: Prowl.Runtime.DebugStackFrame
   langs:
   - csharp
   - vb
-  name: DebugStackFrame(int, int, string?, MethodBase?)
-  nameWithType: DebugStackFrame.DebugStackFrame(int, int, string?, MethodBase?)
-  fullName: Prowl.Runtime.DebugStackFrame.DebugStackFrame(int, int, string?, System.Reflection.MethodBase?)
+  name: DebugStackFrame(string, int?, int?, string?)
+  nameWithType: DebugStackFrame.DebugStackFrame(string, int?, int?, string?)
+  fullName: Prowl.Runtime.DebugStackFrame.DebugStackFrame(string, int?, int?, string?)
   type: Constructor
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: .ctor
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 26
+    startLine: 33
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public DebugStackFrame(int line, int column, string? fileName = null, MethodBase? methodBase = null)
+    content: public DebugStackFrame(string FileName, int? Line = null, int? Column = null, string? Method = null)
     parameters:
-    - id: line
-      type: System.Int32
-    - id: column
-      type: System.Int32
-    - id: fileName
+    - id: FileName
       type: System.String
-    - id: methodBase
-      type: System.Reflection.MethodBase
-    content.vb: Public Sub New(line As Integer, column As Integer, fileName As String = Nothing, methodBase As MethodBase = Nothing)
+    - id: Line
+      type: System.Nullable{System.Int32}
+    - id: Column
+      type: System.Nullable{System.Int32}
+    - id: Method
+      type: System.String
+    content.vb: Public Sub New(FileName As String, Line As Integer? = Nothing, Column As Integer? = Nothing, Method As String = Nothing)
   overload: Prowl.Runtime.DebugStackFrame.#ctor*
-  nameWithType.vb: DebugStackFrame.New(Integer, Integer, String, MethodBase)
-  fullName.vb: Prowl.Runtime.DebugStackFrame.New(Integer, Integer, String, System.Reflection.MethodBase)
-  name.vb: New(Integer, Integer, String, MethodBase)
-- uid: Prowl.Runtime.DebugStackFrame.line
-  commentId: P:Prowl.Runtime.DebugStackFrame.line
-  id: line
+  nameWithType.vb: DebugStackFrame.New(String, Integer?, Integer?, String)
+  fullName.vb: Prowl.Runtime.DebugStackFrame.New(String, Integer?, Integer?, String)
+  name.vb: New(String, Integer?, Integer?, String)
+- uid: Prowl.Runtime.DebugStackFrame.FileName
+  commentId: P:Prowl.Runtime.DebugStackFrame.FileName
+  id: FileName
   parent: Prowl.Runtime.DebugStackFrame
   langs:
   - csharp
   - vb
-  name: line
-  nameWithType: DebugStackFrame.line
-  fullName: Prowl.Runtime.DebugStackFrame.line
+  name: FileName
+  nameWithType: DebugStackFrame.FileName
+  fullName: Prowl.Runtime.DebugStackFrame.FileName
   type: Property
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: line
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FileName
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 26
+    startLine: 33
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public int line { get; init; }
-    parameters: []
-    return:
-      type: System.Int32
-    content.vb: Public Property line As Integer
-  overload: Prowl.Runtime.DebugStackFrame.line*
-- uid: Prowl.Runtime.DebugStackFrame.column
-  commentId: P:Prowl.Runtime.DebugStackFrame.column
-  id: column
-  parent: Prowl.Runtime.DebugStackFrame
-  langs:
-  - csharp
-  - vb
-  name: column
-  nameWithType: DebugStackFrame.column
-  fullName: Prowl.Runtime.DebugStackFrame.column
-  type: Property
-  source:
-    remote:
-      path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: column
-    path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 26
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public int column { get; init; }
-    parameters: []
-    return:
-      type: System.Int32
-    content.vb: Public Property column As Integer
-  overload: Prowl.Runtime.DebugStackFrame.column*
-- uid: Prowl.Runtime.DebugStackFrame.fileName
-  commentId: P:Prowl.Runtime.DebugStackFrame.fileName
-  id: fileName
-  parent: Prowl.Runtime.DebugStackFrame
-  langs:
-  - csharp
-  - vb
-  name: fileName
-  nameWithType: DebugStackFrame.fileName
-  fullName: Prowl.Runtime.DebugStackFrame.fileName
-  type: Property
-  source:
-    remote:
-      path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: fileName
-    path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 26
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public string? fileName { get; init; }
+    content: public string FileName { get; init; }
     parameters: []
     return:
       type: System.String
-    content.vb: Public Property fileName As String
-  overload: Prowl.Runtime.DebugStackFrame.fileName*
-- uid: Prowl.Runtime.DebugStackFrame.methodBase
-  commentId: P:Prowl.Runtime.DebugStackFrame.methodBase
-  id: methodBase
+    content.vb: Public Property FileName As String
+  overload: Prowl.Runtime.DebugStackFrame.FileName*
+- uid: Prowl.Runtime.DebugStackFrame.Line
+  commentId: P:Prowl.Runtime.DebugStackFrame.Line
+  id: Line
   parent: Prowl.Runtime.DebugStackFrame
   langs:
   - csharp
   - vb
-  name: methodBase
-  nameWithType: DebugStackFrame.methodBase
-  fullName: Prowl.Runtime.DebugStackFrame.methodBase
+  name: Line
+  nameWithType: DebugStackFrame.Line
+  fullName: Prowl.Runtime.DebugStackFrame.Line
   type: Property
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: methodBase
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Line
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 26
+    startLine: 33
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public MethodBase? methodBase { get; init; }
+    content: public int? Line { get; init; }
     parameters: []
     return:
-      type: System.Reflection.MethodBase
-    content.vb: Public Property methodBase As MethodBase
-  overload: Prowl.Runtime.DebugStackFrame.methodBase*
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property Line As Integer?
+  overload: Prowl.Runtime.DebugStackFrame.Line*
+- uid: Prowl.Runtime.DebugStackFrame.Column
+  commentId: P:Prowl.Runtime.DebugStackFrame.Column
+  id: Column
+  parent: Prowl.Runtime.DebugStackFrame
+  langs:
+  - csharp
+  - vb
+  name: Column
+  nameWithType: DebugStackFrame.Column
+  fullName: Prowl.Runtime.DebugStackFrame.Column
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Debug.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Column
+    path: ../Prowl/Prowl.Runtime/Debug.cs
+    startLine: 33
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public int? Column { get; init; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property Column As Integer?
+  overload: Prowl.Runtime.DebugStackFrame.Column*
+- uid: Prowl.Runtime.DebugStackFrame.Method
+  commentId: P:Prowl.Runtime.DebugStackFrame.Method
+  id: Method
+  parent: Prowl.Runtime.DebugStackFrame
+  langs:
+  - csharp
+  - vb
+  name: Method
+  nameWithType: DebugStackFrame.Method
+  fullName: Prowl.Runtime.DebugStackFrame.Method
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Debug.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Method
+    path: ../Prowl/Prowl.Runtime/Debug.cs
+    startLine: 33
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public string? Method { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Method As String
+  overload: Prowl.Runtime.DebugStackFrame.Method*
 - uid: Prowl.Runtime.DebugStackFrame.ToString
   commentId: M:Prowl.Runtime.DebugStackFrame.ToString
   id: ToString
@@ -213,11 +213,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: ToString
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 28
+    startLine: 35
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -234,26 +234,21 @@ items:
 references:
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
-  href: Prowl.html
   name: Prowl.Runtime
   nameWithType: Prowl.Runtime
   fullName: Prowl.Runtime
   spec.csharp:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
   spec.vb:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -598,24 +593,13 @@ references:
   fullName: Prowl.Runtime.RuntimeUtils
 - uid: Prowl.Runtime.DebugStackFrame.#ctor*
   commentId: Overload:Prowl.Runtime.DebugStackFrame.#ctor
-  href: Prowl.Runtime.DebugStackFrame.html#Prowl_Runtime_DebugStackFrame__ctor_System_Int32_System_Int32_System_String_System_Reflection_MethodBase_
+  href: Prowl.Runtime.DebugStackFrame.html#Prowl_Runtime_DebugStackFrame__ctor_System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_String_
   name: DebugStackFrame
   nameWithType: DebugStackFrame.DebugStackFrame
   fullName: Prowl.Runtime.DebugStackFrame.DebugStackFrame
   nameWithType.vb: DebugStackFrame.New
   fullName.vb: Prowl.Runtime.DebugStackFrame.New
   name.vb: New
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
-  name: int
-  nameWithType: int
-  fullName: int
-  nameWithType.vb: Integer
-  fullName.vb: Integer
-  name.vb: Integer
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -627,65 +611,81 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: System.Reflection.MethodBase
-  commentId: T:System.Reflection.MethodBase
-  parent: System.Reflection
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.reflection.methodbase
-  name: MethodBase
-  nameWithType: MethodBase
-  fullName: System.Reflection.MethodBase
-- uid: System.Reflection
-  commentId: N:System.Reflection
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Reflection
-  nameWithType: System.Reflection
-  fullName: System.Reflection
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
   spec.csharp:
-  - uid: System
-    name: System
+  - uid: System.Int32
+    name: int
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Reflection
-    name: Reflection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.reflection
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   spec.vb:
-  - uid: System
-    name: System
+  - uid: System.Int32
+    name: Integer
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Reflection
-    name: Reflection
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.reflection
-- uid: Prowl.Runtime.DebugStackFrame.line*
-  commentId: Overload:Prowl.Runtime.DebugStackFrame.line
-  href: Prowl.Runtime.DebugStackFrame.html#Prowl_Runtime_DebugStackFrame_line
-  name: line
-  nameWithType: DebugStackFrame.line
-  fullName: Prowl.Runtime.DebugStackFrame.line
-- uid: Prowl.Runtime.DebugStackFrame.column*
-  commentId: Overload:Prowl.Runtime.DebugStackFrame.column
-  href: Prowl.Runtime.DebugStackFrame.html#Prowl_Runtime_DebugStackFrame_column
-  name: column
-  nameWithType: DebugStackFrame.column
-  fullName: Prowl.Runtime.DebugStackFrame.column
-- uid: Prowl.Runtime.DebugStackFrame.fileName*
-  commentId: Overload:Prowl.Runtime.DebugStackFrame.fileName
-  href: Prowl.Runtime.DebugStackFrame.html#Prowl_Runtime_DebugStackFrame_fileName
-  name: fileName
-  nameWithType: DebugStackFrame.fileName
-  fullName: Prowl.Runtime.DebugStackFrame.fileName
-- uid: Prowl.Runtime.DebugStackFrame.methodBase*
-  commentId: Overload:Prowl.Runtime.DebugStackFrame.methodBase
-  href: Prowl.Runtime.DebugStackFrame.html#Prowl_Runtime_DebugStackFrame_methodBase
-  name: methodBase
-  nameWithType: DebugStackFrame.methodBase
-  fullName: Prowl.Runtime.DebugStackFrame.methodBase
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Runtime.DebugStackFrame.FileName*
+  commentId: Overload:Prowl.Runtime.DebugStackFrame.FileName
+  href: Prowl.Runtime.DebugStackFrame.html#Prowl_Runtime_DebugStackFrame_FileName
+  name: FileName
+  nameWithType: DebugStackFrame.FileName
+  fullName: Prowl.Runtime.DebugStackFrame.FileName
+- uid: Prowl.Runtime.DebugStackFrame.Line*
+  commentId: Overload:Prowl.Runtime.DebugStackFrame.Line
+  href: Prowl.Runtime.DebugStackFrame.html#Prowl_Runtime_DebugStackFrame_Line
+  name: Line
+  nameWithType: DebugStackFrame.Line
+  fullName: Prowl.Runtime.DebugStackFrame.Line
+- uid: Prowl.Runtime.DebugStackFrame.Column*
+  commentId: Overload:Prowl.Runtime.DebugStackFrame.Column
+  href: Prowl.Runtime.DebugStackFrame.html#Prowl_Runtime_DebugStackFrame_Column
+  name: Column
+  nameWithType: DebugStackFrame.Column
+  fullName: Prowl.Runtime.DebugStackFrame.Column
+- uid: Prowl.Runtime.DebugStackFrame.Method*
+  commentId: Overload:Prowl.Runtime.DebugStackFrame.Method
+  href: Prowl.Runtime.DebugStackFrame.html#Prowl_Runtime_DebugStackFrame_Method
+  name: Method
+  nameWithType: DebugStackFrame.Method
+  fullName: Prowl.Runtime.DebugStackFrame.Method
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object

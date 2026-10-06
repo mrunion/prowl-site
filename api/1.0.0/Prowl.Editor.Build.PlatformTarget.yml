@@ -1,0 +1,865 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.Build.PlatformTarget
+  commentId: T:Prowl.Editor.Build.PlatformTarget
+  id: PlatformTarget
+  parent: Prowl.Editor.Build
+  children:
+  - Prowl.Editor.Build.PlatformTarget.AssemblyPlatform
+  - Prowl.Editor.Build.PlatformTarget.Capabilities
+  - Prowl.Editor.Build.PlatformTarget.Defines
+  - Prowl.Editor.Build.PlatformTarget.DisplayName
+  - Prowl.Editor.Build.PlatformTarget.Family
+  - Prowl.Editor.Build.PlatformTarget.Id
+  - Prowl.Editor.Build.PlatformTarget.RuntimeIdentifiers
+  - Prowl.Editor.Build.PlatformTarget.ToString
+  langs:
+  - csharp
+  - vb
+  name: PlatformTarget
+  nameWithType: PlatformTarget
+  fullName: Prowl.Editor.Build.PlatformTarget
+  type: Class
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Targets/PlatformTarget.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PlatformTarget
+    path: ../Prowl/Prowl.Editor/Projects/Build/Targets/PlatformTarget.cs
+    startLine: 17
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Something a build can be produced for.
+  remarks: >-
+    Registered data rather than an enum. A console cannot appear in a public enum in this repository, and
+
+    a target is really a platform and an architecture together, which an enum of platform names cannot
+
+    express. <xref href="Prowl.Editor.Build.PlatformTarget.Id" data-throw-if-not-resolved="false"></xref> is the one value that must never change: it keys the asset variant cache and
+
+    appears in the build manifest, so renaming one invalidates shipped output.
+  example: []
+  syntax:
+    content: 'public sealed record PlatformTarget : IEquatable<PlatformTarget>'
+    content.vb: Public NotInheritable Class PlatformTarget Implements IEquatable(Of PlatformTarget)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{Prowl.Editor.Build.PlatformTarget}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Editor.Build.PlatformTarget.Id
+  commentId: P:Prowl.Editor.Build.PlatformTarget.Id
+  id: Id
+  parent: Prowl.Editor.Build.PlatformTarget
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: PlatformTarget.Id
+  fullName: Prowl.Editor.Build.PlatformTarget.Id
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Targets/PlatformTarget.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Id
+    path: ../Prowl/Prowl.Editor/Projects/Build/Targets/PlatformTarget.cs
+    startLine: 20
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: The unique identifier that keys the asset variant cache and appears in the build manifest. Must never change once shipped.
+  example: []
+  syntax:
+    content: public required string Id { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Id As String
+  overload: Prowl.Editor.Build.PlatformTarget.Id*
+- uid: Prowl.Editor.Build.PlatformTarget.DisplayName
+  commentId: P:Prowl.Editor.Build.PlatformTarget.DisplayName
+  id: DisplayName
+  parent: Prowl.Editor.Build.PlatformTarget
+  langs:
+  - csharp
+  - vb
+  name: DisplayName
+  nameWithType: PlatformTarget.DisplayName
+  fullName: Prowl.Editor.Build.PlatformTarget.DisplayName
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Targets/PlatformTarget.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DisplayName
+    path: ../Prowl/Prowl.Editor/Projects/Build/Targets/PlatformTarget.cs
+    startLine: 23
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: The human-readable name shown in the editor UI.
+  example: []
+  syntax:
+    content: public required string DisplayName { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property DisplayName As String
+  overload: Prowl.Editor.Build.PlatformTarget.DisplayName*
+- uid: Prowl.Editor.Build.PlatformTarget.Family
+  commentId: P:Prowl.Editor.Build.PlatformTarget.Family
+  id: Family
+  parent: Prowl.Editor.Build.PlatformTarget
+  langs:
+  - csharp
+  - vb
+  name: Family
+  nameWithType: PlatformTarget.Family
+  fullName: Prowl.Editor.Build.PlatformTarget.Family
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Targets/PlatformTarget.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Family
+    path: ../Prowl/Prowl.Editor/Projects/Build/Targets/PlatformTarget.cs
+    startLine: 26
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Grouping only, for example "desktop" or "mobile". A string so a new family needs no engine change.
+  example: []
+  syntax:
+    content: public required string Family { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Family As String
+  overload: Prowl.Editor.Build.PlatformTarget.Family*
+- uid: Prowl.Editor.Build.PlatformTarget.RuntimeIdentifiers
+  commentId: P:Prowl.Editor.Build.PlatformTarget.RuntimeIdentifiers
+  id: RuntimeIdentifiers
+  parent: Prowl.Editor.Build.PlatformTarget
+  langs:
+  - csharp
+  - vb
+  name: RuntimeIdentifiers
+  nameWithType: PlatformTarget.RuntimeIdentifiers
+  fullName: Prowl.Editor.Build.PlatformTarget.RuntimeIdentifiers
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Targets/PlatformTarget.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RuntimeIdentifiers
+    path: ../Prowl/Prowl.Editor/Projects/Build/Targets/PlatformTarget.cs
+    startLine: 35
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: The .NET runtime identifiers this target builds for.
+  remarks: >-
+    A list because several real targets are not one architecture. An Android App Bundle carries
+
+    multiple ABIs in one artifact, and a macOS universal binary is built per architecture and merged.
+  example: []
+  syntax:
+    content: public required IReadOnlyList<string> RuntimeIdentifiers { get; init; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{System.String}
+    content.vb: Public Property RuntimeIdentifiers As IReadOnlyList(Of String)
+  overload: Prowl.Editor.Build.PlatformTarget.RuntimeIdentifiers*
+- uid: Prowl.Editor.Build.PlatformTarget.Capabilities
+  commentId: P:Prowl.Editor.Build.PlatformTarget.Capabilities
+  id: Capabilities
+  parent: Prowl.Editor.Build.PlatformTarget
+  langs:
+  - csharp
+  - vb
+  name: Capabilities
+  nameWithType: PlatformTarget.Capabilities
+  fullName: Prowl.Editor.Build.PlatformTarget.Capabilities
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Targets/PlatformTarget.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Capabilities
+    path: ../Prowl/Prowl.Editor/Projects/Build/Targets/PlatformTarget.cs
+    startLine: 38
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: The capabilities this target supports, such as texture formats, graphics APIs, and feature flags.
+  example: []
+  syntax:
+    content: public required TargetCapabilities Capabilities { get; init; }
+    parameters: []
+    return:
+      type: Prowl.Editor.Build.TargetCapabilities
+    content.vb: Public Property Capabilities As TargetCapabilities
+  overload: Prowl.Editor.Build.PlatformTarget.Capabilities*
+- uid: Prowl.Editor.Build.PlatformTarget.AssemblyPlatform
+  commentId: P:Prowl.Editor.Build.PlatformTarget.AssemblyPlatform
+  id: AssemblyPlatform
+  parent: Prowl.Editor.Build.PlatformTarget
+  langs:
+  - csharp
+  - vb
+  name: AssemblyPlatform
+  nameWithType: PlatformTarget.AssemblyPlatform
+  fullName: Prowl.Editor.Build.PlatformTarget.AssemblyPlatform
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Targets/PlatformTarget.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AssemblyPlatform
+    path: ../Prowl/Prowl.Editor/Projects/Build/Targets/PlatformTarget.cs
+    startLine: 43
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: The platform name assembly definitions and plugins are filtered by, when the target maps to one.
+  example: []
+  syntax:
+    content: public string? AssemblyPlatform { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property AssemblyPlatform As String
+  overload: Prowl.Editor.Build.PlatformTarget.AssemblyPlatform*
+- uid: Prowl.Editor.Build.PlatformTarget.Defines
+  commentId: P:Prowl.Editor.Build.PlatformTarget.Defines
+  id: Defines
+  parent: Prowl.Editor.Build.PlatformTarget
+  langs:
+  - csharp
+  - vb
+  name: Defines
+  nameWithType: PlatformTarget.Defines
+  fullName: Prowl.Editor.Build.PlatformTarget.Defines
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Targets/PlatformTarget.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Defines
+    path: ../Prowl/Prowl.Editor/Projects/Build/Targets/PlatformTarget.cs
+    startLine: 46
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Preprocessor symbols always defined for this target.
+  example: []
+  syntax:
+    content: public IReadOnlyList<string> Defines { get; init; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{System.String}
+    content.vb: Public Property Defines As IReadOnlyList(Of String)
+  overload: Prowl.Editor.Build.PlatformTarget.Defines*
+- uid: Prowl.Editor.Build.PlatformTarget.ToString
+  commentId: M:Prowl.Editor.Build.PlatformTarget.ToString
+  id: ToString
+  parent: Prowl.Editor.Build.PlatformTarget
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: PlatformTarget.ToString()
+  fullName: Prowl.Editor.Build.PlatformTarget.ToString()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Targets/PlatformTarget.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ToString
+    path: ../Prowl/Prowl.Editor/Projects/Build/Targets/PlatformTarget.cs
+    startLine: 49
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Returns the <xref href="Prowl.Editor.Build.PlatformTarget.Id" data-throw-if-not-resolved="false"></xref> value.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: Prowl.Editor.Build.PlatformTarget.ToString*
+references:
+- uid: Prowl.Editor.Build.PlatformTarget.Id
+  commentId: P:Prowl.Editor.Build.PlatformTarget.Id
+  href: Prowl.Editor.Build.PlatformTarget.html#Prowl_Editor_Build_PlatformTarget_Id
+  name: Id
+  nameWithType: PlatformTarget.Id
+  fullName: Prowl.Editor.Build.PlatformTarget.Id
+- uid: Prowl.Editor.Build
+  commentId: N:Prowl.Editor.Build
+  name: Prowl.Editor.Build
+  nameWithType: Prowl.Editor.Build
+  fullName: Prowl.Editor.Build
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Build
+    name: Build
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Build
+    name: Build
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{Prowl.Editor.Build.PlatformTarget}
+  commentId: T:System.IEquatable{Prowl.Editor.Build.PlatformTarget}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<PlatformTarget>
+  nameWithType: IEquatable<PlatformTarget>
+  fullName: System.IEquatable<Prowl.Editor.Build.PlatformTarget>
+  nameWithType.vb: IEquatable(Of PlatformTarget)
+  fullName.vb: System.IEquatable(Of Prowl.Editor.Build.PlatformTarget)
+  name.vb: IEquatable(Of PlatformTarget)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Prowl.Editor.Build.PlatformTarget
+    name: PlatformTarget
+    href: Prowl.Editor.Build.PlatformTarget.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Editor.Build.PlatformTarget
+    name: PlatformTarget
+    href: Prowl.Editor.Build.PlatformTarget.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Editor.Build.PlatformTarget.Id*
+  commentId: Overload:Prowl.Editor.Build.PlatformTarget.Id
+  href: Prowl.Editor.Build.PlatformTarget.html#Prowl_Editor_Build_PlatformTarget_Id
+  name: Id
+  nameWithType: PlatformTarget.Id
+  fullName: Prowl.Editor.Build.PlatformTarget.Id
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Prowl.Editor.Build.PlatformTarget.DisplayName*
+  commentId: Overload:Prowl.Editor.Build.PlatformTarget.DisplayName
+  href: Prowl.Editor.Build.PlatformTarget.html#Prowl_Editor_Build_PlatformTarget_DisplayName
+  name: DisplayName
+  nameWithType: PlatformTarget.DisplayName
+  fullName: Prowl.Editor.Build.PlatformTarget.DisplayName
+- uid: Prowl.Editor.Build.PlatformTarget.Family*
+  commentId: Overload:Prowl.Editor.Build.PlatformTarget.Family
+  href: Prowl.Editor.Build.PlatformTarget.html#Prowl_Editor_Build_PlatformTarget_Family
+  name: Family
+  nameWithType: PlatformTarget.Family
+  fullName: Prowl.Editor.Build.PlatformTarget.Family
+- uid: Prowl.Editor.Build.PlatformTarget.RuntimeIdentifiers*
+  commentId: Overload:Prowl.Editor.Build.PlatformTarget.RuntimeIdentifiers
+  href: Prowl.Editor.Build.PlatformTarget.html#Prowl_Editor_Build_PlatformTarget_RuntimeIdentifiers
+  name: RuntimeIdentifiers
+  nameWithType: PlatformTarget.RuntimeIdentifiers
+  fullName: Prowl.Editor.Build.PlatformTarget.RuntimeIdentifiers
+- uid: System.Collections.Generic.IReadOnlyList{System.String}
+  commentId: T:System.Collections.Generic.IReadOnlyList{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<string>
+  nameWithType: IReadOnlyList<string>
+  fullName: System.Collections.Generic.IReadOnlyList<string>
+  nameWithType.vb: IReadOnlyList(Of String)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of String)
+  name.vb: IReadOnlyList(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Prowl.Editor.Build.PlatformTarget.Capabilities*
+  commentId: Overload:Prowl.Editor.Build.PlatformTarget.Capabilities
+  href: Prowl.Editor.Build.PlatformTarget.html#Prowl_Editor_Build_PlatformTarget_Capabilities
+  name: Capabilities
+  nameWithType: PlatformTarget.Capabilities
+  fullName: Prowl.Editor.Build.PlatformTarget.Capabilities
+- uid: Prowl.Editor.Build.TargetCapabilities
+  commentId: T:Prowl.Editor.Build.TargetCapabilities
+  parent: Prowl.Editor.Build
+  href: Prowl.Editor.Build.TargetCapabilities.html
+  name: TargetCapabilities
+  nameWithType: TargetCapabilities
+  fullName: Prowl.Editor.Build.TargetCapabilities
+- uid: Prowl.Editor.Build.PlatformTarget.AssemblyPlatform*
+  commentId: Overload:Prowl.Editor.Build.PlatformTarget.AssemblyPlatform
+  href: Prowl.Editor.Build.PlatformTarget.html#Prowl_Editor_Build_PlatformTarget_AssemblyPlatform
+  name: AssemblyPlatform
+  nameWithType: PlatformTarget.AssemblyPlatform
+  fullName: Prowl.Editor.Build.PlatformTarget.AssemblyPlatform
+- uid: Prowl.Editor.Build.PlatformTarget.Defines*
+  commentId: Overload:Prowl.Editor.Build.PlatformTarget.Defines
+  href: Prowl.Editor.Build.PlatformTarget.html#Prowl_Editor_Build_PlatformTarget_Defines
+  name: Defines
+  nameWithType: PlatformTarget.Defines
+  fullName: Prowl.Editor.Build.PlatformTarget.Defines
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: Prowl.Editor.Build.PlatformTarget.ToString*
+  commentId: Overload:Prowl.Editor.Build.PlatformTarget.ToString
+  href: Prowl.Editor.Build.PlatformTarget.html#Prowl_Editor_Build_PlatformTarget_ToString
+  name: ToString
+  nameWithType: PlatformTarget.ToString
+  fullName: Prowl.Editor.Build.PlatformTarget.ToString

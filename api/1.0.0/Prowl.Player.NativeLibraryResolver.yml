@@ -1,0 +1,553 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Player.NativeLibraryResolver
+  commentId: T:Prowl.Player.NativeLibraryResolver
+  id: NativeLibraryResolver
+  parent: Prowl.Player
+  children:
+  - Prowl.Player.NativeLibraryResolver.Install
+  - Prowl.Player.NativeLibraryResolver.LogPath
+  - Prowl.Player.NativeLibraryResolver.ResolveForImport(System.String,System.Reflection.Assembly,System.Nullable{System.Runtime.InteropServices.DllImportSearchPath})
+  langs:
+  - csharp
+  - vb
+  name: NativeLibraryResolver
+  nameWithType: NativeLibraryResolver
+  fullName: Prowl.Player.NativeLibraryResolver
+  type: Class
+  source:
+    remote:
+      path: Players/Desktop/NativeLibraryResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NativeLibraryResolver
+    path: ../Prowl/Players/Desktop/NativeLibraryResolver.cs
+    startLine: 20
+  assemblies:
+  - Prowl.Player.Desktop
+  namespace: Prowl.Player
+  summary: Finds managed and native dependencies in a published player layout.
+  remarks: >-
+    A published build puts managed dependencies under <code>runtimes/</code> and natives under
+
+    <code>runtimes/{rid}/native</code>, neither of which the default probing logic looks in. This belongs in the
+
+    platform layer of a real assembly rather than being emitted as text into a generated program.
+  example: []
+  syntax:
+    content: public static class NativeLibraryResolver
+    content.vb: Public Module NativeLibraryResolver
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Prowl.Player.NativeLibraryResolver.LogPath
+  commentId: P:Prowl.Player.NativeLibraryResolver.LogPath
+  id: LogPath
+  parent: Prowl.Player.NativeLibraryResolver
+  langs:
+  - csharp
+  - vb
+  name: LogPath
+  nameWithType: NativeLibraryResolver.LogPath
+  fullName: Prowl.Player.NativeLibraryResolver.LogPath
+  type: Property
+  source:
+    remote:
+      path: Players/Desktop/NativeLibraryResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LogPath
+    path: ../Prowl/Players/Desktop/NativeLibraryResolver.cs
+    startLine: 26
+  assemblies:
+  - Prowl.Player.Desktop
+  namespace: Prowl.Player
+  summary: Diagnostic log path. Null disables logging, which is the default for a shipped game.
+  example: []
+  syntax:
+    content: public static string? LogPath { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared Property LogPath As String
+  overload: Prowl.Player.NativeLibraryResolver.LogPath*
+- uid: Prowl.Player.NativeLibraryResolver.Install
+  commentId: M:Prowl.Player.NativeLibraryResolver.Install
+  id: Install
+  parent: Prowl.Player.NativeLibraryResolver
+  langs:
+  - csharp
+  - vb
+  name: Install()
+  nameWithType: NativeLibraryResolver.Install()
+  fullName: Prowl.Player.NativeLibraryResolver.Install()
+  type: Method
+  source:
+    remote:
+      path: Players/Desktop/NativeLibraryResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Install
+    path: ../Prowl/Players/Desktop/NativeLibraryResolver.cs
+    startLine: 38
+  assemblies:
+  - Prowl.Player.Desktop
+  namespace: Prowl.Player
+  summary: >-
+    Registers the resolvers. Safe to call more than once. Must run before anything triggers a load,
+
+    which is why the entry point calls it first.
+  remarks: >-
+    Mentions no engine type on purpose. Preparing a method loads every type named in its body before
+
+    its first statement runs, so naming one here would demand that assembly's dependencies out of
+
+    <code>runtimes/</code> before the resolver that finds them exists. The engine's own import resolver is
+
+    registered later, once loading works, from <xref href="Prowl.Player.DesktopPlayer.Initialize" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static void Install()
+    content.vb: Public Shared Sub Install()
+  overload: Prowl.Player.NativeLibraryResolver.Install*
+- uid: Prowl.Player.NativeLibraryResolver.ResolveForImport(System.String,System.Reflection.Assembly,System.Nullable{System.Runtime.InteropServices.DllImportSearchPath})
+  commentId: M:Prowl.Player.NativeLibraryResolver.ResolveForImport(System.String,System.Reflection.Assembly,System.Nullable{System.Runtime.InteropServices.DllImportSearchPath})
+  id: ResolveForImport(System.String,System.Reflection.Assembly,System.Nullable{System.Runtime.InteropServices.DllImportSearchPath})
+  parent: Prowl.Player.NativeLibraryResolver
+  langs:
+  - csharp
+  - vb
+  name: ResolveForImport(string, Assembly, DllImportSearchPath?)
+  nameWithType: NativeLibraryResolver.ResolveForImport(string, Assembly, DllImportSearchPath?)
+  fullName: Prowl.Player.NativeLibraryResolver.ResolveForImport(string, System.Reflection.Assembly, System.Runtime.InteropServices.DllImportSearchPath?)
+  type: Method
+  source:
+    remote:
+      path: Players/Desktop/NativeLibraryResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ResolveForImport
+    path: ../Prowl/Players/Desktop/NativeLibraryResolver.cs
+    startLine: 70
+  assemblies:
+  - Prowl.Player.Desktop
+  namespace: Prowl.Player
+  syntax:
+    content: public static nint ResolveForImport(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
+    parameters:
+    - id: libraryName
+      type: System.String
+    - id: assembly
+      type: System.Reflection.Assembly
+    - id: searchPath
+      type: System.Nullable{System.Runtime.InteropServices.DllImportSearchPath}
+    return:
+      type: System.IntPtr
+    content.vb: Public Shared Function ResolveForImport(libraryName As String, assembly As Assembly, searchPath As DllImportSearchPath?) As IntPtr
+  overload: Prowl.Player.NativeLibraryResolver.ResolveForImport*
+  nameWithType.vb: NativeLibraryResolver.ResolveForImport(String, Assembly, DllImportSearchPath?)
+  fullName.vb: Prowl.Player.NativeLibraryResolver.ResolveForImport(String, System.Reflection.Assembly, System.Runtime.InteropServices.DllImportSearchPath?)
+  name.vb: ResolveForImport(String, Assembly, DllImportSearchPath?)
+references:
+- uid: Prowl.Player
+  commentId: N:Prowl.Player
+  name: Prowl.Player
+  nameWithType: Prowl.Player
+  fullName: Prowl.Player
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Player
+    name: Player
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Player
+    name: Player
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Player.NativeLibraryResolver.LogPath*
+  commentId: Overload:Prowl.Player.NativeLibraryResolver.LogPath
+  href: Prowl.Player.NativeLibraryResolver.html#Prowl_Player_NativeLibraryResolver_LogPath
+  name: LogPath
+  nameWithType: NativeLibraryResolver.LogPath
+  fullName: Prowl.Player.NativeLibraryResolver.LogPath
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Prowl.Player.DesktopPlayer.Initialize
+  commentId: M:Prowl.Player.DesktopPlayer.Initialize
+  href: Prowl.Player.DesktopPlayer.html#Prowl_Player_DesktopPlayer_Initialize
+  name: Initialize()
+  nameWithType: DesktopPlayer.Initialize()
+  fullName: Prowl.Player.DesktopPlayer.Initialize()
+  spec.csharp:
+  - uid: Prowl.Player.DesktopPlayer.Initialize
+    name: Initialize
+    href: Prowl.Player.DesktopPlayer.html#Prowl_Player_DesktopPlayer_Initialize
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Player.DesktopPlayer.Initialize
+    name: Initialize
+    href: Prowl.Player.DesktopPlayer.html#Prowl_Player_DesktopPlayer_Initialize
+  - name: (
+  - name: )
+- uid: Prowl.Player.NativeLibraryResolver.Install*
+  commentId: Overload:Prowl.Player.NativeLibraryResolver.Install
+  href: Prowl.Player.NativeLibraryResolver.html#Prowl_Player_NativeLibraryResolver_Install
+  name: Install
+  nameWithType: NativeLibraryResolver.Install
+  fullName: Prowl.Player.NativeLibraryResolver.Install
+- uid: Prowl.Player.NativeLibraryResolver.ResolveForImport*
+  commentId: Overload:Prowl.Player.NativeLibraryResolver.ResolveForImport
+  href: Prowl.Player.NativeLibraryResolver.html#Prowl_Player_NativeLibraryResolver_ResolveForImport_System_String_System_Reflection_Assembly_System_Nullable_System_Runtime_InteropServices_DllImportSearchPath__
+  name: ResolveForImport
+  nameWithType: NativeLibraryResolver.ResolveForImport
+  fullName: Prowl.Player.NativeLibraryResolver.ResolveForImport
+- uid: System.Reflection.Assembly
+  commentId: T:System.Reflection.Assembly
+  parent: System.Reflection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.reflection.assembly
+  name: Assembly
+  nameWithType: Assembly
+  fullName: System.Reflection.Assembly
+- uid: System.Nullable{System.Runtime.InteropServices.DllImportSearchPath}
+  commentId: T:System.Nullable{System.Runtime.InteropServices.DllImportSearchPath}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.runtime.interopservices.dllimportsearchpath
+  name: DllImportSearchPath?
+  nameWithType: DllImportSearchPath?
+  fullName: System.Runtime.InteropServices.DllImportSearchPath?
+  spec.csharp:
+  - uid: System.Runtime.InteropServices.DllImportSearchPath
+    name: DllImportSearchPath
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime.interopservices.dllimportsearchpath
+  - name: '?'
+  spec.vb:
+  - uid: System.Runtime.InteropServices.DllImportSearchPath
+    name: DllImportSearchPath
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime.interopservices.dllimportsearchpath
+  - name: '?'
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: System.Reflection
+  commentId: N:System.Reflection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Reflection
+  nameWithType: System.Reflection
+  fullName: System.Reflection
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Reflection
+    name: Reflection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Reflection
+    name: Reflection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

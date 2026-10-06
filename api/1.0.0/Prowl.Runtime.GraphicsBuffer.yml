@@ -5,13 +5,16 @@ items:
   id: GraphicsBuffer
   parent: Prowl.Runtime
   children:
-  - Prowl.Runtime.GraphicsBuffer.#ctor(System.UInt32,System.UInt32,System.Boolean)
-  - Prowl.Runtime.GraphicsBuffer.Buffer
-  - Prowl.Runtime.GraphicsBuffer.Count
-  - Prowl.Runtime.GraphicsBuffer.Empty
-  - Prowl.Runtime.GraphicsBuffer.EmptyRW
-  - Prowl.Runtime.GraphicsBuffer.SetData``1(System.Span{``0},System.UInt32)
-  - Prowl.Runtime.GraphicsBuffer.Stride
+  - Prowl.Runtime.GraphicsBuffer.#ctor(Prowl.Runtime.BufferType,System.ReadOnlySpan{System.Byte},System.Boolean)
+  - Prowl.Runtime.GraphicsBuffer.Dispose
+  - Prowl.Runtime.GraphicsBuffer.Handle
+  - Prowl.Runtime.GraphicsBuffer.IsDisposed
+  - Prowl.Runtime.GraphicsBuffer.OriginalType
+  - Prowl.Runtime.GraphicsBuffer.Set(System.UInt32,System.Void*,System.Boolean)
+  - Prowl.Runtime.GraphicsBuffer.SizeInBytes
+  - Prowl.Runtime.GraphicsBuffer.Target
+  - Prowl.Runtime.GraphicsBuffer.ToString
+  - Prowl.Runtime.GraphicsBuffer.Update(System.UInt32,System.UInt32,System.Void*)
   langs:
   - csharp
   - vb
@@ -21,20 +24,22 @@ items:
   type: Class
   source:
     remote:
-      path: Prowl.Runtime/Rendering/GraphicsBuffer.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      path: Prowl.Runtime/Graphics/GraphicsBuffer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: GraphicsBuffer
-    path: ../Prowl/Prowl.Runtime/Rendering/GraphicsBuffer.cs
+    path: ../Prowl/Prowl.Runtime/Graphics/GraphicsBuffer.cs
     startLine: 9
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public class GraphicsBuffer
-    content.vb: Public Class GraphicsBuffer
+    content: 'public class GraphicsBuffer : IDisposable'
+    content.vb: Public Class GraphicsBuffer Implements IDisposable
   inheritance:
   - System.Object
+  implements:
+  - System.IDisposable
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -42,245 +47,337 @@ items:
   - System.Object.GetType
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.ToString
   extensionMethods:
   - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
-- uid: Prowl.Runtime.GraphicsBuffer.Empty
-  commentId: F:Prowl.Runtime.GraphicsBuffer.Empty
-  id: Empty
+- uid: Prowl.Runtime.GraphicsBuffer.IsDisposed
+  commentId: P:Prowl.Runtime.GraphicsBuffer.IsDisposed
+  id: IsDisposed
   parent: Prowl.Runtime.GraphicsBuffer
   langs:
   - csharp
   - vb
-  name: Empty
-  nameWithType: GraphicsBuffer.Empty
-  fullName: Prowl.Runtime.GraphicsBuffer.Empty
-  type: Field
+  name: IsDisposed
+  nameWithType: GraphicsBuffer.IsDisposed
+  fullName: Prowl.Runtime.GraphicsBuffer.IsDisposed
+  type: Property
   source:
     remote:
-      path: Prowl.Runtime/Rendering/GraphicsBuffer.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Empty
-    path: ../Prowl/Prowl.Runtime/Rendering/GraphicsBuffer.cs
+      path: Prowl.Runtime/Graphics/GraphicsBuffer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsDisposed
+    path: ../Prowl/Prowl.Runtime/Graphics/GraphicsBuffer.cs
     startLine: 11
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static readonly GraphicsBuffer Empty
+    content: public bool IsDisposed { get; protected set; }
+    parameters: []
     return:
-      type: Prowl.Runtime.GraphicsBuffer
-    content.vb: Public Shared ReadOnly Empty As GraphicsBuffer
-- uid: Prowl.Runtime.GraphicsBuffer.EmptyRW
-  commentId: F:Prowl.Runtime.GraphicsBuffer.EmptyRW
-  id: EmptyRW
+      type: System.Boolean
+    content.vb: Public Property IsDisposed As Boolean
+  overload: Prowl.Runtime.GraphicsBuffer.IsDisposed*
+- uid: Prowl.Runtime.GraphicsBuffer.Handle
+  commentId: P:Prowl.Runtime.GraphicsBuffer.Handle
+  id: Handle
   parent: Prowl.Runtime.GraphicsBuffer
   langs:
   - csharp
   - vb
-  name: EmptyRW
-  nameWithType: GraphicsBuffer.EmptyRW
-  fullName: Prowl.Runtime.GraphicsBuffer.EmptyRW
-  type: Field
-  source:
-    remote:
-      path: Prowl.Runtime/Rendering/GraphicsBuffer.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: EmptyRW
-    path: ../Prowl/Prowl.Runtime/Rendering/GraphicsBuffer.cs
-    startLine: 12
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static readonly GraphicsBuffer EmptyRW
-    return:
-      type: Prowl.Runtime.GraphicsBuffer
-    content.vb: Public Shared ReadOnly EmptyRW As GraphicsBuffer
-- uid: Prowl.Runtime.GraphicsBuffer.Buffer
-  commentId: P:Prowl.Runtime.GraphicsBuffer.Buffer
-  id: Buffer
-  parent: Prowl.Runtime.GraphicsBuffer
-  langs:
-  - csharp
-  - vb
-  name: Buffer
-  nameWithType: GraphicsBuffer.Buffer
-  fullName: Prowl.Runtime.GraphicsBuffer.Buffer
+  name: Handle
+  nameWithType: GraphicsBuffer.Handle
+  fullName: Prowl.Runtime.GraphicsBuffer.Handle
   type: Property
   source:
     remote:
-      path: Prowl.Runtime/Rendering/GraphicsBuffer.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Buffer
-    path: ../Prowl/Prowl.Runtime/Rendering/GraphicsBuffer.cs
+      path: Prowl.Runtime/Graphics/GraphicsBuffer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Handle
+    path: ../Prowl/Prowl.Runtime/Graphics/GraphicsBuffer.cs
     startLine: 15
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public DeviceBuffer Buffer { get; }
+    content: public uint Handle { get; }
     parameters: []
     return:
-      type: Veldrid.DeviceBuffer
-    content.vb: Public Property Buffer As DeviceBuffer
-  overload: Prowl.Runtime.GraphicsBuffer.Buffer*
-- uid: Prowl.Runtime.GraphicsBuffer.Count
-  commentId: P:Prowl.Runtime.GraphicsBuffer.Count
-  id: Count
+      type: System.UInt32
+    content.vb: Public Property Handle As UInteger
+  overload: Prowl.Runtime.GraphicsBuffer.Handle*
+- uid: Prowl.Runtime.GraphicsBuffer.OriginalType
+  commentId: F:Prowl.Runtime.GraphicsBuffer.OriginalType
+  id: OriginalType
   parent: Prowl.Runtime.GraphicsBuffer
   langs:
   - csharp
   - vb
-  name: Count
-  nameWithType: GraphicsBuffer.Count
-  fullName: Prowl.Runtime.GraphicsBuffer.Count
-  type: Property
+  name: OriginalType
+  nameWithType: GraphicsBuffer.OriginalType
+  fullName: Prowl.Runtime.GraphicsBuffer.OriginalType
+  type: Field
   source:
     remote:
-      path: Prowl.Runtime/Rendering/GraphicsBuffer.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Count
-    path: ../Prowl/Prowl.Runtime/Rendering/GraphicsBuffer.cs
+      path: Prowl.Runtime/Graphics/GraphicsBuffer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OriginalType
+    path: ../Prowl/Prowl.Runtime/Graphics/GraphicsBuffer.cs
+    startLine: 16
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public readonly BufferType OriginalType
+    return:
+      type: Prowl.Runtime.BufferType
+    content.vb: Public ReadOnly OriginalType As BufferType
+- uid: Prowl.Runtime.GraphicsBuffer.Target
+  commentId: F:Prowl.Runtime.GraphicsBuffer.Target
+  id: Target
+  parent: Prowl.Runtime.GraphicsBuffer
+  langs:
+  - csharp
+  - vb
+  name: Target
+  nameWithType: GraphicsBuffer.Target
+  fullName: Prowl.Runtime.GraphicsBuffer.Target
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Graphics/GraphicsBuffer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Target
+    path: ../Prowl/Prowl.Runtime/Graphics/GraphicsBuffer.cs
     startLine: 17
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public uint Count { get; }
-    parameters: []
+    content: public readonly BufferTargetARB Target
     return:
-      type: System.UInt32
-    content.vb: Public Property Count As UInteger
-  overload: Prowl.Runtime.GraphicsBuffer.Count*
-- uid: Prowl.Runtime.GraphicsBuffer.Stride
-  commentId: P:Prowl.Runtime.GraphicsBuffer.Stride
-  id: Stride
+      type: Silk.NET.OpenGL.BufferTargetARB
+    content.vb: Public ReadOnly Target As BufferTargetARB
+- uid: Prowl.Runtime.GraphicsBuffer.SizeInBytes
+  commentId: P:Prowl.Runtime.GraphicsBuffer.SizeInBytes
+  id: SizeInBytes
   parent: Prowl.Runtime.GraphicsBuffer
   langs:
   - csharp
   - vb
-  name: Stride
-  nameWithType: GraphicsBuffer.Stride
-  fullName: Prowl.Runtime.GraphicsBuffer.Stride
+  name: SizeInBytes
+  nameWithType: GraphicsBuffer.SizeInBytes
+  fullName: Prowl.Runtime.GraphicsBuffer.SizeInBytes
   type: Property
   source:
     remote:
-      path: Prowl.Runtime/Rendering/GraphicsBuffer.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Stride
-    path: ../Prowl/Prowl.Runtime/Rendering/GraphicsBuffer.cs
+      path: Prowl.Runtime/Graphics/GraphicsBuffer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SizeInBytes
+    path: ../Prowl/Prowl.Runtime/Graphics/GraphicsBuffer.cs
     startLine: 18
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public uint Stride { get; }
+    content: public uint SizeInBytes { get; }
     parameters: []
     return:
       type: System.UInt32
-    content.vb: Public Property Stride As UInteger
-  overload: Prowl.Runtime.GraphicsBuffer.Stride*
-- uid: Prowl.Runtime.GraphicsBuffer.#ctor(System.UInt32,System.UInt32,System.Boolean)
-  commentId: M:Prowl.Runtime.GraphicsBuffer.#ctor(System.UInt32,System.UInt32,System.Boolean)
-  id: '#ctor(System.UInt32,System.UInt32,System.Boolean)'
+    content.vb: Public Property SizeInBytes As UInteger
+  overload: Prowl.Runtime.GraphicsBuffer.SizeInBytes*
+- uid: Prowl.Runtime.GraphicsBuffer.#ctor(Prowl.Runtime.BufferType,System.ReadOnlySpan{System.Byte},System.Boolean)
+  commentId: M:Prowl.Runtime.GraphicsBuffer.#ctor(Prowl.Runtime.BufferType,System.ReadOnlySpan{System.Byte},System.Boolean)
+  id: '#ctor(Prowl.Runtime.BufferType,System.ReadOnlySpan{System.Byte},System.Boolean)'
   parent: Prowl.Runtime.GraphicsBuffer
   langs:
   - csharp
   - vb
-  name: GraphicsBuffer(uint, uint, bool)
-  nameWithType: GraphicsBuffer.GraphicsBuffer(uint, uint, bool)
-  fullName: Prowl.Runtime.GraphicsBuffer.GraphicsBuffer(uint, uint, bool)
+  name: GraphicsBuffer(BufferType, ReadOnlySpan<byte>, bool)
+  nameWithType: GraphicsBuffer.GraphicsBuffer(BufferType, ReadOnlySpan<byte>, bool)
+  fullName: Prowl.Runtime.GraphicsBuffer.GraphicsBuffer(Prowl.Runtime.BufferType, System.ReadOnlySpan<byte>, bool)
   type: Constructor
   source:
     remote:
-      path: Prowl.Runtime/Rendering/GraphicsBuffer.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      path: Prowl.Runtime/Graphics/GraphicsBuffer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: .ctor
-    path: ../Prowl/Prowl.Runtime/Rendering/GraphicsBuffer.cs
-    startLine: 21
+    path: ../Prowl/Prowl.Runtime/Graphics/GraphicsBuffer.cs
+    startLine: 20
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public GraphicsBuffer(uint count, uint stride, bool writable)
+    content: public GraphicsBuffer(BufferType type, ReadOnlySpan<byte> initialData, bool dynamic)
     parameters:
-    - id: count
-      type: System.UInt32
-    - id: stride
-      type: System.UInt32
-    - id: writable
+    - id: type
+      type: Prowl.Runtime.BufferType
+    - id: initialData
+      type: System.ReadOnlySpan{System.Byte}
+    - id: dynamic
       type: System.Boolean
-    content.vb: Public Sub New(count As UInteger, stride As UInteger, writable As Boolean)
+    content.vb: Public Sub New(type As BufferType, initialData As ReadOnlySpan(Of Byte), dynamic As Boolean)
   overload: Prowl.Runtime.GraphicsBuffer.#ctor*
-  nameWithType.vb: GraphicsBuffer.New(UInteger, UInteger, Boolean)
-  fullName.vb: Prowl.Runtime.GraphicsBuffer.New(UInteger, UInteger, Boolean)
-  name.vb: New(UInteger, UInteger, Boolean)
-- uid: Prowl.Runtime.GraphicsBuffer.SetData``1(System.Span{``0},System.UInt32)
-  commentId: M:Prowl.Runtime.GraphicsBuffer.SetData``1(System.Span{``0},System.UInt32)
-  id: SetData``1(System.Span{``0},System.UInt32)
+  nameWithType.vb: GraphicsBuffer.New(BufferType, ReadOnlySpan(Of Byte), Boolean)
+  fullName.vb: Prowl.Runtime.GraphicsBuffer.New(Prowl.Runtime.BufferType, System.ReadOnlySpan(Of Byte), Boolean)
+  name.vb: New(BufferType, ReadOnlySpan(Of Byte), Boolean)
+- uid: Prowl.Runtime.GraphicsBuffer.Set(System.UInt32,System.Void*,System.Boolean)
+  commentId: M:Prowl.Runtime.GraphicsBuffer.Set(System.UInt32,System.Void*,System.Boolean)
+  id: Set(System.UInt32,System.Void*,System.Boolean)
   parent: Prowl.Runtime.GraphicsBuffer
   langs:
   - csharp
   - vb
-  name: SetData<T>(Span<T>, uint)
-  nameWithType: GraphicsBuffer.SetData<T>(Span<T>, uint)
-  fullName: Prowl.Runtime.GraphicsBuffer.SetData<T>(System.Span<T>, uint)
+  name: Set(uint, void*, bool)
+  nameWithType: GraphicsBuffer.Set(uint, void*, bool)
+  fullName: Prowl.Runtime.GraphicsBuffer.Set(uint, void*, bool)
   type: Method
   source:
     remote:
-      path: Prowl.Runtime/Rendering/GraphicsBuffer.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: SetData
-    path: ../Prowl/Prowl.Runtime/Rendering/GraphicsBuffer.cs
-    startLine: 30
+      path: Prowl.Runtime/Graphics/GraphicsBuffer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Set
+    path: ../Prowl/Prowl.Runtime/Graphics/GraphicsBuffer.cs
+    startLine: 44
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: 'public void SetData<T>(Span<T> data, uint offset) where T : unmanaged'
+    content: public void Set(uint sizeInBytes, void* data, bool dynamic)
     parameters:
-    - id: data
-      type: System.Span{{T}}
-    - id: offset
+    - id: sizeInBytes
       type: System.UInt32
-    typeParameters:
-    - id: T
-    content.vb: Public Sub SetData(Of T As Structure)(data As Span(Of T), offset As UInteger)
-  overload: Prowl.Runtime.GraphicsBuffer.SetData*
-  nameWithType.vb: GraphicsBuffer.SetData(Of T)(Span(Of T), UInteger)
-  fullName.vb: Prowl.Runtime.GraphicsBuffer.SetData(Of T)(System.Span(Of T), UInteger)
-  name.vb: SetData(Of T)(Span(Of T), UInteger)
+    - id: data
+      type: System.Void*
+    - id: dynamic
+      type: System.Boolean
+    content.vb: Public Sub [Set](sizeInBytes As UInteger, data As Void*, dynamic As Boolean)
+  overload: Prowl.Runtime.GraphicsBuffer.Set*
+  nameWithType.vb: GraphicsBuffer.Set(UInteger, Void*, Boolean)
+  fullName.vb: Prowl.Runtime.GraphicsBuffer.Set(UInteger, Void*, Boolean)
+  name.vb: Set(UInteger, Void*, Boolean)
+- uid: Prowl.Runtime.GraphicsBuffer.Update(System.UInt32,System.UInt32,System.Void*)
+  commentId: M:Prowl.Runtime.GraphicsBuffer.Update(System.UInt32,System.UInt32,System.Void*)
+  id: Update(System.UInt32,System.UInt32,System.Void*)
+  parent: Prowl.Runtime.GraphicsBuffer
+  langs:
+  - csharp
+  - vb
+  name: Update(uint, uint, void*)
+  nameWithType: GraphicsBuffer.Update(uint, uint, void*)
+  fullName: Prowl.Runtime.GraphicsBuffer.Update(uint, uint, void*)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Graphics/GraphicsBuffer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Update
+    path: ../Prowl/Prowl.Runtime/Graphics/GraphicsBuffer.cs
+    startLine: 52
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public void Update(uint offsetInBytes, uint sizeInBytes, void* data)
+    parameters:
+    - id: offsetInBytes
+      type: System.UInt32
+    - id: sizeInBytes
+      type: System.UInt32
+    - id: data
+      type: System.Void*
+    content.vb: Public Sub Update(offsetInBytes As UInteger, sizeInBytes As UInteger, data As Void*)
+  overload: Prowl.Runtime.GraphicsBuffer.Update*
+  nameWithType.vb: GraphicsBuffer.Update(UInteger, UInteger, Void*)
+  fullName.vb: Prowl.Runtime.GraphicsBuffer.Update(UInteger, UInteger, Void*)
+  name.vb: Update(UInteger, UInteger, Void*)
+- uid: Prowl.Runtime.GraphicsBuffer.Dispose
+  commentId: M:Prowl.Runtime.GraphicsBuffer.Dispose
+  id: Dispose
+  parent: Prowl.Runtime.GraphicsBuffer
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: GraphicsBuffer.Dispose()
+  fullName: Prowl.Runtime.GraphicsBuffer.Dispose()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Graphics/GraphicsBuffer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Dispose
+    path: ../Prowl/Prowl.Runtime/Graphics/GraphicsBuffer.cs
+    startLine: 58
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+  example: []
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose()
+  overload: Prowl.Runtime.GraphicsBuffer.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+- uid: Prowl.Runtime.GraphicsBuffer.ToString
+  commentId: M:Prowl.Runtime.GraphicsBuffer.ToString
+  id: ToString
+  parent: Prowl.Runtime.GraphicsBuffer
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: GraphicsBuffer.ToString()
+  fullName: Prowl.Runtime.GraphicsBuffer.ToString()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Graphics/GraphicsBuffer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ToString
+    path: ../Prowl/Prowl.Runtime/Graphics/GraphicsBuffer.cs
+    startLine: 71
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Returns a string that represents the current object.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A string that represents the current object.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: Prowl.Runtime.GraphicsBuffer.ToString*
 references:
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
-  href: Prowl.html
   name: Prowl.Runtime
   nameWithType: Prowl.Runtime
   fullName: Prowl.Runtime
   spec.csharp:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
   spec.vb:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -292,6 +389,14 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -487,30 +592,6 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
-  name: ToString()
-  nameWithType: object.ToString()
-  fullName: object.ToString()
-  nameWithType.vb: Object.ToString()
-  fullName.vb: Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
-  - name: (
-  - name: )
 - uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
   commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
   parent: Prowl.Runtime.RuntimeUtils
@@ -586,62 +667,12 @@ references:
   name: RuntimeUtils
   nameWithType: RuntimeUtils
   fullName: Prowl.Runtime.RuntimeUtils
-- uid: Prowl.Runtime.GraphicsBuffer
-  commentId: T:Prowl.Runtime.GraphicsBuffer
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.GraphicsBuffer.html
-  name: GraphicsBuffer
-  nameWithType: GraphicsBuffer
-  fullName: Prowl.Runtime.GraphicsBuffer
-- uid: Prowl.Runtime.GraphicsBuffer.Buffer*
-  commentId: Overload:Prowl.Runtime.GraphicsBuffer.Buffer
-  href: Prowl.Runtime.GraphicsBuffer.html#Prowl_Runtime_GraphicsBuffer_Buffer
-  name: Buffer
-  nameWithType: GraphicsBuffer.Buffer
-  fullName: Prowl.Runtime.GraphicsBuffer.Buffer
-- uid: Veldrid.DeviceBuffer
-  commentId: T:Veldrid.DeviceBuffer
-  parent: Veldrid
-  name: DeviceBuffer
-  nameWithType: DeviceBuffer
-  fullName: Veldrid.DeviceBuffer
-- uid: Veldrid
-  commentId: N:Veldrid
-  name: Veldrid
-  nameWithType: Veldrid
-  fullName: Veldrid
-- uid: Prowl.Runtime.GraphicsBuffer.Count*
-  commentId: Overload:Prowl.Runtime.GraphicsBuffer.Count
-  href: Prowl.Runtime.GraphicsBuffer.html#Prowl_Runtime_GraphicsBuffer_Count
-  name: Count
-  nameWithType: GraphicsBuffer.Count
-  fullName: Prowl.Runtime.GraphicsBuffer.Count
-- uid: System.UInt32
-  commentId: T:System.UInt32
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.uint32
-  name: uint
-  nameWithType: uint
-  fullName: uint
-  nameWithType.vb: UInteger
-  fullName.vb: UInteger
-  name.vb: UInteger
-- uid: Prowl.Runtime.GraphicsBuffer.Stride*
-  commentId: Overload:Prowl.Runtime.GraphicsBuffer.Stride
-  href: Prowl.Runtime.GraphicsBuffer.html#Prowl_Runtime_GraphicsBuffer_Stride
-  name: Stride
-  nameWithType: GraphicsBuffer.Stride
-  fullName: Prowl.Runtime.GraphicsBuffer.Stride
-- uid: Prowl.Runtime.GraphicsBuffer.#ctor*
-  commentId: Overload:Prowl.Runtime.GraphicsBuffer.#ctor
-  href: Prowl.Runtime.GraphicsBuffer.html#Prowl_Runtime_GraphicsBuffer__ctor_System_UInt32_System_UInt32_System_Boolean_
-  name: GraphicsBuffer
-  nameWithType: GraphicsBuffer.GraphicsBuffer
-  fullName: Prowl.Runtime.GraphicsBuffer.GraphicsBuffer
-  nameWithType.vb: GraphicsBuffer.New
-  fullName.vb: Prowl.Runtime.GraphicsBuffer.New
-  name.vb: New
+- uid: Prowl.Runtime.GraphicsBuffer.IsDisposed*
+  commentId: Overload:Prowl.Runtime.GraphicsBuffer.IsDisposed
+  href: Prowl.Runtime.GraphicsBuffer.html#Prowl_Runtime_GraphicsBuffer_IsDisposed
+  name: IsDisposed
+  nameWithType: GraphicsBuffer.IsDisposed
+  fullName: Prowl.Runtime.GraphicsBuffer.IsDisposed
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -653,66 +684,244 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
-- uid: Prowl.Runtime.GraphicsBuffer.SetData*
-  commentId: Overload:Prowl.Runtime.GraphicsBuffer.SetData
-  href: Prowl.Runtime.GraphicsBuffer.html#Prowl_Runtime_GraphicsBuffer_SetData__1_System_Span___0__System_UInt32_
-  name: SetData
-  nameWithType: GraphicsBuffer.SetData
-  fullName: Prowl.Runtime.GraphicsBuffer.SetData
-- uid: System.Span{{T}}
-  commentId: T:System.Span{``0}
+- uid: Prowl.Runtime.GraphicsBuffer.Handle*
+  commentId: Overload:Prowl.Runtime.GraphicsBuffer.Handle
+  href: Prowl.Runtime.GraphicsBuffer.html#Prowl_Runtime_GraphicsBuffer_Handle
+  name: Handle
+  nameWithType: GraphicsBuffer.Handle
+  fullName: Prowl.Runtime.GraphicsBuffer.Handle
+- uid: System.UInt32
+  commentId: T:System.UInt32
   parent: System
-  definition: System.Span`1
-  href: https://learn.microsoft.com/dotnet/api/system.span-1
-  name: Span<T>
-  nameWithType: Span<T>
-  fullName: System.Span<T>
-  nameWithType.vb: Span(Of T)
-  fullName.vb: System.Span(Of T)
-  name.vb: Span(Of T)
-  spec.csharp:
-  - uid: System.Span`1
-    name: Span
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.span-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Span`1
-    name: Span
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.span-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: System.Span`1
-  commentId: T:System.Span`1
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.span-1
-  name: Span<T>
-  nameWithType: Span<T>
-  fullName: System.Span<T>
-  nameWithType.vb: Span(Of T)
-  fullName.vb: System.Span(Of T)
-  name.vb: Span(Of T)
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: Prowl.Runtime.BufferType
+  commentId: T:Prowl.Runtime.BufferType
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.BufferType.html
+  name: BufferType
+  nameWithType: BufferType
+  fullName: Prowl.Runtime.BufferType
+- uid: Silk.NET.OpenGL.BufferTargetARB
+  commentId: T:Silk.NET.OpenGL.BufferTargetARB
+  parent: Silk.NET.OpenGL
+  isExternal: true
+  name: BufferTargetARB
+  nameWithType: BufferTargetARB
+  fullName: Silk.NET.OpenGL.BufferTargetARB
+- uid: Silk.NET.OpenGL
+  commentId: N:Silk.NET.OpenGL
+  isExternal: true
+  name: Silk.NET.OpenGL
+  nameWithType: Silk.NET.OpenGL
+  fullName: Silk.NET.OpenGL
   spec.csharp:
-  - uid: System.Span`1
-    name: Span
+  - uid: Silk
+    name: Silk
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: .
+  - uid: Silk.NET
+    name: NET
+    isExternal: true
+  - name: .
+  - uid: Silk.NET.OpenGL
+    name: OpenGL
+    isExternal: true
+  spec.vb:
+  - uid: Silk
+    name: Silk
+    isExternal: true
+  - name: .
+  - uid: Silk.NET
+    name: NET
+    isExternal: true
+  - name: .
+  - uid: Silk.NET.OpenGL
+    name: OpenGL
+    isExternal: true
+- uid: Prowl.Runtime.GraphicsBuffer.SizeInBytes*
+  commentId: Overload:Prowl.Runtime.GraphicsBuffer.SizeInBytes
+  href: Prowl.Runtime.GraphicsBuffer.html#Prowl_Runtime_GraphicsBuffer_SizeInBytes
+  name: SizeInBytes
+  nameWithType: GraphicsBuffer.SizeInBytes
+  fullName: Prowl.Runtime.GraphicsBuffer.SizeInBytes
+- uid: Prowl.Runtime.GraphicsBuffer.#ctor*
+  commentId: Overload:Prowl.Runtime.GraphicsBuffer.#ctor
+  href: Prowl.Runtime.GraphicsBuffer.html#Prowl_Runtime_GraphicsBuffer__ctor_Prowl_Runtime_BufferType_System_ReadOnlySpan_System_Byte__System_Boolean_
+  name: GraphicsBuffer
+  nameWithType: GraphicsBuffer.GraphicsBuffer
+  fullName: Prowl.Runtime.GraphicsBuffer.GraphicsBuffer
+  nameWithType.vb: GraphicsBuffer.New
+  fullName.vb: Prowl.Runtime.GraphicsBuffer.New
+  name.vb: New
+- uid: System.ReadOnlySpan{System.Byte}
+  commentId: T:System.ReadOnlySpan{System.Byte}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<byte>
+  nameWithType: ReadOnlySpan<byte>
+  fullName: System.ReadOnlySpan<byte>
+  nameWithType.vb: ReadOnlySpan(Of Byte)
+  fullName.vb: System.ReadOnlySpan(Of Byte)
+  name.vb: ReadOnlySpan(Of Byte)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
   - name: <
   - name: T
   - name: '>'
   spec.vb:
-  - uid: System.Span`1
-    name: Span
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.span-1
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
   - name: (
   - name: Of
   - name: " "
   - name: T
   - name: )
+- uid: Prowl.Runtime.GraphicsBuffer.Set*
+  commentId: Overload:Prowl.Runtime.GraphicsBuffer.Set
+  href: Prowl.Runtime.GraphicsBuffer.html#Prowl_Runtime_GraphicsBuffer_Set_System_UInt32_System_Void__System_Boolean_
+  name: Set
+  nameWithType: GraphicsBuffer.Set
+  fullName: Prowl.Runtime.GraphicsBuffer.Set
+- uid: System.Void*
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.void
+  name: void*
+  nameWithType: void*
+  fullName: void*
+  nameWithType.vb: Void*
+  fullName.vb: Void*
+  name.vb: Void*
+  spec.csharp:
+  - uid: System.Void
+    name: void
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.void
+  - name: '*'
+  spec.vb:
+  - uid: System.Void
+    name: Void
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.void
+  - name: '*'
+- uid: Prowl.Runtime.GraphicsBuffer.Update*
+  commentId: Overload:Prowl.Runtime.GraphicsBuffer.Update
+  href: Prowl.Runtime.GraphicsBuffer.html#Prowl_Runtime_GraphicsBuffer_Update_System_UInt32_System_UInt32_System_Void__
+  name: Update
+  nameWithType: GraphicsBuffer.Update
+  fullName: Prowl.Runtime.GraphicsBuffer.Update
+- uid: Prowl.Runtime.GraphicsBuffer.Dispose*
+  commentId: Overload:Prowl.Runtime.GraphicsBuffer.Dispose
+  href: Prowl.Runtime.GraphicsBuffer.html#Prowl_Runtime_GraphicsBuffer_Dispose
+  name: Dispose
+  nameWithType: GraphicsBuffer.Dispose
+  fullName: Prowl.Runtime.GraphicsBuffer.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.GraphicsBuffer.ToString*
+  commentId: Overload:Prowl.Runtime.GraphicsBuffer.ToString
+  href: Prowl.Runtime.GraphicsBuffer.html#Prowl_Runtime_GraphicsBuffer_ToString
+  name: ToString
+  nameWithType: GraphicsBuffer.ToString
+  fullName: Prowl.Runtime.GraphicsBuffer.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

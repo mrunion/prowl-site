@@ -6,9 +6,9 @@ items:
   parent: Prowl.Runtime
   children:
   - Prowl.Runtime.DebugStackTrace.#ctor(Prowl.Runtime.DebugStackFrame[])
+  - Prowl.Runtime.DebugStackTrace.StackFrames
   - Prowl.Runtime.DebugStackTrace.ToString
   - Prowl.Runtime.DebugStackTrace.op_Explicit(System.Diagnostics.StackTrace)~Prowl.Runtime.DebugStackTrace
-  - Prowl.Runtime.DebugStackTrace.stackFrames
   langs:
   - csharp
   - vb
@@ -19,11 +19,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: DebugStackTrace
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 38
+    startLine: 48
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -57,53 +57,53 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: .ctor
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 38
+    startLine: 48
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public DebugStackTrace(params DebugStackFrame[] stackFrames)
+    content: public DebugStackTrace(params DebugStackFrame[] StackFrames)
     parameters:
-    - id: stackFrames
+    - id: StackFrames
       type: Prowl.Runtime.DebugStackFrame[]
-    content.vb: Public Sub New(ParamArray stackFrames As DebugStackFrame())
+    content.vb: Public Sub New(ParamArray StackFrames As DebugStackFrame())
   overload: Prowl.Runtime.DebugStackTrace.#ctor*
   nameWithType.vb: DebugStackTrace.New(ParamArray DebugStackFrame())
   fullName.vb: Prowl.Runtime.DebugStackTrace.New(ParamArray Prowl.Runtime.DebugStackFrame())
   name.vb: New(ParamArray DebugStackFrame())
-- uid: Prowl.Runtime.DebugStackTrace.stackFrames
-  commentId: P:Prowl.Runtime.DebugStackTrace.stackFrames
-  id: stackFrames
+- uid: Prowl.Runtime.DebugStackTrace.StackFrames
+  commentId: P:Prowl.Runtime.DebugStackTrace.StackFrames
+  id: StackFrames
   parent: Prowl.Runtime.DebugStackTrace
   langs:
   - csharp
   - vb
-  name: stackFrames
-  nameWithType: DebugStackTrace.stackFrames
-  fullName: Prowl.Runtime.DebugStackTrace.stackFrames
+  name: StackFrames
+  nameWithType: DebugStackTrace.StackFrames
+  fullName: Prowl.Runtime.DebugStackTrace.StackFrames
   type: Property
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: stackFrames
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: StackFrames
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 38
+    startLine: 48
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public DebugStackFrame[] stackFrames { get; init; }
+    content: public DebugStackFrame[] StackFrames { get; init; }
     parameters: []
     return:
       type: Prowl.Runtime.DebugStackFrame[]
-    content.vb: Public Property stackFrames As DebugStackFrame()
-  overload: Prowl.Runtime.DebugStackTrace.stackFrames*
+    content.vb: Public Property StackFrames As DebugStackFrame()
+  overload: Prowl.Runtime.DebugStackTrace.StackFrames*
 - uid: Prowl.Runtime.DebugStackTrace.op_Explicit(System.Diagnostics.StackTrace)~Prowl.Runtime.DebugStackTrace
   commentId: M:Prowl.Runtime.DebugStackTrace.op_Explicit(System.Diagnostics.StackTrace)~Prowl.Runtime.DebugStackTrace
   id: op_Explicit(System.Diagnostics.StackTrace)~Prowl.Runtime.DebugStackTrace
@@ -118,23 +118,41 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: op_Explicit
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 40
+    startLine: 50
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static explicit operator DebugStackTrace(StackTrace stackTrace)
+    content: >-
+      [UnconditionalSuppressMessage("Trimming", "IL2026:RequiresUnreferencedCode", Justification = "Diagnostic-only path: in a trimmed build, missing method metadata gracefully degrades to a stack frame without method info.")]
+
+      public static explicit operator DebugStackTrace(StackTrace stackTrace)
     parameters:
     - id: stackTrace
       type: System.Diagnostics.StackTrace
     return:
       type: Prowl.Runtime.DebugStackTrace
-    content.vb: Public Shared Narrowing Operator CType(stackTrace As StackTrace) As DebugStackTrace
+    content.vb: >-
+      <UnconditionalSuppressMessage("Trimming", "IL2026:RequiresUnreferencedCode", Justification:="Diagnostic-only path: in a trimmed build, missing method metadata gracefully degrades to a stack frame without method info.")>
+
+      Public Shared Narrowing Operator CType(stackTrace As StackTrace) As DebugStackTrace
   overload: Prowl.Runtime.DebugStackTrace.op_Explicit*
+  attributes:
+  - type: System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute
+    ctor: System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Trimming
+    - type: System.String
+      value: IL2026:RequiresUnreferencedCode
+    namedArguments:
+    - name: Justification
+      type: System.String
+      value: 'Diagnostic-only path: in a trimmed build, missing method metadata gracefully degrades to a stack frame without method info.'
   nameWithType.vb: DebugStackTrace.CType(StackTrace)
   fullName.vb: Prowl.Runtime.DebugStackTrace.CType(System.Diagnostics.StackTrace)
   name.vb: CType(StackTrace)
@@ -152,11 +170,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: ToString
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 54
+    startLine: 70
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -173,26 +191,21 @@ items:
 references:
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
-  href: Prowl.html
   name: Prowl.Runtime
   nameWithType: Prowl.Runtime
   fullName: Prowl.Runtime
   spec.csharp:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
   spec.vb:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -565,12 +578,12 @@ references:
     href: Prowl.Runtime.DebugStackFrame.html
   - name: (
   - name: )
-- uid: Prowl.Runtime.DebugStackTrace.stackFrames*
-  commentId: Overload:Prowl.Runtime.DebugStackTrace.stackFrames
-  href: Prowl.Runtime.DebugStackTrace.html#Prowl_Runtime_DebugStackTrace_stackFrames
-  name: stackFrames
-  nameWithType: DebugStackTrace.stackFrames
-  fullName: Prowl.Runtime.DebugStackTrace.stackFrames
+- uid: Prowl.Runtime.DebugStackTrace.StackFrames*
+  commentId: Overload:Prowl.Runtime.DebugStackTrace.StackFrames
+  href: Prowl.Runtime.DebugStackTrace.html#Prowl_Runtime_DebugStackTrace_StackFrames
+  name: StackFrames
+  nameWithType: DebugStackTrace.StackFrames
+  fullName: Prowl.Runtime.DebugStackTrace.StackFrames
 - uid: Prowl.Runtime.DebugStackTrace.op_Explicit*
   commentId: Overload:Prowl.Runtime.DebugStackTrace.op_Explicit
   name: explicit operator

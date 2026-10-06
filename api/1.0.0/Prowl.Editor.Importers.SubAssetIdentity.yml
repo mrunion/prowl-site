@@ -1,0 +1,570 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.Importers.SubAssetIdentity
+  commentId: T:Prowl.Editor.Importers.SubAssetIdentity
+  id: SubAssetIdentity
+  parent: Prowl.Editor.Importers
+  children:
+  - Prowl.Editor.Importers.SubAssetIdentity.Key(System.String)
+  - Prowl.Editor.Importers.SubAssetIdentity.Order
+  - Prowl.Editor.Importers.SubAssetIdentity.ToString
+  langs:
+  - csharp
+  - vb
+  name: SubAssetIdentity
+  nameWithType: SubAssetIdentity
+  fullName: Prowl.Editor.Importers.SubAssetIdentity
+  type: Struct
+  source:
+    remote:
+      path: Prowl.Editor/AssetsDatabase/Importers/ImportResult.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SubAssetIdentity
+    path: ../Prowl/Prowl.Editor/AssetsDatabase/Importers/ImportResult.cs
+    startLine: 13
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Importers
+  summary: >-
+    How a sub-asset's GUID is derived. Every saved reference to a sub-asset is keyed on this, so it has to
+
+    name the same sub-asset on every reimport - get it wrong and references don't break loudly, they rebind
+
+    to whichever sub-asset took that key instead.
+  example: []
+  syntax:
+    content: public readonly struct SubAssetIdentity
+    content.vb: Public Structure SubAssetIdentity
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Editor.Importers.SubAssetIdentity.Order
+  commentId: P:Prowl.Editor.Importers.SubAssetIdentity.Order
+  id: Order
+  parent: Prowl.Editor.Importers.SubAssetIdentity
+  langs:
+  - csharp
+  - vb
+  name: Order
+  nameWithType: SubAssetIdentity.Order
+  fullName: Prowl.Editor.Importers.SubAssetIdentity.Order
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/AssetsDatabase/Importers/ImportResult.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Order
+    path: ../Prowl/Prowl.Editor/AssetsDatabase/Importers/ImportResult.cs
+    startLine: 26
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Importers
+  summary: >-
+    Registration order within this import, counted per sub-asset type ("Mesh/0", "Material/1").
+
+    Correct when the importer reads its source in a fixed order, and it leaves names free to change.
+
+    Wrong for a list entries can be inserted into, removed from, or conditionally skipped: every
+
+    sub-asset after the change shifts onto its neighbour's GUID.
+  example: []
+  syntax:
+    content: public static SubAssetIdentity Order { get; }
+    parameters: []
+    return:
+      type: Prowl.Editor.Importers.SubAssetIdentity
+    content.vb: Public Shared ReadOnly Property Order As SubAssetIdentity
+  overload: Prowl.Editor.Importers.SubAssetIdentity.Order*
+- uid: Prowl.Editor.Importers.SubAssetIdentity.Key(System.String)
+  commentId: M:Prowl.Editor.Importers.SubAssetIdentity.Key(System.String)
+  id: Key(System.String)
+  parent: Prowl.Editor.Importers.SubAssetIdentity
+  langs:
+  - csharp
+  - vb
+  name: Key(string)
+  nameWithType: SubAssetIdentity.Key(string)
+  fullName: Prowl.Editor.Importers.SubAssetIdentity.Key(string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/AssetsDatabase/Importers/ImportResult.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Key
+    path: ../Prowl/Prowl.Editor/AssetsDatabase/Importers/ImportResult.cs
+    startLine: 34
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Importers
+  summary: >-
+    A key that survives insertion and removal, because it belongs to the sub-asset rather than to its
+
+    position: an ID persisted with the source (the Sprite Editor's per-slice ID) or an intrinsic one
+
+    (a mesh feature's key). Compose a child's from its parent's - see <xref href="Prowl.Editor.Importers.ImportContext.AddSubAsset(System.String%2cProwl.Runtime.Asset%2cProwl.Editor.Importers.SubAssetIdentity)" data-throw-if-not-resolved="false"></xref>,
+
+    which returns the identity it resolved.
+  example: []
+  syntax:
+    content: public static SubAssetIdentity Key(string key)
+    parameters:
+    - id: key
+      type: System.String
+    return:
+      type: Prowl.Editor.Importers.SubAssetIdentity
+    content.vb: Public Shared Function Key(key As String) As SubAssetIdentity
+  overload: Prowl.Editor.Importers.SubAssetIdentity.Key*
+  nameWithType.vb: SubAssetIdentity.Key(String)
+  fullName.vb: Prowl.Editor.Importers.SubAssetIdentity.Key(String)
+  name.vb: Key(String)
+- uid: Prowl.Editor.Importers.SubAssetIdentity.ToString
+  commentId: M:Prowl.Editor.Importers.SubAssetIdentity.ToString
+  id: ToString
+  parent: Prowl.Editor.Importers.SubAssetIdentity
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: SubAssetIdentity.ToString()
+  fullName: Prowl.Editor.Importers.SubAssetIdentity.ToString()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/AssetsDatabase/Importers/ImportResult.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ToString
+    path: ../Prowl/Prowl.Editor/AssetsDatabase/Importers/ImportResult.cs
+    startLine: 42
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Importers
+  summary: Returns the explicit key if set, or "Order" for an order-based identity.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: Prowl.Editor.Importers.SubAssetIdentity.ToString*
+references:
+- uid: Prowl.Editor.Importers
+  commentId: N:Prowl.Editor.Importers
+  name: Prowl.Editor.Importers
+  nameWithType: Prowl.Editor.Importers
+  fullName: Prowl.Editor.Importers
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Importers
+    name: Importers
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Importers
+    name: Importers
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Editor.Importers.SubAssetIdentity.Order*
+  commentId: Overload:Prowl.Editor.Importers.SubAssetIdentity.Order
+  href: Prowl.Editor.Importers.SubAssetIdentity.html#Prowl_Editor_Importers_SubAssetIdentity_Order
+  name: Order
+  nameWithType: SubAssetIdentity.Order
+  fullName: Prowl.Editor.Importers.SubAssetIdentity.Order
+- uid: Prowl.Editor.Importers.SubAssetIdentity
+  commentId: T:Prowl.Editor.Importers.SubAssetIdentity
+  parent: Prowl.Editor.Importers
+  href: Prowl.Editor.Importers.SubAssetIdentity.html
+  name: SubAssetIdentity
+  nameWithType: SubAssetIdentity
+  fullName: Prowl.Editor.Importers.SubAssetIdentity
+- uid: Prowl.Editor.Importers.ImportContext.AddSubAsset(System.String,Prowl.Runtime.Asset,Prowl.Editor.Importers.SubAssetIdentity)
+  commentId: M:Prowl.Editor.Importers.ImportContext.AddSubAsset(System.String,Prowl.Runtime.Asset,Prowl.Editor.Importers.SubAssetIdentity)
+  isExternal: true
+  href: Prowl.Editor.Importers.ImportContext.html#Prowl_Editor_Importers_ImportContext_AddSubAsset_System_String_Prowl_Runtime_Asset_Prowl_Editor_Importers_SubAssetIdentity_
+  name: AddSubAsset(string, Asset, SubAssetIdentity)
+  nameWithType: ImportContext.AddSubAsset(string, Asset, SubAssetIdentity)
+  fullName: Prowl.Editor.Importers.ImportContext.AddSubAsset(string, Prowl.Runtime.Asset, Prowl.Editor.Importers.SubAssetIdentity)
+  nameWithType.vb: ImportContext.AddSubAsset(String, Asset, SubAssetIdentity)
+  fullName.vb: Prowl.Editor.Importers.ImportContext.AddSubAsset(String, Prowl.Runtime.Asset, Prowl.Editor.Importers.SubAssetIdentity)
+  name.vb: AddSubAsset(String, Asset, SubAssetIdentity)
+  spec.csharp:
+  - uid: Prowl.Editor.Importers.ImportContext.AddSubAsset(System.String,Prowl.Runtime.Asset,Prowl.Editor.Importers.SubAssetIdentity)
+    name: AddSubAsset
+    href: Prowl.Editor.Importers.ImportContext.html#Prowl_Editor_Importers_ImportContext_AddSubAsset_System_String_Prowl_Runtime_Asset_Prowl_Editor_Importers_SubAssetIdentity_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Prowl.Runtime.Asset
+    name: Asset
+    href: Prowl.Runtime.Asset.html
+  - name: ','
+  - name: " "
+  - uid: Prowl.Editor.Importers.SubAssetIdentity
+    name: SubAssetIdentity
+    href: Prowl.Editor.Importers.SubAssetIdentity.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Importers.ImportContext.AddSubAsset(System.String,Prowl.Runtime.Asset,Prowl.Editor.Importers.SubAssetIdentity)
+    name: AddSubAsset
+    href: Prowl.Editor.Importers.ImportContext.html#Prowl_Editor_Importers_ImportContext_AddSubAsset_System_String_Prowl_Runtime_Asset_Prowl_Editor_Importers_SubAssetIdentity_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Prowl.Runtime.Asset
+    name: Asset
+    href: Prowl.Runtime.Asset.html
+  - name: ','
+  - name: " "
+  - uid: Prowl.Editor.Importers.SubAssetIdentity
+    name: SubAssetIdentity
+    href: Prowl.Editor.Importers.SubAssetIdentity.html
+  - name: )
+- uid: Prowl.Editor.Importers.SubAssetIdentity.Key*
+  commentId: Overload:Prowl.Editor.Importers.SubAssetIdentity.Key
+  href: Prowl.Editor.Importers.SubAssetIdentity.html#Prowl_Editor_Importers_SubAssetIdentity_Key_System_String_
+  name: Key
+  nameWithType: SubAssetIdentity.Key
+  fullName: Prowl.Editor.Importers.SubAssetIdentity.Key
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: Prowl.Editor.Importers.SubAssetIdentity.ToString*
+  commentId: Overload:Prowl.Editor.Importers.SubAssetIdentity.ToString
+  href: Prowl.Editor.Importers.SubAssetIdentity.html#Prowl_Editor_Importers_SubAssetIdentity_ToString
+  name: ToString
+  nameWithType: SubAssetIdentity.ToString
+  fullName: Prowl.Editor.Importers.SubAssetIdentity.ToString

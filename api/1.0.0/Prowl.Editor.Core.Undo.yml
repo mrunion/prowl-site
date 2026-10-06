@@ -1,0 +1,2109 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.Core.Undo
+  commentId: T:Prowl.Editor.Core.Undo
+  id: Undo
+  parent: Prowl.Editor.Core
+  children:
+  - Prowl.Editor.Core.Undo.ApplyGameObjectChanges``1(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.GameObject},System.String,System.Func{Prowl.Runtime.GameObject,``0},System.Action{Prowl.Runtime.GameObject,``0},``0,System.Boolean)
+  - Prowl.Editor.Core.Undo.BeginContinuous(Prowl.Runtime.GameObject[],System.String)
+  - Prowl.Editor.Core.Undo.CanRedo
+  - Prowl.Editor.Core.Undo.CanUndo
+  - Prowl.Editor.Core.Undo.CancelContinuous
+  - Prowl.Editor.Core.Undo.CaptureCreatedObject(Prowl.Runtime.GameObject)
+  - Prowl.Editor.Core.Undo.Clear
+  - Prowl.Editor.Core.Undo.EndContinuous
+  - Prowl.Editor.Core.Undo.FindComponent(System.Guid)
+  - Prowl.Editor.Core.Undo.FindGO(System.Guid)
+  - Prowl.Editor.Core.Undo.IncrementGroup
+  - Prowl.Editor.Core.Undo.IsContinuous
+  - Prowl.Editor.Core.Undo.MaxSteps
+  - Prowl.Editor.Core.Undo.OnUndoRedo
+  - Prowl.Editor.Core.Undo.PerformRedo
+  - Prowl.Editor.Core.Undo.PerformUndo
+  - Prowl.Editor.Core.Undo.RecordGameObjectChange``1(Prowl.Runtime.GameObject,System.String,``0,``0,System.Action{Prowl.Runtime.GameObject,``0},System.Boolean)
+  - Prowl.Editor.Core.Undo.RedoDescription
+  - Prowl.Editor.Core.Undo.RegisterAction(System.String,System.Action,System.Action)
+  - Prowl.Editor.Core.Undo.RegisterActionGroup(System.String,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Action,System.Action}},System.Boolean)
+  - Prowl.Editor.Core.Undo.RegisterCoalescableAction(System.String,System.Action,System.Action)
+  - Prowl.Editor.Core.Undo.RegisterCreatedObject(Prowl.Runtime.GameObject,System.String)
+  - Prowl.Editor.Core.Undo.RegisterDestroyObject(Prowl.Runtime.GameObject,System.String)
+  - Prowl.Editor.Core.Undo.Snapshot(System.Object)
+  - Prowl.Editor.Core.Undo.UndoDescription
+  langs:
+  - csharp
+  - vb
+  name: Undo
+  nameWithType: Undo
+  fullName: Prowl.Editor.Core.Undo
+  type: Class
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Undo
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 18
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: >-
+    Central undo/redo system for the editor.
+
+    Supports property changes (via Echo serialization), structural changes (create/delete GO),
+
+    and generic action-based undo via lambdas.
+  example: []
+  syntax:
+    content: public static class Undo
+    content.vb: Public Module Undo
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Prowl.Editor.Core.Undo.MaxSteps
+  commentId: P:Prowl.Editor.Core.Undo.MaxSteps
+  id: MaxSteps
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: MaxSteps
+  nameWithType: Undo.MaxSteps
+  fullName: Prowl.Editor.Core.Undo.MaxSteps
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MaxSteps
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 170
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: Maximum number of undo steps kept in the undo stack. Defaults to 100.
+  example: []
+  syntax:
+    content: public static int MaxSteps { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Shared Property MaxSteps As Integer
+  overload: Prowl.Editor.Core.Undo.MaxSteps*
+- uid: Prowl.Editor.Core.Undo.OnUndoRedo
+  commentId: E:Prowl.Editor.Core.Undo.OnUndoRedo
+  id: OnUndoRedo
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: OnUndoRedo
+  nameWithType: Undo.OnUndoRedo
+  fullName: Prowl.Editor.Core.Undo.OnUndoRedo
+  type: Event
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnUndoRedo
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 177
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: Fires after an undo or redo operation completes.
+  example: []
+  syntax:
+    content: public static event Action? OnUndoRedo
+    return:
+      type: System.Action
+    content.vb: Public Shared Event OnUndoRedo As Action
+- uid: Prowl.Editor.Core.Undo.CanUndo
+  commentId: P:Prowl.Editor.Core.Undo.CanUndo
+  id: CanUndo
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: CanUndo
+  nameWithType: Undo.CanUndo
+  fullName: Prowl.Editor.Core.Undo.CanUndo
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CanUndo
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 183
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  syntax:
+    content: public static bool CanUndo { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared ReadOnly Property CanUndo As Boolean
+  overload: Prowl.Editor.Core.Undo.CanUndo*
+- uid: Prowl.Editor.Core.Undo.CanRedo
+  commentId: P:Prowl.Editor.Core.Undo.CanRedo
+  id: CanRedo
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: CanRedo
+  nameWithType: Undo.CanRedo
+  fullName: Prowl.Editor.Core.Undo.CanRedo
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CanRedo
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 184
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  syntax:
+    content: public static bool CanRedo { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared ReadOnly Property CanRedo As Boolean
+  overload: Prowl.Editor.Core.Undo.CanRedo*
+- uid: Prowl.Editor.Core.Undo.IsContinuous
+  commentId: P:Prowl.Editor.Core.Undo.IsContinuous
+  id: IsContinuous
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: IsContinuous
+  nameWithType: Undo.IsContinuous
+  fullName: Prowl.Editor.Core.Undo.IsContinuous
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsContinuous
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 185
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  syntax:
+    content: public static bool IsContinuous { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared ReadOnly Property IsContinuous As Boolean
+  overload: Prowl.Editor.Core.Undo.IsContinuous*
+- uid: Prowl.Editor.Core.Undo.UndoDescription
+  commentId: P:Prowl.Editor.Core.Undo.UndoDescription
+  id: UndoDescription
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: UndoDescription
+  nameWithType: Undo.UndoDescription
+  fullName: Prowl.Editor.Core.Undo.UndoDescription
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: UndoDescription
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 188
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: Description of the next undo operation, or "Undo" if the stack is empty.
+  example: []
+  syntax:
+    content: public static string UndoDescription { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property UndoDescription As String
+  overload: Prowl.Editor.Core.Undo.UndoDescription*
+- uid: Prowl.Editor.Core.Undo.RedoDescription
+  commentId: P:Prowl.Editor.Core.Undo.RedoDescription
+  id: RedoDescription
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: RedoDescription
+  nameWithType: Undo.RedoDescription
+  fullName: Prowl.Editor.Core.Undo.RedoDescription
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RedoDescription
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 193
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: Description of the next redo operation, or "Redo" if the stack is empty.
+  example: []
+  syntax:
+    content: public static string RedoDescription { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property RedoDescription As String
+  overload: Prowl.Editor.Core.Undo.RedoDescription*
+- uid: Prowl.Editor.Core.Undo.Snapshot(System.Object)
+  commentId: M:Prowl.Editor.Core.Undo.Snapshot(System.Object)
+  id: Snapshot(System.Object)
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: Snapshot(object)
+  nameWithType: Undo.Snapshot(object)
+  fullName: Prowl.Editor.Core.Undo.Snapshot(object)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Snapshot
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 207
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: >-
+    Snapshot an object's current state for undo. Call at the TOP of PropertyGrid.Draw()
+
+    or custom editor OnGUI(), BEFORE any widgets draw this captures the state before
+
+    any in-place mutations (nested objects, collections, curves, etc.).
+
+    No-op if already snapshotted this frame for the same target.
+  example: []
+  syntax:
+    content: public static void Snapshot(object target)
+    parameters:
+    - id: target
+      type: System.Object
+    content.vb: Public Shared Sub Snapshot(target As Object)
+  overload: Prowl.Editor.Core.Undo.Snapshot*
+  nameWithType.vb: Undo.Snapshot(Object)
+  fullName.vb: Prowl.Editor.Core.Undo.Snapshot(Object)
+  name.vb: Snapshot(Object)
+- uid: Prowl.Editor.Core.Undo.RegisterAction(System.String,System.Action,System.Action)
+  commentId: M:Prowl.Editor.Core.Undo.RegisterAction(System.String,System.Action,System.Action)
+  id: RegisterAction(System.String,System.Action,System.Action)
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: RegisterAction(string, Action, Action)
+  nameWithType: Undo.RegisterAction(string, Action, Action)
+  fullName: Prowl.Editor.Core.Undo.RegisterAction(string, System.Action, System.Action)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RegisterAction
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 226
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: Register an undoable action with explicit undo/redo lambdas.
+  example: []
+  syntax:
+    content: public static void RegisterAction(string description, Action undo, Action redo)
+    parameters:
+    - id: description
+      type: System.String
+    - id: undo
+      type: System.Action
+    - id: redo
+      type: System.Action
+    content.vb: Public Shared Sub RegisterAction(description As String, undo As Action, redo As Action)
+  overload: Prowl.Editor.Core.Undo.RegisterAction*
+  nameWithType.vb: Undo.RegisterAction(String, Action, Action)
+  fullName.vb: Prowl.Editor.Core.Undo.RegisterAction(String, System.Action, System.Action)
+  name.vb: RegisterAction(String, Action, Action)
+- uid: Prowl.Editor.Core.Undo.RecordGameObjectChange``1(Prowl.Runtime.GameObject,System.String,``0,``0,System.Action{Prowl.Runtime.GameObject,``0},System.Boolean)
+  commentId: M:Prowl.Editor.Core.Undo.RecordGameObjectChange``1(Prowl.Runtime.GameObject,System.String,``0,``0,System.Action{Prowl.Runtime.GameObject,``0},System.Boolean)
+  id: RecordGameObjectChange``1(Prowl.Runtime.GameObject,System.String,``0,``0,System.Action{Prowl.Runtime.GameObject,``0},System.Boolean)
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: RecordGameObjectChange<T>(GameObject, string, T, T, Action<GameObject, T>, bool)
+  nameWithType: Undo.RecordGameObjectChange<T>(GameObject, string, T, T, Action<GameObject, T>, bool)
+  fullName: Prowl.Editor.Core.Undo.RecordGameObjectChange<T>(Prowl.Runtime.GameObject, string, T, T, System.Action<Prowl.Runtime.GameObject, T>, bool)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RecordGameObjectChange
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 238
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: >-
+    Records a property change on a GameObject, looking the GO back up by Identifier on undo/redo
+
+    so the record survives destroy/recreate cycles. Apply receives the live GO and the value to assign.
+
+    Caller is still responsible for the immediate write - this only registers the undo entry.
+  example: []
+  syntax:
+    content: public static void RecordGameObjectChange<T>(GameObject go, string description, T oldValue, T newValue, Action<GameObject, T> apply, bool coalesce = false)
+    parameters:
+    - id: go
+      type: Prowl.Runtime.GameObject
+    - id: description
+      type: System.String
+    - id: oldValue
+      type: '{T}'
+    - id: newValue
+      type: '{T}'
+    - id: apply
+      type: System.Action{Prowl.Runtime.GameObject,{T}}
+    - id: coalesce
+      type: System.Boolean
+    typeParameters:
+    - id: T
+    content.vb: Public Shared Sub RecordGameObjectChange(Of T)(go As GameObject, description As String, oldValue As T, newValue As T, apply As Action(Of GameObject, T), coalesce As Boolean = False)
+  overload: Prowl.Editor.Core.Undo.RecordGameObjectChange*
+  nameWithType.vb: Undo.RecordGameObjectChange(Of T)(GameObject, String, T, T, Action(Of GameObject, T), Boolean)
+  fullName.vb: Prowl.Editor.Core.Undo.RecordGameObjectChange(Of T)(Prowl.Runtime.GameObject, String, T, T, System.Action(Of Prowl.Runtime.GameObject, T), Boolean)
+  name.vb: RecordGameObjectChange(Of T)(GameObject, String, T, T, Action(Of GameObject, T), Boolean)
+- uid: Prowl.Editor.Core.Undo.RegisterCoalescableAction(System.String,System.Action,System.Action)
+  commentId: M:Prowl.Editor.Core.Undo.RegisterCoalescableAction(System.String,System.Action,System.Action)
+  id: RegisterCoalescableAction(System.String,System.Action,System.Action)
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: RegisterCoalescableAction(string, Action, Action)
+  nameWithType: Undo.RegisterCoalescableAction(string, Action, Action)
+  fullName: Prowl.Editor.Core.Undo.RegisterCoalescableAction(string, System.Action, System.Action)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RegisterCoalescableAction
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 252
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: >-
+    Register an undoable action that coalesces with the previous action if it has the
+
+    same description and is within the time window. Use for continuous text input (Name fields, etc.).
+
+    The undo lambda is kept from the FIRST action; the redo lambda is updated to the LATEST.
+  example: []
+  syntax:
+    content: public static void RegisterCoalescableAction(string description, Action undo, Action redo)
+    parameters:
+    - id: description
+      type: System.String
+    - id: undo
+      type: System.Action
+    - id: redo
+      type: System.Action
+    content.vb: Public Shared Sub RegisterCoalescableAction(description As String, undo As Action, redo As Action)
+  overload: Prowl.Editor.Core.Undo.RegisterCoalescableAction*
+  nameWithType.vb: Undo.RegisterCoalescableAction(String, Action, Action)
+  fullName.vb: Prowl.Editor.Core.Undo.RegisterCoalescableAction(String, System.Action, System.Action)
+  name.vb: RegisterCoalescableAction(String, Action, Action)
+- uid: Prowl.Editor.Core.Undo.RegisterActionGroup(System.String,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Action,System.Action}},System.Boolean)
+  commentId: M:Prowl.Editor.Core.Undo.RegisterActionGroup(System.String,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Action,System.Action}},System.Boolean)
+  id: RegisterActionGroup(System.String,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Action,System.Action}},System.Boolean)
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: RegisterActionGroup(string, IReadOnlyList<(Action undo, Action redo)>, bool)
+  nameWithType: Undo.RegisterActionGroup(string, IReadOnlyList<(Action undo, Action redo)>, bool)
+  fullName: Prowl.Editor.Core.Undo.RegisterActionGroup(string, System.Collections.Generic.IReadOnlyList<(System.Action undo, System.Action redo)>, bool)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RegisterActionGroup
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 283
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: >-
+    Register several undo/redo actions as ONE undo step (so editing many selected objects in a single
+
+    interaction collapses to a single undo). When <code class="paramref">coalesce</code> is true the step merges
+
+    with the previous step if it has the same description and record count within the coalesce window
+
+    (for continuous edits like dragging a multi-object transform field).
+  example: []
+  syntax:
+    content: public static void RegisterActionGroup(string description, IReadOnlyList<(Action undo, Action redo)> actions, bool coalesce = false)
+    parameters:
+    - id: description
+      type: System.String
+    - id: actions
+      type: System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Action,System.Action}}
+    - id: coalesce
+      type: System.Boolean
+    content.vb: Public Shared Sub RegisterActionGroup(description As String, actions As IReadOnlyList(Of (undo As Action, redo As Action)), coalesce As Boolean = False)
+  overload: Prowl.Editor.Core.Undo.RegisterActionGroup*
+  nameWithType.vb: Undo.RegisterActionGroup(String, IReadOnlyList(Of (undo As Action, redo As Action)), Boolean)
+  fullName.vb: Prowl.Editor.Core.Undo.RegisterActionGroup(String, System.Collections.Generic.IReadOnlyList(Of (undo As System.Action, redo As System.Action)), Boolean)
+  name.vb: RegisterActionGroup(String, IReadOnlyList(Of (undo As Action, redo As Action)), Boolean)
+- uid: Prowl.Editor.Core.Undo.ApplyGameObjectChanges``1(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.GameObject},System.String,System.Func{Prowl.Runtime.GameObject,``0},System.Action{Prowl.Runtime.GameObject,``0},``0,System.Boolean)
+  commentId: M:Prowl.Editor.Core.Undo.ApplyGameObjectChanges``1(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.GameObject},System.String,System.Func{Prowl.Runtime.GameObject,``0},System.Action{Prowl.Runtime.GameObject,``0},``0,System.Boolean)
+  id: ApplyGameObjectChanges``1(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.GameObject},System.String,System.Func{Prowl.Runtime.GameObject,``0},System.Action{Prowl.Runtime.GameObject,``0},``0,System.Boolean)
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: ApplyGameObjectChanges<T>(IReadOnlyList<GameObject>, string, Func<GameObject, T>, Action<GameObject, T>, T, bool)
+  nameWithType: Undo.ApplyGameObjectChanges<T>(IReadOnlyList<GameObject>, string, Func<GameObject, T>, Action<GameObject, T>, T, bool)
+  fullName: Prowl.Editor.Core.Undo.ApplyGameObjectChanges<T>(System.Collections.Generic.IReadOnlyList<Prowl.Runtime.GameObject>, string, System.Func<Prowl.Runtime.GameObject, T>, System.Action<Prowl.Runtime.GameObject, T>, T, bool)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ApplyGameObjectChanges
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 298
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: >-
+    Apply a value to every given GameObject and record the change as a single grouped undo step.
+
+    Captures each object's current value as the undo state, then writes the new value. Mirrors
+
+    <xref href="Prowl.Editor.Core.Undo.RecordGameObjectChange%60%601(Prowl.Runtime.GameObject%2cSystem.String%2c%60%600%2c%60%600%2cSystem.Action%7bProwl.Runtime.GameObject%2c%60%600%7d%2cSystem.Boolean)" data-throw-if-not-resolved="false"></xref> but batched across a multi-object selection.
+  example: []
+  syntax:
+    content: public static void ApplyGameObjectChanges<T>(IReadOnlyList<GameObject> gos, string description, Func<GameObject, T> get, Action<GameObject, T> set, T newValue, bool coalesce = false)
+    parameters:
+    - id: gos
+      type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.GameObject}
+    - id: description
+      type: System.String
+    - id: get
+      type: System.Func{Prowl.Runtime.GameObject,{T}}
+    - id: set
+      type: System.Action{Prowl.Runtime.GameObject,{T}}
+    - id: newValue
+      type: '{T}'
+    - id: coalesce
+      type: System.Boolean
+    typeParameters:
+    - id: T
+    content.vb: Public Shared Sub ApplyGameObjectChanges(Of T)(gos As IReadOnlyList(Of GameObject), description As String, [get] As Func(Of GameObject, T), [set] As Action(Of GameObject, T), newValue As T, coalesce As Boolean = False)
+  overload: Prowl.Editor.Core.Undo.ApplyGameObjectChanges*
+  nameWithType.vb: Undo.ApplyGameObjectChanges(Of T)(IReadOnlyList(Of GameObject), String, Func(Of GameObject, T), Action(Of GameObject, T), T, Boolean)
+  fullName.vb: Prowl.Editor.Core.Undo.ApplyGameObjectChanges(Of T)(System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.GameObject), String, System.Func(Of Prowl.Runtime.GameObject, T), System.Action(Of Prowl.Runtime.GameObject, T), T, Boolean)
+  name.vb: ApplyGameObjectChanges(Of T)(IReadOnlyList(Of GameObject), String, Func(Of GameObject, T), Action(Of GameObject, T), T, Boolean)
+- uid: Prowl.Editor.Core.Undo.RegisterCreatedObject(Prowl.Runtime.GameObject,System.String)
+  commentId: M:Prowl.Editor.Core.Undo.RegisterCreatedObject(Prowl.Runtime.GameObject,System.String)
+  id: RegisterCreatedObject(Prowl.Runtime.GameObject,System.String)
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: RegisterCreatedObject(GameObject, string)
+  nameWithType: Undo.RegisterCreatedObject(GameObject, string)
+  fullName: Prowl.Editor.Core.Undo.RegisterCreatedObject(Prowl.Runtime.GameObject, string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RegisterCreatedObject
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 330
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: >-
+    Register that a GameObject was just created. Undo will destroy it, redo will recreate it.
+
+    Serialization is deferred to FlushFrame so components added after this call are captured.
+
+    Call AFTER the GO has been added to the scene and parented.
+  example: []
+  syntax:
+    content: public static void RegisterCreatedObject(GameObject go, string description)
+    parameters:
+    - id: go
+      type: Prowl.Runtime.GameObject
+    - id: description
+      type: System.String
+    content.vb: Public Shared Sub RegisterCreatedObject(go As GameObject, description As String)
+  overload: Prowl.Editor.Core.Undo.RegisterCreatedObject*
+  nameWithType.vb: Undo.RegisterCreatedObject(GameObject, String)
+  fullName.vb: Prowl.Editor.Core.Undo.RegisterCreatedObject(Prowl.Runtime.GameObject, String)
+  name.vb: RegisterCreatedObject(GameObject, String)
+- uid: Prowl.Editor.Core.Undo.CaptureCreatedObject(Prowl.Runtime.GameObject)
+  commentId: M:Prowl.Editor.Core.Undo.CaptureCreatedObject(Prowl.Runtime.GameObject)
+  id: CaptureCreatedObject(Prowl.Runtime.GameObject)
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: CaptureCreatedObject(GameObject)
+  nameWithType: Undo.CaptureCreatedObject(GameObject)
+  fullName: Prowl.Editor.Core.Undo.CaptureCreatedObject(Prowl.Runtime.GameObject)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CaptureCreatedObject
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 353
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: >-
+    Build the undo/redo pair for a just-created GameObject without pushing it as its own step,
+
+    so a compound operation can hand it to <xref href="Prowl.Editor.Core.Undo.RegisterActionGroup(System.String%2cSystem.Collections.Generic.IReadOnlyList%7bSystem.ValueTuple%7bSystem.Action%2cSystem.Action%7d%7d%2cSystem.Boolean)" data-throw-if-not-resolved="false"></xref> together with the
+
+    follow-up actions that depend on it (e.g. "Create Empty Parent" = new object + reparenting).
+
+    Splitting those across two steps would let the object be destroyed while the objects moved
+
+    under it still live there, taking them down with it.
+
+    Unlike <xref href="Prowl.Editor.Core.Undo.RegisterCreatedObject(Prowl.Runtime.GameObject%2cSystem.String)" data-throw-if-not-resolved="false"></xref> this serializes immediately, so call it while the
+
+    object is still in the state redo should restore it to - before the follow-up actions run.
+  example: []
+  syntax:
+    content: public static (Action undo, Action redo) CaptureCreatedObject(GameObject go)
+    parameters:
+    - id: go
+      type: Prowl.Runtime.GameObject
+    return:
+      type: System.ValueTuple{System.Action,System.Action}
+    content.vb: Public Shared Function CaptureCreatedObject(go As GameObject) As (undo As Action, redo As Action)
+  overload: Prowl.Editor.Core.Undo.CaptureCreatedObject*
+- uid: Prowl.Editor.Core.Undo.RegisterDestroyObject(Prowl.Runtime.GameObject,System.String)
+  commentId: M:Prowl.Editor.Core.Undo.RegisterDestroyObject(Prowl.Runtime.GameObject,System.String)
+  id: RegisterDestroyObject(Prowl.Runtime.GameObject,System.String)
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: RegisterDestroyObject(GameObject, string)
+  nameWithType: Undo.RegisterDestroyObject(GameObject, string)
+  fullName: Prowl.Editor.Core.Undo.RegisterDestroyObject(Prowl.Runtime.GameObject, string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RegisterDestroyObject
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 409
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: >-
+    Register that a GameObject is about to be destroyed. Undo will recreate it, redo will destroy it.
+
+    Call BEFORE the GO is removed from the scene.
+  example: []
+  syntax:
+    content: public static void RegisterDestroyObject(GameObject go, string description)
+    parameters:
+    - id: go
+      type: Prowl.Runtime.GameObject
+    - id: description
+      type: System.String
+    content.vb: Public Shared Sub RegisterDestroyObject(go As GameObject, description As String)
+  overload: Prowl.Editor.Core.Undo.RegisterDestroyObject*
+  nameWithType.vb: Undo.RegisterDestroyObject(GameObject, String)
+  fullName.vb: Prowl.Editor.Core.Undo.RegisterDestroyObject(Prowl.Runtime.GameObject, String)
+  name.vb: RegisterDestroyObject(GameObject, String)
+- uid: Prowl.Editor.Core.Undo.BeginContinuous(Prowl.Runtime.GameObject[],System.String)
+  commentId: M:Prowl.Editor.Core.Undo.BeginContinuous(Prowl.Runtime.GameObject[],System.String)
+  id: BeginContinuous(Prowl.Runtime.GameObject[],System.String)
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: BeginContinuous(GameObject[], string)
+  nameWithType: Undo.BeginContinuous(GameObject[], string)
+  fullName: Prowl.Editor.Core.Undo.BeginContinuous(Prowl.Runtime.GameObject[], string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: BeginContinuous
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 471
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: >-
+    Begin a continuous undo operation (e.g., gizmo drag).
+
+    Snapshots all targets' transforms at the start. Call EndContinuous when done.
+  example: []
+  syntax:
+    content: public static void BeginContinuous(GameObject[] targets, string description)
+    parameters:
+    - id: targets
+      type: Prowl.Runtime.GameObject[]
+    - id: description
+      type: System.String
+    content.vb: Public Shared Sub BeginContinuous(targets As GameObject(), description As String)
+  overload: Prowl.Editor.Core.Undo.BeginContinuous*
+  nameWithType.vb: Undo.BeginContinuous(GameObject(), String)
+  fullName.vb: Prowl.Editor.Core.Undo.BeginContinuous(Prowl.Runtime.GameObject(), String)
+  name.vb: BeginContinuous(GameObject(), String)
+- uid: Prowl.Editor.Core.Undo.EndContinuous
+  commentId: M:Prowl.Editor.Core.Undo.EndContinuous
+  id: EndContinuous
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: EndContinuous()
+  nameWithType: Undo.EndContinuous()
+  fullName: Prowl.Editor.Core.Undo.EndContinuous()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EndContinuous
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 490
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: End a continuous operation and push one undo step if anything changed.
+  example: []
+  syntax:
+    content: public static void EndContinuous()
+    content.vb: Public Shared Sub EndContinuous()
+  overload: Prowl.Editor.Core.Undo.EndContinuous*
+- uid: Prowl.Editor.Core.Undo.CancelContinuous
+  commentId: M:Prowl.Editor.Core.Undo.CancelContinuous
+  id: CancelContinuous
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: CancelContinuous()
+  nameWithType: Undo.CancelContinuous()
+  fullName: Prowl.Editor.Core.Undo.CancelContinuous()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CancelContinuous
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 544
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: >-
+    Cancel a continuous operation without pushing an undo step.
+
+    Restores all targets to their start state.
+  example: []
+  syntax:
+    content: public static void CancelContinuous()
+    content.vb: Public Shared Sub CancelContinuous()
+  overload: Prowl.Editor.Core.Undo.CancelContinuous*
+- uid: Prowl.Editor.Core.Undo.IncrementGroup
+  commentId: M:Prowl.Editor.Core.Undo.IncrementGroup
+  id: IncrementGroup
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: IncrementGroup()
+  nameWithType: Undo.IncrementGroup()
+  fullName: Prowl.Editor.Core.Undo.IncrementGroup()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IncrementGroup
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 569
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: >-
+    Force a new group boundary. Flushes any pending records into a step,
+
+    so the next RecordObject starts a fresh step.
+  example: []
+  syntax:
+    content: public static void IncrementGroup()
+    content.vb: Public Shared Sub IncrementGroup()
+  overload: Prowl.Editor.Core.Undo.IncrementGroup*
+- uid: Prowl.Editor.Core.Undo.PerformUndo
+  commentId: M:Prowl.Editor.Core.Undo.PerformUndo
+  id: PerformUndo
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: PerformUndo()
+  nameWithType: Undo.PerformUndo()
+  fullName: Prowl.Editor.Core.Undo.PerformUndo()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PerformUndo
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 579
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: Perform one undo step. If a continuous operation is active, cancels it instead. Flushes pending records before undoing.
+  example: []
+  syntax:
+    content: public static void PerformUndo()
+    content.vb: Public Shared Sub PerformUndo()
+  overload: Prowl.Editor.Core.Undo.PerformUndo*
+- uid: Prowl.Editor.Core.Undo.PerformRedo
+  commentId: M:Prowl.Editor.Core.Undo.PerformRedo
+  id: PerformRedo
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: PerformRedo()
+  nameWithType: Undo.PerformRedo()
+  fullName: Prowl.Editor.Core.Undo.PerformRedo()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PerformRedo
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 619
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: Perform one redo step. Does nothing if a continuous operation is active. Flushes pending records before redoing.
+  example: []
+  syntax:
+    content: public static void PerformRedo()
+    content.vb: Public Shared Sub PerformRedo()
+  overload: Prowl.Editor.Core.Undo.PerformRedo*
+- uid: Prowl.Editor.Core.Undo.Clear
+  commentId: M:Prowl.Editor.Core.Undo.Clear
+  id: Clear
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: Clear()
+  nameWithType: Undo.Clear()
+  fullName: Prowl.Editor.Core.Undo.Clear()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Clear
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 716
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: Clear all undo/redo history. Called on scene load.
+  example: []
+  syntax:
+    content: public static void Clear()
+    content.vb: Public Shared Sub Clear()
+  overload: Prowl.Editor.Core.Undo.Clear*
+- uid: Prowl.Editor.Core.Undo.FindGO(System.Guid)
+  commentId: M:Prowl.Editor.Core.Undo.FindGO(System.Guid)
+  id: FindGO(System.Guid)
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: FindGO(Guid)
+  nameWithType: Undo.FindGO(Guid)
+  fullName: Prowl.Editor.Core.Undo.FindGO(System.Guid)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FindGO
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 950
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: >-
+    Find a GameObject by identifier in the current scene. Returns null if not found.
+
+    Use this in undo/redo lambdas instead of capturing GO references directly.
+  example: []
+  syntax:
+    content: public static GameObject? FindGO(Guid identifier)
+    parameters:
+    - id: identifier
+      type: System.Guid
+    return:
+      type: Prowl.Runtime.GameObject
+    content.vb: Public Shared Function FindGO(identifier As Guid) As GameObject
+  overload: Prowl.Editor.Core.Undo.FindGO*
+- uid: Prowl.Editor.Core.Undo.FindComponent(System.Guid)
+  commentId: M:Prowl.Editor.Core.Undo.FindComponent(System.Guid)
+  id: FindComponent(System.Guid)
+  parent: Prowl.Editor.Core.Undo
+  langs:
+  - csharp
+  - vb
+  name: FindComponent(Guid)
+  nameWithType: Undo.FindComponent(Guid)
+  fullName: Prowl.Editor.Core.Undo.FindComponent(System.Guid)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/Undo.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FindComponent
+    path: ../Prowl/Prowl.Editor/Core/Undo.cs
+    startLine: 965
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: Find a MonoBehaviour component by identifier across all GOs in the current scene.
+  example: []
+  syntax:
+    content: public static MonoBehaviour? FindComponent(Guid identifier)
+    parameters:
+    - id: identifier
+      type: System.Guid
+    return:
+      type: Prowl.Runtime.MonoBehaviour
+    content.vb: Public Shared Function FindComponent(identifier As Guid) As MonoBehaviour
+  overload: Prowl.Editor.Core.Undo.FindComponent*
+references:
+- uid: Prowl.Editor.Core
+  commentId: N:Prowl.Editor.Core
+  name: Prowl.Editor.Core
+  nameWithType: Prowl.Editor.Core
+  fullName: Prowl.Editor.Core
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Core
+    name: Core
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Core
+    name: Core
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Editor.Core.Undo.MaxSteps*
+  commentId: Overload:Prowl.Editor.Core.Undo.MaxSteps
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_MaxSteps
+  name: MaxSteps
+  nameWithType: Undo.MaxSteps
+  fullName: Prowl.Editor.Core.Undo.MaxSteps
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Action
+  commentId: T:System.Action
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action
+  name: Action
+  nameWithType: Action
+  fullName: System.Action
+- uid: Prowl.Editor.Core.Undo.CanUndo*
+  commentId: Overload:Prowl.Editor.Core.Undo.CanUndo
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_CanUndo
+  name: CanUndo
+  nameWithType: Undo.CanUndo
+  fullName: Prowl.Editor.Core.Undo.CanUndo
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Editor.Core.Undo.CanRedo*
+  commentId: Overload:Prowl.Editor.Core.Undo.CanRedo
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_CanRedo
+  name: CanRedo
+  nameWithType: Undo.CanRedo
+  fullName: Prowl.Editor.Core.Undo.CanRedo
+- uid: Prowl.Editor.Core.Undo.IsContinuous*
+  commentId: Overload:Prowl.Editor.Core.Undo.IsContinuous
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_IsContinuous
+  name: IsContinuous
+  nameWithType: Undo.IsContinuous
+  fullName: Prowl.Editor.Core.Undo.IsContinuous
+- uid: Prowl.Editor.Core.Undo.UndoDescription*
+  commentId: Overload:Prowl.Editor.Core.Undo.UndoDescription
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_UndoDescription
+  name: UndoDescription
+  nameWithType: Undo.UndoDescription
+  fullName: Prowl.Editor.Core.Undo.UndoDescription
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Prowl.Editor.Core.Undo.RedoDescription*
+  commentId: Overload:Prowl.Editor.Core.Undo.RedoDescription
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_RedoDescription
+  name: RedoDescription
+  nameWithType: Undo.RedoDescription
+  fullName: Prowl.Editor.Core.Undo.RedoDescription
+- uid: Prowl.Editor.Core.Undo.Snapshot*
+  commentId: Overload:Prowl.Editor.Core.Undo.Snapshot
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_Snapshot_System_Object_
+  name: Snapshot
+  nameWithType: Undo.Snapshot
+  fullName: Prowl.Editor.Core.Undo.Snapshot
+- uid: Prowl.Editor.Core.Undo.RegisterAction*
+  commentId: Overload:Prowl.Editor.Core.Undo.RegisterAction
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_RegisterAction_System_String_System_Action_System_Action_
+  name: RegisterAction
+  nameWithType: Undo.RegisterAction
+  fullName: Prowl.Editor.Core.Undo.RegisterAction
+- uid: Prowl.Editor.Core.Undo.RecordGameObjectChange*
+  commentId: Overload:Prowl.Editor.Core.Undo.RecordGameObjectChange
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_RecordGameObjectChange__1_Prowl_Runtime_GameObject_System_String___0___0_System_Action_Prowl_Runtime_GameObject___0__System_Boolean_
+  name: RecordGameObjectChange
+  nameWithType: Undo.RecordGameObjectChange
+  fullName: Prowl.Editor.Core.Undo.RecordGameObjectChange
+- uid: Prowl.Runtime.GameObject
+  commentId: T:Prowl.Runtime.GameObject
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.GameObject.html
+  name: GameObject
+  nameWithType: GameObject
+  fullName: Prowl.Runtime.GameObject
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Action{Prowl.Runtime.GameObject,{T}}
+  commentId: T:System.Action{Prowl.Runtime.GameObject,``0}
+  parent: System
+  definition: System.Action`2
+  href: https://learn.microsoft.com/dotnet/api/system.action-2
+  name: Action<GameObject, T>
+  nameWithType: Action<GameObject, T>
+  fullName: System.Action<Prowl.Runtime.GameObject, T>
+  nameWithType.vb: Action(Of GameObject, T)
+  fullName.vb: System.Action(Of Prowl.Runtime.GameObject, T)
+  name.vb: Action(Of GameObject, T)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: <
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Action`2
+  commentId: T:System.Action`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-2
+  name: Action<T1, T2>
+  nameWithType: Action<T1, T2>
+  fullName: System.Action<T1, T2>
+  nameWithType.vb: Action(Of T1, T2)
+  fullName.vb: System.Action(Of T1, T2)
+  name.vb: Action(Of T1, T2)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: <
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+- uid: Prowl.Editor.Core.Undo.RegisterCoalescableAction*
+  commentId: Overload:Prowl.Editor.Core.Undo.RegisterCoalescableAction
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_RegisterCoalescableAction_System_String_System_Action_System_Action_
+  name: RegisterCoalescableAction
+  nameWithType: Undo.RegisterCoalescableAction
+  fullName: Prowl.Editor.Core.Undo.RegisterCoalescableAction
+- uid: Prowl.Editor.Core.Undo.RegisterActionGroup*
+  commentId: Overload:Prowl.Editor.Core.Undo.RegisterActionGroup
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_RegisterActionGroup_System_String_System_Collections_Generic_IReadOnlyList_System_ValueTuple_System_Action_System_Action___System_Boolean_
+  name: RegisterActionGroup
+  nameWithType: Undo.RegisterActionGroup
+  fullName: Prowl.Editor.Core.Undo.RegisterActionGroup
+- uid: System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Action,System.Action}}
+  commentId: T:System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Action,System.Action}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<(Action undo, Action redo)>
+  nameWithType: IReadOnlyList<(Action undo, Action redo)>
+  fullName: System.Collections.Generic.IReadOnlyList<(System.Action undo, System.Action redo)>
+  nameWithType.vb: IReadOnlyList(Of (undo As Action, redo As Action))
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of (undo As System.Action, redo As System.Action))
+  name.vb: IReadOnlyList(Of (undo As Action, redo As Action))
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: (
+  - uid: System.Action
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action
+  - name: " "
+  - uid: System.ValueTuple{System.Action,System.Action}.undo
+    name: undo
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.action,system.action-.undo
+  - name: ','
+  - name: " "
+  - uid: System.Action
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action
+  - name: " "
+  - uid: System.ValueTuple{System.Action,System.Action}.redo
+    name: redo
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.action,system.action-.redo
+  - name: )
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: (
+  - uid: System.ValueTuple{System.Action,System.Action}.undo
+    name: undo
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.action,system.action-.undo
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Action
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{System.Action,System.Action}.redo
+    name: redo
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.action,system.action-.redo
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Action
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Prowl.Editor.Core.Undo.RecordGameObjectChange``1(Prowl.Runtime.GameObject,System.String,``0,``0,System.Action{Prowl.Runtime.GameObject,``0},System.Boolean)
+  commentId: M:Prowl.Editor.Core.Undo.RecordGameObjectChange``1(Prowl.Runtime.GameObject,System.String,``0,``0,System.Action{Prowl.Runtime.GameObject,``0},System.Boolean)
+  isExternal: true
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_RecordGameObjectChange__1_Prowl_Runtime_GameObject_System_String___0___0_System_Action_Prowl_Runtime_GameObject___0__System_Boolean_
+  name: RecordGameObjectChange<T>(GameObject, string, T, T, Action<GameObject, T>, bool)
+  nameWithType: Undo.RecordGameObjectChange<T>(GameObject, string, T, T, Action<GameObject, T>, bool)
+  fullName: Prowl.Editor.Core.Undo.RecordGameObjectChange<T>(Prowl.Runtime.GameObject, string, T, T, System.Action<Prowl.Runtime.GameObject, T>, bool)
+  nameWithType.vb: Undo.RecordGameObjectChange(Of T)(GameObject, String, T, T, Action(Of GameObject, T), Boolean)
+  fullName.vb: Prowl.Editor.Core.Undo.RecordGameObjectChange(Of T)(Prowl.Runtime.GameObject, String, T, T, System.Action(Of Prowl.Runtime.GameObject, T), Boolean)
+  name.vb: RecordGameObjectChange(Of T)(GameObject, String, T, T, Action(Of GameObject, T), Boolean)
+  spec.csharp:
+  - uid: Prowl.Editor.Core.Undo.RecordGameObjectChange``1(Prowl.Runtime.GameObject,System.String,``0,``0,System.Action{Prowl.Runtime.GameObject,``0},System.Boolean)
+    name: RecordGameObjectChange
+    href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_RecordGameObjectChange__1_Prowl_Runtime_GameObject_System_String___0___0_System_Action_Prowl_Runtime_GameObject___0__System_Boolean_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: <
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - name: T
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Core.Undo.RecordGameObjectChange``1(Prowl.Runtime.GameObject,System.String,``0,``0,System.Action{Prowl.Runtime.GameObject,``0},System.Boolean)
+    name: RecordGameObjectChange
+    href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_RecordGameObjectChange__1_Prowl_Runtime_GameObject_System_String___0___0_System_Action_Prowl_Runtime_GameObject___0__System_Boolean_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Editor.Core.Undo.ApplyGameObjectChanges*
+  commentId: Overload:Prowl.Editor.Core.Undo.ApplyGameObjectChanges
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_ApplyGameObjectChanges__1_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_GameObject__System_String_System_Func_Prowl_Runtime_GameObject___0__System_Action_Prowl_Runtime_GameObject___0____0_System_Boolean_
+  name: ApplyGameObjectChanges
+  nameWithType: Undo.ApplyGameObjectChanges
+  fullName: Prowl.Editor.Core.Undo.ApplyGameObjectChanges
+- uid: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.GameObject}
+  commentId: T:System.Collections.Generic.IReadOnlyList{Prowl.Runtime.GameObject}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<GameObject>
+  nameWithType: IReadOnlyList<GameObject>
+  fullName: System.Collections.Generic.IReadOnlyList<Prowl.Runtime.GameObject>
+  nameWithType.vb: IReadOnlyList(Of GameObject)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.GameObject)
+  name.vb: IReadOnlyList(Of GameObject)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: )
+- uid: System.Func{Prowl.Runtime.GameObject,{T}}
+  commentId: T:System.Func{Prowl.Runtime.GameObject,``0}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<GameObject, T>
+  nameWithType: Func<GameObject, T>
+  fullName: System.Func<Prowl.Runtime.GameObject, T>
+  nameWithType.vb: Func(Of GameObject, T)
+  fullName.vb: System.Func(Of Prowl.Runtime.GameObject, T)
+  name.vb: Func(Of GameObject, T)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: Prowl.Editor.Core.Undo.RegisterCreatedObject*
+  commentId: Overload:Prowl.Editor.Core.Undo.RegisterCreatedObject
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_RegisterCreatedObject_Prowl_Runtime_GameObject_System_String_
+  name: RegisterCreatedObject
+  nameWithType: Undo.RegisterCreatedObject
+  fullName: Prowl.Editor.Core.Undo.RegisterCreatedObject
+- uid: Prowl.Editor.Core.Undo.RegisterActionGroup(System.String,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Action,System.Action}},System.Boolean)
+  commentId: M:Prowl.Editor.Core.Undo.RegisterActionGroup(System.String,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Action,System.Action}},System.Boolean)
+  isExternal: true
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_RegisterActionGroup_System_String_System_Collections_Generic_IReadOnlyList_System_ValueTuple_System_Action_System_Action___System_Boolean_
+  name: RegisterActionGroup(string, IReadOnlyList<(Action undo, Action redo)>, bool)
+  nameWithType: Undo.RegisterActionGroup(string, IReadOnlyList<(Action undo, Action redo)>, bool)
+  fullName: Prowl.Editor.Core.Undo.RegisterActionGroup(string, System.Collections.Generic.IReadOnlyList<(System.Action undo, System.Action redo)>, bool)
+  nameWithType.vb: Undo.RegisterActionGroup(String, IReadOnlyList(Of (undo As Action, redo As Action)), Boolean)
+  fullName.vb: Prowl.Editor.Core.Undo.RegisterActionGroup(String, System.Collections.Generic.IReadOnlyList(Of (undo As System.Action, redo As System.Action)), Boolean)
+  name.vb: RegisterActionGroup(String, IReadOnlyList(Of (undo As Action, redo As Action)), Boolean)
+  spec.csharp:
+  - uid: Prowl.Editor.Core.Undo.RegisterActionGroup(System.String,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Action,System.Action}},System.Boolean)
+    name: RegisterActionGroup
+    href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_RegisterActionGroup_System_String_System_Collections_Generic_IReadOnlyList_System_ValueTuple_System_Action_System_Action___System_Boolean_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: (
+  - uid: System.Action
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action
+  - name: " "
+  - uid: System.ValueTuple{System.Action,System.Action}.undo
+    name: undo
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.action,system.action-.undo
+  - name: ','
+  - name: " "
+  - uid: System.Action
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action
+  - name: " "
+  - uid: System.ValueTuple{System.Action,System.Action}.redo
+    name: redo
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.action,system.action-.redo
+  - name: )
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Core.Undo.RegisterActionGroup(System.String,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Action,System.Action}},System.Boolean)
+    name: RegisterActionGroup
+    href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_RegisterActionGroup_System_String_System_Collections_Generic_IReadOnlyList_System_ValueTuple_System_Action_System_Action___System_Boolean_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: (
+  - uid: System.ValueTuple{System.Action,System.Action}.undo
+    name: undo
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.action,system.action-.undo
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Action
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{System.Action,System.Action}.redo
+    name: redo
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.action,system.action-.redo
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Action
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action
+  - name: )
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Editor.Core.Undo.RegisterCreatedObject(Prowl.Runtime.GameObject,System.String)
+  commentId: M:Prowl.Editor.Core.Undo.RegisterCreatedObject(Prowl.Runtime.GameObject,System.String)
+  isExternal: true
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_RegisterCreatedObject_Prowl_Runtime_GameObject_System_String_
+  name: RegisterCreatedObject(GameObject, string)
+  nameWithType: Undo.RegisterCreatedObject(GameObject, string)
+  fullName: Prowl.Editor.Core.Undo.RegisterCreatedObject(Prowl.Runtime.GameObject, string)
+  nameWithType.vb: Undo.RegisterCreatedObject(GameObject, String)
+  fullName.vb: Prowl.Editor.Core.Undo.RegisterCreatedObject(Prowl.Runtime.GameObject, String)
+  name.vb: RegisterCreatedObject(GameObject, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Core.Undo.RegisterCreatedObject(Prowl.Runtime.GameObject,System.String)
+    name: RegisterCreatedObject
+    href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_RegisterCreatedObject_Prowl_Runtime_GameObject_System_String_
+  - name: (
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Core.Undo.RegisterCreatedObject(Prowl.Runtime.GameObject,System.String)
+    name: RegisterCreatedObject
+    href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_RegisterCreatedObject_Prowl_Runtime_GameObject_System_String_
+  - name: (
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Core.Undo.CaptureCreatedObject*
+  commentId: Overload:Prowl.Editor.Core.Undo.CaptureCreatedObject
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_CaptureCreatedObject_Prowl_Runtime_GameObject_
+  name: CaptureCreatedObject
+  nameWithType: Undo.CaptureCreatedObject
+  fullName: Prowl.Editor.Core.Undo.CaptureCreatedObject
+- uid: System.ValueTuple{System.Action,System.Action}
+  commentId: T:System.ValueTuple{System.Action,System.Action}
+  parent: System
+  definition: System.ValueTuple`2
+  href: https://learn.microsoft.com/dotnet/api/system.action
+  name: (Action undo, Action redo)
+  nameWithType: (Action undo, Action redo)
+  fullName: (System.Action undo, System.Action redo)
+  nameWithType.vb: (undo As Action, redo As Action)
+  fullName.vb: (undo As System.Action, redo As System.Action)
+  name.vb: (undo As Action, redo As Action)
+  spec.csharp:
+  - name: (
+  - uid: System.Action
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action
+  - name: " "
+  - uid: System.ValueTuple{System.Action,System.Action}.undo
+    name: undo
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.action,system.action-.undo
+  - name: ','
+  - name: " "
+  - uid: System.Action
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action
+  - name: " "
+  - uid: System.ValueTuple{System.Action,System.Action}.redo
+    name: redo
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.action,system.action-.redo
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: System.ValueTuple{System.Action,System.Action}.undo
+    name: undo
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.action,system.action-.undo
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Action
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{System.Action,System.Action}.redo
+    name: redo
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.action,system.action-.redo
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Action
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action
+  - name: )
+- uid: System.ValueTuple`2
+  commentId: T:System.ValueTuple`2
+  name: (T1, T2)
+  nameWithType: (T1, T2)
+  fullName: (T1, T2)
+  spec.csharp:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+  spec.vb:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+- uid: Prowl.Editor.Core.Undo.RegisterDestroyObject*
+  commentId: Overload:Prowl.Editor.Core.Undo.RegisterDestroyObject
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_RegisterDestroyObject_Prowl_Runtime_GameObject_System_String_
+  name: RegisterDestroyObject
+  nameWithType: Undo.RegisterDestroyObject
+  fullName: Prowl.Editor.Core.Undo.RegisterDestroyObject
+- uid: Prowl.Editor.Core.Undo.BeginContinuous*
+  commentId: Overload:Prowl.Editor.Core.Undo.BeginContinuous
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_BeginContinuous_Prowl_Runtime_GameObject___System_String_
+  name: BeginContinuous
+  nameWithType: Undo.BeginContinuous
+  fullName: Prowl.Editor.Core.Undo.BeginContinuous
+- uid: Prowl.Runtime.GameObject[]
+  isExternal: true
+  href: Prowl.Runtime.GameObject.html
+  name: GameObject[]
+  nameWithType: GameObject[]
+  fullName: Prowl.Runtime.GameObject[]
+  nameWithType.vb: GameObject()
+  fullName.vb: Prowl.Runtime.GameObject()
+  name.vb: GameObject()
+  spec.csharp:
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: (
+  - name: )
+- uid: Prowl.Editor.Core.Undo.EndContinuous*
+  commentId: Overload:Prowl.Editor.Core.Undo.EndContinuous
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_EndContinuous
+  name: EndContinuous
+  nameWithType: Undo.EndContinuous
+  fullName: Prowl.Editor.Core.Undo.EndContinuous
+- uid: Prowl.Editor.Core.Undo.CancelContinuous*
+  commentId: Overload:Prowl.Editor.Core.Undo.CancelContinuous
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_CancelContinuous
+  name: CancelContinuous
+  nameWithType: Undo.CancelContinuous
+  fullName: Prowl.Editor.Core.Undo.CancelContinuous
+- uid: Prowl.Editor.Core.Undo.IncrementGroup*
+  commentId: Overload:Prowl.Editor.Core.Undo.IncrementGroup
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_IncrementGroup
+  name: IncrementGroup
+  nameWithType: Undo.IncrementGroup
+  fullName: Prowl.Editor.Core.Undo.IncrementGroup
+- uid: Prowl.Editor.Core.Undo.PerformUndo*
+  commentId: Overload:Prowl.Editor.Core.Undo.PerformUndo
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_PerformUndo
+  name: PerformUndo
+  nameWithType: Undo.PerformUndo
+  fullName: Prowl.Editor.Core.Undo.PerformUndo
+- uid: Prowl.Editor.Core.Undo.PerformRedo*
+  commentId: Overload:Prowl.Editor.Core.Undo.PerformRedo
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_PerformRedo
+  name: PerformRedo
+  nameWithType: Undo.PerformRedo
+  fullName: Prowl.Editor.Core.Undo.PerformRedo
+- uid: Prowl.Editor.Core.Undo.Clear*
+  commentId: Overload:Prowl.Editor.Core.Undo.Clear
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_Clear
+  name: Clear
+  nameWithType: Undo.Clear
+  fullName: Prowl.Editor.Core.Undo.Clear
+- uid: Prowl.Editor.Core.Undo.FindGO*
+  commentId: Overload:Prowl.Editor.Core.Undo.FindGO
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_FindGO_System_Guid_
+  name: FindGO
+  nameWithType: Undo.FindGO
+  fullName: Prowl.Editor.Core.Undo.FindGO
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: Prowl.Editor.Core.Undo.FindComponent*
+  commentId: Overload:Prowl.Editor.Core.Undo.FindComponent
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_FindComponent_System_Guid_
+  name: FindComponent
+  nameWithType: Undo.FindComponent
+  fullName: Prowl.Editor.Core.Undo.FindComponent
+- uid: Prowl.Runtime.MonoBehaviour
+  commentId: T:Prowl.Runtime.MonoBehaviour
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.MonoBehaviour.html
+  name: MonoBehaviour
+  nameWithType: MonoBehaviour
+  fullName: Prowl.Runtime.MonoBehaviour

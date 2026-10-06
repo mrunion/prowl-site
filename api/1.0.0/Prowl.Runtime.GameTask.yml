@@ -1,0 +1,1129 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.GameTask
+  commentId: T:Prowl.Runtime.GameTask
+  id: GameTask
+  parent: Prowl.Runtime
+  children:
+  - Prowl.Runtime.GameTask.Delay(System.Single,System.Threading.CancellationToken)
+  - Prowl.Runtime.GameTask.DelayRealtime(System.Single,System.Threading.CancellationToken)
+  - Prowl.Runtime.GameTask.Frames(System.Int32,System.Threading.CancellationToken)
+  - Prowl.Runtime.GameTask.IsMainThread
+  - Prowl.Runtime.GameTask.MainThread
+  - Prowl.Runtime.GameTask.NextFrame(System.Threading.CancellationToken)
+  - Prowl.Runtime.GameTask.Post(System.Action)
+  - Prowl.Runtime.GameTask.Run(System.Action)
+  - Prowl.Runtime.GameTask.Run``1(System.Func{``0})
+  - Prowl.Runtime.GameTask.SessionToken
+  - Prowl.Runtime.GameTask.WaitUntil(System.Func{System.Boolean},System.Threading.CancellationToken)
+  - Prowl.Runtime.GameTask.WorkerThread
+  langs:
+  - csharp
+  - vb
+  name: GameTask
+  nameWithType: GameTask
+  fullName: Prowl.Runtime.GameTask
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/GameTask.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GameTask
+    path: ../Prowl/Prowl.Runtime/Tasks/GameTask.cs
+    startLine: 33
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Async helpers for game code: moving between the main thread and worker threads, and waiting on frames
+
+    and game time.
+  remarks: >-
+    The scene belongs to the main thread. Worker threads are for pure computation: read what you need on
+
+    the main thread, compute on a worker, then come back to apply the result.
+
+
+    <pre><code class="lang-csharp">var input = BuildInput();
+
+    await GameTask.WorkerThread();
+
+    var result = Compute(input);
+
+    await GameTask.MainThread();
+
+    Apply(result);</code></pre>
+
+
+    Awaiting in a component resumes on the main thread already. When play stops or scripts reload, the
+
+    session ends: <xref href="Prowl.Runtime.GameTask.SessionToken" data-throw-if-not-resolved="false"></xref> is cancelled and pending continuations are dropped, including a
+
+    worker's hop back to the main thread when the work was started by gameplay code. Frame waits from an ended
+
+    session complete as cancelled. Once the loop stops, requests for the main thread are refused.
+
+
+    <p></p>
+
+
+    When no engine loop is running, such as in a test or a tool, every thread counts as the main thread.
+  example: []
+  syntax:
+    content: public static class GameTask
+    content.vb: Public Module GameTask
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Prowl.Runtime.GameTask.IsMainThread
+  commentId: P:Prowl.Runtime.GameTask.IsMainThread
+  id: IsMainThread
+  parent: Prowl.Runtime.GameTask
+  langs:
+  - csharp
+  - vb
+  name: IsMainThread
+  nameWithType: GameTask.IsMainThread
+  fullName: Prowl.Runtime.GameTask.IsMainThread
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/GameTask.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsMainThread
+    path: ../Prowl/Prowl.Runtime/Tasks/GameTask.cs
+    startLine: 36
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Whether the caller is on the main thread.
+  example: []
+  syntax:
+    content: public static bool IsMainThread { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared ReadOnly Property IsMainThread As Boolean
+  overload: Prowl.Runtime.GameTask.IsMainThread*
+- uid: Prowl.Runtime.GameTask.SessionToken
+  commentId: P:Prowl.Runtime.GameTask.SessionToken
+  id: SessionToken
+  parent: Prowl.Runtime.GameTask
+  langs:
+  - csharp
+  - vb
+  name: SessionToken
+  nameWithType: GameTask.SessionToken
+  fullName: Prowl.Runtime.GameTask.SessionToken
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/GameTask.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SessionToken
+    path: ../Prowl/Prowl.Runtime/Tasks/GameTask.cs
+    startLine: 43
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Cancelled when the session the calling code belongs to ends: play mode stopping, scripts reloading or
+
+    the game quitting. On a worker that is the session that started the work, so a loop that watches it
+
+    stops even if a new session has begun since. Pass it to long running work, which nothing else can stop.
+  example: []
+  syntax:
+    content: public static CancellationToken SessionToken { get; }
+    parameters: []
+    return:
+      type: System.Threading.CancellationToken
+    content.vb: Public Shared ReadOnly Property SessionToken As CancellationToken
+  overload: Prowl.Runtime.GameTask.SessionToken*
+- uid: Prowl.Runtime.GameTask.MainThread
+  commentId: M:Prowl.Runtime.GameTask.MainThread
+  id: MainThread
+  parent: Prowl.Runtime.GameTask
+  langs:
+  - csharp
+  - vb
+  name: MainThread()
+  nameWithType: GameTask.MainThread()
+  fullName: Prowl.Runtime.GameTask.MainThread()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/GameTask.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MainThread
+    path: ../Prowl/Prowl.Runtime/Tasks/GameTask.cs
+    startLine: 49
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Resumes on the main thread, at the next frame when coming from another thread. Never resumes if the
+
+    session that started the work has ended by then.
+  example: []
+  syntax:
+    content: public static GameTask.MainThreadAwaitable MainThread()
+    return:
+      type: Prowl.Runtime.GameTask.MainThreadAwaitable
+    content.vb: Public Shared Function MainThread() As GameTask.MainThreadAwaitable
+  overload: Prowl.Runtime.GameTask.MainThread*
+- uid: Prowl.Runtime.GameTask.WorkerThread
+  commentId: M:Prowl.Runtime.GameTask.WorkerThread
+  id: WorkerThread
+  parent: Prowl.Runtime.GameTask
+  langs:
+  - csharp
+  - vb
+  name: WorkerThread()
+  nameWithType: GameTask.WorkerThread()
+  fullName: Prowl.Runtime.GameTask.WorkerThread()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/GameTask.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WorkerThread
+    path: ../Prowl/Prowl.Runtime/Tasks/GameTask.cs
+    startLine: 52
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Resumes on a thread pool thread. Continues right away when already off the main thread.
+  example: []
+  syntax:
+    content: public static GameTask.WorkerThreadAwaitable WorkerThread()
+    return:
+      type: Prowl.Runtime.GameTask.WorkerThreadAwaitable
+    content.vb: Public Shared Function WorkerThread() As GameTask.WorkerThreadAwaitable
+  overload: Prowl.Runtime.GameTask.WorkerThread*
+- uid: Prowl.Runtime.GameTask.NextFrame(System.Threading.CancellationToken)
+  commentId: M:Prowl.Runtime.GameTask.NextFrame(System.Threading.CancellationToken)
+  id: NextFrame(System.Threading.CancellationToken)
+  parent: Prowl.Runtime.GameTask
+  langs:
+  - csharp
+  - vb
+  name: NextFrame(CancellationToken)
+  nameWithType: GameTask.NextFrame(CancellationToken)
+  fullName: Prowl.Runtime.GameTask.NextFrame(System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/GameTask.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NextFrame
+    path: ../Prowl/Prowl.Runtime/Tasks/GameTask.cs
+    startLine: 55
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Completes at the start of the next frame.
+  example: []
+  syntax:
+    content: public static Task NextFrame(CancellationToken cancel = default)
+    parameters:
+    - id: cancel
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function NextFrame(cancel As CancellationToken = Nothing) As Task
+  overload: Prowl.Runtime.GameTask.NextFrame*
+- uid: Prowl.Runtime.GameTask.Frames(System.Int32,System.Threading.CancellationToken)
+  commentId: M:Prowl.Runtime.GameTask.Frames(System.Int32,System.Threading.CancellationToken)
+  id: Frames(System.Int32,System.Threading.CancellationToken)
+  parent: Prowl.Runtime.GameTask
+  langs:
+  - csharp
+  - vb
+  name: Frames(int, CancellationToken)
+  nameWithType: GameTask.Frames(int, CancellationToken)
+  fullName: Prowl.Runtime.GameTask.Frames(int, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/GameTask.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Frames
+    path: ../Prowl/Prowl.Runtime/Tasks/GameTask.cs
+    startLine: 58
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Waits a number of frames.
+  example: []
+  syntax:
+    content: public static Task Frames(int count, CancellationToken cancel = default)
+    parameters:
+    - id: count
+      type: System.Int32
+    - id: cancel
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function Frames(count As Integer, cancel As CancellationToken = Nothing) As Task
+  overload: Prowl.Runtime.GameTask.Frames*
+  nameWithType.vb: GameTask.Frames(Integer, CancellationToken)
+  fullName.vb: Prowl.Runtime.GameTask.Frames(Integer, System.Threading.CancellationToken)
+  name.vb: Frames(Integer, CancellationToken)
+- uid: Prowl.Runtime.GameTask.Delay(System.Single,System.Threading.CancellationToken)
+  commentId: M:Prowl.Runtime.GameTask.Delay(System.Single,System.Threading.CancellationToken)
+  id: Delay(System.Single,System.Threading.CancellationToken)
+  parent: Prowl.Runtime.GameTask
+  langs:
+  - csharp
+  - vb
+  name: Delay(float, CancellationToken)
+  nameWithType: GameTask.Delay(float, CancellationToken)
+  fullName: Prowl.Runtime.GameTask.Delay(float, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/GameTask.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Delay
+    path: ../Prowl/Prowl.Runtime/Tasks/GameTask.cs
+    startLine: 67
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Waits for game time, so it slows with <xref href="Prowl.Runtime.Time.TimeScale" data-throw-if-not-resolved="false"></xref> and stops while paused.
+  example: []
+  syntax:
+    content: public static Task Delay(float seconds, CancellationToken cancel = default)
+    parameters:
+    - id: seconds
+      type: System.Single
+    - id: cancel
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function Delay(seconds As Single, cancel As CancellationToken = Nothing) As Task
+  overload: Prowl.Runtime.GameTask.Delay*
+  nameWithType.vb: GameTask.Delay(Single, CancellationToken)
+  fullName.vb: Prowl.Runtime.GameTask.Delay(Single, System.Threading.CancellationToken)
+  name.vb: Delay(Single, CancellationToken)
+- uid: Prowl.Runtime.GameTask.DelayRealtime(System.Single,System.Threading.CancellationToken)
+  commentId: M:Prowl.Runtime.GameTask.DelayRealtime(System.Single,System.Threading.CancellationToken)
+  id: DelayRealtime(System.Single,System.Threading.CancellationToken)
+  parent: Prowl.Runtime.GameTask
+  langs:
+  - csharp
+  - vb
+  name: DelayRealtime(float, CancellationToken)
+  nameWithType: GameTask.DelayRealtime(float, CancellationToken)
+  fullName: Prowl.Runtime.GameTask.DelayRealtime(float, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/GameTask.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DelayRealtime
+    path: ../Prowl/Prowl.Runtime/Tasks/GameTask.cs
+    startLine: 75
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Waits for real time, ignoring time scale and pausing.
+  example: []
+  syntax:
+    content: public static Task DelayRealtime(float seconds, CancellationToken cancel = default)
+    parameters:
+    - id: seconds
+      type: System.Single
+    - id: cancel
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function DelayRealtime(seconds As Single, cancel As CancellationToken = Nothing) As Task
+  overload: Prowl.Runtime.GameTask.DelayRealtime*
+  nameWithType.vb: GameTask.DelayRealtime(Single, CancellationToken)
+  fullName.vb: Prowl.Runtime.GameTask.DelayRealtime(Single, System.Threading.CancellationToken)
+  name.vb: DelayRealtime(Single, CancellationToken)
+- uid: Prowl.Runtime.GameTask.WaitUntil(System.Func{System.Boolean},System.Threading.CancellationToken)
+  commentId: M:Prowl.Runtime.GameTask.WaitUntil(System.Func{System.Boolean},System.Threading.CancellationToken)
+  id: WaitUntil(System.Func{System.Boolean},System.Threading.CancellationToken)
+  parent: Prowl.Runtime.GameTask
+  langs:
+  - csharp
+  - vb
+  name: WaitUntil(Func<bool>, CancellationToken)
+  nameWithType: GameTask.WaitUntil(Func<bool>, CancellationToken)
+  fullName: Prowl.Runtime.GameTask.WaitUntil(System.Func<bool>, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/GameTask.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WaitUntil
+    path: ../Prowl/Prowl.Runtime/Tasks/GameTask.cs
+    startLine: 86
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Checks <code class="paramref">condition</code> on the main thread once per frame until it holds. Called on the
+
+    main thread, it is also checked right away.
+  example: []
+  syntax:
+    content: public static Task WaitUntil(Func<bool> condition, CancellationToken cancel = default)
+    parameters:
+    - id: condition
+      type: System.Func{System.Boolean}
+    - id: cancel
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function WaitUntil(condition As Func(Of Boolean), cancel As CancellationToken = Nothing) As Task
+  overload: Prowl.Runtime.GameTask.WaitUntil*
+  nameWithType.vb: GameTask.WaitUntil(Func(Of Boolean), CancellationToken)
+  fullName.vb: Prowl.Runtime.GameTask.WaitUntil(System.Func(Of Boolean), System.Threading.CancellationToken)
+  name.vb: WaitUntil(Func(Of Boolean), CancellationToken)
+- uid: Prowl.Runtime.GameTask.Post(System.Action)
+  commentId: M:Prowl.Runtime.GameTask.Post(System.Action)
+  id: Post(System.Action)
+  parent: Prowl.Runtime.GameTask
+  langs:
+  - csharp
+  - vb
+  name: Post(Action)
+  nameWithType: GameTask.Post(Action)
+  fullName: Prowl.Runtime.GameTask.Post(System.Action)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/GameTask.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Post
+    path: ../Prowl/Prowl.Runtime/Tasks/GameTask.cs
+    startLine: 98
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Queues work for the main thread without waiting for it. Dropped if the session that started the work
+
+    ends first. Runs at once when no loop is running.
+  example: []
+  syntax:
+    content: public static void Post(Action work)
+    parameters:
+    - id: work
+      type: System.Action
+    content.vb: Public Shared Sub Post(work As Action)
+  overload: Prowl.Runtime.GameTask.Post*
+- uid: Prowl.Runtime.GameTask.Run(System.Action)
+  commentId: M:Prowl.Runtime.GameTask.Run(System.Action)
+  id: Run(System.Action)
+  parent: Prowl.Runtime.GameTask
+  langs:
+  - csharp
+  - vb
+  name: Run(Action)
+  nameWithType: GameTask.Run(Action)
+  fullName: Prowl.Runtime.GameTask.Run(System.Action)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/GameTask.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Run
+    path: ../Prowl/Prowl.Runtime/Tasks/GameTask.cs
+    startLine: 116
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Runs work on the main thread and blocks until it finishes, rethrowing what it threw. Runs at once
+
+    when called on the main thread or when no loop is running, and carries over a session ending, since
+
+    the caller is waiting. Throws <xref href="System.OperationCanceledException" data-throw-if-not-resolved="false"></xref> if the loop stops first.
+
+    Never call it from a thread the main thread is waiting on.
+  example: []
+  syntax:
+    content: public static void Run(Action work)
+    parameters:
+    - id: work
+      type: System.Action
+    content.vb: Public Shared Sub Run(work As Action)
+  overload: Prowl.Runtime.GameTask.Run*
+- uid: Prowl.Runtime.GameTask.Run``1(System.Func{``0})
+  commentId: M:Prowl.Runtime.GameTask.Run``1(System.Func{``0})
+  id: Run``1(System.Func{``0})
+  parent: Prowl.Runtime.GameTask
+  langs:
+  - csharp
+  - vb
+  name: Run<T>(Func<T>)
+  nameWithType: GameTask.Run<T>(Func<T>)
+  fullName: Prowl.Runtime.GameTask.Run<T>(System.Func<T>)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/GameTask.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Run
+    path: ../Prowl/Prowl.Runtime/Tasks/GameTask.cs
+    startLine: 125
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Runs work on the main thread and blocks until it finishes, rethrowing what it threw. Runs at once
+
+    when called on the main thread or when no loop is running, and carries over a session ending, since
+
+    the caller is waiting. Throws <xref href="System.OperationCanceledException" data-throw-if-not-resolved="false"></xref> if the loop stops first.
+
+    Never call it from a thread the main thread is waiting on.
+  example: []
+  syntax:
+    content: public static T Run<T>(Func<T> work)
+    parameters:
+    - id: work
+      type: System.Func{{T}}
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Public Shared Function Run(Of T)(work As Func(Of T)) As T
+  overload: Prowl.Runtime.GameTask.Run*
+  nameWithType.vb: GameTask.Run(Of T)(Func(Of T))
+  fullName.vb: Prowl.Runtime.GameTask.Run(Of T)(System.Func(Of T))
+  name.vb: Run(Of T)(Func(Of T))
+references:
+- uid: Prowl.Runtime.GameTask.SessionToken
+  commentId: P:Prowl.Runtime.GameTask.SessionToken
+  href: Prowl.Runtime.GameTask.html#Prowl_Runtime_GameTask_SessionToken
+  name: SessionToken
+  nameWithType: GameTask.SessionToken
+  fullName: Prowl.Runtime.GameTask.SessionToken
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.GameTask.IsMainThread*
+  commentId: Overload:Prowl.Runtime.GameTask.IsMainThread
+  href: Prowl.Runtime.GameTask.html#Prowl_Runtime_GameTask_IsMainThread
+  name: IsMainThread
+  nameWithType: GameTask.IsMainThread
+  fullName: Prowl.Runtime.GameTask.IsMainThread
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Runtime.GameTask.SessionToken*
+  commentId: Overload:Prowl.Runtime.GameTask.SessionToken
+  href: Prowl.Runtime.GameTask.html#Prowl_Runtime_GameTask_SessionToken
+  name: SessionToken
+  nameWithType: GameTask.SessionToken
+  fullName: Prowl.Runtime.GameTask.SessionToken
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: Prowl.Runtime.GameTask.MainThread*
+  commentId: Overload:Prowl.Runtime.GameTask.MainThread
+  href: Prowl.Runtime.GameTask.html#Prowl_Runtime_GameTask_MainThread
+  name: MainThread
+  nameWithType: GameTask.MainThread
+  fullName: Prowl.Runtime.GameTask.MainThread
+- uid: Prowl.Runtime.GameTask.MainThreadAwaitable
+  commentId: T:Prowl.Runtime.GameTask.MainThreadAwaitable
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.GameTask.html
+  name: GameTask.MainThreadAwaitable
+  nameWithType: GameTask.MainThreadAwaitable
+  fullName: Prowl.Runtime.GameTask.MainThreadAwaitable
+  spec.csharp:
+  - uid: Prowl.Runtime.GameTask
+    name: GameTask
+    href: Prowl.Runtime.GameTask.html
+  - name: .
+  - uid: Prowl.Runtime.GameTask.MainThreadAwaitable
+    name: MainThreadAwaitable
+    href: Prowl.Runtime.GameTask.MainThreadAwaitable.html
+  spec.vb:
+  - uid: Prowl.Runtime.GameTask
+    name: GameTask
+    href: Prowl.Runtime.GameTask.html
+  - name: .
+  - uid: Prowl.Runtime.GameTask.MainThreadAwaitable
+    name: MainThreadAwaitable
+    href: Prowl.Runtime.GameTask.MainThreadAwaitable.html
+- uid: Prowl.Runtime.GameTask.WorkerThread*
+  commentId: Overload:Prowl.Runtime.GameTask.WorkerThread
+  href: Prowl.Runtime.GameTask.html#Prowl_Runtime_GameTask_WorkerThread
+  name: WorkerThread
+  nameWithType: GameTask.WorkerThread
+  fullName: Prowl.Runtime.GameTask.WorkerThread
+- uid: Prowl.Runtime.GameTask.WorkerThreadAwaitable
+  commentId: T:Prowl.Runtime.GameTask.WorkerThreadAwaitable
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.GameTask.html
+  name: GameTask.WorkerThreadAwaitable
+  nameWithType: GameTask.WorkerThreadAwaitable
+  fullName: Prowl.Runtime.GameTask.WorkerThreadAwaitable
+  spec.csharp:
+  - uid: Prowl.Runtime.GameTask
+    name: GameTask
+    href: Prowl.Runtime.GameTask.html
+  - name: .
+  - uid: Prowl.Runtime.GameTask.WorkerThreadAwaitable
+    name: WorkerThreadAwaitable
+    href: Prowl.Runtime.GameTask.WorkerThreadAwaitable.html
+  spec.vb:
+  - uid: Prowl.Runtime.GameTask
+    name: GameTask
+    href: Prowl.Runtime.GameTask.html
+  - name: .
+  - uid: Prowl.Runtime.GameTask.WorkerThreadAwaitable
+    name: WorkerThreadAwaitable
+    href: Prowl.Runtime.GameTask.WorkerThreadAwaitable.html
+- uid: Prowl.Runtime.GameTask.NextFrame*
+  commentId: Overload:Prowl.Runtime.GameTask.NextFrame
+  href: Prowl.Runtime.GameTask.html#Prowl_Runtime_GameTask_NextFrame_System_Threading_CancellationToken_
+  name: NextFrame
+  nameWithType: GameTask.NextFrame
+  fullName: Prowl.Runtime.GameTask.NextFrame
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Prowl.Runtime.GameTask.Frames*
+  commentId: Overload:Prowl.Runtime.GameTask.Frames
+  href: Prowl.Runtime.GameTask.html#Prowl_Runtime_GameTask_Frames_System_Int32_System_Threading_CancellationToken_
+  name: Frames
+  nameWithType: GameTask.Frames
+  fullName: Prowl.Runtime.GameTask.Frames
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Runtime.Time.TimeScale
+  commentId: P:Prowl.Runtime.Time.TimeScale
+  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_TimeScale
+  name: TimeScale
+  nameWithType: Time.TimeScale
+  fullName: Prowl.Runtime.Time.TimeScale
+- uid: Prowl.Runtime.GameTask.Delay*
+  commentId: Overload:Prowl.Runtime.GameTask.Delay
+  href: Prowl.Runtime.GameTask.html#Prowl_Runtime_GameTask_Delay_System_Single_System_Threading_CancellationToken_
+  name: Delay
+  nameWithType: GameTask.Delay
+  fullName: Prowl.Runtime.GameTask.Delay
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: Prowl.Runtime.GameTask.DelayRealtime*
+  commentId: Overload:Prowl.Runtime.GameTask.DelayRealtime
+  href: Prowl.Runtime.GameTask.html#Prowl_Runtime_GameTask_DelayRealtime_System_Single_System_Threading_CancellationToken_
+  name: DelayRealtime
+  nameWithType: GameTask.DelayRealtime
+  fullName: Prowl.Runtime.GameTask.DelayRealtime
+- uid: Prowl.Runtime.GameTask.WaitUntil*
+  commentId: Overload:Prowl.Runtime.GameTask.WaitUntil
+  href: Prowl.Runtime.GameTask.html#Prowl_Runtime_GameTask_WaitUntil_System_Func_System_Boolean__System_Threading_CancellationToken_
+  name: WaitUntil
+  nameWithType: GameTask.WaitUntil
+  fullName: Prowl.Runtime.GameTask.WaitUntil
+- uid: System.Func{System.Boolean}
+  commentId: T:System.Func{System.Boolean}
+  parent: System
+  definition: System.Func`1
+  href: https://learn.microsoft.com/dotnet/api/system.func-1
+  name: Func<bool>
+  nameWithType: Func<bool>
+  fullName: System.Func<bool>
+  nameWithType.vb: Func(Of Boolean)
+  fullName.vb: System.Func(Of Boolean)
+  name.vb: Func(Of Boolean)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Func`1
+  commentId: T:System.Func`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-1
+  name: Func<TResult>
+  nameWithType: Func<TResult>
+  fullName: System.Func<TResult>
+  nameWithType.vb: Func(Of TResult)
+  fullName.vb: System.Func(Of TResult)
+  name.vb: Func(Of TResult)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: Prowl.Runtime.GameTask.Post*
+  commentId: Overload:Prowl.Runtime.GameTask.Post
+  href: Prowl.Runtime.GameTask.html#Prowl_Runtime_GameTask_Post_System_Action_
+  name: Post
+  nameWithType: GameTask.Post
+  fullName: Prowl.Runtime.GameTask.Post
+- uid: System.Action
+  commentId: T:System.Action
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action
+  name: Action
+  nameWithType: Action
+  fullName: System.Action
+- uid: System.OperationCanceledException
+  commentId: T:System.OperationCanceledException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.operationcanceledexception
+  name: OperationCanceledException
+  nameWithType: OperationCanceledException
+  fullName: System.OperationCanceledException
+- uid: Prowl.Runtime.GameTask.Run*
+  commentId: Overload:Prowl.Runtime.GameTask.Run
+  href: Prowl.Runtime.GameTask.html#Prowl_Runtime_GameTask_Run_System_Action_
+  name: Run
+  nameWithType: GameTask.Run
+  fullName: Prowl.Runtime.GameTask.Run
+- uid: System.Func{{T}}
+  commentId: T:System.Func{``0}
+  parent: System
+  definition: System.Func`1
+  href: https://learn.microsoft.com/dotnet/api/system.func-1
+  name: Func<T>
+  nameWithType: Func<T>
+  fullName: System.Func<T>
+  nameWithType.vb: Func(Of T)
+  fullName.vb: System.Func(Of T)
+  name.vb: Func(Of T)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T

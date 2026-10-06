@@ -5,12 +5,12 @@ items:
   id: TagLayerManager
   parent: Prowl.Runtime
   children:
-  - Prowl.Runtime.TagLayerManager.GetLayer(System.Byte)
+  - Prowl.Runtime.TagLayerManager.GetLayer(System.Int32)
   - Prowl.Runtime.TagLayerManager.GetLayerIndex(System.String)
   - Prowl.Runtime.TagLayerManager.GetLayers
-  - Prowl.Runtime.TagLayerManager.GetTag(System.Byte)
+  - Prowl.Runtime.TagLayerManager.GetTag(System.Int32)
   - Prowl.Runtime.TagLayerManager.GetTagIndex(System.String)
-  - Prowl.Runtime.TagLayerManager.RemoveTag(System.Byte)
+  - Prowl.Runtime.TagLayerManager.ResetDefault
   - Prowl.Runtime.TagLayerManager.layers
   - Prowl.Runtime.TagLayerManager.tags
   langs:
@@ -23,32 +23,27 @@ items:
   source:
     remote:
       path: Prowl.Runtime/GameObject/TagLayerManager.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: TagLayerManager
     path: ../Prowl/Prowl.Runtime/GameObject/TagLayerManager.cs
-    startLine: 11
+    startLine: 13
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: >-
+    Manages tags and layers for GameObjects in the Prowl Game Engine.
+
+    This class is a ScriptableSingleton, ensuring only one instance exists.
+
+    The tags and layers data is stored in a file named "TagAndLayers.setting".
+  example: []
   syntax:
-    content: >-
-      [FilePath("TagAndLayers.setting", FilePathAttribute.Location.Setting)]
-
-      public class TagLayerManager : ScriptableSingleton<TagLayerManager>
-    content.vb: >-
-      <FilePath("TagAndLayers.setting", FilePathAttribute.Location.Setting)>
-
-      Public Class TagLayerManager Inherits ScriptableSingleton(Of TagLayerManager)
+    content: public static class TagLayerManager
+    content.vb: Public Module TagLayerManager
   inheritance:
   - System.Object
-  - Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}
   inheritedMembers:
-  - Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}._instance
-  - Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}.Instance
-  - Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}.OnValidate
-  - Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}.Save
-  - Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}.GetFilePath(System.String)
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -56,16 +51,6 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  extensionMethods:
-  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
-  attributes:
-  - type: Prowl.Runtime.Utils.FilePathAttribute
-    ctor: Prowl.Runtime.Utils.FilePathAttribute.#ctor(System.String,Prowl.Runtime.Utils.FilePathAttribute.Location)
-    arguments:
-    - type: System.String
-      value: TagAndLayers.setting
-    - type: Prowl.Runtime.Utils.FilePathAttribute.Location
-      value: 1
 - uid: Prowl.Runtime.TagLayerManager.tags
   commentId: F:Prowl.Runtime.TagLayerManager.tags
   id: tags
@@ -80,19 +65,21 @@ items:
   source:
     remote:
       path: Prowl.Runtime/GameObject/TagLayerManager.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: tags
     path: ../Prowl/Prowl.Runtime/GameObject/TagLayerManager.cs
-    startLine: 14
+    startLine: 18
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: List of available tags for GameObjects.
+  example: []
   syntax:
-    content: public List<string> tags
+    content: public static List<string> tags
     return:
       type: System.Collections.Generic.List{System.String}
-    content.vb: Public tags As List(Of String)
+    content.vb: Public Shared tags As List(Of String)
 - uid: Prowl.Runtime.TagLayerManager.layers
   commentId: F:Prowl.Runtime.TagLayerManager.layers
   id: layers
@@ -107,87 +94,97 @@ items:
   source:
     remote:
       path: Prowl.Runtime/GameObject/TagLayerManager.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: layers
     path: ../Prowl/Prowl.Runtime/GameObject/TagLayerManager.cs
-    startLine: 25
+    startLine: 32
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: Array of available layers for GameObjects.
+  example: []
   syntax:
-    content: public string[] layers
+    content: public static string[] layers
     return:
       type: System.String[]
-    content.vb: Public layers As String()
-- uid: Prowl.Runtime.TagLayerManager.GetTag(System.Byte)
-  commentId: M:Prowl.Runtime.TagLayerManager.GetTag(System.Byte)
-  id: GetTag(System.Byte)
+    content.vb: Public Shared layers As String()
+- uid: Prowl.Runtime.TagLayerManager.GetTag(System.Int32)
+  commentId: M:Prowl.Runtime.TagLayerManager.GetTag(System.Int32)
+  id: GetTag(System.Int32)
   parent: Prowl.Runtime.TagLayerManager
   langs:
   - csharp
   - vb
-  name: GetTag(byte)
-  nameWithType: TagLayerManager.GetTag(byte)
-  fullName: Prowl.Runtime.TagLayerManager.GetTag(byte)
+  name: GetTag(int)
+  nameWithType: TagLayerManager.GetTag(int)
+  fullName: Prowl.Runtime.TagLayerManager.GetTag(int)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/GameObject/TagLayerManager.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: GetTag
     path: ../Prowl/Prowl.Runtime/GameObject/TagLayerManager.cs
-    startLine: 61
+    startLine: 52
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: Retrieves the tag name associated with the given index.
+  example: []
   syntax:
-    content: public static string GetTag(byte index)
+    content: public static string GetTag(int index)
     parameters:
     - id: index
-      type: System.Byte
+      type: System.Int32
+      description: The index of the tag to retrieve.
     return:
       type: System.String
-    content.vb: Public Shared Function GetTag(index As Byte) As String
+      description: The tag name at the specified index, or "Untagged" if the index is out of range.
+    content.vb: Public Shared Function GetTag(index As Integer) As String
   overload: Prowl.Runtime.TagLayerManager.GetTag*
-  nameWithType.vb: TagLayerManager.GetTag(Byte)
-  fullName.vb: Prowl.Runtime.TagLayerManager.GetTag(Byte)
-  name.vb: GetTag(Byte)
-- uid: Prowl.Runtime.TagLayerManager.GetLayer(System.Byte)
-  commentId: M:Prowl.Runtime.TagLayerManager.GetLayer(System.Byte)
-  id: GetLayer(System.Byte)
+  nameWithType.vb: TagLayerManager.GetTag(Integer)
+  fullName.vb: Prowl.Runtime.TagLayerManager.GetTag(Integer)
+  name.vb: GetTag(Integer)
+- uid: Prowl.Runtime.TagLayerManager.GetLayer(System.Int32)
+  commentId: M:Prowl.Runtime.TagLayerManager.GetLayer(System.Int32)
+  id: GetLayer(System.Int32)
   parent: Prowl.Runtime.TagLayerManager
   langs:
   - csharp
   - vb
-  name: GetLayer(byte)
-  nameWithType: TagLayerManager.GetLayer(byte)
-  fullName: Prowl.Runtime.TagLayerManager.GetLayer(byte)
+  name: GetLayer(int)
+  nameWithType: TagLayerManager.GetLayer(int)
+  fullName: Prowl.Runtime.TagLayerManager.GetLayer(int)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/GameObject/TagLayerManager.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: GetLayer
     path: ../Prowl/Prowl.Runtime/GameObject/TagLayerManager.cs
-    startLine: 68
+    startLine: 64
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: Retrieves the layer name associated with the given index.
+  example: []
   syntax:
-    content: public static string GetLayer(byte index)
+    content: public static string GetLayer(int index)
     parameters:
     - id: index
-      type: System.Byte
+      type: System.Int32
+      description: The index of the layer to retrieve.
     return:
       type: System.String
-    content.vb: Public Shared Function GetLayer(index As Byte) As String
+      description: The layer name at the specified index, "Default" If index is out of range.
+    content.vb: Public Shared Function GetLayer(index As Integer) As String
   overload: Prowl.Runtime.TagLayerManager.GetLayer*
-  nameWithType.vb: TagLayerManager.GetLayer(Byte)
-  fullName.vb: Prowl.Runtime.TagLayerManager.GetLayer(Byte)
-  name.vb: GetLayer(Byte)
+  nameWithType.vb: TagLayerManager.GetLayer(Integer)
+  fullName.vb: Prowl.Runtime.TagLayerManager.GetLayer(Integer)
+  name.vb: GetLayer(Integer)
 - uid: Prowl.Runtime.TagLayerManager.GetTagIndex(System.String)
   commentId: M:Prowl.Runtime.TagLayerManager.GetTagIndex(System.String)
   id: GetTagIndex(System.String)
@@ -202,22 +199,26 @@ items:
   source:
     remote:
       path: Prowl.Runtime/GameObject/TagLayerManager.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: GetTagIndex
     path: ../Prowl/Prowl.Runtime/GameObject/TagLayerManager.cs
-    startLine: 75
+    startLine: 76
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: Retrieves the index of the specified tag.
+  example: []
   syntax:
-    content: public static byte GetTagIndex(string tag)
+    content: public static int GetTagIndex(string tag)
     parameters:
     - id: tag
       type: System.String
+      description: The tag name to look up.
     return:
-      type: System.Byte
-    content.vb: Public Shared Function GetTagIndex(tag As String) As Byte
+      type: System.Int32
+      description: The index of the tag, or -1 if the tag is not found.
+    content.vb: Public Shared Function GetTagIndex(tag As String) As Integer
   overload: Prowl.Runtime.TagLayerManager.GetTagIndex*
   nameWithType.vb: TagLayerManager.GetTagIndex(String)
   fullName.vb: Prowl.Runtime.TagLayerManager.GetTagIndex(String)
@@ -236,58 +237,30 @@ items:
   source:
     remote:
       path: Prowl.Runtime/GameObject/TagLayerManager.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: GetLayerIndex
     path: ../Prowl/Prowl.Runtime/GameObject/TagLayerManager.cs
-    startLine: 81
+    startLine: 89
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: Retrieves the index of the specified layer.
+  example: []
   syntax:
-    content: public static byte GetLayerIndex(string layer)
+    content: public static int GetLayerIndex(string layer)
     parameters:
     - id: layer
       type: System.String
+      description: The layer name to look up.
     return:
-      type: System.Byte
-    content.vb: Public Shared Function GetLayerIndex(layer As String) As Byte
+      type: System.Int32
+      description: The index of the layer, or -1 if the layer is not found.
+    content.vb: Public Shared Function GetLayerIndex(layer As String) As Integer
   overload: Prowl.Runtime.TagLayerManager.GetLayerIndex*
   nameWithType.vb: TagLayerManager.GetLayerIndex(String)
   fullName.vb: Prowl.Runtime.TagLayerManager.GetLayerIndex(String)
   name.vb: GetLayerIndex(String)
-- uid: Prowl.Runtime.TagLayerManager.RemoveTag(System.Byte)
-  commentId: M:Prowl.Runtime.TagLayerManager.RemoveTag(System.Byte)
-  id: RemoveTag(System.Byte)
-  parent: Prowl.Runtime.TagLayerManager
-  langs:
-  - csharp
-  - vb
-  name: RemoveTag(byte)
-  nameWithType: TagLayerManager.RemoveTag(byte)
-  fullName: Prowl.Runtime.TagLayerManager.RemoveTag(byte)
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/GameObject/TagLayerManager.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: RemoveTag
-    path: ../Prowl/Prowl.Runtime/GameObject/TagLayerManager.cs
-    startLine: 87
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static void RemoveTag(byte index)
-    parameters:
-    - id: index
-      type: System.Byte
-    content.vb: Public Shared Sub RemoveTag(index As Byte)
-  overload: Prowl.Runtime.TagLayerManager.RemoveTag*
-  nameWithType.vb: TagLayerManager.RemoveTag(Byte)
-  fullName.vb: Prowl.Runtime.TagLayerManager.RemoveTag(Byte)
-  name.vb: RemoveTag(Byte)
 - uid: Prowl.Runtime.TagLayerManager.GetLayers
   commentId: M:Prowl.Runtime.TagLayerManager.GetLayers
   id: GetLayers
@@ -302,43 +275,67 @@ items:
   source:
     remote:
       path: Prowl.Runtime/GameObject/TagLayerManager.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: GetLayers
     path: ../Prowl/Prowl.Runtime/GameObject/TagLayerManager.cs
-    startLine: 98
+    startLine: 101
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Retrieves a copy of the layers array.
+  example: []
+  syntax:
+    content: public static IReadOnlyList<string> GetLayers()
+    return:
+      type: System.Collections.Generic.IReadOnlyList{System.String}
+      description: A new array containing all layer names.
+    content.vb: Public Shared Function GetLayers() As IReadOnlyList(Of String)
+  overload: Prowl.Runtime.TagLayerManager.GetLayers*
+- uid: Prowl.Runtime.TagLayerManager.ResetDefault
+  commentId: M:Prowl.Runtime.TagLayerManager.ResetDefault
+  id: ResetDefault
+  parent: Prowl.Runtime.TagLayerManager
+  langs:
+  - csharp
+  - vb
+  name: ResetDefault()
+  nameWithType: TagLayerManager.ResetDefault()
+  fullName: Prowl.Runtime.TagLayerManager.ResetDefault()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/GameObject/TagLayerManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ResetDefault
+    path: ../Prowl/Prowl.Runtime/GameObject/TagLayerManager.cs
+    startLine: 103
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static string[] GetLayers()
-    return:
-      type: System.String[]
-    content.vb: Public Shared Function GetLayers() As String()
-  overload: Prowl.Runtime.TagLayerManager.GetLayers*
+    content: public static void ResetDefault()
+    content.vb: Public Shared Sub ResetDefault()
+  overload: Prowl.Runtime.TagLayerManager.ResetDefault*
 references:
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
-  href: Prowl.html
   name: Prowl.Runtime
   nameWithType: Prowl.Runtime
   fullName: Prowl.Runtime
   spec.csharp:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
   spec.vb:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -350,132 +347,6 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
-- uid: Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}
-  commentId: T:Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}
-  parent: Prowl.Runtime.Utils
-  definition: Prowl.Runtime.Utils.ScriptableSingleton`1
-  href: Prowl.Runtime.Utils.ScriptableSingleton-1.html
-  name: ScriptableSingleton<TagLayerManager>
-  nameWithType: ScriptableSingleton<TagLayerManager>
-  fullName: Prowl.Runtime.Utils.ScriptableSingleton<Prowl.Runtime.TagLayerManager>
-  nameWithType.vb: ScriptableSingleton(Of TagLayerManager)
-  fullName.vb: Prowl.Runtime.Utils.ScriptableSingleton(Of Prowl.Runtime.TagLayerManager)
-  name.vb: ScriptableSingleton(Of TagLayerManager)
-  spec.csharp:
-  - uid: Prowl.Runtime.Utils.ScriptableSingleton`1
-    name: ScriptableSingleton
-    href: Prowl.Runtime.Utils.ScriptableSingleton-1.html
-  - name: <
-  - uid: Prowl.Runtime.TagLayerManager
-    name: TagLayerManager
-    href: Prowl.Runtime.TagLayerManager.html
-  - name: '>'
-  spec.vb:
-  - uid: Prowl.Runtime.Utils.ScriptableSingleton`1
-    name: ScriptableSingleton
-    href: Prowl.Runtime.Utils.ScriptableSingleton-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: Prowl.Runtime.TagLayerManager
-    name: TagLayerManager
-    href: Prowl.Runtime.TagLayerManager.html
-  - name: )
-- uid: Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}._instance
-  commentId: F:Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}._instance
-  parent: Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}
-  definition: Prowl.Runtime.Utils.ScriptableSingleton`1._instance
-  href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1__instance
-  name: _instance
-  nameWithType: ScriptableSingleton<TagLayerManager>._instance
-  fullName: Prowl.Runtime.Utils.ScriptableSingleton<Prowl.Runtime.TagLayerManager>._instance
-  nameWithType.vb: ScriptableSingleton(Of TagLayerManager)._instance
-  fullName.vb: Prowl.Runtime.Utils.ScriptableSingleton(Of Prowl.Runtime.TagLayerManager)._instance
-- uid: Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}.Instance
-  commentId: P:Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}.Instance
-  parent: Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}
-  definition: Prowl.Runtime.Utils.ScriptableSingleton`1.Instance
-  href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1_Instance
-  name: Instance
-  nameWithType: ScriptableSingleton<TagLayerManager>.Instance
-  fullName: Prowl.Runtime.Utils.ScriptableSingleton<Prowl.Runtime.TagLayerManager>.Instance
-  nameWithType.vb: ScriptableSingleton(Of TagLayerManager).Instance
-  fullName.vb: Prowl.Runtime.Utils.ScriptableSingleton(Of Prowl.Runtime.TagLayerManager).Instance
-- uid: Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}.OnValidate
-  commentId: M:Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}.OnValidate
-  parent: Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}
-  definition: Prowl.Runtime.Utils.ScriptableSingleton`1.OnValidate
-  href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1_OnValidate
-  name: OnValidate()
-  nameWithType: ScriptableSingleton<TagLayerManager>.OnValidate()
-  fullName: Prowl.Runtime.Utils.ScriptableSingleton<Prowl.Runtime.TagLayerManager>.OnValidate()
-  nameWithType.vb: ScriptableSingleton(Of TagLayerManager).OnValidate()
-  fullName.vb: Prowl.Runtime.Utils.ScriptableSingleton(Of Prowl.Runtime.TagLayerManager).OnValidate()
-  spec.csharp:
-  - uid: Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}.OnValidate
-    name: OnValidate
-    href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1_OnValidate
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}.OnValidate
-    name: OnValidate
-    href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1_OnValidate
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}.Save
-  commentId: M:Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}.Save
-  parent: Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}
-  definition: Prowl.Runtime.Utils.ScriptableSingleton`1.Save
-  href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1_Save
-  name: Save()
-  nameWithType: ScriptableSingleton<TagLayerManager>.Save()
-  fullName: Prowl.Runtime.Utils.ScriptableSingleton<Prowl.Runtime.TagLayerManager>.Save()
-  nameWithType.vb: ScriptableSingleton(Of TagLayerManager).Save()
-  fullName.vb: Prowl.Runtime.Utils.ScriptableSingleton(Of Prowl.Runtime.TagLayerManager).Save()
-  spec.csharp:
-  - uid: Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}.Save
-    name: Save
-    href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1_Save
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}.Save
-    name: Save
-    href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1_Save
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}.GetFilePath(System.String)
-  commentId: M:Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}.GetFilePath(System.String)
-  parent: Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}
-  definition: Prowl.Runtime.Utils.ScriptableSingleton`1.GetFilePath(System.String)
-  href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1_GetFilePath_System_String_
-  name: GetFilePath(string)
-  nameWithType: ScriptableSingleton<TagLayerManager>.GetFilePath(string)
-  fullName: Prowl.Runtime.Utils.ScriptableSingleton<Prowl.Runtime.TagLayerManager>.GetFilePath(string)
-  nameWithType.vb: ScriptableSingleton(Of TagLayerManager).GetFilePath(String)
-  fullName.vb: Prowl.Runtime.Utils.ScriptableSingleton(Of Prowl.Runtime.TagLayerManager).GetFilePath(String)
-  name.vb: GetFilePath(String)
-  spec.csharp:
-  - uid: Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}.GetFilePath(System.String)
-    name: GetFilePath
-    href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1_GetFilePath_System_String_
-  - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.Utils.ScriptableSingleton{Prowl.Runtime.TagLayerManager}.GetFilePath(System.String)
-    name: GetFilePath
-    href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1_GetFilePath_System_String_
-  - name: (
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -695,37 +566,6 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
   - name: )
-- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
-  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-  parent: Prowl.Runtime.RuntimeUtils
-  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
-  name: GetSerializableFields(object)
-  nameWithType: RuntimeUtils.GetSerializableFields(object)
-  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
-  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
-  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
-  name.vb: GetSerializableFields(Object)
-  spec.csharp:
-  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-    name: GetSerializableFields
-    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
-  - name: (
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-    name: GetSerializableFields
-    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
-  - name: (
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
 - uid: System
   commentId: N:System
   isExternal: true
@@ -733,184 +573,6 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Prowl.Runtime.Utils.ScriptableSingleton`1
-  commentId: T:Prowl.Runtime.Utils.ScriptableSingleton`1
-  href: Prowl.Runtime.Utils.ScriptableSingleton-1.html
-  name: ScriptableSingleton<T>
-  nameWithType: ScriptableSingleton<T>
-  fullName: Prowl.Runtime.Utils.ScriptableSingleton<T>
-  nameWithType.vb: ScriptableSingleton(Of T)
-  fullName.vb: Prowl.Runtime.Utils.ScriptableSingleton(Of T)
-  name.vb: ScriptableSingleton(Of T)
-  spec.csharp:
-  - uid: Prowl.Runtime.Utils.ScriptableSingleton`1
-    name: ScriptableSingleton
-    href: Prowl.Runtime.Utils.ScriptableSingleton-1.html
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: Prowl.Runtime.Utils.ScriptableSingleton`1
-    name: ScriptableSingleton
-    href: Prowl.Runtime.Utils.ScriptableSingleton-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: Prowl.Runtime.Utils
-  commentId: N:Prowl.Runtime.Utils
-  href: Prowl.html
-  name: Prowl.Runtime.Utils
-  nameWithType: Prowl.Runtime.Utils
-  fullName: Prowl.Runtime.Utils
-  spec.csharp:
-  - uid: Prowl
-    name: Prowl
-    href: Prowl.html
-  - name: .
-  - uid: Prowl.Runtime
-    name: Runtime
-    href: Prowl.Runtime.html
-  - name: .
-  - uid: Prowl.Runtime.Utils
-    name: Utils
-    href: Prowl.Runtime.Utils.html
-  spec.vb:
-  - uid: Prowl
-    name: Prowl
-    href: Prowl.html
-  - name: .
-  - uid: Prowl.Runtime
-    name: Runtime
-    href: Prowl.Runtime.html
-  - name: .
-  - uid: Prowl.Runtime.Utils
-    name: Utils
-    href: Prowl.Runtime.Utils.html
-- uid: Prowl.Runtime.Utils.ScriptableSingleton`1._instance
-  commentId: F:Prowl.Runtime.Utils.ScriptableSingleton`1._instance
-  href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1__instance
-  name: _instance
-  nameWithType: ScriptableSingleton<T>._instance
-  fullName: Prowl.Runtime.Utils.ScriptableSingleton<T>._instance
-  nameWithType.vb: ScriptableSingleton(Of T)._instance
-  fullName.vb: Prowl.Runtime.Utils.ScriptableSingleton(Of T)._instance
-- uid: Prowl.Runtime.Utils.ScriptableSingleton`1.Instance
-  commentId: P:Prowl.Runtime.Utils.ScriptableSingleton`1.Instance
-  href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1_Instance
-  name: Instance
-  nameWithType: ScriptableSingleton<T>.Instance
-  fullName: Prowl.Runtime.Utils.ScriptableSingleton<T>.Instance
-  nameWithType.vb: ScriptableSingleton(Of T).Instance
-  fullName.vb: Prowl.Runtime.Utils.ScriptableSingleton(Of T).Instance
-- uid: Prowl.Runtime.Utils.ScriptableSingleton`1.OnValidate
-  commentId: M:Prowl.Runtime.Utils.ScriptableSingleton`1.OnValidate
-  href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1_OnValidate
-  name: OnValidate()
-  nameWithType: ScriptableSingleton<T>.OnValidate()
-  fullName: Prowl.Runtime.Utils.ScriptableSingleton<T>.OnValidate()
-  nameWithType.vb: ScriptableSingleton(Of T).OnValidate()
-  fullName.vb: Prowl.Runtime.Utils.ScriptableSingleton(Of T).OnValidate()
-  spec.csharp:
-  - uid: Prowl.Runtime.Utils.ScriptableSingleton`1.OnValidate
-    name: OnValidate
-    href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1_OnValidate
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.Utils.ScriptableSingleton`1.OnValidate
-    name: OnValidate
-    href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1_OnValidate
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.Utils.ScriptableSingleton`1.Save
-  commentId: M:Prowl.Runtime.Utils.ScriptableSingleton`1.Save
-  href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1_Save
-  name: Save()
-  nameWithType: ScriptableSingleton<T>.Save()
-  fullName: Prowl.Runtime.Utils.ScriptableSingleton<T>.Save()
-  nameWithType.vb: ScriptableSingleton(Of T).Save()
-  fullName.vb: Prowl.Runtime.Utils.ScriptableSingleton(Of T).Save()
-  spec.csharp:
-  - uid: Prowl.Runtime.Utils.ScriptableSingleton`1.Save
-    name: Save
-    href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1_Save
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.Utils.ScriptableSingleton`1.Save
-    name: Save
-    href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1_Save
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.Utils.ScriptableSingleton`1.GetFilePath(System.String)
-  commentId: M:Prowl.Runtime.Utils.ScriptableSingleton`1.GetFilePath(System.String)
-  isExternal: true
-  href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1_GetFilePath_System_String_
-  name: GetFilePath(string)
-  nameWithType: ScriptableSingleton<T>.GetFilePath(string)
-  fullName: Prowl.Runtime.Utils.ScriptableSingleton<T>.GetFilePath(string)
-  nameWithType.vb: ScriptableSingleton(Of T).GetFilePath(String)
-  fullName.vb: Prowl.Runtime.Utils.ScriptableSingleton(Of T).GetFilePath(String)
-  name.vb: GetFilePath(String)
-  spec.csharp:
-  - uid: Prowl.Runtime.Utils.ScriptableSingleton`1.GetFilePath(System.String)
-    name: GetFilePath
-    href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1_GetFilePath_System_String_
-  - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.Utils.ScriptableSingleton`1.GetFilePath(System.String)
-    name: GetFilePath
-    href: Prowl.Runtime.Utils.ScriptableSingleton-1.html#Prowl_Runtime_Utils_ScriptableSingleton_1_GetFilePath_System_String_
-  - name: (
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-  isExternal: true
-  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
-  name: GetSerializableFields(object)
-  nameWithType: RuntimeUtils.GetSerializableFields(object)
-  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
-  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
-  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
-  name.vb: GetSerializableFields(Object)
-  spec.csharp:
-  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-    name: GetSerializableFields
-    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
-  - name: (
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-    name: GetSerializableFields
-    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
-  - name: (
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-- uid: Prowl.Runtime.RuntimeUtils
-  commentId: T:Prowl.Runtime.RuntimeUtils
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.RuntimeUtils.html
-  name: RuntimeUtils
-  nameWithType: RuntimeUtils
-  fullName: Prowl.Runtime.RuntimeUtils
 - uid: System.Collections.Generic.List{System.String}
   commentId: T:System.Collections.Generic.List{System.String}
   parent: System.Collections.Generic
@@ -1036,21 +698,21 @@ references:
   - name: )
 - uid: Prowl.Runtime.TagLayerManager.GetTag*
   commentId: Overload:Prowl.Runtime.TagLayerManager.GetTag
-  href: Prowl.Runtime.TagLayerManager.html#Prowl_Runtime_TagLayerManager_GetTag_System_Byte_
+  href: Prowl.Runtime.TagLayerManager.html#Prowl_Runtime_TagLayerManager_GetTag_System_Int32_
   name: GetTag
   nameWithType: TagLayerManager.GetTag
   fullName: Prowl.Runtime.TagLayerManager.GetTag
-- uid: System.Byte
-  commentId: T:System.Byte
+- uid: System.Int32
+  commentId: T:System.Int32
   parent: System
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.byte
-  name: byte
-  nameWithType: byte
-  fullName: byte
-  nameWithType.vb: Byte
-  fullName.vb: Byte
-  name.vb: Byte
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -1064,7 +726,7 @@ references:
   name.vb: String
 - uid: Prowl.Runtime.TagLayerManager.GetLayer*
   commentId: Overload:Prowl.Runtime.TagLayerManager.GetLayer
-  href: Prowl.Runtime.TagLayerManager.html#Prowl_Runtime_TagLayerManager_GetLayer_System_Byte_
+  href: Prowl.Runtime.TagLayerManager.html#Prowl_Runtime_TagLayerManager_GetLayer_System_Int32_
   name: GetLayer
   nameWithType: TagLayerManager.GetLayer
   fullName: Prowl.Runtime.TagLayerManager.GetLayer
@@ -1080,15 +742,78 @@ references:
   name: GetLayerIndex
   nameWithType: TagLayerManager.GetLayerIndex
   fullName: Prowl.Runtime.TagLayerManager.GetLayerIndex
-- uid: Prowl.Runtime.TagLayerManager.RemoveTag*
-  commentId: Overload:Prowl.Runtime.TagLayerManager.RemoveTag
-  href: Prowl.Runtime.TagLayerManager.html#Prowl_Runtime_TagLayerManager_RemoveTag_System_Byte_
-  name: RemoveTag
-  nameWithType: TagLayerManager.RemoveTag
-  fullName: Prowl.Runtime.TagLayerManager.RemoveTag
 - uid: Prowl.Runtime.TagLayerManager.GetLayers*
   commentId: Overload:Prowl.Runtime.TagLayerManager.GetLayers
   href: Prowl.Runtime.TagLayerManager.html#Prowl_Runtime_TagLayerManager_GetLayers
   name: GetLayers
   nameWithType: TagLayerManager.GetLayers
   fullName: Prowl.Runtime.TagLayerManager.GetLayers
+- uid: System.Collections.Generic.IReadOnlyList{System.String}
+  commentId: T:System.Collections.Generic.IReadOnlyList{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<string>
+  nameWithType: IReadOnlyList<string>
+  fullName: System.Collections.Generic.IReadOnlyList<string>
+  nameWithType.vb: IReadOnlyList(Of String)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of String)
+  name.vb: IReadOnlyList(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Runtime.TagLayerManager.ResetDefault*
+  commentId: Overload:Prowl.Runtime.TagLayerManager.ResetDefault
+  href: Prowl.Runtime.TagLayerManager.html#Prowl_Runtime_TagLayerManager_ResetDefault
+  name: ResetDefault
+  nameWithType: TagLayerManager.ResetDefault
+  fullName: Prowl.Runtime.TagLayerManager.ResetDefault

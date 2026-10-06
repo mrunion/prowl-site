@@ -1,0 +1,1513 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.Test.SerializationTests
+  commentId: T:Prowl.Runtime.Test.SerializationTests
+  id: SerializationTests
+  parent: Prowl.Runtime.Test
+  children:
+  - Prowl.Runtime.Test.SerializationTests.ARuntimeAssetInAField_RoundTripsInline
+  - Prowl.Runtime.Test.SerializationTests.AnimationClip_RoundTrip_KeepsItsEvents
+  - Prowl.Runtime.Test.SerializationTests.AnimationClip_RoundTrip_SamplesTheSamePose
+  - Prowl.Runtime.Test.SerializationTests.AssetRef_Empty_RoundTrips
+  - Prowl.Runtime.Test.SerializationTests.AssetRef_RoundTripsItsGuid
+  - Prowl.Runtime.Test.SerializationTests.Avatar_RoundTrip_KeepsItsSkeleton
+  - Prowl.Runtime.Test.SerializationTests.GameObject_Deserialize_WithUnresolvableTransform_FallsBackAndDoesNotThrow
+  - Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_CyclicComponentReferences_ArePreserved
+  - Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_GeneratesFreshIdentifier
+  - Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_OneWayComponentReference_Rewires
+  - Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_PersistsHandWrittenState
+  - Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_ReattachesComponents
+  - Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_ReconstructsChildParentLinks
+  - Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_WiresTransformToGameObject
+  - Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_OneObjectWithUnresolvableTransform_DoesNotWipeScene
+  - Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_ReaddsObjectsAndHierarchy
+  - Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_RestoresIdentifiers
+  langs:
+  - csharp
+  - vb
+  name: SerializationTests
+  nameWithType: SerializationTests
+  fullName: Prowl.Runtime.Test.SerializationTests
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SerializationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SerializationTests
+    path: ../Prowl/Prowl.Runtime.Test/SerializationTests.cs
+    startLine: 40
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Tests for Prowl's wiring on top of Prowl.Echo - the hand-written ISerializable implementations
+
+    (GameObject, AssetRef, AnimationClip) and the ISerializationCallbackReceiver logic on Scene.
+
+    Echo's own field/format serialization is covered by Echo's test suite and not re-tested here.
+  example: []
+  syntax:
+    content: 'public class SerializationTests : RuntimeTestBase, IDisposable'
+    content.vb: Public Class SerializationTests Inherits RuntimeTestBase Implements IDisposable
+  inheritance:
+  - System.Object
+  - Prowl.Runtime.Test.RuntimeTestBase
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  - Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  - Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  - Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_ReattachesComponents
+  commentId: M:Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_ReattachesComponents
+  id: GameObject_RoundTrip_ReattachesComponents
+  parent: Prowl.Runtime.Test.SerializationTests
+  langs:
+  - csharp
+  - vb
+  name: GameObject_RoundTrip_ReattachesComponents()
+  nameWithType: SerializationTests.GameObject_RoundTrip_ReattachesComponents()
+  fullName: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_ReattachesComponents()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SerializationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GameObject_RoundTrip_ReattachesComponents
+    path: ../Prowl/Prowl.Runtime.Test/SerializationTests.cs
+    startLine: 48
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void GameObject_RoundTrip_ReattachesComponents()
+    content.vb: >-
+      <Fact>
+
+      Public Sub GameObject_RoundTrip_ReattachesComponents()
+  overload: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_ReattachesComponents*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_ReconstructsChildParentLinks
+  commentId: M:Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_ReconstructsChildParentLinks
+  id: GameObject_RoundTrip_ReconstructsChildParentLinks
+  parent: Prowl.Runtime.Test.SerializationTests
+  langs:
+  - csharp
+  - vb
+  name: GameObject_RoundTrip_ReconstructsChildParentLinks()
+  nameWithType: SerializationTests.GameObject_RoundTrip_ReconstructsChildParentLinks()
+  fullName: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_ReconstructsChildParentLinks()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SerializationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GameObject_RoundTrip_ReconstructsChildParentLinks
+    path: ../Prowl/Prowl.Runtime.Test/SerializationTests.cs
+    startLine: 65
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void GameObject_RoundTrip_ReconstructsChildParentLinks()
+    content.vb: >-
+      <Fact>
+
+      Public Sub GameObject_RoundTrip_ReconstructsChildParentLinks()
+  overload: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_ReconstructsChildParentLinks*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_WiresTransformToGameObject
+  commentId: M:Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_WiresTransformToGameObject
+  id: GameObject_RoundTrip_WiresTransformToGameObject
+  parent: Prowl.Runtime.Test.SerializationTests
+  langs:
+  - csharp
+  - vb
+  name: GameObject_RoundTrip_WiresTransformToGameObject()
+  nameWithType: SerializationTests.GameObject_RoundTrip_WiresTransformToGameObject()
+  fullName: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_WiresTransformToGameObject()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SerializationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GameObject_RoundTrip_WiresTransformToGameObject
+    path: ../Prowl/Prowl.Runtime.Test/SerializationTests.cs
+    startLine: 79
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void GameObject_RoundTrip_WiresTransformToGameObject()
+    content.vb: >-
+      <Fact>
+
+      Public Sub GameObject_RoundTrip_WiresTransformToGameObject()
+  overload: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_WiresTransformToGameObject*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_PersistsHandWrittenState
+  commentId: M:Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_PersistsHandWrittenState
+  id: GameObject_RoundTrip_PersistsHandWrittenState
+  parent: Prowl.Runtime.Test.SerializationTests
+  langs:
+  - csharp
+  - vb
+  name: GameObject_RoundTrip_PersistsHandWrittenState()
+  nameWithType: SerializationTests.GameObject_RoundTrip_PersistsHandWrittenState()
+  fullName: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_PersistsHandWrittenState()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SerializationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GameObject_RoundTrip_PersistsHandWrittenState
+    path: ../Prowl/Prowl.Runtime.Test/SerializationTests.cs
+    startLine: 89
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void GameObject_RoundTrip_PersistsHandWrittenState()
+    content.vb: >-
+      <Fact>
+
+      Public Sub GameObject_RoundTrip_PersistsHandWrittenState()
+  overload: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_PersistsHandWrittenState*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_OneWayComponentReference_Rewires
+  commentId: M:Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_OneWayComponentReference_Rewires
+  id: GameObject_RoundTrip_OneWayComponentReference_Rewires
+  parent: Prowl.Runtime.Test.SerializationTests
+  langs:
+  - csharp
+  - vb
+  name: GameObject_RoundTrip_OneWayComponentReference_Rewires()
+  nameWithType: SerializationTests.GameObject_RoundTrip_OneWayComponentReference_Rewires()
+  fullName: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_OneWayComponentReference_Rewires()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SerializationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GameObject_RoundTrip_OneWayComponentReference_Rewires
+    path: ../Prowl/Prowl.Runtime.Test/SerializationTests.cs
+    startLine: 111
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void GameObject_RoundTrip_OneWayComponentReference_Rewires()
+    content.vb: >-
+      <Fact>
+
+      Public Sub GameObject_RoundTrip_OneWayComponentReference_Rewires()
+  overload: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_OneWayComponentReference_Rewires*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_CyclicComponentReferences_ArePreserved
+  commentId: M:Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_CyclicComponentReferences_ArePreserved
+  id: GameObject_RoundTrip_CyclicComponentReferences_ArePreserved
+  parent: Prowl.Runtime.Test.SerializationTests
+  langs:
+  - csharp
+  - vb
+  name: GameObject_RoundTrip_CyclicComponentReferences_ArePreserved()
+  nameWithType: SerializationTests.GameObject_RoundTrip_CyclicComponentReferences_ArePreserved()
+  fullName: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_CyclicComponentReferences_ArePreserved()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SerializationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GameObject_RoundTrip_CyclicComponentReferences_ArePreserved
+    path: ../Prowl/Prowl.Runtime.Test/SerializationTests.cs
+    startLine: 127
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void GameObject_RoundTrip_CyclicComponentReferences_ArePreserved()
+    content.vb: >-
+      <Fact>
+
+      Public Sub GameObject_RoundTrip_CyclicComponentReferences_ArePreserved()
+  overload: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_CyclicComponentReferences_ArePreserved*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_GeneratesFreshIdentifier
+  commentId: M:Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_GeneratesFreshIdentifier
+  id: GameObject_RoundTrip_GeneratesFreshIdentifier
+  parent: Prowl.Runtime.Test.SerializationTests
+  langs:
+  - csharp
+  - vb
+  name: GameObject_RoundTrip_GeneratesFreshIdentifier()
+  nameWithType: SerializationTests.GameObject_RoundTrip_GeneratesFreshIdentifier()
+  fullName: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_GeneratesFreshIdentifier()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SerializationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GameObject_RoundTrip_GeneratesFreshIdentifier
+    path: ../Prowl/Prowl.Runtime.Test/SerializationTests.cs
+    startLine: 149
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void GameObject_RoundTrip_GeneratesFreshIdentifier()
+    content.vb: >-
+      <Fact>
+
+      Public Sub GameObject_RoundTrip_GeneratesFreshIdentifier()
+  overload: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_GeneratesFreshIdentifier*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_ReaddsObjectsAndHierarchy
+  commentId: M:Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_ReaddsObjectsAndHierarchy
+  id: Scene_RoundTrip_ReaddsObjectsAndHierarchy
+  parent: Prowl.Runtime.Test.SerializationTests
+  langs:
+  - csharp
+  - vb
+  name: Scene_RoundTrip_ReaddsObjectsAndHierarchy()
+  nameWithType: SerializationTests.Scene_RoundTrip_ReaddsObjectsAndHierarchy()
+  fullName: Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_ReaddsObjectsAndHierarchy()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SerializationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Scene_RoundTrip_ReaddsObjectsAndHierarchy
+    path: ../Prowl/Prowl.Runtime.Test/SerializationTests.cs
+    startLine: 164
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Scene_RoundTrip_ReaddsObjectsAndHierarchy()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Scene_RoundTrip_ReaddsObjectsAndHierarchy()
+  overload: Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_ReaddsObjectsAndHierarchy*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_RestoresIdentifiers
+  commentId: M:Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_RestoresIdentifiers
+  id: Scene_RoundTrip_RestoresIdentifiers
+  parent: Prowl.Runtime.Test.SerializationTests
+  langs:
+  - csharp
+  - vb
+  name: Scene_RoundTrip_RestoresIdentifiers()
+  nameWithType: SerializationTests.Scene_RoundTrip_RestoresIdentifiers()
+  fullName: Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_RestoresIdentifiers()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SerializationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Scene_RoundTrip_RestoresIdentifiers
+    path: ../Prowl/Prowl.Runtime.Test/SerializationTests.cs
+    startLine: 182
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Scene_RoundTrip_RestoresIdentifiers()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Scene_RoundTrip_RestoresIdentifiers()
+  overload: Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_RestoresIdentifiers*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SerializationTests.GameObject_Deserialize_WithUnresolvableTransform_FallsBackAndDoesNotThrow
+  commentId: M:Prowl.Runtime.Test.SerializationTests.GameObject_Deserialize_WithUnresolvableTransform_FallsBackAndDoesNotThrow
+  id: GameObject_Deserialize_WithUnresolvableTransform_FallsBackAndDoesNotThrow
+  parent: Prowl.Runtime.Test.SerializationTests
+  langs:
+  - csharp
+  - vb
+  name: GameObject_Deserialize_WithUnresolvableTransform_FallsBackAndDoesNotThrow()
+  nameWithType: SerializationTests.GameObject_Deserialize_WithUnresolvableTransform_FallsBackAndDoesNotThrow()
+  fullName: Prowl.Runtime.Test.SerializationTests.GameObject_Deserialize_WithUnresolvableTransform_FallsBackAndDoesNotThrow()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SerializationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GameObject_Deserialize_WithUnresolvableTransform_FallsBackAndDoesNotThrow
+    path: ../Prowl/Prowl.Runtime.Test/SerializationTests.cs
+    startLine: 204
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void GameObject_Deserialize_WithUnresolvableTransform_FallsBackAndDoesNotThrow()
+    content.vb: >-
+      <Fact>
+
+      Public Sub GameObject_Deserialize_WithUnresolvableTransform_FallsBackAndDoesNotThrow()
+  overload: Prowl.Runtime.Test.SerializationTests.GameObject_Deserialize_WithUnresolvableTransform_FallsBackAndDoesNotThrow*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_OneObjectWithUnresolvableTransform_DoesNotWipeScene
+  commentId: M:Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_OneObjectWithUnresolvableTransform_DoesNotWipeScene
+  id: Scene_RoundTrip_OneObjectWithUnresolvableTransform_DoesNotWipeScene
+  parent: Prowl.Runtime.Test.SerializationTests
+  langs:
+  - csharp
+  - vb
+  name: Scene_RoundTrip_OneObjectWithUnresolvableTransform_DoesNotWipeScene()
+  nameWithType: SerializationTests.Scene_RoundTrip_OneObjectWithUnresolvableTransform_DoesNotWipeScene()
+  fullName: Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_OneObjectWithUnresolvableTransform_DoesNotWipeScene()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SerializationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Scene_RoundTrip_OneObjectWithUnresolvableTransform_DoesNotWipeScene
+    path: ../Prowl/Prowl.Runtime.Test/SerializationTests.cs
+    startLine: 221
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Scene_RoundTrip_OneObjectWithUnresolvableTransform_DoesNotWipeScene()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Scene_RoundTrip_OneObjectWithUnresolvableTransform_DoesNotWipeScene()
+  overload: Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_OneObjectWithUnresolvableTransform_DoesNotWipeScene*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SerializationTests.ARuntimeAssetInAField_RoundTripsInline
+  commentId: M:Prowl.Runtime.Test.SerializationTests.ARuntimeAssetInAField_RoundTripsInline
+  id: ARuntimeAssetInAField_RoundTripsInline
+  parent: Prowl.Runtime.Test.SerializationTests
+  langs:
+  - csharp
+  - vb
+  name: ARuntimeAssetInAField_RoundTripsInline()
+  nameWithType: SerializationTests.ARuntimeAssetInAField_RoundTripsInline()
+  fullName: Prowl.Runtime.Test.SerializationTests.ARuntimeAssetInAField_RoundTripsInline()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SerializationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ARuntimeAssetInAField_RoundTripsInline
+    path: ../Prowl/Prowl.Runtime.Test/SerializationTests.cs
+    startLine: 253
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ARuntimeAssetInAField_RoundTripsInline()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ARuntimeAssetInAField_RoundTripsInline()
+  overload: Prowl.Runtime.Test.SerializationTests.ARuntimeAssetInAField_RoundTripsInline*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SerializationTests.AssetRef_RoundTripsItsGuid
+  commentId: M:Prowl.Runtime.Test.SerializationTests.AssetRef_RoundTripsItsGuid
+  id: AssetRef_RoundTripsItsGuid
+  parent: Prowl.Runtime.Test.SerializationTests
+  langs:
+  - csharp
+  - vb
+  name: AssetRef_RoundTripsItsGuid()
+  nameWithType: SerializationTests.AssetRef_RoundTripsItsGuid()
+  fullName: Prowl.Runtime.Test.SerializationTests.AssetRef_RoundTripsItsGuid()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SerializationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AssetRef_RoundTripsItsGuid
+    path: ../Prowl/Prowl.Runtime.Test/SerializationTests.cs
+    startLine: 264
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AssetRef_RoundTripsItsGuid()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AssetRef_RoundTripsItsGuid()
+  overload: Prowl.Runtime.Test.SerializationTests.AssetRef_RoundTripsItsGuid*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SerializationTests.AssetRef_Empty_RoundTrips
+  commentId: M:Prowl.Runtime.Test.SerializationTests.AssetRef_Empty_RoundTrips
+  id: AssetRef_Empty_RoundTrips
+  parent: Prowl.Runtime.Test.SerializationTests
+  langs:
+  - csharp
+  - vb
+  name: AssetRef_Empty_RoundTrips()
+  nameWithType: SerializationTests.AssetRef_Empty_RoundTrips()
+  fullName: Prowl.Runtime.Test.SerializationTests.AssetRef_Empty_RoundTrips()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SerializationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AssetRef_Empty_RoundTrips
+    path: ../Prowl/Prowl.Runtime.Test/SerializationTests.cs
+    startLine: 275
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AssetRef_Empty_RoundTrips()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AssetRef_Empty_RoundTrips()
+  overload: Prowl.Runtime.Test.SerializationTests.AssetRef_Empty_RoundTrips*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SerializationTests.Avatar_RoundTrip_KeepsItsSkeleton
+  commentId: M:Prowl.Runtime.Test.SerializationTests.Avatar_RoundTrip_KeepsItsSkeleton
+  id: Avatar_RoundTrip_KeepsItsSkeleton
+  parent: Prowl.Runtime.Test.SerializationTests
+  langs:
+  - csharp
+  - vb
+  name: Avatar_RoundTrip_KeepsItsSkeleton()
+  nameWithType: SerializationTests.Avatar_RoundTrip_KeepsItsSkeleton()
+  fullName: Prowl.Runtime.Test.SerializationTests.Avatar_RoundTrip_KeepsItsSkeleton()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SerializationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Avatar_RoundTrip_KeepsItsSkeleton
+    path: ../Prowl/Prowl.Runtime.Test/SerializationTests.cs
+    startLine: 298
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Avatar_RoundTrip_KeepsItsSkeleton()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Avatar_RoundTrip_KeepsItsSkeleton()
+  overload: Prowl.Runtime.Test.SerializationTests.Avatar_RoundTrip_KeepsItsSkeleton*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SerializationTests.AnimationClip_RoundTrip_SamplesTheSamePose
+  commentId: M:Prowl.Runtime.Test.SerializationTests.AnimationClip_RoundTrip_SamplesTheSamePose
+  id: AnimationClip_RoundTrip_SamplesTheSamePose
+  parent: Prowl.Runtime.Test.SerializationTests
+  langs:
+  - csharp
+  - vb
+  name: AnimationClip_RoundTrip_SamplesTheSamePose()
+  nameWithType: SerializationTests.AnimationClip_RoundTrip_SamplesTheSamePose()
+  fullName: Prowl.Runtime.Test.SerializationTests.AnimationClip_RoundTrip_SamplesTheSamePose()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SerializationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AnimationClip_RoundTrip_SamplesTheSamePose
+    path: ../Prowl/Prowl.Runtime.Test/SerializationTests.cs
+    startLine: 311
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AnimationClip_RoundTrip_SamplesTheSamePose()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AnimationClip_RoundTrip_SamplesTheSamePose()
+  overload: Prowl.Runtime.Test.SerializationTests.AnimationClip_RoundTrip_SamplesTheSamePose*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SerializationTests.AnimationClip_RoundTrip_KeepsItsEvents
+  commentId: M:Prowl.Runtime.Test.SerializationTests.AnimationClip_RoundTrip_KeepsItsEvents
+  id: AnimationClip_RoundTrip_KeepsItsEvents
+  parent: Prowl.Runtime.Test.SerializationTests
+  langs:
+  - csharp
+  - vb
+  name: AnimationClip_RoundTrip_KeepsItsEvents()
+  nameWithType: SerializationTests.AnimationClip_RoundTrip_KeepsItsEvents()
+  fullName: Prowl.Runtime.Test.SerializationTests.AnimationClip_RoundTrip_KeepsItsEvents()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SerializationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AnimationClip_RoundTrip_KeepsItsEvents
+    path: ../Prowl/Prowl.Runtime.Test/SerializationTests.cs
+    startLine: 343
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A clip's events are not part of the frames Motion stores, so the asset keeps them itself and hands
+
+    them back when the clip is decoded, in the clip's normalized time.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AnimationClip_RoundTrip_KeepsItsEvents()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AnimationClip_RoundTrip_KeepsItsEvents()
+  overload: Prowl.Runtime.Test.SerializationTests.AnimationClip_RoundTrip_KeepsItsEvents*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+references:
+- uid: Prowl.Runtime.Test
+  commentId: N:Prowl.Runtime.Test
+  name: Prowl.Runtime.Test
+  nameWithType: Prowl.Runtime.Test
+  fullName: Prowl.Runtime.Test
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.Runtime.Test.RuntimeTestBase
+  commentId: T:Prowl.Runtime.Test.RuntimeTestBase
+  parent: Prowl.Runtime.Test
+  href: Prowl.Runtime.Test.RuntimeTestBase.html
+  name: RuntimeTestBase
+  nameWithType: RuntimeTestBase
+  fullName: Prowl.Runtime.Test.RuntimeTestBase
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  commentId: P:Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_FixedDeltaTime
+  name: FixedDeltaTime
+  nameWithType: RuntimeTestBase.FixedDeltaTime
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+- uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  name: EditMode()
+  nameWithType: RuntimeTestBase.EditMode()
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.EditMode()
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+    name: EditMode
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+    name: EditMode
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  name: CreateScene(bool)
+  nameWithType: RuntimeTestBase.CreateScene(bool)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(bool)
+  nameWithType.vb: RuntimeTestBase.CreateScene(Boolean)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(Boolean)
+  name.vb: CreateScene(Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+    name: CreateScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+    name: CreateScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  name: CreateGameObject(string)
+  nameWithType: RuntimeTestBase.CreateGameObject(string)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(string)
+  nameWithType.vb: RuntimeTestBase.CreateGameObject(String)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(String)
+  name.vb: CreateGameObject(String)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+    name: CreateGameObject
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+    name: CreateGameObject
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Tick(Scene, int)
+  nameWithType: RuntimeTestBase.Tick(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.Tick(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Tick(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Update(Scene, int)
+  nameWithType: RuntimeTestBase.Update(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.Update(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Update(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Update
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Update
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: StepPhysics(Scene, int)
+  nameWithType: RuntimeTestBase.StepPhysics(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.StepPhysics(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: StepPhysics(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: StepPhysics
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: StepPhysics
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  name: ApplyFastBakeSettings(NavMeshSurface)
+  nameWithType: RuntimeTestBase.ApplyFastBakeSettings(NavMeshSurface)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+    name: ApplyFastBakeSettings
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  - name: (
+  - uid: Prowl.Runtime.NavMeshSurface
+    name: NavMeshSurface
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+    name: ApplyFastBakeSettings
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  - name: (
+  - uid: Prowl.Runtime.NavMeshSurface
+    name: NavMeshSurface
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  name: CreateFloorScene(float, bool)
+  nameWithType: RuntimeTestBase.CreateFloorScene(float, bool)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(float, bool)
+  nameWithType.vb: RuntimeTestBase.CreateFloorScene(Single, Boolean)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(Single, Boolean)
+  name.vb: CreateFloorScene(Single, Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+    name: CreateFloorScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  - name: (
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+    name: CreateFloorScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  - name: (
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  name: TickUntil(Scene, Func<bool>, int)
+  nameWithType: RuntimeTestBase.TickUntil(Scene, Func<bool>, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene, System.Func<bool>, int)
+  nameWithType.vb: RuntimeTestBase.TickUntil(Scene, Func(Of Boolean), Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene, System.Func(Of Boolean), Integer)
+  name.vb: TickUntil(Scene, Func(Of Boolean), Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+    name: TickUntil
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+    name: TickUntil
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  name: Dispose()
+  nameWithType: RuntimeTestBase.Dispose()
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Dispose()
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+    name: Dispose
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+    name: Dispose
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_ReattachesComponents*
+  commentId: Overload:Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_ReattachesComponents
+  href: Prowl.Runtime.Test.SerializationTests.html#Prowl_Runtime_Test_SerializationTests_GameObject_RoundTrip_ReattachesComponents
+  name: GameObject_RoundTrip_ReattachesComponents
+  nameWithType: SerializationTests.GameObject_RoundTrip_ReattachesComponents
+  fullName: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_ReattachesComponents
+- uid: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_ReconstructsChildParentLinks*
+  commentId: Overload:Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_ReconstructsChildParentLinks
+  href: Prowl.Runtime.Test.SerializationTests.html#Prowl_Runtime_Test_SerializationTests_GameObject_RoundTrip_ReconstructsChildParentLinks
+  name: GameObject_RoundTrip_ReconstructsChildParentLinks
+  nameWithType: SerializationTests.GameObject_RoundTrip_ReconstructsChildParentLinks
+  fullName: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_ReconstructsChildParentLinks
+- uid: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_WiresTransformToGameObject*
+  commentId: Overload:Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_WiresTransformToGameObject
+  href: Prowl.Runtime.Test.SerializationTests.html#Prowl_Runtime_Test_SerializationTests_GameObject_RoundTrip_WiresTransformToGameObject
+  name: GameObject_RoundTrip_WiresTransformToGameObject
+  nameWithType: SerializationTests.GameObject_RoundTrip_WiresTransformToGameObject
+  fullName: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_WiresTransformToGameObject
+- uid: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_PersistsHandWrittenState*
+  commentId: Overload:Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_PersistsHandWrittenState
+  href: Prowl.Runtime.Test.SerializationTests.html#Prowl_Runtime_Test_SerializationTests_GameObject_RoundTrip_PersistsHandWrittenState
+  name: GameObject_RoundTrip_PersistsHandWrittenState
+  nameWithType: SerializationTests.GameObject_RoundTrip_PersistsHandWrittenState
+  fullName: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_PersistsHandWrittenState
+- uid: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_OneWayComponentReference_Rewires*
+  commentId: Overload:Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_OneWayComponentReference_Rewires
+  href: Prowl.Runtime.Test.SerializationTests.html#Prowl_Runtime_Test_SerializationTests_GameObject_RoundTrip_OneWayComponentReference_Rewires
+  name: GameObject_RoundTrip_OneWayComponentReference_Rewires
+  nameWithType: SerializationTests.GameObject_RoundTrip_OneWayComponentReference_Rewires
+  fullName: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_OneWayComponentReference_Rewires
+- uid: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_CyclicComponentReferences_ArePreserved*
+  commentId: Overload:Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_CyclicComponentReferences_ArePreserved
+  href: Prowl.Runtime.Test.SerializationTests.html#Prowl_Runtime_Test_SerializationTests_GameObject_RoundTrip_CyclicComponentReferences_ArePreserved
+  name: GameObject_RoundTrip_CyclicComponentReferences_ArePreserved
+  nameWithType: SerializationTests.GameObject_RoundTrip_CyclicComponentReferences_ArePreserved
+  fullName: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_CyclicComponentReferences_ArePreserved
+- uid: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_GeneratesFreshIdentifier*
+  commentId: Overload:Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_GeneratesFreshIdentifier
+  href: Prowl.Runtime.Test.SerializationTests.html#Prowl_Runtime_Test_SerializationTests_GameObject_RoundTrip_GeneratesFreshIdentifier
+  name: GameObject_RoundTrip_GeneratesFreshIdentifier
+  nameWithType: SerializationTests.GameObject_RoundTrip_GeneratesFreshIdentifier
+  fullName: Prowl.Runtime.Test.SerializationTests.GameObject_RoundTrip_GeneratesFreshIdentifier
+- uid: Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_ReaddsObjectsAndHierarchy*
+  commentId: Overload:Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_ReaddsObjectsAndHierarchy
+  href: Prowl.Runtime.Test.SerializationTests.html#Prowl_Runtime_Test_SerializationTests_Scene_RoundTrip_ReaddsObjectsAndHierarchy
+  name: Scene_RoundTrip_ReaddsObjectsAndHierarchy
+  nameWithType: SerializationTests.Scene_RoundTrip_ReaddsObjectsAndHierarchy
+  fullName: Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_ReaddsObjectsAndHierarchy
+- uid: Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_RestoresIdentifiers*
+  commentId: Overload:Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_RestoresIdentifiers
+  href: Prowl.Runtime.Test.SerializationTests.html#Prowl_Runtime_Test_SerializationTests_Scene_RoundTrip_RestoresIdentifiers
+  name: Scene_RoundTrip_RestoresIdentifiers
+  nameWithType: SerializationTests.Scene_RoundTrip_RestoresIdentifiers
+  fullName: Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_RestoresIdentifiers
+- uid: Prowl.Runtime.Test.SerializationTests.GameObject_Deserialize_WithUnresolvableTransform_FallsBackAndDoesNotThrow*
+  commentId: Overload:Prowl.Runtime.Test.SerializationTests.GameObject_Deserialize_WithUnresolvableTransform_FallsBackAndDoesNotThrow
+  href: Prowl.Runtime.Test.SerializationTests.html#Prowl_Runtime_Test_SerializationTests_GameObject_Deserialize_WithUnresolvableTransform_FallsBackAndDoesNotThrow
+  name: GameObject_Deserialize_WithUnresolvableTransform_FallsBackAndDoesNotThrow
+  nameWithType: SerializationTests.GameObject_Deserialize_WithUnresolvableTransform_FallsBackAndDoesNotThrow
+  fullName: Prowl.Runtime.Test.SerializationTests.GameObject_Deserialize_WithUnresolvableTransform_FallsBackAndDoesNotThrow
+- uid: Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_OneObjectWithUnresolvableTransform_DoesNotWipeScene*
+  commentId: Overload:Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_OneObjectWithUnresolvableTransform_DoesNotWipeScene
+  href: Prowl.Runtime.Test.SerializationTests.html#Prowl_Runtime_Test_SerializationTests_Scene_RoundTrip_OneObjectWithUnresolvableTransform_DoesNotWipeScene
+  name: Scene_RoundTrip_OneObjectWithUnresolvableTransform_DoesNotWipeScene
+  nameWithType: SerializationTests.Scene_RoundTrip_OneObjectWithUnresolvableTransform_DoesNotWipeScene
+  fullName: Prowl.Runtime.Test.SerializationTests.Scene_RoundTrip_OneObjectWithUnresolvableTransform_DoesNotWipeScene
+- uid: Prowl.Runtime.Test.SerializationTests.ARuntimeAssetInAField_RoundTripsInline*
+  commentId: Overload:Prowl.Runtime.Test.SerializationTests.ARuntimeAssetInAField_RoundTripsInline
+  href: Prowl.Runtime.Test.SerializationTests.html#Prowl_Runtime_Test_SerializationTests_ARuntimeAssetInAField_RoundTripsInline
+  name: ARuntimeAssetInAField_RoundTripsInline
+  nameWithType: SerializationTests.ARuntimeAssetInAField_RoundTripsInline
+  fullName: Prowl.Runtime.Test.SerializationTests.ARuntimeAssetInAField_RoundTripsInline
+- uid: Prowl.Runtime.Test.SerializationTests.AssetRef_RoundTripsItsGuid*
+  commentId: Overload:Prowl.Runtime.Test.SerializationTests.AssetRef_RoundTripsItsGuid
+  href: Prowl.Runtime.Test.SerializationTests.html#Prowl_Runtime_Test_SerializationTests_AssetRef_RoundTripsItsGuid
+  name: AssetRef_RoundTripsItsGuid
+  nameWithType: SerializationTests.AssetRef_RoundTripsItsGuid
+  fullName: Prowl.Runtime.Test.SerializationTests.AssetRef_RoundTripsItsGuid
+- uid: Prowl.Runtime.Test.SerializationTests.AssetRef_Empty_RoundTrips*
+  commentId: Overload:Prowl.Runtime.Test.SerializationTests.AssetRef_Empty_RoundTrips
+  href: Prowl.Runtime.Test.SerializationTests.html#Prowl_Runtime_Test_SerializationTests_AssetRef_Empty_RoundTrips
+  name: AssetRef_Empty_RoundTrips
+  nameWithType: SerializationTests.AssetRef_Empty_RoundTrips
+  fullName: Prowl.Runtime.Test.SerializationTests.AssetRef_Empty_RoundTrips
+- uid: Prowl.Runtime.Test.SerializationTests.Avatar_RoundTrip_KeepsItsSkeleton*
+  commentId: Overload:Prowl.Runtime.Test.SerializationTests.Avatar_RoundTrip_KeepsItsSkeleton
+  href: Prowl.Runtime.Test.SerializationTests.html#Prowl_Runtime_Test_SerializationTests_Avatar_RoundTrip_KeepsItsSkeleton
+  name: Avatar_RoundTrip_KeepsItsSkeleton
+  nameWithType: SerializationTests.Avatar_RoundTrip_KeepsItsSkeleton
+  fullName: Prowl.Runtime.Test.SerializationTests.Avatar_RoundTrip_KeepsItsSkeleton
+- uid: Prowl.Runtime.Test.SerializationTests.AnimationClip_RoundTrip_SamplesTheSamePose*
+  commentId: Overload:Prowl.Runtime.Test.SerializationTests.AnimationClip_RoundTrip_SamplesTheSamePose
+  href: Prowl.Runtime.Test.SerializationTests.html#Prowl_Runtime_Test_SerializationTests_AnimationClip_RoundTrip_SamplesTheSamePose
+  name: AnimationClip_RoundTrip_SamplesTheSamePose
+  nameWithType: SerializationTests.AnimationClip_RoundTrip_SamplesTheSamePose
+  fullName: Prowl.Runtime.Test.SerializationTests.AnimationClip_RoundTrip_SamplesTheSamePose
+- uid: Prowl.Runtime.Test.SerializationTests.AnimationClip_RoundTrip_KeepsItsEvents*
+  commentId: Overload:Prowl.Runtime.Test.SerializationTests.AnimationClip_RoundTrip_KeepsItsEvents
+  href: Prowl.Runtime.Test.SerializationTests.html#Prowl_Runtime_Test_SerializationTests_AnimationClip_RoundTrip_KeepsItsEvents
+  name: AnimationClip_RoundTrip_KeepsItsEvents
+  nameWithType: SerializationTests.AnimationClip_RoundTrip_KeepsItsEvents
+  fullName: Prowl.Runtime.Test.SerializationTests.AnimationClip_RoundTrip_KeepsItsEvents

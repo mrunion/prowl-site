@@ -5,7 +5,8 @@ items:
   id: SpaceAttribute
   parent: Prowl.Runtime
   children:
-  - Prowl.Runtime.SpaceAttribute.AttribType
+  - Prowl.Runtime.SpaceAttribute.#ctor(System.Single)
+  - Prowl.Runtime.SpaceAttribute.Height
   langs:
   - csharp
   - vb
@@ -15,29 +16,29 @@ items:
   type: Class
   source:
     remote:
-      path: Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      path: Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: SpaceAttribute
-    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-    startLine: 16
+    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+    startLine: 26
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: Adds vertical spacing before the field in the inspector.
+  example: []
   syntax:
     content: >-
-      [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
+      [AttributeUsage(AttributeTargets.Field)]
 
-      public class SpaceAttribute : Attribute, InspectorUIAttribute
+      public class SpaceAttribute : Attribute
     content.vb: >-
-      <AttributeUsage(AttributeTargets.Field, AllowMultiple:=True)>
+      <AttributeUsage(AttributeTargets.Field)>
 
-      Public Class SpaceAttribute Inherits Attribute Implements InspectorUIAttribute
+      Public Class SpaceAttribute Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
-  implements:
-  - Prowl.Runtime.InspectorUIAttribute
   inheritedMembers:
   - System.Attribute.Equals(System.Object)
   - System.Attribute.GetCustomAttribute(System.Reflection.Assembly,System.Type)
@@ -89,64 +90,85 @@ items:
     arguments:
     - type: System.AttributeTargets
       value: 256
-    namedArguments:
-    - name: AllowMultiple
-      type: System.Boolean
-      value: true
-- uid: Prowl.Runtime.SpaceAttribute.AttribType
-  commentId: M:Prowl.Runtime.SpaceAttribute.AttribType
-  id: AttribType
+- uid: Prowl.Runtime.SpaceAttribute.Height
+  commentId: P:Prowl.Runtime.SpaceAttribute.Height
+  id: Height
   parent: Prowl.Runtime.SpaceAttribute
   langs:
   - csharp
   - vb
-  name: AttribType()
-  nameWithType: SpaceAttribute.AttribType()
-  fullName: Prowl.Runtime.SpaceAttribute.AttribType()
-  type: Method
+  name: Height
+  nameWithType: SpaceAttribute.Height
+  fullName: Prowl.Runtime.SpaceAttribute.Height
+  type: Property
   source:
     remote:
-      path: Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: AttribType
-    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-    startLine: 19
+      path: Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Height
+    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+    startLine: 29
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
-  example: []
   syntax:
-    content: public GuiAttribType AttribType()
+    content: public float Height { get; }
+    parameters: []
     return:
-      type: Prowl.Runtime.GuiAttribType
-    content.vb: Public Function AttribType() As GuiAttribType
-  overload: Prowl.Runtime.SpaceAttribute.AttribType*
-  implements:
-  - Prowl.Runtime.InspectorUIAttribute.AttribType
+      type: System.Single
+    content.vb: Public ReadOnly Property Height As Single
+  overload: Prowl.Runtime.SpaceAttribute.Height*
+- uid: Prowl.Runtime.SpaceAttribute.#ctor(System.Single)
+  commentId: M:Prowl.Runtime.SpaceAttribute.#ctor(System.Single)
+  id: '#ctor(System.Single)'
+  parent: Prowl.Runtime.SpaceAttribute
+  langs:
+  - csharp
+  - vb
+  name: SpaceAttribute(float)
+  nameWithType: SpaceAttribute.SpaceAttribute(float)
+  fullName: Prowl.Runtime.SpaceAttribute.SpaceAttribute(float)
+  type: Constructor
+  source:
+    remote:
+      path: Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: .ctor
+    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+    startLine: 30
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public SpaceAttribute(float height = 8)
+    parameters:
+    - id: height
+      type: System.Single
+    content.vb: Public Sub New(height As Single = 8)
+  overload: Prowl.Runtime.SpaceAttribute.#ctor*
+  nameWithType.vb: SpaceAttribute.New(Single)
+  fullName.vb: Prowl.Runtime.SpaceAttribute.New(Single)
+  name.vb: New(Single)
 references:
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
-  href: Prowl.html
   name: Prowl.Runtime
   nameWithType: Prowl.Runtime
   fullName: Prowl.Runtime
   spec.csharp:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
   spec.vb:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -166,13 +188,6 @@ references:
   name: Attribute
   nameWithType: Attribute
   fullName: System.Attribute
-- uid: Prowl.Runtime.InspectorUIAttribute
-  commentId: T:Prowl.Runtime.InspectorUIAttribute
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.InspectorUIAttribute.html
-  name: InspectorUIAttribute
-  nameWithType: InspectorUIAttribute
-  fullName: Prowl.Runtime.InspectorUIAttribute
 - uid: System.Attribute.Equals(System.Object)
   commentId: M:System.Attribute.Equals(System.Object)
   parent: System.Attribute
@@ -2016,35 +2031,29 @@ references:
   name: RuntimeUtils
   nameWithType: RuntimeUtils
   fullName: Prowl.Runtime.RuntimeUtils
-- uid: Prowl.Runtime.SpaceAttribute.AttribType*
-  commentId: Overload:Prowl.Runtime.SpaceAttribute.AttribType
-  href: Prowl.Runtime.SpaceAttribute.html#Prowl_Runtime_SpaceAttribute_AttribType
-  name: AttribType
-  nameWithType: SpaceAttribute.AttribType
-  fullName: Prowl.Runtime.SpaceAttribute.AttribType
-- uid: Prowl.Runtime.InspectorUIAttribute.AttribType
-  commentId: M:Prowl.Runtime.InspectorUIAttribute.AttribType
-  parent: Prowl.Runtime.InspectorUIAttribute
-  href: Prowl.Runtime.InspectorUIAttribute.html#Prowl_Runtime_InspectorUIAttribute_AttribType
-  name: AttribType()
-  nameWithType: InspectorUIAttribute.AttribType()
-  fullName: Prowl.Runtime.InspectorUIAttribute.AttribType()
-  spec.csharp:
-  - uid: Prowl.Runtime.InspectorUIAttribute.AttribType
-    name: AttribType
-    href: Prowl.Runtime.InspectorUIAttribute.html#Prowl_Runtime_InspectorUIAttribute_AttribType
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.InspectorUIAttribute.AttribType
-    name: AttribType
-    href: Prowl.Runtime.InspectorUIAttribute.html#Prowl_Runtime_InspectorUIAttribute_AttribType
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.GuiAttribType
-  commentId: T:Prowl.Runtime.GuiAttribType
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.GuiAttribType.html
-  name: GuiAttribType
-  nameWithType: GuiAttribType
-  fullName: Prowl.Runtime.GuiAttribType
+- uid: Prowl.Runtime.SpaceAttribute.Height*
+  commentId: Overload:Prowl.Runtime.SpaceAttribute.Height
+  href: Prowl.Runtime.SpaceAttribute.html#Prowl_Runtime_SpaceAttribute_Height
+  name: Height
+  nameWithType: SpaceAttribute.Height
+  fullName: Prowl.Runtime.SpaceAttribute.Height
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: Prowl.Runtime.SpaceAttribute.#ctor*
+  commentId: Overload:Prowl.Runtime.SpaceAttribute.#ctor
+  href: Prowl.Runtime.SpaceAttribute.html#Prowl_Runtime_SpaceAttribute__ctor_System_Single_
+  name: SpaceAttribute
+  nameWithType: SpaceAttribute.SpaceAttribute
+  fullName: Prowl.Runtime.SpaceAttribute.SpaceAttribute
+  nameWithType.vb: SpaceAttribute.New
+  fullName.vb: Prowl.Runtime.SpaceAttribute.New
+  name.vb: New

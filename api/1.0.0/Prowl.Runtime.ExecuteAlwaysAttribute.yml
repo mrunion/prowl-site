@@ -4,8 +4,7 @@ items:
   commentId: T:Prowl.Runtime.ExecuteAlwaysAttribute
   id: ExecuteAlwaysAttribute
   parent: Prowl.Runtime
-  children:
-  - Prowl.Runtime.ExecuteAlwaysAttribute.#ctor
+  children: []
   langs:
   - csharp
   - vb
@@ -15,22 +14,29 @@ items:
   type: Class
   source:
     remote:
-      path: Prowl.Runtime/GameObject/Attributes/ExecuteAlwaysAttribute.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      path: Prowl.Runtime/GameObject/ExecuteAlwaysAttribute.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: ExecuteAlwaysAttribute
-    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/ExecuteAlwaysAttribute.cs
-    startLine: 7
+    path: ../Prowl/Prowl.Runtime/GameObject/ExecuteAlwaysAttribute.cs
+    startLine: 12
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: >-
+    When applied to a MonoBehaviour, its gameplay lifecycle methods (Start, Update, LateUpdate, FixedUpdate)
+
+    are called even when the application is not in play mode (e.g., in the editor).
+
+    Structural lifecycle methods (OnEnable, OnDisable, OnRenderCollect, etc.) always run regardless.
+  example: []
   syntax:
     content: >-
-      [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+      [AttributeUsage(AttributeTargets.Class, Inherited = true)]
 
       public class ExecuteAlwaysAttribute : Attribute
     content.vb: >-
-      <AttributeUsage(AttributeTargets.Class, AllowMultiple:=False)>
+      <AttributeUsage(AttributeTargets.Class, Inherited:=True)>
 
       Public Class ExecuteAlwaysAttribute Inherits Attribute
   inheritance:
@@ -88,61 +94,27 @@ items:
     - type: System.AttributeTargets
       value: 4
     namedArguments:
-    - name: AllowMultiple
+    - name: Inherited
       type: System.Boolean
-      value: false
-- uid: Prowl.Runtime.ExecuteAlwaysAttribute.#ctor
-  commentId: M:Prowl.Runtime.ExecuteAlwaysAttribute.#ctor
-  id: '#ctor'
-  parent: Prowl.Runtime.ExecuteAlwaysAttribute
-  langs:
-  - csharp
-  - vb
-  name: ExecuteAlwaysAttribute()
-  nameWithType: ExecuteAlwaysAttribute.ExecuteAlwaysAttribute()
-  fullName: Prowl.Runtime.ExecuteAlwaysAttribute.ExecuteAlwaysAttribute()
-  type: Constructor
-  source:
-    remote:
-      path: Prowl.Runtime/GameObject/Attributes/ExecuteAlwaysAttribute.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: .ctor
-    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/ExecuteAlwaysAttribute.cs
-    startLine: 10
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public ExecuteAlwaysAttribute()
-    content.vb: Public Sub New()
-  overload: Prowl.Runtime.ExecuteAlwaysAttribute.#ctor*
-  nameWithType.vb: ExecuteAlwaysAttribute.New()
-  fullName.vb: Prowl.Runtime.ExecuteAlwaysAttribute.New()
-  name.vb: New()
+      value: true
 references:
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
-  href: Prowl.html
   name: Prowl.Runtime
   nameWithType: Prowl.Runtime
   fullName: Prowl.Runtime
   spec.csharp:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
   spec.vb:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -2005,12 +1977,3 @@ references:
   name: RuntimeUtils
   nameWithType: RuntimeUtils
   fullName: Prowl.Runtime.RuntimeUtils
-- uid: Prowl.Runtime.ExecuteAlwaysAttribute.#ctor*
-  commentId: Overload:Prowl.Runtime.ExecuteAlwaysAttribute.#ctor
-  href: Prowl.Runtime.ExecuteAlwaysAttribute.html#Prowl_Runtime_ExecuteAlwaysAttribute__ctor
-  name: ExecuteAlwaysAttribute
-  nameWithType: ExecuteAlwaysAttribute.ExecuteAlwaysAttribute
-  fullName: Prowl.Runtime.ExecuteAlwaysAttribute.ExecuteAlwaysAttribute
-  nameWithType.vb: ExecuteAlwaysAttribute.New
-  fullName.vb: Prowl.Runtime.ExecuteAlwaysAttribute.New
-  name.vb: New

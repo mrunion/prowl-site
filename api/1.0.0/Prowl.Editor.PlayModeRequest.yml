@@ -1,0 +1,543 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.PlayModeRequest
+  commentId: T:Prowl.Editor.PlayModeRequest
+  id: PlayModeRequest
+  parent: Prowl.Editor
+  children:
+  - Prowl.Editor.PlayModeRequest.Defer(System.String)
+  - Prowl.Editor.PlayModeRequest.DeferredBy
+  - Prowl.Editor.PlayModeRequest.Entering
+  - Prowl.Editor.PlayModeRequest.IsDeferred
+  langs:
+  - csharp
+  - vb
+  name: PlayModeRequest
+  nameWithType: PlayModeRequest
+  fullName: Prowl.Editor.PlayModeRequest
+  type: Class
+  source:
+    remote:
+      path: Prowl.Editor/Core/PlayModeRequest.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PlayModeRequest
+    path: ../Prowl/Prowl.Editor/Core/PlayModeRequest.cs
+    startLine: 10
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor
+  summary: >-
+    A request to start or stop play mode, handed to every subscriber of EditorApplication.PlayModeRequested before anything happens.
+
+
+    A handler that needs user input before the transition can proceed (for example, because of unapplied asset edits) calls Defer and is responsible for re-issuing the request once the user has decided. Re-issuing runs the request through the same path, avoiding the need for a stored continuation.
+  example: []
+  syntax:
+    content: public sealed class PlayModeRequest
+    content.vb: Public NotInheritable Class PlayModeRequest
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Editor.PlayModeRequest.Entering
+  commentId: P:Prowl.Editor.PlayModeRequest.Entering
+  id: Entering
+  parent: Prowl.Editor.PlayModeRequest
+  langs:
+  - csharp
+  - vb
+  name: Entering
+  nameWithType: PlayModeRequest.Entering
+  fullName: Prowl.Editor.PlayModeRequest.Entering
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Core/PlayModeRequest.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Entering
+    path: ../Prowl/Prowl.Editor/Core/PlayModeRequest.cs
+    startLine: 15
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor
+  summary: True for a request to start playing, false for one to stop.
+  example: []
+  syntax:
+    content: public bool Entering { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property Entering As Boolean
+  overload: Prowl.Editor.PlayModeRequest.Entering*
+- uid: Prowl.Editor.PlayModeRequest.DeferredBy
+  commentId: P:Prowl.Editor.PlayModeRequest.DeferredBy
+  id: DeferredBy
+  parent: Prowl.Editor.PlayModeRequest
+  langs:
+  - csharp
+  - vb
+  name: DeferredBy
+  nameWithType: PlayModeRequest.DeferredBy
+  fullName: Prowl.Editor.PlayModeRequest.DeferredBy
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Core/PlayModeRequest.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DeferredBy
+    path: ../Prowl/Prowl.Editor/Core/PlayModeRequest.cs
+    startLine: 18
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor
+  summary: Why the transition was held, empty when nothing held it.
+  example: []
+  syntax:
+    content: public string DeferredBy { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property DeferredBy As String
+  overload: Prowl.Editor.PlayModeRequest.DeferredBy*
+- uid: Prowl.Editor.PlayModeRequest.IsDeferred
+  commentId: P:Prowl.Editor.PlayModeRequest.IsDeferred
+  id: IsDeferred
+  parent: Prowl.Editor.PlayModeRequest
+  langs:
+  - csharp
+  - vb
+  name: IsDeferred
+  nameWithType: PlayModeRequest.IsDeferred
+  fullName: Prowl.Editor.PlayModeRequest.IsDeferred
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Core/PlayModeRequest.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsDeferred
+    path: ../Prowl/Prowl.Editor/Core/PlayModeRequest.cs
+    startLine: 21
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor
+  summary: True once a handler has held this transition.
+  example: []
+  syntax:
+    content: public bool IsDeferred { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsDeferred As Boolean
+  overload: Prowl.Editor.PlayModeRequest.IsDeferred*
+- uid: Prowl.Editor.PlayModeRequest.Defer(System.String)
+  commentId: M:Prowl.Editor.PlayModeRequest.Defer(System.String)
+  id: Defer(System.String)
+  parent: Prowl.Editor.PlayModeRequest
+  langs:
+  - csharp
+  - vb
+  name: Defer(string)
+  nameWithType: PlayModeRequest.Defer(string)
+  fullName: Prowl.Editor.PlayModeRequest.Defer(string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/PlayModeRequest.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Defer
+    path: ../Prowl/Prowl.Editor/Core/PlayModeRequest.cs
+    startLine: 28
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor
+  summary: >-
+    Holds the transition, naming what it is waiting on. The handler is responsible for asking
+
+    again through EditorApplication.RequestPlayMode or
+
+    EditorApplication.RequestExitPlayMode once it is finished.
+  example: []
+  syntax:
+    content: public void Defer(string reason)
+    parameters:
+    - id: reason
+      type: System.String
+    content.vb: Public Sub Defer(reason As String)
+  overload: Prowl.Editor.PlayModeRequest.Defer*
+  nameWithType.vb: PlayModeRequest.Defer(String)
+  fullName.vb: Prowl.Editor.PlayModeRequest.Defer(String)
+  name.vb: Defer(String)
+references:
+- uid: Prowl.Editor
+  commentId: N:Prowl.Editor
+  name: Prowl.Editor
+  nameWithType: Prowl.Editor
+  fullName: Prowl.Editor
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Editor.PlayModeRequest.Entering*
+  commentId: Overload:Prowl.Editor.PlayModeRequest.Entering
+  href: Prowl.Editor.PlayModeRequest.html#Prowl_Editor_PlayModeRequest_Entering
+  name: Entering
+  nameWithType: PlayModeRequest.Entering
+  fullName: Prowl.Editor.PlayModeRequest.Entering
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Editor.PlayModeRequest.DeferredBy*
+  commentId: Overload:Prowl.Editor.PlayModeRequest.DeferredBy
+  href: Prowl.Editor.PlayModeRequest.html#Prowl_Editor_PlayModeRequest_DeferredBy
+  name: DeferredBy
+  nameWithType: PlayModeRequest.DeferredBy
+  fullName: Prowl.Editor.PlayModeRequest.DeferredBy
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Prowl.Editor.PlayModeRequest.IsDeferred*
+  commentId: Overload:Prowl.Editor.PlayModeRequest.IsDeferred
+  href: Prowl.Editor.PlayModeRequest.html#Prowl_Editor_PlayModeRequest_IsDeferred
+  name: IsDeferred
+  nameWithType: PlayModeRequest.IsDeferred
+  fullName: Prowl.Editor.PlayModeRequest.IsDeferred
+- uid: Prowl.Editor.PlayModeRequest.Defer*
+  commentId: Overload:Prowl.Editor.PlayModeRequest.Defer
+  href: Prowl.Editor.PlayModeRequest.html#Prowl_Editor_PlayModeRequest_Defer_System_String_
+  name: Defer
+  nameWithType: PlayModeRequest.Defer
+  fullName: Prowl.Editor.PlayModeRequest.Defer

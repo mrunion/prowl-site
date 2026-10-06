@@ -1,0 +1,2383 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.Test.ComponentTests
+  commentId: T:Prowl.Runtime.Test.ComponentTests
+  id: ComponentTests
+  parent: Prowl.Runtime.Test
+  children:
+  - Prowl.Runtime.Test.ComponentTests.AddComponent_AfterAConstructorThrows_TheObjectStillWorks
+  - Prowl.Runtime.Test.ComponentTests.AddComponent_DoesNotLeakToOtherGameObjects
+  - Prowl.Runtime.Test.ComponentTests.AddComponent_Instance_MovesItOffItsPreviousGameObject
+  - Prowl.Runtime.Test.ComponentTests.AddComponent_Instance_SurvivesDisposalOfThePreviousGameObject
+  - Prowl.Runtime.Test.ComponentTests.AddComponent_MutualRequirement_AddsBothAndTerminates
+  - Prowl.Runtime.Test.ComponentTests.AddComponent_NonMonoBehaviourType_ReturnsNull
+  - Prowl.Runtime.Test.ComponentTests.AddComponent_RequirementRing_AddsEachOnceAndTerminates
+  - Prowl.Runtime.Test.ComponentTests.AddComponent_ReturnsInstance_WiredToGameObject
+  - Prowl.Runtime.Test.ComponentTests.AddComponent_SameTypeTwice_CreatesTwoInstances
+  - Prowl.Runtime.Test.ComponentTests.AddComponent_SelfRequirement_AddsOnceAndTerminates
+  - Prowl.Runtime.Test.ComponentTests.AddComponent_WhoseConstructorThrows_ReturnsNullInsteadOfPropagating
+  - Prowl.Runtime.Test.ComponentTests.AddComponent_WithoutAParameterlessConstructor_ReturnsNull
+  - Prowl.Runtime.Test.ComponentTests.Cloning_WhenAComponentsConstructorThrows_SkipsItRatherThanFailing
+  - Prowl.Runtime.Test.ComponentTests.ColorTint_WritesTheRendererColor
+  - Prowl.Runtime.Test.ComponentTests.GetComponentByIdentifier_FindsComponent_AndRejectsEmpty
+  - Prowl.Runtime.Test.ComponentTests.GetComponent_ByBaseType_ReturnsDerivedInstance
+  - Prowl.Runtime.Test.ComponentTests.GetComponent_MultipleSameType_ReturnsFirstAdded
+  - Prowl.Runtime.Test.ComponentTests.GetComponent_ReturnsNull_WhenAbsent
+  - Prowl.Runtime.Test.ComponentTests.GetComponents_ByBaseType_IncludesDerived
+  - Prowl.Runtime.Test.ComponentTests.GetComponents_NoArgs_ReturnsAllComponents
+  - Prowl.Runtime.Test.ComponentTests.GetComponents_ReturnsInsertionOrder
+  - Prowl.Runtime.Test.ComponentTests.GetComponents_TolerartesAddDuringEnumeration
+  - Prowl.Runtime.Test.ComponentTests.GetComponents_TolerartesRemoveDuringEnumeration
+  - Prowl.Runtime.Test.ComponentTests.MaterialRenderer_ListSlots_GrowByOneAndRejectGaps
+  - Prowl.Runtime.Test.ComponentTests.MaterialRenderer_SingleSlot_OnlyAcceptsSlotZero
+  - Prowl.Runtime.Test.ComponentTests.RemoveAll_RemovesEveryInstanceOfType
+  - Prowl.Runtime.Test.ComponentTests.RemoveComponent_ByGuid_RemovesInstance
+  - Prowl.Runtime.Test.ComponentTests.RemoveComponent_FromWrongGameObject_DoesNothing
+  - Prowl.Runtime.Test.ComponentTests.RemoveComponent_Generic_RemovesOnlyThatInstance
+  - Prowl.Runtime.Test.ComponentTests.RemoveComponent_LeavesOthersIntact
+  - Prowl.Runtime.Test.ComponentTests.RemoveComponent_RemovesInstance
+  - Prowl.Runtime.Test.ComponentTests.RemoveComponent_RequiredByAnother_IsBlocked
+  - Prowl.Runtime.Test.ComponentTests.RequireComponent_AddsDependency
+  - Prowl.Runtime.Test.ComponentTests.RequireComponent_Chain_AddsTransitiveDependencies
+  - Prowl.Runtime.Test.ComponentTests.RequireComponent_DoesNotDuplicate_WhenDependencyAlreadyPresent
+  - Prowl.Runtime.Test.ComponentTests.RequireComponent_Multiple_AddsAllDependencies
+  - Prowl.Runtime.Test.ComponentTests.TryGetComponent_ReflectsPresence
+  langs:
+  - csharp
+  - vb
+  name: ComponentTests
+  nameWithType: ComponentTests
+  fullName: Prowl.Runtime.Test.ComponentTests
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ComponentTests
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 91
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Tests for GameObject component management: Add/Get/Remove, the GetComponent family
+
+    (including assignable/base-type lookups), [RequireComponent] enforcement and [ExecutionOrder] sorting.
+  example: []
+  syntax:
+    content: 'public class ComponentTests : RuntimeTestBase, IDisposable'
+    content.vb: Public Class ComponentTests Inherits RuntimeTestBase Implements IDisposable
+  inheritance:
+  - System.Object
+  - Prowl.Runtime.Test.RuntimeTestBase
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  - Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  - Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  - Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.Test.ComponentTests.MaterialRenderer_ListSlots_GrowByOneAndRejectGaps
+  commentId: M:Prowl.Runtime.Test.ComponentTests.MaterialRenderer_ListSlots_GrowByOneAndRejectGaps
+  id: MaterialRenderer_ListSlots_GrowByOneAndRejectGaps
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: MaterialRenderer_ListSlots_GrowByOneAndRejectGaps()
+  nameWithType: ComponentTests.MaterialRenderer_ListSlots_GrowByOneAndRejectGaps()
+  fullName: Prowl.Runtime.Test.ComponentTests.MaterialRenderer_ListSlots_GrowByOneAndRejectGaps()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MaterialRenderer_ListSlots_GrowByOneAndRejectGaps
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 95
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void MaterialRenderer_ListSlots_GrowByOneAndRejectGaps()
+    content.vb: >-
+      <Fact>
+
+      Public Sub MaterialRenderer_ListSlots_GrowByOneAndRejectGaps()
+  overload: Prowl.Runtime.Test.ComponentTests.MaterialRenderer_ListSlots_GrowByOneAndRejectGaps*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.MaterialRenderer_SingleSlot_OnlyAcceptsSlotZero
+  commentId: M:Prowl.Runtime.Test.ComponentTests.MaterialRenderer_SingleSlot_OnlyAcceptsSlotZero
+  id: MaterialRenderer_SingleSlot_OnlyAcceptsSlotZero
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: MaterialRenderer_SingleSlot_OnlyAcceptsSlotZero()
+  nameWithType: ComponentTests.MaterialRenderer_SingleSlot_OnlyAcceptsSlotZero()
+  fullName: Prowl.Runtime.Test.ComponentTests.MaterialRenderer_SingleSlot_OnlyAcceptsSlotZero()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MaterialRenderer_SingleSlot_OnlyAcceptsSlotZero
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 108
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void MaterialRenderer_SingleSlot_OnlyAcceptsSlotZero()
+    content.vb: >-
+      <Fact>
+
+      Public Sub MaterialRenderer_SingleSlot_OnlyAcceptsSlotZero()
+  overload: Prowl.Runtime.Test.ComponentTests.MaterialRenderer_SingleSlot_OnlyAcceptsSlotZero*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.ColorTint_WritesTheRendererColor
+  commentId: M:Prowl.Runtime.Test.ComponentTests.ColorTint_WritesTheRendererColor
+  id: ColorTint_WritesTheRendererColor
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: ColorTint_WritesTheRendererColor()
+  nameWithType: ComponentTests.ColorTint_WritesTheRendererColor()
+  fullName: Prowl.Runtime.Test.ComponentTests.ColorTint_WritesTheRendererColor()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ColorTint_WritesTheRendererColor
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 118
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ColorTint_WritesTheRendererColor()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ColorTint_WritesTheRendererColor()
+  overload: Prowl.Runtime.Test.ComponentTests.ColorTint_WritesTheRendererColor*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_SelfRequirement_AddsOnceAndTerminates
+  commentId: M:Prowl.Runtime.Test.ComponentTests.AddComponent_SelfRequirement_AddsOnceAndTerminates
+  id: AddComponent_SelfRequirement_AddsOnceAndTerminates
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: AddComponent_SelfRequirement_AddsOnceAndTerminates()
+  nameWithType: ComponentTests.AddComponent_SelfRequirement_AddsOnceAndTerminates()
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_SelfRequirement_AddsOnceAndTerminates()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddComponent_SelfRequirement_AddsOnceAndTerminates
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 140
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A component whose requirement is itself has to stop, not recurse. The requirement walk runs
+
+    before the component is on the object, so nothing it can look at will ever satisfy it.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AddComponent_SelfRequirement_AddsOnceAndTerminates()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AddComponent_SelfRequirement_AddsOnceAndTerminates()
+  overload: Prowl.Runtime.Test.ComponentTests.AddComponent_SelfRequirement_AddsOnceAndTerminates*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_MutualRequirement_AddsBothAndTerminates
+  commentId: M:Prowl.Runtime.Test.ComponentTests.AddComponent_MutualRequirement_AddsBothAndTerminates
+  id: AddComponent_MutualRequirement_AddsBothAndTerminates
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: AddComponent_MutualRequirement_AddsBothAndTerminates()
+  nameWithType: ComponentTests.AddComponent_MutualRequirement_AddsBothAndTerminates()
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_MutualRequirement_AddsBothAndTerminates()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddComponent_MutualRequirement_AddsBothAndTerminates
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 151
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AddComponent_MutualRequirement_AddsBothAndTerminates()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AddComponent_MutualRequirement_AddsBothAndTerminates()
+  overload: Prowl.Runtime.Test.ComponentTests.AddComponent_MutualRequirement_AddsBothAndTerminates*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_RequirementRing_AddsEachOnceAndTerminates
+  commentId: M:Prowl.Runtime.Test.ComponentTests.AddComponent_RequirementRing_AddsEachOnceAndTerminates
+  id: AddComponent_RequirementRing_AddsEachOnceAndTerminates
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: AddComponent_RequirementRing_AddsEachOnceAndTerminates()
+  nameWithType: ComponentTests.AddComponent_RequirementRing_AddsEachOnceAndTerminates()
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_RequirementRing_AddsEachOnceAndTerminates()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddComponent_RequirementRing_AddsEachOnceAndTerminates
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 163
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AddComponent_RequirementRing_AddsEachOnceAndTerminates()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AddComponent_RequirementRing_AddsEachOnceAndTerminates()
+  overload: Prowl.Runtime.Test.ComponentTests.AddComponent_RequirementRing_AddsEachOnceAndTerminates*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_WhoseConstructorThrows_ReturnsNullInsteadOfPropagating
+  commentId: M:Prowl.Runtime.Test.ComponentTests.AddComponent_WhoseConstructorThrows_ReturnsNullInsteadOfPropagating
+  id: AddComponent_WhoseConstructorThrows_ReturnsNullInsteadOfPropagating
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: AddComponent_WhoseConstructorThrows_ReturnsNullInsteadOfPropagating()
+  nameWithType: ComponentTests.AddComponent_WhoseConstructorThrows_ReturnsNullInsteadOfPropagating()
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_WhoseConstructorThrows_ReturnsNullInsteadOfPropagating()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddComponent_WhoseConstructorThrows_ReturnsNullInsteadOfPropagating
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 183
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Every path that adds a component by type reaches this, including dragging a script onto the
+
+    inspector, so a type that cannot be constructed has to be refused rather than thrown from.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AddComponent_WhoseConstructorThrows_ReturnsNullInsteadOfPropagating()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AddComponent_WhoseConstructorThrows_ReturnsNullInsteadOfPropagating()
+  overload: Prowl.Runtime.Test.ComponentTests.AddComponent_WhoseConstructorThrows_ReturnsNullInsteadOfPropagating*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_AfterAConstructorThrows_TheObjectStillWorks
+  commentId: M:Prowl.Runtime.Test.ComponentTests.AddComponent_AfterAConstructorThrows_TheObjectStillWorks
+  id: AddComponent_AfterAConstructorThrows_TheObjectStillWorks
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: AddComponent_AfterAConstructorThrows_TheObjectStillWorks()
+  nameWithType: ComponentTests.AddComponent_AfterAConstructorThrows_TheObjectStillWorks()
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_AfterAConstructorThrows_TheObjectStillWorks()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddComponent_AfterAConstructorThrows_TheObjectStillWorks
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 195
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: The object it failed on stays usable, rather than being left half built.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AddComponent_AfterAConstructorThrows_TheObjectStillWorks()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AddComponent_AfterAConstructorThrows_TheObjectStillWorks()
+  overload: Prowl.Runtime.Test.ComponentTests.AddComponent_AfterAConstructorThrows_TheObjectStillWorks*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.Cloning_WhenAComponentsConstructorThrows_SkipsItRatherThanFailing
+  commentId: M:Prowl.Runtime.Test.ComponentTests.Cloning_WhenAComponentsConstructorThrows_SkipsItRatherThanFailing
+  id: Cloning_WhenAComponentsConstructorThrows_SkipsItRatherThanFailing
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: Cloning_WhenAComponentsConstructorThrows_SkipsItRatherThanFailing()
+  nameWithType: ComponentTests.Cloning_WhenAComponentsConstructorThrows_SkipsItRatherThanFailing()
+  fullName: Prowl.Runtime.Test.ComponentTests.Cloning_WhenAComponentsConstructorThrows_SkipsItRatherThanFailing()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Cloning_WhenAComponentsConstructorThrows_SkipsItRatherThanFailing
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 211
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A constructor that only fails later, which is what a delegate that was assigned and then
+
+    cleared looks like, must not take the copy down with it.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Cloning_WhenAComponentsConstructorThrows_SkipsItRatherThanFailing()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Cloning_WhenAComponentsConstructorThrows_SkipsItRatherThanFailing()
+  overload: Prowl.Runtime.Test.ComponentTests.Cloning_WhenAComponentsConstructorThrows_SkipsItRatherThanFailing*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_WithoutAParameterlessConstructor_ReturnsNull
+  commentId: M:Prowl.Runtime.Test.ComponentTests.AddComponent_WithoutAParameterlessConstructor_ReturnsNull
+  id: AddComponent_WithoutAParameterlessConstructor_ReturnsNull
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: AddComponent_WithoutAParameterlessConstructor_ReturnsNull()
+  nameWithType: ComponentTests.AddComponent_WithoutAParameterlessConstructor_ReturnsNull()
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_WithoutAParameterlessConstructor_ReturnsNull()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddComponent_WithoutAParameterlessConstructor_ReturnsNull
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 234
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AddComponent_WithoutAParameterlessConstructor_ReturnsNull()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AddComponent_WithoutAParameterlessConstructor_ReturnsNull()
+  overload: Prowl.Runtime.Test.ComponentTests.AddComponent_WithoutAParameterlessConstructor_ReturnsNull*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_ReturnsInstance_WiredToGameObject
+  commentId: M:Prowl.Runtime.Test.ComponentTests.AddComponent_ReturnsInstance_WiredToGameObject
+  id: AddComponent_ReturnsInstance_WiredToGameObject
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: AddComponent_ReturnsInstance_WiredToGameObject()
+  nameWithType: ComponentTests.AddComponent_ReturnsInstance_WiredToGameObject()
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_ReturnsInstance_WiredToGameObject()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddComponent_ReturnsInstance_WiredToGameObject
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 246
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AddComponent_ReturnsInstance_WiredToGameObject()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AddComponent_ReturnsInstance_WiredToGameObject()
+  overload: Prowl.Runtime.Test.ComponentTests.AddComponent_ReturnsInstance_WiredToGameObject*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_NonMonoBehaviourType_ReturnsNull
+  commentId: M:Prowl.Runtime.Test.ComponentTests.AddComponent_NonMonoBehaviourType_ReturnsNull
+  id: AddComponent_NonMonoBehaviourType_ReturnsNull
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: AddComponent_NonMonoBehaviourType_ReturnsNull()
+  nameWithType: ComponentTests.AddComponent_NonMonoBehaviourType_ReturnsNull()
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_NonMonoBehaviourType_ReturnsNull()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddComponent_NonMonoBehaviourType_ReturnsNull
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 259
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AddComponent_NonMonoBehaviourType_ReturnsNull()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AddComponent_NonMonoBehaviourType_ReturnsNull()
+  overload: Prowl.Runtime.Test.ComponentTests.AddComponent_NonMonoBehaviourType_ReturnsNull*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_SameTypeTwice_CreatesTwoInstances
+  commentId: M:Prowl.Runtime.Test.ComponentTests.AddComponent_SameTypeTwice_CreatesTwoInstances
+  id: AddComponent_SameTypeTwice_CreatesTwoInstances
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: AddComponent_SameTypeTwice_CreatesTwoInstances()
+  nameWithType: ComponentTests.AddComponent_SameTypeTwice_CreatesTwoInstances()
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_SameTypeTwice_CreatesTwoInstances()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddComponent_SameTypeTwice_CreatesTwoInstances
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 270
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AddComponent_SameTypeTwice_CreatesTwoInstances()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AddComponent_SameTypeTwice_CreatesTwoInstances()
+  overload: Prowl.Runtime.Test.ComponentTests.AddComponent_SameTypeTwice_CreatesTwoInstances*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_DoesNotLeakToOtherGameObjects
+  commentId: M:Prowl.Runtime.Test.ComponentTests.AddComponent_DoesNotLeakToOtherGameObjects
+  id: AddComponent_DoesNotLeakToOtherGameObjects
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: AddComponent_DoesNotLeakToOtherGameObjects()
+  nameWithType: ComponentTests.AddComponent_DoesNotLeakToOtherGameObjects()
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_DoesNotLeakToOtherGameObjects()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddComponent_DoesNotLeakToOtherGameObjects
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 282
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AddComponent_DoesNotLeakToOtherGameObjects()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AddComponent_DoesNotLeakToOtherGameObjects()
+  overload: Prowl.Runtime.Test.ComponentTests.AddComponent_DoesNotLeakToOtherGameObjects*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.GetComponent_ReturnsNull_WhenAbsent
+  commentId: M:Prowl.Runtime.Test.ComponentTests.GetComponent_ReturnsNull_WhenAbsent
+  id: GetComponent_ReturnsNull_WhenAbsent
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: GetComponent_ReturnsNull_WhenAbsent()
+  nameWithType: ComponentTests.GetComponent_ReturnsNull_WhenAbsent()
+  fullName: Prowl.Runtime.Test.ComponentTests.GetComponent_ReturnsNull_WhenAbsent()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetComponent_ReturnsNull_WhenAbsent
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 296
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void GetComponent_ReturnsNull_WhenAbsent()
+    content.vb: >-
+      <Fact>
+
+      Public Sub GetComponent_ReturnsNull_WhenAbsent()
+  overload: Prowl.Runtime.Test.ComponentTests.GetComponent_ReturnsNull_WhenAbsent*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.GetComponent_ByBaseType_ReturnsDerivedInstance
+  commentId: M:Prowl.Runtime.Test.ComponentTests.GetComponent_ByBaseType_ReturnsDerivedInstance
+  id: GetComponent_ByBaseType_ReturnsDerivedInstance
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: GetComponent_ByBaseType_ReturnsDerivedInstance()
+  nameWithType: ComponentTests.GetComponent_ByBaseType_ReturnsDerivedInstance()
+  fullName: Prowl.Runtime.Test.ComponentTests.GetComponent_ByBaseType_ReturnsDerivedInstance()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetComponent_ByBaseType_ReturnsDerivedInstance
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 303
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void GetComponent_ByBaseType_ReturnsDerivedInstance()
+    content.vb: >-
+      <Fact>
+
+      Public Sub GetComponent_ByBaseType_ReturnsDerivedInstance()
+  overload: Prowl.Runtime.Test.ComponentTests.GetComponent_ByBaseType_ReturnsDerivedInstance*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.GetComponents_ByBaseType_IncludesDerived
+  commentId: M:Prowl.Runtime.Test.ComponentTests.GetComponents_ByBaseType_IncludesDerived
+  id: GetComponents_ByBaseType_IncludesDerived
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: GetComponents_ByBaseType_IncludesDerived()
+  nameWithType: ComponentTests.GetComponents_ByBaseType_IncludesDerived()
+  fullName: Prowl.Runtime.Test.ComponentTests.GetComponents_ByBaseType_IncludesDerived()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetComponents_ByBaseType_IncludesDerived
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 313
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void GetComponents_ByBaseType_IncludesDerived()
+    content.vb: >-
+      <Fact>
+
+      Public Sub GetComponents_ByBaseType_IncludesDerived()
+  overload: Prowl.Runtime.Test.ComponentTests.GetComponents_ByBaseType_IncludesDerived*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.GetComponent_MultipleSameType_ReturnsFirstAdded
+  commentId: M:Prowl.Runtime.Test.ComponentTests.GetComponent_MultipleSameType_ReturnsFirstAdded
+  id: GetComponent_MultipleSameType_ReturnsFirstAdded
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: GetComponent_MultipleSameType_ReturnsFirstAdded()
+  nameWithType: ComponentTests.GetComponent_MultipleSameType_ReturnsFirstAdded()
+  fullName: Prowl.Runtime.Test.ComponentTests.GetComponent_MultipleSameType_ReturnsFirstAdded()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetComponent_MultipleSameType_ReturnsFirstAdded
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 325
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void GetComponent_MultipleSameType_ReturnsFirstAdded()
+    content.vb: >-
+      <Fact>
+
+      Public Sub GetComponent_MultipleSameType_ReturnsFirstAdded()
+  overload: Prowl.Runtime.Test.ComponentTests.GetComponent_MultipleSameType_ReturnsFirstAdded*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.TryGetComponent_ReflectsPresence
+  commentId: M:Prowl.Runtime.Test.ComponentTests.TryGetComponent_ReflectsPresence
+  id: TryGetComponent_ReflectsPresence
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: TryGetComponent_ReflectsPresence()
+  nameWithType: ComponentTests.TryGetComponent_ReflectsPresence()
+  fullName: Prowl.Runtime.Test.ComponentTests.TryGetComponent_ReflectsPresence()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TryGetComponent_ReflectsPresence
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 335
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void TryGetComponent_ReflectsPresence()
+    content.vb: >-
+      <Fact>
+
+      Public Sub TryGetComponent_ReflectsPresence()
+  overload: Prowl.Runtime.Test.ComponentTests.TryGetComponent_ReflectsPresence*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.GetComponentByIdentifier_FindsComponent_AndRejectsEmpty
+  commentId: M:Prowl.Runtime.Test.ComponentTests.GetComponentByIdentifier_FindsComponent_AndRejectsEmpty
+  id: GetComponentByIdentifier_FindsComponent_AndRejectsEmpty
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: GetComponentByIdentifier_FindsComponent_AndRejectsEmpty()
+  nameWithType: ComponentTests.GetComponentByIdentifier_FindsComponent_AndRejectsEmpty()
+  fullName: Prowl.Runtime.Test.ComponentTests.GetComponentByIdentifier_FindsComponent_AndRejectsEmpty()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetComponentByIdentifier_FindsComponent_AndRejectsEmpty
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 348
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void GetComponentByIdentifier_FindsComponent_AndRejectsEmpty()
+    content.vb: >-
+      <Fact>
+
+      Public Sub GetComponentByIdentifier_FindsComponent_AndRejectsEmpty()
+  overload: Prowl.Runtime.Test.ComponentTests.GetComponentByIdentifier_FindsComponent_AndRejectsEmpty*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.GetComponents_NoArgs_ReturnsAllComponents
+  commentId: M:Prowl.Runtime.Test.ComponentTests.GetComponents_NoArgs_ReturnsAllComponents
+  id: GetComponents_NoArgs_ReturnsAllComponents
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: GetComponents_NoArgs_ReturnsAllComponents()
+  nameWithType: ComponentTests.GetComponents_NoArgs_ReturnsAllComponents()
+  fullName: Prowl.Runtime.Test.ComponentTests.GetComponents_NoArgs_ReturnsAllComponents()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetComponents_NoArgs_ReturnsAllComponents
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 358
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void GetComponents_NoArgs_ReturnsAllComponents()
+    content.vb: >-
+      <Fact>
+
+      Public Sub GetComponents_NoArgs_ReturnsAllComponents()
+  overload: Prowl.Runtime.Test.ComponentTests.GetComponents_NoArgs_ReturnsAllComponents*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.RemoveComponent_RemovesInstance
+  commentId: M:Prowl.Runtime.Test.ComponentTests.RemoveComponent_RemovesInstance
+  id: RemoveComponent_RemovesInstance
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: RemoveComponent_RemovesInstance()
+  nameWithType: ComponentTests.RemoveComponent_RemovesInstance()
+  fullName: Prowl.Runtime.Test.ComponentTests.RemoveComponent_RemovesInstance()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RemoveComponent_RemovesInstance
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 370
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RemoveComponent_RemovesInstance()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RemoveComponent_RemovesInstance()
+  overload: Prowl.Runtime.Test.ComponentTests.RemoveComponent_RemovesInstance*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.RemoveComponent_Generic_RemovesOnlyThatInstance
+  commentId: M:Prowl.Runtime.Test.ComponentTests.RemoveComponent_Generic_RemovesOnlyThatInstance
+  id: RemoveComponent_Generic_RemovesOnlyThatInstance
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: RemoveComponent_Generic_RemovesOnlyThatInstance()
+  nameWithType: ComponentTests.RemoveComponent_Generic_RemovesOnlyThatInstance()
+  fullName: Prowl.Runtime.Test.ComponentTests.RemoveComponent_Generic_RemovesOnlyThatInstance()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RemoveComponent_Generic_RemovesOnlyThatInstance
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 382
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RemoveComponent_Generic_RemovesOnlyThatInstance()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RemoveComponent_Generic_RemovesOnlyThatInstance()
+  overload: Prowl.Runtime.Test.ComponentTests.RemoveComponent_Generic_RemovesOnlyThatInstance*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.RemoveComponent_ByGuid_RemovesInstance
+  commentId: M:Prowl.Runtime.Test.ComponentTests.RemoveComponent_ByGuid_RemovesInstance
+  id: RemoveComponent_ByGuid_RemovesInstance
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: RemoveComponent_ByGuid_RemovesInstance()
+  nameWithType: ComponentTests.RemoveComponent_ByGuid_RemovesInstance()
+  fullName: Prowl.Runtime.Test.ComponentTests.RemoveComponent_ByGuid_RemovesInstance()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RemoveComponent_ByGuid_RemovesInstance
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 396
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RemoveComponent_ByGuid_RemovesInstance()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RemoveComponent_ByGuid_RemovesInstance()
+  overload: Prowl.Runtime.Test.ComponentTests.RemoveComponent_ByGuid_RemovesInstance*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.RemoveAll_RemovesEveryInstanceOfType
+  commentId: M:Prowl.Runtime.Test.ComponentTests.RemoveAll_RemovesEveryInstanceOfType
+  id: RemoveAll_RemovesEveryInstanceOfType
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: RemoveAll_RemovesEveryInstanceOfType()
+  nameWithType: ComponentTests.RemoveAll_RemovesEveryInstanceOfType()
+  fullName: Prowl.Runtime.Test.ComponentTests.RemoveAll_RemovesEveryInstanceOfType()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RemoveAll_RemovesEveryInstanceOfType
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 407
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RemoveAll_RemovesEveryInstanceOfType()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RemoveAll_RemovesEveryInstanceOfType()
+  overload: Prowl.Runtime.Test.ComponentTests.RemoveAll_RemovesEveryInstanceOfType*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.RemoveComponent_LeavesOthersIntact
+  commentId: M:Prowl.Runtime.Test.ComponentTests.RemoveComponent_LeavesOthersIntact
+  id: RemoveComponent_LeavesOthersIntact
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: RemoveComponent_LeavesOthersIntact()
+  nameWithType: ComponentTests.RemoveComponent_LeavesOthersIntact()
+  fullName: Prowl.Runtime.Test.ComponentTests.RemoveComponent_LeavesOthersIntact()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RemoveComponent_LeavesOthersIntact
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 421
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RemoveComponent_LeavesOthersIntact()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RemoveComponent_LeavesOthersIntact()
+  overload: Prowl.Runtime.Test.ComponentTests.RemoveComponent_LeavesOthersIntact*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.RequireComponent_AddsDependency
+  commentId: M:Prowl.Runtime.Test.ComponentTests.RequireComponent_AddsDependency
+  id: RequireComponent_AddsDependency
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: RequireComponent_AddsDependency()
+  nameWithType: ComponentTests.RequireComponent_AddsDependency()
+  fullName: Prowl.Runtime.Test.ComponentTests.RequireComponent_AddsDependency()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RequireComponent_AddsDependency
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 436
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RequireComponent_AddsDependency()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RequireComponent_AddsDependency()
+  overload: Prowl.Runtime.Test.ComponentTests.RequireComponent_AddsDependency*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.RequireComponent_DoesNotDuplicate_WhenDependencyAlreadyPresent
+  commentId: M:Prowl.Runtime.Test.ComponentTests.RequireComponent_DoesNotDuplicate_WhenDependencyAlreadyPresent
+  id: RequireComponent_DoesNotDuplicate_WhenDependencyAlreadyPresent
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: RequireComponent_DoesNotDuplicate_WhenDependencyAlreadyPresent()
+  nameWithType: ComponentTests.RequireComponent_DoesNotDuplicate_WhenDependencyAlreadyPresent()
+  fullName: Prowl.Runtime.Test.ComponentTests.RequireComponent_DoesNotDuplicate_WhenDependencyAlreadyPresent()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RequireComponent_DoesNotDuplicate_WhenDependencyAlreadyPresent
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 447
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RequireComponent_DoesNotDuplicate_WhenDependencyAlreadyPresent()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RequireComponent_DoesNotDuplicate_WhenDependencyAlreadyPresent()
+  overload: Prowl.Runtime.Test.ComponentTests.RequireComponent_DoesNotDuplicate_WhenDependencyAlreadyPresent*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.RequireComponent_Chain_AddsTransitiveDependencies
+  commentId: M:Prowl.Runtime.Test.ComponentTests.RequireComponent_Chain_AddsTransitiveDependencies
+  id: RequireComponent_Chain_AddsTransitiveDependencies
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: RequireComponent_Chain_AddsTransitiveDependencies()
+  nameWithType: ComponentTests.RequireComponent_Chain_AddsTransitiveDependencies()
+  fullName: Prowl.Runtime.Test.ComponentTests.RequireComponent_Chain_AddsTransitiveDependencies()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RequireComponent_Chain_AddsTransitiveDependencies
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 460
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RequireComponent_Chain_AddsTransitiveDependencies()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RequireComponent_Chain_AddsTransitiveDependencies()
+  overload: Prowl.Runtime.Test.ComponentTests.RequireComponent_Chain_AddsTransitiveDependencies*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.RequireComponent_Multiple_AddsAllDependencies
+  commentId: M:Prowl.Runtime.Test.ComponentTests.RequireComponent_Multiple_AddsAllDependencies
+  id: RequireComponent_Multiple_AddsAllDependencies
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: RequireComponent_Multiple_AddsAllDependencies()
+  nameWithType: ComponentTests.RequireComponent_Multiple_AddsAllDependencies()
+  fullName: Prowl.Runtime.Test.ComponentTests.RequireComponent_Multiple_AddsAllDependencies()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RequireComponent_Multiple_AddsAllDependencies
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 472
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RequireComponent_Multiple_AddsAllDependencies()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RequireComponent_Multiple_AddsAllDependencies()
+  overload: Prowl.Runtime.Test.ComponentTests.RequireComponent_Multiple_AddsAllDependencies*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.RemoveComponent_RequiredByAnother_IsBlocked
+  commentId: M:Prowl.Runtime.Test.ComponentTests.RemoveComponent_RequiredByAnother_IsBlocked
+  id: RemoveComponent_RequiredByAnother_IsBlocked
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: RemoveComponent_RequiredByAnother_IsBlocked()
+  nameWithType: ComponentTests.RemoveComponent_RequiredByAnother_IsBlocked()
+  fullName: Prowl.Runtime.Test.ComponentTests.RemoveComponent_RequiredByAnother_IsBlocked()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RemoveComponent_RequiredByAnother_IsBlocked
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 484
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RemoveComponent_RequiredByAnother_IsBlocked()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RemoveComponent_RequiredByAnother_IsBlocked()
+  overload: Prowl.Runtime.Test.ComponentTests.RemoveComponent_RequiredByAnother_IsBlocked*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.GetComponents_TolerartesAddDuringEnumeration
+  commentId: M:Prowl.Runtime.Test.ComponentTests.GetComponents_TolerartesAddDuringEnumeration
+  id: GetComponents_TolerartesAddDuringEnumeration
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: GetComponents_TolerartesAddDuringEnumeration()
+  nameWithType: ComponentTests.GetComponents_TolerartesAddDuringEnumeration()
+  fullName: Prowl.Runtime.Test.ComponentTests.GetComponents_TolerartesAddDuringEnumeration()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetComponents_TolerartesAddDuringEnumeration
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 501
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void GetComponents_TolerartesAddDuringEnumeration()
+    content.vb: >-
+      <Fact>
+
+      Public Sub GetComponents_TolerartesAddDuringEnumeration()
+  overload: Prowl.Runtime.Test.ComponentTests.GetComponents_TolerartesAddDuringEnumeration*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.GetComponents_TolerartesRemoveDuringEnumeration
+  commentId: M:Prowl.Runtime.Test.ComponentTests.GetComponents_TolerartesRemoveDuringEnumeration
+  id: GetComponents_TolerartesRemoveDuringEnumeration
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: GetComponents_TolerartesRemoveDuringEnumeration()
+  nameWithType: ComponentTests.GetComponents_TolerartesRemoveDuringEnumeration()
+  fullName: Prowl.Runtime.Test.ComponentTests.GetComponents_TolerartesRemoveDuringEnumeration()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetComponents_TolerartesRemoveDuringEnumeration
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 519
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void GetComponents_TolerartesRemoveDuringEnumeration()
+    content.vb: >-
+      <Fact>
+
+      Public Sub GetComponents_TolerartesRemoveDuringEnumeration()
+  overload: Prowl.Runtime.Test.ComponentTests.GetComponents_TolerartesRemoveDuringEnumeration*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.RemoveComponent_FromWrongGameObject_DoesNothing
+  commentId: M:Prowl.Runtime.Test.ComponentTests.RemoveComponent_FromWrongGameObject_DoesNothing
+  id: RemoveComponent_FromWrongGameObject_DoesNothing
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: RemoveComponent_FromWrongGameObject_DoesNothing()
+  nameWithType: ComponentTests.RemoveComponent_FromWrongGameObject_DoesNothing()
+  fullName: Prowl.Runtime.Test.ComponentTests.RemoveComponent_FromWrongGameObject_DoesNothing()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RemoveComponent_FromWrongGameObject_DoesNothing
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 534
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RemoveComponent_FromWrongGameObject_DoesNothing()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RemoveComponent_FromWrongGameObject_DoesNothing()
+  overload: Prowl.Runtime.Test.ComponentTests.RemoveComponent_FromWrongGameObject_DoesNothing*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_Instance_MovesItOffItsPreviousGameObject
+  commentId: M:Prowl.Runtime.Test.ComponentTests.AddComponent_Instance_MovesItOffItsPreviousGameObject
+  id: AddComponent_Instance_MovesItOffItsPreviousGameObject
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: AddComponent_Instance_MovesItOffItsPreviousGameObject()
+  nameWithType: ComponentTests.AddComponent_Instance_MovesItOffItsPreviousGameObject()
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_Instance_MovesItOffItsPreviousGameObject()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddComponent_Instance_MovesItOffItsPreviousGameObject
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 552
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AddComponent_Instance_MovesItOffItsPreviousGameObject()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AddComponent_Instance_MovesItOffItsPreviousGameObject()
+  overload: Prowl.Runtime.Test.ComponentTests.AddComponent_Instance_MovesItOffItsPreviousGameObject*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_Instance_SurvivesDisposalOfThePreviousGameObject
+  commentId: M:Prowl.Runtime.Test.ComponentTests.AddComponent_Instance_SurvivesDisposalOfThePreviousGameObject
+  id: AddComponent_Instance_SurvivesDisposalOfThePreviousGameObject
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: AddComponent_Instance_SurvivesDisposalOfThePreviousGameObject()
+  nameWithType: ComponentTests.AddComponent_Instance_SurvivesDisposalOfThePreviousGameObject()
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_Instance_SurvivesDisposalOfThePreviousGameObject()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddComponent_Instance_SurvivesDisposalOfThePreviousGameObject
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 566
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AddComponent_Instance_SurvivesDisposalOfThePreviousGameObject()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AddComponent_Instance_SurvivesDisposalOfThePreviousGameObject()
+  overload: Prowl.Runtime.Test.ComponentTests.AddComponent_Instance_SurvivesDisposalOfThePreviousGameObject*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ComponentTests.GetComponents_ReturnsInsertionOrder
+  commentId: M:Prowl.Runtime.Test.ComponentTests.GetComponents_ReturnsInsertionOrder
+  id: GetComponents_ReturnsInsertionOrder
+  parent: Prowl.Runtime.Test.ComponentTests
+  langs:
+  - csharp
+  - vb
+  name: GetComponents_ReturnsInsertionOrder()
+  nameWithType: ComponentTests.GetComponents_ReturnsInsertionOrder()
+  fullName: Prowl.Runtime.Test.ComponentTests.GetComponents_ReturnsInsertionOrder()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ComponentTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetComponents_ReturnsInsertionOrder
+    path: ../Prowl/Prowl.Runtime.Test/ComponentTests.cs
+    startLine: 585
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void GetComponents_ReturnsInsertionOrder()
+    content.vb: >-
+      <Fact>
+
+      Public Sub GetComponents_ReturnsInsertionOrder()
+  overload: Prowl.Runtime.Test.ComponentTests.GetComponents_ReturnsInsertionOrder*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+references:
+- uid: Prowl.Runtime.Test
+  commentId: N:Prowl.Runtime.Test
+  name: Prowl.Runtime.Test
+  nameWithType: Prowl.Runtime.Test
+  fullName: Prowl.Runtime.Test
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.Runtime.Test.RuntimeTestBase
+  commentId: T:Prowl.Runtime.Test.RuntimeTestBase
+  parent: Prowl.Runtime.Test
+  href: Prowl.Runtime.Test.RuntimeTestBase.html
+  name: RuntimeTestBase
+  nameWithType: RuntimeTestBase
+  fullName: Prowl.Runtime.Test.RuntimeTestBase
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  commentId: P:Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_FixedDeltaTime
+  name: FixedDeltaTime
+  nameWithType: RuntimeTestBase.FixedDeltaTime
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+- uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  name: EditMode()
+  nameWithType: RuntimeTestBase.EditMode()
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.EditMode()
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+    name: EditMode
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+    name: EditMode
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  name: CreateScene(bool)
+  nameWithType: RuntimeTestBase.CreateScene(bool)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(bool)
+  nameWithType.vb: RuntimeTestBase.CreateScene(Boolean)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(Boolean)
+  name.vb: CreateScene(Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+    name: CreateScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+    name: CreateScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  name: CreateGameObject(string)
+  nameWithType: RuntimeTestBase.CreateGameObject(string)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(string)
+  nameWithType.vb: RuntimeTestBase.CreateGameObject(String)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(String)
+  name.vb: CreateGameObject(String)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+    name: CreateGameObject
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+    name: CreateGameObject
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Tick(Scene, int)
+  nameWithType: RuntimeTestBase.Tick(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.Tick(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Tick(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Update(Scene, int)
+  nameWithType: RuntimeTestBase.Update(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.Update(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Update(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Update
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Update
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: StepPhysics(Scene, int)
+  nameWithType: RuntimeTestBase.StepPhysics(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.StepPhysics(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: StepPhysics(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: StepPhysics
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: StepPhysics
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  name: ApplyFastBakeSettings(NavMeshSurface)
+  nameWithType: RuntimeTestBase.ApplyFastBakeSettings(NavMeshSurface)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+    name: ApplyFastBakeSettings
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  - name: (
+  - uid: Prowl.Runtime.NavMeshSurface
+    name: NavMeshSurface
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+    name: ApplyFastBakeSettings
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  - name: (
+  - uid: Prowl.Runtime.NavMeshSurface
+    name: NavMeshSurface
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  name: CreateFloorScene(float, bool)
+  nameWithType: RuntimeTestBase.CreateFloorScene(float, bool)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(float, bool)
+  nameWithType.vb: RuntimeTestBase.CreateFloorScene(Single, Boolean)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(Single, Boolean)
+  name.vb: CreateFloorScene(Single, Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+    name: CreateFloorScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  - name: (
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+    name: CreateFloorScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  - name: (
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  name: TickUntil(Scene, Func<bool>, int)
+  nameWithType: RuntimeTestBase.TickUntil(Scene, Func<bool>, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene, System.Func<bool>, int)
+  nameWithType.vb: RuntimeTestBase.TickUntil(Scene, Func(Of Boolean), Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene, System.Func(Of Boolean), Integer)
+  name.vb: TickUntil(Scene, Func(Of Boolean), Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+    name: TickUntil
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+    name: TickUntil
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  name: Dispose()
+  nameWithType: RuntimeTestBase.Dispose()
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Dispose()
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+    name: Dispose
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+    name: Dispose
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Runtime.Test.ComponentTests.MaterialRenderer_ListSlots_GrowByOneAndRejectGaps*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.MaterialRenderer_ListSlots_GrowByOneAndRejectGaps
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_MaterialRenderer_ListSlots_GrowByOneAndRejectGaps
+  name: MaterialRenderer_ListSlots_GrowByOneAndRejectGaps
+  nameWithType: ComponentTests.MaterialRenderer_ListSlots_GrowByOneAndRejectGaps
+  fullName: Prowl.Runtime.Test.ComponentTests.MaterialRenderer_ListSlots_GrowByOneAndRejectGaps
+- uid: Prowl.Runtime.Test.ComponentTests.MaterialRenderer_SingleSlot_OnlyAcceptsSlotZero*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.MaterialRenderer_SingleSlot_OnlyAcceptsSlotZero
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_MaterialRenderer_SingleSlot_OnlyAcceptsSlotZero
+  name: MaterialRenderer_SingleSlot_OnlyAcceptsSlotZero
+  nameWithType: ComponentTests.MaterialRenderer_SingleSlot_OnlyAcceptsSlotZero
+  fullName: Prowl.Runtime.Test.ComponentTests.MaterialRenderer_SingleSlot_OnlyAcceptsSlotZero
+- uid: Prowl.Runtime.Test.ComponentTests.ColorTint_WritesTheRendererColor*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.ColorTint_WritesTheRendererColor
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_ColorTint_WritesTheRendererColor
+  name: ColorTint_WritesTheRendererColor
+  nameWithType: ComponentTests.ColorTint_WritesTheRendererColor
+  fullName: Prowl.Runtime.Test.ComponentTests.ColorTint_WritesTheRendererColor
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_SelfRequirement_AddsOnceAndTerminates*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.AddComponent_SelfRequirement_AddsOnceAndTerminates
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_AddComponent_SelfRequirement_AddsOnceAndTerminates
+  name: AddComponent_SelfRequirement_AddsOnceAndTerminates
+  nameWithType: ComponentTests.AddComponent_SelfRequirement_AddsOnceAndTerminates
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_SelfRequirement_AddsOnceAndTerminates
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_MutualRequirement_AddsBothAndTerminates*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.AddComponent_MutualRequirement_AddsBothAndTerminates
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_AddComponent_MutualRequirement_AddsBothAndTerminates
+  name: AddComponent_MutualRequirement_AddsBothAndTerminates
+  nameWithType: ComponentTests.AddComponent_MutualRequirement_AddsBothAndTerminates
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_MutualRequirement_AddsBothAndTerminates
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_RequirementRing_AddsEachOnceAndTerminates*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.AddComponent_RequirementRing_AddsEachOnceAndTerminates
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_AddComponent_RequirementRing_AddsEachOnceAndTerminates
+  name: AddComponent_RequirementRing_AddsEachOnceAndTerminates
+  nameWithType: ComponentTests.AddComponent_RequirementRing_AddsEachOnceAndTerminates
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_RequirementRing_AddsEachOnceAndTerminates
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_WhoseConstructorThrows_ReturnsNullInsteadOfPropagating*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.AddComponent_WhoseConstructorThrows_ReturnsNullInsteadOfPropagating
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_AddComponent_WhoseConstructorThrows_ReturnsNullInsteadOfPropagating
+  name: AddComponent_WhoseConstructorThrows_ReturnsNullInsteadOfPropagating
+  nameWithType: ComponentTests.AddComponent_WhoseConstructorThrows_ReturnsNullInsteadOfPropagating
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_WhoseConstructorThrows_ReturnsNullInsteadOfPropagating
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_AfterAConstructorThrows_TheObjectStillWorks*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.AddComponent_AfterAConstructorThrows_TheObjectStillWorks
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_AddComponent_AfterAConstructorThrows_TheObjectStillWorks
+  name: AddComponent_AfterAConstructorThrows_TheObjectStillWorks
+  nameWithType: ComponentTests.AddComponent_AfterAConstructorThrows_TheObjectStillWorks
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_AfterAConstructorThrows_TheObjectStillWorks
+- uid: Prowl.Runtime.Test.ComponentTests.Cloning_WhenAComponentsConstructorThrows_SkipsItRatherThanFailing*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.Cloning_WhenAComponentsConstructorThrows_SkipsItRatherThanFailing
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_Cloning_WhenAComponentsConstructorThrows_SkipsItRatherThanFailing
+  name: Cloning_WhenAComponentsConstructorThrows_SkipsItRatherThanFailing
+  nameWithType: ComponentTests.Cloning_WhenAComponentsConstructorThrows_SkipsItRatherThanFailing
+  fullName: Prowl.Runtime.Test.ComponentTests.Cloning_WhenAComponentsConstructorThrows_SkipsItRatherThanFailing
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_WithoutAParameterlessConstructor_ReturnsNull*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.AddComponent_WithoutAParameterlessConstructor_ReturnsNull
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_AddComponent_WithoutAParameterlessConstructor_ReturnsNull
+  name: AddComponent_WithoutAParameterlessConstructor_ReturnsNull
+  nameWithType: ComponentTests.AddComponent_WithoutAParameterlessConstructor_ReturnsNull
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_WithoutAParameterlessConstructor_ReturnsNull
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_ReturnsInstance_WiredToGameObject*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.AddComponent_ReturnsInstance_WiredToGameObject
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_AddComponent_ReturnsInstance_WiredToGameObject
+  name: AddComponent_ReturnsInstance_WiredToGameObject
+  nameWithType: ComponentTests.AddComponent_ReturnsInstance_WiredToGameObject
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_ReturnsInstance_WiredToGameObject
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_NonMonoBehaviourType_ReturnsNull*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.AddComponent_NonMonoBehaviourType_ReturnsNull
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_AddComponent_NonMonoBehaviourType_ReturnsNull
+  name: AddComponent_NonMonoBehaviourType_ReturnsNull
+  nameWithType: ComponentTests.AddComponent_NonMonoBehaviourType_ReturnsNull
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_NonMonoBehaviourType_ReturnsNull
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_SameTypeTwice_CreatesTwoInstances*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.AddComponent_SameTypeTwice_CreatesTwoInstances
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_AddComponent_SameTypeTwice_CreatesTwoInstances
+  name: AddComponent_SameTypeTwice_CreatesTwoInstances
+  nameWithType: ComponentTests.AddComponent_SameTypeTwice_CreatesTwoInstances
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_SameTypeTwice_CreatesTwoInstances
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_DoesNotLeakToOtherGameObjects*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.AddComponent_DoesNotLeakToOtherGameObjects
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_AddComponent_DoesNotLeakToOtherGameObjects
+  name: AddComponent_DoesNotLeakToOtherGameObjects
+  nameWithType: ComponentTests.AddComponent_DoesNotLeakToOtherGameObjects
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_DoesNotLeakToOtherGameObjects
+- uid: Prowl.Runtime.Test.ComponentTests.GetComponent_ReturnsNull_WhenAbsent*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.GetComponent_ReturnsNull_WhenAbsent
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_GetComponent_ReturnsNull_WhenAbsent
+  name: GetComponent_ReturnsNull_WhenAbsent
+  nameWithType: ComponentTests.GetComponent_ReturnsNull_WhenAbsent
+  fullName: Prowl.Runtime.Test.ComponentTests.GetComponent_ReturnsNull_WhenAbsent
+- uid: Prowl.Runtime.Test.ComponentTests.GetComponent_ByBaseType_ReturnsDerivedInstance*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.GetComponent_ByBaseType_ReturnsDerivedInstance
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_GetComponent_ByBaseType_ReturnsDerivedInstance
+  name: GetComponent_ByBaseType_ReturnsDerivedInstance
+  nameWithType: ComponentTests.GetComponent_ByBaseType_ReturnsDerivedInstance
+  fullName: Prowl.Runtime.Test.ComponentTests.GetComponent_ByBaseType_ReturnsDerivedInstance
+- uid: Prowl.Runtime.Test.ComponentTests.GetComponents_ByBaseType_IncludesDerived*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.GetComponents_ByBaseType_IncludesDerived
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_GetComponents_ByBaseType_IncludesDerived
+  name: GetComponents_ByBaseType_IncludesDerived
+  nameWithType: ComponentTests.GetComponents_ByBaseType_IncludesDerived
+  fullName: Prowl.Runtime.Test.ComponentTests.GetComponents_ByBaseType_IncludesDerived
+- uid: Prowl.Runtime.Test.ComponentTests.GetComponent_MultipleSameType_ReturnsFirstAdded*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.GetComponent_MultipleSameType_ReturnsFirstAdded
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_GetComponent_MultipleSameType_ReturnsFirstAdded
+  name: GetComponent_MultipleSameType_ReturnsFirstAdded
+  nameWithType: ComponentTests.GetComponent_MultipleSameType_ReturnsFirstAdded
+  fullName: Prowl.Runtime.Test.ComponentTests.GetComponent_MultipleSameType_ReturnsFirstAdded
+- uid: Prowl.Runtime.Test.ComponentTests.TryGetComponent_ReflectsPresence*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.TryGetComponent_ReflectsPresence
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_TryGetComponent_ReflectsPresence
+  name: TryGetComponent_ReflectsPresence
+  nameWithType: ComponentTests.TryGetComponent_ReflectsPresence
+  fullName: Prowl.Runtime.Test.ComponentTests.TryGetComponent_ReflectsPresence
+- uid: Prowl.Runtime.Test.ComponentTests.GetComponentByIdentifier_FindsComponent_AndRejectsEmpty*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.GetComponentByIdentifier_FindsComponent_AndRejectsEmpty
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_GetComponentByIdentifier_FindsComponent_AndRejectsEmpty
+  name: GetComponentByIdentifier_FindsComponent_AndRejectsEmpty
+  nameWithType: ComponentTests.GetComponentByIdentifier_FindsComponent_AndRejectsEmpty
+  fullName: Prowl.Runtime.Test.ComponentTests.GetComponentByIdentifier_FindsComponent_AndRejectsEmpty
+- uid: Prowl.Runtime.Test.ComponentTests.GetComponents_NoArgs_ReturnsAllComponents*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.GetComponents_NoArgs_ReturnsAllComponents
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_GetComponents_NoArgs_ReturnsAllComponents
+  name: GetComponents_NoArgs_ReturnsAllComponents
+  nameWithType: ComponentTests.GetComponents_NoArgs_ReturnsAllComponents
+  fullName: Prowl.Runtime.Test.ComponentTests.GetComponents_NoArgs_ReturnsAllComponents
+- uid: Prowl.Runtime.Test.ComponentTests.RemoveComponent_RemovesInstance*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.RemoveComponent_RemovesInstance
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_RemoveComponent_RemovesInstance
+  name: RemoveComponent_RemovesInstance
+  nameWithType: ComponentTests.RemoveComponent_RemovesInstance
+  fullName: Prowl.Runtime.Test.ComponentTests.RemoveComponent_RemovesInstance
+- uid: Prowl.Runtime.Test.ComponentTests.RemoveComponent_Generic_RemovesOnlyThatInstance*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.RemoveComponent_Generic_RemovesOnlyThatInstance
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_RemoveComponent_Generic_RemovesOnlyThatInstance
+  name: RemoveComponent_Generic_RemovesOnlyThatInstance
+  nameWithType: ComponentTests.RemoveComponent_Generic_RemovesOnlyThatInstance
+  fullName: Prowl.Runtime.Test.ComponentTests.RemoveComponent_Generic_RemovesOnlyThatInstance
+- uid: Prowl.Runtime.Test.ComponentTests.RemoveComponent_ByGuid_RemovesInstance*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.RemoveComponent_ByGuid_RemovesInstance
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_RemoveComponent_ByGuid_RemovesInstance
+  name: RemoveComponent_ByGuid_RemovesInstance
+  nameWithType: ComponentTests.RemoveComponent_ByGuid_RemovesInstance
+  fullName: Prowl.Runtime.Test.ComponentTests.RemoveComponent_ByGuid_RemovesInstance
+- uid: Prowl.Runtime.Test.ComponentTests.RemoveAll_RemovesEveryInstanceOfType*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.RemoveAll_RemovesEveryInstanceOfType
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_RemoveAll_RemovesEveryInstanceOfType
+  name: RemoveAll_RemovesEveryInstanceOfType
+  nameWithType: ComponentTests.RemoveAll_RemovesEveryInstanceOfType
+  fullName: Prowl.Runtime.Test.ComponentTests.RemoveAll_RemovesEveryInstanceOfType
+- uid: Prowl.Runtime.Test.ComponentTests.RemoveComponent_LeavesOthersIntact*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.RemoveComponent_LeavesOthersIntact
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_RemoveComponent_LeavesOthersIntact
+  name: RemoveComponent_LeavesOthersIntact
+  nameWithType: ComponentTests.RemoveComponent_LeavesOthersIntact
+  fullName: Prowl.Runtime.Test.ComponentTests.RemoveComponent_LeavesOthersIntact
+- uid: Prowl.Runtime.Test.ComponentTests.RequireComponent_AddsDependency*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.RequireComponent_AddsDependency
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_RequireComponent_AddsDependency
+  name: RequireComponent_AddsDependency
+  nameWithType: ComponentTests.RequireComponent_AddsDependency
+  fullName: Prowl.Runtime.Test.ComponentTests.RequireComponent_AddsDependency
+- uid: Prowl.Runtime.Test.ComponentTests.RequireComponent_DoesNotDuplicate_WhenDependencyAlreadyPresent*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.RequireComponent_DoesNotDuplicate_WhenDependencyAlreadyPresent
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_RequireComponent_DoesNotDuplicate_WhenDependencyAlreadyPresent
+  name: RequireComponent_DoesNotDuplicate_WhenDependencyAlreadyPresent
+  nameWithType: ComponentTests.RequireComponent_DoesNotDuplicate_WhenDependencyAlreadyPresent
+  fullName: Prowl.Runtime.Test.ComponentTests.RequireComponent_DoesNotDuplicate_WhenDependencyAlreadyPresent
+- uid: Prowl.Runtime.Test.ComponentTests.RequireComponent_Chain_AddsTransitiveDependencies*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.RequireComponent_Chain_AddsTransitiveDependencies
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_RequireComponent_Chain_AddsTransitiveDependencies
+  name: RequireComponent_Chain_AddsTransitiveDependencies
+  nameWithType: ComponentTests.RequireComponent_Chain_AddsTransitiveDependencies
+  fullName: Prowl.Runtime.Test.ComponentTests.RequireComponent_Chain_AddsTransitiveDependencies
+- uid: Prowl.Runtime.Test.ComponentTests.RequireComponent_Multiple_AddsAllDependencies*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.RequireComponent_Multiple_AddsAllDependencies
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_RequireComponent_Multiple_AddsAllDependencies
+  name: RequireComponent_Multiple_AddsAllDependencies
+  nameWithType: ComponentTests.RequireComponent_Multiple_AddsAllDependencies
+  fullName: Prowl.Runtime.Test.ComponentTests.RequireComponent_Multiple_AddsAllDependencies
+- uid: Prowl.Runtime.Test.ComponentTests.RemoveComponent_RequiredByAnother_IsBlocked*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.RemoveComponent_RequiredByAnother_IsBlocked
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_RemoveComponent_RequiredByAnother_IsBlocked
+  name: RemoveComponent_RequiredByAnother_IsBlocked
+  nameWithType: ComponentTests.RemoveComponent_RequiredByAnother_IsBlocked
+  fullName: Prowl.Runtime.Test.ComponentTests.RemoveComponent_RequiredByAnother_IsBlocked
+- uid: Prowl.Runtime.Test.ComponentTests.GetComponents_TolerartesAddDuringEnumeration*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.GetComponents_TolerartesAddDuringEnumeration
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_GetComponents_TolerartesAddDuringEnumeration
+  name: GetComponents_TolerartesAddDuringEnumeration
+  nameWithType: ComponentTests.GetComponents_TolerartesAddDuringEnumeration
+  fullName: Prowl.Runtime.Test.ComponentTests.GetComponents_TolerartesAddDuringEnumeration
+- uid: Prowl.Runtime.Test.ComponentTests.GetComponents_TolerartesRemoveDuringEnumeration*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.GetComponents_TolerartesRemoveDuringEnumeration
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_GetComponents_TolerartesRemoveDuringEnumeration
+  name: GetComponents_TolerartesRemoveDuringEnumeration
+  nameWithType: ComponentTests.GetComponents_TolerartesRemoveDuringEnumeration
+  fullName: Prowl.Runtime.Test.ComponentTests.GetComponents_TolerartesRemoveDuringEnumeration
+- uid: Prowl.Runtime.Test.ComponentTests.RemoveComponent_FromWrongGameObject_DoesNothing*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.RemoveComponent_FromWrongGameObject_DoesNothing
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_RemoveComponent_FromWrongGameObject_DoesNothing
+  name: RemoveComponent_FromWrongGameObject_DoesNothing
+  nameWithType: ComponentTests.RemoveComponent_FromWrongGameObject_DoesNothing
+  fullName: Prowl.Runtime.Test.ComponentTests.RemoveComponent_FromWrongGameObject_DoesNothing
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_Instance_MovesItOffItsPreviousGameObject*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.AddComponent_Instance_MovesItOffItsPreviousGameObject
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_AddComponent_Instance_MovesItOffItsPreviousGameObject
+  name: AddComponent_Instance_MovesItOffItsPreviousGameObject
+  nameWithType: ComponentTests.AddComponent_Instance_MovesItOffItsPreviousGameObject
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_Instance_MovesItOffItsPreviousGameObject
+- uid: Prowl.Runtime.Test.ComponentTests.AddComponent_Instance_SurvivesDisposalOfThePreviousGameObject*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.AddComponent_Instance_SurvivesDisposalOfThePreviousGameObject
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_AddComponent_Instance_SurvivesDisposalOfThePreviousGameObject
+  name: AddComponent_Instance_SurvivesDisposalOfThePreviousGameObject
+  nameWithType: ComponentTests.AddComponent_Instance_SurvivesDisposalOfThePreviousGameObject
+  fullName: Prowl.Runtime.Test.ComponentTests.AddComponent_Instance_SurvivesDisposalOfThePreviousGameObject
+- uid: Prowl.Runtime.Test.ComponentTests.GetComponents_ReturnsInsertionOrder*
+  commentId: Overload:Prowl.Runtime.Test.ComponentTests.GetComponents_ReturnsInsertionOrder
+  href: Prowl.Runtime.Test.ComponentTests.html#Prowl_Runtime_Test_ComponentTests_GetComponents_ReturnsInsertionOrder
+  name: GetComponents_ReturnsInsertionOrder
+  nameWithType: ComponentTests.GetComponents_ReturnsInsertionOrder
+  fullName: Prowl.Runtime.Test.ComponentTests.GetComponents_ReturnsInsertionOrder

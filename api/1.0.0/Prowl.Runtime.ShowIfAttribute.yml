@@ -5,10 +5,8 @@ items:
   id: ShowIfAttribute
   parent: Prowl.Runtime
   children:
-  - Prowl.Runtime.ShowIfAttribute.#ctor(System.String,System.Boolean)
-  - Prowl.Runtime.ShowIfAttribute.AttribType
-  - Prowl.Runtime.ShowIfAttribute.inverted
-  - Prowl.Runtime.ShowIfAttribute.propertyName
+  - Prowl.Runtime.ShowIfAttribute.#ctor(System.String)
+  - Prowl.Runtime.ShowIfAttribute.ConditionMember
   langs:
   - csharp
   - vb
@@ -18,29 +16,29 @@ items:
   type: Class
   source:
     remote:
-      path: Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      path: Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: ShowIfAttribute
-    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-    startLine: 42
+    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+    startLine: 54
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: Only shows the field when the named bool field/property is true.
+  example: []
   syntax:
     content: >-
-      [AttributeUsage(AttributeTargets.Property|AttributeTargets.Field, AllowMultiple = false)]
+      [AttributeUsage(AttributeTargets.Field)]
 
-      public class ShowIfAttribute : Attribute, InspectorUIAttribute
+      public class ShowIfAttribute : Attribute
     content.vb: >-
-      <AttributeUsage(AttributeTargets.PropertyOrAttributeTargets.Field, AllowMultiple:=False)>
+      <AttributeUsage(AttributeTargets.Field)>
 
-      Public Class ShowIfAttribute Inherits Attribute Implements InspectorUIAttribute
+      Public Class ShowIfAttribute Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
-  implements:
-  - Prowl.Runtime.InspectorUIAttribute
   inheritedMembers:
   - System.Attribute.Equals(System.Object)
   - System.Attribute.GetCustomAttribute(System.Reflection.Assembly,System.Type)
@@ -91,153 +89,86 @@ items:
     ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
     arguments:
     - type: System.AttributeTargets
-      value: 384
-    namedArguments:
-    - name: AllowMultiple
-      type: System.Boolean
-      value: false
-- uid: Prowl.Runtime.ShowIfAttribute.#ctor(System.String,System.Boolean)
-  commentId: M:Prowl.Runtime.ShowIfAttribute.#ctor(System.String,System.Boolean)
-  id: '#ctor(System.String,System.Boolean)'
+      value: 256
+- uid: Prowl.Runtime.ShowIfAttribute.ConditionMember
+  commentId: P:Prowl.Runtime.ShowIfAttribute.ConditionMember
+  id: ConditionMember
   parent: Prowl.Runtime.ShowIfAttribute
   langs:
   - csharp
   - vb
-  name: ShowIfAttribute(string, bool)
-  nameWithType: ShowIfAttribute.ShowIfAttribute(string, bool)
-  fullName: Prowl.Runtime.ShowIfAttribute.ShowIfAttribute(string, bool)
+  name: ConditionMember
+  nameWithType: ShowIfAttribute.ConditionMember
+  fullName: Prowl.Runtime.ShowIfAttribute.ConditionMember
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ConditionMember
+    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+    startLine: 57
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public string ConditionMember { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property ConditionMember As String
+  overload: Prowl.Runtime.ShowIfAttribute.ConditionMember*
+- uid: Prowl.Runtime.ShowIfAttribute.#ctor(System.String)
+  commentId: M:Prowl.Runtime.ShowIfAttribute.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: Prowl.Runtime.ShowIfAttribute
+  langs:
+  - csharp
+  - vb
+  name: ShowIfAttribute(string)
+  nameWithType: ShowIfAttribute.ShowIfAttribute(string)
+  fullName: Prowl.Runtime.ShowIfAttribute.ShowIfAttribute(string)
   type: Constructor
   source:
     remote:
-      path: Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      path: Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: .ctor
-    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-    startLine: 42
+    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+    startLine: 58
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public ShowIfAttribute(string propertyName, bool inverted = false)
+    content: public ShowIfAttribute(string conditionMember)
     parameters:
-    - id: propertyName
+    - id: conditionMember
       type: System.String
-    - id: inverted
-      type: System.Boolean
-    content.vb: Public Sub New(propertyName As String, inverted As Boolean = False)
+    content.vb: Public Sub New(conditionMember As String)
   overload: Prowl.Runtime.ShowIfAttribute.#ctor*
-  nameWithType.vb: ShowIfAttribute.New(String, Boolean)
-  fullName.vb: Prowl.Runtime.ShowIfAttribute.New(String, Boolean)
-  name.vb: New(String, Boolean)
-- uid: Prowl.Runtime.ShowIfAttribute.propertyName
-  commentId: F:Prowl.Runtime.ShowIfAttribute.propertyName
-  id: propertyName
-  parent: Prowl.Runtime.ShowIfAttribute
-  langs:
-  - csharp
-  - vb
-  name: propertyName
-  nameWithType: ShowIfAttribute.propertyName
-  fullName: Prowl.Runtime.ShowIfAttribute.propertyName
-  type: Field
-  source:
-    remote:
-      path: Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: propertyName
-    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-    startLine: 45
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public string propertyName
-    return:
-      type: System.String
-    content.vb: Public propertyName As String
-- uid: Prowl.Runtime.ShowIfAttribute.inverted
-  commentId: F:Prowl.Runtime.ShowIfAttribute.inverted
-  id: inverted
-  parent: Prowl.Runtime.ShowIfAttribute
-  langs:
-  - csharp
-  - vb
-  name: inverted
-  nameWithType: ShowIfAttribute.inverted
-  fullName: Prowl.Runtime.ShowIfAttribute.inverted
-  type: Field
-  source:
-    remote:
-      path: Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: inverted
-    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-    startLine: 46
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public bool inverted
-    return:
-      type: System.Boolean
-    content.vb: Public inverted As Boolean
-- uid: Prowl.Runtime.ShowIfAttribute.AttribType
-  commentId: M:Prowl.Runtime.ShowIfAttribute.AttribType
-  id: AttribType
-  parent: Prowl.Runtime.ShowIfAttribute
-  langs:
-  - csharp
-  - vb
-  name: AttribType()
-  nameWithType: ShowIfAttribute.AttribType()
-  fullName: Prowl.Runtime.ShowIfAttribute.AttribType()
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: AttribType
-    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-    startLine: 47
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  example: []
-  syntax:
-    content: public GuiAttribType AttribType()
-    return:
-      type: Prowl.Runtime.GuiAttribType
-    content.vb: Public Function AttribType() As GuiAttribType
-  overload: Prowl.Runtime.ShowIfAttribute.AttribType*
-  implements:
-  - Prowl.Runtime.InspectorUIAttribute.AttribType
+  nameWithType.vb: ShowIfAttribute.New(String)
+  fullName.vb: Prowl.Runtime.ShowIfAttribute.New(String)
+  name.vb: New(String)
 references:
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
-  href: Prowl.html
   name: Prowl.Runtime
   nameWithType: Prowl.Runtime
   fullName: Prowl.Runtime
   spec.csharp:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
   spec.vb:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -257,13 +188,6 @@ references:
   name: Attribute
   nameWithType: Attribute
   fullName: System.Attribute
-- uid: Prowl.Runtime.InspectorUIAttribute
-  commentId: T:Prowl.Runtime.InspectorUIAttribute
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.InspectorUIAttribute.html
-  name: InspectorUIAttribute
-  nameWithType: InspectorUIAttribute
-  fullName: Prowl.Runtime.InspectorUIAttribute
 - uid: System.Attribute.Equals(System.Object)
   commentId: M:System.Attribute.Equals(System.Object)
   parent: System.Attribute
@@ -2107,15 +2031,12 @@ references:
   name: RuntimeUtils
   nameWithType: RuntimeUtils
   fullName: Prowl.Runtime.RuntimeUtils
-- uid: Prowl.Runtime.ShowIfAttribute.#ctor*
-  commentId: Overload:Prowl.Runtime.ShowIfAttribute.#ctor
-  href: Prowl.Runtime.ShowIfAttribute.html#Prowl_Runtime_ShowIfAttribute__ctor_System_String_System_Boolean_
-  name: ShowIfAttribute
-  nameWithType: ShowIfAttribute.ShowIfAttribute
-  fullName: Prowl.Runtime.ShowIfAttribute.ShowIfAttribute
-  nameWithType.vb: ShowIfAttribute.New
-  fullName.vb: Prowl.Runtime.ShowIfAttribute.New
-  name.vb: New
+- uid: Prowl.Runtime.ShowIfAttribute.ConditionMember*
+  commentId: Overload:Prowl.Runtime.ShowIfAttribute.ConditionMember
+  href: Prowl.Runtime.ShowIfAttribute.html#Prowl_Runtime_ShowIfAttribute_ConditionMember
+  name: ConditionMember
+  nameWithType: ShowIfAttribute.ConditionMember
+  fullName: Prowl.Runtime.ShowIfAttribute.ConditionMember
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -2127,46 +2048,12 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
-- uid: Prowl.Runtime.ShowIfAttribute.AttribType*
-  commentId: Overload:Prowl.Runtime.ShowIfAttribute.AttribType
-  href: Prowl.Runtime.ShowIfAttribute.html#Prowl_Runtime_ShowIfAttribute_AttribType
-  name: AttribType
-  nameWithType: ShowIfAttribute.AttribType
-  fullName: Prowl.Runtime.ShowIfAttribute.AttribType
-- uid: Prowl.Runtime.InspectorUIAttribute.AttribType
-  commentId: M:Prowl.Runtime.InspectorUIAttribute.AttribType
-  parent: Prowl.Runtime.InspectorUIAttribute
-  href: Prowl.Runtime.InspectorUIAttribute.html#Prowl_Runtime_InspectorUIAttribute_AttribType
-  name: AttribType()
-  nameWithType: InspectorUIAttribute.AttribType()
-  fullName: Prowl.Runtime.InspectorUIAttribute.AttribType()
-  spec.csharp:
-  - uid: Prowl.Runtime.InspectorUIAttribute.AttribType
-    name: AttribType
-    href: Prowl.Runtime.InspectorUIAttribute.html#Prowl_Runtime_InspectorUIAttribute_AttribType
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.InspectorUIAttribute.AttribType
-    name: AttribType
-    href: Prowl.Runtime.InspectorUIAttribute.html#Prowl_Runtime_InspectorUIAttribute_AttribType
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.GuiAttribType
-  commentId: T:Prowl.Runtime.GuiAttribType
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.GuiAttribType.html
-  name: GuiAttribType
-  nameWithType: GuiAttribType
-  fullName: Prowl.Runtime.GuiAttribType
+- uid: Prowl.Runtime.ShowIfAttribute.#ctor*
+  commentId: Overload:Prowl.Runtime.ShowIfAttribute.#ctor
+  href: Prowl.Runtime.ShowIfAttribute.html#Prowl_Runtime_ShowIfAttribute__ctor_System_String_
+  name: ShowIfAttribute
+  nameWithType: ShowIfAttribute.ShowIfAttribute
+  fullName: Prowl.Runtime.ShowIfAttribute.ShowIfAttribute
+  nameWithType.vb: ShowIfAttribute.New
+  fullName.vb: Prowl.Runtime.ShowIfAttribute.New
+  name.vb: New

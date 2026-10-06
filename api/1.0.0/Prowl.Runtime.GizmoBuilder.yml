@@ -6,18 +6,23 @@ items:
   parent: Prowl.Runtime
   children:
   - Prowl.Runtime.GizmoBuilder.Clear
-  - Prowl.Runtime.GizmoBuilder.DrawArrow(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
-  - Prowl.Runtime.GizmoBuilder.DrawCube(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
-  - Prowl.Runtime.GizmoBuilder.DrawIcon(Prowl.Runtime.Texture2D,Prowl.Runtime.Vector3,System.Single,Prowl.Runtime.Color)
-  - Prowl.Runtime.GizmoBuilder.DrawLine(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
-  - Prowl.Runtime.GizmoBuilder.DrawSphere(Prowl.Runtime.Vector3,System.Single,Prowl.Runtime.Color,System.Int32)
-  - Prowl.Runtime.GizmoBuilder.DrawText(Prowl.Runtime.Font,System.String,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
-  - Prowl.Runtime.GizmoBuilder.DrawTriangle(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
-  - Prowl.Runtime.GizmoBuilder.DrawWireCone(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,System.Single,Prowl.Runtime.Color,System.Int32)
-  - Prowl.Runtime.GizmoBuilder.DrawWireCube(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
-  - Prowl.Runtime.GizmoBuilder.DrawWireSphere(Prowl.Runtime.Vector3,System.Single,Prowl.Runtime.Color,System.Int32)
+  - Prowl.Runtime.GizmoBuilder.DrawArrow(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Color)
+  - Prowl.Runtime.GizmoBuilder.DrawCircle(Prowl.Vector.Float3,Prowl.Vector.Float3,System.Single,Prowl.Vector.Color,System.Int32)
+  - Prowl.Runtime.GizmoBuilder.DrawCube(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Color)
+  - Prowl.Runtime.GizmoBuilder.DrawIcon(Prowl.Runtime.Resources.Texture2D,Prowl.Vector.Float3,System.Single,Prowl.Vector.Color)
+  - Prowl.Runtime.GizmoBuilder.DrawLine(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Color)
+  - Prowl.Runtime.GizmoBuilder.DrawSphere(Prowl.Vector.Float3,System.Single,Prowl.Vector.Color,System.Int32)
+  - Prowl.Runtime.GizmoBuilder.DrawTriangle(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Color)
+  - Prowl.Runtime.GizmoBuilder.DrawWireArc(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Float3,System.Single,System.Single,Prowl.Vector.Color,System.Int32)
+  - Prowl.Runtime.GizmoBuilder.DrawWireCapsule(Prowl.Vector.Float3,Prowl.Vector.Float3,System.Single,Prowl.Vector.Color,System.Int32)
+  - Prowl.Runtime.GizmoBuilder.DrawWireCone(Prowl.Vector.Float3,Prowl.Vector.Float3,System.Single,Prowl.Vector.Color,System.Int32)
+  - Prowl.Runtime.GizmoBuilder.DrawWireCube(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Color)
+  - Prowl.Runtime.GizmoBuilder.DrawWireCylinder(Prowl.Vector.Float3,Prowl.Vector.Quaternion,System.Single,System.Single,Prowl.Vector.Color,System.Int32)
+  - Prowl.Runtime.GizmoBuilder.DrawWireSphere(Prowl.Vector.Float3,System.Single,Prowl.Vector.Color,System.Int32)
   - Prowl.Runtime.GizmoBuilder.GetIcons
-  - Prowl.Runtime.GizmoBuilder.UpdateMesh(System.Boolean,Prowl.Runtime.Vector3)
+  - Prowl.Runtime.GizmoBuilder.PopMatrix
+  - Prowl.Runtime.GizmoBuilder.PushMatrix(Prowl.Vector.Float4x4)
+  - Prowl.Runtime.GizmoBuilder.UpdateMesh
   langs:
   - csharp
   - vb
@@ -28,11 +33,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: GizmoBuilder
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 206
+    startLine: 504
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -65,11 +70,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: Clear
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 244
+    startLine: 544
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -77,401 +82,576 @@ items:
     content: public void Clear()
     content.vb: Public Sub Clear()
   overload: Prowl.Runtime.GizmoBuilder.Clear*
-- uid: Prowl.Runtime.GizmoBuilder.DrawLine(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
-  commentId: M:Prowl.Runtime.GizmoBuilder.DrawLine(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
-  id: DrawLine(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
+- uid: Prowl.Runtime.GizmoBuilder.PushMatrix(Prowl.Vector.Float4x4)
+  commentId: M:Prowl.Runtime.GizmoBuilder.PushMatrix(Prowl.Vector.Float4x4)
+  id: PushMatrix(Prowl.Vector.Float4x4)
   parent: Prowl.Runtime.GizmoBuilder
   langs:
   - csharp
   - vb
-  name: DrawLine(Vector3, Vector3, Color)
-  nameWithType: GizmoBuilder.DrawLine(Vector3, Vector3, Color)
-  fullName: Prowl.Runtime.GizmoBuilder.DrawLine(Prowl.Runtime.Vector3, Prowl.Runtime.Vector3, Prowl.Runtime.Color)
+  name: PushMatrix(Float4x4)
+  nameWithType: GizmoBuilder.PushMatrix(Float4x4)
+  fullName: Prowl.Runtime.GizmoBuilder.PushMatrix(Prowl.Vector.Float4x4)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PushMatrix
+    path: ../Prowl/Prowl.Runtime/Debug.cs
+    startLine: 606
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public void PushMatrix(Float4x4 matrix)
+    parameters:
+    - id: matrix
+      type: Prowl.Vector.Float4x4
+    content.vb: Public Sub PushMatrix(matrix As Float4x4)
+  overload: Prowl.Runtime.GizmoBuilder.PushMatrix*
+- uid: Prowl.Runtime.GizmoBuilder.PopMatrix
+  commentId: M:Prowl.Runtime.GizmoBuilder.PopMatrix
+  id: PopMatrix
+  parent: Prowl.Runtime.GizmoBuilder
+  langs:
+  - csharp
+  - vb
+  name: PopMatrix()
+  nameWithType: GizmoBuilder.PopMatrix()
+  fullName: Prowl.Runtime.GizmoBuilder.PopMatrix()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Debug.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PopMatrix
+    path: ../Prowl/Prowl.Runtime/Debug.cs
+    startLine: 611
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public void PopMatrix()
+    content.vb: Public Sub PopMatrix()
+  overload: Prowl.Runtime.GizmoBuilder.PopMatrix*
+- uid: Prowl.Runtime.GizmoBuilder.DrawLine(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Color)
+  commentId: M:Prowl.Runtime.GizmoBuilder.DrawLine(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Color)
+  id: DrawLine(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Color)
+  parent: Prowl.Runtime.GizmoBuilder
+  langs:
+  - csharp
+  - vb
+  name: DrawLine(Float3, Float3, Color)
+  nameWithType: GizmoBuilder.DrawLine(Float3, Float3, Color)
+  fullName: Prowl.Runtime.GizmoBuilder.DrawLine(Prowl.Vector.Float3, Prowl.Vector.Float3, Prowl.Vector.Color)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Debug.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: DrawLine
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 289
+    startLine: 616
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public void DrawLine(Vector3 start, Vector3 end, Color color)
+    content: public void DrawLine(Float3 start, Float3 end, Color color)
     parameters:
     - id: start
-      type: Prowl.Runtime.Vector3
+      type: Prowl.Vector.Float3
     - id: end
-      type: Prowl.Runtime.Vector3
+      type: Prowl.Vector.Float3
     - id: color
-      type: Prowl.Runtime.Color
-    content.vb: Public Sub DrawLine(start As Vector3, [end] As Vector3, color As Color)
+      type: Prowl.Vector.Color
+    content.vb: Public Sub DrawLine(start As Float3, [end] As Float3, color As Color)
   overload: Prowl.Runtime.GizmoBuilder.DrawLine*
-- uid: Prowl.Runtime.GizmoBuilder.DrawTriangle(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
-  commentId: M:Prowl.Runtime.GizmoBuilder.DrawTriangle(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
-  id: DrawTriangle(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
+- uid: Prowl.Runtime.GizmoBuilder.DrawTriangle(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Color)
+  commentId: M:Prowl.Runtime.GizmoBuilder.DrawTriangle(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Color)
+  id: DrawTriangle(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Color)
   parent: Prowl.Runtime.GizmoBuilder
   langs:
   - csharp
   - vb
-  name: DrawTriangle(Vector3, Vector3, Vector3, Color)
-  nameWithType: GizmoBuilder.DrawTriangle(Vector3, Vector3, Vector3, Color)
-  fullName: Prowl.Runtime.GizmoBuilder.DrawTriangle(Prowl.Runtime.Vector3, Prowl.Runtime.Vector3, Prowl.Runtime.Vector3, Prowl.Runtime.Color)
+  name: DrawTriangle(Float3, Float3, Float3, Color)
+  nameWithType: GizmoBuilder.DrawTriangle(Float3, Float3, Float3, Color)
+  fullName: Prowl.Runtime.GizmoBuilder.DrawTriangle(Prowl.Vector.Float3, Prowl.Vector.Float3, Prowl.Vector.Float3, Prowl.Vector.Color)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: DrawTriangle
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 291
+    startLine: 618
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public void DrawTriangle(Vector3 a, Vector3 b, Vector3 c, Color color)
+    content: public void DrawTriangle(Float3 a, Float3 b, Float3 c, Color color)
     parameters:
     - id: a
-      type: Prowl.Runtime.Vector3
+      type: Prowl.Vector.Float3
     - id: b
-      type: Prowl.Runtime.Vector3
+      type: Prowl.Vector.Float3
     - id: c
-      type: Prowl.Runtime.Vector3
+      type: Prowl.Vector.Float3
     - id: color
-      type: Prowl.Runtime.Color
-    content.vb: Public Sub DrawTriangle(a As Vector3, b As Vector3, c As Vector3, color As Color)
+      type: Prowl.Vector.Color
+    content.vb: Public Sub DrawTriangle(a As Float3, b As Float3, c As Float3, color As Color)
   overload: Prowl.Runtime.GizmoBuilder.DrawTriangle*
-- uid: Prowl.Runtime.GizmoBuilder.DrawWireCube(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
-  commentId: M:Prowl.Runtime.GizmoBuilder.DrawWireCube(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
-  id: DrawWireCube(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
+- uid: Prowl.Runtime.GizmoBuilder.DrawWireCube(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Color)
+  commentId: M:Prowl.Runtime.GizmoBuilder.DrawWireCube(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Color)
+  id: DrawWireCube(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Color)
   parent: Prowl.Runtime.GizmoBuilder
   langs:
   - csharp
   - vb
-  name: DrawWireCube(Vector3, Vector3, Color)
-  nameWithType: GizmoBuilder.DrawWireCube(Vector3, Vector3, Color)
-  fullName: Prowl.Runtime.GizmoBuilder.DrawWireCube(Prowl.Runtime.Vector3, Prowl.Runtime.Vector3, Prowl.Runtime.Color)
+  name: DrawWireCube(Float3, Float3, Color)
+  nameWithType: GizmoBuilder.DrawWireCube(Float3, Float3, Color)
+  fullName: Prowl.Runtime.GizmoBuilder.DrawWireCube(Prowl.Vector.Float3, Prowl.Vector.Float3, Prowl.Vector.Color)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: DrawWireCube
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 293
+    startLine: 620
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public void DrawWireCube(Vector3 center, Vector3 halfExtents, Color color)
+    content: public void DrawWireCube(Float3 center, Float3 halfExtents, Color color)
     parameters:
     - id: center
-      type: Prowl.Runtime.Vector3
+      type: Prowl.Vector.Float3
     - id: halfExtents
-      type: Prowl.Runtime.Vector3
+      type: Prowl.Vector.Float3
     - id: color
-      type: Prowl.Runtime.Color
-    content.vb: Public Sub DrawWireCube(center As Vector3, halfExtents As Vector3, color As Color)
+      type: Prowl.Vector.Color
+    content.vb: Public Sub DrawWireCube(center As Float3, halfExtents As Float3, color As Color)
   overload: Prowl.Runtime.GizmoBuilder.DrawWireCube*
-- uid: Prowl.Runtime.GizmoBuilder.DrawCube(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
-  commentId: M:Prowl.Runtime.GizmoBuilder.DrawCube(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
-  id: DrawCube(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
+- uid: Prowl.Runtime.GizmoBuilder.DrawCube(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Color)
+  commentId: M:Prowl.Runtime.GizmoBuilder.DrawCube(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Color)
+  id: DrawCube(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Color)
   parent: Prowl.Runtime.GizmoBuilder
   langs:
   - csharp
   - vb
-  name: DrawCube(Vector3, Vector3, Color)
-  nameWithType: GizmoBuilder.DrawCube(Vector3, Vector3, Color)
-  fullName: Prowl.Runtime.GizmoBuilder.DrawCube(Prowl.Runtime.Vector3, Prowl.Runtime.Vector3, Prowl.Runtime.Color)
+  name: DrawCube(Float3, Float3, Color)
+  nameWithType: GizmoBuilder.DrawCube(Float3, Float3, Color)
+  fullName: Prowl.Runtime.GizmoBuilder.DrawCube(Prowl.Vector.Float3, Prowl.Vector.Float3, Prowl.Vector.Color)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: DrawCube
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 322
+    startLine: 649
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public void DrawCube(Vector3 center, Vector3 halfExtents, Color color)
+    content: public void DrawCube(Float3 center, Float3 halfExtents, Color color)
     parameters:
     - id: center
-      type: Prowl.Runtime.Vector3
+      type: Prowl.Vector.Float3
     - id: halfExtents
-      type: Prowl.Runtime.Vector3
+      type: Prowl.Vector.Float3
     - id: color
-      type: Prowl.Runtime.Color
-    content.vb: Public Sub DrawCube(center As Vector3, halfExtents As Vector3, color As Color)
+      type: Prowl.Vector.Color
+    content.vb: Public Sub DrawCube(center As Float3, halfExtents As Float3, color As Color)
   overload: Prowl.Runtime.GizmoBuilder.DrawCube*
-- uid: Prowl.Runtime.GizmoBuilder.DrawWireSphere(Prowl.Runtime.Vector3,System.Single,Prowl.Runtime.Color,System.Int32)
-  commentId: M:Prowl.Runtime.GizmoBuilder.DrawWireSphere(Prowl.Runtime.Vector3,System.Single,Prowl.Runtime.Color,System.Int32)
-  id: DrawWireSphere(Prowl.Runtime.Vector3,System.Single,Prowl.Runtime.Color,System.Int32)
+- uid: Prowl.Runtime.GizmoBuilder.DrawWireSphere(Prowl.Vector.Float3,System.Single,Prowl.Vector.Color,System.Int32)
+  commentId: M:Prowl.Runtime.GizmoBuilder.DrawWireSphere(Prowl.Vector.Float3,System.Single,Prowl.Vector.Color,System.Int32)
+  id: DrawWireSphere(Prowl.Vector.Float3,System.Single,Prowl.Vector.Color,System.Int32)
   parent: Prowl.Runtime.GizmoBuilder
   langs:
   - csharp
   - vb
-  name: DrawWireSphere(Vector3, float, Color, int)
-  nameWithType: GizmoBuilder.DrawWireSphere(Vector3, float, Color, int)
-  fullName: Prowl.Runtime.GizmoBuilder.DrawWireSphere(Prowl.Runtime.Vector3, float, Prowl.Runtime.Color, int)
+  name: DrawWireSphere(Float3, float, Color, int)
+  nameWithType: GizmoBuilder.DrawWireSphere(Float3, float, Color, int)
+  fullName: Prowl.Runtime.GizmoBuilder.DrawWireSphere(Prowl.Vector.Float3, float, Prowl.Vector.Color, int)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: DrawWireSphere
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 361
+    startLine: 688
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public void DrawWireSphere(Vector3 center, float radius, Color color, int segments = 16)
+    content: public void DrawWireSphere(Float3 center, float radius, Color color, int segments = 16)
     parameters:
     - id: center
-      type: Prowl.Runtime.Vector3
+      type: Prowl.Vector.Float3
     - id: radius
       type: System.Single
     - id: color
-      type: Prowl.Runtime.Color
+      type: Prowl.Vector.Color
     - id: segments
       type: System.Int32
-    content.vb: Public Sub DrawWireSphere(center As Vector3, radius As Single, color As Color, segments As Integer = 16)
+    content.vb: Public Sub DrawWireSphere(center As Float3, radius As Single, color As Color, segments As Integer = 16)
   overload: Prowl.Runtime.GizmoBuilder.DrawWireSphere*
-  nameWithType.vb: GizmoBuilder.DrawWireSphere(Vector3, Single, Color, Integer)
-  fullName.vb: Prowl.Runtime.GizmoBuilder.DrawWireSphere(Prowl.Runtime.Vector3, Single, Prowl.Runtime.Color, Integer)
-  name.vb: DrawWireSphere(Vector3, Single, Color, Integer)
-- uid: Prowl.Runtime.GizmoBuilder.DrawSphere(Prowl.Runtime.Vector3,System.Single,Prowl.Runtime.Color,System.Int32)
-  commentId: M:Prowl.Runtime.GizmoBuilder.DrawSphere(Prowl.Runtime.Vector3,System.Single,Prowl.Runtime.Color,System.Int32)
-  id: DrawSphere(Prowl.Runtime.Vector3,System.Single,Prowl.Runtime.Color,System.Int32)
+  nameWithType.vb: GizmoBuilder.DrawWireSphere(Float3, Single, Color, Integer)
+  fullName.vb: Prowl.Runtime.GizmoBuilder.DrawWireSphere(Prowl.Vector.Float3, Single, Prowl.Vector.Color, Integer)
+  name.vb: DrawWireSphere(Float3, Single, Color, Integer)
+- uid: Prowl.Runtime.GizmoBuilder.DrawCircle(Prowl.Vector.Float3,Prowl.Vector.Float3,System.Single,Prowl.Vector.Color,System.Int32)
+  commentId: M:Prowl.Runtime.GizmoBuilder.DrawCircle(Prowl.Vector.Float3,Prowl.Vector.Float3,System.Single,Prowl.Vector.Color,System.Int32)
+  id: DrawCircle(Prowl.Vector.Float3,Prowl.Vector.Float3,System.Single,Prowl.Vector.Color,System.Int32)
   parent: Prowl.Runtime.GizmoBuilder
   langs:
   - csharp
   - vb
-  name: DrawSphere(Vector3, float, Color, int)
-  nameWithType: GizmoBuilder.DrawSphere(Vector3, float, Color, int)
-  fullName: Prowl.Runtime.GizmoBuilder.DrawSphere(Prowl.Runtime.Vector3, float, Prowl.Runtime.Color, int)
+  name: DrawCircle(Float3, Float3, float, Color, int)
+  nameWithType: GizmoBuilder.DrawCircle(Float3, Float3, float, Color, int)
+  fullName: Prowl.Runtime.GizmoBuilder.DrawCircle(Prowl.Vector.Float3, Prowl.Vector.Float3, float, Prowl.Vector.Color, int)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DrawCircle
+    path: ../Prowl/Prowl.Runtime/Debug.cs
+    startLine: 747
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public void DrawCircle(Float3 center, Float3 normal, float radius, Color color, int segments)
+    parameters:
+    - id: center
+      type: Prowl.Vector.Float3
+    - id: normal
+      type: Prowl.Vector.Float3
+    - id: radius
+      type: System.Single
+    - id: color
+      type: Prowl.Vector.Color
+    - id: segments
+      type: System.Int32
+    content.vb: Public Sub DrawCircle(center As Float3, normal As Float3, radius As Single, color As Color, segments As Integer)
+  overload: Prowl.Runtime.GizmoBuilder.DrawCircle*
+  nameWithType.vb: GizmoBuilder.DrawCircle(Float3, Float3, Single, Color, Integer)
+  fullName.vb: Prowl.Runtime.GizmoBuilder.DrawCircle(Prowl.Vector.Float3, Prowl.Vector.Float3, Single, Prowl.Vector.Color, Integer)
+  name.vb: DrawCircle(Float3, Float3, Single, Color, Integer)
+- uid: Prowl.Runtime.GizmoBuilder.DrawWireArc(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Float3,System.Single,System.Single,Prowl.Vector.Color,System.Int32)
+  commentId: M:Prowl.Runtime.GizmoBuilder.DrawWireArc(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Float3,System.Single,System.Single,Prowl.Vector.Color,System.Int32)
+  id: DrawWireArc(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Float3,System.Single,System.Single,Prowl.Vector.Color,System.Int32)
+  parent: Prowl.Runtime.GizmoBuilder
+  langs:
+  - csharp
+  - vb
+  name: DrawWireArc(Float3, Float3, Float3, float, float, Color, int)
+  nameWithType: GizmoBuilder.DrawWireArc(Float3, Float3, Float3, float, float, Color, int)
+  fullName: Prowl.Runtime.GizmoBuilder.DrawWireArc(Prowl.Vector.Float3, Prowl.Vector.Float3, Prowl.Vector.Float3, float, float, Prowl.Vector.Color, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Debug.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DrawWireArc
+    path: ../Prowl/Prowl.Runtime/Debug.cs
+    startLine: 753
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public void DrawWireArc(Float3 center, Float3 normal, Float3 from, float radius, float sweepRadians, Color color, int segments)
+    parameters:
+    - id: center
+      type: Prowl.Vector.Float3
+    - id: normal
+      type: Prowl.Vector.Float3
+    - id: from
+      type: Prowl.Vector.Float3
+    - id: radius
+      type: System.Single
+    - id: sweepRadians
+      type: System.Single
+    - id: color
+      type: Prowl.Vector.Color
+    - id: segments
+      type: System.Int32
+    content.vb: Public Sub DrawWireArc(center As Float3, normal As Float3, from As Float3, radius As Single, sweepRadians As Single, color As Color, segments As Integer)
+  overload: Prowl.Runtime.GizmoBuilder.DrawWireArc*
+  nameWithType.vb: GizmoBuilder.DrawWireArc(Float3, Float3, Float3, Single, Single, Color, Integer)
+  fullName.vb: Prowl.Runtime.GizmoBuilder.DrawWireArc(Prowl.Vector.Float3, Prowl.Vector.Float3, Prowl.Vector.Float3, Single, Single, Prowl.Vector.Color, Integer)
+  name.vb: DrawWireArc(Float3, Float3, Float3, Single, Single, Color, Integer)
+- uid: Prowl.Runtime.GizmoBuilder.DrawSphere(Prowl.Vector.Float3,System.Single,Prowl.Vector.Color,System.Int32)
+  commentId: M:Prowl.Runtime.GizmoBuilder.DrawSphere(Prowl.Vector.Float3,System.Single,Prowl.Vector.Color,System.Int32)
+  id: DrawSphere(Prowl.Vector.Float3,System.Single,Prowl.Vector.Color,System.Int32)
+  parent: Prowl.Runtime.GizmoBuilder
+  langs:
+  - csharp
+  - vb
+  name: DrawSphere(Float3, float, Color, int)
+  nameWithType: GizmoBuilder.DrawSphere(Float3, float, Color, int)
+  fullName: Prowl.Runtime.GizmoBuilder.DrawSphere(Prowl.Vector.Float3, float, Prowl.Vector.Color, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Debug.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: DrawSphere
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 420
+    startLine: 793
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public void DrawSphere(Vector3 center, float radius, Color color, int segments = 16)
+    content: public void DrawSphere(Float3 center, float radius, Color color, int segments = 16)
     parameters:
     - id: center
-      type: Prowl.Runtime.Vector3
+      type: Prowl.Vector.Float3
     - id: radius
       type: System.Single
     - id: color
-      type: Prowl.Runtime.Color
+      type: Prowl.Vector.Color
     - id: segments
       type: System.Int32
-    content.vb: Public Sub DrawSphere(center As Vector3, radius As Single, color As Color, segments As Integer = 16)
+    content.vb: Public Sub DrawSphere(center As Float3, radius As Single, color As Color, segments As Integer = 16)
   overload: Prowl.Runtime.GizmoBuilder.DrawSphere*
-  nameWithType.vb: GizmoBuilder.DrawSphere(Vector3, Single, Color, Integer)
-  fullName.vb: Prowl.Runtime.GizmoBuilder.DrawSphere(Prowl.Runtime.Vector3, Single, Prowl.Runtime.Color, Integer)
-  name.vb: DrawSphere(Vector3, Single, Color, Integer)
-- uid: Prowl.Runtime.GizmoBuilder.DrawWireCone(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,System.Single,Prowl.Runtime.Color,System.Int32)
-  commentId: M:Prowl.Runtime.GizmoBuilder.DrawWireCone(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,System.Single,Prowl.Runtime.Color,System.Int32)
-  id: DrawWireCone(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,System.Single,Prowl.Runtime.Color,System.Int32)
+  nameWithType.vb: GizmoBuilder.DrawSphere(Float3, Single, Color, Integer)
+  fullName.vb: Prowl.Runtime.GizmoBuilder.DrawSphere(Prowl.Vector.Float3, Single, Prowl.Vector.Color, Integer)
+  name.vb: DrawSphere(Float3, Single, Color, Integer)
+- uid: Prowl.Runtime.GizmoBuilder.DrawWireCone(Prowl.Vector.Float3,Prowl.Vector.Float3,System.Single,Prowl.Vector.Color,System.Int32)
+  commentId: M:Prowl.Runtime.GizmoBuilder.DrawWireCone(Prowl.Vector.Float3,Prowl.Vector.Float3,System.Single,Prowl.Vector.Color,System.Int32)
+  id: DrawWireCone(Prowl.Vector.Float3,Prowl.Vector.Float3,System.Single,Prowl.Vector.Color,System.Int32)
   parent: Prowl.Runtime.GizmoBuilder
   langs:
   - csharp
   - vb
-  name: DrawWireCone(Vector3, Vector3, float, Color, int)
-  nameWithType: GizmoBuilder.DrawWireCone(Vector3, Vector3, float, Color, int)
-  fullName: Prowl.Runtime.GizmoBuilder.DrawWireCone(Prowl.Runtime.Vector3, Prowl.Runtime.Vector3, float, Prowl.Runtime.Color, int)
+  name: DrawWireCone(Float3, Float3, float, Color, int)
+  nameWithType: GizmoBuilder.DrawWireCone(Float3, Float3, float, Color, int)
+  fullName: Prowl.Runtime.GizmoBuilder.DrawWireCone(Prowl.Vector.Float3, Prowl.Vector.Float3, float, Prowl.Vector.Color, int)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: DrawWireCone
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 462
+    startLine: 835
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public void DrawWireCone(Vector3 start, Vector3 direction, float radius, Color color, int segments = 16)
+    content: public void DrawWireCone(Float3 start, Float3 direction, float radius, Color color, int segments = 16)
     parameters:
     - id: start
-      type: Prowl.Runtime.Vector3
+      type: Prowl.Vector.Float3
     - id: direction
-      type: Prowl.Runtime.Vector3
+      type: Prowl.Vector.Float3
     - id: radius
       type: System.Single
     - id: color
-      type: Prowl.Runtime.Color
+      type: Prowl.Vector.Color
     - id: segments
       type: System.Int32
-    content.vb: Public Sub DrawWireCone(start As Vector3, direction As Vector3, radius As Single, color As Color, segments As Integer = 16)
+    content.vb: Public Sub DrawWireCone(start As Float3, direction As Float3, radius As Single, color As Color, segments As Integer = 16)
   overload: Prowl.Runtime.GizmoBuilder.DrawWireCone*
-  nameWithType.vb: GizmoBuilder.DrawWireCone(Vector3, Vector3, Single, Color, Integer)
-  fullName.vb: Prowl.Runtime.GizmoBuilder.DrawWireCone(Prowl.Runtime.Vector3, Prowl.Runtime.Vector3, Single, Prowl.Runtime.Color, Integer)
-  name.vb: DrawWireCone(Vector3, Vector3, Single, Color, Integer)
-- uid: Prowl.Runtime.GizmoBuilder.DrawArrow(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
-  commentId: M:Prowl.Runtime.GizmoBuilder.DrawArrow(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
-  id: DrawArrow(Prowl.Runtime.Vector3,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
+  nameWithType.vb: GizmoBuilder.DrawWireCone(Float3, Float3, Single, Color, Integer)
+  fullName.vb: Prowl.Runtime.GizmoBuilder.DrawWireCone(Prowl.Vector.Float3, Prowl.Vector.Float3, Single, Prowl.Vector.Color, Integer)
+  name.vb: DrawWireCone(Float3, Float3, Single, Color, Integer)
+- uid: Prowl.Runtime.GizmoBuilder.DrawWireCapsule(Prowl.Vector.Float3,Prowl.Vector.Float3,System.Single,Prowl.Vector.Color,System.Int32)
+  commentId: M:Prowl.Runtime.GizmoBuilder.DrawWireCapsule(Prowl.Vector.Float3,Prowl.Vector.Float3,System.Single,Prowl.Vector.Color,System.Int32)
+  id: DrawWireCapsule(Prowl.Vector.Float3,Prowl.Vector.Float3,System.Single,Prowl.Vector.Color,System.Int32)
   parent: Prowl.Runtime.GizmoBuilder
   langs:
   - csharp
   - vb
-  name: DrawArrow(Vector3, Vector3, Color)
-  nameWithType: GizmoBuilder.DrawArrow(Vector3, Vector3, Color)
-  fullName: Prowl.Runtime.GizmoBuilder.DrawArrow(Prowl.Runtime.Vector3, Prowl.Runtime.Vector3, Prowl.Runtime.Color)
+  name: DrawWireCapsule(Float3, Float3, float, Color, int)
+  nameWithType: GizmoBuilder.DrawWireCapsule(Float3, Float3, float, Color, int)
+  fullName: Prowl.Runtime.GizmoBuilder.DrawWireCapsule(Prowl.Vector.Float3, Prowl.Vector.Float3, float, Prowl.Vector.Color, int)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DrawWireCapsule
+    path: ../Prowl/Prowl.Runtime/Debug.cs
+    startLine: 862
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public void DrawWireCapsule(Float3 point1, Float3 point2, float radius, Color color, int segments = 16)
+    parameters:
+    - id: point1
+      type: Prowl.Vector.Float3
+    - id: point2
+      type: Prowl.Vector.Float3
+    - id: radius
+      type: System.Single
+    - id: color
+      type: Prowl.Vector.Color
+    - id: segments
+      type: System.Int32
+    content.vb: Public Sub DrawWireCapsule(point1 As Float3, point2 As Float3, radius As Single, color As Color, segments As Integer = 16)
+  overload: Prowl.Runtime.GizmoBuilder.DrawWireCapsule*
+  nameWithType.vb: GizmoBuilder.DrawWireCapsule(Float3, Float3, Single, Color, Integer)
+  fullName.vb: Prowl.Runtime.GizmoBuilder.DrawWireCapsule(Prowl.Vector.Float3, Prowl.Vector.Float3, Single, Prowl.Vector.Color, Integer)
+  name.vb: DrawWireCapsule(Float3, Float3, Single, Color, Integer)
+- uid: Prowl.Runtime.GizmoBuilder.DrawWireCylinder(Prowl.Vector.Float3,Prowl.Vector.Quaternion,System.Single,System.Single,Prowl.Vector.Color,System.Int32)
+  commentId: M:Prowl.Runtime.GizmoBuilder.DrawWireCylinder(Prowl.Vector.Float3,Prowl.Vector.Quaternion,System.Single,System.Single,Prowl.Vector.Color,System.Int32)
+  id: DrawWireCylinder(Prowl.Vector.Float3,Prowl.Vector.Quaternion,System.Single,System.Single,Prowl.Vector.Color,System.Int32)
+  parent: Prowl.Runtime.GizmoBuilder
+  langs:
+  - csharp
+  - vb
+  name: DrawWireCylinder(Float3, Quaternion, float, float, Color, int)
+  nameWithType: GizmoBuilder.DrawWireCylinder(Float3, Quaternion, float, float, Color, int)
+  fullName: Prowl.Runtime.GizmoBuilder.DrawWireCylinder(Prowl.Vector.Float3, Prowl.Vector.Quaternion, float, float, Prowl.Vector.Color, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Debug.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DrawWireCylinder
+    path: ../Prowl/Prowl.Runtime/Debug.cs
+    startLine: 960
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public void DrawWireCylinder(Float3 center, Quaternion rotation, float radius, float height, Color color, int segments)
+    parameters:
+    - id: center
+      type: Prowl.Vector.Float3
+    - id: rotation
+      type: Prowl.Vector.Quaternion
+    - id: radius
+      type: System.Single
+    - id: height
+      type: System.Single
+    - id: color
+      type: Prowl.Vector.Color
+    - id: segments
+      type: System.Int32
+    content.vb: Public Sub DrawWireCylinder(center As Float3, rotation As Quaternion, radius As Single, height As Single, color As Color, segments As Integer)
+  overload: Prowl.Runtime.GizmoBuilder.DrawWireCylinder*
+  nameWithType.vb: GizmoBuilder.DrawWireCylinder(Float3, Quaternion, Single, Single, Color, Integer)
+  fullName.vb: Prowl.Runtime.GizmoBuilder.DrawWireCylinder(Prowl.Vector.Float3, Prowl.Vector.Quaternion, Single, Single, Prowl.Vector.Color, Integer)
+  name.vb: DrawWireCylinder(Float3, Quaternion, Single, Single, Color, Integer)
+- uid: Prowl.Runtime.GizmoBuilder.DrawArrow(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Color)
+  commentId: M:Prowl.Runtime.GizmoBuilder.DrawArrow(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Color)
+  id: DrawArrow(Prowl.Vector.Float3,Prowl.Vector.Float3,Prowl.Vector.Color)
+  parent: Prowl.Runtime.GizmoBuilder
+  langs:
+  - csharp
+  - vb
+  name: DrawArrow(Float3, Float3, Color)
+  nameWithType: GizmoBuilder.DrawArrow(Float3, Float3, Color)
+  fullName: Prowl.Runtime.GizmoBuilder.DrawArrow(Prowl.Vector.Float3, Prowl.Vector.Float3, Prowl.Vector.Color)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Debug.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: DrawArrow
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 501
+    startLine: 999
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public void DrawArrow(Vector3 start, Vector3 direction, Color color)
+    content: public void DrawArrow(Float3 start, Float3 direction, Color color)
     parameters:
     - id: start
-      type: Prowl.Runtime.Vector3
+      type: Prowl.Vector.Float3
     - id: direction
-      type: Prowl.Runtime.Vector3
+      type: Prowl.Vector.Float3
     - id: color
-      type: Prowl.Runtime.Color
-    content.vb: Public Sub DrawArrow(start As Vector3, direction As Vector3, color As Color)
+      type: Prowl.Vector.Color
+    content.vb: Public Sub DrawArrow(start As Float3, direction As Float3, color As Color)
   overload: Prowl.Runtime.GizmoBuilder.DrawArrow*
-- uid: Prowl.Runtime.GizmoBuilder.DrawIcon(Prowl.Runtime.Texture2D,Prowl.Runtime.Vector3,System.Single,Prowl.Runtime.Color)
-  commentId: M:Prowl.Runtime.GizmoBuilder.DrawIcon(Prowl.Runtime.Texture2D,Prowl.Runtime.Vector3,System.Single,Prowl.Runtime.Color)
-  id: DrawIcon(Prowl.Runtime.Texture2D,Prowl.Runtime.Vector3,System.Single,Prowl.Runtime.Color)
+- uid: Prowl.Runtime.GizmoBuilder.DrawIcon(Prowl.Runtime.Resources.Texture2D,Prowl.Vector.Float3,System.Single,Prowl.Vector.Color)
+  commentId: M:Prowl.Runtime.GizmoBuilder.DrawIcon(Prowl.Runtime.Resources.Texture2D,Prowl.Vector.Float3,System.Single,Prowl.Vector.Color)
+  id: DrawIcon(Prowl.Runtime.Resources.Texture2D,Prowl.Vector.Float3,System.Single,Prowl.Vector.Color)
   parent: Prowl.Runtime.GizmoBuilder
   langs:
   - csharp
   - vb
-  name: DrawIcon(Texture2D, Vector3, float, Color)
-  nameWithType: GizmoBuilder.DrawIcon(Texture2D, Vector3, float, Color)
-  fullName: Prowl.Runtime.GizmoBuilder.DrawIcon(Prowl.Runtime.Texture2D, Prowl.Runtime.Vector3, float, Prowl.Runtime.Color)
+  name: DrawIcon(Texture2D, Float3, float, Color)
+  nameWithType: GizmoBuilder.DrawIcon(Texture2D, Float3, float, Color)
+  fullName: Prowl.Runtime.GizmoBuilder.DrawIcon(Prowl.Runtime.Resources.Texture2D, Prowl.Vector.Float3, float, Prowl.Vector.Color)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: DrawIcon
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 511
+    startLine: 1013
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public void DrawIcon(Texture2D icon, Vector3 center, float scale, Color color)
+    content: public void DrawIcon(Texture2D icon, Float3 center, float scale, Color color)
     parameters:
     - id: icon
-      type: Prowl.Runtime.Texture2D
+      type: Prowl.Runtime.Resources.Texture2D
     - id: center
-      type: Prowl.Runtime.Vector3
+      type: Prowl.Vector.Float3
     - id: scale
       type: System.Single
     - id: color
-      type: Prowl.Runtime.Color
-    content.vb: Public Sub DrawIcon(icon As Texture2D, center As Vector3, scale As Single, color As Color)
+      type: Prowl.Vector.Color
+    content.vb: Public Sub DrawIcon(icon As Texture2D, center As Float3, scale As Single, color As Color)
   overload: Prowl.Runtime.GizmoBuilder.DrawIcon*
-  nameWithType.vb: GizmoBuilder.DrawIcon(Texture2D, Vector3, Single, Color)
-  fullName.vb: Prowl.Runtime.GizmoBuilder.DrawIcon(Prowl.Runtime.Texture2D, Prowl.Runtime.Vector3, Single, Prowl.Runtime.Color)
-  name.vb: DrawIcon(Texture2D, Vector3, Single, Color)
-- uid: Prowl.Runtime.GizmoBuilder.DrawText(Prowl.Runtime.Font,System.String,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
-  commentId: M:Prowl.Runtime.GizmoBuilder.DrawText(Prowl.Runtime.Font,System.String,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
-  id: DrawText(Prowl.Runtime.Font,System.String,Prowl.Runtime.Vector3,Prowl.Runtime.Color)
+  nameWithType.vb: GizmoBuilder.DrawIcon(Texture2D, Float3, Single, Color)
+  fullName.vb: Prowl.Runtime.GizmoBuilder.DrawIcon(Prowl.Runtime.Resources.Texture2D, Prowl.Vector.Float3, Single, Prowl.Vector.Color)
+  name.vb: DrawIcon(Texture2D, Float3, Single, Color)
+- uid: Prowl.Runtime.GizmoBuilder.UpdateMesh
+  commentId: M:Prowl.Runtime.GizmoBuilder.UpdateMesh
+  id: UpdateMesh
   parent: Prowl.Runtime.GizmoBuilder
   langs:
   - csharp
   - vb
-  name: DrawText(Font, string, Vector3, Color)
-  nameWithType: GizmoBuilder.DrawText(Font, string, Vector3, Color)
-  fullName: Prowl.Runtime.GizmoBuilder.DrawText(Prowl.Runtime.Font, string, Prowl.Runtime.Vector3, Prowl.Runtime.Color)
+  name: UpdateMesh()
+  nameWithType: GizmoBuilder.UpdateMesh()
+  fullName: Prowl.Runtime.GizmoBuilder.UpdateMesh()
   type: Method
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: DrawText
-    path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 513
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public void DrawText(Font font, string text, Vector3 position, Color color)
-    parameters:
-    - id: font
-      type: Prowl.Runtime.Font
-    - id: text
-      type: System.String
-    - id: position
-      type: Prowl.Runtime.Vector3
-    - id: color
-      type: Prowl.Runtime.Color
-    content.vb: Public Sub DrawText(font As Font, text As String, position As Vector3, color As Color)
-  overload: Prowl.Runtime.GizmoBuilder.DrawText*
-  nameWithType.vb: GizmoBuilder.DrawText(Font, String, Vector3, Color)
-  fullName.vb: Prowl.Runtime.GizmoBuilder.DrawText(Prowl.Runtime.Font, String, Prowl.Runtime.Vector3, Prowl.Runtime.Color)
-  name.vb: DrawText(Font, String, Vector3, Color)
-- uid: Prowl.Runtime.GizmoBuilder.UpdateMesh(System.Boolean,Prowl.Runtime.Vector3)
-  commentId: M:Prowl.Runtime.GizmoBuilder.UpdateMesh(System.Boolean,Prowl.Runtime.Vector3)
-  id: UpdateMesh(System.Boolean,Prowl.Runtime.Vector3)
-  parent: Prowl.Runtime.GizmoBuilder
-  langs:
-  - csharp
-  - vb
-  name: UpdateMesh(bool, Vector3)
-  nameWithType: GizmoBuilder.UpdateMesh(bool, Vector3)
-  fullName: Prowl.Runtime.GizmoBuilder.UpdateMesh(bool, Prowl.Runtime.Vector3)
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: UpdateMesh
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 518
+    startLine: 1015
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public (Mesh? wire, Mesh? solid) UpdateMesh(bool cameraRelative, Vector3 cameraPosition)
-    parameters:
-    - id: cameraRelative
-      type: System.Boolean
-    - id: cameraPosition
-      type: Prowl.Runtime.Vector3
+    content: public (Mesh? wire, Mesh? solid) UpdateMesh()
     return:
-      type: System.ValueTuple{Prowl.Runtime.Mesh,Prowl.Runtime.Mesh}
-    content.vb: Public Function UpdateMesh(cameraRelative As Boolean, cameraPosition As Vector3) As (wire As Mesh, solid As Mesh)
+      type: System.ValueTuple{Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Mesh}
+    content.vb: Public Function UpdateMesh() As (wire As Mesh, solid As Mesh)
   overload: Prowl.Runtime.GizmoBuilder.UpdateMesh*
-  nameWithType.vb: GizmoBuilder.UpdateMesh(Boolean, Vector3)
-  fullName.vb: Prowl.Runtime.GizmoBuilder.UpdateMesh(Boolean, Prowl.Runtime.Vector3)
-  name.vb: UpdateMesh(Boolean, Vector3)
 - uid: Prowl.Runtime.GizmoBuilder.GetIcons
   commentId: M:Prowl.Runtime.GizmoBuilder.GetIcons
   id: GetIcons
@@ -486,11 +666,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Debug.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: GetIcons
     path: ../Prowl/Prowl.Runtime/Debug.cs
-    startLine: 580
+    startLine: 1059
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -503,26 +683,21 @@ items:
 references:
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
-  href: Prowl.html
   name: Prowl.Runtime
   nameWithType: Prowl.Runtime
   fullName: Prowl.Runtime
   spec.csharp:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
   spec.vb:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -834,47 +1009,83 @@ references:
   name: Clear
   nameWithType: GizmoBuilder.Clear
   fullName: Prowl.Runtime.GizmoBuilder.Clear
+- uid: Prowl.Runtime.GizmoBuilder.PushMatrix*
+  commentId: Overload:Prowl.Runtime.GizmoBuilder.PushMatrix
+  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_PushMatrix_Prowl_Vector_Float4x4_
+  name: PushMatrix
+  nameWithType: GizmoBuilder.PushMatrix
+  fullName: Prowl.Runtime.GizmoBuilder.PushMatrix
+- uid: Prowl.Vector.Float4x4
+  commentId: T:Prowl.Vector.Float4x4
+  parent: Prowl.Vector
+  isExternal: true
+  name: Float4x4
+  nameWithType: Float4x4
+  fullName: Prowl.Vector.Float4x4
+- uid: Prowl.Vector
+  commentId: N:Prowl.Vector
+  name: Prowl.Vector
+  nameWithType: Prowl.Vector
+  fullName: Prowl.Vector
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+- uid: Prowl.Runtime.GizmoBuilder.PopMatrix*
+  commentId: Overload:Prowl.Runtime.GizmoBuilder.PopMatrix
+  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_PopMatrix
+  name: PopMatrix
+  nameWithType: GizmoBuilder.PopMatrix
+  fullName: Prowl.Runtime.GizmoBuilder.PopMatrix
 - uid: Prowl.Runtime.GizmoBuilder.DrawLine*
   commentId: Overload:Prowl.Runtime.GizmoBuilder.DrawLine
-  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawLine_Prowl_Runtime_Vector3_Prowl_Runtime_Vector3_Prowl_Runtime_Color_
+  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawLine_Prowl_Vector_Float3_Prowl_Vector_Float3_Prowl_Vector_Color_
   name: DrawLine
   nameWithType: GizmoBuilder.DrawLine
   fullName: Prowl.Runtime.GizmoBuilder.DrawLine
-- uid: Prowl.Runtime.Vector3
-  commentId: T:Prowl.Runtime.Vector3
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.Vector3.html
-  name: Vector3
-  nameWithType: Vector3
-  fullName: Prowl.Runtime.Vector3
-- uid: Prowl.Runtime.Color
-  commentId: T:Prowl.Runtime.Color
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.Color.html
+- uid: Prowl.Vector.Float3
+  commentId: T:Prowl.Vector.Float3
+  parent: Prowl.Vector
+  isExternal: true
+  name: Float3
+  nameWithType: Float3
+  fullName: Prowl.Vector.Float3
+- uid: Prowl.Vector.Color
+  commentId: T:Prowl.Vector.Color
+  parent: Prowl.Vector
+  isExternal: true
   name: Color
   nameWithType: Color
-  fullName: Prowl.Runtime.Color
+  fullName: Prowl.Vector.Color
 - uid: Prowl.Runtime.GizmoBuilder.DrawTriangle*
   commentId: Overload:Prowl.Runtime.GizmoBuilder.DrawTriangle
-  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawTriangle_Prowl_Runtime_Vector3_Prowl_Runtime_Vector3_Prowl_Runtime_Vector3_Prowl_Runtime_Color_
+  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawTriangle_Prowl_Vector_Float3_Prowl_Vector_Float3_Prowl_Vector_Float3_Prowl_Vector_Color_
   name: DrawTriangle
   nameWithType: GizmoBuilder.DrawTriangle
   fullName: Prowl.Runtime.GizmoBuilder.DrawTriangle
 - uid: Prowl.Runtime.GizmoBuilder.DrawWireCube*
   commentId: Overload:Prowl.Runtime.GizmoBuilder.DrawWireCube
-  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawWireCube_Prowl_Runtime_Vector3_Prowl_Runtime_Vector3_Prowl_Runtime_Color_
+  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawWireCube_Prowl_Vector_Float3_Prowl_Vector_Float3_Prowl_Vector_Color_
   name: DrawWireCube
   nameWithType: GizmoBuilder.DrawWireCube
   fullName: Prowl.Runtime.GizmoBuilder.DrawWireCube
 - uid: Prowl.Runtime.GizmoBuilder.DrawCube*
   commentId: Overload:Prowl.Runtime.GizmoBuilder.DrawCube
-  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawCube_Prowl_Runtime_Vector3_Prowl_Runtime_Vector3_Prowl_Runtime_Color_
+  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawCube_Prowl_Vector_Float3_Prowl_Vector_Float3_Prowl_Vector_Color_
   name: DrawCube
   nameWithType: GizmoBuilder.DrawCube
   fullName: Prowl.Runtime.GizmoBuilder.DrawCube
 - uid: Prowl.Runtime.GizmoBuilder.DrawWireSphere*
   commentId: Overload:Prowl.Runtime.GizmoBuilder.DrawWireSphere
-  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawWireSphere_Prowl_Runtime_Vector3_System_Single_Prowl_Runtime_Color_System_Int32_
+  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawWireSphere_Prowl_Vector_Float3_System_Single_Prowl_Vector_Color_System_Int32_
   name: DrawWireSphere
   nameWithType: GizmoBuilder.DrawWireSphere
   fullName: Prowl.Runtime.GizmoBuilder.DrawWireSphere
@@ -900,130 +1111,149 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
+- uid: Prowl.Runtime.GizmoBuilder.DrawCircle*
+  commentId: Overload:Prowl.Runtime.GizmoBuilder.DrawCircle
+  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawCircle_Prowl_Vector_Float3_Prowl_Vector_Float3_System_Single_Prowl_Vector_Color_System_Int32_
+  name: DrawCircle
+  nameWithType: GizmoBuilder.DrawCircle
+  fullName: Prowl.Runtime.GizmoBuilder.DrawCircle
+- uid: Prowl.Runtime.GizmoBuilder.DrawWireArc*
+  commentId: Overload:Prowl.Runtime.GizmoBuilder.DrawWireArc
+  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawWireArc_Prowl_Vector_Float3_Prowl_Vector_Float3_Prowl_Vector_Float3_System_Single_System_Single_Prowl_Vector_Color_System_Int32_
+  name: DrawWireArc
+  nameWithType: GizmoBuilder.DrawWireArc
+  fullName: Prowl.Runtime.GizmoBuilder.DrawWireArc
 - uid: Prowl.Runtime.GizmoBuilder.DrawSphere*
   commentId: Overload:Prowl.Runtime.GizmoBuilder.DrawSphere
-  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawSphere_Prowl_Runtime_Vector3_System_Single_Prowl_Runtime_Color_System_Int32_
+  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawSphere_Prowl_Vector_Float3_System_Single_Prowl_Vector_Color_System_Int32_
   name: DrawSphere
   nameWithType: GizmoBuilder.DrawSphere
   fullName: Prowl.Runtime.GizmoBuilder.DrawSphere
 - uid: Prowl.Runtime.GizmoBuilder.DrawWireCone*
   commentId: Overload:Prowl.Runtime.GizmoBuilder.DrawWireCone
-  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawWireCone_Prowl_Runtime_Vector3_Prowl_Runtime_Vector3_System_Single_Prowl_Runtime_Color_System_Int32_
+  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawWireCone_Prowl_Vector_Float3_Prowl_Vector_Float3_System_Single_Prowl_Vector_Color_System_Int32_
   name: DrawWireCone
   nameWithType: GizmoBuilder.DrawWireCone
   fullName: Prowl.Runtime.GizmoBuilder.DrawWireCone
+- uid: Prowl.Runtime.GizmoBuilder.DrawWireCapsule*
+  commentId: Overload:Prowl.Runtime.GizmoBuilder.DrawWireCapsule
+  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawWireCapsule_Prowl_Vector_Float3_Prowl_Vector_Float3_System_Single_Prowl_Vector_Color_System_Int32_
+  name: DrawWireCapsule
+  nameWithType: GizmoBuilder.DrawWireCapsule
+  fullName: Prowl.Runtime.GizmoBuilder.DrawWireCapsule
+- uid: Prowl.Runtime.GizmoBuilder.DrawWireCylinder*
+  commentId: Overload:Prowl.Runtime.GizmoBuilder.DrawWireCylinder
+  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawWireCylinder_Prowl_Vector_Float3_Prowl_Vector_Quaternion_System_Single_System_Single_Prowl_Vector_Color_System_Int32_
+  name: DrawWireCylinder
+  nameWithType: GizmoBuilder.DrawWireCylinder
+  fullName: Prowl.Runtime.GizmoBuilder.DrawWireCylinder
+- uid: Prowl.Vector.Quaternion
+  commentId: T:Prowl.Vector.Quaternion
+  parent: Prowl.Vector
+  isExternal: true
+  name: Quaternion
+  nameWithType: Quaternion
+  fullName: Prowl.Vector.Quaternion
 - uid: Prowl.Runtime.GizmoBuilder.DrawArrow*
   commentId: Overload:Prowl.Runtime.GizmoBuilder.DrawArrow
-  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawArrow_Prowl_Runtime_Vector3_Prowl_Runtime_Vector3_Prowl_Runtime_Color_
+  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawArrow_Prowl_Vector_Float3_Prowl_Vector_Float3_Prowl_Vector_Color_
   name: DrawArrow
   nameWithType: GizmoBuilder.DrawArrow
   fullName: Prowl.Runtime.GizmoBuilder.DrawArrow
 - uid: Prowl.Runtime.GizmoBuilder.DrawIcon*
   commentId: Overload:Prowl.Runtime.GizmoBuilder.DrawIcon
-  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawIcon_Prowl_Runtime_Texture2D_Prowl_Runtime_Vector3_System_Single_Prowl_Runtime_Color_
+  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawIcon_Prowl_Runtime_Resources_Texture2D_Prowl_Vector_Float3_System_Single_Prowl_Vector_Color_
   name: DrawIcon
   nameWithType: GizmoBuilder.DrawIcon
   fullName: Prowl.Runtime.GizmoBuilder.DrawIcon
-- uid: Prowl.Runtime.Texture2D
-  commentId: T:Prowl.Runtime.Texture2D
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.Texture2D.html
+- uid: Prowl.Runtime.Resources.Texture2D
+  commentId: T:Prowl.Runtime.Resources.Texture2D
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.Texture2D.html
   name: Texture2D
   nameWithType: Texture2D
-  fullName: Prowl.Runtime.Texture2D
-- uid: Prowl.Runtime.GizmoBuilder.DrawText*
-  commentId: Overload:Prowl.Runtime.GizmoBuilder.DrawText
-  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_DrawText_Prowl_Runtime_Font_System_String_Prowl_Runtime_Vector3_Prowl_Runtime_Color_
-  name: DrawText
-  nameWithType: GizmoBuilder.DrawText
-  fullName: Prowl.Runtime.GizmoBuilder.DrawText
-- uid: Prowl.Runtime.Font
-  commentId: T:Prowl.Runtime.Font
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.Font.html
-  name: Font
-  nameWithType: Font
-  fullName: Prowl.Runtime.Font
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
+  fullName: Prowl.Runtime.Resources.Texture2D
+- uid: Prowl.Runtime.Resources
+  commentId: N:Prowl.Runtime.Resources
+  name: Prowl.Runtime.Resources
+  nameWithType: Prowl.Runtime.Resources
+  fullName: Prowl.Runtime.Resources
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
 - uid: Prowl.Runtime.GizmoBuilder.UpdateMesh*
   commentId: Overload:Prowl.Runtime.GizmoBuilder.UpdateMesh
-  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_UpdateMesh_System_Boolean_Prowl_Runtime_Vector3_
+  href: Prowl.Runtime.GizmoBuilder.html#Prowl_Runtime_GizmoBuilder_UpdateMesh
   name: UpdateMesh
   nameWithType: GizmoBuilder.UpdateMesh
   fullName: Prowl.Runtime.GizmoBuilder.UpdateMesh
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
-- uid: System.ValueTuple{Prowl.Runtime.Mesh,Prowl.Runtime.Mesh}
-  commentId: T:System.ValueTuple{Prowl.Runtime.Mesh,Prowl.Runtime.Mesh}
+- uid: System.ValueTuple{Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Mesh}
+  commentId: T:System.ValueTuple{Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Mesh}
   parent: System
   definition: System.ValueTuple`2
-  href: Prowl.Runtime.Mesh.html
+  href: Prowl.Runtime.Resources.Mesh.html
   name: (Mesh wire, Mesh solid)
   nameWithType: (Mesh wire, Mesh solid)
-  fullName: (Prowl.Runtime.Mesh wire, Prowl.Runtime.Mesh solid)
+  fullName: (Prowl.Runtime.Resources.Mesh wire, Prowl.Runtime.Resources.Mesh solid)
   nameWithType.vb: (wire As Mesh, solid As Mesh)
-  fullName.vb: (wire As Prowl.Runtime.Mesh, solid As Prowl.Runtime.Mesh)
+  fullName.vb: (wire As Prowl.Runtime.Resources.Mesh, solid As Prowl.Runtime.Resources.Mesh)
   name.vb: (wire As Mesh, solid As Mesh)
   spec.csharp:
   - name: (
-  - uid: Prowl.Runtime.Mesh
+  - uid: Prowl.Runtime.Resources.Mesh
     name: Mesh
-    href: Prowl.Runtime.Mesh.html
+    href: Prowl.Runtime.Resources.Mesh.html
   - name: " "
-  - uid: System.ValueTuple{Prowl.Runtime.Mesh,Prowl.Runtime.Mesh}.wire
+  - uid: System.ValueTuple{Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Mesh}.wire
     name: wire
-    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-prowl.runtime.mesh,prowl.runtime.mesh-.wire
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-prowl.runtime.resources.mesh,prowl.runtime.resources.mesh-.wire
   - name: ','
   - name: " "
-  - uid: Prowl.Runtime.Mesh
+  - uid: Prowl.Runtime.Resources.Mesh
     name: Mesh
-    href: Prowl.Runtime.Mesh.html
+    href: Prowl.Runtime.Resources.Mesh.html
   - name: " "
-  - uid: System.ValueTuple{Prowl.Runtime.Mesh,Prowl.Runtime.Mesh}.solid
+  - uid: System.ValueTuple{Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Mesh}.solid
     name: solid
-    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-prowl.runtime.mesh,prowl.runtime.mesh-.solid
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-prowl.runtime.resources.mesh,prowl.runtime.resources.mesh-.solid
   - name: )
   spec.vb:
   - name: (
-  - uid: System.ValueTuple{Prowl.Runtime.Mesh,Prowl.Runtime.Mesh}.wire
+  - uid: System.ValueTuple{Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Mesh}.wire
     name: wire
-    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-prowl.runtime.mesh,prowl.runtime.mesh-.wire
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-prowl.runtime.resources.mesh,prowl.runtime.resources.mesh-.wire
   - name: " "
   - name: As
   - name: " "
-  - uid: Prowl.Runtime.Mesh
+  - uid: Prowl.Runtime.Resources.Mesh
     name: Mesh
-    href: Prowl.Runtime.Mesh.html
+    href: Prowl.Runtime.Resources.Mesh.html
   - name: ','
   - name: " "
-  - uid: System.ValueTuple{Prowl.Runtime.Mesh,Prowl.Runtime.Mesh}.solid
+  - uid: System.ValueTuple{Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Mesh}.solid
     name: solid
-    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-prowl.runtime.mesh,prowl.runtime.mesh-.solid
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-prowl.runtime.resources.mesh,prowl.runtime.resources.mesh-.solid
   - name: " "
   - name: As
   - name: " "
-  - uid: Prowl.Runtime.Mesh
+  - uid: Prowl.Runtime.Resources.Mesh
     name: Mesh
-    href: Prowl.Runtime.Mesh.html
+    href: Prowl.Runtime.Resources.Mesh.html
   - name: )
 - uid: System.ValueTuple`2
   commentId: T:System.ValueTuple`2

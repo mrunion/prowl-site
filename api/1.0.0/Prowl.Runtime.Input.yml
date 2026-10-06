@@ -5,26 +5,64 @@ items:
   id: Input
   parent: Prowl.Runtime
   children:
+  - Prowl.Runtime.Input.ActionMaps
+  - Prowl.Runtime.Input.AnyButtonDown
+  - Prowl.Runtime.Input.AnyKey
+  - Prowl.Runtime.Input.AnyKeyDown
   - Prowl.Runtime.Input.Clipboard
   - Prowl.Runtime.Input.Current
+  - Prowl.Runtime.Input.CursorConfineBounds
+  - Prowl.Runtime.Input.CursorLockCenter
+  - Prowl.Runtime.Input.CursorLockState
   - Prowl.Runtime.Input.CursorLocked
   - Prowl.Runtime.Input.CursorVisible
-  - Prowl.Runtime.Input.GetKey(Prowl.Runtime.Key)
-  - Prowl.Runtime.Input.GetKeyDown(Prowl.Runtime.Key)
-  - Prowl.Runtime.Input.GetKeyUp(Prowl.Runtime.Key)
-  - Prowl.Runtime.Input.GetMouseButton(Prowl.Runtime.MouseButton)
-  - Prowl.Runtime.Input.GetMouseButtonDown(Prowl.Runtime.MouseButton)
-  - Prowl.Runtime.Input.GetMouseButtonUp(Prowl.Runtime.MouseButton)
+  - Prowl.Runtime.Input.FindAction(System.String)
+  - Prowl.Runtime.Input.FindAction(System.String,System.String)
+  - Prowl.Runtime.Input.GetArrowKeys
+  - Prowl.Runtime.Input.GetGamepadButton(Prowl.Runtime.GamepadButton,System.Int32)
+  - Prowl.Runtime.Input.GetGamepadButtonDown(Prowl.Runtime.GamepadButton,System.Int32)
+  - Prowl.Runtime.Input.GetGamepadButtonUp(Prowl.Runtime.GamepadButton,System.Int32)
+  - Prowl.Runtime.Input.GetGamepadCount
+  - Prowl.Runtime.Input.GetGamepadLeftStick(System.Int32)
+  - Prowl.Runtime.Input.GetGamepadLeftTrigger(System.Int32)
+  - Prowl.Runtime.Input.GetGamepadRightStick(System.Int32)
+  - Prowl.Runtime.Input.GetGamepadRightTrigger(System.Int32)
+  - Prowl.Runtime.Input.GetGamepadSlotCount
+  - Prowl.Runtime.Input.GetKey(Prowl.Runtime.KeyCode)
+  - Prowl.Runtime.Input.GetKeyCombo(Prowl.Runtime.KeyCode,Prowl.Runtime.KeyCode)
+  - Prowl.Runtime.Input.GetKeyDown(Prowl.Runtime.KeyCode)
+  - Prowl.Runtime.Input.GetKeyUp(Prowl.Runtime.KeyCode)
+  - Prowl.Runtime.Input.GetMouseButton(System.Int32)
+  - Prowl.Runtime.Input.GetMouseButtonDown(System.Int32)
+  - Prowl.Runtime.Input.GetMouseButtonUp(System.Int32)
+  - Prowl.Runtime.Input.GetPressedChar
+  - Prowl.Runtime.Input.GetWASD
   - Prowl.Runtime.Input.Handlers
   - Prowl.Runtime.Input.InputString
+  - Prowl.Runtime.Input.IsAltPressed
+  - Prowl.Runtime.Input.IsCtrlPressed
+  - Prowl.Runtime.Input.IsGamepadConnected(System.Int32)
+  - Prowl.Runtime.Input.IsShiftPressed
+  - Prowl.Runtime.Input.LockCursor
   - Prowl.Runtime.Input.MouseDelta
   - Prowl.Runtime.Input.MousePosition
   - Prowl.Runtime.Input.MouseWheelDelta
+  - Prowl.Runtime.Input.OnCursorLockFailed
+  - Prowl.Runtime.Input.OnCursorLocked
   - Prowl.Runtime.Input.OnKeyEvent
   - Prowl.Runtime.Input.OnMouseEvent
   - Prowl.Runtime.Input.PopHandler
+  - Prowl.Runtime.Input.PopLockContext
   - Prowl.Runtime.Input.PrevMousePosition
   - Prowl.Runtime.Input.PushHandler(Prowl.Runtime.IInputHandler)
+  - Prowl.Runtime.Input.PushLockContext(Prowl.Runtime.CursorLockContext)
+  - Prowl.Runtime.Input.RegisterActionMap(Prowl.Runtime.InputActionMap)
+  - Prowl.Runtime.Input.SetCursorShape(Prowl.PaperUI.PaperCursor,System.Int32)
+  - Prowl.Runtime.Input.SetCursorVisible(System.Boolean)
+  - Prowl.Runtime.Input.SetGamepadVibration(System.Single,System.Single,System.Int32)
+  - Prowl.Runtime.Input.UnlockCursor
+  - Prowl.Runtime.Input.UnregisterActionMap(Prowl.Runtime.InputActionMap)
+  - Prowl.Runtime.Input.VibrateGamepad(System.Single,System.Single,System.Single,System.Int32)
   langs:
   - csharp
   - vb
@@ -35,17 +73,22 @@ items:
   source:
     remote:
       path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: Input
     path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 8
+    startLine: 16
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: >-
+    Central input management system for Prowl Engine.
+
+    Provides both low-level direct input queries and high-level action-based input.
+  example: []
   syntax:
-    content: public class Input
-    content.vb: Public Class Input
+    content: public static class Input
+    content.vb: Public Module Input
   inheritance:
   - System.Object
   inheritedMembers:
@@ -56,8 +99,6 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  extensionMethods:
-  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
 - uid: Prowl.Runtime.Input.Handlers
   commentId: P:Prowl.Runtime.Input.Handlers
   id: Handlers
@@ -72,11 +113,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: Handlers
     path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 10
+    startLine: 22
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -85,7 +126,7 @@ items:
     parameters: []
     return:
       type: System.Collections.Generic.Stack{Prowl.Runtime.IInputHandler}
-    content.vb: Public Shared Property Handlers As Stack(Of IInputHandler)
+    content.vb: Public Shared ReadOnly Property Handlers As Stack(Of IInputHandler)
   overload: Prowl.Runtime.Input.Handlers*
 - uid: Prowl.Runtime.Input.Current
   commentId: P:Prowl.Runtime.Input.Current
@@ -101,11 +142,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: Current
     path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 11
+    startLine: 24
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -130,11 +171,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: PushHandler
     path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 13
+    startLine: 26
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -159,11 +200,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: PopHandler
     path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 14
+    startLine: 27
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -171,64 +212,6 @@ items:
     content: public static void PopHandler()
     content.vb: Public Shared Sub PopHandler()
   overload: Prowl.Runtime.Input.PopHandler*
-- uid: Prowl.Runtime.Input.CursorVisible
-  commentId: P:Prowl.Runtime.Input.CursorVisible
-  id: CursorVisible
-  parent: Prowl.Runtime.Input
-  langs:
-  - csharp
-  - vb
-  name: CursorVisible
-  nameWithType: Input.CursorVisible
-  fullName: Prowl.Runtime.Input.CursorVisible
-  type: Property
-  source:
-    remote:
-      path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: CursorVisible
-    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 16
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static bool CursorVisible { get; set; }
-    parameters: []
-    return:
-      type: System.Boolean
-    content.vb: Public Shared Property CursorVisible As Boolean
-  overload: Prowl.Runtime.Input.CursorVisible*
-- uid: Prowl.Runtime.Input.CursorLocked
-  commentId: P:Prowl.Runtime.Input.CursorLocked
-  id: CursorLocked
-  parent: Prowl.Runtime.Input
-  langs:
-  - csharp
-  - vb
-  name: CursorLocked
-  nameWithType: Input.CursorLocked
-  fullName: Prowl.Runtime.Input.CursorLocked
-  type: Property
-  source:
-    remote:
-      path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: CursorLocked
-    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 22
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static bool CursorLocked { get; set; }
-    parameters: []
-    return:
-      type: System.Boolean
-    content.vb: Public Shared Property CursorLocked As Boolean
-  overload: Prowl.Runtime.Input.CursorLocked*
 - uid: Prowl.Runtime.Input.Clipboard
   commentId: P:Prowl.Runtime.Input.Clipboard
   id: Clipboard
@@ -243,11 +226,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: Clipboard
     path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 28
+    startLine: 32
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -258,35 +241,6 @@ items:
       type: System.String
     content.vb: Public Shared Property Clipboard As String
   overload: Prowl.Runtime.Input.Clipboard*
-- uid: Prowl.Runtime.Input.InputString
-  commentId: P:Prowl.Runtime.Input.InputString
-  id: InputString
-  parent: Prowl.Runtime.Input
-  langs:
-  - csharp
-  - vb
-  name: InputString
-  nameWithType: Input.InputString
-  fullName: Prowl.Runtime.Input.InputString
-  type: Property
-  source:
-    remote:
-      path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: InputString
-    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 34
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static IReadOnlyList<char> InputString { get; set; }
-    parameters: []
-    return:
-      type: System.Collections.Generic.IReadOnlyList{System.Char}
-    content.vb: Public Shared Property InputString As IReadOnlyList(Of Char)
-  overload: Prowl.Runtime.Input.InputString*
 - uid: Prowl.Runtime.Input.OnKeyEvent
   commentId: E:Prowl.Runtime.Input.OnKeyEvent
   id: OnKeyEvent
@@ -301,19 +255,46 @@ items:
   source:
     remote:
       path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: OnKeyEvent
     path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 40
+    startLine: 39
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static event Action<Key, bool> OnKeyEvent
+    content: public static event Action<KeyCode, bool> OnKeyEvent
     return:
-      type: System.Action{Prowl.Runtime.Key,System.Boolean}
-    content.vb: Public Shared Event OnKeyEvent As Action(Of Key, Boolean)
+      type: System.Action{Prowl.Runtime.KeyCode,System.Boolean}
+    content.vb: Public Shared Event OnKeyEvent As Action(Of KeyCode, Boolean)
+- uid: Prowl.Runtime.Input.OnMouseEvent
+  commentId: E:Prowl.Runtime.Input.OnMouseEvent
+  id: OnMouseEvent
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: OnMouseEvent
+  nameWithType: Input.OnMouseEvent
+  fullName: Prowl.Runtime.Input.OnMouseEvent
+  type: Event
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnMouseEvent
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 45
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static event Action<MouseButton, float, float, bool, bool> OnMouseEvent
+    return:
+      type: System.Action{Prowl.Runtime.MouseButton,System.Single,System.Single,System.Boolean,System.Boolean}
+    content.vb: Public Shared Event OnMouseEvent As Action(Of MouseButton, Single, Single, Boolean, Boolean)
 - uid: Prowl.Runtime.Input.PrevMousePosition
   commentId: P:Prowl.Runtime.Input.PrevMousePosition
   id: PrevMousePosition
@@ -328,20 +309,20 @@ items:
   source:
     remote:
       path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: PrevMousePosition
     path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 46
+    startLine: 52
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static Vector2Int PrevMousePosition { get; }
+    content: public static Int2 PrevMousePosition { get; }
     parameters: []
     return:
-      type: Prowl.Runtime.Vector2Int
-    content.vb: Public Shared ReadOnly Property PrevMousePosition As Vector2Int
+      type: Prowl.Vector.Int2
+    content.vb: Public Shared ReadOnly Property PrevMousePosition As Int2
   overload: Prowl.Runtime.Input.PrevMousePosition*
 - uid: Prowl.Runtime.Input.MousePosition
   commentId: P:Prowl.Runtime.Input.MousePosition
@@ -357,20 +338,20 @@ items:
   source:
     remote:
       path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: MousePosition
     path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 47
+    startLine: 53
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static Vector2Int MousePosition { get; set; }
+    content: public static Int2 MousePosition { get; set; }
     parameters: []
     return:
-      type: Prowl.Runtime.Vector2Int
-    content.vb: Public Shared Property MousePosition As Vector2Int
+      type: Prowl.Vector.Int2
+    content.vb: Public Shared Property MousePosition As Int2
   overload: Prowl.Runtime.Input.MousePosition*
 - uid: Prowl.Runtime.Input.MouseDelta
   commentId: P:Prowl.Runtime.Input.MouseDelta
@@ -386,20 +367,20 @@ items:
   source:
     remote:
       path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: MouseDelta
     path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 52
+    startLine: 63
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static Vector2 MouseDelta { get; }
+    content: public static Float2 MouseDelta { get; }
     parameters: []
     return:
-      type: Prowl.Runtime.Vector2
-    content.vb: Public Shared ReadOnly Property MouseDelta As Vector2
+      type: Prowl.Vector.Float2
+    content.vb: Public Shared ReadOnly Property MouseDelta As Float2
   overload: Prowl.Runtime.Input.MouseDelta*
 - uid: Prowl.Runtime.Input.MouseWheelDelta
   commentId: P:Prowl.Runtime.Input.MouseWheelDelta
@@ -415,11 +396,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: MouseWheelDelta
     path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 53
+    startLine: 64
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -430,242 +411,1577 @@ items:
       type: System.Single
     content.vb: Public Shared ReadOnly Property MouseWheelDelta As Single
   overload: Prowl.Runtime.Input.MouseWheelDelta*
-- uid: Prowl.Runtime.Input.OnMouseEvent
-  commentId: E:Prowl.Runtime.Input.OnMouseEvent
-  id: OnMouseEvent
+- uid: Prowl.Runtime.Input.GetPressedChar
+  commentId: M:Prowl.Runtime.Input.GetPressedChar
+  id: GetPressedChar
   parent: Prowl.Runtime.Input
   langs:
   - csharp
   - vb
-  name: OnMouseEvent
-  nameWithType: Input.OnMouseEvent
-  fullName: Prowl.Runtime.Input.OnMouseEvent
+  name: GetPressedChar()
+  nameWithType: Input.GetPressedChar()
+  fullName: Prowl.Runtime.Input.GetPressedChar()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetPressedChar
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 67
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static char? GetPressedChar()
+    return:
+      type: System.Nullable{System.Char}
+    content.vb: Public Shared Function GetPressedChar() As Char?
+  overload: Prowl.Runtime.Input.GetPressedChar*
+- uid: Prowl.Runtime.Input.InputString
+  commentId: P:Prowl.Runtime.Input.InputString
+  id: InputString
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: InputString
+  nameWithType: Input.InputString
+  fullName: Prowl.Runtime.Input.InputString
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: InputString
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 71
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    The characters typed this frame, read non-destructively. Prefer this over
+        <xref href="Prowl.Runtime.Input.GetPressedChar" data-throw-if-not-resolved="false"></xref> for text input - multiple consumers can read it in the same frame.
+  example: []
+  syntax:
+    content: public static string InputString { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property InputString As String
+  overload: Prowl.Runtime.Input.InputString*
+- uid: Prowl.Runtime.Input.GetKey(Prowl.Runtime.KeyCode)
+  commentId: M:Prowl.Runtime.Input.GetKey(Prowl.Runtime.KeyCode)
+  id: GetKey(Prowl.Runtime.KeyCode)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: GetKey(KeyCode)
+  nameWithType: Input.GetKey(KeyCode)
+  fullName: Prowl.Runtime.Input.GetKey(Prowl.Runtime.KeyCode)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetKey
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 72
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static bool GetKey(KeyCode key)
+    parameters:
+    - id: key
+      type: Prowl.Runtime.KeyCode
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function GetKey(key As KeyCode) As Boolean
+  overload: Prowl.Runtime.Input.GetKey*
+- uid: Prowl.Runtime.Input.GetKeyDown(Prowl.Runtime.KeyCode)
+  commentId: M:Prowl.Runtime.Input.GetKeyDown(Prowl.Runtime.KeyCode)
+  id: GetKeyDown(Prowl.Runtime.KeyCode)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: GetKeyDown(KeyCode)
+  nameWithType: Input.GetKeyDown(KeyCode)
+  fullName: Prowl.Runtime.Input.GetKeyDown(Prowl.Runtime.KeyCode)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetKeyDown
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 73
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static bool GetKeyDown(KeyCode key)
+    parameters:
+    - id: key
+      type: Prowl.Runtime.KeyCode
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function GetKeyDown(key As KeyCode) As Boolean
+  overload: Prowl.Runtime.Input.GetKeyDown*
+- uid: Prowl.Runtime.Input.GetKeyUp(Prowl.Runtime.KeyCode)
+  commentId: M:Prowl.Runtime.Input.GetKeyUp(Prowl.Runtime.KeyCode)
+  id: GetKeyUp(Prowl.Runtime.KeyCode)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: GetKeyUp(KeyCode)
+  nameWithType: Input.GetKeyUp(KeyCode)
+  fullName: Prowl.Runtime.Input.GetKeyUp(Prowl.Runtime.KeyCode)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetKeyUp
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 74
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static bool GetKeyUp(KeyCode key)
+    parameters:
+    - id: key
+      type: Prowl.Runtime.KeyCode
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function GetKeyUp(key As KeyCode) As Boolean
+  overload: Prowl.Runtime.Input.GetKeyUp*
+- uid: Prowl.Runtime.Input.GetMouseButton(System.Int32)
+  commentId: M:Prowl.Runtime.Input.GetMouseButton(System.Int32)
+  id: GetMouseButton(System.Int32)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: GetMouseButton(int)
+  nameWithType: Input.GetMouseButton(int)
+  fullName: Prowl.Runtime.Input.GetMouseButton(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetMouseButton
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 77
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static bool GetMouseButton(int button)
+    parameters:
+    - id: button
+      type: System.Int32
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function GetMouseButton(button As Integer) As Boolean
+  overload: Prowl.Runtime.Input.GetMouseButton*
+  nameWithType.vb: Input.GetMouseButton(Integer)
+  fullName.vb: Prowl.Runtime.Input.GetMouseButton(Integer)
+  name.vb: GetMouseButton(Integer)
+- uid: Prowl.Runtime.Input.GetMouseButtonDown(System.Int32)
+  commentId: M:Prowl.Runtime.Input.GetMouseButtonDown(System.Int32)
+  id: GetMouseButtonDown(System.Int32)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: GetMouseButtonDown(int)
+  nameWithType: Input.GetMouseButtonDown(int)
+  fullName: Prowl.Runtime.Input.GetMouseButtonDown(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetMouseButtonDown
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 78
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static bool GetMouseButtonDown(int button)
+    parameters:
+    - id: button
+      type: System.Int32
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function GetMouseButtonDown(button As Integer) As Boolean
+  overload: Prowl.Runtime.Input.GetMouseButtonDown*
+  nameWithType.vb: Input.GetMouseButtonDown(Integer)
+  fullName.vb: Prowl.Runtime.Input.GetMouseButtonDown(Integer)
+  name.vb: GetMouseButtonDown(Integer)
+- uid: Prowl.Runtime.Input.GetMouseButtonUp(System.Int32)
+  commentId: M:Prowl.Runtime.Input.GetMouseButtonUp(System.Int32)
+  id: GetMouseButtonUp(System.Int32)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: GetMouseButtonUp(int)
+  nameWithType: Input.GetMouseButtonUp(int)
+  fullName: Prowl.Runtime.Input.GetMouseButtonUp(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetMouseButtonUp
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 79
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static bool GetMouseButtonUp(int button)
+    parameters:
+    - id: button
+      type: System.Int32
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function GetMouseButtonUp(button As Integer) As Boolean
+  overload: Prowl.Runtime.Input.GetMouseButtonUp*
+  nameWithType.vb: Input.GetMouseButtonUp(Integer)
+  fullName.vb: Prowl.Runtime.Input.GetMouseButtonUp(Integer)
+  name.vb: GetMouseButtonUp(Integer)
+- uid: Prowl.Runtime.Input.SetCursorVisible(System.Boolean)
+  commentId: M:Prowl.Runtime.Input.SetCursorVisible(System.Boolean)
+  id: SetCursorVisible(System.Boolean)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: SetCursorVisible(bool)
+  nameWithType: Input.SetCursorVisible(bool)
+  fullName: Prowl.Runtime.Input.SetCursorVisible(bool)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetCursorVisible
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 80
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static void SetCursorVisible(bool visible)
+    parameters:
+    - id: visible
+      type: System.Boolean
+    content.vb: Public Shared Sub SetCursorVisible(visible As Boolean)
+  overload: Prowl.Runtime.Input.SetCursorVisible*
+  nameWithType.vb: Input.SetCursorVisible(Boolean)
+  fullName.vb: Prowl.Runtime.Input.SetCursorVisible(Boolean)
+  name.vb: SetCursorVisible(Boolean)
+- uid: Prowl.Runtime.Input.SetCursorShape(Prowl.PaperUI.PaperCursor,System.Int32)
+  commentId: M:Prowl.Runtime.Input.SetCursorShape(Prowl.PaperUI.PaperCursor,System.Int32)
+  id: SetCursorShape(Prowl.PaperUI.PaperCursor,System.Int32)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: SetCursorShape(PaperCursor, int)
+  nameWithType: Input.SetCursorShape(PaperCursor, int)
+  fullName: Prowl.Runtime.Input.SetCursorShape(Prowl.PaperUI.PaperCursor, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetCursorShape
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 88
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Sets the hardware cursor shape. Hook this to <code>Paper.OnCursorChange</code> so hovered
+        elements can request a shape (pointer, resize, text, ...).
+  example: []
+  syntax:
+    content: public static void SetCursorShape(PaperCursor shape, int miceIndex = 0)
+    parameters:
+    - id: shape
+      type: Prowl.PaperUI.PaperCursor
+    - id: miceIndex
+      type: System.Int32
+    content.vb: Public Shared Sub SetCursorShape(shape As PaperCursor, miceIndex As Integer = 0)
+  overload: Prowl.Runtime.Input.SetCursorShape*
+  nameWithType.vb: Input.SetCursorShape(PaperCursor, Integer)
+  fullName.vb: Prowl.Runtime.Input.SetCursorShape(Prowl.PaperUI.PaperCursor, Integer)
+  name.vb: SetCursorShape(PaperCursor, Integer)
+- uid: Prowl.Runtime.Input.CursorLocked
+  commentId: P:Prowl.Runtime.Input.CursorLocked
+  id: CursorLocked
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: CursorLocked
+  nameWithType: Input.CursorLocked
+  fullName: Prowl.Runtime.Input.CursorLocked
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CursorLocked
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 93
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Whether the cursor is currently locked (hidden + recentered each frame).
+  example: []
+  syntax:
+    content: public static bool CursorLocked { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared ReadOnly Property CursorLocked As Boolean
+  overload: Prowl.Runtime.Input.CursorLocked*
+- uid: Prowl.Runtime.Input.CursorLockState
+  commentId: P:Prowl.Runtime.Input.CursorLockState
+  id: CursorLockState
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: CursorLockState
+  nameWithType: Input.CursorLockState
+  fullName: Prowl.Runtime.Input.CursorLockState
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CursorLockState
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 99
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    How the cursor is constrained, independently of <xref href="Prowl.Runtime.Input.CursorVisible" data-throw-if-not-resolved="false"></xref>. A mode the topmost
+
+    context disallows is rejected: <xref href="Prowl.Runtime.Input.OnCursorLockFailed" data-throw-if-not-resolved="false"></xref> fires and the mode is unchanged.
+  example: []
+  syntax:
+    content: public static CursorLockMode CursorLockState { get; set; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.CursorLockMode
+    content.vb: Public Shared Property CursorLockState As CursorLockMode
+  overload: Prowl.Runtime.Input.CursorLockState*
+- uid: Prowl.Runtime.Input.CursorVisible
+  commentId: P:Prowl.Runtime.Input.CursorVisible
+  id: CursorVisible
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: CursorVisible
+  nameWithType: Input.CursorVisible
+  fullName: Prowl.Runtime.Input.CursorVisible
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CursorVisible
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 124
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Whether the hardware cursor is drawn. <xref href="Prowl.Runtime.CursorLockMode.Locked" data-throw-if-not-resolved="false"></xref> hides it regardless.
+  example: []
+  syntax:
+    content: public static bool CursorVisible { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Property CursorVisible As Boolean
+  overload: Prowl.Runtime.Input.CursorVisible*
+- uid: Prowl.Runtime.Input.CursorLockCenter
+  commentId: P:Prowl.Runtime.Input.CursorLockCenter
+  id: CursorLockCenter
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: CursorLockCenter
+  nameWithType: Input.CursorLockCenter
+  fullName: Prowl.Runtime.Input.CursorLockCenter
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CursorLockCenter
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 134
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    The screen-space center point where the cursor is locked to,
+
+    as defined by the topmost lock context.
+  example: []
+  syntax:
+    content: public static Int2 CursorLockCenter { get; }
+    parameters: []
+    return:
+      type: Prowl.Vector.Int2
+    content.vb: Public Shared ReadOnly Property CursorLockCenter As Int2
+  overload: Prowl.Runtime.Input.CursorLockCenter*
+- uid: Prowl.Runtime.Input.CursorConfineBounds
+  commentId: P:Prowl.Runtime.Input.CursorConfineBounds
+  id: CursorConfineBounds
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: CursorConfineBounds
+  nameWithType: Input.CursorConfineBounds
+  fullName: Prowl.Runtime.Input.CursorConfineBounds
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CursorConfineBounds
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 140
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    The inclusive window-space rect <xref href="Prowl.Runtime.CursorLockMode.Confined" data-throw-if-not-resolved="false"></xref> holds the cursor inside,
+
+    as defined by the topmost lock context.
+  example: []
+  syntax:
+    content: public static IntRect CursorConfineBounds { get; }
+    parameters: []
+    return:
+      type: Prowl.Vector.IntRect
+    content.vb: Public Shared ReadOnly Property CursorConfineBounds As IntRect
+  overload: Prowl.Runtime.Input.CursorConfineBounds*
+- uid: Prowl.Runtime.Input.OnCursorLocked
+  commentId: E:Prowl.Runtime.Input.OnCursorLocked
+  id: OnCursorLocked
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: OnCursorLocked
+  nameWithType: Input.OnCursorLocked
+  fullName: Prowl.Runtime.Input.OnCursorLocked
   type: Event
   source:
     remote:
       path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: OnMouseEvent
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnCursorLocked
     path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 55
+    startLine: 153
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: Fired when the cursor is successfully constrained, locked or confined. Editor hooks this to show a toast.
+  example: []
   syntax:
-    content: public static event Action<MouseButton, double, double, bool, bool> OnMouseEvent
+    content: public static event Action? OnCursorLocked
     return:
-      type: System.Action{Prowl.Runtime.MouseButton,System.Double,System.Double,System.Boolean,System.Boolean}
-    content.vb: Public Shared Event OnMouseEvent As Action(Of MouseButton, Double, Double, Boolean, Boolean)
-- uid: Prowl.Runtime.Input.GetKey(Prowl.Runtime.Key)
-  commentId: M:Prowl.Runtime.Input.GetKey(Prowl.Runtime.Key)
-  id: GetKey(Prowl.Runtime.Key)
+      type: System.Action
+    content.vb: Public Shared Event OnCursorLocked As Action
+- uid: Prowl.Runtime.Input.OnCursorLockFailed
+  commentId: E:Prowl.Runtime.Input.OnCursorLockFailed
+  id: OnCursorLockFailed
   parent: Prowl.Runtime.Input
   langs:
   - csharp
   - vb
-  name: GetKey(Key)
-  nameWithType: Input.GetKey(Key)
-  fullName: Prowl.Runtime.Input.GetKey(Prowl.Runtime.Key)
+  name: OnCursorLockFailed
+  nameWithType: Input.OnCursorLockFailed
+  fullName: Prowl.Runtime.Input.OnCursorLockFailed
+  type: Event
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnCursorLockFailed
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 156
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Fired when a lock attempt is rejected by the current context. Editor hooks this for a toast.
+  example: []
+  syntax:
+    content: public static event Action? OnCursorLockFailed
+    return:
+      type: System.Action
+    content.vb: Public Shared Event OnCursorLockFailed As Action
+- uid: Prowl.Runtime.Input.PushLockContext(Prowl.Runtime.CursorLockContext)
+  commentId: M:Prowl.Runtime.Input.PushLockContext(Prowl.Runtime.CursorLockContext)
+  id: PushLockContext(Prowl.Runtime.CursorLockContext)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: PushLockContext(CursorLockContext)
+  nameWithType: Input.PushLockContext(CursorLockContext)
+  fullName: Prowl.Runtime.Input.PushLockContext(Prowl.Runtime.CursorLockContext)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: GetKey
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PushLockContext
     path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 61
+    startLine: 162
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Push a lock context that defines where the cursor centers and whether locking is allowed.
+
+    The topmost context controls behavior. Does not lock the cursor by itself.
+  example: []
+  syntax:
+    content: public static void PushLockContext(CursorLockContext context)
+    parameters:
+    - id: context
+      type: Prowl.Runtime.CursorLockContext
+    content.vb: Public Shared Sub PushLockContext(context As CursorLockContext)
+  overload: Prowl.Runtime.Input.PushLockContext*
+- uid: Prowl.Runtime.Input.PopLockContext
+  commentId: M:Prowl.Runtime.Input.PopLockContext
+  id: PopLockContext
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: PopLockContext()
+  nameWithType: Input.PopLockContext()
+  fullName: Prowl.Runtime.Input.PopLockContext()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PopLockContext
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 168
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Pop the topmost lock context. If the cursor is locked and the stack becomes empty
+
+    or the new top disallows locks, the cursor is automatically unlocked.
+  example: []
+  syntax:
+    content: public static void PopLockContext()
+    content.vb: Public Shared Sub PopLockContext()
+  overload: Prowl.Runtime.Input.PopLockContext*
+- uid: Prowl.Runtime.Input.LockCursor
+  commentId: M:Prowl.Runtime.Input.LockCursor
+  id: LockCursor
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: LockCursor()
+  nameWithType: Input.LockCursor()
+  fullName: Prowl.Runtime.Input.LockCursor()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LockCursor
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 183
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Lock the cursor hides it and reports CursorLockCenter as the mouse position.
+
+    Uses the topmost lock context to determine the center position.
+
+    If the topmost context disallows locking, fires OnCursorLockFailed and returns.
+  example: []
+  syntax:
+    content: public static void LockCursor()
+    content.vb: Public Shared Sub LockCursor()
+  overload: Prowl.Runtime.Input.LockCursor*
+- uid: Prowl.Runtime.Input.UnlockCursor
+  commentId: M:Prowl.Runtime.Input.UnlockCursor
+  id: UnlockCursor
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: UnlockCursor()
+  nameWithType: Input.UnlockCursor()
+  fullName: Prowl.Runtime.Input.UnlockCursor()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: UnlockCursor
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 194
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Release any cursor constraint and show the cursor again.
+
+    Overrides <xref href="Prowl.Runtime.Input.CursorVisible" data-throw-if-not-resolved="false"></xref> for back-compat, unlike setting <xref href="Prowl.Runtime.Input.CursorLockState" data-throw-if-not-resolved="false"></xref> directly
+  example: []
+  syntax:
+    content: public static void UnlockCursor()
+    content.vb: Public Shared Sub UnlockCursor()
+  overload: Prowl.Runtime.Input.UnlockCursor*
+- uid: Prowl.Runtime.Input.GetGamepadCount
+  commentId: M:Prowl.Runtime.Input.GetGamepadCount
+  id: GetGamepadCount
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: GetGamepadCount()
+  nameWithType: Input.GetGamepadCount()
+  fullName: Prowl.Runtime.Input.GetGamepadCount()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetGamepadCount
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 202
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The number of gamepads currently connected.
+  example: []
+  syntax:
+    content: public static int GetGamepadCount()
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function GetGamepadCount() As Integer
+  overload: Prowl.Runtime.Input.GetGamepadCount*
+- uid: Prowl.Runtime.Input.GetGamepadSlotCount
+  commentId: M:Prowl.Runtime.Input.GetGamepadSlotCount
+  id: GetGamepadSlotCount
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: GetGamepadSlotCount()
+  nameWithType: Input.GetGamepadSlotCount()
+  fullName: Prowl.Runtime.Input.GetGamepadSlotCount()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetGamepadSlotCount
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 209
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    The number of gamepad slots the backend exposes, connected or not. Backends report a fixed slot
+
+    count (16 under GLFW) regardless of what is plugged in, so this is the index range to scan when
+
+    looking for a device - <xref href="Prowl.Runtime.Input.GetGamepadCount" data-throw-if-not-resolved="false"></xref> is how many are actually attached.
+  example: []
+  syntax:
+    content: public static int GetGamepadSlotCount()
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function GetGamepadSlotCount() As Integer
+  overload: Prowl.Runtime.Input.GetGamepadSlotCount*
+- uid: Prowl.Runtime.Input.IsGamepadConnected(System.Int32)
+  commentId: M:Prowl.Runtime.Input.IsGamepadConnected(System.Int32)
+  id: IsGamepadConnected(System.Int32)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: IsGamepadConnected(int)
+  nameWithType: Input.IsGamepadConnected(int)
+  fullName: Prowl.Runtime.Input.IsGamepadConnected(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsGamepadConnected
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 211
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static bool GetKey(Key key)
+    content: public static bool IsGamepadConnected(int gamepadIndex = 0)
     parameters:
-    - id: key
-      type: Prowl.Runtime.Key
+    - id: gamepadIndex
+      type: System.Int32
     return:
       type: System.Boolean
-    content.vb: Public Shared Function GetKey(key As Key) As Boolean
-  overload: Prowl.Runtime.Input.GetKey*
-- uid: Prowl.Runtime.Input.GetKeyDown(Prowl.Runtime.Key)
-  commentId: M:Prowl.Runtime.Input.GetKeyDown(Prowl.Runtime.Key)
-  id: GetKeyDown(Prowl.Runtime.Key)
+    content.vb: Public Shared Function IsGamepadConnected(gamepadIndex As Integer = 0) As Boolean
+  overload: Prowl.Runtime.Input.IsGamepadConnected*
+  nameWithType.vb: Input.IsGamepadConnected(Integer)
+  fullName.vb: Prowl.Runtime.Input.IsGamepadConnected(Integer)
+  name.vb: IsGamepadConnected(Integer)
+- uid: Prowl.Runtime.Input.GetGamepadButton(Prowl.Runtime.GamepadButton,System.Int32)
+  commentId: M:Prowl.Runtime.Input.GetGamepadButton(Prowl.Runtime.GamepadButton,System.Int32)
+  id: GetGamepadButton(Prowl.Runtime.GamepadButton,System.Int32)
   parent: Prowl.Runtime.Input
   langs:
   - csharp
   - vb
-  name: GetKeyDown(Key)
-  nameWithType: Input.GetKeyDown(Key)
-  fullName: Prowl.Runtime.Input.GetKeyDown(Prowl.Runtime.Key)
+  name: GetGamepadButton(GamepadButton, int)
+  nameWithType: Input.GetGamepadButton(GamepadButton, int)
+  fullName: Prowl.Runtime.Input.GetGamepadButton(Prowl.Runtime.GamepadButton, int)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: GetKeyDown
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetGamepadButton
     path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 62
+    startLine: 212
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static bool GetKeyDown(Key key)
-    parameters:
-    - id: key
-      type: Prowl.Runtime.Key
-    return:
-      type: System.Boolean
-    content.vb: Public Shared Function GetKeyDown(key As Key) As Boolean
-  overload: Prowl.Runtime.Input.GetKeyDown*
-- uid: Prowl.Runtime.Input.GetKeyUp(Prowl.Runtime.Key)
-  commentId: M:Prowl.Runtime.Input.GetKeyUp(Prowl.Runtime.Key)
-  id: GetKeyUp(Prowl.Runtime.Key)
-  parent: Prowl.Runtime.Input
-  langs:
-  - csharp
-  - vb
-  name: GetKeyUp(Key)
-  nameWithType: Input.GetKeyUp(Key)
-  fullName: Prowl.Runtime.Input.GetKeyUp(Prowl.Runtime.Key)
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: GetKeyUp
-    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 63
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static bool GetKeyUp(Key key)
-    parameters:
-    - id: key
-      type: Prowl.Runtime.Key
-    return:
-      type: System.Boolean
-    content.vb: Public Shared Function GetKeyUp(key As Key) As Boolean
-  overload: Prowl.Runtime.Input.GetKeyUp*
-- uid: Prowl.Runtime.Input.GetMouseButton(Prowl.Runtime.MouseButton)
-  commentId: M:Prowl.Runtime.Input.GetMouseButton(Prowl.Runtime.MouseButton)
-  id: GetMouseButton(Prowl.Runtime.MouseButton)
-  parent: Prowl.Runtime.Input
-  langs:
-  - csharp
-  - vb
-  name: GetMouseButton(MouseButton)
-  nameWithType: Input.GetMouseButton(MouseButton)
-  fullName: Prowl.Runtime.Input.GetMouseButton(Prowl.Runtime.MouseButton)
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: GetMouseButton
-    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 64
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static bool GetMouseButton(MouseButton button)
+    content: public static bool GetGamepadButton(GamepadButton button, int gamepadIndex = 0)
     parameters:
     - id: button
-      type: Prowl.Runtime.MouseButton
+      type: Prowl.Runtime.GamepadButton
+    - id: gamepadIndex
+      type: System.Int32
     return:
       type: System.Boolean
-    content.vb: Public Shared Function GetMouseButton(button As MouseButton) As Boolean
-  overload: Prowl.Runtime.Input.GetMouseButton*
-- uid: Prowl.Runtime.Input.GetMouseButtonDown(Prowl.Runtime.MouseButton)
-  commentId: M:Prowl.Runtime.Input.GetMouseButtonDown(Prowl.Runtime.MouseButton)
-  id: GetMouseButtonDown(Prowl.Runtime.MouseButton)
+    content.vb: Public Shared Function GetGamepadButton(button As GamepadButton, gamepadIndex As Integer = 0) As Boolean
+  overload: Prowl.Runtime.Input.GetGamepadButton*
+  nameWithType.vb: Input.GetGamepadButton(GamepadButton, Integer)
+  fullName.vb: Prowl.Runtime.Input.GetGamepadButton(Prowl.Runtime.GamepadButton, Integer)
+  name.vb: GetGamepadButton(GamepadButton, Integer)
+- uid: Prowl.Runtime.Input.GetGamepadButtonDown(Prowl.Runtime.GamepadButton,System.Int32)
+  commentId: M:Prowl.Runtime.Input.GetGamepadButtonDown(Prowl.Runtime.GamepadButton,System.Int32)
+  id: GetGamepadButtonDown(Prowl.Runtime.GamepadButton,System.Int32)
   parent: Prowl.Runtime.Input
   langs:
   - csharp
   - vb
-  name: GetMouseButtonDown(MouseButton)
-  nameWithType: Input.GetMouseButtonDown(MouseButton)
-  fullName: Prowl.Runtime.Input.GetMouseButtonDown(Prowl.Runtime.MouseButton)
+  name: GetGamepadButtonDown(GamepadButton, int)
+  nameWithType: Input.GetGamepadButtonDown(GamepadButton, int)
+  fullName: Prowl.Runtime.Input.GetGamepadButtonDown(Prowl.Runtime.GamepadButton, int)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: GetMouseButtonDown
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetGamepadButtonDown
     path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 65
+    startLine: 213
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static bool GetMouseButtonDown(MouseButton button)
+    content: public static bool GetGamepadButtonDown(GamepadButton button, int gamepadIndex = 0)
     parameters:
     - id: button
-      type: Prowl.Runtime.MouseButton
+      type: Prowl.Runtime.GamepadButton
+    - id: gamepadIndex
+      type: System.Int32
     return:
       type: System.Boolean
-    content.vb: Public Shared Function GetMouseButtonDown(button As MouseButton) As Boolean
-  overload: Prowl.Runtime.Input.GetMouseButtonDown*
-- uid: Prowl.Runtime.Input.GetMouseButtonUp(Prowl.Runtime.MouseButton)
-  commentId: M:Prowl.Runtime.Input.GetMouseButtonUp(Prowl.Runtime.MouseButton)
-  id: GetMouseButtonUp(Prowl.Runtime.MouseButton)
+    content.vb: Public Shared Function GetGamepadButtonDown(button As GamepadButton, gamepadIndex As Integer = 0) As Boolean
+  overload: Prowl.Runtime.Input.GetGamepadButtonDown*
+  nameWithType.vb: Input.GetGamepadButtonDown(GamepadButton, Integer)
+  fullName.vb: Prowl.Runtime.Input.GetGamepadButtonDown(Prowl.Runtime.GamepadButton, Integer)
+  name.vb: GetGamepadButtonDown(GamepadButton, Integer)
+- uid: Prowl.Runtime.Input.GetGamepadButtonUp(Prowl.Runtime.GamepadButton,System.Int32)
+  commentId: M:Prowl.Runtime.Input.GetGamepadButtonUp(Prowl.Runtime.GamepadButton,System.Int32)
+  id: GetGamepadButtonUp(Prowl.Runtime.GamepadButton,System.Int32)
   parent: Prowl.Runtime.Input
   langs:
   - csharp
   - vb
-  name: GetMouseButtonUp(MouseButton)
-  nameWithType: Input.GetMouseButtonUp(MouseButton)
-  fullName: Prowl.Runtime.Input.GetMouseButtonUp(Prowl.Runtime.MouseButton)
+  name: GetGamepadButtonUp(GamepadButton, int)
+  nameWithType: Input.GetGamepadButtonUp(GamepadButton, int)
+  fullName: Prowl.Runtime.Input.GetGamepadButtonUp(Prowl.Runtime.GamepadButton, int)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/InputManagement/Input.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: GetMouseButtonUp
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetGamepadButtonUp
     path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
-    startLine: 66
+    startLine: 214
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static bool GetMouseButtonUp(MouseButton button)
+    content: public static bool GetGamepadButtonUp(GamepadButton button, int gamepadIndex = 0)
     parameters:
     - id: button
-      type: Prowl.Runtime.MouseButton
+      type: Prowl.Runtime.GamepadButton
+    - id: gamepadIndex
+      type: System.Int32
     return:
       type: System.Boolean
-    content.vb: Public Shared Function GetMouseButtonUp(button As MouseButton) As Boolean
-  overload: Prowl.Runtime.Input.GetMouseButtonUp*
+    content.vb: Public Shared Function GetGamepadButtonUp(button As GamepadButton, gamepadIndex As Integer = 0) As Boolean
+  overload: Prowl.Runtime.Input.GetGamepadButtonUp*
+  nameWithType.vb: Input.GetGamepadButtonUp(GamepadButton, Integer)
+  fullName.vb: Prowl.Runtime.Input.GetGamepadButtonUp(Prowl.Runtime.GamepadButton, Integer)
+  name.vb: GetGamepadButtonUp(GamepadButton, Integer)
+- uid: Prowl.Runtime.Input.GetGamepadLeftStick(System.Int32)
+  commentId: M:Prowl.Runtime.Input.GetGamepadLeftStick(System.Int32)
+  id: GetGamepadLeftStick(System.Int32)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: GetGamepadLeftStick(int)
+  nameWithType: Input.GetGamepadLeftStick(int)
+  fullName: Prowl.Runtime.Input.GetGamepadLeftStick(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetGamepadLeftStick
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 215
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static Float2 GetGamepadLeftStick(int gamepadIndex = 0)
+    parameters:
+    - id: gamepadIndex
+      type: System.Int32
+    return:
+      type: Prowl.Vector.Float2
+    content.vb: Public Shared Function GetGamepadLeftStick(gamepadIndex As Integer = 0) As Float2
+  overload: Prowl.Runtime.Input.GetGamepadLeftStick*
+  nameWithType.vb: Input.GetGamepadLeftStick(Integer)
+  fullName.vb: Prowl.Runtime.Input.GetGamepadLeftStick(Integer)
+  name.vb: GetGamepadLeftStick(Integer)
+- uid: Prowl.Runtime.Input.GetGamepadRightStick(System.Int32)
+  commentId: M:Prowl.Runtime.Input.GetGamepadRightStick(System.Int32)
+  id: GetGamepadRightStick(System.Int32)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: GetGamepadRightStick(int)
+  nameWithType: Input.GetGamepadRightStick(int)
+  fullName: Prowl.Runtime.Input.GetGamepadRightStick(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetGamepadRightStick
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 216
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static Float2 GetGamepadRightStick(int gamepadIndex = 0)
+    parameters:
+    - id: gamepadIndex
+      type: System.Int32
+    return:
+      type: Prowl.Vector.Float2
+    content.vb: Public Shared Function GetGamepadRightStick(gamepadIndex As Integer = 0) As Float2
+  overload: Prowl.Runtime.Input.GetGamepadRightStick*
+  nameWithType.vb: Input.GetGamepadRightStick(Integer)
+  fullName.vb: Prowl.Runtime.Input.GetGamepadRightStick(Integer)
+  name.vb: GetGamepadRightStick(Integer)
+- uid: Prowl.Runtime.Input.GetGamepadLeftTrigger(System.Int32)
+  commentId: M:Prowl.Runtime.Input.GetGamepadLeftTrigger(System.Int32)
+  id: GetGamepadLeftTrigger(System.Int32)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: GetGamepadLeftTrigger(int)
+  nameWithType: Input.GetGamepadLeftTrigger(int)
+  fullName: Prowl.Runtime.Input.GetGamepadLeftTrigger(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetGamepadLeftTrigger
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 217
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static float GetGamepadLeftTrigger(int gamepadIndex = 0)
+    parameters:
+    - id: gamepadIndex
+      type: System.Int32
+    return:
+      type: System.Single
+    content.vb: Public Shared Function GetGamepadLeftTrigger(gamepadIndex As Integer = 0) As Single
+  overload: Prowl.Runtime.Input.GetGamepadLeftTrigger*
+  nameWithType.vb: Input.GetGamepadLeftTrigger(Integer)
+  fullName.vb: Prowl.Runtime.Input.GetGamepadLeftTrigger(Integer)
+  name.vb: GetGamepadLeftTrigger(Integer)
+- uid: Prowl.Runtime.Input.GetGamepadRightTrigger(System.Int32)
+  commentId: M:Prowl.Runtime.Input.GetGamepadRightTrigger(System.Int32)
+  id: GetGamepadRightTrigger(System.Int32)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: GetGamepadRightTrigger(int)
+  nameWithType: Input.GetGamepadRightTrigger(int)
+  fullName: Prowl.Runtime.Input.GetGamepadRightTrigger(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetGamepadRightTrigger
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 218
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static float GetGamepadRightTrigger(int gamepadIndex = 0)
+    parameters:
+    - id: gamepadIndex
+      type: System.Int32
+    return:
+      type: System.Single
+    content.vb: Public Shared Function GetGamepadRightTrigger(gamepadIndex As Integer = 0) As Single
+  overload: Prowl.Runtime.Input.GetGamepadRightTrigger*
+  nameWithType.vb: Input.GetGamepadRightTrigger(Integer)
+  fullName.vb: Prowl.Runtime.Input.GetGamepadRightTrigger(Integer)
+  name.vb: GetGamepadRightTrigger(Integer)
+- uid: Prowl.Runtime.Input.SetGamepadVibration(System.Single,System.Single,System.Int32)
+  commentId: M:Prowl.Runtime.Input.SetGamepadVibration(System.Single,System.Single,System.Int32)
+  id: SetGamepadVibration(System.Single,System.Single,System.Int32)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: SetGamepadVibration(float, float, int)
+  nameWithType: Input.SetGamepadVibration(float, float, int)
+  fullName: Prowl.Runtime.Input.SetGamepadVibration(float, float, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetGamepadVibration
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 219
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static void SetGamepadVibration(float leftMotor, float rightMotor, int gamepadIndex = 0)
+    parameters:
+    - id: leftMotor
+      type: System.Single
+    - id: rightMotor
+      type: System.Single
+    - id: gamepadIndex
+      type: System.Int32
+    content.vb: Public Shared Sub SetGamepadVibration(leftMotor As Single, rightMotor As Single, gamepadIndex As Integer = 0)
+  overload: Prowl.Runtime.Input.SetGamepadVibration*
+  nameWithType.vb: Input.SetGamepadVibration(Single, Single, Integer)
+  fullName.vb: Prowl.Runtime.Input.SetGamepadVibration(Single, Single, Integer)
+  name.vb: SetGamepadVibration(Single, Single, Integer)
+- uid: Prowl.Runtime.Input.VibrateGamepad(System.Single,System.Single,System.Single,System.Int32)
+  commentId: M:Prowl.Runtime.Input.VibrateGamepad(System.Single,System.Single,System.Single,System.Int32)
+  id: VibrateGamepad(System.Single,System.Single,System.Single,System.Int32)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: VibrateGamepad(float, float, float, int)
+  nameWithType: Input.VibrateGamepad(float, float, float, int)
+  fullName: Prowl.Runtime.Input.VibrateGamepad(float, float, float, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: VibrateGamepad
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 232
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Vibrates a gamepad for <code class="paramref">seconds</code> of real time, then stops it. The stop happens even if
+
+    whatever started it is gone and even while the game is paused. A later call replaces the earlier one.
+  example: []
+  syntax:
+    content: public static void VibrateGamepad(float leftMotor, float rightMotor, float seconds, int gamepadIndex = 0)
+    parameters:
+    - id: leftMotor
+      type: System.Single
+    - id: rightMotor
+      type: System.Single
+    - id: seconds
+      type: System.Single
+    - id: gamepadIndex
+      type: System.Int32
+    content.vb: Public Shared Sub VibrateGamepad(leftMotor As Single, rightMotor As Single, seconds As Single, gamepadIndex As Integer = 0)
+  overload: Prowl.Runtime.Input.VibrateGamepad*
+  nameWithType.vb: Input.VibrateGamepad(Single, Single, Single, Integer)
+  fullName.vb: Prowl.Runtime.Input.VibrateGamepad(Single, Single, Single, Integer)
+  name.vb: VibrateGamepad(Single, Single, Single, Integer)
+- uid: Prowl.Runtime.Input.RegisterActionMap(Prowl.Runtime.InputActionMap)
+  commentId: M:Prowl.Runtime.Input.RegisterActionMap(Prowl.Runtime.InputActionMap)
+  id: RegisterActionMap(Prowl.Runtime.InputActionMap)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: RegisterActionMap(InputActionMap)
+  nameWithType: Input.RegisterActionMap(InputActionMap)
+  fullName: Prowl.Runtime.Input.RegisterActionMap(Prowl.Runtime.InputActionMap)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RegisterActionMap
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 259
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Registers an input action map with the input system.
+
+    The map's actions will be updated each frame.
+  example: []
+  syntax:
+    content: public static void RegisterActionMap(InputActionMap map)
+    parameters:
+    - id: map
+      type: Prowl.Runtime.InputActionMap
+    content.vb: Public Shared Sub RegisterActionMap(map As InputActionMap)
+  overload: Prowl.Runtime.Input.RegisterActionMap*
+- uid: Prowl.Runtime.Input.UnregisterActionMap(Prowl.Runtime.InputActionMap)
+  commentId: M:Prowl.Runtime.Input.UnregisterActionMap(Prowl.Runtime.InputActionMap)
+  id: UnregisterActionMap(Prowl.Runtime.InputActionMap)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: UnregisterActionMap(InputActionMap)
+  nameWithType: Input.UnregisterActionMap(InputActionMap)
+  fullName: Prowl.Runtime.Input.UnregisterActionMap(Prowl.Runtime.InputActionMap)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: UnregisterActionMap
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 268
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Unregisters an input action map from the input system.
+  example: []
+  syntax:
+    content: public static void UnregisterActionMap(InputActionMap map)
+    parameters:
+    - id: map
+      type: Prowl.Runtime.InputActionMap
+    content.vb: Public Shared Sub UnregisterActionMap(map As InputActionMap)
+  overload: Prowl.Runtime.Input.UnregisterActionMap*
+- uid: Prowl.Runtime.Input.ActionMaps
+  commentId: P:Prowl.Runtime.Input.ActionMaps
+  id: ActionMaps
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: ActionMaps
+  nameWithType: Input.ActionMaps
+  fullName: Prowl.Runtime.Input.ActionMaps
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ActionMaps
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 276
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Gets all registered action maps.
+  example: []
+  syntax:
+    content: public static IReadOnlyList<InputActionMap> ActionMaps { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.InputActionMap}
+    content.vb: Public Shared ReadOnly Property ActionMaps As IReadOnlyList(Of InputActionMap)
+  overload: Prowl.Runtime.Input.ActionMaps*
+- uid: Prowl.Runtime.Input.FindAction(System.String)
+  commentId: M:Prowl.Runtime.Input.FindAction(System.String)
+  id: FindAction(System.String)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: FindAction(string)
+  nameWithType: Input.FindAction(string)
+  fullName: Prowl.Runtime.Input.FindAction(string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FindAction
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 281
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Finds an action across all registered maps.
+  example: []
+  syntax:
+    content: public static InputAction? FindAction(string actionName)
+    parameters:
+    - id: actionName
+      type: System.String
+    return:
+      type: Prowl.Runtime.InputAction
+    content.vb: Public Shared Function FindAction(actionName As String) As InputAction
+  overload: Prowl.Runtime.Input.FindAction*
+  nameWithType.vb: Input.FindAction(String)
+  fullName.vb: Prowl.Runtime.Input.FindAction(String)
+  name.vb: FindAction(String)
+- uid: Prowl.Runtime.Input.FindAction(System.String,System.String)
+  commentId: M:Prowl.Runtime.Input.FindAction(System.String,System.String)
+  id: FindAction(System.String,System.String)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: FindAction(string, string)
+  nameWithType: Input.FindAction(string, string)
+  fullName: Prowl.Runtime.Input.FindAction(string, string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FindAction
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 295
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Finds an action in a specific map using "mapName/actionName" syntax.
+  example: []
+  syntax:
+    content: public static InputAction? FindAction(string mapName, string actionName)
+    parameters:
+    - id: mapName
+      type: System.String
+    - id: actionName
+      type: System.String
+    return:
+      type: Prowl.Runtime.InputAction
+    content.vb: Public Shared Function FindAction(mapName As String, actionName As String) As InputAction
+  overload: Prowl.Runtime.Input.FindAction*
+  nameWithType.vb: Input.FindAction(String, String)
+  fullName.vb: Prowl.Runtime.Input.FindAction(String, String)
+  name.vb: FindAction(String, String)
+- uid: Prowl.Runtime.Input.AnyKey
+  commentId: P:Prowl.Runtime.Input.AnyKey
+  id: AnyKey
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: AnyKey
+  nameWithType: Input.AnyKey
+  fullName: Prowl.Runtime.Input.AnyKey
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AnyKey
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 327
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Checks if any key is currently pressed.
+  example: []
+  syntax:
+    content: public static bool AnyKey { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared ReadOnly Property AnyKey As Boolean
+  overload: Prowl.Runtime.Input.AnyKey*
+- uid: Prowl.Runtime.Input.AnyKeyDown
+  commentId: P:Prowl.Runtime.Input.AnyKeyDown
+  id: AnyKeyDown
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: AnyKeyDown
+  nameWithType: Input.AnyKeyDown
+  fullName: Prowl.Runtime.Input.AnyKeyDown
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AnyKeyDown
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 337
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    True only on the frame a keyboard key goes down. Unlike <xref href="Prowl.Runtime.Input.AnyKey" data-throw-if-not-resolved="false"></xref> it does not stay true
+
+    while the key is held, so a key held from before does not count.
+  example: []
+  syntax:
+    content: public static bool AnyKeyDown { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared ReadOnly Property AnyKeyDown As Boolean
+  overload: Prowl.Runtime.Input.AnyKeyDown*
+- uid: Prowl.Runtime.Input.AnyButtonDown
+  commentId: P:Prowl.Runtime.Input.AnyButtonDown
+  id: AnyButtonDown
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: AnyButtonDown
+  nameWithType: Input.AnyButtonDown
+  fullName: Prowl.Runtime.Input.AnyButtonDown
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AnyButtonDown
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 349
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: True only on the frame a keyboard key, mouse button, or button on any connected gamepad goes down.
+  example: []
+  syntax:
+    content: public static bool AnyButtonDown { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared ReadOnly Property AnyButtonDown As Boolean
+  overload: Prowl.Runtime.Input.AnyButtonDown*
+- uid: Prowl.Runtime.Input.GetKeyCombo(Prowl.Runtime.KeyCode,Prowl.Runtime.KeyCode)
+  commentId: M:Prowl.Runtime.Input.GetKeyCombo(Prowl.Runtime.KeyCode,Prowl.Runtime.KeyCode)
+  id: GetKeyCombo(Prowl.Runtime.KeyCode,Prowl.Runtime.KeyCode)
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: GetKeyCombo(KeyCode, KeyCode)
+  nameWithType: Input.GetKeyCombo(KeyCode, KeyCode)
+  fullName: Prowl.Runtime.Input.GetKeyCombo(Prowl.Runtime.KeyCode, Prowl.Runtime.KeyCode)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetKeyCombo
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 372
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Checks if a specific key combination is pressed (e.g., Ctrl+S).
+  example: []
+  syntax:
+    content: public static bool GetKeyCombo(KeyCode modifier, KeyCode key)
+    parameters:
+    - id: modifier
+      type: Prowl.Runtime.KeyCode
+    - id: key
+      type: Prowl.Runtime.KeyCode
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function GetKeyCombo(modifier As KeyCode, key As KeyCode) As Boolean
+  overload: Prowl.Runtime.Input.GetKeyCombo*
+- uid: Prowl.Runtime.Input.IsCtrlPressed
+  commentId: P:Prowl.Runtime.Input.IsCtrlPressed
+  id: IsCtrlPressed
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: IsCtrlPressed
+  nameWithType: Input.IsCtrlPressed
+  fullName: Prowl.Runtime.Input.IsCtrlPressed
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsCtrlPressed
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 380
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Checks if Ctrl is held (handles both left and right Ctrl).
+  example: []
+  syntax:
+    content: public static bool IsCtrlPressed { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared ReadOnly Property IsCtrlPressed As Boolean
+  overload: Prowl.Runtime.Input.IsCtrlPressed*
+- uid: Prowl.Runtime.Input.IsShiftPressed
+  commentId: P:Prowl.Runtime.Input.IsShiftPressed
+  id: IsShiftPressed
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: IsShiftPressed
+  nameWithType: Input.IsShiftPressed
+  fullName: Prowl.Runtime.Input.IsShiftPressed
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsShiftPressed
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 385
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Checks if Shift is held (handles both left and right Shift).
+  example: []
+  syntax:
+    content: public static bool IsShiftPressed { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared ReadOnly Property IsShiftPressed As Boolean
+  overload: Prowl.Runtime.Input.IsShiftPressed*
+- uid: Prowl.Runtime.Input.IsAltPressed
+  commentId: P:Prowl.Runtime.Input.IsAltPressed
+  id: IsAltPressed
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: IsAltPressed
+  nameWithType: Input.IsAltPressed
+  fullName: Prowl.Runtime.Input.IsAltPressed
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsAltPressed
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 390
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Checks if Alt is held (handles both left and right Alt).
+  example: []
+  syntax:
+    content: public static bool IsAltPressed { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared ReadOnly Property IsAltPressed As Boolean
+  overload: Prowl.Runtime.Input.IsAltPressed*
+- uid: Prowl.Runtime.Input.GetWASD
+  commentId: M:Prowl.Runtime.Input.GetWASD
+  id: GetWASD
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: GetWASD()
+  nameWithType: Input.GetWASD()
+  fullName: Prowl.Runtime.Input.GetWASD()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetWASD
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 395
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Gets a Vector2 from WASD keys (normalized).
+  example: []
+  syntax:
+    content: public static Float2 GetWASD()
+    return:
+      type: Prowl.Vector.Float2
+    content.vb: Public Shared Function GetWASD() As Float2
+  overload: Prowl.Runtime.Input.GetWASD*
+- uid: Prowl.Runtime.Input.GetArrowKeys
+  commentId: M:Prowl.Runtime.Input.GetArrowKeys
+  id: GetArrowKeys
+  parent: Prowl.Runtime.Input
+  langs:
+  - csharp
+  - vb
+  name: GetArrowKeys()
+  nameWithType: Input.GetArrowKeys()
+  fullName: Prowl.Runtime.Input.GetArrowKeys()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InputManagement/Input.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetArrowKeys
+    path: ../Prowl/Prowl.Runtime/InputManagement/Input.cs
+    startLine: 414
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Gets a Vector2 from arrow keys (normalized).
+  example: []
+  syntax:
+    content: public static Float2 GetArrowKeys()
+    return:
+      type: Prowl.Vector.Float2
+    content.vb: Public Shared Function GetArrowKeys() As Float2
+  overload: Prowl.Runtime.Input.GetArrowKeys*
 references:
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
-  href: Prowl.html
   name: Prowl.Runtime
   nameWithType: Prowl.Runtime
   fullName: Prowl.Runtime
   spec.csharp:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
   spec.vb:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -896,37 +2212,6 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
   - name: )
-- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
-  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-  parent: Prowl.Runtime.RuntimeUtils
-  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
-  name: GetSerializableFields(object)
-  nameWithType: RuntimeUtils.GetSerializableFields(object)
-  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
-  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
-  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
-  name.vb: GetSerializableFields(Object)
-  spec.csharp:
-  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-    name: GetSerializableFields
-    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
-  - name: (
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-    name: GetSerializableFields
-    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
-  - name: (
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
 - uid: System
   commentId: N:System
   isExternal: true
@@ -934,43 +2219,6 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-  isExternal: true
-  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
-  name: GetSerializableFields(object)
-  nameWithType: RuntimeUtils.GetSerializableFields(object)
-  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
-  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
-  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
-  name.vb: GetSerializableFields(Object)
-  spec.csharp:
-  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-    name: GetSerializableFields
-    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
-  - name: (
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-    name: GetSerializableFields
-    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
-  - name: (
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-- uid: Prowl.Runtime.RuntimeUtils
-  commentId: T:Prowl.Runtime.RuntimeUtils
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.RuntimeUtils.html
-  name: RuntimeUtils
-  nameWithType: RuntimeUtils
-  fullName: Prowl.Runtime.RuntimeUtils
 - uid: Prowl.Runtime.Input.Handlers*
   commentId: Overload:Prowl.Runtime.Input.Handlers
   href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_Handlers
@@ -1100,29 +2348,6 @@ references:
   name: PopHandler
   nameWithType: Input.PopHandler
   fullName: Prowl.Runtime.Input.PopHandler
-- uid: Prowl.Runtime.Input.CursorVisible*
-  commentId: Overload:Prowl.Runtime.Input.CursorVisible
-  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_CursorVisible
-  name: CursorVisible
-  nameWithType: Input.CursorVisible
-  fullName: Prowl.Runtime.Input.CursorVisible
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
-- uid: Prowl.Runtime.Input.CursorLocked*
-  commentId: Overload:Prowl.Runtime.Input.CursorLocked
-  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_CursorLocked
-  name: CursorLocked
-  nameWithType: Input.CursorLocked
-  fullName: Prowl.Runtime.Input.CursorLocked
 - uid: Prowl.Runtime.Input.Clipboard*
   commentId: Overload:Prowl.Runtime.Input.Clipboard
   href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_Clipboard
@@ -1140,95 +2365,26 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: Prowl.Runtime.Input.InputString*
-  commentId: Overload:Prowl.Runtime.Input.InputString
-  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_InputString
-  name: InputString
-  nameWithType: Input.InputString
-  fullName: Prowl.Runtime.Input.InputString
-- uid: System.Collections.Generic.IReadOnlyList{System.Char}
-  commentId: T:System.Collections.Generic.IReadOnlyList{System.Char}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.IReadOnlyList`1
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
-  name: IReadOnlyList<char>
-  nameWithType: IReadOnlyList<char>
-  fullName: System.Collections.Generic.IReadOnlyList<char>
-  nameWithType.vb: IReadOnlyList(Of Char)
-  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Char)
-  name.vb: IReadOnlyList(Of Char)
-  spec.csharp:
-  - uid: System.Collections.Generic.IReadOnlyList`1
-    name: IReadOnlyList
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
-  - name: <
-  - uid: System.Char
-    name: char
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.char
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IReadOnlyList`1
-    name: IReadOnlyList
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Char
-    name: Char
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.char
-  - name: )
-- uid: System.Collections.Generic.IReadOnlyList`1
-  commentId: T:System.Collections.Generic.IReadOnlyList`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
-  name: IReadOnlyList<T>
-  nameWithType: IReadOnlyList<T>
-  fullName: System.Collections.Generic.IReadOnlyList<T>
-  nameWithType.vb: IReadOnlyList(Of T)
-  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
-  name.vb: IReadOnlyList(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.IReadOnlyList`1
-    name: IReadOnlyList
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IReadOnlyList`1
-    name: IReadOnlyList
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: System.Action{Prowl.Runtime.Key,System.Boolean}
-  commentId: T:System.Action{Prowl.Runtime.Key,System.Boolean}
+- uid: System.Action{Prowl.Runtime.KeyCode,System.Boolean}
+  commentId: T:System.Action{Prowl.Runtime.KeyCode,System.Boolean}
   parent: System
   definition: System.Action`2
   href: https://learn.microsoft.com/dotnet/api/system.action-2
-  name: Action<Key, bool>
-  nameWithType: Action<Key, bool>
-  fullName: System.Action<Prowl.Runtime.Key, bool>
-  nameWithType.vb: Action(Of Key, Boolean)
-  fullName.vb: System.Action(Of Prowl.Runtime.Key, Boolean)
-  name.vb: Action(Of Key, Boolean)
+  name: Action<KeyCode, bool>
+  nameWithType: Action<KeyCode, bool>
+  fullName: System.Action<Prowl.Runtime.KeyCode, bool>
+  nameWithType.vb: Action(Of KeyCode, Boolean)
+  fullName.vb: System.Action(Of Prowl.Runtime.KeyCode, Boolean)
+  name.vb: Action(Of KeyCode, Boolean)
   spec.csharp:
   - uid: System.Action`2
     name: Action
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.action-2
   - name: <
-  - uid: Prowl.Runtime.Key
-    name: Key
-    href: Prowl.Runtime.Key.html
+  - uid: Prowl.Runtime.KeyCode
+    name: KeyCode
+    href: Prowl.Runtime.KeyCode.html
   - name: ','
   - name: " "
   - uid: System.Boolean
@@ -1244,9 +2400,9 @@ references:
   - name: (
   - name: Of
   - name: " "
-  - uid: Prowl.Runtime.Key
-    name: Key
-    href: Prowl.Runtime.Key.html
+  - uid: Prowl.Runtime.KeyCode
+    name: KeyCode
+    href: Prowl.Runtime.KeyCode.html
   - name: ','
   - name: " "
   - uid: System.Boolean
@@ -1288,66 +2444,17 @@ references:
   - name: " "
   - name: T2
   - name: )
-- uid: Prowl.Runtime.Input.PrevMousePosition*
-  commentId: Overload:Prowl.Runtime.Input.PrevMousePosition
-  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_PrevMousePosition
-  name: PrevMousePosition
-  nameWithType: Input.PrevMousePosition
-  fullName: Prowl.Runtime.Input.PrevMousePosition
-- uid: Prowl.Runtime.Vector2Int
-  commentId: T:Prowl.Runtime.Vector2Int
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.Vector2Int.html
-  name: Vector2Int
-  nameWithType: Vector2Int
-  fullName: Prowl.Runtime.Vector2Int
-- uid: Prowl.Runtime.Input.MousePosition*
-  commentId: Overload:Prowl.Runtime.Input.MousePosition
-  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_MousePosition
-  name: MousePosition
-  nameWithType: Input.MousePosition
-  fullName: Prowl.Runtime.Input.MousePosition
-- uid: Prowl.Runtime.Input.MouseDelta*
-  commentId: Overload:Prowl.Runtime.Input.MouseDelta
-  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_MouseDelta
-  name: MouseDelta
-  nameWithType: Input.MouseDelta
-  fullName: Prowl.Runtime.Input.MouseDelta
-- uid: Prowl.Runtime.Vector2
-  commentId: T:Prowl.Runtime.Vector2
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.Vector2.html
-  name: Vector2
-  nameWithType: Vector2
-  fullName: Prowl.Runtime.Vector2
-- uid: Prowl.Runtime.Input.MouseWheelDelta*
-  commentId: Overload:Prowl.Runtime.Input.MouseWheelDelta
-  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_MouseWheelDelta
-  name: MouseWheelDelta
-  nameWithType: Input.MouseWheelDelta
-  fullName: Prowl.Runtime.Input.MouseWheelDelta
-- uid: System.Single
-  commentId: T:System.Single
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.single
-  name: float
-  nameWithType: float
-  fullName: float
-  nameWithType.vb: Single
-  fullName.vb: Single
-  name.vb: Single
-- uid: System.Action{Prowl.Runtime.MouseButton,System.Double,System.Double,System.Boolean,System.Boolean}
-  commentId: T:System.Action{Prowl.Runtime.MouseButton,System.Double,System.Double,System.Boolean,System.Boolean}
+- uid: System.Action{Prowl.Runtime.MouseButton,System.Single,System.Single,System.Boolean,System.Boolean}
+  commentId: T:System.Action{Prowl.Runtime.MouseButton,System.Single,System.Single,System.Boolean,System.Boolean}
   parent: System
   definition: System.Action`5
   href: https://learn.microsoft.com/dotnet/api/system.action-5
-  name: Action<MouseButton, double, double, bool, bool>
-  nameWithType: Action<MouseButton, double, double, bool, bool>
-  fullName: System.Action<Prowl.Runtime.MouseButton, double, double, bool, bool>
-  nameWithType.vb: Action(Of MouseButton, Double, Double, Boolean, Boolean)
-  fullName.vb: System.Action(Of Prowl.Runtime.MouseButton, Double, Double, Boolean, Boolean)
-  name.vb: Action(Of MouseButton, Double, Double, Boolean, Boolean)
+  name: Action<MouseButton, float, float, bool, bool>
+  nameWithType: Action<MouseButton, float, float, bool, bool>
+  fullName: System.Action<Prowl.Runtime.MouseButton, float, float, bool, bool>
+  nameWithType.vb: Action(Of MouseButton, Single, Single, Boolean, Boolean)
+  fullName.vb: System.Action(Of Prowl.Runtime.MouseButton, Single, Single, Boolean, Boolean)
+  name.vb: Action(Of MouseButton, Single, Single, Boolean, Boolean)
   spec.csharp:
   - uid: System.Action`5
     name: Action
@@ -1359,16 +2466,16 @@ references:
     href: Prowl.Runtime.MouseButton.html
   - name: ','
   - name: " "
-  - uid: System.Double
-    name: double
+  - uid: System.Single
+    name: float
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.double
+    href: https://learn.microsoft.com/dotnet/api/system.single
   - name: ','
   - name: " "
-  - uid: System.Double
-    name: double
+  - uid: System.Single
+    name: float
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.double
+    href: https://learn.microsoft.com/dotnet/api/system.single
   - name: ','
   - name: " "
   - uid: System.Boolean
@@ -1395,16 +2502,16 @@ references:
     href: Prowl.Runtime.MouseButton.html
   - name: ','
   - name: " "
-  - uid: System.Double
-    name: Double
+  - uid: System.Single
+    name: Single
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.double
+    href: https://learn.microsoft.com/dotnet/api/system.single
   - name: ','
   - name: " "
-  - uid: System.Double
-    name: Double
+  - uid: System.Single
+    name: Single
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.double
+    href: https://learn.microsoft.com/dotnet/api/system.single
   - name: ','
   - name: " "
   - uid: System.Boolean
@@ -1470,53 +2577,625 @@ references:
   - name: " "
   - name: T5
   - name: )
+- uid: Prowl.Runtime.Input.PrevMousePosition*
+  commentId: Overload:Prowl.Runtime.Input.PrevMousePosition
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_PrevMousePosition
+  name: PrevMousePosition
+  nameWithType: Input.PrevMousePosition
+  fullName: Prowl.Runtime.Input.PrevMousePosition
+- uid: Prowl.Vector.Int2
+  commentId: T:Prowl.Vector.Int2
+  parent: Prowl.Vector
+  isExternal: true
+  name: Int2
+  nameWithType: Int2
+  fullName: Prowl.Vector.Int2
+- uid: Prowl.Vector
+  commentId: N:Prowl.Vector
+  name: Prowl.Vector
+  nameWithType: Prowl.Vector
+  fullName: Prowl.Vector
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+- uid: Prowl.Runtime.Input.MousePosition*
+  commentId: Overload:Prowl.Runtime.Input.MousePosition
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_MousePosition
+  name: MousePosition
+  nameWithType: Input.MousePosition
+  fullName: Prowl.Runtime.Input.MousePosition
+- uid: Prowl.Runtime.Input.MouseDelta*
+  commentId: Overload:Prowl.Runtime.Input.MouseDelta
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_MouseDelta
+  name: MouseDelta
+  nameWithType: Input.MouseDelta
+  fullName: Prowl.Runtime.Input.MouseDelta
+- uid: Prowl.Vector.Float2
+  commentId: T:Prowl.Vector.Float2
+  parent: Prowl.Vector
+  isExternal: true
+  name: Float2
+  nameWithType: Float2
+  fullName: Prowl.Vector.Float2
+- uid: Prowl.Runtime.Input.MouseWheelDelta*
+  commentId: Overload:Prowl.Runtime.Input.MouseWheelDelta
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_MouseWheelDelta
+  name: MouseWheelDelta
+  nameWithType: Input.MouseWheelDelta
+  fullName: Prowl.Runtime.Input.MouseWheelDelta
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: Prowl.Runtime.Input.GetPressedChar*
+  commentId: Overload:Prowl.Runtime.Input.GetPressedChar
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetPressedChar
+  name: GetPressedChar
+  nameWithType: Input.GetPressedChar
+  fullName: Prowl.Runtime.Input.GetPressedChar
+- uid: System.Nullable{System.Char}
+  commentId: T:System.Nullable{System.Char}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.char
+  name: char?
+  nameWithType: char?
+  fullName: char?
+  nameWithType.vb: Char?
+  fullName.vb: Char?
+  name.vb: Char?
+  spec.csharp:
+  - uid: System.Char
+    name: char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: '?'
+  spec.vb:
+  - uid: System.Char
+    name: Char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Runtime.Input.GetPressedChar
+  commentId: M:Prowl.Runtime.Input.GetPressedChar
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetPressedChar
+  name: GetPressedChar()
+  nameWithType: Input.GetPressedChar()
+  fullName: Prowl.Runtime.Input.GetPressedChar()
+  spec.csharp:
+  - uid: Prowl.Runtime.Input.GetPressedChar
+    name: GetPressedChar
+    href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetPressedChar
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Input.GetPressedChar
+    name: GetPressedChar
+    href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetPressedChar
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Input.InputString*
+  commentId: Overload:Prowl.Runtime.Input.InputString
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_InputString
+  name: InputString
+  nameWithType: Input.InputString
+  fullName: Prowl.Runtime.Input.InputString
 - uid: Prowl.Runtime.Input.GetKey*
   commentId: Overload:Prowl.Runtime.Input.GetKey
-  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetKey_Prowl_Runtime_Key_
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetKey_Prowl_Runtime_KeyCode_
   name: GetKey
   nameWithType: Input.GetKey
   fullName: Prowl.Runtime.Input.GetKey
-- uid: Prowl.Runtime.Key
-  commentId: T:Prowl.Runtime.Key
+- uid: Prowl.Runtime.KeyCode
+  commentId: T:Prowl.Runtime.KeyCode
   parent: Prowl.Runtime
-  href: Prowl.Runtime.Key.html
-  name: Key
-  nameWithType: Key
-  fullName: Prowl.Runtime.Key
+  href: Prowl.Runtime.KeyCode.html
+  name: KeyCode
+  nameWithType: KeyCode
+  fullName: Prowl.Runtime.KeyCode
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: Prowl.Runtime.Input.GetKeyDown*
   commentId: Overload:Prowl.Runtime.Input.GetKeyDown
-  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetKeyDown_Prowl_Runtime_Key_
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetKeyDown_Prowl_Runtime_KeyCode_
   name: GetKeyDown
   nameWithType: Input.GetKeyDown
   fullName: Prowl.Runtime.Input.GetKeyDown
 - uid: Prowl.Runtime.Input.GetKeyUp*
   commentId: Overload:Prowl.Runtime.Input.GetKeyUp
-  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetKeyUp_Prowl_Runtime_Key_
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetKeyUp_Prowl_Runtime_KeyCode_
   name: GetKeyUp
   nameWithType: Input.GetKeyUp
   fullName: Prowl.Runtime.Input.GetKeyUp
 - uid: Prowl.Runtime.Input.GetMouseButton*
   commentId: Overload:Prowl.Runtime.Input.GetMouseButton
-  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetMouseButton_Prowl_Runtime_MouseButton_
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetMouseButton_System_Int32_
   name: GetMouseButton
   nameWithType: Input.GetMouseButton
   fullName: Prowl.Runtime.Input.GetMouseButton
-- uid: Prowl.Runtime.MouseButton
-  commentId: T:Prowl.Runtime.MouseButton
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.MouseButton.html
-  name: MouseButton
-  nameWithType: MouseButton
-  fullName: Prowl.Runtime.MouseButton
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: Prowl.Runtime.Input.GetMouseButtonDown*
   commentId: Overload:Prowl.Runtime.Input.GetMouseButtonDown
-  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetMouseButtonDown_Prowl_Runtime_MouseButton_
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetMouseButtonDown_System_Int32_
   name: GetMouseButtonDown
   nameWithType: Input.GetMouseButtonDown
   fullName: Prowl.Runtime.Input.GetMouseButtonDown
 - uid: Prowl.Runtime.Input.GetMouseButtonUp*
   commentId: Overload:Prowl.Runtime.Input.GetMouseButtonUp
-  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetMouseButtonUp_Prowl_Runtime_MouseButton_
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetMouseButtonUp_System_Int32_
   name: GetMouseButtonUp
   nameWithType: Input.GetMouseButtonUp
   fullName: Prowl.Runtime.Input.GetMouseButtonUp
+- uid: Prowl.Runtime.Input.SetCursorVisible*
+  commentId: Overload:Prowl.Runtime.Input.SetCursorVisible
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_SetCursorVisible_System_Boolean_
+  name: SetCursorVisible
+  nameWithType: Input.SetCursorVisible
+  fullName: Prowl.Runtime.Input.SetCursorVisible
+- uid: Prowl.Runtime.Input.SetCursorShape*
+  commentId: Overload:Prowl.Runtime.Input.SetCursorShape
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_SetCursorShape_Prowl_PaperUI_PaperCursor_System_Int32_
+  name: SetCursorShape
+  nameWithType: Input.SetCursorShape
+  fullName: Prowl.Runtime.Input.SetCursorShape
+- uid: Prowl.PaperUI.PaperCursor
+  commentId: T:Prowl.PaperUI.PaperCursor
+  parent: Prowl.PaperUI
+  isExternal: true
+  name: PaperCursor
+  nameWithType: PaperCursor
+  fullName: Prowl.PaperUI.PaperCursor
+- uid: Prowl.PaperUI
+  commentId: N:Prowl.PaperUI
+  isExternal: true
+  name: Prowl.PaperUI
+  nameWithType: Prowl.PaperUI
+  fullName: Prowl.PaperUI
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+    isExternal: true
+  - name: .
+  - uid: Prowl.PaperUI
+    name: PaperUI
+    isExternal: true
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+    isExternal: true
+  - name: .
+  - uid: Prowl.PaperUI
+    name: PaperUI
+    isExternal: true
+- uid: Prowl.Runtime.Input.CursorLocked*
+  commentId: Overload:Prowl.Runtime.Input.CursorLocked
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_CursorLocked
+  name: CursorLocked
+  nameWithType: Input.CursorLocked
+  fullName: Prowl.Runtime.Input.CursorLocked
+- uid: Prowl.Runtime.Input.CursorVisible
+  commentId: P:Prowl.Runtime.Input.CursorVisible
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_CursorVisible
+  name: CursorVisible
+  nameWithType: Input.CursorVisible
+  fullName: Prowl.Runtime.Input.CursorVisible
+- uid: Prowl.Runtime.Input.OnCursorLockFailed
+  commentId: E:Prowl.Runtime.Input.OnCursorLockFailed
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_OnCursorLockFailed
+  name: OnCursorLockFailed
+  nameWithType: Input.OnCursorLockFailed
+  fullName: Prowl.Runtime.Input.OnCursorLockFailed
+- uid: Prowl.Runtime.Input.CursorLockState*
+  commentId: Overload:Prowl.Runtime.Input.CursorLockState
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_CursorLockState
+  name: CursorLockState
+  nameWithType: Input.CursorLockState
+  fullName: Prowl.Runtime.Input.CursorLockState
+- uid: Prowl.Runtime.CursorLockMode
+  commentId: T:Prowl.Runtime.CursorLockMode
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.CursorLockMode.html
+  name: CursorLockMode
+  nameWithType: CursorLockMode
+  fullName: Prowl.Runtime.CursorLockMode
+- uid: Prowl.Runtime.CursorLockMode.Locked
+  commentId: F:Prowl.Runtime.CursorLockMode.Locked
+  href: Prowl.Runtime.CursorLockMode.html#Prowl_Runtime_CursorLockMode_Locked
+  name: Locked
+  nameWithType: CursorLockMode.Locked
+  fullName: Prowl.Runtime.CursorLockMode.Locked
+- uid: Prowl.Runtime.Input.CursorVisible*
+  commentId: Overload:Prowl.Runtime.Input.CursorVisible
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_CursorVisible
+  name: CursorVisible
+  nameWithType: Input.CursorVisible
+  fullName: Prowl.Runtime.Input.CursorVisible
+- uid: Prowl.Runtime.Input.CursorLockCenter*
+  commentId: Overload:Prowl.Runtime.Input.CursorLockCenter
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_CursorLockCenter
+  name: CursorLockCenter
+  nameWithType: Input.CursorLockCenter
+  fullName: Prowl.Runtime.Input.CursorLockCenter
+- uid: Prowl.Runtime.CursorLockMode.Confined
+  commentId: F:Prowl.Runtime.CursorLockMode.Confined
+  href: Prowl.Runtime.CursorLockMode.html#Prowl_Runtime_CursorLockMode_Confined
+  name: Confined
+  nameWithType: CursorLockMode.Confined
+  fullName: Prowl.Runtime.CursorLockMode.Confined
+- uid: Prowl.Runtime.Input.CursorConfineBounds*
+  commentId: Overload:Prowl.Runtime.Input.CursorConfineBounds
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_CursorConfineBounds
+  name: CursorConfineBounds
+  nameWithType: Input.CursorConfineBounds
+  fullName: Prowl.Runtime.Input.CursorConfineBounds
+- uid: Prowl.Vector.IntRect
+  commentId: T:Prowl.Vector.IntRect
+  parent: Prowl.Vector
+  isExternal: true
+  name: IntRect
+  nameWithType: IntRect
+  fullName: Prowl.Vector.IntRect
+- uid: System.Action
+  commentId: T:System.Action
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action
+  name: Action
+  nameWithType: Action
+  fullName: System.Action
+- uid: Prowl.Runtime.Input.PushLockContext*
+  commentId: Overload:Prowl.Runtime.Input.PushLockContext
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_PushLockContext_Prowl_Runtime_CursorLockContext_
+  name: PushLockContext
+  nameWithType: Input.PushLockContext
+  fullName: Prowl.Runtime.Input.PushLockContext
+- uid: Prowl.Runtime.CursorLockContext
+  commentId: T:Prowl.Runtime.CursorLockContext
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.CursorLockContext.html
+  name: CursorLockContext
+  nameWithType: CursorLockContext
+  fullName: Prowl.Runtime.CursorLockContext
+- uid: Prowl.Runtime.Input.PopLockContext*
+  commentId: Overload:Prowl.Runtime.Input.PopLockContext
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_PopLockContext
+  name: PopLockContext
+  nameWithType: Input.PopLockContext
+  fullName: Prowl.Runtime.Input.PopLockContext
+- uid: Prowl.Runtime.Input.LockCursor*
+  commentId: Overload:Prowl.Runtime.Input.LockCursor
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_LockCursor
+  name: LockCursor
+  nameWithType: Input.LockCursor
+  fullName: Prowl.Runtime.Input.LockCursor
+- uid: Prowl.Runtime.Input.CursorLockState
+  commentId: P:Prowl.Runtime.Input.CursorLockState
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_CursorLockState
+  name: CursorLockState
+  nameWithType: Input.CursorLockState
+  fullName: Prowl.Runtime.Input.CursorLockState
+- uid: Prowl.Runtime.Input.UnlockCursor*
+  commentId: Overload:Prowl.Runtime.Input.UnlockCursor
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_UnlockCursor
+  name: UnlockCursor
+  nameWithType: Input.UnlockCursor
+  fullName: Prowl.Runtime.Input.UnlockCursor
+- uid: Prowl.Runtime.Input.GetGamepadCount*
+  commentId: Overload:Prowl.Runtime.Input.GetGamepadCount
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetGamepadCount
+  name: GetGamepadCount
+  nameWithType: Input.GetGamepadCount
+  fullName: Prowl.Runtime.Input.GetGamepadCount
+- uid: Prowl.Runtime.Input.GetGamepadCount
+  commentId: M:Prowl.Runtime.Input.GetGamepadCount
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetGamepadCount
+  name: GetGamepadCount()
+  nameWithType: Input.GetGamepadCount()
+  fullName: Prowl.Runtime.Input.GetGamepadCount()
+  spec.csharp:
+  - uid: Prowl.Runtime.Input.GetGamepadCount
+    name: GetGamepadCount
+    href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetGamepadCount
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Input.GetGamepadCount
+    name: GetGamepadCount
+    href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetGamepadCount
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Input.GetGamepadSlotCount*
+  commentId: Overload:Prowl.Runtime.Input.GetGamepadSlotCount
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetGamepadSlotCount
+  name: GetGamepadSlotCount
+  nameWithType: Input.GetGamepadSlotCount
+  fullName: Prowl.Runtime.Input.GetGamepadSlotCount
+- uid: Prowl.Runtime.Input.IsGamepadConnected*
+  commentId: Overload:Prowl.Runtime.Input.IsGamepadConnected
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_IsGamepadConnected_System_Int32_
+  name: IsGamepadConnected
+  nameWithType: Input.IsGamepadConnected
+  fullName: Prowl.Runtime.Input.IsGamepadConnected
+- uid: Prowl.Runtime.Input.GetGamepadButton*
+  commentId: Overload:Prowl.Runtime.Input.GetGamepadButton
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetGamepadButton_Prowl_Runtime_GamepadButton_System_Int32_
+  name: GetGamepadButton
+  nameWithType: Input.GetGamepadButton
+  fullName: Prowl.Runtime.Input.GetGamepadButton
+- uid: Prowl.Runtime.GamepadButton
+  commentId: T:Prowl.Runtime.GamepadButton
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.GamepadButton.html
+  name: GamepadButton
+  nameWithType: GamepadButton
+  fullName: Prowl.Runtime.GamepadButton
+- uid: Prowl.Runtime.Input.GetGamepadButtonDown*
+  commentId: Overload:Prowl.Runtime.Input.GetGamepadButtonDown
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetGamepadButtonDown_Prowl_Runtime_GamepadButton_System_Int32_
+  name: GetGamepadButtonDown
+  nameWithType: Input.GetGamepadButtonDown
+  fullName: Prowl.Runtime.Input.GetGamepadButtonDown
+- uid: Prowl.Runtime.Input.GetGamepadButtonUp*
+  commentId: Overload:Prowl.Runtime.Input.GetGamepadButtonUp
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetGamepadButtonUp_Prowl_Runtime_GamepadButton_System_Int32_
+  name: GetGamepadButtonUp
+  nameWithType: Input.GetGamepadButtonUp
+  fullName: Prowl.Runtime.Input.GetGamepadButtonUp
+- uid: Prowl.Runtime.Input.GetGamepadLeftStick*
+  commentId: Overload:Prowl.Runtime.Input.GetGamepadLeftStick
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetGamepadLeftStick_System_Int32_
+  name: GetGamepadLeftStick
+  nameWithType: Input.GetGamepadLeftStick
+  fullName: Prowl.Runtime.Input.GetGamepadLeftStick
+- uid: Prowl.Runtime.Input.GetGamepadRightStick*
+  commentId: Overload:Prowl.Runtime.Input.GetGamepadRightStick
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetGamepadRightStick_System_Int32_
+  name: GetGamepadRightStick
+  nameWithType: Input.GetGamepadRightStick
+  fullName: Prowl.Runtime.Input.GetGamepadRightStick
+- uid: Prowl.Runtime.Input.GetGamepadLeftTrigger*
+  commentId: Overload:Prowl.Runtime.Input.GetGamepadLeftTrigger
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetGamepadLeftTrigger_System_Int32_
+  name: GetGamepadLeftTrigger
+  nameWithType: Input.GetGamepadLeftTrigger
+  fullName: Prowl.Runtime.Input.GetGamepadLeftTrigger
+- uid: Prowl.Runtime.Input.GetGamepadRightTrigger*
+  commentId: Overload:Prowl.Runtime.Input.GetGamepadRightTrigger
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetGamepadRightTrigger_System_Int32_
+  name: GetGamepadRightTrigger
+  nameWithType: Input.GetGamepadRightTrigger
+  fullName: Prowl.Runtime.Input.GetGamepadRightTrigger
+- uid: Prowl.Runtime.Input.SetGamepadVibration*
+  commentId: Overload:Prowl.Runtime.Input.SetGamepadVibration
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_SetGamepadVibration_System_Single_System_Single_System_Int32_
+  name: SetGamepadVibration
+  nameWithType: Input.SetGamepadVibration
+  fullName: Prowl.Runtime.Input.SetGamepadVibration
+- uid: Prowl.Runtime.Input.VibrateGamepad*
+  commentId: Overload:Prowl.Runtime.Input.VibrateGamepad
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_VibrateGamepad_System_Single_System_Single_System_Single_System_Int32_
+  name: VibrateGamepad
+  nameWithType: Input.VibrateGamepad
+  fullName: Prowl.Runtime.Input.VibrateGamepad
+- uid: Prowl.Runtime.Input.RegisterActionMap*
+  commentId: Overload:Prowl.Runtime.Input.RegisterActionMap
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_RegisterActionMap_Prowl_Runtime_InputActionMap_
+  name: RegisterActionMap
+  nameWithType: Input.RegisterActionMap
+  fullName: Prowl.Runtime.Input.RegisterActionMap
+- uid: Prowl.Runtime.InputActionMap
+  commentId: T:Prowl.Runtime.InputActionMap
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.InputActionMap.html
+  name: InputActionMap
+  nameWithType: InputActionMap
+  fullName: Prowl.Runtime.InputActionMap
+- uid: Prowl.Runtime.Input.UnregisterActionMap*
+  commentId: Overload:Prowl.Runtime.Input.UnregisterActionMap
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_UnregisterActionMap_Prowl_Runtime_InputActionMap_
+  name: UnregisterActionMap
+  nameWithType: Input.UnregisterActionMap
+  fullName: Prowl.Runtime.Input.UnregisterActionMap
+- uid: Prowl.Runtime.Input.ActionMaps*
+  commentId: Overload:Prowl.Runtime.Input.ActionMaps
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_ActionMaps
+  name: ActionMaps
+  nameWithType: Input.ActionMaps
+  fullName: Prowl.Runtime.Input.ActionMaps
+- uid: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.InputActionMap}
+  commentId: T:System.Collections.Generic.IReadOnlyList{Prowl.Runtime.InputActionMap}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<InputActionMap>
+  nameWithType: IReadOnlyList<InputActionMap>
+  fullName: System.Collections.Generic.IReadOnlyList<Prowl.Runtime.InputActionMap>
+  nameWithType.vb: IReadOnlyList(Of InputActionMap)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.InputActionMap)
+  name.vb: IReadOnlyList(Of InputActionMap)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Runtime.InputActionMap
+    name: InputActionMap
+    href: Prowl.Runtime.InputActionMap.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.InputActionMap
+    name: InputActionMap
+    href: Prowl.Runtime.InputActionMap.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Runtime.Input.FindAction*
+  commentId: Overload:Prowl.Runtime.Input.FindAction
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_FindAction_System_String_
+  name: FindAction
+  nameWithType: Input.FindAction
+  fullName: Prowl.Runtime.Input.FindAction
+- uid: Prowl.Runtime.InputAction
+  commentId: T:Prowl.Runtime.InputAction
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.InputAction.html
+  name: InputAction
+  nameWithType: InputAction
+  fullName: Prowl.Runtime.InputAction
+- uid: Prowl.Runtime.Input.AnyKey*
+  commentId: Overload:Prowl.Runtime.Input.AnyKey
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_AnyKey
+  name: AnyKey
+  nameWithType: Input.AnyKey
+  fullName: Prowl.Runtime.Input.AnyKey
+- uid: Prowl.Runtime.Input.AnyKey
+  commentId: P:Prowl.Runtime.Input.AnyKey
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_AnyKey
+  name: AnyKey
+  nameWithType: Input.AnyKey
+  fullName: Prowl.Runtime.Input.AnyKey
+- uid: Prowl.Runtime.Input.AnyKeyDown*
+  commentId: Overload:Prowl.Runtime.Input.AnyKeyDown
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_AnyKeyDown
+  name: AnyKeyDown
+  nameWithType: Input.AnyKeyDown
+  fullName: Prowl.Runtime.Input.AnyKeyDown
+- uid: Prowl.Runtime.Input.AnyButtonDown*
+  commentId: Overload:Prowl.Runtime.Input.AnyButtonDown
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_AnyButtonDown
+  name: AnyButtonDown
+  nameWithType: Input.AnyButtonDown
+  fullName: Prowl.Runtime.Input.AnyButtonDown
+- uid: Prowl.Runtime.Input.GetKeyCombo*
+  commentId: Overload:Prowl.Runtime.Input.GetKeyCombo
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetKeyCombo_Prowl_Runtime_KeyCode_Prowl_Runtime_KeyCode_
+  name: GetKeyCombo
+  nameWithType: Input.GetKeyCombo
+  fullName: Prowl.Runtime.Input.GetKeyCombo
+- uid: Prowl.Runtime.Input.IsCtrlPressed*
+  commentId: Overload:Prowl.Runtime.Input.IsCtrlPressed
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_IsCtrlPressed
+  name: IsCtrlPressed
+  nameWithType: Input.IsCtrlPressed
+  fullName: Prowl.Runtime.Input.IsCtrlPressed
+- uid: Prowl.Runtime.Input.IsShiftPressed*
+  commentId: Overload:Prowl.Runtime.Input.IsShiftPressed
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_IsShiftPressed
+  name: IsShiftPressed
+  nameWithType: Input.IsShiftPressed
+  fullName: Prowl.Runtime.Input.IsShiftPressed
+- uid: Prowl.Runtime.Input.IsAltPressed*
+  commentId: Overload:Prowl.Runtime.Input.IsAltPressed
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_IsAltPressed
+  name: IsAltPressed
+  nameWithType: Input.IsAltPressed
+  fullName: Prowl.Runtime.Input.IsAltPressed
+- uid: Prowl.Runtime.Input.GetWASD*
+  commentId: Overload:Prowl.Runtime.Input.GetWASD
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetWASD
+  name: GetWASD
+  nameWithType: Input.GetWASD
+  fullName: Prowl.Runtime.Input.GetWASD
+- uid: Prowl.Runtime.Input.GetArrowKeys*
+  commentId: Overload:Prowl.Runtime.Input.GetArrowKeys
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetArrowKeys
+  name: GetArrowKeys
+  nameWithType: Input.GetArrowKeys
+  fullName: Prowl.Runtime.Input.GetArrowKeys

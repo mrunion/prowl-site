@@ -1,0 +1,1699 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.NavMeshData
+  commentId: T:Prowl.Runtime.NavMeshData
+  id: NavMeshData
+  parent: Prowl.Runtime
+  children:
+  - Prowl.Runtime.NavMeshData.BoundsMax
+  - Prowl.Runtime.NavMeshData.BoundsMin
+  - Prowl.Runtime.NavMeshData.CacheLayers
+  - Prowl.Runtime.NavMeshData.CalculateTriangulation
+  - Prowl.Runtime.NavMeshData.Clone
+  - Prowl.Runtime.NavMeshData.CreateTileCache(System.Int32)
+  - Prowl.Runtime.NavMeshData.CurrentFormatVersion
+  - Prowl.Runtime.NavMeshData.FormatVersion
+  - Prowl.Runtime.NavMeshData.HasTiles
+  - Prowl.Runtime.NavMeshData.Links
+  - Prowl.Runtime.NavMeshData.MaxTiles
+  - Prowl.Runtime.NavMeshData.MinReadableFormatVersion
+  - Prowl.Runtime.NavMeshData.Origin
+  - Prowl.Runtime.NavMeshData.Settings
+  - Prowl.Runtime.NavMeshData.TileWorldSize
+  langs:
+  - csharp
+  - vb
+  name: NavMeshData
+  nameWithType: NavMeshData
+  fullName: Prowl.Runtime.NavMeshData
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshData.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NavMeshData
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshData.cs
+    startLine: 23
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    A baked navmesh as a standalone <code>.navmesh</code> asset: the compressed layers plus everything
+
+    needed to reinstantiate a <xref href="Prowl.Recast.Detour.DtNavMesh" data-throw-if-not-resolved="false"></xref> at load time. Built by
+
+    <xref href="Prowl.Runtime.NavMeshBuilder" data-throw-if-not-resolved="false"></xref> and registered through <xref href="Prowl.Runtime.NavMeshWorld.AddNavMeshData(Prowl.Runtime.NavMeshData)" data-throw-if-not-resolved="false"></xref>.
+
+    Independent of any scene, so a procedural world can build one at runtime.
+  example: []
+  syntax:
+    content: 'public sealed class NavMeshData : Asset, IDisposable'
+    content.vb: Public NotInheritable Class NavMeshData Inherits Asset Implements IDisposable
+  inheritance:
+  - System.Object
+  - Prowl.Runtime.EngineObject
+  - Prowl.Runtime.Asset
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - Prowl.Runtime.Asset.AssetID
+  - Prowl.Runtime.Asset.AssetPath
+  - Prowl.Runtime.Asset.State
+  - Prowl.Runtime.Asset.ContentVersion
+  - Prowl.Runtime.Asset.IsFromDatabase
+  - Prowl.Runtime.Asset.IsLoaded
+  - Prowl.Runtime.Asset.IsMissing
+  - Prowl.Runtime.Asset.Load
+  - Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+  - Prowl.Runtime.Asset.HasChanged(System.Int32@)
+  - Prowl.Runtime.EngineObject.InstanceID
+  - Prowl.Runtime.EngineObject.Name
+  - Prowl.Runtime.EngineObject.IsDisposed
+  - Prowl.Runtime.EngineObject.CreatedInstance
+  - Prowl.Runtime.EngineObject.OnValidate
+  - Prowl.Runtime.EngineObject.Dispose
+  - Prowl.Runtime.EngineObject.Destroy
+  - Prowl.Runtime.EngineObject.IsDestroyQueued
+  - Prowl.Runtime.EngineObject.ProcessDestroyed
+  - Prowl.Runtime.EngineObject.Equals(System.Object)
+  - Prowl.Runtime.EngineObject.GetHashCode
+  - Prowl.Runtime.EngineObject.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  extensionMethods:
+  - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsNotValid
+  - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsValid
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.NavMeshData.CurrentFormatVersion
+  commentId: F:Prowl.Runtime.NavMeshData.CurrentFormatVersion
+  id: CurrentFormatVersion
+  parent: Prowl.Runtime.NavMeshData
+  langs:
+  - csharp
+  - vb
+  name: CurrentFormatVersion
+  nameWithType: NavMeshData.CurrentFormatVersion
+  fullName: Prowl.Runtime.NavMeshData.CurrentFormatVersion
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshData.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CurrentFormatVersion
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshData.cs
+    startLine: 36
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Current asset format version. Bump when the tile byte format or the shape of the
+        serialized settings changes, so stale assets fail with a clear message instead of loading
+        wrong. Version 2 split <xref href="Prowl.Runtime.NavMeshData.Settings" data-throw-if-not-resolved="false"></xref> into an agent envelope and overrides.
+  example: []
+  syntax:
+    content: public const int CurrentFormatVersion = 2
+    return:
+      type: System.Int32
+    content.vb: Public Const CurrentFormatVersion As Integer = 2
+- uid: Prowl.Runtime.NavMeshData.MinReadableFormatVersion
+  commentId: F:Prowl.Runtime.NavMeshData.MinReadableFormatVersion
+  id: MinReadableFormatVersion
+  parent: Prowl.Runtime.NavMeshData
+  langs:
+  - csharp
+  - vb
+  name: MinReadableFormatVersion
+  nameWithType: NavMeshData.MinReadableFormatVersion
+  fullName: Prowl.Runtime.NavMeshData.MinReadableFormatVersion
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshData.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MinReadableFormatVersion
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshData.cs
+    startLine: 39
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Oldest format version this engine still reads. Anything older must be rebaked.
+  example: []
+  syntax:
+    content: public const int MinReadableFormatVersion = 2
+    return:
+      type: System.Int32
+    content.vb: Public Const MinReadableFormatVersion As Integer = 2
+- uid: Prowl.Runtime.NavMeshData.FormatVersion
+  commentId: F:Prowl.Runtime.NavMeshData.FormatVersion
+  id: FormatVersion
+  parent: Prowl.Runtime.NavMeshData
+  langs:
+  - csharp
+  - vb
+  name: FormatVersion
+  nameWithType: NavMeshData.FormatVersion
+  fullName: Prowl.Runtime.NavMeshData.FormatVersion
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshData.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FormatVersion
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshData.cs
+    startLine: 42
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The format version this asset was serialized with.
+  example: []
+  syntax:
+    content: public int FormatVersion
+    return:
+      type: System.Int32
+    content.vb: Public FormatVersion As Integer
+- uid: Prowl.Runtime.NavMeshData.Settings
+  commentId: F:Prowl.Runtime.NavMeshData.Settings
+  id: Settings
+  parent: Prowl.Runtime.NavMeshData
+  langs:
+  - csharp
+  - vb
+  name: Settings
+  nameWithType: NavMeshData.Settings
+  fullName: Prowl.Runtime.NavMeshData.Settings
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshData.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Settings
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshData.cs
+    startLine: 46
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    The settings this navmesh was built with (a snapshot — later inspector edits
+        to a surface do not retroactively change it). Rebuilds reuse these for consistency.
+  example: []
+  syntax:
+    content: public NavMeshBuildSettings Settings
+    return:
+      type: Prowl.Runtime.NavMeshBuildSettings
+    content.vb: Public Settings As NavMeshBuildSettings
+- uid: Prowl.Runtime.NavMeshData.BoundsMin
+  commentId: F:Prowl.Runtime.NavMeshData.BoundsMin
+  id: BoundsMin
+  parent: Prowl.Runtime.NavMeshData
+  langs:
+  - csharp
+  - vb
+  name: BoundsMin
+  nameWithType: NavMeshData.BoundsMin
+  fullName: Prowl.Runtime.NavMeshData.BoundsMin
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshData.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: BoundsMin
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshData.cs
+    startLine: 49
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: World-space bounds of the baked geometry.
+  example: []
+  syntax:
+    content: public Float3 BoundsMin
+    return:
+      type: Prowl.Vector.Float3
+    content.vb: Public BoundsMin As Float3
+- uid: Prowl.Runtime.NavMeshData.BoundsMax
+  commentId: F:Prowl.Runtime.NavMeshData.BoundsMax
+  id: BoundsMax
+  parent: Prowl.Runtime.NavMeshData
+  langs:
+  - csharp
+  - vb
+  name: BoundsMax
+  nameWithType: NavMeshData.BoundsMax
+  fullName: Prowl.Runtime.NavMeshData.BoundsMax
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshData.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: BoundsMax
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshData.cs
+    startLine: 52
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: World-space bounds of the baked geometry.
+  example: []
+  syntax:
+    content: public Float3 BoundsMax
+    return:
+      type: Prowl.Vector.Float3
+    content.vb: Public BoundsMax As Float3
+- uid: Prowl.Runtime.NavMeshData.Origin
+  commentId: P:Prowl.Runtime.NavMeshData.Origin
+  id: Origin
+  parent: Prowl.Runtime.NavMeshData
+  langs:
+  - csharp
+  - vb
+  name: Origin
+  nameWithType: NavMeshData.Origin
+  fullName: Prowl.Runtime.NavMeshData.Origin
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshData.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Origin
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshData.cs
+    startLine: 56
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Origin of the tile grid (world space). Tile (x, z) starts at
+        Origin + (x * TileWorldSize, 0, z * TileWorldSize).
+  example: []
+  syntax:
+    content: public Float3 Origin { get; }
+    parameters: []
+    return:
+      type: Prowl.Vector.Float3
+    content.vb: Public ReadOnly Property Origin As Float3
+  overload: Prowl.Runtime.NavMeshData.Origin*
+- uid: Prowl.Runtime.NavMeshData.TileWorldSize
+  commentId: F:Prowl.Runtime.NavMeshData.TileWorldSize
+  id: TileWorldSize
+  parent: Prowl.Runtime.NavMeshData
+  langs:
+  - csharp
+  - vb
+  name: TileWorldSize
+  nameWithType: NavMeshData.TileWorldSize
+  fullName: Prowl.Runtime.NavMeshData.TileWorldSize
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshData.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TileWorldSize
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshData.cs
+    startLine: 59
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Side length of one tile in world units.
+  example: []
+  syntax:
+    content: public float TileWorldSize
+    return:
+      type: System.Single
+    content.vb: Public TileWorldSize As Single
+- uid: Prowl.Runtime.NavMeshData.MaxTiles
+  commentId: F:Prowl.Runtime.NavMeshData.MaxTiles
+  id: MaxTiles
+  parent: Prowl.Runtime.NavMeshData
+  langs:
+  - csharp
+  - vb
+  name: MaxTiles
+  nameWithType: NavMeshData.MaxTiles
+  fullName: Prowl.Runtime.NavMeshData.MaxTiles
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshData.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MaxTiles
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshData.cs
+    startLine: 64
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Navmesh tile slots this asset was baked for. A slot holds one VERTICAL LAYER,
+        not one grid tile, so this is the grid scaled by the layers a tile is expected to stack.
+        <xref href="Prowl.Runtime.NavMeshData.ResolveCapacity" data-throw-if-not-resolved="false"></xref> is what instantiation actually uses.
+  example: []
+  syntax:
+    content: public int MaxTiles
+    return:
+      type: System.Int32
+    content.vb: Public MaxTiles As Integer
+- uid: Prowl.Runtime.NavMeshData.CacheLayers
+  commentId: F:Prowl.Runtime.NavMeshData.CacheLayers
+  id: CacheLayers
+  parent: Prowl.Runtime.NavMeshData
+  langs:
+  - csharp
+  - vb
+  name: CacheLayers
+  nameWithType: NavMeshData.CacheLayers
+  fullName: Prowl.Runtime.NavMeshData.CacheLayers
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshData.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CacheLayers
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshData.cs
+    startLine: 78
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Compressed voxelization layers, one or more per tile. Each blob is self-describing (tile
+
+    coordinates and layer index live in its header); a tile contributes several vertical
+
+    layers where floors overlap. The TileCache contours these into Detour tiles, which is
+
+    what lets an obstacle re-carve a tile without re-voxelizing the world.
+  example: []
+  syntax:
+    content: public List<NavMeshData.NavMeshTile> CacheLayers
+    return:
+      type: System.Collections.Generic.List{Prowl.Runtime.NavMeshData.NavMeshTile}
+    content.vb: Public CacheLayers As List(Of NavMeshData.NavMeshTile)
+- uid: Prowl.Runtime.NavMeshData.Clone
+  commentId: M:Prowl.Runtime.NavMeshData.Clone
+  id: Clone
+  parent: Prowl.Runtime.NavMeshData
+  langs:
+  - csharp
+  - vb
+  name: Clone()
+  nameWithType: NavMeshData.Clone()
+  fullName: Prowl.Runtime.NavMeshData.Clone()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshData.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Clone
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshData.cs
+    startLine: 86
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    A copy for one consumer's private use, so runtime tile and link rewrites do not land on
+
+    an asset every other consumer of the same <code>.navmesh</code> is reading. The blobs are
+
+    shared rather than duplicated: a rebuild replaces entries in these lists and never edits
+
+    one in place, so the copy costs two lists rather than the megabytes they point at.
+  example: []
+  syntax:
+    content: public NavMeshData Clone()
+    return:
+      type: Prowl.Runtime.NavMeshData
+    content.vb: Public Function Clone() As NavMeshData
+  overload: Prowl.Runtime.NavMeshData.Clone*
+- uid: Prowl.Runtime.NavMeshData.Links
+  commentId: F:Prowl.Runtime.NavMeshData.Links
+  id: Links
+  parent: Prowl.Runtime.NavMeshData
+  langs:
+  - csharp
+  - vb
+  name: Links
+  nameWithType: NavMeshData.Links
+  fullName: Prowl.Runtime.NavMeshData.Links
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshData.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Links
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshData.cs
+    startLine: 142
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Off-mesh links. Tiles are rebuilt from geometry-only layers whenever an obstacle carves
+
+    or a region regenerates — anything baked into them is regenerated away — so links live
+
+    here and are re-injected on every tile build. Kept in step with the live
+
+    <xref href="Prowl.Runtime.NavMeshLink" data-throw-if-not-resolved="false"></xref>s by <xref href="Prowl.Runtime.NavMeshSurface.RebuildLinkTiles(System.ReadOnlySpan%7bProwl.Vector.AABB%7d%2cSystem.Collections.Generic.IReadOnlyList%7bProwl.Runtime.NavMeshLinkSource%7d)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public List<NavMeshLinkSource> Links
+    return:
+      type: System.Collections.Generic.List{Prowl.Runtime.NavMeshLinkSource}
+    content.vb: Public Links As List(Of NavMeshLinkSource)
+- uid: Prowl.Runtime.NavMeshData.HasTiles
+  commentId: P:Prowl.Runtime.NavMeshData.HasTiles
+  id: HasTiles
+  parent: Prowl.Runtime.NavMeshData
+  langs:
+  - csharp
+  - vb
+  name: HasTiles
+  nameWithType: NavMeshData.HasTiles
+  fullName: Prowl.Runtime.NavMeshData.HasTiles
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshData.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: HasTiles
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshData.cs
+    startLine: 145
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: True when there is at least one layer to instantiate.
+  example: []
+  syntax:
+    content: public bool HasTiles { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property HasTiles As Boolean
+  overload: Prowl.Runtime.NavMeshData.HasTiles*
+- uid: Prowl.Runtime.NavMeshData.CalculateTriangulation
+  commentId: M:Prowl.Runtime.NavMeshData.CalculateTriangulation
+  id: CalculateTriangulation
+  parent: Prowl.Runtime.NavMeshData
+  langs:
+  - csharp
+  - vb
+  name: CalculateTriangulation()
+  nameWithType: NavMeshData.CalculateTriangulation()
+  fullName: Prowl.Runtime.NavMeshData.CalculateTriangulation()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshData.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CalculateTriangulation
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshData.cs
+    startLine: 204
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Triangulate this baked navmesh without registering it — for editor gizmos and tooling
+
+    that need to visualize an asset the scene isn't running. Instantiates a throwaway
+
+    navmesh, so cache the result rather than calling it per frame.
+  example: []
+  syntax:
+    content: public NavMeshTriangulation CalculateTriangulation()
+    return:
+      type: Prowl.Runtime.NavMeshTriangulation
+    content.vb: Public Function CalculateTriangulation() As NavMeshTriangulation
+  overload: Prowl.Runtime.NavMeshData.CalculateTriangulation*
+- uid: Prowl.Runtime.NavMeshData.CreateTileCache(System.Int32)
+  commentId: M:Prowl.Runtime.NavMeshData.CreateTileCache(System.Int32)
+  id: CreateTileCache(System.Int32)
+  parent: Prowl.Runtime.NavMeshData
+  langs:
+  - csharp
+  - vb
+  name: CreateTileCache(int)
+  nameWithType: NavMeshData.CreateTileCache(int)
+  fullName: Prowl.Runtime.NavMeshData.CreateTileCache(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshData.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CreateTileCache
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshData.cs
+    startLine: 226
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Instantiate a TileCache (and its owned navmesh) from the compressed layers, seeded
+
+    synchronously so the mesh is queryable immediately. Obstacles added later rebuild
+
+    affected tiles incrementally via <code>DtTileCache.Update</code>.
+  example: []
+  syntax:
+    content: public DtTileCache CreateTileCache(int maxObstacles)
+    parameters:
+    - id: maxObstacles
+      type: System.Int32
+      description: Obstacle capacity the cache is created with.
+    return:
+      type: Prowl.Recast.Detour.TileCache.DtTileCache
+    content.vb: Public Function CreateTileCache(maxObstacles As Integer) As DtTileCache
+  overload: Prowl.Runtime.NavMeshData.CreateTileCache*
+  nameWithType.vb: NavMeshData.CreateTileCache(Integer)
+  fullName.vb: Prowl.Runtime.NavMeshData.CreateTileCache(Integer)
+  name.vb: CreateTileCache(Integer)
+references:
+- uid: Prowl.Recast.Detour.DtNavMesh
+  commentId: T:Prowl.Recast.Detour.DtNavMesh
+  parent: Prowl.Recast.Detour
+  isExternal: true
+  name: DtNavMesh
+  nameWithType: DtNavMesh
+  fullName: Prowl.Recast.Detour.DtNavMesh
+- uid: Prowl.Runtime.NavMeshBuilder
+  commentId: T:Prowl.Runtime.NavMeshBuilder
+  href: Prowl.Runtime.NavMeshBuilder.html
+  name: NavMeshBuilder
+  nameWithType: NavMeshBuilder
+  fullName: Prowl.Runtime.NavMeshBuilder
+- uid: Prowl.Runtime.NavMeshWorld.AddNavMeshData(Prowl.Runtime.NavMeshData)
+  commentId: M:Prowl.Runtime.NavMeshWorld.AddNavMeshData(Prowl.Runtime.NavMeshData)
+  href: Prowl.Runtime.NavMeshWorld.html#Prowl_Runtime_NavMeshWorld_AddNavMeshData_Prowl_Runtime_NavMeshData_
+  name: AddNavMeshData(NavMeshData)
+  nameWithType: NavMeshWorld.AddNavMeshData(NavMeshData)
+  fullName: Prowl.Runtime.NavMeshWorld.AddNavMeshData(Prowl.Runtime.NavMeshData)
+  spec.csharp:
+  - uid: Prowl.Runtime.NavMeshWorld.AddNavMeshData(Prowl.Runtime.NavMeshData)
+    name: AddNavMeshData
+    href: Prowl.Runtime.NavMeshWorld.html#Prowl_Runtime_NavMeshWorld_AddNavMeshData_Prowl_Runtime_NavMeshData_
+  - name: (
+  - uid: Prowl.Runtime.NavMeshData
+    name: NavMeshData
+    href: Prowl.Runtime.NavMeshData.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.NavMeshWorld.AddNavMeshData(Prowl.Runtime.NavMeshData)
+    name: AddNavMeshData
+    href: Prowl.Runtime.NavMeshWorld.html#Prowl_Runtime_NavMeshWorld_AddNavMeshData_Prowl_Runtime_NavMeshData_
+  - name: (
+  - uid: Prowl.Runtime.NavMeshData
+    name: NavMeshData
+    href: Prowl.Runtime.NavMeshData.html
+  - name: )
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.Runtime.EngineObject
+  commentId: T:Prowl.Runtime.EngineObject
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.EngineObject.html
+  name: EngineObject
+  nameWithType: EngineObject
+  fullName: Prowl.Runtime.EngineObject
+- uid: Prowl.Runtime.Asset
+  commentId: T:Prowl.Runtime.Asset
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.Asset.html
+  name: Asset
+  nameWithType: Asset
+  fullName: Prowl.Runtime.Asset
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Prowl.Runtime.Asset.AssetID
+  commentId: P:Prowl.Runtime.Asset.AssetID
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_AssetID
+  name: AssetID
+  nameWithType: Asset.AssetID
+  fullName: Prowl.Runtime.Asset.AssetID
+- uid: Prowl.Runtime.Asset.AssetPath
+  commentId: P:Prowl.Runtime.Asset.AssetPath
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_AssetPath
+  name: AssetPath
+  nameWithType: Asset.AssetPath
+  fullName: Prowl.Runtime.Asset.AssetPath
+- uid: Prowl.Runtime.Asset.State
+  commentId: P:Prowl.Runtime.Asset.State
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_State
+  name: State
+  nameWithType: Asset.State
+  fullName: Prowl.Runtime.Asset.State
+- uid: Prowl.Runtime.Asset.ContentVersion
+  commentId: P:Prowl.Runtime.Asset.ContentVersion
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_ContentVersion
+  name: ContentVersion
+  nameWithType: Asset.ContentVersion
+  fullName: Prowl.Runtime.Asset.ContentVersion
+- uid: Prowl.Runtime.Asset.IsFromDatabase
+  commentId: P:Prowl.Runtime.Asset.IsFromDatabase
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_IsFromDatabase
+  name: IsFromDatabase
+  nameWithType: Asset.IsFromDatabase
+  fullName: Prowl.Runtime.Asset.IsFromDatabase
+- uid: Prowl.Runtime.Asset.IsLoaded
+  commentId: P:Prowl.Runtime.Asset.IsLoaded
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_IsLoaded
+  name: IsLoaded
+  nameWithType: Asset.IsLoaded
+  fullName: Prowl.Runtime.Asset.IsLoaded
+- uid: Prowl.Runtime.Asset.IsMissing
+  commentId: P:Prowl.Runtime.Asset.IsMissing
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_IsMissing
+  name: IsMissing
+  nameWithType: Asset.IsMissing
+  fullName: Prowl.Runtime.Asset.IsMissing
+- uid: Prowl.Runtime.Asset.Load
+  commentId: M:Prowl.Runtime.Asset.Load
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_Load
+  name: Load()
+  nameWithType: Asset.Load()
+  fullName: Prowl.Runtime.Asset.Load()
+  spec.csharp:
+  - uid: Prowl.Runtime.Asset.Load
+    name: Load
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_Load
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Asset.Load
+    name: Load
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_Load
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+  commentId: M:Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+  parent: Prowl.Runtime.Asset
+  isExternal: true
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_LoadAsync_System_Threading_CancellationToken_
+  name: LoadAsync(CancellationToken)
+  nameWithType: Asset.LoadAsync(CancellationToken)
+  fullName: Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+    name: LoadAsync
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_LoadAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+    name: LoadAsync
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_LoadAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: Prowl.Runtime.Asset.HasChanged(System.Int32@)
+  commentId: M:Prowl.Runtime.Asset.HasChanged(System.Int32@)
+  parent: Prowl.Runtime.Asset
+  isExternal: true
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_HasChanged_System_Int32__
+  name: HasChanged(ref int)
+  nameWithType: Asset.HasChanged(ref int)
+  fullName: Prowl.Runtime.Asset.HasChanged(ref int)
+  nameWithType.vb: Asset.HasChanged(Integer)
+  fullName.vb: Prowl.Runtime.Asset.HasChanged(Integer)
+  name.vb: HasChanged(Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Asset.HasChanged(System.Int32@)
+    name: HasChanged
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_HasChanged_System_Int32__
+  - name: (
+  - name: ref
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Asset.HasChanged(System.Int32@)
+    name: HasChanged
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_HasChanged_System_Int32__
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.EngineObject.InstanceID
+  commentId: P:Prowl.Runtime.EngineObject.InstanceID
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_InstanceID
+  name: InstanceID
+  nameWithType: EngineObject.InstanceID
+  fullName: Prowl.Runtime.EngineObject.InstanceID
+- uid: Prowl.Runtime.EngineObject.Name
+  commentId: F:Prowl.Runtime.EngineObject.Name
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Name
+  name: Name
+  nameWithType: EngineObject.Name
+  fullName: Prowl.Runtime.EngineObject.Name
+- uid: Prowl.Runtime.EngineObject.IsDisposed
+  commentId: P:Prowl.Runtime.EngineObject.IsDisposed
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_IsDisposed
+  name: IsDisposed
+  nameWithType: EngineObject.IsDisposed
+  fullName: Prowl.Runtime.EngineObject.IsDisposed
+- uid: Prowl.Runtime.EngineObject.CreatedInstance
+  commentId: M:Prowl.Runtime.EngineObject.CreatedInstance
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_CreatedInstance
+  name: CreatedInstance()
+  nameWithType: EngineObject.CreatedInstance()
+  fullName: Prowl.Runtime.EngineObject.CreatedInstance()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.CreatedInstance
+    name: CreatedInstance
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_CreatedInstance
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.CreatedInstance
+    name: CreatedInstance
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_CreatedInstance
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.OnValidate
+  commentId: M:Prowl.Runtime.EngineObject.OnValidate
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnValidate
+  name: OnValidate()
+  nameWithType: EngineObject.OnValidate()
+  fullName: Prowl.Runtime.EngineObject.OnValidate()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.OnValidate
+    name: OnValidate
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnValidate
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.OnValidate
+    name: OnValidate
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnValidate
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Dispose
+  commentId: M:Prowl.Runtime.EngineObject.Dispose
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
+  name: Dispose()
+  nameWithType: EngineObject.Dispose()
+  fullName: Prowl.Runtime.EngineObject.Dispose()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.Dispose
+    name: Dispose
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.Dispose
+    name: Dispose
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Destroy
+  commentId: M:Prowl.Runtime.EngineObject.Destroy
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
+  name: Destroy()
+  nameWithType: EngineObject.Destroy()
+  fullName: Prowl.Runtime.EngineObject.Destroy()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.Destroy
+    name: Destroy
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.Destroy
+    name: Destroy
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.IsDestroyQueued
+  commentId: P:Prowl.Runtime.EngineObject.IsDestroyQueued
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_IsDestroyQueued
+  name: IsDestroyQueued
+  nameWithType: EngineObject.IsDestroyQueued
+  fullName: Prowl.Runtime.EngineObject.IsDestroyQueued
+- uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+  commentId: M:Prowl.Runtime.EngineObject.ProcessDestroyed
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
+  name: ProcessDestroyed()
+  nameWithType: EngineObject.ProcessDestroyed()
+  fullName: Prowl.Runtime.EngineObject.ProcessDestroyed()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+    name: ProcessDestroyed
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+    name: ProcessDestroyed
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+  commentId: M:Prowl.Runtime.EngineObject.Equals(System.Object)
+  parent: Prowl.Runtime.EngineObject
+  isExternal: true
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
+  name: Equals(object)
+  nameWithType: EngineObject.Equals(object)
+  fullName: Prowl.Runtime.EngineObject.Equals(object)
+  nameWithType.vb: EngineObject.Equals(Object)
+  fullName.vb: Prowl.Runtime.EngineObject.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+    name: Equals
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+    name: Equals
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.EngineObject.GetHashCode
+  commentId: M:Prowl.Runtime.EngineObject.GetHashCode
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
+  name: GetHashCode()
+  nameWithType: EngineObject.GetHashCode()
+  fullName: Prowl.Runtime.EngineObject.GetHashCode()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.GetHashCode
+    name: GetHashCode
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.GetHashCode
+    name: GetHashCode
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.ToString
+  commentId: M:Prowl.Runtime.EngineObject.ToString
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ToString
+  name: ToString()
+  nameWithType: EngineObject.ToString()
+  fullName: Prowl.Runtime.EngineObject.ToString()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.ToString
+    name: ToString
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ToString
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.ToString
+    name: ToString
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ToString
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsNotValid
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  parent: Prowl.Runtime.EngineObjectExtensions
+  definition: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  name: IsNotValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsNotValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsValid
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  parent: Prowl.Runtime.EngineObjectExtensions
+  definition: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  name: IsValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Recast.Detour
+  commentId: N:Prowl.Recast.Detour
+  isExternal: true
+  name: Prowl.Recast.Detour
+  nameWithType: Prowl.Recast.Detour
+  fullName: Prowl.Recast.Detour
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+    isExternal: true
+  - name: .
+  - uid: Prowl.Recast
+    name: Recast
+    isExternal: true
+  - name: .
+  - uid: Prowl.Recast.Detour
+    name: Detour
+    isExternal: true
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+    isExternal: true
+  - name: .
+  - uid: Prowl.Recast
+    name: Recast
+    isExternal: true
+  - name: .
+  - uid: Prowl.Recast.Detour
+    name: Detour
+    isExternal: true
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  name: IsNotValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsNotValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+- uid: Prowl.Runtime.EngineObjectExtensions
+  commentId: T:Prowl.Runtime.EngineObjectExtensions
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.EngineObjectExtensions.html
+  name: EngineObjectExtensions
+  nameWithType: EngineObjectExtensions
+  fullName: Prowl.Runtime.EngineObjectExtensions
+- uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  name: IsValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime.NavMeshData.Settings
+  commentId: F:Prowl.Runtime.NavMeshData.Settings
+  href: Prowl.Runtime.NavMeshData.html#Prowl_Runtime_NavMeshData_Settings
+  name: Settings
+  nameWithType: NavMeshData.Settings
+  fullName: Prowl.Runtime.NavMeshData.Settings
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Runtime.NavMeshBuildSettings
+  commentId: T:Prowl.Runtime.NavMeshBuildSettings
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.NavMeshBuildSettings.html
+  name: NavMeshBuildSettings
+  nameWithType: NavMeshBuildSettings
+  fullName: Prowl.Runtime.NavMeshBuildSettings
+- uid: Prowl.Vector.Float3
+  commentId: T:Prowl.Vector.Float3
+  parent: Prowl.Vector
+  isExternal: true
+  name: Float3
+  nameWithType: Float3
+  fullName: Prowl.Vector.Float3
+- uid: Prowl.Vector
+  commentId: N:Prowl.Vector
+  name: Prowl.Vector
+  nameWithType: Prowl.Vector
+  fullName: Prowl.Vector
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+- uid: Prowl.Runtime.NavMeshData.Origin*
+  commentId: Overload:Prowl.Runtime.NavMeshData.Origin
+  href: Prowl.Runtime.NavMeshData.html#Prowl_Runtime_NavMeshData_Origin
+  name: Origin
+  nameWithType: NavMeshData.Origin
+  fullName: Prowl.Runtime.NavMeshData.Origin
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: Prowl.Runtime.NavMeshData.ResolveCapacity
+  commentId: M:Prowl.Runtime.NavMeshData.ResolveCapacity
+  name: ResolveCapacity()
+  nameWithType: NavMeshData.ResolveCapacity()
+  fullName: Prowl.Runtime.NavMeshData.ResolveCapacity()
+  spec.csharp:
+  - uid: Prowl.Runtime.NavMeshData.ResolveCapacity
+    name: ResolveCapacity
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.NavMeshData.ResolveCapacity
+    name: ResolveCapacity
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.List{Prowl.Runtime.NavMeshData.NavMeshTile}
+  commentId: T:System.Collections.Generic.List{Prowl.Runtime.NavMeshData.NavMeshTile}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<NavMeshData.NavMeshTile>
+  nameWithType: List<NavMeshData.NavMeshTile>
+  fullName: System.Collections.Generic.List<Prowl.Runtime.NavMeshData.NavMeshTile>
+  nameWithType.vb: List(Of NavMeshData.NavMeshTile)
+  fullName.vb: System.Collections.Generic.List(Of Prowl.Runtime.NavMeshData.NavMeshTile)
+  name.vb: List(Of NavMeshData.NavMeshTile)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Prowl.Runtime.NavMeshData
+    name: NavMeshData
+    href: Prowl.Runtime.NavMeshData.html
+  - name: .
+  - uid: Prowl.Runtime.NavMeshData.NavMeshTile
+    name: NavMeshTile
+    href: Prowl.Runtime.NavMeshData.NavMeshTile.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.NavMeshData
+    name: NavMeshData
+    href: Prowl.Runtime.NavMeshData.html
+  - name: .
+  - uid: Prowl.Runtime.NavMeshData.NavMeshTile
+    name: NavMeshTile
+    href: Prowl.Runtime.NavMeshData.NavMeshTile.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Prowl.Runtime.NavMeshData.Clone*
+  commentId: Overload:Prowl.Runtime.NavMeshData.Clone
+  href: Prowl.Runtime.NavMeshData.html#Prowl_Runtime_NavMeshData_Clone
+  name: Clone
+  nameWithType: NavMeshData.Clone
+  fullName: Prowl.Runtime.NavMeshData.Clone
+- uid: Prowl.Runtime.NavMeshData
+  commentId: T:Prowl.Runtime.NavMeshData
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.NavMeshData.html
+  name: NavMeshData
+  nameWithType: NavMeshData
+  fullName: Prowl.Runtime.NavMeshData
+- uid: Prowl.Runtime.NavMeshLink
+  commentId: T:Prowl.Runtime.NavMeshLink
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.NavMeshLink.html
+  name: NavMeshLink
+  nameWithType: NavMeshLink
+  fullName: Prowl.Runtime.NavMeshLink
+- uid: Prowl.Runtime.NavMeshSurface.RebuildLinkTiles(System.ReadOnlySpan{Prowl.Vector.AABB},System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshLinkSource})
+  commentId: M:Prowl.Runtime.NavMeshSurface.RebuildLinkTiles(System.ReadOnlySpan{Prowl.Vector.AABB},System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshLinkSource})
+  isExternal: true
+  href: Prowl.Runtime.NavMeshSurface.html#Prowl_Runtime_NavMeshSurface_RebuildLinkTiles_System_ReadOnlySpan_Prowl_Vector_AABB__System_Collections_Generic_IReadOnlyList_Prowl_Runtime_NavMeshLinkSource__
+  name: RebuildLinkTiles(ReadOnlySpan<AABB>, IReadOnlyList<NavMeshLinkSource>)
+  nameWithType: NavMeshSurface.RebuildLinkTiles(ReadOnlySpan<AABB>, IReadOnlyList<NavMeshLinkSource>)
+  fullName: Prowl.Runtime.NavMeshSurface.RebuildLinkTiles(System.ReadOnlySpan<Prowl.Vector.AABB>, System.Collections.Generic.IReadOnlyList<Prowl.Runtime.NavMeshLinkSource>)
+  nameWithType.vb: NavMeshSurface.RebuildLinkTiles(ReadOnlySpan(Of AABB), IReadOnlyList(Of NavMeshLinkSource))
+  fullName.vb: Prowl.Runtime.NavMeshSurface.RebuildLinkTiles(System.ReadOnlySpan(Of Prowl.Vector.AABB), System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.NavMeshLinkSource))
+  name.vb: RebuildLinkTiles(ReadOnlySpan(Of AABB), IReadOnlyList(Of NavMeshLinkSource))
+  spec.csharp:
+  - uid: Prowl.Runtime.NavMeshSurface.RebuildLinkTiles(System.ReadOnlySpan{Prowl.Vector.AABB},System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshLinkSource})
+    name: RebuildLinkTiles
+    href: Prowl.Runtime.NavMeshSurface.html#Prowl_Runtime_NavMeshSurface_RebuildLinkTiles_System_ReadOnlySpan_Prowl_Vector_AABB__System_Collections_Generic_IReadOnlyList_Prowl_Runtime_NavMeshLinkSource__
+  - name: (
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: Prowl.Vector.AABB
+    name: AABB
+    isExternal: true
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Runtime.NavMeshLinkSource
+    name: NavMeshLinkSource
+    href: Prowl.Runtime.NavMeshLinkSource.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.NavMeshSurface.RebuildLinkTiles(System.ReadOnlySpan{Prowl.Vector.AABB},System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshLinkSource})
+    name: RebuildLinkTiles
+    href: Prowl.Runtime.NavMeshSurface.html#Prowl_Runtime_NavMeshSurface_RebuildLinkTiles_System_ReadOnlySpan_Prowl_Vector_AABB__System_Collections_Generic_IReadOnlyList_Prowl_Runtime_NavMeshLinkSource__
+  - name: (
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Vector.AABB
+    name: AABB
+    isExternal: true
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.NavMeshLinkSource
+    name: NavMeshLinkSource
+    href: Prowl.Runtime.NavMeshLinkSource.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.List{Prowl.Runtime.NavMeshLinkSource}
+  commentId: T:System.Collections.Generic.List{Prowl.Runtime.NavMeshLinkSource}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<NavMeshLinkSource>
+  nameWithType: List<NavMeshLinkSource>
+  fullName: System.Collections.Generic.List<Prowl.Runtime.NavMeshLinkSource>
+  nameWithType.vb: List(Of NavMeshLinkSource)
+  fullName.vb: System.Collections.Generic.List(Of Prowl.Runtime.NavMeshLinkSource)
+  name.vb: List(Of NavMeshLinkSource)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Prowl.Runtime.NavMeshLinkSource
+    name: NavMeshLinkSource
+    href: Prowl.Runtime.NavMeshLinkSource.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.NavMeshLinkSource
+    name: NavMeshLinkSource
+    href: Prowl.Runtime.NavMeshLinkSource.html
+  - name: )
+- uid: Prowl.Runtime.NavMeshData.HasTiles*
+  commentId: Overload:Prowl.Runtime.NavMeshData.HasTiles
+  href: Prowl.Runtime.NavMeshData.html#Prowl_Runtime_NavMeshData_HasTiles
+  name: HasTiles
+  nameWithType: NavMeshData.HasTiles
+  fullName: Prowl.Runtime.NavMeshData.HasTiles
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Runtime.NavMeshData.CalculateTriangulation*
+  commentId: Overload:Prowl.Runtime.NavMeshData.CalculateTriangulation
+  href: Prowl.Runtime.NavMeshData.html#Prowl_Runtime_NavMeshData_CalculateTriangulation
+  name: CalculateTriangulation
+  nameWithType: NavMeshData.CalculateTriangulation
+  fullName: Prowl.Runtime.NavMeshData.CalculateTriangulation
+- uid: Prowl.Runtime.NavMeshTriangulation
+  commentId: T:Prowl.Runtime.NavMeshTriangulation
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.NavMeshTriangulation.html
+  name: NavMeshTriangulation
+  nameWithType: NavMeshTriangulation
+  fullName: Prowl.Runtime.NavMeshTriangulation
+- uid: Prowl.Runtime.NavMeshData.CreateTileCache*
+  commentId: Overload:Prowl.Runtime.NavMeshData.CreateTileCache
+  href: Prowl.Runtime.NavMeshData.html#Prowl_Runtime_NavMeshData_CreateTileCache_System_Int32_
+  name: CreateTileCache
+  nameWithType: NavMeshData.CreateTileCache
+  fullName: Prowl.Runtime.NavMeshData.CreateTileCache
+- uid: Prowl.Recast.Detour.TileCache.DtTileCache
+  commentId: T:Prowl.Recast.Detour.TileCache.DtTileCache
+  parent: Prowl.Recast.Detour.TileCache
+  isExternal: true
+  name: DtTileCache
+  nameWithType: DtTileCache
+  fullName: Prowl.Recast.Detour.TileCache.DtTileCache
+- uid: Prowl.Recast.Detour.TileCache
+  commentId: N:Prowl.Recast.Detour.TileCache
+  isExternal: true
+  name: Prowl.Recast.Detour.TileCache
+  nameWithType: Prowl.Recast.Detour.TileCache
+  fullName: Prowl.Recast.Detour.TileCache
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+    isExternal: true
+  - name: .
+  - uid: Prowl.Recast
+    name: Recast
+    isExternal: true
+  - name: .
+  - uid: Prowl.Recast.Detour
+    name: Detour
+    isExternal: true
+  - name: .
+  - uid: Prowl.Recast.Detour.TileCache
+    name: TileCache
+    isExternal: true
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+    isExternal: true
+  - name: .
+  - uid: Prowl.Recast
+    name: Recast
+    isExternal: true
+  - name: .
+  - uid: Prowl.Recast.Detour
+    name: Detour
+    isExternal: true
+  - name: .
+  - uid: Prowl.Recast.Detour.TileCache
+    name: TileCache
+    isExternal: true

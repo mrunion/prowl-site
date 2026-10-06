@@ -1,0 +1,475 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.Rendering.SMAALookupTextures
+  commentId: T:Prowl.Runtime.Rendering.SMAALookupTextures
+  id: SMAALookupTextures
+  parent: Prowl.Runtime.Rendering
+  children:
+  - Prowl.Runtime.Rendering.SMAALookupTextures.AreaTex
+  - Prowl.Runtime.Rendering.SMAALookupTextures.SearchTex
+  langs:
+  - csharp
+  - vb
+  name: SMAALookupTextures
+  nameWithType: SMAALookupTextures
+  fullName: Prowl.Runtime.Rendering.SMAALookupTextures
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/SMAALookupTextures.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SMAALookupTextures
+    path: ../Prowl/Prowl.Runtime/Rendering/SMAALookupTextures.cs
+    startLine: 27
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: >-
+    Loads the two precomputed SMAA lookup textures (AreaTex and SearchTex) from
+
+    embedded resources, caching one shared GPU texture each.
+
+
+    Both are stored as raw RGBA8 (the reference RG8/R8 data expanded into the R/G
+
+    channels: AreaTex = [R,G,0,255], SearchTex = [R,0,0,255]) in the <b>upstream</b>
+
+    row order. The reference data comes from https://github.com/iryoku/smaa
+
+    (Textures/AreaTex.h, Textures/SearchTex.h), MIT licensed.
+
+
+    Note: unlike turol/smaaDemo's raw-GL path (which vertically flips these textures
+
+    under RENDERER_OPENGL via flipSMAATextures), Prowl must NOT flip them - its blit /
+
+    render-target sampling already presents them in the upstream orientation. Flipping
+
+    them blends diagonals on the wrong side (verified against a diagonal line in
+
+    ProwlMapDemo: the flipped orientation produces dark fringing along diagonals).
+
+
+    Loaded raw rather than as PNG because <xref href="Prowl.Runtime.Resources.Texture2D.FromImage(Prowl.Aperture.Image%2cSystem.Boolean)" data-throw-if-not-resolved="false"></xref> forces
+
+    sRGB + a vertical flip, which would corrupt these data textures.
+  example: []
+  syntax:
+    content: public static class SMAALookupTextures
+    content.vb: Public Module SMAALookupTextures
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Prowl.Runtime.Rendering.SMAALookupTextures.AreaTex
+  commentId: P:Prowl.Runtime.Rendering.SMAALookupTextures.AreaTex
+  id: AreaTex
+  parent: Prowl.Runtime.Rendering.SMAALookupTextures
+  langs:
+  - csharp
+  - vb
+  name: AreaTex
+  nameWithType: SMAALookupTextures.AreaTex
+  fullName: Prowl.Runtime.Rendering.SMAALookupTextures.AreaTex
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/SMAALookupTextures.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AreaTex
+    path: ../Prowl/Prowl.Runtime/Rendering/SMAALookupTextures.cs
+    startLine: 38
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: The SMAA precomputed area lookup texture (160x560, RGBA8).
+  example: []
+  syntax:
+    content: public static Texture2D AreaTex { get; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.Resources.Texture2D
+    content.vb: Public Shared ReadOnly Property AreaTex As Texture2D
+  overload: Prowl.Runtime.Rendering.SMAALookupTextures.AreaTex*
+- uid: Prowl.Runtime.Rendering.SMAALookupTextures.SearchTex
+  commentId: P:Prowl.Runtime.Rendering.SMAALookupTextures.SearchTex
+  id: SearchTex
+  parent: Prowl.Runtime.Rendering.SMAALookupTextures
+  langs:
+  - csharp
+  - vb
+  name: SearchTex
+  nameWithType: SMAALookupTextures.SearchTex
+  fullName: Prowl.Runtime.Rendering.SMAALookupTextures.SearchTex
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/SMAALookupTextures.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SearchTex
+    path: ../Prowl/Prowl.Runtime/Rendering/SMAALookupTextures.cs
+    startLine: 50
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: The SMAA precomputed search lookup texture (64x16, RGBA8).
+  example: []
+  syntax:
+    content: public static Texture2D SearchTex { get; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.Resources.Texture2D
+    content.vb: Public Shared ReadOnly Property SearchTex As Texture2D
+  overload: Prowl.Runtime.Rendering.SMAALookupTextures.SearchTex*
+references:
+- uid: Prowl.Runtime.Resources.Texture2D.FromImage(Prowl.Aperture.Image,System.Boolean)
+  commentId: M:Prowl.Runtime.Resources.Texture2D.FromImage(Prowl.Aperture.Image,System.Boolean)
+  isExternal: true
+  href: Prowl.Runtime.Resources.Texture2D.html#Prowl_Runtime_Resources_Texture2D_FromImage_Prowl_Aperture_Image_System_Boolean_
+  name: FromImage(Image, bool)
+  nameWithType: Texture2D.FromImage(Image, bool)
+  fullName: Prowl.Runtime.Resources.Texture2D.FromImage(Prowl.Aperture.Image, bool)
+  nameWithType.vb: Texture2D.FromImage(Image, Boolean)
+  fullName.vb: Prowl.Runtime.Resources.Texture2D.FromImage(Prowl.Aperture.Image, Boolean)
+  name.vb: FromImage(Image, Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.Resources.Texture2D.FromImage(Prowl.Aperture.Image,System.Boolean)
+    name: FromImage
+    href: Prowl.Runtime.Resources.Texture2D.html#Prowl_Runtime_Resources_Texture2D_FromImage_Prowl_Aperture_Image_System_Boolean_
+  - name: (
+  - uid: Prowl.Aperture.Image
+    name: Image
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Resources.Texture2D.FromImage(Prowl.Aperture.Image,System.Boolean)
+    name: FromImage
+    href: Prowl.Runtime.Resources.Texture2D.html#Prowl_Runtime_Resources_Texture2D_FromImage_Prowl_Aperture_Image_System_Boolean_
+  - name: (
+  - uid: Prowl.Aperture.Image
+    name: Image
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.Rendering
+  commentId: N:Prowl.Runtime.Rendering
+  name: Prowl.Runtime.Rendering
+  nameWithType: Prowl.Runtime.Rendering
+  fullName: Prowl.Runtime.Rendering
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Rendering
+    name: Rendering
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Rendering
+    name: Rendering
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.Rendering.SMAALookupTextures.AreaTex*
+  commentId: Overload:Prowl.Runtime.Rendering.SMAALookupTextures.AreaTex
+  href: Prowl.Runtime.Rendering.SMAALookupTextures.html#Prowl_Runtime_Rendering_SMAALookupTextures_AreaTex
+  name: AreaTex
+  nameWithType: SMAALookupTextures.AreaTex
+  fullName: Prowl.Runtime.Rendering.SMAALookupTextures.AreaTex
+- uid: Prowl.Runtime.Resources.Texture2D
+  commentId: T:Prowl.Runtime.Resources.Texture2D
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.Texture2D.html
+  name: Texture2D
+  nameWithType: Texture2D
+  fullName: Prowl.Runtime.Resources.Texture2D
+- uid: Prowl.Runtime.Resources
+  commentId: N:Prowl.Runtime.Resources
+  name: Prowl.Runtime.Resources
+  nameWithType: Prowl.Runtime.Resources
+  fullName: Prowl.Runtime.Resources
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+- uid: Prowl.Runtime.Rendering.SMAALookupTextures.SearchTex*
+  commentId: Overload:Prowl.Runtime.Rendering.SMAALookupTextures.SearchTex
+  href: Prowl.Runtime.Rendering.SMAALookupTextures.html#Prowl_Runtime_Rendering_SMAALookupTextures_SearchTex
+  name: SearchTex
+  nameWithType: SMAALookupTextures.SearchTex
+  fullName: Prowl.Runtime.Rendering.SMAALookupTextures.SearchTex

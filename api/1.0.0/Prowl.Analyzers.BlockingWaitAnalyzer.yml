@@ -1,0 +1,743 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Analyzers.BlockingWaitAnalyzer
+  commentId: T:Prowl.Analyzers.BlockingWaitAnalyzer
+  id: BlockingWaitAnalyzer
+  parent: Prowl.Analyzers
+  children:
+  - Prowl.Analyzers.BlockingWaitAnalyzer.BlockingWait
+  - Prowl.Analyzers.BlockingWaitAnalyzer.BlockingWaitId
+  - Prowl.Analyzers.BlockingWaitAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)
+  - Prowl.Analyzers.BlockingWaitAnalyzer.SupportedDiagnostics
+  langs:
+  - csharp
+  - vb
+  name: BlockingWaitAnalyzer
+  nameWithType: BlockingWaitAnalyzer
+  fullName: Prowl.Analyzers.BlockingWaitAnalyzer
+  type: Class
+  source:
+    remote:
+      path: Prowl.Analyzers/BlockingWaitAnalyzer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: BlockingWaitAnalyzer
+    path: ../Prowl/Prowl.Analyzers/BlockingWaitAnalyzer.cs
+    startLine: 16
+  assemblies:
+  - Prowl.Analyzers
+  namespace: Prowl.Analyzers
+  summary: >-
+    Flags blocking waits on a task inside a <code>MonoBehaviour</code>: <code>.Result</code>, <code>.Wait()</code> and
+
+    <code>GetAwaiter().GetResult()</code>. Component code runs on the main thread, and the engine finishes
+
+    asset loads and frame waits from that same thread, so blocking there on one of them never returns.
+
+    Code inside a lambda, a static method or a static local function is left alone, since it usually runs on some
+
+    other thread, and so is a read that cannot block: behind an <code>IsCompleted</code> check on the same variable, or a
+
+    zero timeout poll.
+  example: []
+  syntax:
+    content: >-
+      [DiagnosticAnalyzer("C#", new string[] { })]
+
+      public sealed class BlockingWaitAnalyzer : DiagnosticAnalyzer
+    content.vb: >-
+      <DiagnosticAnalyzer("C#", New String() { })>
+
+      Public NotInheritable Class BlockingWaitAnalyzer Inherits DiagnosticAnalyzer
+  inheritance:
+  - System.Object
+  - Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+  inheritedMembers:
+  - Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.Equals(System.Object)
+  - Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.GetHashCode
+  - Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Analyzers.BlockingWaitAnalyzer.BlockingWaitId
+  commentId: F:Prowl.Analyzers.BlockingWaitAnalyzer.BlockingWaitId
+  id: BlockingWaitId
+  parent: Prowl.Analyzers.BlockingWaitAnalyzer
+  langs:
+  - csharp
+  - vb
+  name: BlockingWaitId
+  nameWithType: BlockingWaitAnalyzer.BlockingWaitId
+  fullName: Prowl.Analyzers.BlockingWaitAnalyzer.BlockingWaitId
+  type: Field
+  source:
+    remote:
+      path: Prowl.Analyzers/BlockingWaitAnalyzer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: BlockingWaitId
+    path: ../Prowl/Prowl.Analyzers/BlockingWaitAnalyzer.cs
+    startLine: 19
+  assemblies:
+  - Prowl.Analyzers
+  namespace: Prowl.Analyzers
+  syntax:
+    content: public const string BlockingWaitId = "PROWLTH001"
+    return:
+      type: System.String
+    content.vb: Public Const BlockingWaitId As String = "PROWLTH001"
+- uid: Prowl.Analyzers.BlockingWaitAnalyzer.BlockingWait
+  commentId: F:Prowl.Analyzers.BlockingWaitAnalyzer.BlockingWait
+  id: BlockingWait
+  parent: Prowl.Analyzers.BlockingWaitAnalyzer
+  langs:
+  - csharp
+  - vb
+  name: BlockingWait
+  nameWithType: BlockingWaitAnalyzer.BlockingWait
+  fullName: Prowl.Analyzers.BlockingWaitAnalyzer.BlockingWait
+  type: Field
+  source:
+    remote:
+      path: Prowl.Analyzers/BlockingWaitAnalyzer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: BlockingWait
+    path: ../Prowl/Prowl.Analyzers/BlockingWaitAnalyzer.cs
+    startLine: 23
+  assemblies:
+  - Prowl.Analyzers
+  namespace: Prowl.Analyzers
+  syntax:
+    content: public static readonly DiagnosticDescriptor BlockingWait
+    return:
+      type: Microsoft.CodeAnalysis.DiagnosticDescriptor
+    content.vb: Public Shared ReadOnly BlockingWait As DiagnosticDescriptor
+- uid: Prowl.Analyzers.BlockingWaitAnalyzer.SupportedDiagnostics
+  commentId: P:Prowl.Analyzers.BlockingWaitAnalyzer.SupportedDiagnostics
+  id: SupportedDiagnostics
+  parent: Prowl.Analyzers.BlockingWaitAnalyzer
+  langs:
+  - csharp
+  - vb
+  name: SupportedDiagnostics
+  nameWithType: BlockingWaitAnalyzer.SupportedDiagnostics
+  fullName: Prowl.Analyzers.BlockingWaitAnalyzer.SupportedDiagnostics
+  type: Property
+  source:
+    remote:
+      path: Prowl.Analyzers/BlockingWaitAnalyzer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SupportedDiagnostics
+    path: ../Prowl/Prowl.Analyzers/BlockingWaitAnalyzer.cs
+    startLine: 32
+  assemblies:
+  - Prowl.Analyzers
+  namespace: Prowl.Analyzers
+  summary: Returns a set of descriptors for the diagnostics that this analyzer is capable of producing.
+  example: []
+  syntax:
+    content: public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; }
+    parameters: []
+    return:
+      type: System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.DiagnosticDescriptor}
+    content.vb: Public Overrides ReadOnly Property SupportedDiagnostics As ImmutableArray(Of DiagnosticDescriptor)
+  overridden: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.SupportedDiagnostics
+  overload: Prowl.Analyzers.BlockingWaitAnalyzer.SupportedDiagnostics*
+- uid: Prowl.Analyzers.BlockingWaitAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)
+  commentId: M:Prowl.Analyzers.BlockingWaitAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)
+  id: Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)
+  parent: Prowl.Analyzers.BlockingWaitAnalyzer
+  langs:
+  - csharp
+  - vb
+  name: Initialize(AnalysisContext)
+  nameWithType: BlockingWaitAnalyzer.Initialize(AnalysisContext)
+  fullName: Prowl.Analyzers.BlockingWaitAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Analyzers/BlockingWaitAnalyzer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Initialize
+    path: ../Prowl/Prowl.Analyzers/BlockingWaitAnalyzer.cs
+    startLine: 34
+  assemblies:
+  - Prowl.Analyzers
+  namespace: Prowl.Analyzers
+  summary: Called once at session start to register actions in the analysis context.
+  example: []
+  syntax:
+    content: public override void Initialize(AnalysisContext context)
+    parameters:
+    - id: context
+      type: Microsoft.CodeAnalysis.Diagnostics.AnalysisContext
+      description: ''
+    content.vb: Public Overrides Sub Initialize(context As AnalysisContext)
+  overridden: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)
+  overload: Prowl.Analyzers.BlockingWaitAnalyzer.Initialize*
+references:
+- uid: Prowl.Analyzers
+  commentId: N:Prowl.Analyzers
+  name: Prowl.Analyzers
+  nameWithType: Prowl.Analyzers
+  fullName: Prowl.Analyzers
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Analyzers
+    name: Analyzers
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Analyzers
+    name: Analyzers
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+  commentId: T:Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+  parent: Microsoft.CodeAnalysis.Diagnostics
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnostics.diagnosticanalyzer
+  name: DiagnosticAnalyzer
+  nameWithType: DiagnosticAnalyzer
+  fullName: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+- uid: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.Equals(System.Object)
+  commentId: M:Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.Equals(System.Object)
+  parent: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnostics.diagnosticanalyzer.equals
+  name: Equals(object)
+  nameWithType: DiagnosticAnalyzer.Equals(object)
+  fullName: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.Equals(object)
+  nameWithType.vb: DiagnosticAnalyzer.Equals(Object)
+  fullName.vb: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnostics.diagnosticanalyzer.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnostics.diagnosticanalyzer.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.GetHashCode
+  commentId: M:Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.GetHashCode
+  parent: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnostics.diagnosticanalyzer.gethashcode
+  name: GetHashCode()
+  nameWithType: DiagnosticAnalyzer.GetHashCode()
+  fullName: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.GetHashCode()
+  spec.csharp:
+  - uid: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnostics.diagnosticanalyzer.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnostics.diagnosticanalyzer.gethashcode
+  - name: (
+  - name: )
+- uid: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.ToString
+  commentId: M:Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.ToString
+  parent: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnostics.diagnosticanalyzer.tostring
+  name: ToString()
+  nameWithType: DiagnosticAnalyzer.ToString()
+  fullName: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.ToString()
+  spec.csharp:
+  - uid: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnostics.diagnosticanalyzer.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnostics.diagnosticanalyzer.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Microsoft.CodeAnalysis.Diagnostics
+  commentId: N:Microsoft.CodeAnalysis.Diagnostics
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
+  name: Microsoft.CodeAnalysis.Diagnostics
+  nameWithType: Microsoft.CodeAnalysis.Diagnostics
+  fullName: Microsoft.CodeAnalysis.Diagnostics
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.CodeAnalysis
+    name: CodeAnalysis
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis
+  - name: .
+  - uid: Microsoft.CodeAnalysis.Diagnostics
+    name: Diagnostics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnostics
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.CodeAnalysis
+    name: CodeAnalysis
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis
+  - name: .
+  - uid: Microsoft.CodeAnalysis.Diagnostics
+    name: Diagnostics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnostics
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Microsoft.CodeAnalysis.DiagnosticDescriptor
+  commentId: T:Microsoft.CodeAnalysis.DiagnosticDescriptor
+  parent: Microsoft.CodeAnalysis
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnosticdescriptor
+  name: DiagnosticDescriptor
+  nameWithType: DiagnosticDescriptor
+  fullName: Microsoft.CodeAnalysis.DiagnosticDescriptor
+- uid: Microsoft.CodeAnalysis
+  commentId: N:Microsoft.CodeAnalysis
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
+  name: Microsoft.CodeAnalysis
+  nameWithType: Microsoft.CodeAnalysis
+  fullName: Microsoft.CodeAnalysis
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.CodeAnalysis
+    name: CodeAnalysis
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.CodeAnalysis
+    name: CodeAnalysis
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis
+- uid: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.SupportedDiagnostics
+  commentId: P:Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.SupportedDiagnostics
+  parent: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnostics.diagnosticanalyzer.supporteddiagnostics
+  name: SupportedDiagnostics
+  nameWithType: DiagnosticAnalyzer.SupportedDiagnostics
+  fullName: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.SupportedDiagnostics
+- uid: Prowl.Analyzers.BlockingWaitAnalyzer.SupportedDiagnostics*
+  commentId: Overload:Prowl.Analyzers.BlockingWaitAnalyzer.SupportedDiagnostics
+  href: Prowl.Analyzers.BlockingWaitAnalyzer.html#Prowl_Analyzers_BlockingWaitAnalyzer_SupportedDiagnostics
+  name: SupportedDiagnostics
+  nameWithType: BlockingWaitAnalyzer.SupportedDiagnostics
+  fullName: Prowl.Analyzers.BlockingWaitAnalyzer.SupportedDiagnostics
+- uid: System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.DiagnosticDescriptor}
+  commentId: T:System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.DiagnosticDescriptor}
+  parent: System.Collections.Immutable
+  definition: System.Collections.Immutable.ImmutableArray`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  name: ImmutableArray<DiagnosticDescriptor>
+  nameWithType: ImmutableArray<DiagnosticDescriptor>
+  fullName: System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.DiagnosticDescriptor>
+  nameWithType.vb: ImmutableArray(Of DiagnosticDescriptor)
+  fullName.vb: System.Collections.Immutable.ImmutableArray(Of Microsoft.CodeAnalysis.DiagnosticDescriptor)
+  name.vb: ImmutableArray(Of DiagnosticDescriptor)
+  spec.csharp:
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  - name: <
+  - uid: Microsoft.CodeAnalysis.DiagnosticDescriptor
+    name: DiagnosticDescriptor
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnosticdescriptor
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Microsoft.CodeAnalysis.DiagnosticDescriptor
+    name: DiagnosticDescriptor
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnosticdescriptor
+  - name: )
+- uid: System.Collections.Immutable.ImmutableArray`1
+  commentId: T:System.Collections.Immutable.ImmutableArray`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  name: ImmutableArray<T>
+  nameWithType: ImmutableArray<T>
+  fullName: System.Collections.Immutable.ImmutableArray<T>
+  nameWithType.vb: ImmutableArray(Of T)
+  fullName.vb: System.Collections.Immutable.ImmutableArray(Of T)
+  name.vb: ImmutableArray(Of T)
+  spec.csharp:
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Immutable
+  commentId: N:System.Collections.Immutable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Immutable
+  nameWithType: System.Collections.Immutable
+  fullName: System.Collections.Immutable
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Immutable
+    name: Immutable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Immutable
+    name: Immutable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable
+- uid: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)
+  commentId: M:Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)
+  parent: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnostics.diagnosticanalyzer.initialize
+  name: Initialize(AnalysisContext)
+  nameWithType: DiagnosticAnalyzer.Initialize(AnalysisContext)
+  fullName: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)
+  spec.csharp:
+  - uid: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)
+    name: Initialize
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnostics.diagnosticanalyzer.initialize
+  - name: (
+  - uid: Microsoft.CodeAnalysis.Diagnostics.AnalysisContext
+    name: AnalysisContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnostics.analysiscontext
+  - name: )
+  spec.vb:
+  - uid: Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)
+    name: Initialize
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnostics.diagnosticanalyzer.initialize
+  - name: (
+  - uid: Microsoft.CodeAnalysis.Diagnostics.AnalysisContext
+    name: AnalysisContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnostics.analysiscontext
+  - name: )
+- uid: Prowl.Analyzers.BlockingWaitAnalyzer.Initialize*
+  commentId: Overload:Prowl.Analyzers.BlockingWaitAnalyzer.Initialize
+  href: Prowl.Analyzers.BlockingWaitAnalyzer.html#Prowl_Analyzers_BlockingWaitAnalyzer_Initialize_Microsoft_CodeAnalysis_Diagnostics_AnalysisContext_
+  name: Initialize
+  nameWithType: BlockingWaitAnalyzer.Initialize
+  fullName: Prowl.Analyzers.BlockingWaitAnalyzer.Initialize
+- uid: Microsoft.CodeAnalysis.Diagnostics.AnalysisContext
+  commentId: T:Microsoft.CodeAnalysis.Diagnostics.AnalysisContext
+  parent: Microsoft.CodeAnalysis.Diagnostics
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnostics.analysiscontext
+  name: AnalysisContext
+  nameWithType: AnalysisContext
+  fullName: Microsoft.CodeAnalysis.Diagnostics.AnalysisContext

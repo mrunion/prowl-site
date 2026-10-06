@@ -1,0 +1,1091 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.Test.ProwlActionTests
+  commentId: T:Prowl.Runtime.Test.ProwlActionTests
+  id: ProwlActionTests
+  parent: Prowl.Runtime.Test
+  children:
+  - Prowl.Runtime.Test.ProwlActionTests.Invoke_CallsTheTargetMethod
+  - Prowl.Runtime.Test.ProwlActionTests.Invoke_OnADestroyedTarget_DoesNotCallIt
+  - Prowl.Runtime.Test.ProwlActionTests.Invoke_OnADetachedTarget_SaysTheTargetIsDetached
+  - Prowl.Runtime.Test.ProwlActionTests.Invoke_OnANullTarget_IsANoOp
+  - Prowl.Runtime.Test.ProwlActionTests.Invoke_PassesTheConfiguredArgument
+  - Prowl.Runtime.Test.ProwlActionTests.Invoke_WhenACallThrows_TheRestStillRun
+  - Prowl.Runtime.Test.ProwlActionTests.Invoke_WhenTheTargetThrows_ReportsTheTargetsOwnException
+  langs:
+  - csharp
+  - vb
+  name: ProwlActionTests
+  nameWithType: ProwlActionTests
+  fullName: Prowl.Runtime.Test.ProwlActionTests
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ProwlActionTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ProwlActionTests
+    path: ../Prowl/Prowl.Runtime.Test/ProwlActionTests.cs
+    startLine: 12
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Tests for <xref href="Prowl.Runtime.ProwlAction" data-throw-if-not-resolved="false"></xref> / <xref href="Prowl.Runtime.ProwlCall" data-throw-if-not-resolved="false"></xref>: what a configured call invokes, and
+
+    what it reports when the target is gone or the target itself throws. The reporting matters as much
+
+    as the dispatch here - these calls are wired up in the inspector, so the log is all an author has.
+  example: []
+  syntax:
+    content: 'public class ProwlActionTests : RuntimeTestBase, IDisposable'
+    content.vb: Public Class ProwlActionTests Inherits RuntimeTestBase Implements IDisposable
+  inheritance:
+  - System.Object
+  - Prowl.Runtime.Test.RuntimeTestBase
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  - Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  - Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  - Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.Test.ProwlActionTests.Invoke_CallsTheTargetMethod
+  commentId: M:Prowl.Runtime.Test.ProwlActionTests.Invoke_CallsTheTargetMethod
+  id: Invoke_CallsTheTargetMethod
+  parent: Prowl.Runtime.Test.ProwlActionTests
+  langs:
+  - csharp
+  - vb
+  name: Invoke_CallsTheTargetMethod()
+  nameWithType: ProwlActionTests.Invoke_CallsTheTargetMethod()
+  fullName: Prowl.Runtime.Test.ProwlActionTests.Invoke_CallsTheTargetMethod()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ProwlActionTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Invoke_CallsTheTargetMethod
+    path: ../Prowl/Prowl.Runtime.Test/ProwlActionTests.cs
+    startLine: 55
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Invoke_CallsTheTargetMethod()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Invoke_CallsTheTargetMethod()
+  overload: Prowl.Runtime.Test.ProwlActionTests.Invoke_CallsTheTargetMethod*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ProwlActionTests.Invoke_PassesTheConfiguredArgument
+  commentId: M:Prowl.Runtime.Test.ProwlActionTests.Invoke_PassesTheConfiguredArgument
+  id: Invoke_PassesTheConfiguredArgument
+  parent: Prowl.Runtime.Test.ProwlActionTests
+  langs:
+  - csharp
+  - vb
+  name: Invoke_PassesTheConfiguredArgument()
+  nameWithType: ProwlActionTests.Invoke_PassesTheConfiguredArgument()
+  fullName: Prowl.Runtime.Test.ProwlActionTests.Invoke_PassesTheConfiguredArgument()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ProwlActionTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Invoke_PassesTheConfiguredArgument
+    path: ../Prowl/Prowl.Runtime.Test/ProwlActionTests.cs
+    startLine: 65
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Invoke_PassesTheConfiguredArgument()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Invoke_PassesTheConfiguredArgument()
+  overload: Prowl.Runtime.Test.ProwlActionTests.Invoke_PassesTheConfiguredArgument*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ProwlActionTests.Invoke_OnADestroyedTarget_DoesNotCallIt
+  commentId: M:Prowl.Runtime.Test.ProwlActionTests.Invoke_OnADestroyedTarget_DoesNotCallIt
+  id: Invoke_OnADestroyedTarget_DoesNotCallIt
+  parent: Prowl.Runtime.Test.ProwlActionTests
+  langs:
+  - csharp
+  - vb
+  name: Invoke_OnADestroyedTarget_DoesNotCallIt()
+  nameWithType: ProwlActionTests.Invoke_OnADestroyedTarget_DoesNotCallIt()
+  fullName: Prowl.Runtime.Test.ProwlActionTests.Invoke_OnADestroyedTarget_DoesNotCallIt()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ProwlActionTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Invoke_OnADestroyedTarget_DoesNotCallIt
+    path: ../Prowl/Prowl.Runtime.Test/ProwlActionTests.cs
+    startLine: 78
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Invoke_OnADestroyedTarget_DoesNotCallIt()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Invoke_OnADestroyedTarget_DoesNotCallIt()
+  overload: Prowl.Runtime.Test.ProwlActionTests.Invoke_OnADestroyedTarget_DoesNotCallIt*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ProwlActionTests.Invoke_OnANullTarget_IsANoOp
+  commentId: M:Prowl.Runtime.Test.ProwlActionTests.Invoke_OnANullTarget_IsANoOp
+  id: Invoke_OnANullTarget_IsANoOp
+  parent: Prowl.Runtime.Test.ProwlActionTests
+  langs:
+  - csharp
+  - vb
+  name: Invoke_OnANullTarget_IsANoOp()
+  nameWithType: ProwlActionTests.Invoke_OnANullTarget_IsANoOp()
+  fullName: Prowl.Runtime.Test.ProwlActionTests.Invoke_OnANullTarget_IsANoOp()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ProwlActionTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Invoke_OnANullTarget_IsANoOp
+    path: ../Prowl/Prowl.Runtime.Test/ProwlActionTests.cs
+    startLine: 93
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Invoke_OnANullTarget_IsANoOp()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Invoke_OnANullTarget_IsANoOp()
+  overload: Prowl.Runtime.Test.ProwlActionTests.Invoke_OnANullTarget_IsANoOp*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ProwlActionTests.Invoke_WhenTheTargetThrows_ReportsTheTargetsOwnException
+  commentId: M:Prowl.Runtime.Test.ProwlActionTests.Invoke_WhenTheTargetThrows_ReportsTheTargetsOwnException
+  id: Invoke_WhenTheTargetThrows_ReportsTheTargetsOwnException
+  parent: Prowl.Runtime.Test.ProwlActionTests
+  langs:
+  - csharp
+  - vb
+  name: Invoke_WhenTheTargetThrows_ReportsTheTargetsOwnException()
+  nameWithType: ProwlActionTests.Invoke_WhenTheTargetThrows_ReportsTheTargetsOwnException()
+  fullName: Prowl.Runtime.Test.ProwlActionTests.Invoke_WhenTheTargetThrows_ReportsTheTargetsOwnException()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ProwlActionTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Invoke_WhenTheTargetThrows_ReportsTheTargetsOwnException
+    path: ../Prowl/Prowl.Runtime.Test/ProwlActionTests.cs
+    startLine: 104
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Invoke_WhenTheTargetThrows_ReportsTheTargetsOwnException()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Invoke_WhenTheTargetThrows_ReportsTheTargetsOwnException()
+  overload: Prowl.Runtime.Test.ProwlActionTests.Invoke_WhenTheTargetThrows_ReportsTheTargetsOwnException*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ProwlActionTests.Invoke_OnADetachedTarget_SaysTheTargetIsDetached
+  commentId: M:Prowl.Runtime.Test.ProwlActionTests.Invoke_OnADetachedTarget_SaysTheTargetIsDetached
+  id: Invoke_OnADetachedTarget_SaysTheTargetIsDetached
+  parent: Prowl.Runtime.Test.ProwlActionTests
+  langs:
+  - csharp
+  - vb
+  name: Invoke_OnADetachedTarget_SaysTheTargetIsDetached()
+  nameWithType: ProwlActionTests.Invoke_OnADetachedTarget_SaysTheTargetIsDetached()
+  fullName: Prowl.Runtime.Test.ProwlActionTests.Invoke_OnADetachedTarget_SaysTheTargetIsDetached()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ProwlActionTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Invoke_OnADetachedTarget_SaysTheTargetIsDetached
+    path: ../Prowl/Prowl.Runtime.Test/ProwlActionTests.cs
+    startLine: 121
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Invoke_OnADetachedTarget_SaysTheTargetIsDetached()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Invoke_OnADetachedTarget_SaysTheTargetIsDetached()
+  overload: Prowl.Runtime.Test.ProwlActionTests.Invoke_OnADetachedTarget_SaysTheTargetIsDetached*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ProwlActionTests.Invoke_WhenACallThrows_TheRestStillRun
+  commentId: M:Prowl.Runtime.Test.ProwlActionTests.Invoke_WhenACallThrows_TheRestStillRun
+  id: Invoke_WhenACallThrows_TheRestStillRun
+  parent: Prowl.Runtime.Test.ProwlActionTests
+  langs:
+  - csharp
+  - vb
+  name: Invoke_WhenACallThrows_TheRestStillRun()
+  nameWithType: ProwlActionTests.Invoke_WhenACallThrows_TheRestStillRun()
+  fullName: Prowl.Runtime.Test.ProwlActionTests.Invoke_WhenACallThrows_TheRestStillRun()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ProwlActionTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Invoke_WhenACallThrows_TheRestStillRun
+    path: ../Prowl/Prowl.Runtime.Test/ProwlActionTests.cs
+    startLine: 136
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Invoke_WhenACallThrows_TheRestStillRun()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Invoke_WhenACallThrows_TheRestStillRun()
+  overload: Prowl.Runtime.Test.ProwlActionTests.Invoke_WhenACallThrows_TheRestStillRun*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+references:
+- uid: Prowl.Runtime.ProwlAction
+  commentId: T:Prowl.Runtime.ProwlAction
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.ProwlAction.html
+  name: ProwlAction
+  nameWithType: ProwlAction
+  fullName: Prowl.Runtime.ProwlAction
+- uid: Prowl.Runtime.ProwlCall
+  commentId: T:Prowl.Runtime.ProwlCall
+  href: Prowl.Runtime.ProwlCall.html
+  name: ProwlCall
+  nameWithType: ProwlCall
+  fullName: Prowl.Runtime.ProwlCall
+- uid: Prowl.Runtime.Test
+  commentId: N:Prowl.Runtime.Test
+  name: Prowl.Runtime.Test
+  nameWithType: Prowl.Runtime.Test
+  fullName: Prowl.Runtime.Test
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.Runtime.Test.RuntimeTestBase
+  commentId: T:Prowl.Runtime.Test.RuntimeTestBase
+  parent: Prowl.Runtime.Test
+  href: Prowl.Runtime.Test.RuntimeTestBase.html
+  name: RuntimeTestBase
+  nameWithType: RuntimeTestBase
+  fullName: Prowl.Runtime.Test.RuntimeTestBase
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  commentId: P:Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_FixedDeltaTime
+  name: FixedDeltaTime
+  nameWithType: RuntimeTestBase.FixedDeltaTime
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+- uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  name: EditMode()
+  nameWithType: RuntimeTestBase.EditMode()
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.EditMode()
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+    name: EditMode
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+    name: EditMode
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  name: CreateScene(bool)
+  nameWithType: RuntimeTestBase.CreateScene(bool)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(bool)
+  nameWithType.vb: RuntimeTestBase.CreateScene(Boolean)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(Boolean)
+  name.vb: CreateScene(Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+    name: CreateScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+    name: CreateScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  name: CreateGameObject(string)
+  nameWithType: RuntimeTestBase.CreateGameObject(string)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(string)
+  nameWithType.vb: RuntimeTestBase.CreateGameObject(String)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(String)
+  name.vb: CreateGameObject(String)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+    name: CreateGameObject
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+    name: CreateGameObject
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Tick(Scene, int)
+  nameWithType: RuntimeTestBase.Tick(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.Tick(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Tick(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Update(Scene, int)
+  nameWithType: RuntimeTestBase.Update(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.Update(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Update(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Update
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Update
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: StepPhysics(Scene, int)
+  nameWithType: RuntimeTestBase.StepPhysics(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.StepPhysics(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: StepPhysics(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: StepPhysics
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: StepPhysics
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  name: ApplyFastBakeSettings(NavMeshSurface)
+  nameWithType: RuntimeTestBase.ApplyFastBakeSettings(NavMeshSurface)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+    name: ApplyFastBakeSettings
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  - name: (
+  - uid: Prowl.Runtime.NavMeshSurface
+    name: NavMeshSurface
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+    name: ApplyFastBakeSettings
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  - name: (
+  - uid: Prowl.Runtime.NavMeshSurface
+    name: NavMeshSurface
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  name: CreateFloorScene(float, bool)
+  nameWithType: RuntimeTestBase.CreateFloorScene(float, bool)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(float, bool)
+  nameWithType.vb: RuntimeTestBase.CreateFloorScene(Single, Boolean)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(Single, Boolean)
+  name.vb: CreateFloorScene(Single, Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+    name: CreateFloorScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  - name: (
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+    name: CreateFloorScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  - name: (
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  name: TickUntil(Scene, Func<bool>, int)
+  nameWithType: RuntimeTestBase.TickUntil(Scene, Func<bool>, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene, System.Func<bool>, int)
+  nameWithType.vb: RuntimeTestBase.TickUntil(Scene, Func(Of Boolean), Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene, System.Func(Of Boolean), Integer)
+  name.vb: TickUntil(Scene, Func(Of Boolean), Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+    name: TickUntil
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+    name: TickUntil
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  name: Dispose()
+  nameWithType: RuntimeTestBase.Dispose()
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Dispose()
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+    name: Dispose
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+    name: Dispose
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime.Test.ProwlActionTests.Invoke_CallsTheTargetMethod*
+  commentId: Overload:Prowl.Runtime.Test.ProwlActionTests.Invoke_CallsTheTargetMethod
+  href: Prowl.Runtime.Test.ProwlActionTests.html#Prowl_Runtime_Test_ProwlActionTests_Invoke_CallsTheTargetMethod
+  name: Invoke_CallsTheTargetMethod
+  nameWithType: ProwlActionTests.Invoke_CallsTheTargetMethod
+  fullName: Prowl.Runtime.Test.ProwlActionTests.Invoke_CallsTheTargetMethod
+- uid: Prowl.Runtime.Test.ProwlActionTests.Invoke_PassesTheConfiguredArgument*
+  commentId: Overload:Prowl.Runtime.Test.ProwlActionTests.Invoke_PassesTheConfiguredArgument
+  href: Prowl.Runtime.Test.ProwlActionTests.html#Prowl_Runtime_Test_ProwlActionTests_Invoke_PassesTheConfiguredArgument
+  name: Invoke_PassesTheConfiguredArgument
+  nameWithType: ProwlActionTests.Invoke_PassesTheConfiguredArgument
+  fullName: Prowl.Runtime.Test.ProwlActionTests.Invoke_PassesTheConfiguredArgument
+- uid: Prowl.Runtime.Test.ProwlActionTests.Invoke_OnADestroyedTarget_DoesNotCallIt*
+  commentId: Overload:Prowl.Runtime.Test.ProwlActionTests.Invoke_OnADestroyedTarget_DoesNotCallIt
+  href: Prowl.Runtime.Test.ProwlActionTests.html#Prowl_Runtime_Test_ProwlActionTests_Invoke_OnADestroyedTarget_DoesNotCallIt
+  name: Invoke_OnADestroyedTarget_DoesNotCallIt
+  nameWithType: ProwlActionTests.Invoke_OnADestroyedTarget_DoesNotCallIt
+  fullName: Prowl.Runtime.Test.ProwlActionTests.Invoke_OnADestroyedTarget_DoesNotCallIt
+- uid: Prowl.Runtime.Test.ProwlActionTests.Invoke_OnANullTarget_IsANoOp*
+  commentId: Overload:Prowl.Runtime.Test.ProwlActionTests.Invoke_OnANullTarget_IsANoOp
+  href: Prowl.Runtime.Test.ProwlActionTests.html#Prowl_Runtime_Test_ProwlActionTests_Invoke_OnANullTarget_IsANoOp
+  name: Invoke_OnANullTarget_IsANoOp
+  nameWithType: ProwlActionTests.Invoke_OnANullTarget_IsANoOp
+  fullName: Prowl.Runtime.Test.ProwlActionTests.Invoke_OnANullTarget_IsANoOp
+- uid: Prowl.Runtime.Test.ProwlActionTests.Invoke_WhenTheTargetThrows_ReportsTheTargetsOwnException*
+  commentId: Overload:Prowl.Runtime.Test.ProwlActionTests.Invoke_WhenTheTargetThrows_ReportsTheTargetsOwnException
+  href: Prowl.Runtime.Test.ProwlActionTests.html#Prowl_Runtime_Test_ProwlActionTests_Invoke_WhenTheTargetThrows_ReportsTheTargetsOwnException
+  name: Invoke_WhenTheTargetThrows_ReportsTheTargetsOwnException
+  nameWithType: ProwlActionTests.Invoke_WhenTheTargetThrows_ReportsTheTargetsOwnException
+  fullName: Prowl.Runtime.Test.ProwlActionTests.Invoke_WhenTheTargetThrows_ReportsTheTargetsOwnException
+- uid: Prowl.Runtime.Test.ProwlActionTests.Invoke_OnADetachedTarget_SaysTheTargetIsDetached*
+  commentId: Overload:Prowl.Runtime.Test.ProwlActionTests.Invoke_OnADetachedTarget_SaysTheTargetIsDetached
+  href: Prowl.Runtime.Test.ProwlActionTests.html#Prowl_Runtime_Test_ProwlActionTests_Invoke_OnADetachedTarget_SaysTheTargetIsDetached
+  name: Invoke_OnADetachedTarget_SaysTheTargetIsDetached
+  nameWithType: ProwlActionTests.Invoke_OnADetachedTarget_SaysTheTargetIsDetached
+  fullName: Prowl.Runtime.Test.ProwlActionTests.Invoke_OnADetachedTarget_SaysTheTargetIsDetached
+- uid: Prowl.Runtime.Test.ProwlActionTests.Invoke_WhenACallThrows_TheRestStillRun*
+  commentId: Overload:Prowl.Runtime.Test.ProwlActionTests.Invoke_WhenACallThrows_TheRestStillRun
+  href: Prowl.Runtime.Test.ProwlActionTests.html#Prowl_Runtime_Test_ProwlActionTests_Invoke_WhenACallThrows_TheRestStillRun
+  name: Invoke_WhenACallThrows_TheRestStillRun
+  nameWithType: ProwlActionTests.Invoke_WhenACallThrows_TheRestStillRun
+  fullName: Prowl.Runtime.Test.ProwlActionTests.Invoke_WhenACallThrows_TheRestStillRun

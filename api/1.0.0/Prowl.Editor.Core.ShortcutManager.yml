@@ -1,0 +1,1122 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.Core.ShortcutManager
+  commentId: T:Prowl.Editor.Core.ShortcutManager
+  id: ShortcutManager
+  parent: Prowl.Editor.Core
+  children:
+  - Prowl.Editor.Core.ShortcutManager.ClearAllOverrides
+  - Prowl.Editor.Core.ShortcutManager.ClearOverride(System.String)
+  - Prowl.Editor.Core.ShortcutManager.FindConflicts(System.String,Prowl.Editor.Core.ShortcutBinding)
+  - Prowl.Editor.Core.ShortcutManager.GetAllShortcuts
+  - Prowl.Editor.Core.ShortcutManager.GetBinding(System.String)
+  - Prowl.Editor.Core.ShortcutManager.GetDefault(System.String)
+  - Prowl.Editor.Core.ShortcutManager.GetDisplayString(Prowl.Editor.Core.ShortcutBinding)
+  - Prowl.Editor.Core.ShortcutManager.IsPressed(System.String)
+  - Prowl.Editor.Core.ShortcutManager.IsRebinding
+  - Prowl.Editor.Core.ShortcutManager.LoadOverrides
+  - Prowl.Editor.Core.ShortcutManager.Register(System.String,System.String,Prowl.Runtime.KeyCode,System.Boolean,System.Boolean,System.Boolean)
+  - Prowl.Editor.Core.ShortcutManager.SaveOverrides
+  - Prowl.Editor.Core.ShortcutManager.SetOverride(System.String,Prowl.Editor.Core.ShortcutBinding)
+  langs:
+  - csharp
+  - vb
+  name: ShortcutManager
+  nameWithType: ShortcutManager
+  fullName: Prowl.Editor.Core.ShortcutManager
+  type: Class
+  source:
+    remote:
+      path: Prowl.Editor/Core/ShortcutManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShortcutManager
+    path: ../Prowl/Prowl.Editor/Core/ShortcutManager.cs
+    startLine: 70
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: >-
+    Central registry for named, rebindable keyboard shortcuts.
+
+    Shortcuts are registered at startup and checked each frame via <xref href="Prowl.Editor.Core.ShortcutManager.IsPressed(System.String)" data-throw-if-not-resolved="false"></xref>.
+
+    User overrides are persisted in <xref href="Prowl.Editor.Theming.EditorSettings.ShortcutOverrides" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static class ShortcutManager
+    content.vb: Public Module ShortcutManager
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Prowl.Editor.Core.ShortcutManager.IsRebinding
+  commentId: P:Prowl.Editor.Core.ShortcutManager.IsRebinding
+  id: IsRebinding
+  parent: Prowl.Editor.Core.ShortcutManager
+  langs:
+  - csharp
+  - vb
+  name: IsRebinding
+  nameWithType: ShortcutManager.IsRebinding
+  fullName: Prowl.Editor.Core.ShortcutManager.IsRebinding
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Core/ShortcutManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsRebinding
+    path: ../Prowl/Prowl.Editor/Core/ShortcutManager.cs
+    startLine: 79
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: >-
+    When true, all <xref href="Prowl.Editor.Core.ShortcutManager.IsPressed(System.String)" data-throw-if-not-resolved="false"></xref> calls return false.
+
+    Set during shortcut rebinding in the Preferences panel.
+  example: []
+  syntax:
+    content: public static bool IsRebinding { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Property IsRebinding As Boolean
+  overload: Prowl.Editor.Core.ShortcutManager.IsRebinding*
+- uid: Prowl.Editor.Core.ShortcutManager.Register(System.String,System.String,Prowl.Runtime.KeyCode,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:Prowl.Editor.Core.ShortcutManager.Register(System.String,System.String,Prowl.Runtime.KeyCode,System.Boolean,System.Boolean,System.Boolean)
+  id: Register(System.String,System.String,Prowl.Runtime.KeyCode,System.Boolean,System.Boolean,System.Boolean)
+  parent: Prowl.Editor.Core.ShortcutManager
+  langs:
+  - csharp
+  - vb
+  name: Register(string, string, KeyCode, bool, bool, bool)
+  nameWithType: ShortcutManager.Register(string, string, KeyCode, bool, bool, bool)
+  fullName: Prowl.Editor.Core.ShortcutManager.Register(string, string, Prowl.Runtime.KeyCode, bool, bool, bool)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/ShortcutManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Register
+    path: ../Prowl/Prowl.Editor/Core/ShortcutManager.cs
+    startLine: 86
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: Register a shortcut with a default binding.
+  example: []
+  syntax:
+    content: public static void Register(string id, string displayName, KeyCode key, bool ctrl = false, bool shift = false, bool alt = false)
+    parameters:
+    - id: id
+      type: System.String
+    - id: displayName
+      type: System.String
+    - id: key
+      type: Prowl.Runtime.KeyCode
+    - id: ctrl
+      type: System.Boolean
+    - id: shift
+      type: System.Boolean
+    - id: alt
+      type: System.Boolean
+    content.vb: Public Shared Sub Register(id As String, displayName As String, key As KeyCode, ctrl As Boolean = False, shift As Boolean = False, alt As Boolean = False)
+  overload: Prowl.Editor.Core.ShortcutManager.Register*
+  nameWithType.vb: ShortcutManager.Register(String, String, KeyCode, Boolean, Boolean, Boolean)
+  fullName.vb: Prowl.Editor.Core.ShortcutManager.Register(String, String, Prowl.Runtime.KeyCode, Boolean, Boolean, Boolean)
+  name.vb: Register(String, String, KeyCode, Boolean, Boolean, Boolean)
+- uid: Prowl.Editor.Core.ShortcutManager.IsPressed(System.String)
+  commentId: M:Prowl.Editor.Core.ShortcutManager.IsPressed(System.String)
+  id: IsPressed(System.String)
+  parent: Prowl.Editor.Core.ShortcutManager
+  langs:
+  - csharp
+  - vb
+  name: IsPressed(string)
+  nameWithType: ShortcutManager.IsPressed(string)
+  fullName: Prowl.Editor.Core.ShortcutManager.IsPressed(string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/ShortcutManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsPressed
+    path: ../Prowl/Prowl.Editor/Core/ShortcutManager.cs
+    startLine: 118
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: >-
+    Returns true if the shortcut was triggered this frame.
+
+    Checks <xref href="Prowl.Runtime.Input.GetKeyDown(Prowl.Runtime.KeyCode)" data-throw-if-not-resolved="false"></xref> for the primary key and enforces
+
+    exact modifier state. On macOS the "Ctrl" modifier is interpreted as Cmd
+
+    (Super) so platform-native shortcuts like Cmd+S work without rebinding.
+  example: []
+  syntax:
+    content: public static bool IsPressed(string id)
+    parameters:
+    - id: id
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsPressed(id As String) As Boolean
+  overload: Prowl.Editor.Core.ShortcutManager.IsPressed*
+  nameWithType.vb: ShortcutManager.IsPressed(String)
+  fullName.vb: Prowl.Editor.Core.ShortcutManager.IsPressed(String)
+  name.vb: IsPressed(String)
+- uid: Prowl.Editor.Core.ShortcutManager.GetBinding(System.String)
+  commentId: M:Prowl.Editor.Core.ShortcutManager.GetBinding(System.String)
+  id: GetBinding(System.String)
+  parent: Prowl.Editor.Core.ShortcutManager
+  langs:
+  - csharp
+  - vb
+  name: GetBinding(string)
+  nameWithType: ShortcutManager.GetBinding(string)
+  fullName: Prowl.Editor.Core.ShortcutManager.GetBinding(string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/ShortcutManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetBinding
+    path: ../Prowl/Prowl.Editor/Core/ShortcutManager.cs
+    startLine: 147
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: Get the effective binding for a shortcut.
+  example: []
+  syntax:
+    content: public static ShortcutBinding? GetBinding(string id)
+    parameters:
+    - id: id
+      type: System.String
+    return:
+      type: Prowl.Editor.Core.ShortcutBinding
+    content.vb: Public Shared Function GetBinding(id As String) As ShortcutBinding
+  overload: Prowl.Editor.Core.ShortcutManager.GetBinding*
+  nameWithType.vb: ShortcutManager.GetBinding(String)
+  fullName.vb: Prowl.Editor.Core.ShortcutManager.GetBinding(String)
+  name.vb: GetBinding(String)
+- uid: Prowl.Editor.Core.ShortcutManager.GetDefault(System.String)
+  commentId: M:Prowl.Editor.Core.ShortcutManager.GetDefault(System.String)
+  id: GetDefault(System.String)
+  parent: Prowl.Editor.Core.ShortcutManager
+  langs:
+  - csharp
+  - vb
+  name: GetDefault(string)
+  nameWithType: ShortcutManager.GetDefault(string)
+  fullName: Prowl.Editor.Core.ShortcutManager.GetDefault(string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/ShortcutManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetDefault
+    path: ../Prowl/Prowl.Editor/Core/ShortcutManager.cs
+    startLine: 151
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: Get the default binding for a shortcut.
+  example: []
+  syntax:
+    content: public static ShortcutBinding? GetDefault(string id)
+    parameters:
+    - id: id
+      type: System.String
+    return:
+      type: Prowl.Editor.Core.ShortcutBinding
+    content.vb: Public Shared Function GetDefault(id As String) As ShortcutBinding
+  overload: Prowl.Editor.Core.ShortcutManager.GetDefault*
+  nameWithType.vb: ShortcutManager.GetDefault(String)
+  fullName.vb: Prowl.Editor.Core.ShortcutManager.GetDefault(String)
+  name.vb: GetDefault(String)
+- uid: Prowl.Editor.Core.ShortcutManager.GetAllShortcuts
+  commentId: M:Prowl.Editor.Core.ShortcutManager.GetAllShortcuts
+  id: GetAllShortcuts
+  parent: Prowl.Editor.Core.ShortcutManager
+  langs:
+  - csharp
+  - vb
+  name: GetAllShortcuts()
+  nameWithType: ShortcutManager.GetAllShortcuts()
+  fullName: Prowl.Editor.Core.ShortcutManager.GetAllShortcuts()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/ShortcutManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetAllShortcuts
+    path: ../Prowl/Prowl.Editor/Core/ShortcutManager.cs
+    startLine: 155
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: Get all registered shortcut definitions.
+  example: []
+  syntax:
+    content: public static IEnumerable<ShortcutDefinition> GetAllShortcuts()
+    return:
+      type: System.Collections.Generic.IEnumerable{Prowl.Editor.Core.ShortcutDefinition}
+    content.vb: Public Shared Function GetAllShortcuts() As IEnumerable(Of ShortcutDefinition)
+  overload: Prowl.Editor.Core.ShortcutManager.GetAllShortcuts*
+- uid: Prowl.Editor.Core.ShortcutManager.SetOverride(System.String,Prowl.Editor.Core.ShortcutBinding)
+  commentId: M:Prowl.Editor.Core.ShortcutManager.SetOverride(System.String,Prowl.Editor.Core.ShortcutBinding)
+  id: SetOverride(System.String,Prowl.Editor.Core.ShortcutBinding)
+  parent: Prowl.Editor.Core.ShortcutManager
+  langs:
+  - csharp
+  - vb
+  name: SetOverride(string, ShortcutBinding)
+  nameWithType: ShortcutManager.SetOverride(string, ShortcutBinding)
+  fullName: Prowl.Editor.Core.ShortcutManager.SetOverride(string, Prowl.Editor.Core.ShortcutBinding)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/ShortcutManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetOverride
+    path: ../Prowl/Prowl.Editor/Core/ShortcutManager.cs
+    startLine: 163
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: Set a user override for a shortcut and persist to settings.
+  example: []
+  syntax:
+    content: public static void SetOverride(string id, ShortcutBinding binding)
+    parameters:
+    - id: id
+      type: System.String
+    - id: binding
+      type: Prowl.Editor.Core.ShortcutBinding
+    content.vb: Public Shared Sub SetOverride(id As String, binding As ShortcutBinding)
+  overload: Prowl.Editor.Core.ShortcutManager.SetOverride*
+  nameWithType.vb: ShortcutManager.SetOverride(String, ShortcutBinding)
+  fullName.vb: Prowl.Editor.Core.ShortcutManager.SetOverride(String, Prowl.Editor.Core.ShortcutBinding)
+  name.vb: SetOverride(String, ShortcutBinding)
+- uid: Prowl.Editor.Core.ShortcutManager.ClearOverride(System.String)
+  commentId: M:Prowl.Editor.Core.ShortcutManager.ClearOverride(System.String)
+  id: ClearOverride(System.String)
+  parent: Prowl.Editor.Core.ShortcutManager
+  langs:
+  - csharp
+  - vb
+  name: ClearOverride(string)
+  nameWithType: ShortcutManager.ClearOverride(string)
+  fullName: Prowl.Editor.Core.ShortcutManager.ClearOverride(string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/ShortcutManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ClearOverride
+    path: ../Prowl/Prowl.Editor/Core/ShortcutManager.cs
+    startLine: 171
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: Clear the user override for a shortcut (reverts to default) and persist.
+  example: []
+  syntax:
+    content: public static void ClearOverride(string id)
+    parameters:
+    - id: id
+      type: System.String
+    content.vb: Public Shared Sub ClearOverride(id As String)
+  overload: Prowl.Editor.Core.ShortcutManager.ClearOverride*
+  nameWithType.vb: ShortcutManager.ClearOverride(String)
+  fullName.vb: Prowl.Editor.Core.ShortcutManager.ClearOverride(String)
+  name.vb: ClearOverride(String)
+- uid: Prowl.Editor.Core.ShortcutManager.ClearAllOverrides
+  commentId: M:Prowl.Editor.Core.ShortcutManager.ClearAllOverrides
+  id: ClearAllOverrides
+  parent: Prowl.Editor.Core.ShortcutManager
+  langs:
+  - csharp
+  - vb
+  name: ClearAllOverrides()
+  nameWithType: ShortcutManager.ClearAllOverrides()
+  fullName: Prowl.Editor.Core.ShortcutManager.ClearAllOverrides()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/ShortcutManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ClearAllOverrides
+    path: ../Prowl/Prowl.Editor/Core/ShortcutManager.cs
+    startLine: 179
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: Clear all user overrides and persist.
+  example: []
+  syntax:
+    content: public static void ClearAllOverrides()
+    content.vb: Public Shared Sub ClearAllOverrides()
+  overload: Prowl.Editor.Core.ShortcutManager.ClearAllOverrides*
+- uid: Prowl.Editor.Core.ShortcutManager.FindConflicts(System.String,Prowl.Editor.Core.ShortcutBinding)
+  commentId: M:Prowl.Editor.Core.ShortcutManager.FindConflicts(System.String,Prowl.Editor.Core.ShortcutBinding)
+  id: FindConflicts(System.String,Prowl.Editor.Core.ShortcutBinding)
+  parent: Prowl.Editor.Core.ShortcutManager
+  langs:
+  - csharp
+  - vb
+  name: FindConflicts(string, ShortcutBinding)
+  nameWithType: ShortcutManager.FindConflicts(string, ShortcutBinding)
+  fullName: Prowl.Editor.Core.ShortcutManager.FindConflicts(string, Prowl.Editor.Core.ShortcutBinding)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/ShortcutManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FindConflicts
+    path: ../Prowl/Prowl.Editor/Core/ShortcutManager.cs
+    startLine: 187
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: Find shortcut IDs that conflict with a proposed binding (same key + modifiers).
+  example: []
+  syntax:
+    content: public static List<string> FindConflicts(string excludeId, ShortcutBinding proposed)
+    parameters:
+    - id: excludeId
+      type: System.String
+    - id: proposed
+      type: Prowl.Editor.Core.ShortcutBinding
+    return:
+      type: System.Collections.Generic.List{System.String}
+    content.vb: Public Shared Function FindConflicts(excludeId As String, proposed As ShortcutBinding) As List(Of String)
+  overload: Prowl.Editor.Core.ShortcutManager.FindConflicts*
+  nameWithType.vb: ShortcutManager.FindConflicts(String, ShortcutBinding)
+  fullName.vb: Prowl.Editor.Core.ShortcutManager.FindConflicts(String, Prowl.Editor.Core.ShortcutBinding)
+  name.vb: FindConflicts(String, ShortcutBinding)
+- uid: Prowl.Editor.Core.ShortcutManager.LoadOverrides
+  commentId: M:Prowl.Editor.Core.ShortcutManager.LoadOverrides
+  id: LoadOverrides
+  parent: Prowl.Editor.Core.ShortcutManager
+  langs:
+  - csharp
+  - vb
+  name: LoadOverrides()
+  nameWithType: ShortcutManager.LoadOverrides()
+  fullName: Prowl.Editor.Core.ShortcutManager.LoadOverrides()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/ShortcutManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LoadOverrides
+    path: ../Prowl/Prowl.Editor/Core/ShortcutManager.cs
+    startLine: 204
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: Load user overrides from EditorSettings. Called once during initialization.
+  example: []
+  syntax:
+    content: public static void LoadOverrides()
+    content.vb: Public Shared Sub LoadOverrides()
+  overload: Prowl.Editor.Core.ShortcutManager.LoadOverrides*
+- uid: Prowl.Editor.Core.ShortcutManager.SaveOverrides
+  commentId: M:Prowl.Editor.Core.ShortcutManager.SaveOverrides
+  id: SaveOverrides
+  parent: Prowl.Editor.Core.ShortcutManager
+  langs:
+  - csharp
+  - vb
+  name: SaveOverrides()
+  nameWithType: ShortcutManager.SaveOverrides()
+  fullName: Prowl.Editor.Core.ShortcutManager.SaveOverrides()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/ShortcutManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SaveOverrides
+    path: ../Prowl/Prowl.Editor/Core/ShortcutManager.cs
+    startLine: 218
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: Save current overrides to EditorSettings.
+  example: []
+  syntax:
+    content: public static void SaveOverrides()
+    content.vb: Public Shared Sub SaveOverrides()
+  overload: Prowl.Editor.Core.ShortcutManager.SaveOverrides*
+- uid: Prowl.Editor.Core.ShortcutManager.GetDisplayString(Prowl.Editor.Core.ShortcutBinding)
+  commentId: M:Prowl.Editor.Core.ShortcutManager.GetDisplayString(Prowl.Editor.Core.ShortcutBinding)
+  id: GetDisplayString(Prowl.Editor.Core.ShortcutBinding)
+  parent: Prowl.Editor.Core.ShortcutManager
+  langs:
+  - csharp
+  - vb
+  name: GetDisplayString(ShortcutBinding?)
+  nameWithType: ShortcutManager.GetDisplayString(ShortcutBinding?)
+  fullName: Prowl.Editor.Core.ShortcutManager.GetDisplayString(Prowl.Editor.Core.ShortcutBinding?)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Core/ShortcutManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetDisplayString
+    path: ../Prowl/Prowl.Editor/Core/ShortcutManager.cs
+    startLine: 237
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Core
+  summary: Returns a human-readable string for a binding, e.g. "Ctrl+Shift+S" or "Delete".
+  example: []
+  syntax:
+    content: public static string GetDisplayString(ShortcutBinding? binding)
+    parameters:
+    - id: binding
+      type: Prowl.Editor.Core.ShortcutBinding
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetDisplayString(binding As ShortcutBinding) As String
+  overload: Prowl.Editor.Core.ShortcutManager.GetDisplayString*
+  nameWithType.vb: ShortcutManager.GetDisplayString(ShortcutBinding)
+  fullName.vb: Prowl.Editor.Core.ShortcutManager.GetDisplayString(Prowl.Editor.Core.ShortcutBinding)
+  name.vb: GetDisplayString(ShortcutBinding)
+references:
+- uid: Prowl.Editor.Core.ShortcutManager.IsPressed(System.String)
+  commentId: M:Prowl.Editor.Core.ShortcutManager.IsPressed(System.String)
+  isExternal: true
+  href: Prowl.Editor.Core.ShortcutManager.html#Prowl_Editor_Core_ShortcutManager_IsPressed_System_String_
+  name: IsPressed(string)
+  nameWithType: ShortcutManager.IsPressed(string)
+  fullName: Prowl.Editor.Core.ShortcutManager.IsPressed(string)
+  nameWithType.vb: ShortcutManager.IsPressed(String)
+  fullName.vb: Prowl.Editor.Core.ShortcutManager.IsPressed(String)
+  name.vb: IsPressed(String)
+  spec.csharp:
+  - uid: Prowl.Editor.Core.ShortcutManager.IsPressed(System.String)
+    name: IsPressed
+    href: Prowl.Editor.Core.ShortcutManager.html#Prowl_Editor_Core_ShortcutManager_IsPressed_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Core.ShortcutManager.IsPressed(System.String)
+    name: IsPressed
+    href: Prowl.Editor.Core.ShortcutManager.html#Prowl_Editor_Core_ShortcutManager_IsPressed_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Theming.EditorSettings.ShortcutOverrides
+  commentId: P:Prowl.Editor.Theming.EditorSettings.ShortcutOverrides
+  href: Prowl.Editor.Theming.EditorSettings.html#Prowl_Editor_Theming_EditorSettings_ShortcutOverrides
+  name: ShortcutOverrides
+  nameWithType: EditorSettings.ShortcutOverrides
+  fullName: Prowl.Editor.Theming.EditorSettings.ShortcutOverrides
+- uid: Prowl.Editor.Core
+  commentId: N:Prowl.Editor.Core
+  name: Prowl.Editor.Core
+  nameWithType: Prowl.Editor.Core
+  fullName: Prowl.Editor.Core
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Core
+    name: Core
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Core
+    name: Core
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Editor.Core.ShortcutManager.IsRebinding*
+  commentId: Overload:Prowl.Editor.Core.ShortcutManager.IsRebinding
+  href: Prowl.Editor.Core.ShortcutManager.html#Prowl_Editor_Core_ShortcutManager_IsRebinding
+  name: IsRebinding
+  nameWithType: ShortcutManager.IsRebinding
+  fullName: Prowl.Editor.Core.ShortcutManager.IsRebinding
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Editor.Core.ShortcutManager.Register*
+  commentId: Overload:Prowl.Editor.Core.ShortcutManager.Register
+  href: Prowl.Editor.Core.ShortcutManager.html#Prowl_Editor_Core_ShortcutManager_Register_System_String_System_String_Prowl_Runtime_KeyCode_System_Boolean_System_Boolean_System_Boolean_
+  name: Register
+  nameWithType: ShortcutManager.Register
+  fullName: Prowl.Editor.Core.ShortcutManager.Register
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Prowl.Runtime.KeyCode
+  commentId: T:Prowl.Runtime.KeyCode
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.KeyCode.html
+  name: KeyCode
+  nameWithType: KeyCode
+  fullName: Prowl.Runtime.KeyCode
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Runtime.Input.GetKeyDown(Prowl.Runtime.KeyCode)
+  commentId: M:Prowl.Runtime.Input.GetKeyDown(Prowl.Runtime.KeyCode)
+  href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetKeyDown_Prowl_Runtime_KeyCode_
+  name: GetKeyDown(KeyCode)
+  nameWithType: Input.GetKeyDown(KeyCode)
+  fullName: Prowl.Runtime.Input.GetKeyDown(Prowl.Runtime.KeyCode)
+  spec.csharp:
+  - uid: Prowl.Runtime.Input.GetKeyDown(Prowl.Runtime.KeyCode)
+    name: GetKeyDown
+    href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetKeyDown_Prowl_Runtime_KeyCode_
+  - name: (
+  - uid: Prowl.Runtime.KeyCode
+    name: KeyCode
+    href: Prowl.Runtime.KeyCode.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Input.GetKeyDown(Prowl.Runtime.KeyCode)
+    name: GetKeyDown
+    href: Prowl.Runtime.Input.html#Prowl_Runtime_Input_GetKeyDown_Prowl_Runtime_KeyCode_
+  - name: (
+  - uid: Prowl.Runtime.KeyCode
+    name: KeyCode
+    href: Prowl.Runtime.KeyCode.html
+  - name: )
+- uid: Prowl.Editor.Core.ShortcutManager.IsPressed*
+  commentId: Overload:Prowl.Editor.Core.ShortcutManager.IsPressed
+  href: Prowl.Editor.Core.ShortcutManager.html#Prowl_Editor_Core_ShortcutManager_IsPressed_System_String_
+  name: IsPressed
+  nameWithType: ShortcutManager.IsPressed
+  fullName: Prowl.Editor.Core.ShortcutManager.IsPressed
+- uid: Prowl.Editor.Core.ShortcutManager.GetBinding*
+  commentId: Overload:Prowl.Editor.Core.ShortcutManager.GetBinding
+  href: Prowl.Editor.Core.ShortcutManager.html#Prowl_Editor_Core_ShortcutManager_GetBinding_System_String_
+  name: GetBinding
+  nameWithType: ShortcutManager.GetBinding
+  fullName: Prowl.Editor.Core.ShortcutManager.GetBinding
+- uid: Prowl.Editor.Core.ShortcutBinding
+  commentId: T:Prowl.Editor.Core.ShortcutBinding
+  parent: Prowl.Editor.Core
+  href: Prowl.Editor.Core.ShortcutBinding.html
+  name: ShortcutBinding
+  nameWithType: ShortcutBinding
+  fullName: Prowl.Editor.Core.ShortcutBinding
+- uid: Prowl.Editor.Core.ShortcutManager.GetDefault*
+  commentId: Overload:Prowl.Editor.Core.ShortcutManager.GetDefault
+  href: Prowl.Editor.Core.ShortcutManager.html#Prowl_Editor_Core_ShortcutManager_GetDefault_System_String_
+  name: GetDefault
+  nameWithType: ShortcutManager.GetDefault
+  fullName: Prowl.Editor.Core.ShortcutManager.GetDefault
+- uid: Prowl.Editor.Core.ShortcutManager.GetAllShortcuts*
+  commentId: Overload:Prowl.Editor.Core.ShortcutManager.GetAllShortcuts
+  href: Prowl.Editor.Core.ShortcutManager.html#Prowl_Editor_Core_ShortcutManager_GetAllShortcuts
+  name: GetAllShortcuts
+  nameWithType: ShortcutManager.GetAllShortcuts
+  fullName: Prowl.Editor.Core.ShortcutManager.GetAllShortcuts
+- uid: System.Collections.Generic.IEnumerable{Prowl.Editor.Core.ShortcutDefinition}
+  commentId: T:System.Collections.Generic.IEnumerable{Prowl.Editor.Core.ShortcutDefinition}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<ShortcutDefinition>
+  nameWithType: IEnumerable<ShortcutDefinition>
+  fullName: System.Collections.Generic.IEnumerable<Prowl.Editor.Core.ShortcutDefinition>
+  nameWithType.vb: IEnumerable(Of ShortcutDefinition)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of Prowl.Editor.Core.ShortcutDefinition)
+  name.vb: IEnumerable(Of ShortcutDefinition)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: Prowl.Editor.Core.ShortcutDefinition
+    name: ShortcutDefinition
+    href: Prowl.Editor.Core.ShortcutDefinition.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Editor.Core.ShortcutDefinition
+    name: ShortcutDefinition
+    href: Prowl.Editor.Core.ShortcutDefinition.html
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Prowl.Editor.Core.ShortcutManager.SetOverride*
+  commentId: Overload:Prowl.Editor.Core.ShortcutManager.SetOverride
+  href: Prowl.Editor.Core.ShortcutManager.html#Prowl_Editor_Core_ShortcutManager_SetOverride_System_String_Prowl_Editor_Core_ShortcutBinding_
+  name: SetOverride
+  nameWithType: ShortcutManager.SetOverride
+  fullName: Prowl.Editor.Core.ShortcutManager.SetOverride
+- uid: Prowl.Editor.Core.ShortcutManager.ClearOverride*
+  commentId: Overload:Prowl.Editor.Core.ShortcutManager.ClearOverride
+  href: Prowl.Editor.Core.ShortcutManager.html#Prowl_Editor_Core_ShortcutManager_ClearOverride_System_String_
+  name: ClearOverride
+  nameWithType: ShortcutManager.ClearOverride
+  fullName: Prowl.Editor.Core.ShortcutManager.ClearOverride
+- uid: Prowl.Editor.Core.ShortcutManager.ClearAllOverrides*
+  commentId: Overload:Prowl.Editor.Core.ShortcutManager.ClearAllOverrides
+  href: Prowl.Editor.Core.ShortcutManager.html#Prowl_Editor_Core_ShortcutManager_ClearAllOverrides
+  name: ClearAllOverrides
+  nameWithType: ShortcutManager.ClearAllOverrides
+  fullName: Prowl.Editor.Core.ShortcutManager.ClearAllOverrides
+- uid: Prowl.Editor.Core.ShortcutManager.FindConflicts*
+  commentId: Overload:Prowl.Editor.Core.ShortcutManager.FindConflicts
+  href: Prowl.Editor.Core.ShortcutManager.html#Prowl_Editor_Core_ShortcutManager_FindConflicts_System_String_Prowl_Editor_Core_ShortcutBinding_
+  name: FindConflicts
+  nameWithType: ShortcutManager.FindConflicts
+  fullName: Prowl.Editor.Core.ShortcutManager.FindConflicts
+- uid: System.Collections.Generic.List{System.String}
+  commentId: T:System.Collections.Generic.List{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<string>
+  nameWithType: List<string>
+  fullName: System.Collections.Generic.List<string>
+  nameWithType.vb: List(Of String)
+  fullName.vb: System.Collections.Generic.List(Of String)
+  name.vb: List(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Editor.Core.ShortcutManager.LoadOverrides*
+  commentId: Overload:Prowl.Editor.Core.ShortcutManager.LoadOverrides
+  href: Prowl.Editor.Core.ShortcutManager.html#Prowl_Editor_Core_ShortcutManager_LoadOverrides
+  name: LoadOverrides
+  nameWithType: ShortcutManager.LoadOverrides
+  fullName: Prowl.Editor.Core.ShortcutManager.LoadOverrides
+- uid: Prowl.Editor.Core.ShortcutManager.SaveOverrides*
+  commentId: Overload:Prowl.Editor.Core.ShortcutManager.SaveOverrides
+  href: Prowl.Editor.Core.ShortcutManager.html#Prowl_Editor_Core_ShortcutManager_SaveOverrides
+  name: SaveOverrides
+  nameWithType: ShortcutManager.SaveOverrides
+  fullName: Prowl.Editor.Core.ShortcutManager.SaveOverrides
+- uid: Prowl.Editor.Core.ShortcutManager.GetDisplayString*
+  commentId: Overload:Prowl.Editor.Core.ShortcutManager.GetDisplayString
+  href: Prowl.Editor.Core.ShortcutManager.html#Prowl_Editor_Core_ShortcutManager_GetDisplayString_Prowl_Editor_Core_ShortcutBinding_
+  name: GetDisplayString
+  nameWithType: ShortcutManager.GetDisplayString
+  fullName: Prowl.Editor.Core.ShortcutManager.GetDisplayString

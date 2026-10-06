@@ -1,0 +1,2503 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.Test.SceneManagementTests
+  commentId: T:Prowl.Runtime.Test.SceneManagementTests
+  id: SceneManagementTests
+  parent: Prowl.Runtime.Test
+  children:
+  - Prowl.Runtime.Test.SceneManagementTests.ActiveObjects_ExcludesDisabled
+  - Prowl.Runtime.Test.SceneManagementTests.Add_IsIdempotent
+  - Prowl.Runtime.Test.SceneManagementTests.Add_MovesObjectFromPreviousScene
+  - Prowl.Runtime.Test.SceneManagementTests.Add_RegistersChildrenRecursively
+  - Prowl.Runtime.Test.SceneManagementTests.Add_RegistersObject_AndSetsScene
+  - Prowl.Runtime.Test.SceneManagementTests.CancelDontDestroyOnLoad_LetsItDieWithTheScene
+  - Prowl.Runtime.Test.SceneManagementTests.Clear_RemovesAllObjects
+  - Prowl.Runtime.Test.SceneManagementTests.Count_ExcludesDisposedObjects
+  - Prowl.Runtime.Test.SceneManagementTests.Current_IsNeverNull
+  - Prowl.Runtime.Test.SceneManagementTests.Current_RebuildsAfterTheCurrentSceneIsDisposed
+  - Prowl.Runtime.Test.SceneManagementTests.DestroyPreserved_KeepsThemOutOfTheNextScene
+  - Prowl.Runtime.Test.SceneManagementTests.DestroyPreserved_TearsDownAtTheEndOfTheFrame
+  - Prowl.Runtime.Test.SceneManagementTests.Dispose_MarksGameObjectsDisposed
+  - Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_ADestroyedObject_IsDroppedNotResurrected
+  - Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_DoesNotRestartTheObject
+  - Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_KeepsTicking_InTheNewScene
+  - Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_OnAChild_PreservesItsRootInstead
+  - Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_SurvivesTheLoad_AndJoinsTheNewScene
+  - Prowl.Runtime.Test.SceneManagementTests.EnableAndDisable_AreIdempotent
+  - Prowl.Runtime.Test.SceneManagementTests.FindObjectByID_FindsGameObjectAndComponent
+  - Prowl.Runtime.Test.SceneManagementTests.FindObjectByIdentifier_FindsGameObjectAndComponent
+  - Prowl.Runtime.Test.SceneManagementTests.FindObjectsOfType_ReturnsGameObjectsAndComponents
+  - Prowl.Runtime.Test.SceneManagementTests.Flush_DropsDisposedObjects
+  - Prowl.Runtime.Test.SceneManagementTests.FrameCallbacks_OnADisposedScene_AreNoOps
+  - Prowl.Runtime.Test.SceneManagementTests.FrameCallbacks_OnASceneDisposedMidCallback_DoNotThrow
+  - Prowl.Runtime.Test.SceneManagementTests.IsEmpty_ReflectsContents
+  - Prowl.Runtime.Test.SceneManagementTests.Load_AnAlreadyEnabledScene_DoesNotThrow
+  - Prowl.Runtime.Test.SceneManagementTests.Load_LastRequestOfTheFrameWins
+  - Prowl.Runtime.Test.SceneManagementTests.Load_QueuedUntilProcessed
+  - Prowl.Runtime.Test.SceneManagementTests.Load_ReplacingCurrent_DisposesPrevious
+  - Prowl.Runtime.Test.SceneManagementTests.Load_SetsCurrent_EnablesScene_FiresEvent
+  - Prowl.Runtime.Test.SceneManagementTests.Load_SkipsASceneDisposedBeforeItApplied
+  - Prowl.Runtime.Test.SceneManagementTests.Load_TheCurrentScene_IsANoOp
+  - Prowl.Runtime.Test.SceneManagementTests.ManualPreserve_AddingBackToSceneCurrentAfterLoad_LosesTheObject
+  - Prowl.Runtime.Test.SceneManagementTests.ManualPreserve_RemoveFromOldSceneAndAddToTheNextOne_Survives
+  - Prowl.Runtime.Test.SceneManagementTests.Remove_UnregistersChildrenRecursively
+  - Prowl.Runtime.Test.SceneManagementTests.Remove_UnregistersObject_AndClearsScene
+  - Prowl.Runtime.Test.SceneManagementTests.RootObjects_ExcludesChildren
+  - Prowl.Runtime.Test.SceneManagementTests.SaveableObjects_ExcludesDontSave
+  - Prowl.Runtime.Test.SceneManagementTests.Shutdown_DestroysPreservedObjects
+  langs:
+  - csharp
+  - vb
+  name: SceneManagementTests
+  nameWithType: SceneManagementTests
+  fullName: Prowl.Runtime.Test.SceneManagementTests
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SceneManagementTests
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 14
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Tests for Scene object management (Add/Remove/Clear/Flush, collection views, Find*) and the
+
+    built-in static scene manager (Load/Unload/Current). Lifecycle ordering is covered separately
+
+    by <xref href="Prowl.Runtime.Test.LifecycleTests" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: 'public class SceneManagementTests : RuntimeTestBase, IDisposable'
+    content.vb: Public Class SceneManagementTests Inherits RuntimeTestBase Implements IDisposable
+  inheritance:
+  - System.Object
+  - Prowl.Runtime.Test.RuntimeTestBase
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  - Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  - Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  - Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.Test.SceneManagementTests.Dispose_MarksGameObjectsDisposed
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.Dispose_MarksGameObjectsDisposed
+  id: Dispose_MarksGameObjectsDisposed
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: Dispose_MarksGameObjectsDisposed()
+  nameWithType: SceneManagementTests.Dispose_MarksGameObjectsDisposed()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Dispose_MarksGameObjectsDisposed()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Dispose_MarksGameObjectsDisposed
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 17
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Dispose_MarksGameObjectsDisposed()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Dispose_MarksGameObjectsDisposed()
+  overload: Prowl.Runtime.Test.SceneManagementTests.Dispose_MarksGameObjectsDisposed*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.Add_RegistersObject_AndSetsScene
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.Add_RegistersObject_AndSetsScene
+  id: Add_RegistersObject_AndSetsScene
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: Add_RegistersObject_AndSetsScene()
+  nameWithType: SceneManagementTests.Add_RegistersObject_AndSetsScene()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Add_RegistersObject_AndSetsScene()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Add_RegistersObject_AndSetsScene
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 34
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Add_RegistersObject_AndSetsScene()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_RegistersObject_AndSetsScene()
+  overload: Prowl.Runtime.Test.SceneManagementTests.Add_RegistersObject_AndSetsScene*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.Add_IsIdempotent
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.Add_IsIdempotent
+  id: Add_IsIdempotent
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: Add_IsIdempotent()
+  nameWithType: SceneManagementTests.Add_IsIdempotent()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Add_IsIdempotent()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Add_IsIdempotent
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 47
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Add_IsIdempotent()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_IsIdempotent()
+  overload: Prowl.Runtime.Test.SceneManagementTests.Add_IsIdempotent*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.Add_RegistersChildrenRecursively
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.Add_RegistersChildrenRecursively
+  id: Add_RegistersChildrenRecursively
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: Add_RegistersChildrenRecursively()
+  nameWithType: SceneManagementTests.Add_RegistersChildrenRecursively()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Add_RegistersChildrenRecursively()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Add_RegistersChildrenRecursively
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 59
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Add_RegistersChildrenRecursively()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_RegistersChildrenRecursively()
+  overload: Prowl.Runtime.Test.SceneManagementTests.Add_RegistersChildrenRecursively*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.Remove_UnregistersObject_AndClearsScene
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.Remove_UnregistersObject_AndClearsScene
+  id: Remove_UnregistersObject_AndClearsScene
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: Remove_UnregistersObject_AndClearsScene()
+  nameWithType: SceneManagementTests.Remove_UnregistersObject_AndClearsScene()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Remove_UnregistersObject_AndClearsScene()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Remove_UnregistersObject_AndClearsScene
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 73
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Remove_UnregistersObject_AndClearsScene()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Remove_UnregistersObject_AndClearsScene()
+  overload: Prowl.Runtime.Test.SceneManagementTests.Remove_UnregistersObject_AndClearsScene*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.Remove_UnregistersChildrenRecursively
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.Remove_UnregistersChildrenRecursively
+  id: Remove_UnregistersChildrenRecursively
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: Remove_UnregistersChildrenRecursively()
+  nameWithType: SceneManagementTests.Remove_UnregistersChildrenRecursively()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Remove_UnregistersChildrenRecursively()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Remove_UnregistersChildrenRecursively
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 86
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Remove_UnregistersChildrenRecursively()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Remove_UnregistersChildrenRecursively()
+  overload: Prowl.Runtime.Test.SceneManagementTests.Remove_UnregistersChildrenRecursively*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.Add_MovesObjectFromPreviousScene
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.Add_MovesObjectFromPreviousScene
+  id: Add_MovesObjectFromPreviousScene
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: Add_MovesObjectFromPreviousScene()
+  nameWithType: SceneManagementTests.Add_MovesObjectFromPreviousScene()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Add_MovesObjectFromPreviousScene()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Add_MovesObjectFromPreviousScene
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 101
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Add_MovesObjectFromPreviousScene()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_MovesObjectFromPreviousScene()
+  overload: Prowl.Runtime.Test.SceneManagementTests.Add_MovesObjectFromPreviousScene*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.Clear_RemovesAllObjects
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.Clear_RemovesAllObjects
+  id: Clear_RemovesAllObjects
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: Clear_RemovesAllObjects()
+  nameWithType: SceneManagementTests.Clear_RemovesAllObjects()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Clear_RemovesAllObjects()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Clear_RemovesAllObjects
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 116
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Clear_RemovesAllObjects()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Clear_RemovesAllObjects()
+  overload: Prowl.Runtime.Test.SceneManagementTests.Clear_RemovesAllObjects*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.Flush_DropsDisposedObjects
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.Flush_DropsDisposedObjects
+  id: Flush_DropsDisposedObjects
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: Flush_DropsDisposedObjects()
+  nameWithType: SceneManagementTests.Flush_DropsDisposedObjects()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Flush_DropsDisposedObjects()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Flush_DropsDisposedObjects
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 129
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Flush_DropsDisposedObjects()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Flush_DropsDisposedObjects()
+  overload: Prowl.Runtime.Test.SceneManagementTests.Flush_DropsDisposedObjects*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.Count_ExcludesDisposedObjects
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.Count_ExcludesDisposedObjects
+  id: Count_ExcludesDisposedObjects
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: Count_ExcludesDisposedObjects()
+  nameWithType: SceneManagementTests.Count_ExcludesDisposedObjects()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Count_ExcludesDisposedObjects()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Count_ExcludesDisposedObjects
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 152
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Count_ExcludesDisposedObjects()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Count_ExcludesDisposedObjects()
+  overload: Prowl.Runtime.Test.SceneManagementTests.Count_ExcludesDisposedObjects*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.RootObjects_ExcludesChildren
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.RootObjects_ExcludesChildren
+  id: RootObjects_ExcludesChildren
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: RootObjects_ExcludesChildren()
+  nameWithType: SceneManagementTests.RootObjects_ExcludesChildren()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.RootObjects_ExcludesChildren()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RootObjects_ExcludesChildren
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 169
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RootObjects_ExcludesChildren()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RootObjects_ExcludesChildren()
+  overload: Prowl.Runtime.Test.SceneManagementTests.RootObjects_ExcludesChildren*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.ActiveObjects_ExcludesDisabled
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.ActiveObjects_ExcludesDisabled
+  id: ActiveObjects_ExcludesDisabled
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: ActiveObjects_ExcludesDisabled()
+  nameWithType: SceneManagementTests.ActiveObjects_ExcludesDisabled()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.ActiveObjects_ExcludesDisabled()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ActiveObjects_ExcludesDisabled
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 183
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ActiveObjects_ExcludesDisabled()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ActiveObjects_ExcludesDisabled()
+  overload: Prowl.Runtime.Test.SceneManagementTests.ActiveObjects_ExcludesDisabled*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.SaveableObjects_ExcludesDontSave
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.SaveableObjects_ExcludesDontSave
+  id: SaveableObjects_ExcludesDontSave
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: SaveableObjects_ExcludesDontSave()
+  nameWithType: SceneManagementTests.SaveableObjects_ExcludesDontSave()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.SaveableObjects_ExcludesDontSave()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SaveableObjects_ExcludesDontSave
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 199
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void SaveableObjects_ExcludesDontSave()
+    content.vb: >-
+      <Fact>
+
+      Public Sub SaveableObjects_ExcludesDontSave()
+  overload: Prowl.Runtime.Test.SceneManagementTests.SaveableObjects_ExcludesDontSave*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.IsEmpty_ReflectsContents
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.IsEmpty_ReflectsContents
+  id: IsEmpty_ReflectsContents
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: IsEmpty_ReflectsContents()
+  nameWithType: SceneManagementTests.IsEmpty_ReflectsContents()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.IsEmpty_ReflectsContents()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsEmpty_ReflectsContents
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 215
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void IsEmpty_ReflectsContents()
+    content.vb: >-
+      <Fact>
+
+      Public Sub IsEmpty_ReflectsContents()
+  overload: Prowl.Runtime.Test.SceneManagementTests.IsEmpty_ReflectsContents*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.FindObjectsOfType_ReturnsGameObjectsAndComponents
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.FindObjectsOfType_ReturnsGameObjectsAndComponents
+  id: FindObjectsOfType_ReturnsGameObjectsAndComponents
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: FindObjectsOfType_ReturnsGameObjectsAndComponents()
+  nameWithType: SceneManagementTests.FindObjectsOfType_ReturnsGameObjectsAndComponents()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.FindObjectsOfType_ReturnsGameObjectsAndComponents()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FindObjectsOfType_ReturnsGameObjectsAndComponents
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 231
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void FindObjectsOfType_ReturnsGameObjectsAndComponents()
+    content.vb: >-
+      <Fact>
+
+      Public Sub FindObjectsOfType_ReturnsGameObjectsAndComponents()
+  overload: Prowl.Runtime.Test.SceneManagementTests.FindObjectsOfType_ReturnsGameObjectsAndComponents*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.FindObjectByID_FindsGameObjectAndComponent
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.FindObjectByID_FindsGameObjectAndComponent
+  id: FindObjectByID_FindsGameObjectAndComponent
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: FindObjectByID_FindsGameObjectAndComponent()
+  nameWithType: SceneManagementTests.FindObjectByID_FindsGameObjectAndComponent()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.FindObjectByID_FindsGameObjectAndComponent()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FindObjectByID_FindsGameObjectAndComponent
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 243
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void FindObjectByID_FindsGameObjectAndComponent()
+    content.vb: >-
+      <Fact>
+
+      Public Sub FindObjectByID_FindsGameObjectAndComponent()
+  overload: Prowl.Runtime.Test.SceneManagementTests.FindObjectByID_FindsGameObjectAndComponent*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.FindObjectByIdentifier_FindsGameObjectAndComponent
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.FindObjectByIdentifier_FindsGameObjectAndComponent
+  id: FindObjectByIdentifier_FindsGameObjectAndComponent
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: FindObjectByIdentifier_FindsGameObjectAndComponent()
+  nameWithType: SceneManagementTests.FindObjectByIdentifier_FindsGameObjectAndComponent()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.FindObjectByIdentifier_FindsGameObjectAndComponent()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FindObjectByIdentifier_FindsGameObjectAndComponent
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 256
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void FindObjectByIdentifier_FindsGameObjectAndComponent()
+    content.vb: >-
+      <Fact>
+
+      Public Sub FindObjectByIdentifier_FindsGameObjectAndComponent()
+  overload: Prowl.Runtime.Test.SceneManagementTests.FindObjectByIdentifier_FindsGameObjectAndComponent*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.Current_IsNeverNull
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.Current_IsNeverNull
+  id: Current_IsNeverNull
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: Current_IsNeverNull()
+  nameWithType: SceneManagementTests.Current_IsNeverNull()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Current_IsNeverNull()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Current_IsNeverNull
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 273
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Current_IsNeverNull()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Current_IsNeverNull()
+  overload: Prowl.Runtime.Test.SceneManagementTests.Current_IsNeverNull*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.Current_RebuildsAfterTheCurrentSceneIsDisposed
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.Current_RebuildsAfterTheCurrentSceneIsDisposed
+  id: Current_RebuildsAfterTheCurrentSceneIsDisposed
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: Current_RebuildsAfterTheCurrentSceneIsDisposed()
+  nameWithType: SceneManagementTests.Current_RebuildsAfterTheCurrentSceneIsDisposed()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Current_RebuildsAfterTheCurrentSceneIsDisposed()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Current_RebuildsAfterTheCurrentSceneIsDisposed
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 280
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Current_RebuildsAfterTheCurrentSceneIsDisposed()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Current_RebuildsAfterTheCurrentSceneIsDisposed()
+  overload: Prowl.Runtime.Test.SceneManagementTests.Current_RebuildsAfterTheCurrentSceneIsDisposed*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.Load_SetsCurrent_EnablesScene_FiresEvent
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.Load_SetsCurrent_EnablesScene_FiresEvent
+  id: Load_SetsCurrent_EnablesScene_FiresEvent
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: Load_SetsCurrent_EnablesScene_FiresEvent()
+  nameWithType: SceneManagementTests.Load_SetsCurrent_EnablesScene_FiresEvent()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Load_SetsCurrent_EnablesScene_FiresEvent()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Load_SetsCurrent_EnablesScene_FiresEvent
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 292
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Load_SetsCurrent_EnablesScene_FiresEvent()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Load_SetsCurrent_EnablesScene_FiresEvent()
+  overload: Prowl.Runtime.Test.SceneManagementTests.Load_SetsCurrent_EnablesScene_FiresEvent*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.Load_QueuedUntilProcessed
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.Load_QueuedUntilProcessed
+  id: Load_QueuedUntilProcessed
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: Load_QueuedUntilProcessed()
+  nameWithType: SceneManagementTests.Load_QueuedUntilProcessed()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Load_QueuedUntilProcessed()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Load_QueuedUntilProcessed
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 314
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Load_QueuedUntilProcessed()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Load_QueuedUntilProcessed()
+  overload: Prowl.Runtime.Test.SceneManagementTests.Load_QueuedUntilProcessed*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.Load_ReplacingCurrent_DisposesPrevious
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.Load_ReplacingCurrent_DisposesPrevious
+  id: Load_ReplacingCurrent_DisposesPrevious
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: Load_ReplacingCurrent_DisposesPrevious()
+  nameWithType: SceneManagementTests.Load_ReplacingCurrent_DisposesPrevious()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Load_ReplacingCurrent_DisposesPrevious()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Load_ReplacingCurrent_DisposesPrevious
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 330
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Load_ReplacingCurrent_DisposesPrevious()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Load_ReplacingCurrent_DisposesPrevious()
+  overload: Prowl.Runtime.Test.SceneManagementTests.Load_ReplacingCurrent_DisposesPrevious*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.Load_LastRequestOfTheFrameWins
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.Load_LastRequestOfTheFrameWins
+  id: Load_LastRequestOfTheFrameWins
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: Load_LastRequestOfTheFrameWins()
+  nameWithType: SceneManagementTests.Load_LastRequestOfTheFrameWins()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Load_LastRequestOfTheFrameWins()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Load_LastRequestOfTheFrameWins
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 351
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Load_LastRequestOfTheFrameWins()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Load_LastRequestOfTheFrameWins()
+  overload: Prowl.Runtime.Test.SceneManagementTests.Load_LastRequestOfTheFrameWins*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.Load_TheCurrentScene_IsANoOp
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.Load_TheCurrentScene_IsANoOp
+  id: Load_TheCurrentScene_IsANoOp
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: Load_TheCurrentScene_IsANoOp()
+  nameWithType: SceneManagementTests.Load_TheCurrentScene_IsANoOp()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Load_TheCurrentScene_IsANoOp()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Load_TheCurrentScene_IsANoOp
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 366
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Load_TheCurrentScene_IsANoOp()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Load_TheCurrentScene_IsANoOp()
+  overload: Prowl.Runtime.Test.SceneManagementTests.Load_TheCurrentScene_IsANoOp*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.Load_AnAlreadyEnabledScene_DoesNotThrow
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.Load_AnAlreadyEnabledScene_DoesNotThrow
+  id: Load_AnAlreadyEnabledScene_DoesNotThrow
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: Load_AnAlreadyEnabledScene_DoesNotThrow()
+  nameWithType: SceneManagementTests.Load_AnAlreadyEnabledScene_DoesNotThrow()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Load_AnAlreadyEnabledScene_DoesNotThrow()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Load_AnAlreadyEnabledScene_DoesNotThrow
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 379
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Load_AnAlreadyEnabledScene_DoesNotThrow()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Load_AnAlreadyEnabledScene_DoesNotThrow()
+  overload: Prowl.Runtime.Test.SceneManagementTests.Load_AnAlreadyEnabledScene_DoesNotThrow*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.EnableAndDisable_AreIdempotent
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.EnableAndDisable_AreIdempotent
+  id: EnableAndDisable_AreIdempotent
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: EnableAndDisable_AreIdempotent()
+  nameWithType: SceneManagementTests.EnableAndDisable_AreIdempotent()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.EnableAndDisable_AreIdempotent()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EnableAndDisable_AreIdempotent
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 391
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void EnableAndDisable_AreIdempotent()
+    content.vb: >-
+      <Fact>
+
+      Public Sub EnableAndDisable_AreIdempotent()
+  overload: Prowl.Runtime.Test.SceneManagementTests.EnableAndDisable_AreIdempotent*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.FrameCallbacks_OnASceneDisposedMidCallback_DoNotThrow
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.FrameCallbacks_OnASceneDisposedMidCallback_DoNotThrow
+  id: FrameCallbacks_OnASceneDisposedMidCallback_DoNotThrow
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: FrameCallbacks_OnASceneDisposedMidCallback_DoNotThrow()
+  nameWithType: SceneManagementTests.FrameCallbacks_OnASceneDisposedMidCallback_DoNotThrow()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.FrameCallbacks_OnASceneDisposedMidCallback_DoNotThrow()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FrameCallbacks_OnASceneDisposedMidCallback_DoNotThrow
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 406
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void FrameCallbacks_OnASceneDisposedMidCallback_DoNotThrow()
+    content.vb: >-
+      <Fact>
+
+      Public Sub FrameCallbacks_OnASceneDisposedMidCallback_DoNotThrow()
+  overload: Prowl.Runtime.Test.SceneManagementTests.FrameCallbacks_OnASceneDisposedMidCallback_DoNotThrow*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.FrameCallbacks_OnADisposedScene_AreNoOps
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.FrameCallbacks_OnADisposedScene_AreNoOps
+  id: FrameCallbacks_OnADisposedScene_AreNoOps
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: FrameCallbacks_OnADisposedScene_AreNoOps()
+  nameWithType: SceneManagementTests.FrameCallbacks_OnADisposedScene_AreNoOps()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.FrameCallbacks_OnADisposedScene_AreNoOps()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FrameCallbacks_OnADisposedScene_AreNoOps
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 420
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void FrameCallbacks_OnADisposedScene_AreNoOps()
+    content.vb: >-
+      <Fact>
+
+      Public Sub FrameCallbacks_OnADisposedScene_AreNoOps()
+  overload: Prowl.Runtime.Test.SceneManagementTests.FrameCallbacks_OnADisposedScene_AreNoOps*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.ManualPreserve_RemoveFromOldSceneAndAddToTheNextOne_Survives
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.ManualPreserve_RemoveFromOldSceneAndAddToTheNextOne_Survives
+  id: ManualPreserve_RemoveFromOldSceneAndAddToTheNextOne_Survives
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: ManualPreserve_RemoveFromOldSceneAndAddToTheNextOne_Survives()
+  nameWithType: SceneManagementTests.ManualPreserve_RemoveFromOldSceneAndAddToTheNextOne_Survives()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.ManualPreserve_RemoveFromOldSceneAndAddToTheNextOne_Survives()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ManualPreserve_RemoveFromOldSceneAndAddToTheNextOne_Survives
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 446
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ManualPreserve_RemoveFromOldSceneAndAddToTheNextOne_Survives()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ManualPreserve_RemoveFromOldSceneAndAddToTheNextOne_Survives()
+  overload: Prowl.Runtime.Test.SceneManagementTests.ManualPreserve_RemoveFromOldSceneAndAddToTheNextOne_Survives*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.ManualPreserve_AddingBackToSceneCurrentAfterLoad_LosesTheObject
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.ManualPreserve_AddingBackToSceneCurrentAfterLoad_LosesTheObject
+  id: ManualPreserve_AddingBackToSceneCurrentAfterLoad_LosesTheObject
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: ManualPreserve_AddingBackToSceneCurrentAfterLoad_LosesTheObject()
+  nameWithType: SceneManagementTests.ManualPreserve_AddingBackToSceneCurrentAfterLoad_LosesTheObject()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.ManualPreserve_AddingBackToSceneCurrentAfterLoad_LosesTheObject()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ManualPreserve_AddingBackToSceneCurrentAfterLoad_LosesTheObject
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 468
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ManualPreserve_AddingBackToSceneCurrentAfterLoad_LosesTheObject()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ManualPreserve_AddingBackToSceneCurrentAfterLoad_LosesTheObject()
+  overload: Prowl.Runtime.Test.SceneManagementTests.ManualPreserve_AddingBackToSceneCurrentAfterLoad_LosesTheObject*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_SurvivesTheLoad_AndJoinsTheNewScene
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_SurvivesTheLoad_AndJoinsTheNewScene
+  id: DontDestroyOnLoad_SurvivesTheLoad_AndJoinsTheNewScene
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: DontDestroyOnLoad_SurvivesTheLoad_AndJoinsTheNewScene()
+  nameWithType: SceneManagementTests.DontDestroyOnLoad_SurvivesTheLoad_AndJoinsTheNewScene()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_SurvivesTheLoad_AndJoinsTheNewScene()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DontDestroyOnLoad_SurvivesTheLoad_AndJoinsTheNewScene
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 486
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DontDestroyOnLoad_SurvivesTheLoad_AndJoinsTheNewScene()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DontDestroyOnLoad_SurvivesTheLoad_AndJoinsTheNewScene()
+  overload: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_SurvivesTheLoad_AndJoinsTheNewScene*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_KeepsTicking_InTheNewScene
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_KeepsTicking_InTheNewScene
+  id: DontDestroyOnLoad_KeepsTicking_InTheNewScene
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: DontDestroyOnLoad_KeepsTicking_InTheNewScene()
+  nameWithType: SceneManagementTests.DontDestroyOnLoad_KeepsTicking_InTheNewScene()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_KeepsTicking_InTheNewScene()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DontDestroyOnLoad_KeepsTicking_InTheNewScene
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 509
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DontDestroyOnLoad_KeepsTicking_InTheNewScene()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DontDestroyOnLoad_KeepsTicking_InTheNewScene()
+  overload: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_KeepsTicking_InTheNewScene*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_DoesNotRestartTheObject
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_DoesNotRestartTheObject
+  id: DontDestroyOnLoad_DoesNotRestartTheObject
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: DontDestroyOnLoad_DoesNotRestartTheObject()
+  nameWithType: SceneManagementTests.DontDestroyOnLoad_DoesNotRestartTheObject()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_DoesNotRestartTheObject()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DontDestroyOnLoad_DoesNotRestartTheObject
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 531
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DontDestroyOnLoad_DoesNotRestartTheObject()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DontDestroyOnLoad_DoesNotRestartTheObject()
+  overload: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_DoesNotRestartTheObject*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_OnAChild_PreservesItsRootInstead
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_OnAChild_PreservesItsRootInstead
+  id: DontDestroyOnLoad_OnAChild_PreservesItsRootInstead
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: DontDestroyOnLoad_OnAChild_PreservesItsRootInstead()
+  nameWithType: SceneManagementTests.DontDestroyOnLoad_OnAChild_PreservesItsRootInstead()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_OnAChild_PreservesItsRootInstead()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DontDestroyOnLoad_OnAChild_PreservesItsRootInstead
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 550
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DontDestroyOnLoad_OnAChild_PreservesItsRootInstead()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DontDestroyOnLoad_OnAChild_PreservesItsRootInstead()
+  overload: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_OnAChild_PreservesItsRootInstead*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.CancelDontDestroyOnLoad_LetsItDieWithTheScene
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.CancelDontDestroyOnLoad_LetsItDieWithTheScene
+  id: CancelDontDestroyOnLoad_LetsItDieWithTheScene
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: CancelDontDestroyOnLoad_LetsItDieWithTheScene()
+  nameWithType: SceneManagementTests.CancelDontDestroyOnLoad_LetsItDieWithTheScene()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.CancelDontDestroyOnLoad_LetsItDieWithTheScene()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CancelDontDestroyOnLoad_LetsItDieWithTheScene
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 574
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void CancelDontDestroyOnLoad_LetsItDieWithTheScene()
+    content.vb: >-
+      <Fact>
+
+      Public Sub CancelDontDestroyOnLoad_LetsItDieWithTheScene()
+  overload: Prowl.Runtime.Test.SceneManagementTests.CancelDontDestroyOnLoad_LetsItDieWithTheScene*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_ADestroyedObject_IsDroppedNotResurrected
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_ADestroyedObject_IsDroppedNotResurrected
+  id: DontDestroyOnLoad_ADestroyedObject_IsDroppedNotResurrected
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: DontDestroyOnLoad_ADestroyedObject_IsDroppedNotResurrected()
+  nameWithType: SceneManagementTests.DontDestroyOnLoad_ADestroyedObject_IsDroppedNotResurrected()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_ADestroyedObject_IsDroppedNotResurrected()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DontDestroyOnLoad_ADestroyedObject_IsDroppedNotResurrected
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 592
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DontDestroyOnLoad_ADestroyedObject_IsDroppedNotResurrected()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DontDestroyOnLoad_ADestroyedObject_IsDroppedNotResurrected()
+  overload: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_ADestroyedObject_IsDroppedNotResurrected*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.DestroyPreserved_KeepsThemOutOfTheNextScene
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.DestroyPreserved_KeepsThemOutOfTheNextScene
+  id: DestroyPreserved_KeepsThemOutOfTheNextScene
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: DestroyPreserved_KeepsThemOutOfTheNextScene()
+  nameWithType: SceneManagementTests.DestroyPreserved_KeepsThemOutOfTheNextScene()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.DestroyPreserved_KeepsThemOutOfTheNextScene()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DestroyPreserved_KeepsThemOutOfTheNextScene
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 613
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DestroyPreserved_KeepsThemOutOfTheNextScene()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DestroyPreserved_KeepsThemOutOfTheNextScene()
+  overload: Prowl.Runtime.Test.SceneManagementTests.DestroyPreserved_KeepsThemOutOfTheNextScene*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.DestroyPreserved_TearsDownAtTheEndOfTheFrame
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.DestroyPreserved_TearsDownAtTheEndOfTheFrame
+  id: DestroyPreserved_TearsDownAtTheEndOfTheFrame
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: DestroyPreserved_TearsDownAtTheEndOfTheFrame()
+  nameWithType: SceneManagementTests.DestroyPreserved_TearsDownAtTheEndOfTheFrame()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.DestroyPreserved_TearsDownAtTheEndOfTheFrame()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DestroyPreserved_TearsDownAtTheEndOfTheFrame
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 637
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DestroyPreserved_TearsDownAtTheEndOfTheFrame()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DestroyPreserved_TearsDownAtTheEndOfTheFrame()
+  overload: Prowl.Runtime.Test.SceneManagementTests.DestroyPreserved_TearsDownAtTheEndOfTheFrame*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.Shutdown_DestroysPreservedObjects
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.Shutdown_DestroysPreservedObjects
+  id: Shutdown_DestroysPreservedObjects
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: Shutdown_DestroysPreservedObjects()
+  nameWithType: SceneManagementTests.Shutdown_DestroysPreservedObjects()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Shutdown_DestroysPreservedObjects()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Shutdown_DestroysPreservedObjects
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 659
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Shutdown_DestroysPreservedObjects()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Shutdown_DestroysPreservedObjects()
+  overload: Prowl.Runtime.Test.SceneManagementTests.Shutdown_DestroysPreservedObjects*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneManagementTests.Load_SkipsASceneDisposedBeforeItApplied
+  commentId: M:Prowl.Runtime.Test.SceneManagementTests.Load_SkipsASceneDisposedBeforeItApplied
+  id: Load_SkipsASceneDisposedBeforeItApplied
+  parent: Prowl.Runtime.Test.SceneManagementTests
+  langs:
+  - csharp
+  - vb
+  name: Load_SkipsASceneDisposedBeforeItApplied()
+  nameWithType: SceneManagementTests.Load_SkipsASceneDisposedBeforeItApplied()
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Load_SkipsASceneDisposedBeforeItApplied()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneManagementTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Load_SkipsASceneDisposedBeforeItApplied
+    path: ../Prowl/Prowl.Runtime.Test/SceneManagementTests.cs
+    startLine: 682
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Load_SkipsASceneDisposedBeforeItApplied()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Load_SkipsASceneDisposedBeforeItApplied()
+  overload: Prowl.Runtime.Test.SceneManagementTests.Load_SkipsASceneDisposedBeforeItApplied*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+references:
+- uid: Prowl.Runtime.Test.LifecycleTests
+  commentId: T:Prowl.Runtime.Test.LifecycleTests
+  href: Prowl.Runtime.Test.LifecycleTests.html
+  name: LifecycleTests
+  nameWithType: LifecycleTests
+  fullName: Prowl.Runtime.Test.LifecycleTests
+- uid: Prowl.Runtime.Test
+  commentId: N:Prowl.Runtime.Test
+  name: Prowl.Runtime.Test
+  nameWithType: Prowl.Runtime.Test
+  fullName: Prowl.Runtime.Test
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.Runtime.Test.RuntimeTestBase
+  commentId: T:Prowl.Runtime.Test.RuntimeTestBase
+  parent: Prowl.Runtime.Test
+  href: Prowl.Runtime.Test.RuntimeTestBase.html
+  name: RuntimeTestBase
+  nameWithType: RuntimeTestBase
+  fullName: Prowl.Runtime.Test.RuntimeTestBase
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  commentId: P:Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_FixedDeltaTime
+  name: FixedDeltaTime
+  nameWithType: RuntimeTestBase.FixedDeltaTime
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+- uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  name: EditMode()
+  nameWithType: RuntimeTestBase.EditMode()
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.EditMode()
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+    name: EditMode
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+    name: EditMode
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  name: CreateScene(bool)
+  nameWithType: RuntimeTestBase.CreateScene(bool)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(bool)
+  nameWithType.vb: RuntimeTestBase.CreateScene(Boolean)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(Boolean)
+  name.vb: CreateScene(Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+    name: CreateScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+    name: CreateScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  name: CreateGameObject(string)
+  nameWithType: RuntimeTestBase.CreateGameObject(string)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(string)
+  nameWithType.vb: RuntimeTestBase.CreateGameObject(String)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(String)
+  name.vb: CreateGameObject(String)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+    name: CreateGameObject
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+    name: CreateGameObject
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Tick(Scene, int)
+  nameWithType: RuntimeTestBase.Tick(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.Tick(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Tick(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Update(Scene, int)
+  nameWithType: RuntimeTestBase.Update(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.Update(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Update(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Update
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Update
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: StepPhysics(Scene, int)
+  nameWithType: RuntimeTestBase.StepPhysics(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.StepPhysics(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: StepPhysics(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: StepPhysics
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: StepPhysics
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  name: ApplyFastBakeSettings(NavMeshSurface)
+  nameWithType: RuntimeTestBase.ApplyFastBakeSettings(NavMeshSurface)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+    name: ApplyFastBakeSettings
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  - name: (
+  - uid: Prowl.Runtime.NavMeshSurface
+    name: NavMeshSurface
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+    name: ApplyFastBakeSettings
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  - name: (
+  - uid: Prowl.Runtime.NavMeshSurface
+    name: NavMeshSurface
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  name: CreateFloorScene(float, bool)
+  nameWithType: RuntimeTestBase.CreateFloorScene(float, bool)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(float, bool)
+  nameWithType.vb: RuntimeTestBase.CreateFloorScene(Single, Boolean)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(Single, Boolean)
+  name.vb: CreateFloorScene(Single, Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+    name: CreateFloorScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  - name: (
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+    name: CreateFloorScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  - name: (
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  name: TickUntil(Scene, Func<bool>, int)
+  nameWithType: RuntimeTestBase.TickUntil(Scene, Func<bool>, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene, System.Func<bool>, int)
+  nameWithType.vb: RuntimeTestBase.TickUntil(Scene, Func(Of Boolean), Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene, System.Func(Of Boolean), Integer)
+  name.vb: TickUntil(Scene, Func(Of Boolean), Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+    name: TickUntil
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+    name: TickUntil
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  name: Dispose()
+  nameWithType: RuntimeTestBase.Dispose()
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Dispose()
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+    name: Dispose
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+    name: Dispose
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Runtime.Test.SceneManagementTests.Dispose_MarksGameObjectsDisposed*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.Dispose_MarksGameObjectsDisposed
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_Dispose_MarksGameObjectsDisposed
+  name: Dispose_MarksGameObjectsDisposed
+  nameWithType: SceneManagementTests.Dispose_MarksGameObjectsDisposed
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Dispose_MarksGameObjectsDisposed
+- uid: Prowl.Runtime.Test.SceneManagementTests.Add_RegistersObject_AndSetsScene*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.Add_RegistersObject_AndSetsScene
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_Add_RegistersObject_AndSetsScene
+  name: Add_RegistersObject_AndSetsScene
+  nameWithType: SceneManagementTests.Add_RegistersObject_AndSetsScene
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Add_RegistersObject_AndSetsScene
+- uid: Prowl.Runtime.Test.SceneManagementTests.Add_IsIdempotent*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.Add_IsIdempotent
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_Add_IsIdempotent
+  name: Add_IsIdempotent
+  nameWithType: SceneManagementTests.Add_IsIdempotent
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Add_IsIdempotent
+- uid: Prowl.Runtime.Test.SceneManagementTests.Add_RegistersChildrenRecursively*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.Add_RegistersChildrenRecursively
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_Add_RegistersChildrenRecursively
+  name: Add_RegistersChildrenRecursively
+  nameWithType: SceneManagementTests.Add_RegistersChildrenRecursively
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Add_RegistersChildrenRecursively
+- uid: Prowl.Runtime.Test.SceneManagementTests.Remove_UnregistersObject_AndClearsScene*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.Remove_UnregistersObject_AndClearsScene
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_Remove_UnregistersObject_AndClearsScene
+  name: Remove_UnregistersObject_AndClearsScene
+  nameWithType: SceneManagementTests.Remove_UnregistersObject_AndClearsScene
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Remove_UnregistersObject_AndClearsScene
+- uid: Prowl.Runtime.Test.SceneManagementTests.Remove_UnregistersChildrenRecursively*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.Remove_UnregistersChildrenRecursively
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_Remove_UnregistersChildrenRecursively
+  name: Remove_UnregistersChildrenRecursively
+  nameWithType: SceneManagementTests.Remove_UnregistersChildrenRecursively
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Remove_UnregistersChildrenRecursively
+- uid: Prowl.Runtime.Test.SceneManagementTests.Add_MovesObjectFromPreviousScene*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.Add_MovesObjectFromPreviousScene
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_Add_MovesObjectFromPreviousScene
+  name: Add_MovesObjectFromPreviousScene
+  nameWithType: SceneManagementTests.Add_MovesObjectFromPreviousScene
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Add_MovesObjectFromPreviousScene
+- uid: Prowl.Runtime.Test.SceneManagementTests.Clear_RemovesAllObjects*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.Clear_RemovesAllObjects
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_Clear_RemovesAllObjects
+  name: Clear_RemovesAllObjects
+  nameWithType: SceneManagementTests.Clear_RemovesAllObjects
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Clear_RemovesAllObjects
+- uid: Prowl.Runtime.Test.SceneManagementTests.Flush_DropsDisposedObjects*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.Flush_DropsDisposedObjects
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_Flush_DropsDisposedObjects
+  name: Flush_DropsDisposedObjects
+  nameWithType: SceneManagementTests.Flush_DropsDisposedObjects
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Flush_DropsDisposedObjects
+- uid: Prowl.Runtime.Test.SceneManagementTests.Count_ExcludesDisposedObjects*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.Count_ExcludesDisposedObjects
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_Count_ExcludesDisposedObjects
+  name: Count_ExcludesDisposedObjects
+  nameWithType: SceneManagementTests.Count_ExcludesDisposedObjects
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Count_ExcludesDisposedObjects
+- uid: Prowl.Runtime.Test.SceneManagementTests.RootObjects_ExcludesChildren*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.RootObjects_ExcludesChildren
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_RootObjects_ExcludesChildren
+  name: RootObjects_ExcludesChildren
+  nameWithType: SceneManagementTests.RootObjects_ExcludesChildren
+  fullName: Prowl.Runtime.Test.SceneManagementTests.RootObjects_ExcludesChildren
+- uid: Prowl.Runtime.Test.SceneManagementTests.ActiveObjects_ExcludesDisabled*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.ActiveObjects_ExcludesDisabled
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_ActiveObjects_ExcludesDisabled
+  name: ActiveObjects_ExcludesDisabled
+  nameWithType: SceneManagementTests.ActiveObjects_ExcludesDisabled
+  fullName: Prowl.Runtime.Test.SceneManagementTests.ActiveObjects_ExcludesDisabled
+- uid: Prowl.Runtime.Test.SceneManagementTests.SaveableObjects_ExcludesDontSave*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.SaveableObjects_ExcludesDontSave
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_SaveableObjects_ExcludesDontSave
+  name: SaveableObjects_ExcludesDontSave
+  nameWithType: SceneManagementTests.SaveableObjects_ExcludesDontSave
+  fullName: Prowl.Runtime.Test.SceneManagementTests.SaveableObjects_ExcludesDontSave
+- uid: Prowl.Runtime.Test.SceneManagementTests.IsEmpty_ReflectsContents*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.IsEmpty_ReflectsContents
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_IsEmpty_ReflectsContents
+  name: IsEmpty_ReflectsContents
+  nameWithType: SceneManagementTests.IsEmpty_ReflectsContents
+  fullName: Prowl.Runtime.Test.SceneManagementTests.IsEmpty_ReflectsContents
+- uid: Prowl.Runtime.Test.SceneManagementTests.FindObjectsOfType_ReturnsGameObjectsAndComponents*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.FindObjectsOfType_ReturnsGameObjectsAndComponents
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_FindObjectsOfType_ReturnsGameObjectsAndComponents
+  name: FindObjectsOfType_ReturnsGameObjectsAndComponents
+  nameWithType: SceneManagementTests.FindObjectsOfType_ReturnsGameObjectsAndComponents
+  fullName: Prowl.Runtime.Test.SceneManagementTests.FindObjectsOfType_ReturnsGameObjectsAndComponents
+- uid: Prowl.Runtime.Test.SceneManagementTests.FindObjectByID_FindsGameObjectAndComponent*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.FindObjectByID_FindsGameObjectAndComponent
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_FindObjectByID_FindsGameObjectAndComponent
+  name: FindObjectByID_FindsGameObjectAndComponent
+  nameWithType: SceneManagementTests.FindObjectByID_FindsGameObjectAndComponent
+  fullName: Prowl.Runtime.Test.SceneManagementTests.FindObjectByID_FindsGameObjectAndComponent
+- uid: Prowl.Runtime.Test.SceneManagementTests.FindObjectByIdentifier_FindsGameObjectAndComponent*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.FindObjectByIdentifier_FindsGameObjectAndComponent
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_FindObjectByIdentifier_FindsGameObjectAndComponent
+  name: FindObjectByIdentifier_FindsGameObjectAndComponent
+  nameWithType: SceneManagementTests.FindObjectByIdentifier_FindsGameObjectAndComponent
+  fullName: Prowl.Runtime.Test.SceneManagementTests.FindObjectByIdentifier_FindsGameObjectAndComponent
+- uid: Prowl.Runtime.Test.SceneManagementTests.Current_IsNeverNull*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.Current_IsNeverNull
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_Current_IsNeverNull
+  name: Current_IsNeverNull
+  nameWithType: SceneManagementTests.Current_IsNeverNull
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Current_IsNeverNull
+- uid: Prowl.Runtime.Test.SceneManagementTests.Current_RebuildsAfterTheCurrentSceneIsDisposed*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.Current_RebuildsAfterTheCurrentSceneIsDisposed
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_Current_RebuildsAfterTheCurrentSceneIsDisposed
+  name: Current_RebuildsAfterTheCurrentSceneIsDisposed
+  nameWithType: SceneManagementTests.Current_RebuildsAfterTheCurrentSceneIsDisposed
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Current_RebuildsAfterTheCurrentSceneIsDisposed
+- uid: Prowl.Runtime.Test.SceneManagementTests.Load_SetsCurrent_EnablesScene_FiresEvent*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.Load_SetsCurrent_EnablesScene_FiresEvent
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_Load_SetsCurrent_EnablesScene_FiresEvent
+  name: Load_SetsCurrent_EnablesScene_FiresEvent
+  nameWithType: SceneManagementTests.Load_SetsCurrent_EnablesScene_FiresEvent
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Load_SetsCurrent_EnablesScene_FiresEvent
+- uid: Prowl.Runtime.Test.SceneManagementTests.Load_QueuedUntilProcessed*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.Load_QueuedUntilProcessed
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_Load_QueuedUntilProcessed
+  name: Load_QueuedUntilProcessed
+  nameWithType: SceneManagementTests.Load_QueuedUntilProcessed
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Load_QueuedUntilProcessed
+- uid: Prowl.Runtime.Test.SceneManagementTests.Load_ReplacingCurrent_DisposesPrevious*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.Load_ReplacingCurrent_DisposesPrevious
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_Load_ReplacingCurrent_DisposesPrevious
+  name: Load_ReplacingCurrent_DisposesPrevious
+  nameWithType: SceneManagementTests.Load_ReplacingCurrent_DisposesPrevious
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Load_ReplacingCurrent_DisposesPrevious
+- uid: Prowl.Runtime.Test.SceneManagementTests.Load_LastRequestOfTheFrameWins*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.Load_LastRequestOfTheFrameWins
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_Load_LastRequestOfTheFrameWins
+  name: Load_LastRequestOfTheFrameWins
+  nameWithType: SceneManagementTests.Load_LastRequestOfTheFrameWins
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Load_LastRequestOfTheFrameWins
+- uid: Prowl.Runtime.Test.SceneManagementTests.Load_TheCurrentScene_IsANoOp*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.Load_TheCurrentScene_IsANoOp
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_Load_TheCurrentScene_IsANoOp
+  name: Load_TheCurrentScene_IsANoOp
+  nameWithType: SceneManagementTests.Load_TheCurrentScene_IsANoOp
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Load_TheCurrentScene_IsANoOp
+- uid: Prowl.Runtime.Test.SceneManagementTests.Load_AnAlreadyEnabledScene_DoesNotThrow*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.Load_AnAlreadyEnabledScene_DoesNotThrow
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_Load_AnAlreadyEnabledScene_DoesNotThrow
+  name: Load_AnAlreadyEnabledScene_DoesNotThrow
+  nameWithType: SceneManagementTests.Load_AnAlreadyEnabledScene_DoesNotThrow
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Load_AnAlreadyEnabledScene_DoesNotThrow
+- uid: Prowl.Runtime.Test.SceneManagementTests.EnableAndDisable_AreIdempotent*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.EnableAndDisable_AreIdempotent
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_EnableAndDisable_AreIdempotent
+  name: EnableAndDisable_AreIdempotent
+  nameWithType: SceneManagementTests.EnableAndDisable_AreIdempotent
+  fullName: Prowl.Runtime.Test.SceneManagementTests.EnableAndDisable_AreIdempotent
+- uid: Prowl.Runtime.Test.SceneManagementTests.FrameCallbacks_OnASceneDisposedMidCallback_DoNotThrow*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.FrameCallbacks_OnASceneDisposedMidCallback_DoNotThrow
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_FrameCallbacks_OnASceneDisposedMidCallback_DoNotThrow
+  name: FrameCallbacks_OnASceneDisposedMidCallback_DoNotThrow
+  nameWithType: SceneManagementTests.FrameCallbacks_OnASceneDisposedMidCallback_DoNotThrow
+  fullName: Prowl.Runtime.Test.SceneManagementTests.FrameCallbacks_OnASceneDisposedMidCallback_DoNotThrow
+- uid: Prowl.Runtime.Test.SceneManagementTests.FrameCallbacks_OnADisposedScene_AreNoOps*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.FrameCallbacks_OnADisposedScene_AreNoOps
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_FrameCallbacks_OnADisposedScene_AreNoOps
+  name: FrameCallbacks_OnADisposedScene_AreNoOps
+  nameWithType: SceneManagementTests.FrameCallbacks_OnADisposedScene_AreNoOps
+  fullName: Prowl.Runtime.Test.SceneManagementTests.FrameCallbacks_OnADisposedScene_AreNoOps
+- uid: Prowl.Runtime.Test.SceneManagementTests.ManualPreserve_RemoveFromOldSceneAndAddToTheNextOne_Survives*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.ManualPreserve_RemoveFromOldSceneAndAddToTheNextOne_Survives
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_ManualPreserve_RemoveFromOldSceneAndAddToTheNextOne_Survives
+  name: ManualPreserve_RemoveFromOldSceneAndAddToTheNextOne_Survives
+  nameWithType: SceneManagementTests.ManualPreserve_RemoveFromOldSceneAndAddToTheNextOne_Survives
+  fullName: Prowl.Runtime.Test.SceneManagementTests.ManualPreserve_RemoveFromOldSceneAndAddToTheNextOne_Survives
+- uid: Prowl.Runtime.Test.SceneManagementTests.ManualPreserve_AddingBackToSceneCurrentAfterLoad_LosesTheObject*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.ManualPreserve_AddingBackToSceneCurrentAfterLoad_LosesTheObject
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_ManualPreserve_AddingBackToSceneCurrentAfterLoad_LosesTheObject
+  name: ManualPreserve_AddingBackToSceneCurrentAfterLoad_LosesTheObject
+  nameWithType: SceneManagementTests.ManualPreserve_AddingBackToSceneCurrentAfterLoad_LosesTheObject
+  fullName: Prowl.Runtime.Test.SceneManagementTests.ManualPreserve_AddingBackToSceneCurrentAfterLoad_LosesTheObject
+- uid: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_SurvivesTheLoad_AndJoinsTheNewScene*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_SurvivesTheLoad_AndJoinsTheNewScene
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_DontDestroyOnLoad_SurvivesTheLoad_AndJoinsTheNewScene
+  name: DontDestroyOnLoad_SurvivesTheLoad_AndJoinsTheNewScene
+  nameWithType: SceneManagementTests.DontDestroyOnLoad_SurvivesTheLoad_AndJoinsTheNewScene
+  fullName: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_SurvivesTheLoad_AndJoinsTheNewScene
+- uid: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_KeepsTicking_InTheNewScene*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_KeepsTicking_InTheNewScene
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_DontDestroyOnLoad_KeepsTicking_InTheNewScene
+  name: DontDestroyOnLoad_KeepsTicking_InTheNewScene
+  nameWithType: SceneManagementTests.DontDestroyOnLoad_KeepsTicking_InTheNewScene
+  fullName: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_KeepsTicking_InTheNewScene
+- uid: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_DoesNotRestartTheObject*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_DoesNotRestartTheObject
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_DontDestroyOnLoad_DoesNotRestartTheObject
+  name: DontDestroyOnLoad_DoesNotRestartTheObject
+  nameWithType: SceneManagementTests.DontDestroyOnLoad_DoesNotRestartTheObject
+  fullName: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_DoesNotRestartTheObject
+- uid: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_OnAChild_PreservesItsRootInstead*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_OnAChild_PreservesItsRootInstead
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_DontDestroyOnLoad_OnAChild_PreservesItsRootInstead
+  name: DontDestroyOnLoad_OnAChild_PreservesItsRootInstead
+  nameWithType: SceneManagementTests.DontDestroyOnLoad_OnAChild_PreservesItsRootInstead
+  fullName: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_OnAChild_PreservesItsRootInstead
+- uid: Prowl.Runtime.Test.SceneManagementTests.CancelDontDestroyOnLoad_LetsItDieWithTheScene*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.CancelDontDestroyOnLoad_LetsItDieWithTheScene
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_CancelDontDestroyOnLoad_LetsItDieWithTheScene
+  name: CancelDontDestroyOnLoad_LetsItDieWithTheScene
+  nameWithType: SceneManagementTests.CancelDontDestroyOnLoad_LetsItDieWithTheScene
+  fullName: Prowl.Runtime.Test.SceneManagementTests.CancelDontDestroyOnLoad_LetsItDieWithTheScene
+- uid: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_ADestroyedObject_IsDroppedNotResurrected*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_ADestroyedObject_IsDroppedNotResurrected
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_DontDestroyOnLoad_ADestroyedObject_IsDroppedNotResurrected
+  name: DontDestroyOnLoad_ADestroyedObject_IsDroppedNotResurrected
+  nameWithType: SceneManagementTests.DontDestroyOnLoad_ADestroyedObject_IsDroppedNotResurrected
+  fullName: Prowl.Runtime.Test.SceneManagementTests.DontDestroyOnLoad_ADestroyedObject_IsDroppedNotResurrected
+- uid: Prowl.Runtime.Test.SceneManagementTests.DestroyPreserved_KeepsThemOutOfTheNextScene*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.DestroyPreserved_KeepsThemOutOfTheNextScene
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_DestroyPreserved_KeepsThemOutOfTheNextScene
+  name: DestroyPreserved_KeepsThemOutOfTheNextScene
+  nameWithType: SceneManagementTests.DestroyPreserved_KeepsThemOutOfTheNextScene
+  fullName: Prowl.Runtime.Test.SceneManagementTests.DestroyPreserved_KeepsThemOutOfTheNextScene
+- uid: Prowl.Runtime.Test.SceneManagementTests.DestroyPreserved_TearsDownAtTheEndOfTheFrame*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.DestroyPreserved_TearsDownAtTheEndOfTheFrame
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_DestroyPreserved_TearsDownAtTheEndOfTheFrame
+  name: DestroyPreserved_TearsDownAtTheEndOfTheFrame
+  nameWithType: SceneManagementTests.DestroyPreserved_TearsDownAtTheEndOfTheFrame
+  fullName: Prowl.Runtime.Test.SceneManagementTests.DestroyPreserved_TearsDownAtTheEndOfTheFrame
+- uid: Prowl.Runtime.Test.SceneManagementTests.Shutdown_DestroysPreservedObjects*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.Shutdown_DestroysPreservedObjects
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_Shutdown_DestroysPreservedObjects
+  name: Shutdown_DestroysPreservedObjects
+  nameWithType: SceneManagementTests.Shutdown_DestroysPreservedObjects
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Shutdown_DestroysPreservedObjects
+- uid: Prowl.Runtime.Test.SceneManagementTests.Load_SkipsASceneDisposedBeforeItApplied*
+  commentId: Overload:Prowl.Runtime.Test.SceneManagementTests.Load_SkipsASceneDisposedBeforeItApplied
+  href: Prowl.Runtime.Test.SceneManagementTests.html#Prowl_Runtime_Test_SceneManagementTests_Load_SkipsASceneDisposedBeforeItApplied
+  name: Load_SkipsASceneDisposedBeforeItApplied
+  nameWithType: SceneManagementTests.Load_SkipsASceneDisposedBeforeItApplied
+  fullName: Prowl.Runtime.Test.SceneManagementTests.Load_SkipsASceneDisposedBeforeItApplied

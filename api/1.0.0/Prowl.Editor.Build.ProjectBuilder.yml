@@ -5,9 +5,14 @@ items:
   id: ProjectBuilder
   parent: Prowl.Editor.Build
   children:
-  - Prowl.Editor.Build.ProjectBuilder.BoundedLog(System.String)
-  - Prowl.Editor.Build.ProjectBuilder.Build(Prowl.Runtime.AssetRef{Prowl.Runtime.Scene}[],System.IO.DirectoryInfo)
-  - Prowl.Editor.Build.ProjectBuilder.StartBuild(Prowl.Runtime.AssetRef{Prowl.Runtime.Scene}[],System.IO.DirectoryInfo)
+  - Prowl.Editor.Build.ProjectBuilder.BuildLog(System.String,Prowl.Runtime.LogSeverity)
+  - Prowl.Editor.Build.ProjectBuilder.BuildProgressLog(System.String,System.Single,Prowl.Runtime.LogSeverity)
+  - Prowl.Editor.Build.ProjectBuilder.CreateSelectedPipeline(Prowl.Editor.Projects.Settings.BuildSettings)
+  - Prowl.Editor.Build.ProjectBuilder.DiscoverPipelines
+  - Prowl.Editor.Build.ProjectBuilder.ProcessBuild(System.String,Prowl.Editor.Build.BuildPipeline,Prowl.Editor.Projects.Settings.BuildSettings,System.String,Prowl.Editor.Build.BuildProgress,System.Boolean)
+  - Prowl.Editor.Build.ProjectBuilder.ProcessBuildLog(System.Object,System.Diagnostics.DataReceivedEventArgs)
+  - Prowl.Editor.Build.ProjectBuilder.StartBuildAsync(System.Boolean,System.String)
+  - Prowl.Editor.Build.ProjectBuilder.StartBuildProcess(System.String)
   langs:
   - csharp
   - vb
@@ -17,22 +22,22 @@ items:
   type: Class
   source:
     remote:
-      path: Prowl.Editor/Build/ProjectBuilder.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      path: Prowl.Editor/Projects/Build/ProjectBuilder.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: ProjectBuilder
-    path: ../Prowl/Prowl.Editor/Build/ProjectBuilder.cs
-    startLine: 7
+    path: ../Prowl/Prowl.Editor/Projects/Build/ProjectBuilder.cs
+    startLine: 22
   assemblies:
   - Prowl.Editor
   namespace: Prowl.Editor.Build
+  summary: Provides methods for starting builds, logging build progress, and receiving logs from a separate build process.
+  example: []
   syntax:
-    content: public abstract class ProjectBuilder
-    content.vb: Public MustInherit Class ProjectBuilder
+    content: public static class ProjectBuilder
+    content.vb: Public Module ProjectBuilder
   inheritance:
   - System.Object
-  derivedClasses:
-  - Prowl.Editor.Build.Desktop_Player
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -41,139 +46,333 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  extensionMethods:
-  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
-- uid: Prowl.Editor.Build.ProjectBuilder.StartBuild(Prowl.Runtime.AssetRef{Prowl.Runtime.Scene}[],System.IO.DirectoryInfo)
-  commentId: M:Prowl.Editor.Build.ProjectBuilder.StartBuild(Prowl.Runtime.AssetRef{Prowl.Runtime.Scene}[],System.IO.DirectoryInfo)
-  id: StartBuild(Prowl.Runtime.AssetRef{Prowl.Runtime.Scene}[],System.IO.DirectoryInfo)
+- uid: Prowl.Editor.Build.ProjectBuilder.BuildLog(System.String,Prowl.Runtime.LogSeverity)
+  commentId: M:Prowl.Editor.Build.ProjectBuilder.BuildLog(System.String,Prowl.Runtime.LogSeverity)
+  id: BuildLog(System.String,Prowl.Runtime.LogSeverity)
   parent: Prowl.Editor.Build.ProjectBuilder
   langs:
   - csharp
   - vb
-  name: StartBuild(AssetRef<Scene>[], DirectoryInfo)
-  nameWithType: ProjectBuilder.StartBuild(AssetRef<Scene>[], DirectoryInfo)
-  fullName: Prowl.Editor.Build.ProjectBuilder.StartBuild(Prowl.Runtime.AssetRef<Prowl.Runtime.Scene>[], System.IO.DirectoryInfo)
+  name: BuildLog(string, LogSeverity)
+  nameWithType: ProjectBuilder.BuildLog(string, LogSeverity)
+  fullName: Prowl.Editor.Build.ProjectBuilder.BuildLog(string, Prowl.Runtime.LogSeverity)
   type: Method
   source:
     remote:
-      path: Prowl.Editor/Build/ProjectBuilder.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: StartBuild
-    path: ../Prowl/Prowl.Editor/Build/ProjectBuilder.cs
-    startLine: 9
+      path: Prowl.Editor/Projects/Build/ProjectBuilder.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: BuildLog
+    path: ../Prowl/Prowl.Editor/Projects/Build/ProjectBuilder.cs
+    startLine: 25
   assemblies:
   - Prowl.Editor
   namespace: Prowl.Editor.Build
+  summary: Logs a build message with the specified severity.
+  example: []
   syntax:
-    content: public void StartBuild(AssetRef<Scene>[] scenes, DirectoryInfo output)
-    parameters:
-    - id: scenes
-      type: Prowl.Runtime.AssetRef{Prowl.Runtime.Scene}[]
-    - id: output
-      type: System.IO.DirectoryInfo
-    content.vb: Public Sub StartBuild(scenes As AssetRef(Of Scene)(), output As DirectoryInfo)
-  overload: Prowl.Editor.Build.ProjectBuilder.StartBuild*
-  nameWithType.vb: ProjectBuilder.StartBuild(AssetRef(Of Scene)(), DirectoryInfo)
-  fullName.vb: Prowl.Editor.Build.ProjectBuilder.StartBuild(Prowl.Runtime.AssetRef(Of Prowl.Runtime.Scene)(), System.IO.DirectoryInfo)
-  name.vb: StartBuild(AssetRef(Of Scene)(), DirectoryInfo)
-- uid: Prowl.Editor.Build.ProjectBuilder.Build(Prowl.Runtime.AssetRef{Prowl.Runtime.Scene}[],System.IO.DirectoryInfo)
-  commentId: M:Prowl.Editor.Build.ProjectBuilder.Build(Prowl.Runtime.AssetRef{Prowl.Runtime.Scene}[],System.IO.DirectoryInfo)
-  id: Build(Prowl.Runtime.AssetRef{Prowl.Runtime.Scene}[],System.IO.DirectoryInfo)
-  parent: Prowl.Editor.Build.ProjectBuilder
-  langs:
-  - csharp
-  - vb
-  name: Build(AssetRef<Scene>[], DirectoryInfo)
-  nameWithType: ProjectBuilder.Build(AssetRef<Scene>[], DirectoryInfo)
-  fullName: Prowl.Editor.Build.ProjectBuilder.Build(Prowl.Runtime.AssetRef<Prowl.Runtime.Scene>[], System.IO.DirectoryInfo)
-  type: Method
-  source:
-    remote:
-      path: Prowl.Editor/Build/ProjectBuilder.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Build
-    path: ../Prowl/Prowl.Editor/Build/ProjectBuilder.cs
-    startLine: 39
-  assemblies:
-  - Prowl.Editor
-  namespace: Prowl.Editor.Build
-  syntax:
-    content: protected abstract void Build(AssetRef<Scene>[] scenes, DirectoryInfo output)
-    parameters:
-    - id: scenes
-      type: Prowl.Runtime.AssetRef{Prowl.Runtime.Scene}[]
-    - id: output
-      type: System.IO.DirectoryInfo
-    content.vb: Protected MustOverride Sub Build(scenes As AssetRef(Of Scene)(), output As DirectoryInfo)
-  overload: Prowl.Editor.Build.ProjectBuilder.Build*
-  nameWithType.vb: ProjectBuilder.Build(AssetRef(Of Scene)(), DirectoryInfo)
-  fullName.vb: Prowl.Editor.Build.ProjectBuilder.Build(Prowl.Runtime.AssetRef(Of Prowl.Runtime.Scene)(), System.IO.DirectoryInfo)
-  name.vb: Build(AssetRef(Of Scene)(), DirectoryInfo)
-- uid: Prowl.Editor.Build.ProjectBuilder.BoundedLog(System.String)
-  commentId: M:Prowl.Editor.Build.ProjectBuilder.BoundedLog(System.String)
-  id: BoundedLog(System.String)
-  parent: Prowl.Editor.Build.ProjectBuilder
-  langs:
-  - csharp
-  - vb
-  name: BoundedLog(string)
-  nameWithType: ProjectBuilder.BoundedLog(string)
-  fullName: Prowl.Editor.Build.ProjectBuilder.BoundedLog(string)
-  type: Method
-  source:
-    remote:
-      path: Prowl.Editor/Build/ProjectBuilder.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: BoundedLog
-    path: ../Prowl/Prowl.Editor/Build/ProjectBuilder.cs
-    startLine: 66
-  assemblies:
-  - Prowl.Editor
-  namespace: Prowl.Editor.Build
-  syntax:
-    content: protected void BoundedLog(string message)
+    content: public static void BuildLog(string message, LogSeverity severity = LogSeverity.Normal)
     parameters:
     - id: message
       type: System.String
-    content.vb: Protected Sub BoundedLog(message As String)
-  overload: Prowl.Editor.Build.ProjectBuilder.BoundedLog*
-  nameWithType.vb: ProjectBuilder.BoundedLog(String)
-  fullName.vb: Prowl.Editor.Build.ProjectBuilder.BoundedLog(String)
-  name.vb: BoundedLog(String)
+    - id: severity
+      type: Prowl.Runtime.LogSeverity
+    content.vb: Public Shared Sub BuildLog(message As String, severity As LogSeverity = LogSeverity.Normal)
+  overload: Prowl.Editor.Build.ProjectBuilder.BuildLog*
+  nameWithType.vb: ProjectBuilder.BuildLog(String, LogSeverity)
+  fullName.vb: Prowl.Editor.Build.ProjectBuilder.BuildLog(String, Prowl.Runtime.LogSeverity)
+  name.vb: BuildLog(String, LogSeverity)
+- uid: Prowl.Editor.Build.ProjectBuilder.BuildProgressLog(System.String,System.Single,Prowl.Runtime.LogSeverity)
+  commentId: M:Prowl.Editor.Build.ProjectBuilder.BuildProgressLog(System.String,System.Single,Prowl.Runtime.LogSeverity)
+  id: BuildProgressLog(System.String,System.Single,Prowl.Runtime.LogSeverity)
+  parent: Prowl.Editor.Build.ProjectBuilder
+  langs:
+  - csharp
+  - vb
+  name: BuildProgressLog(string, float, LogSeverity)
+  nameWithType: ProjectBuilder.BuildProgressLog(string, float, LogSeverity)
+  fullName: Prowl.Editor.Build.ProjectBuilder.BuildProgressLog(string, float, Prowl.Runtime.LogSeverity)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/ProjectBuilder.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: BuildProgressLog
+    path: ../Prowl/Prowl.Editor/Projects/Build/ProjectBuilder.cs
+    startLine: 60
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Logs a build progress message with the specified severity and progress value.
+  example: []
+  syntax:
+    content: public static void BuildProgressLog(string message, float progress, LogSeverity severity = LogSeverity.Normal)
+    parameters:
+    - id: message
+      type: System.String
+    - id: progress
+      type: System.Single
+    - id: severity
+      type: Prowl.Runtime.LogSeverity
+    content.vb: Public Shared Sub BuildProgressLog(message As String, progress As Single, severity As LogSeverity = LogSeverity.Normal)
+  overload: Prowl.Editor.Build.ProjectBuilder.BuildProgressLog*
+  nameWithType.vb: ProjectBuilder.BuildProgressLog(String, Single, LogSeverity)
+  fullName.vb: Prowl.Editor.Build.ProjectBuilder.BuildProgressLog(String, Single, Prowl.Runtime.LogSeverity)
+  name.vb: BuildProgressLog(String, Single, LogSeverity)
+- uid: Prowl.Editor.Build.ProjectBuilder.ProcessBuildLog(System.Object,System.Diagnostics.DataReceivedEventArgs)
+  commentId: M:Prowl.Editor.Build.ProjectBuilder.ProcessBuildLog(System.Object,System.Diagnostics.DataReceivedEventArgs)
+  id: ProcessBuildLog(System.Object,System.Diagnostics.DataReceivedEventArgs)
+  parent: Prowl.Editor.Build.ProjectBuilder
+  langs:
+  - csharp
+  - vb
+  name: ProcessBuildLog(object, DataReceivedEventArgs)
+  nameWithType: ProjectBuilder.ProcessBuildLog(object, DataReceivedEventArgs)
+  fullName: Prowl.Editor.Build.ProjectBuilder.ProcessBuildLog(object, System.Diagnostics.DataReceivedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/ProjectBuilder.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ProcessBuildLog
+    path: ../Prowl/Prowl.Editor/Projects/Build/ProjectBuilder.cs
+    startLine: 96
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Processes a data-received event from a build subprocess, deserializing base64-encoded build status reports and updating the build UI.
+  example: []
+  syntax:
+    content: public static void ProcessBuildLog(object sender, DataReceivedEventArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: System.Diagnostics.DataReceivedEventArgs
+    content.vb: Public Shared Sub ProcessBuildLog(sender As Object, args As DataReceivedEventArgs)
+  overload: Prowl.Editor.Build.ProjectBuilder.ProcessBuildLog*
+  nameWithType.vb: ProjectBuilder.ProcessBuildLog(Object, DataReceivedEventArgs)
+  fullName.vb: Prowl.Editor.Build.ProjectBuilder.ProcessBuildLog(Object, System.Diagnostics.DataReceivedEventArgs)
+  name.vb: ProcessBuildLog(Object, DataReceivedEventArgs)
+- uid: Prowl.Editor.Build.ProjectBuilder.StartBuildProcess(System.String)
+  commentId: M:Prowl.Editor.Build.ProjectBuilder.StartBuildProcess(System.String)
+  id: StartBuildProcess(System.String)
+  parent: Prowl.Editor.Build.ProjectBuilder
+  langs:
+  - csharp
+  - vb
+  name: StartBuildProcess(string?)
+  nameWithType: ProjectBuilder.StartBuildProcess(string?)
+  fullName: Prowl.Editor.Build.ProjectBuilder.StartBuildProcess(string?)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/ProjectBuilder.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: StartBuildProcess
+    path: ../Prowl/Prowl.Editor/Projects/Build/ProjectBuilder.cs
+    startLine: 138
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Launches the editor as a separate process with build arguments to perform an automatic build.
+  example: []
+  syntax:
+    content: public static BuildProgress StartBuildProcess(string? outputPath)
+    parameters:
+    - id: outputPath
+      type: System.String
+    return:
+      type: Prowl.Editor.Build.BuildProgress
+    content.vb: Public Shared Function StartBuildProcess(outputPath As String) As BuildProgress
+  overload: Prowl.Editor.Build.ProjectBuilder.StartBuildProcess*
+  nameWithType.vb: ProjectBuilder.StartBuildProcess(String)
+  fullName.vb: Prowl.Editor.Build.ProjectBuilder.StartBuildProcess(String)
+  name.vb: StartBuildProcess(String)
+- uid: Prowl.Editor.Build.ProjectBuilder.StartBuildAsync(System.Boolean,System.String)
+  commentId: M:Prowl.Editor.Build.ProjectBuilder.StartBuildAsync(System.Boolean,System.String)
+  id: StartBuildAsync(System.Boolean,System.String)
+  parent: Prowl.Editor.Build.ProjectBuilder
+  langs:
+  - csharp
+  - vb
+  name: StartBuildAsync(bool, string?)
+  nameWithType: ProjectBuilder.StartBuildAsync(bool, string?)
+  fullName: Prowl.Editor.Build.ProjectBuilder.StartBuildAsync(bool, string?)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/ProjectBuilder.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: StartBuildAsync
+    path: ../Prowl/Prowl.Editor/Projects/Build/ProjectBuilder.cs
+    startLine: 171
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Starts a build using the configured pipeline, optionally running it on a background thread. Returns a BuildProgress that tracks the build status.
+  example: []
+  syntax:
+    content: public static BuildProgress StartBuildAsync(bool andRun, string? outputPath)
+    parameters:
+    - id: andRun
+      type: System.Boolean
+    - id: outputPath
+      type: System.String
+    return:
+      type: Prowl.Editor.Build.BuildProgress
+    content.vb: Public Shared Function StartBuildAsync(andRun As Boolean, outputPath As String) As BuildProgress
+  overload: Prowl.Editor.Build.ProjectBuilder.StartBuildAsync*
+  nameWithType.vb: ProjectBuilder.StartBuildAsync(Boolean, String)
+  fullName.vb: Prowl.Editor.Build.ProjectBuilder.StartBuildAsync(Boolean, String)
+  name.vb: StartBuildAsync(Boolean, String)
+- uid: Prowl.Editor.Build.ProjectBuilder.DiscoverPipelines
+  commentId: M:Prowl.Editor.Build.ProjectBuilder.DiscoverPipelines
+  id: DiscoverPipelines
+  parent: Prowl.Editor.Build.ProjectBuilder
+  langs:
+  - csharp
+  - vb
+  name: DiscoverPipelines()
+  nameWithType: ProjectBuilder.DiscoverPipelines()
+  fullName: Prowl.Editor.Build.ProjectBuilder.DiscoverPipelines()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/ProjectBuilder.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DiscoverPipelines
+    path: ../Prowl/Prowl.Editor/Projects/Build/ProjectBuilder.cs
+    startLine: 228
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Every pipeline the editor can build with, in a stable order.
+  remarks: >-
+    Constructed here rather than only reflected over, because a pipeline that cannot be constructed
+
+    cannot be built with either, and the Build window needs a live instance for its name and icon
+
+    anyway. One that throws is left out with a warning instead of being offered and failing later.
+  example: []
+  syntax:
+    content: public static List<BuildPipeline> DiscoverPipelines()
+    return:
+      type: System.Collections.Generic.List{Prowl.Editor.Build.BuildPipeline}
+    content.vb: Public Shared Function DiscoverPipelines() As List(Of BuildPipeline)
+  overload: Prowl.Editor.Build.ProjectBuilder.DiscoverPipelines*
+- uid: Prowl.Editor.Build.ProjectBuilder.CreateSelectedPipeline(Prowl.Editor.Projects.Settings.BuildSettings)
+  commentId: M:Prowl.Editor.Build.ProjectBuilder.CreateSelectedPipeline(Prowl.Editor.Projects.Settings.BuildSettings)
+  id: CreateSelectedPipeline(Prowl.Editor.Projects.Settings.BuildSettings)
+  parent: Prowl.Editor.Build.ProjectBuilder
+  langs:
+  - csharp
+  - vb
+  name: CreateSelectedPipeline(BuildSettings)
+  nameWithType: ProjectBuilder.CreateSelectedPipeline(BuildSettings)
+  fullName: Prowl.Editor.Build.ProjectBuilder.CreateSelectedPipeline(Prowl.Editor.Projects.Settings.BuildSettings)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/ProjectBuilder.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CreateSelectedPipeline
+    path: ../Prowl/Prowl.Editor/Projects/Build/ProjectBuilder.cs
+    startLine: 260
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: The pipeline the Build window selected, or the desktop one when nothing is stored.
+  remarks: >-
+    Returns null rather than throwing for anything it cannot produce, so a settings file naming a
+
+    pipeline that has since been deleted or become unconstructable reports a build failure instead of
+
+    taking the editor down from a button press.
+  example: []
+  syntax:
+    content: public static BuildPipeline? CreateSelectedPipeline(BuildSettings settings)
+    parameters:
+    - id: settings
+      type: Prowl.Editor.Projects.Settings.BuildSettings
+    return:
+      type: Prowl.Editor.Build.BuildPipeline
+    content.vb: Public Shared Function CreateSelectedPipeline(settings As BuildSettings) As BuildPipeline
+  overload: Prowl.Editor.Build.ProjectBuilder.CreateSelectedPipeline*
+- uid: Prowl.Editor.Build.ProjectBuilder.ProcessBuild(System.String,Prowl.Editor.Build.BuildPipeline,Prowl.Editor.Projects.Settings.BuildSettings,System.String,Prowl.Editor.Build.BuildProgress,System.Boolean)
+  commentId: M:Prowl.Editor.Build.ProjectBuilder.ProcessBuild(System.String,Prowl.Editor.Build.BuildPipeline,Prowl.Editor.Projects.Settings.BuildSettings,System.String,Prowl.Editor.Build.BuildProgress,System.Boolean)
+  id: ProcessBuild(System.String,Prowl.Editor.Build.BuildPipeline,Prowl.Editor.Projects.Settings.BuildSettings,System.String,Prowl.Editor.Build.BuildProgress,System.Boolean)
+  parent: Prowl.Editor.Build.ProjectBuilder
+  langs:
+  - csharp
+  - vb
+  name: ProcessBuild(string, BuildPipeline, BuildSettings, string, BuildProgress, bool)
+  nameWithType: ProjectBuilder.ProcessBuild(string, BuildPipeline, BuildSettings, string, BuildProgress, bool)
+  fullName: Prowl.Editor.Build.ProjectBuilder.ProcessBuild(string, Prowl.Editor.Build.BuildPipeline, Prowl.Editor.Projects.Settings.BuildSettings, string, Prowl.Editor.Build.BuildProgress, bool)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/ProjectBuilder.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ProcessBuild
+    path: ../Prowl/Prowl.Editor/Projects/Build/ProjectBuilder.cs
+    startLine: 266
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Runs the specified pipeline's build synchronously and handles the result, including cancellation and fatal errors.
+  example: []
+  syntax:
+    content: public static void ProcessBuild(string projectPath, BuildPipeline pipeline, BuildSettings settings, string outputPath, BuildProgress progress, bool andRun)
+    parameters:
+    - id: projectPath
+      type: System.String
+    - id: pipeline
+      type: Prowl.Editor.Build.BuildPipeline
+    - id: settings
+      type: Prowl.Editor.Projects.Settings.BuildSettings
+    - id: outputPath
+      type: System.String
+    - id: progress
+      type: Prowl.Editor.Build.BuildProgress
+    - id: andRun
+      type: System.Boolean
+    content.vb: Public Shared Sub ProcessBuild(projectPath As String, pipeline As BuildPipeline, settings As BuildSettings, outputPath As String, progress As BuildProgress, andRun As Boolean)
+  overload: Prowl.Editor.Build.ProjectBuilder.ProcessBuild*
+  nameWithType.vb: ProjectBuilder.ProcessBuild(String, BuildPipeline, BuildSettings, String, BuildProgress, Boolean)
+  fullName.vb: Prowl.Editor.Build.ProjectBuilder.ProcessBuild(String, Prowl.Editor.Build.BuildPipeline, Prowl.Editor.Projects.Settings.BuildSettings, String, Prowl.Editor.Build.BuildProgress, Boolean)
+  name.vb: ProcessBuild(String, BuildPipeline, BuildSettings, String, BuildProgress, Boolean)
 references:
 - uid: Prowl.Editor.Build
   commentId: N:Prowl.Editor.Build
-  href: Prowl.html
   name: Prowl.Editor.Build
   nameWithType: Prowl.Editor.Build
   fullName: Prowl.Editor.Build
   spec.csharp:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Editor
     name: Editor
-    href: Prowl.Editor.html
   - name: .
   - uid: Prowl.Editor.Build
     name: Build
-    href: Prowl.Editor.Build.html
   spec.vb:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Editor
     name: Editor
-    href: Prowl.Editor.html
   - name: .
   - uid: Prowl.Editor.Build
     name: Build
-    href: Prowl.Editor.Build.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -404,37 +603,6 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
   - name: )
-- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
-  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-  parent: Prowl.Runtime.RuntimeUtils
-  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
-  name: GetSerializableFields(object)
-  nameWithType: RuntimeUtils.GetSerializableFields(object)
-  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
-  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
-  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
-  name.vb: GetSerializableFields(Object)
-  spec.csharp:
-  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-    name: GetSerializableFields
-    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
-  - name: (
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-    name: GetSerializableFields
-    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
-  - name: (
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
 - uid: System
   commentId: N:System
   isExternal: true
@@ -442,146 +610,12 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-  isExternal: true
-  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
-  name: GetSerializableFields(object)
-  nameWithType: RuntimeUtils.GetSerializableFields(object)
-  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
-  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
-  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
-  name.vb: GetSerializableFields(Object)
-  spec.csharp:
-  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-    name: GetSerializableFields
-    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
-  - name: (
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
-    name: GetSerializableFields
-    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
-  - name: (
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-- uid: Prowl.Runtime.RuntimeUtils
-  commentId: T:Prowl.Runtime.RuntimeUtils
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.RuntimeUtils.html
-  name: RuntimeUtils
-  nameWithType: RuntimeUtils
-  fullName: Prowl.Runtime.RuntimeUtils
-- uid: Prowl.Runtime
-  commentId: N:Prowl.Runtime
-  href: Prowl.html
-  name: Prowl.Runtime
-  nameWithType: Prowl.Runtime
-  fullName: Prowl.Runtime
-  spec.csharp:
-  - uid: Prowl
-    name: Prowl
-    href: Prowl.html
-  - name: .
-  - uid: Prowl.Runtime
-    name: Runtime
-    href: Prowl.Runtime.html
-  spec.vb:
-  - uid: Prowl
-    name: Prowl
-    href: Prowl.html
-  - name: .
-  - uid: Prowl.Runtime
-    name: Runtime
-    href: Prowl.Runtime.html
-- uid: Prowl.Editor.Build.ProjectBuilder.StartBuild*
-  commentId: Overload:Prowl.Editor.Build.ProjectBuilder.StartBuild
-  href: Prowl.Editor.Build.ProjectBuilder.html#Prowl_Editor_Build_ProjectBuilder_StartBuild_Prowl_Runtime_AssetRef_Prowl_Runtime_Scene____System_IO_DirectoryInfo_
-  name: StartBuild
-  nameWithType: ProjectBuilder.StartBuild
-  fullName: Prowl.Editor.Build.ProjectBuilder.StartBuild
-- uid: Prowl.Runtime.AssetRef{Prowl.Runtime.Scene}[]
-  isExternal: true
-  name: AssetRef<Scene>[]
-  nameWithType: AssetRef<Scene>[]
-  fullName: Prowl.Runtime.AssetRef<Prowl.Runtime.Scene>[]
-  nameWithType.vb: AssetRef(Of Scene)()
-  fullName.vb: Prowl.Runtime.AssetRef(Of Prowl.Runtime.Scene)()
-  name.vb: AssetRef(Of Scene)()
-  spec.csharp:
-  - uid: Prowl.Runtime.AssetRef`1
-    name: AssetRef
-  - name: <
-  - uid: Prowl.Runtime.Scene
-    name: Scene
-  - name: '>'
-  - name: '['
-  - name: ']'
-  spec.vb:
-  - uid: Prowl.Runtime.AssetRef`1
-    name: AssetRef
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: Prowl.Runtime.Scene
-    name: Scene
-  - name: )
-  - name: (
-  - name: )
-- uid: System.IO.DirectoryInfo
-  commentId: T:System.IO.DirectoryInfo
-  parent: System.IO
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.io.directoryinfo
-  name: DirectoryInfo
-  nameWithType: DirectoryInfo
-  fullName: System.IO.DirectoryInfo
-- uid: System.IO
-  commentId: N:System.IO
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.IO
-  nameWithType: System.IO
-  fullName: System.IO
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.IO
-    name: IO
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.io
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.IO
-    name: IO
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.io
-- uid: Prowl.Editor.Build.ProjectBuilder.Build*
-  commentId: Overload:Prowl.Editor.Build.ProjectBuilder.Build
-  href: Prowl.Editor.Build.ProjectBuilder.html#Prowl_Editor_Build_ProjectBuilder_Build_Prowl_Runtime_AssetRef_Prowl_Runtime_Scene____System_IO_DirectoryInfo_
-  name: Build
-  nameWithType: ProjectBuilder.Build
-  fullName: Prowl.Editor.Build.ProjectBuilder.Build
-- uid: Prowl.Editor.Build.ProjectBuilder.BoundedLog*
-  commentId: Overload:Prowl.Editor.Build.ProjectBuilder.BoundedLog
-  href: Prowl.Editor.Build.ProjectBuilder.html#Prowl_Editor_Build_ProjectBuilder_BoundedLog_System_String_
-  name: BoundedLog
-  nameWithType: ProjectBuilder.BoundedLog
-  fullName: Prowl.Editor.Build.ProjectBuilder.BoundedLog
+- uid: Prowl.Editor.Build.ProjectBuilder.BuildLog*
+  commentId: Overload:Prowl.Editor.Build.ProjectBuilder.BuildLog
+  href: Prowl.Editor.Build.ProjectBuilder.html#Prowl_Editor_Build_ProjectBuilder_BuildLog_System_String_Prowl_Runtime_LogSeverity_
+  name: BuildLog
+  nameWithType: ProjectBuilder.BuildLog
+  fullName: Prowl.Editor.Build.ProjectBuilder.BuildLog
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -593,3 +627,274 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: Prowl.Runtime.LogSeverity
+  commentId: T:Prowl.Runtime.LogSeverity
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.LogSeverity.html
+  name: LogSeverity
+  nameWithType: LogSeverity
+  fullName: Prowl.Runtime.LogSeverity
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Editor.Build.ProjectBuilder.BuildProgressLog*
+  commentId: Overload:Prowl.Editor.Build.ProjectBuilder.BuildProgressLog
+  href: Prowl.Editor.Build.ProjectBuilder.html#Prowl_Editor_Build_ProjectBuilder_BuildProgressLog_System_String_System_Single_Prowl_Runtime_LogSeverity_
+  name: BuildProgressLog
+  nameWithType: ProjectBuilder.BuildProgressLog
+  fullName: Prowl.Editor.Build.ProjectBuilder.BuildProgressLog
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: Prowl.Editor.Build.ProjectBuilder.ProcessBuildLog*
+  commentId: Overload:Prowl.Editor.Build.ProjectBuilder.ProcessBuildLog
+  href: Prowl.Editor.Build.ProjectBuilder.html#Prowl_Editor_Build_ProjectBuilder_ProcessBuildLog_System_Object_System_Diagnostics_DataReceivedEventArgs_
+  name: ProcessBuildLog
+  nameWithType: ProjectBuilder.ProcessBuildLog
+  fullName: Prowl.Editor.Build.ProjectBuilder.ProcessBuildLog
+- uid: System.Diagnostics.DataReceivedEventArgs
+  commentId: T:System.Diagnostics.DataReceivedEventArgs
+  parent: System.Diagnostics
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.diagnostics.datareceivedeventargs
+  name: DataReceivedEventArgs
+  nameWithType: DataReceivedEventArgs
+  fullName: System.Diagnostics.DataReceivedEventArgs
+- uid: System.Diagnostics
+  commentId: N:System.Diagnostics
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Diagnostics
+  nameWithType: System.Diagnostics
+  fullName: System.Diagnostics
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Diagnostics
+    name: Diagnostics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.diagnostics
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Diagnostics
+    name: Diagnostics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.diagnostics
+- uid: Prowl.Editor.Build.ProjectBuilder.StartBuildProcess*
+  commentId: Overload:Prowl.Editor.Build.ProjectBuilder.StartBuildProcess
+  href: Prowl.Editor.Build.ProjectBuilder.html#Prowl_Editor_Build_ProjectBuilder_StartBuildProcess_System_String_
+  name: StartBuildProcess
+  nameWithType: ProjectBuilder.StartBuildProcess
+  fullName: Prowl.Editor.Build.ProjectBuilder.StartBuildProcess
+- uid: Prowl.Editor.Build.BuildProgress
+  commentId: T:Prowl.Editor.Build.BuildProgress
+  parent: Prowl.Editor.Build
+  href: Prowl.Editor.Build.BuildProgress.html
+  name: BuildProgress
+  nameWithType: BuildProgress
+  fullName: Prowl.Editor.Build.BuildProgress
+- uid: Prowl.Editor.Build.ProjectBuilder.StartBuildAsync*
+  commentId: Overload:Prowl.Editor.Build.ProjectBuilder.StartBuildAsync
+  href: Prowl.Editor.Build.ProjectBuilder.html#Prowl_Editor_Build_ProjectBuilder_StartBuildAsync_System_Boolean_System_String_
+  name: StartBuildAsync
+  nameWithType: ProjectBuilder.StartBuildAsync
+  fullName: Prowl.Editor.Build.ProjectBuilder.StartBuildAsync
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Editor.Build.ProjectBuilder.DiscoverPipelines*
+  commentId: Overload:Prowl.Editor.Build.ProjectBuilder.DiscoverPipelines
+  href: Prowl.Editor.Build.ProjectBuilder.html#Prowl_Editor_Build_ProjectBuilder_DiscoverPipelines
+  name: DiscoverPipelines
+  nameWithType: ProjectBuilder.DiscoverPipelines
+  fullName: Prowl.Editor.Build.ProjectBuilder.DiscoverPipelines
+- uid: System.Collections.Generic.List{Prowl.Editor.Build.BuildPipeline}
+  commentId: T:System.Collections.Generic.List{Prowl.Editor.Build.BuildPipeline}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<BuildPipeline>
+  nameWithType: List<BuildPipeline>
+  fullName: System.Collections.Generic.List<Prowl.Editor.Build.BuildPipeline>
+  nameWithType.vb: List(Of BuildPipeline)
+  fullName.vb: System.Collections.Generic.List(Of Prowl.Editor.Build.BuildPipeline)
+  name.vb: List(Of BuildPipeline)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Prowl.Editor.Build.BuildPipeline
+    name: BuildPipeline
+    href: Prowl.Editor.Build.BuildPipeline.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Editor.Build.BuildPipeline
+    name: BuildPipeline
+    href: Prowl.Editor.Build.BuildPipeline.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Prowl.Editor.Build.ProjectBuilder.CreateSelectedPipeline*
+  commentId: Overload:Prowl.Editor.Build.ProjectBuilder.CreateSelectedPipeline
+  href: Prowl.Editor.Build.ProjectBuilder.html#Prowl_Editor_Build_ProjectBuilder_CreateSelectedPipeline_Prowl_Editor_Projects_Settings_BuildSettings_
+  name: CreateSelectedPipeline
+  nameWithType: ProjectBuilder.CreateSelectedPipeline
+  fullName: Prowl.Editor.Build.ProjectBuilder.CreateSelectedPipeline
+- uid: Prowl.Editor.Projects.Settings.BuildSettings
+  commentId: T:Prowl.Editor.Projects.Settings.BuildSettings
+  parent: Prowl.Editor.Projects.Settings
+  href: Prowl.Editor.Projects.Settings.BuildSettings.html
+  name: BuildSettings
+  nameWithType: BuildSettings
+  fullName: Prowl.Editor.Projects.Settings.BuildSettings
+- uid: Prowl.Editor.Build.BuildPipeline
+  commentId: T:Prowl.Editor.Build.BuildPipeline
+  parent: Prowl.Editor.Build
+  href: Prowl.Editor.Build.BuildPipeline.html
+  name: BuildPipeline
+  nameWithType: BuildPipeline
+  fullName: Prowl.Editor.Build.BuildPipeline
+- uid: Prowl.Editor.Projects.Settings
+  commentId: N:Prowl.Editor.Projects.Settings
+  name: Prowl.Editor.Projects.Settings
+  nameWithType: Prowl.Editor.Projects.Settings
+  fullName: Prowl.Editor.Projects.Settings
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Projects
+    name: Projects
+  - name: .
+  - uid: Prowl.Editor.Projects.Settings
+    name: Settings
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Projects
+    name: Projects
+  - name: .
+  - uid: Prowl.Editor.Projects.Settings
+    name: Settings
+- uid: Prowl.Editor.Build.ProjectBuilder.ProcessBuild*
+  commentId: Overload:Prowl.Editor.Build.ProjectBuilder.ProcessBuild
+  href: Prowl.Editor.Build.ProjectBuilder.html#Prowl_Editor_Build_ProjectBuilder_ProcessBuild_System_String_Prowl_Editor_Build_BuildPipeline_Prowl_Editor_Projects_Settings_BuildSettings_System_String_Prowl_Editor_Build_BuildProgress_System_Boolean_
+  name: ProcessBuild
+  nameWithType: ProjectBuilder.ProcessBuild
+  fullName: Prowl.Editor.Build.ProjectBuilder.ProcessBuild

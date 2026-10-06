@@ -1,0 +1,1845 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.Audio.AudioMixerGroup
+  commentId: T:Prowl.Runtime.Audio.AudioMixerGroup
+  id: AudioMixerGroup
+  parent: Prowl.Runtime.Audio
+  children:
+  - Prowl.Runtime.Audio.AudioMixerGroup.AddEffect(Prowl.Runtime.Audio.Effects.AudioEffect)
+  - Prowl.Runtime.Audio.AudioMixerGroup.DecibelsToLinear(System.Single)
+  - Prowl.Runtime.Audio.AudioMixerGroup.Effects
+  - Prowl.Runtime.Audio.AudioMixerGroup.GroupName
+  - Prowl.Runtime.Audio.AudioMixerGroup.Identity
+  - Prowl.Runtime.Audio.AudioMixerGroup.IsAncestorOf(Prowl.Runtime.Audio.AudioMixerGroup)
+  - Prowl.Runtime.Audio.AudioMixerGroup.LinearToDecibels(System.Single)
+  - Prowl.Runtime.Audio.AudioMixerGroup.MaxVolumeDB
+  - Prowl.Runtime.Audio.AudioMixerGroup.MinVolumeDB
+  - Prowl.Runtime.Audio.AudioMixerGroup.Mixer
+  - Prowl.Runtime.Audio.AudioMixerGroup.Mute
+  - Prowl.Runtime.Audio.AudioMixerGroup.OnUnload
+  - Prowl.Runtime.Audio.AudioMixerGroup.OnValidate
+  - Prowl.Runtime.Audio.AudioMixerGroup.Parent
+  - Prowl.Runtime.Audio.AudioMixerGroup.PeakLevel
+  - Prowl.Runtime.Audio.AudioMixerGroup.RefreshEffects
+  - Prowl.Runtime.Audio.AudioMixerGroup.RemoveEffect(Prowl.Runtime.Audio.Effects.AudioEffect)
+  - Prowl.Runtime.Audio.AudioMixerGroup.RequestMetering
+  - Prowl.Runtime.Audio.AudioMixerGroup.SilencedBySolo
+  - Prowl.Runtime.Audio.AudioMixerGroup.Solo
+  - Prowl.Runtime.Audio.AudioMixerGroup.Volume
+  - Prowl.Runtime.Audio.AudioMixerGroup.VolumeDB
+  langs:
+  - csharp
+  - vb
+  name: AudioMixerGroup
+  nameWithType: AudioMixerGroup
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AudioMixerGroup
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 23
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  summary: >-
+    A named bus that audio is routed through on its way to the device, carrying a volume and a mute
+
+    for everything feeding it.
+  remarks: >-
+    Groups live inside an <xref href="Prowl.Runtime.Audio.AudioMixer" data-throw-if-not-resolved="false"></xref> and are referenced by an
+
+    <xref href="Prowl.Runtime.AudioSource.OutputGroup" data-throw-if-not-resolved="false"></xref>. Each one owns a native sound group whose output is attached
+
+    to its parent's, so a volume set on a parent scales every descendant. The native side is built on
+
+    demand and thrown away when the device closes, so the asset stays pure data.
+  example: []
+  syntax:
+    content: 'public sealed class AudioMixerGroup : Asset, IDisposable'
+    content.vb: Public NotInheritable Class AudioMixerGroup Inherits Asset Implements IDisposable
+  inheritance:
+  - System.Object
+  - Prowl.Runtime.EngineObject
+  - Prowl.Runtime.Asset
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - Prowl.Runtime.Asset.AssetID
+  - Prowl.Runtime.Asset.AssetPath
+  - Prowl.Runtime.Asset.State
+  - Prowl.Runtime.Asset.ContentVersion
+  - Prowl.Runtime.Asset.IsFromDatabase
+  - Prowl.Runtime.Asset.IsLoaded
+  - Prowl.Runtime.Asset.IsMissing
+  - Prowl.Runtime.Asset.Load
+  - Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+  - Prowl.Runtime.Asset.HasChanged(System.Int32@)
+  - Prowl.Runtime.EngineObject.InstanceID
+  - Prowl.Runtime.EngineObject.Name
+  - Prowl.Runtime.EngineObject.IsDisposed
+  - Prowl.Runtime.EngineObject.CreatedInstance
+  - Prowl.Runtime.EngineObject.Dispose
+  - Prowl.Runtime.EngineObject.Destroy
+  - Prowl.Runtime.EngineObject.IsDestroyQueued
+  - Prowl.Runtime.EngineObject.ProcessDestroyed
+  - Prowl.Runtime.EngineObject.Equals(System.Object)
+  - Prowl.Runtime.EngineObject.GetHashCode
+  - Prowl.Runtime.EngineObject.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  extensionMethods:
+  - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsNotValid
+  - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsValid
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.MinVolumeDB
+  commentId: F:Prowl.Runtime.Audio.AudioMixerGroup.MinVolumeDB
+  id: MinVolumeDB
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: MinVolumeDB
+  nameWithType: AudioMixerGroup.MinVolumeDB
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.MinVolumeDB
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MinVolumeDB
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 26
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  summary: Quietest volume, treated as silence rather than a very small gain.
+  example: []
+  syntax:
+    content: public const float MinVolumeDB = -80
+    return:
+      type: System.Single
+    content.vb: Public Const MinVolumeDB As Single = -80
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.MaxVolumeDB
+  commentId: F:Prowl.Runtime.Audio.AudioMixerGroup.MaxVolumeDB
+  id: MaxVolumeDB
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: MaxVolumeDB
+  nameWithType: AudioMixerGroup.MaxVolumeDB
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.MaxVolumeDB
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MaxVolumeDB
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 27
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  syntax:
+    content: public const float MaxVolumeDB = 20
+    return:
+      type: System.Single
+    content.vb: Public Const MaxVolumeDB As Single = 20
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.Identity
+  commentId: P:Prowl.Runtime.Audio.AudioMixerGroup.Identity
+  id: Identity
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: Identity
+  nameWithType: AudioMixerGroup.Identity
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.Identity
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Identity
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 56
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  summary: Stable key this group is referenced by, independent of its name and position.
+  example: []
+  syntax:
+    content: public string Identity { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Identity As String
+  overload: Prowl.Runtime.Audio.AudioMixerGroup.Identity*
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.GroupName
+  commentId: P:Prowl.Runtime.Audio.AudioMixerGroup.GroupName
+  id: GroupName
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: GroupName
+  nameWithType: AudioMixerGroup.GroupName
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.GroupName
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GroupName
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 110
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  syntax:
+    content: public string GroupName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property GroupName As String
+  overload: Prowl.Runtime.Audio.AudioMixerGroup.GroupName*
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.VolumeDB
+  commentId: P:Prowl.Runtime.Audio.AudioMixerGroup.VolumeDB
+  id: VolumeDB
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: VolumeDB
+  nameWithType: AudioMixerGroup.VolumeDB
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.VolumeDB
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: VolumeDB
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 117
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  summary: Level in decibels. 0 leaves audio unchanged, <xref href="Prowl.Runtime.Audio.AudioMixerGroup.MinVolumeDB" data-throw-if-not-resolved="false"></xref> is silence.
+  example: []
+  syntax:
+    content: public float VolumeDB { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property VolumeDB As Single
+  overload: Prowl.Runtime.Audio.AudioMixerGroup.VolumeDB*
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.Volume
+  commentId: P:Prowl.Runtime.Audio.AudioMixerGroup.Volume
+  id: Volume
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: Volume
+  nameWithType: AudioMixerGroup.Volume
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.Volume
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Volume
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 129
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  summary: The same level as a 0 to 1 linear gain, for volume sliders.
+  example: []
+  syntax:
+    content: public float Volume { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property Volume As Single
+  overload: Prowl.Runtime.Audio.AudioMixerGroup.Volume*
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.Mute
+  commentId: P:Prowl.Runtime.Audio.AudioMixerGroup.Mute
+  id: Mute
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: Mute
+  nameWithType: AudioMixerGroup.Mute
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.Mute
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Mute
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 135
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  syntax:
+    content: public bool Mute { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property Mute As Boolean
+  overload: Prowl.Runtime.Audio.AudioMixerGroup.Mute*
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.Solo
+  commentId: P:Prowl.Runtime.Audio.AudioMixerGroup.Solo
+  id: Solo
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: Solo
+  nameWithType: AudioMixerGroup.Solo
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.Solo
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Solo
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 158
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  summary: >-
+    Hears this bus on its own. Deliberately not saved: soloing is something you do while listening
+
+    to a mix, not a property of it, and a project that opened with a bus soloed would be a mystery.
+  remarks: >-
+    While anything is soloed, a bus sounds only if it is the soloed one, is inside it, or is on the
+
+    path it takes to the output. That last part is what makes soloing a child audible at all: every
+
+    bus between it and the master has to keep passing audio.
+  example: []
+  syntax:
+    content: public bool Solo { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property Solo As Boolean
+  overload: Prowl.Runtime.Audio.AudioMixerGroup.Solo*
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.SilencedBySolo
+  commentId: P:Prowl.Runtime.Audio.AudioMixerGroup.SilencedBySolo
+  id: SilencedBySolo
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: SilencedBySolo
+  nameWithType: AudioMixerGroup.SilencedBySolo
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.SilencedBySolo
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SilencedBySolo
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 176
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  summary: True when a solo somewhere in this mixer is what is keeping this bus quiet.
+  example: []
+  syntax:
+    content: public bool SilencedBySolo { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property SilencedBySolo As Boolean
+  overload: Prowl.Runtime.Audio.AudioMixerGroup.SilencedBySolo*
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.IsAncestorOf(Prowl.Runtime.Audio.AudioMixerGroup)
+  commentId: M:Prowl.Runtime.Audio.AudioMixerGroup.IsAncestorOf(Prowl.Runtime.Audio.AudioMixerGroup)
+  id: IsAncestorOf(Prowl.Runtime.Audio.AudioMixerGroup)
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: IsAncestorOf(AudioMixerGroup)
+  nameWithType: AudioMixerGroup.IsAncestorOf(AudioMixerGroup)
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.IsAncestorOf(Prowl.Runtime.Audio.AudioMixerGroup)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsAncestorOf
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 197
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  summary: True when <code class="paramref">other</code> feeds into this bus, however far down.
+  example: []
+  syntax:
+    content: public bool IsAncestorOf(AudioMixerGroup other)
+    parameters:
+    - id: other
+      type: Prowl.Runtime.Audio.AudioMixerGroup
+    return:
+      type: System.Boolean
+    content.vb: Public Function IsAncestorOf(other As AudioMixerGroup) As Boolean
+  overload: Prowl.Runtime.Audio.AudioMixerGroup.IsAncestorOf*
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.PeakLevel
+  commentId: P:Prowl.Runtime.Audio.AudioMixerGroup.PeakLevel
+  id: PeakLevel
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: PeakLevel
+  nameWithType: AudioMixerGroup.PeakLevel
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.PeakLevel
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PeakLevel
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 222
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  summary: >-
+    Loudest sample this bus produced in the block it last processed, 0 when nothing is asking for
+
+    levels. Ask through <xref href="Prowl.Runtime.Audio.AudioMixerGroup.RequestMetering" data-throw-if-not-resolved="false"></xref> for as long as you want it kept up to date.
+  example: []
+  syntax:
+    content: public float PeakLevel { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public ReadOnly Property PeakLevel As Single
+  overload: Prowl.Runtime.Audio.AudioMixerGroup.PeakLevel*
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.RequestMetering
+  commentId: M:Prowl.Runtime.Audio.AudioMixerGroup.RequestMetering
+  id: RequestMetering
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: RequestMetering()
+  nameWithType: AudioMixerGroup.RequestMetering()
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.RequestMetering()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RequestMetering
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 234
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  summary: Asks every bus to measure what it is producing. Call it each frame that meters are on screen.
+  remarks: >-
+    Off by default because it is a pass over every block of every bus, on the audio thread, for a
+
+    number nobody is looking at. Asking expires on its own so a window that closes, or an editor
+
+    that stops drawing, does not leave the work running.
+  example: []
+  syntax:
+    content: public static void RequestMetering()
+    content.vb: Public Shared Sub RequestMetering()
+  overload: Prowl.Runtime.Audio.AudioMixerGroup.RequestMetering*
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.Parent
+  commentId: P:Prowl.Runtime.Audio.AudioMixerGroup.Parent
+  id: Parent
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: Parent
+  nameWithType: AudioMixerGroup.Parent
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.Parent
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Parent
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 239
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  summary: The group this one feeds into, or null if it is the mixer's root.
+  example: []
+  syntax:
+    content: public AudioMixerGroup Parent { get; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.Audio.AudioMixerGroup
+    content.vb: Public ReadOnly Property Parent As AudioMixerGroup
+  overload: Prowl.Runtime.Audio.AudioMixerGroup.Parent*
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.Mixer
+  commentId: P:Prowl.Runtime.Audio.AudioMixerGroup.Mixer
+  id: Mixer
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: Mixer
+  nameWithType: AudioMixerGroup.Mixer
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.Mixer
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Mixer
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 252
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  summary: >-
+    The mixer this group belongs to. Resolved from the owning asset when this group was loaded on
+
+    its own rather than as part of its mixer.
+  example: []
+  syntax:
+    content: public AudioMixer? Mixer { get; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.Audio.AudioMixer
+    content.vb: Public ReadOnly Property Mixer As AudioMixer
+  overload: Prowl.Runtime.Audio.AudioMixerGroup.Mixer*
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.Effects
+  commentId: P:Prowl.Runtime.Audio.AudioMixerGroup.Effects
+  id: Effects
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: Effects
+  nameWithType: AudioMixerGroup.Effects
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.Effects
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Effects
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 360
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  summary: Effects applied to everything routed into this group, in order.
+  example: []
+  syntax:
+    content: public IReadOnlyList<AudioEffect> Effects { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Audio.Effects.AudioEffect}
+    content.vb: Public ReadOnly Property Effects As IReadOnlyList(Of AudioEffect)
+  overload: Prowl.Runtime.Audio.AudioMixerGroup.Effects*
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.AddEffect(Prowl.Runtime.Audio.Effects.AudioEffect)
+  commentId: M:Prowl.Runtime.Audio.AudioMixerGroup.AddEffect(Prowl.Runtime.Audio.Effects.AudioEffect)
+  id: AddEffect(Prowl.Runtime.Audio.Effects.AudioEffect)
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: AddEffect(AudioEffect)
+  nameWithType: AudioMixerGroup.AddEffect(AudioEffect)
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.AddEffect(Prowl.Runtime.Audio.Effects.AudioEffect)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddEffect
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 366
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  summary: Adds an effect to this bus. The group owns it and destroys it when it is removed.
+  example: []
+  syntax:
+    content: public void AddEffect(AudioEffect effect)
+    parameters:
+    - id: effect
+      type: Prowl.Runtime.Audio.Effects.AudioEffect
+    content.vb: Public Sub AddEffect(effect As AudioEffect)
+  overload: Prowl.Runtime.Audio.AudioMixerGroup.AddEffect*
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.RemoveEffect(Prowl.Runtime.Audio.Effects.AudioEffect)
+  commentId: M:Prowl.Runtime.Audio.AudioMixerGroup.RemoveEffect(Prowl.Runtime.Audio.Effects.AudioEffect)
+  id: RemoveEffect(Prowl.Runtime.Audio.Effects.AudioEffect)
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: RemoveEffect(AudioEffect)
+  nameWithType: AudioMixerGroup.RemoveEffect(AudioEffect)
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.RemoveEffect(Prowl.Runtime.Audio.Effects.AudioEffect)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RemoveEffect
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 383
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  summary: Removes an effect from this bus and destroys it.
+  example: []
+  syntax:
+    content: public void RemoveEffect(AudioEffect effect)
+    parameters:
+    - id: effect
+      type: Prowl.Runtime.Audio.Effects.AudioEffect
+    content.vb: Public Sub RemoveEffect(effect As AudioEffect)
+  overload: Prowl.Runtime.Audio.AudioMixerGroup.RemoveEffect*
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.RefreshEffects
+  commentId: M:Prowl.Runtime.Audio.AudioMixerGroup.RefreshEffects
+  id: RefreshEffects
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: RefreshEffects()
+  nameWithType: AudioMixerGroup.RefreshEffects()
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.RefreshEffects()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RefreshEffects
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 401
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  summary: >-
+    Binds every effect to the current audio format and republishes the chain the audio thread reads.
+
+    Call after editing <xref href="Prowl.Runtime.Audio.AudioMixerGroup.Effects" data-throw-if-not-resolved="false"></xref> in place.
+  example: []
+  syntax:
+    content: public void RefreshEffects()
+    content.vb: Public Sub RefreshEffects()
+  overload: Prowl.Runtime.Audio.AudioMixerGroup.RefreshEffects*
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.OnValidate
+  commentId: M:Prowl.Runtime.Audio.AudioMixerGroup.OnValidate
+  id: OnValidate
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: OnValidate()
+  nameWithType: AudioMixerGroup.OnValidate()
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.OnValidate()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnValidate
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 547
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  example: []
+  syntax:
+    content: public override void OnValidate()
+    content.vb: Public Overrides Sub OnValidate()
+  overridden: Prowl.Runtime.EngineObject.OnValidate
+  overload: Prowl.Runtime.Audio.AudioMixerGroup.OnValidate*
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.OnUnload
+  commentId: M:Prowl.Runtime.Audio.AudioMixerGroup.OnUnload
+  id: OnUnload
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: OnUnload()
+  nameWithType: AudioMixerGroup.OnUnload()
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.OnUnload()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnUnload
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 553
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  summary: >-
+    Frees native resources and anything derived from the payload. Runs when the asset unloads, before a refill
+
+    and when a runtime asset is disposed. The database resets every field to its shell value afterwards.
+  example: []
+  syntax:
+    content: protected override void OnUnload()
+    content.vb: Protected Overrides Sub OnUnload()
+  overridden: Prowl.Runtime.Asset.OnUnload
+  overload: Prowl.Runtime.Audio.AudioMixerGroup.OnUnload*
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.DecibelsToLinear(System.Single)
+  commentId: M:Prowl.Runtime.Audio.AudioMixerGroup.DecibelsToLinear(System.Single)
+  id: DecibelsToLinear(System.Single)
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: DecibelsToLinear(float)
+  nameWithType: AudioMixerGroup.DecibelsToLinear(float)
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.DecibelsToLinear(float)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DecibelsToLinear
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 556
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  summary: Converts a decibel level to a linear gain, with <xref href="Prowl.Runtime.Audio.AudioMixerGroup.MinVolumeDB" data-throw-if-not-resolved="false"></xref> as silence.
+  example: []
+  syntax:
+    content: public static float DecibelsToLinear(float decibels)
+    parameters:
+    - id: decibels
+      type: System.Single
+    return:
+      type: System.Single
+    content.vb: Public Shared Function DecibelsToLinear(decibels As Single) As Single
+  overload: Prowl.Runtime.Audio.AudioMixerGroup.DecibelsToLinear*
+  nameWithType.vb: AudioMixerGroup.DecibelsToLinear(Single)
+  fullName.vb: Prowl.Runtime.Audio.AudioMixerGroup.DecibelsToLinear(Single)
+  name.vb: DecibelsToLinear(Single)
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.LinearToDecibels(System.Single)
+  commentId: M:Prowl.Runtime.Audio.AudioMixerGroup.LinearToDecibels(System.Single)
+  id: LinearToDecibels(System.Single)
+  parent: Prowl.Runtime.Audio.AudioMixerGroup
+  langs:
+  - csharp
+  - vb
+  name: LinearToDecibels(float)
+  nameWithType: AudioMixerGroup.LinearToDecibels(float)
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.LinearToDecibels(float)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Audio/AudioMixer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LinearToDecibels
+    path: ../Prowl/Prowl.Runtime/Audio/AudioMixer.cs
+    startLine: 560
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Audio
+  summary: Converts a linear gain to a decibel level, with 0 and below as <xref href="Prowl.Runtime.Audio.AudioMixerGroup.MinVolumeDB" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static float LinearToDecibels(float linear)
+    parameters:
+    - id: linear
+      type: System.Single
+    return:
+      type: System.Single
+    content.vb: Public Shared Function LinearToDecibels(linear As Single) As Single
+  overload: Prowl.Runtime.Audio.AudioMixerGroup.LinearToDecibels*
+  nameWithType.vb: AudioMixerGroup.LinearToDecibels(Single)
+  fullName.vb: Prowl.Runtime.Audio.AudioMixerGroup.LinearToDecibels(Single)
+  name.vb: LinearToDecibels(Single)
+references:
+- uid: Prowl.Runtime.Audio.AudioMixer
+  commentId: T:Prowl.Runtime.Audio.AudioMixer
+  parent: Prowl.Runtime.Audio
+  href: Prowl.Runtime.Audio.AudioMixer.html
+  name: AudioMixer
+  nameWithType: AudioMixer
+  fullName: Prowl.Runtime.Audio.AudioMixer
+- uid: Prowl.Runtime.AudioSource.OutputGroup
+  commentId: P:Prowl.Runtime.AudioSource.OutputGroup
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_OutputGroup
+  name: OutputGroup
+  nameWithType: AudioSource.OutputGroup
+  fullName: Prowl.Runtime.AudioSource.OutputGroup
+- uid: Prowl.Runtime.Audio
+  commentId: N:Prowl.Runtime.Audio
+  name: Prowl.Runtime.Audio
+  nameWithType: Prowl.Runtime.Audio
+  fullName: Prowl.Runtime.Audio
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Audio
+    name: Audio
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Audio
+    name: Audio
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.Runtime.EngineObject
+  commentId: T:Prowl.Runtime.EngineObject
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.EngineObject.html
+  name: EngineObject
+  nameWithType: EngineObject
+  fullName: Prowl.Runtime.EngineObject
+- uid: Prowl.Runtime.Asset
+  commentId: T:Prowl.Runtime.Asset
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.Asset.html
+  name: Asset
+  nameWithType: Asset
+  fullName: Prowl.Runtime.Asset
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Prowl.Runtime.Asset.AssetID
+  commentId: P:Prowl.Runtime.Asset.AssetID
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_AssetID
+  name: AssetID
+  nameWithType: Asset.AssetID
+  fullName: Prowl.Runtime.Asset.AssetID
+- uid: Prowl.Runtime.Asset.AssetPath
+  commentId: P:Prowl.Runtime.Asset.AssetPath
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_AssetPath
+  name: AssetPath
+  nameWithType: Asset.AssetPath
+  fullName: Prowl.Runtime.Asset.AssetPath
+- uid: Prowl.Runtime.Asset.State
+  commentId: P:Prowl.Runtime.Asset.State
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_State
+  name: State
+  nameWithType: Asset.State
+  fullName: Prowl.Runtime.Asset.State
+- uid: Prowl.Runtime.Asset.ContentVersion
+  commentId: P:Prowl.Runtime.Asset.ContentVersion
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_ContentVersion
+  name: ContentVersion
+  nameWithType: Asset.ContentVersion
+  fullName: Prowl.Runtime.Asset.ContentVersion
+- uid: Prowl.Runtime.Asset.IsFromDatabase
+  commentId: P:Prowl.Runtime.Asset.IsFromDatabase
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_IsFromDatabase
+  name: IsFromDatabase
+  nameWithType: Asset.IsFromDatabase
+  fullName: Prowl.Runtime.Asset.IsFromDatabase
+- uid: Prowl.Runtime.Asset.IsLoaded
+  commentId: P:Prowl.Runtime.Asset.IsLoaded
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_IsLoaded
+  name: IsLoaded
+  nameWithType: Asset.IsLoaded
+  fullName: Prowl.Runtime.Asset.IsLoaded
+- uid: Prowl.Runtime.Asset.IsMissing
+  commentId: P:Prowl.Runtime.Asset.IsMissing
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_IsMissing
+  name: IsMissing
+  nameWithType: Asset.IsMissing
+  fullName: Prowl.Runtime.Asset.IsMissing
+- uid: Prowl.Runtime.Asset.Load
+  commentId: M:Prowl.Runtime.Asset.Load
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_Load
+  name: Load()
+  nameWithType: Asset.Load()
+  fullName: Prowl.Runtime.Asset.Load()
+  spec.csharp:
+  - uid: Prowl.Runtime.Asset.Load
+    name: Load
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_Load
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Asset.Load
+    name: Load
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_Load
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+  commentId: M:Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+  parent: Prowl.Runtime.Asset
+  isExternal: true
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_LoadAsync_System_Threading_CancellationToken_
+  name: LoadAsync(CancellationToken)
+  nameWithType: Asset.LoadAsync(CancellationToken)
+  fullName: Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+    name: LoadAsync
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_LoadAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+    name: LoadAsync
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_LoadAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: Prowl.Runtime.Asset.HasChanged(System.Int32@)
+  commentId: M:Prowl.Runtime.Asset.HasChanged(System.Int32@)
+  parent: Prowl.Runtime.Asset
+  isExternal: true
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_HasChanged_System_Int32__
+  name: HasChanged(ref int)
+  nameWithType: Asset.HasChanged(ref int)
+  fullName: Prowl.Runtime.Asset.HasChanged(ref int)
+  nameWithType.vb: Asset.HasChanged(Integer)
+  fullName.vb: Prowl.Runtime.Asset.HasChanged(Integer)
+  name.vb: HasChanged(Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Asset.HasChanged(System.Int32@)
+    name: HasChanged
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_HasChanged_System_Int32__
+  - name: (
+  - name: ref
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Asset.HasChanged(System.Int32@)
+    name: HasChanged
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_HasChanged_System_Int32__
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.EngineObject.InstanceID
+  commentId: P:Prowl.Runtime.EngineObject.InstanceID
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_InstanceID
+  name: InstanceID
+  nameWithType: EngineObject.InstanceID
+  fullName: Prowl.Runtime.EngineObject.InstanceID
+- uid: Prowl.Runtime.EngineObject.Name
+  commentId: F:Prowl.Runtime.EngineObject.Name
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Name
+  name: Name
+  nameWithType: EngineObject.Name
+  fullName: Prowl.Runtime.EngineObject.Name
+- uid: Prowl.Runtime.EngineObject.IsDisposed
+  commentId: P:Prowl.Runtime.EngineObject.IsDisposed
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_IsDisposed
+  name: IsDisposed
+  nameWithType: EngineObject.IsDisposed
+  fullName: Prowl.Runtime.EngineObject.IsDisposed
+- uid: Prowl.Runtime.EngineObject.CreatedInstance
+  commentId: M:Prowl.Runtime.EngineObject.CreatedInstance
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_CreatedInstance
+  name: CreatedInstance()
+  nameWithType: EngineObject.CreatedInstance()
+  fullName: Prowl.Runtime.EngineObject.CreatedInstance()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.CreatedInstance
+    name: CreatedInstance
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_CreatedInstance
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.CreatedInstance
+    name: CreatedInstance
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_CreatedInstance
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Dispose
+  commentId: M:Prowl.Runtime.EngineObject.Dispose
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
+  name: Dispose()
+  nameWithType: EngineObject.Dispose()
+  fullName: Prowl.Runtime.EngineObject.Dispose()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.Dispose
+    name: Dispose
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.Dispose
+    name: Dispose
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Destroy
+  commentId: M:Prowl.Runtime.EngineObject.Destroy
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
+  name: Destroy()
+  nameWithType: EngineObject.Destroy()
+  fullName: Prowl.Runtime.EngineObject.Destroy()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.Destroy
+    name: Destroy
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.Destroy
+    name: Destroy
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.IsDestroyQueued
+  commentId: P:Prowl.Runtime.EngineObject.IsDestroyQueued
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_IsDestroyQueued
+  name: IsDestroyQueued
+  nameWithType: EngineObject.IsDestroyQueued
+  fullName: Prowl.Runtime.EngineObject.IsDestroyQueued
+- uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+  commentId: M:Prowl.Runtime.EngineObject.ProcessDestroyed
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
+  name: ProcessDestroyed()
+  nameWithType: EngineObject.ProcessDestroyed()
+  fullName: Prowl.Runtime.EngineObject.ProcessDestroyed()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+    name: ProcessDestroyed
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+    name: ProcessDestroyed
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+  commentId: M:Prowl.Runtime.EngineObject.Equals(System.Object)
+  parent: Prowl.Runtime.EngineObject
+  isExternal: true
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
+  name: Equals(object)
+  nameWithType: EngineObject.Equals(object)
+  fullName: Prowl.Runtime.EngineObject.Equals(object)
+  nameWithType.vb: EngineObject.Equals(Object)
+  fullName.vb: Prowl.Runtime.EngineObject.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+    name: Equals
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+    name: Equals
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.EngineObject.GetHashCode
+  commentId: M:Prowl.Runtime.EngineObject.GetHashCode
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
+  name: GetHashCode()
+  nameWithType: EngineObject.GetHashCode()
+  fullName: Prowl.Runtime.EngineObject.GetHashCode()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.GetHashCode
+    name: GetHashCode
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.GetHashCode
+    name: GetHashCode
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.ToString
+  commentId: M:Prowl.Runtime.EngineObject.ToString
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ToString
+  name: ToString()
+  nameWithType: EngineObject.ToString()
+  fullName: Prowl.Runtime.EngineObject.ToString()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.ToString
+    name: ToString
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ToString
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.ToString
+    name: ToString
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ToString
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsNotValid
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  parent: Prowl.Runtime.EngineObjectExtensions
+  definition: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  name: IsNotValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsNotValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsValid
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  parent: Prowl.Runtime.EngineObjectExtensions
+  definition: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  name: IsValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  name: IsNotValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsNotValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+- uid: Prowl.Runtime.EngineObjectExtensions
+  commentId: T:Prowl.Runtime.EngineObjectExtensions
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.EngineObjectExtensions.html
+  name: EngineObjectExtensions
+  nameWithType: EngineObjectExtensions
+  fullName: Prowl.Runtime.EngineObjectExtensions
+- uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  name: IsValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.Identity*
+  commentId: Overload:Prowl.Runtime.Audio.AudioMixerGroup.Identity
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_Identity
+  name: Identity
+  nameWithType: AudioMixerGroup.Identity
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.Identity
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.GroupName*
+  commentId: Overload:Prowl.Runtime.Audio.AudioMixerGroup.GroupName
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_GroupName
+  name: GroupName
+  nameWithType: AudioMixerGroup.GroupName
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.GroupName
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.MinVolumeDB
+  commentId: F:Prowl.Runtime.Audio.AudioMixerGroup.MinVolumeDB
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_MinVolumeDB
+  name: MinVolumeDB
+  nameWithType: AudioMixerGroup.MinVolumeDB
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.MinVolumeDB
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.VolumeDB*
+  commentId: Overload:Prowl.Runtime.Audio.AudioMixerGroup.VolumeDB
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_VolumeDB
+  name: VolumeDB
+  nameWithType: AudioMixerGroup.VolumeDB
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.VolumeDB
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.Volume*
+  commentId: Overload:Prowl.Runtime.Audio.AudioMixerGroup.Volume
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_Volume
+  name: Volume
+  nameWithType: AudioMixerGroup.Volume
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.Volume
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.Mute*
+  commentId: Overload:Prowl.Runtime.Audio.AudioMixerGroup.Mute
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_Mute
+  name: Mute
+  nameWithType: AudioMixerGroup.Mute
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.Mute
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.Solo*
+  commentId: Overload:Prowl.Runtime.Audio.AudioMixerGroup.Solo
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_Solo
+  name: Solo
+  nameWithType: AudioMixerGroup.Solo
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.Solo
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.SilencedBySolo*
+  commentId: Overload:Prowl.Runtime.Audio.AudioMixerGroup.SilencedBySolo
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_SilencedBySolo
+  name: SilencedBySolo
+  nameWithType: AudioMixerGroup.SilencedBySolo
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.SilencedBySolo
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.IsAncestorOf*
+  commentId: Overload:Prowl.Runtime.Audio.AudioMixerGroup.IsAncestorOf
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_IsAncestorOf_Prowl_Runtime_Audio_AudioMixerGroup_
+  name: IsAncestorOf
+  nameWithType: AudioMixerGroup.IsAncestorOf
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.IsAncestorOf
+- uid: Prowl.Runtime.Audio.AudioMixerGroup
+  commentId: T:Prowl.Runtime.Audio.AudioMixerGroup
+  parent: Prowl.Runtime.Audio
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html
+  name: AudioMixerGroup
+  nameWithType: AudioMixerGroup
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.RequestMetering
+  commentId: M:Prowl.Runtime.Audio.AudioMixerGroup.RequestMetering
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_RequestMetering
+  name: RequestMetering()
+  nameWithType: AudioMixerGroup.RequestMetering()
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.RequestMetering()
+  spec.csharp:
+  - uid: Prowl.Runtime.Audio.AudioMixerGroup.RequestMetering
+    name: RequestMetering
+    href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_RequestMetering
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Audio.AudioMixerGroup.RequestMetering
+    name: RequestMetering
+    href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_RequestMetering
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.PeakLevel*
+  commentId: Overload:Prowl.Runtime.Audio.AudioMixerGroup.PeakLevel
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_PeakLevel
+  name: PeakLevel
+  nameWithType: AudioMixerGroup.PeakLevel
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.PeakLevel
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.RequestMetering*
+  commentId: Overload:Prowl.Runtime.Audio.AudioMixerGroup.RequestMetering
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_RequestMetering
+  name: RequestMetering
+  nameWithType: AudioMixerGroup.RequestMetering
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.RequestMetering
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.Parent*
+  commentId: Overload:Prowl.Runtime.Audio.AudioMixerGroup.Parent
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_Parent
+  name: Parent
+  nameWithType: AudioMixerGroup.Parent
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.Parent
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.Mixer*
+  commentId: Overload:Prowl.Runtime.Audio.AudioMixerGroup.Mixer
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_Mixer
+  name: Mixer
+  nameWithType: AudioMixerGroup.Mixer
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.Mixer
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.Effects*
+  commentId: Overload:Prowl.Runtime.Audio.AudioMixerGroup.Effects
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_Effects
+  name: Effects
+  nameWithType: AudioMixerGroup.Effects
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.Effects
+- uid: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Audio.Effects.AudioEffect}
+  commentId: T:System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Audio.Effects.AudioEffect}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<AudioEffect>
+  nameWithType: IReadOnlyList<AudioEffect>
+  fullName: System.Collections.Generic.IReadOnlyList<Prowl.Runtime.Audio.Effects.AudioEffect>
+  nameWithType.vb: IReadOnlyList(Of AudioEffect)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.Audio.Effects.AudioEffect)
+  name.vb: IReadOnlyList(Of AudioEffect)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Runtime.Audio.Effects.AudioEffect
+    name: AudioEffect
+    href: Prowl.Runtime.Audio.Effects.AudioEffect.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Audio.Effects.AudioEffect
+    name: AudioEffect
+    href: Prowl.Runtime.Audio.Effects.AudioEffect.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.AddEffect*
+  commentId: Overload:Prowl.Runtime.Audio.AudioMixerGroup.AddEffect
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_AddEffect_Prowl_Runtime_Audio_Effects_AudioEffect_
+  name: AddEffect
+  nameWithType: AudioMixerGroup.AddEffect
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.AddEffect
+- uid: Prowl.Runtime.Audio.Effects.AudioEffect
+  commentId: T:Prowl.Runtime.Audio.Effects.AudioEffect
+  parent: Prowl.Runtime.Audio.Effects
+  href: Prowl.Runtime.Audio.Effects.AudioEffect.html
+  name: AudioEffect
+  nameWithType: AudioEffect
+  fullName: Prowl.Runtime.Audio.Effects.AudioEffect
+- uid: Prowl.Runtime.Audio.Effects
+  commentId: N:Prowl.Runtime.Audio.Effects
+  name: Prowl.Runtime.Audio.Effects
+  nameWithType: Prowl.Runtime.Audio.Effects
+  fullName: Prowl.Runtime.Audio.Effects
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Audio
+    name: Audio
+  - name: .
+  - uid: Prowl.Runtime.Audio.Effects
+    name: Effects
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Audio
+    name: Audio
+  - name: .
+  - uid: Prowl.Runtime.Audio.Effects
+    name: Effects
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.RemoveEffect*
+  commentId: Overload:Prowl.Runtime.Audio.AudioMixerGroup.RemoveEffect
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_RemoveEffect_Prowl_Runtime_Audio_Effects_AudioEffect_
+  name: RemoveEffect
+  nameWithType: AudioMixerGroup.RemoveEffect
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.RemoveEffect
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.Effects
+  commentId: P:Prowl.Runtime.Audio.AudioMixerGroup.Effects
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_Effects
+  name: Effects
+  nameWithType: AudioMixerGroup.Effects
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.Effects
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.RefreshEffects*
+  commentId: Overload:Prowl.Runtime.Audio.AudioMixerGroup.RefreshEffects
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_RefreshEffects
+  name: RefreshEffects
+  nameWithType: AudioMixerGroup.RefreshEffects
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.RefreshEffects
+- uid: Prowl.Runtime.EngineObject.OnValidate
+  commentId: M:Prowl.Runtime.EngineObject.OnValidate
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnValidate
+  name: OnValidate()
+  nameWithType: EngineObject.OnValidate()
+  fullName: Prowl.Runtime.EngineObject.OnValidate()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.OnValidate
+    name: OnValidate
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnValidate
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.OnValidate
+    name: OnValidate
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnValidate
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.OnValidate*
+  commentId: Overload:Prowl.Runtime.Audio.AudioMixerGroup.OnValidate
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_OnValidate
+  name: OnValidate
+  nameWithType: AudioMixerGroup.OnValidate
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.OnValidate
+- uid: Prowl.Runtime.Asset.OnUnload
+  commentId: M:Prowl.Runtime.Asset.OnUnload
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_OnUnload
+  name: OnUnload()
+  nameWithType: Asset.OnUnload()
+  fullName: Prowl.Runtime.Asset.OnUnload()
+  spec.csharp:
+  - uid: Prowl.Runtime.Asset.OnUnload
+    name: OnUnload
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_OnUnload
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Asset.OnUnload
+    name: OnUnload
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_OnUnload
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.OnUnload*
+  commentId: Overload:Prowl.Runtime.Audio.AudioMixerGroup.OnUnload
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_OnUnload
+  name: OnUnload
+  nameWithType: AudioMixerGroup.OnUnload
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.OnUnload
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.DecibelsToLinear*
+  commentId: Overload:Prowl.Runtime.Audio.AudioMixerGroup.DecibelsToLinear
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_DecibelsToLinear_System_Single_
+  name: DecibelsToLinear
+  nameWithType: AudioMixerGroup.DecibelsToLinear
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.DecibelsToLinear
+- uid: Prowl.Runtime.Audio.AudioMixerGroup.LinearToDecibels*
+  commentId: Overload:Prowl.Runtime.Audio.AudioMixerGroup.LinearToDecibels
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html#Prowl_Runtime_Audio_AudioMixerGroup_LinearToDecibels_System_Single_
+  name: LinearToDecibels
+  nameWithType: AudioMixerGroup.LinearToDecibels
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup.LinearToDecibels

@@ -1,0 +1,777 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.Migration.ProjectMigration
+  commentId: T:Prowl.Editor.Migration.ProjectMigration
+  id: ProjectMigration
+  parent: Prowl.Editor.Migration
+  children:
+  - Prowl.Editor.Migration.ProjectMigration.Backup(Prowl.Editor.Projects.Project)
+  - Prowl.Editor.Migration.ProjectMigration.Migrate(Prowl.Editor.Projects.Project)
+  - Prowl.Editor.Migration.ProjectMigration.PendingSteps(Prowl.Editor.Projects.Project)
+  - Prowl.Editor.Migration.ProjectMigration.Releases
+  - Prowl.Editor.Migration.ProjectMigration.StepCount(Prowl.Editor.Migration.EngineVersion)
+  langs:
+  - csharp
+  - vb
+  name: ProjectMigration
+  nameWithType: ProjectMigration
+  fullName: Prowl.Editor.Migration.ProjectMigration
+  type: Class
+  source:
+    remote:
+      path: Prowl.Editor/Migration/ProjectMigration.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ProjectMigration
+    path: ../Prowl/Prowl.Editor/Migration/ProjectMigration.cs
+    startLine: 21
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Migration
+  summary: >-
+    Brings a project saved with an older engine version up to <xref href="Prowl.Editor.Projects.Project.CurrentVersion" data-throw-if-not-resolved="false"></xref>.
+
+    Every format change is a <xref href="Prowl.Editor.Migration.MigrationStep" data-throw-if-not-resolved="false"></xref> listed by the <xref href="Prowl.Editor.Migration.MigrationRelease" data-throw-if-not-resolved="false"></xref> it shipped in,
+
+    and the steps run in version order, so a project from any older version walks up one step at a time.
+  example: []
+  syntax:
+    content: public static class ProjectMigration
+    content.vb: Public Module ProjectMigration
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Prowl.Editor.Migration.ProjectMigration.Releases
+  commentId: P:Prowl.Editor.Migration.ProjectMigration.Releases
+  id: Releases
+  parent: Prowl.Editor.Migration.ProjectMigration
+  langs:
+  - csharp
+  - vb
+  name: Releases
+  nameWithType: ProjectMigration.Releases
+  fullName: Prowl.Editor.Migration.ProjectMigration.Releases
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Migration/ProjectMigration.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Releases
+    path: ../Prowl/Prowl.Editor/Migration/ProjectMigration.cs
+    startLine: 26
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Migration
+  summary: Every release with migration steps, oldest first.
+  example: []
+  syntax:
+    content: public static IReadOnlyList<MigrationRelease> Releases { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{Prowl.Editor.Migration.MigrationRelease}
+    content.vb: Public Shared ReadOnly Property Releases As IReadOnlyList(Of MigrationRelease)
+  overload: Prowl.Editor.Migration.ProjectMigration.Releases*
+- uid: Prowl.Editor.Migration.ProjectMigration.StepCount(Prowl.Editor.Migration.EngineVersion)
+  commentId: M:Prowl.Editor.Migration.ProjectMigration.StepCount(Prowl.Editor.Migration.EngineVersion)
+  id: StepCount(Prowl.Editor.Migration.EngineVersion)
+  parent: Prowl.Editor.Migration.ProjectMigration
+  langs:
+  - csharp
+  - vb
+  name: StepCount(EngineVersion)
+  nameWithType: ProjectMigration.StepCount(EngineVersion)
+  fullName: Prowl.Editor.Migration.ProjectMigration.StepCount(Prowl.Editor.Migration.EngineVersion)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Migration/ProjectMigration.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: StepCount
+    path: ../Prowl/Prowl.Editor/Migration/ProjectMigration.cs
+    startLine: 33
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Migration
+  summary: How many steps the release for this exact version has, zero when it has none.
+  example: []
+  syntax:
+    content: public static int StepCount(EngineVersion version)
+    parameters:
+    - id: version
+      type: Prowl.Editor.Migration.EngineVersion
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function StepCount(version As EngineVersion) As Integer
+  overload: Prowl.Editor.Migration.ProjectMigration.StepCount*
+- uid: Prowl.Editor.Migration.ProjectMigration.PendingSteps(Prowl.Editor.Projects.Project)
+  commentId: M:Prowl.Editor.Migration.ProjectMigration.PendingSteps(Prowl.Editor.Projects.Project)
+  id: PendingSteps(Prowl.Editor.Projects.Project)
+  parent: Prowl.Editor.Migration.ProjectMigration
+  langs:
+  - csharp
+  - vb
+  name: PendingSteps(Project)
+  nameWithType: ProjectMigration.PendingSteps(Project)
+  fullName: Prowl.Editor.Migration.ProjectMigration.PendingSteps(Prowl.Editor.Projects.Project)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Migration/ProjectMigration.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PendingSteps
+    path: ../Prowl/Prowl.Editor/Migration/ProjectMigration.cs
+    startLine: 36
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Migration
+  summary: The steps a project still needs, in the order they run.
+  example: []
+  syntax:
+    content: public static List<(MigrationRelease Release, int Index)> PendingSteps(Project project)
+    parameters:
+    - id: project
+      type: Prowl.Editor.Projects.Project
+    return:
+      type: System.Collections.Generic.List{System.ValueTuple{Prowl.Editor.Migration.MigrationRelease,System.Int32}}
+    content.vb: Public Shared Function PendingSteps(project As Project) As List(Of (Release As MigrationRelease, Index As Integer))
+  overload: Prowl.Editor.Migration.ProjectMigration.PendingSteps*
+- uid: Prowl.Editor.Migration.ProjectMigration.Migrate(Prowl.Editor.Projects.Project)
+  commentId: M:Prowl.Editor.Migration.ProjectMigration.Migrate(Prowl.Editor.Projects.Project)
+  id: Migrate(Prowl.Editor.Projects.Project)
+  parent: Prowl.Editor.Migration.ProjectMigration
+  langs:
+  - csharp
+  - vb
+  name: Migrate(Project)
+  nameWithType: ProjectMigration.Migrate(Project)
+  fullName: Prowl.Editor.Migration.ProjectMigration.Migrate(Prowl.Editor.Projects.Project)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Migration/ProjectMigration.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Migrate
+    path: ../Prowl/Prowl.Editor/Migration/ProjectMigration.cs
+    startLine: 53
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Migration
+  summary: >-
+    Backs the project up, runs every pending step, then drops the import caches so everything reimports.
+
+    The project records each step as it finishes, so a failed migration resumes from the step that failed.
+  example: []
+  syntax:
+    content: public static void Migrate(Project project)
+    parameters:
+    - id: project
+      type: Prowl.Editor.Projects.Project
+    content.vb: Public Shared Sub Migrate(project As Project)
+  overload: Prowl.Editor.Migration.ProjectMigration.Migrate*
+- uid: Prowl.Editor.Migration.ProjectMigration.Backup(Prowl.Editor.Projects.Project)
+  commentId: M:Prowl.Editor.Migration.ProjectMigration.Backup(Prowl.Editor.Projects.Project)
+  id: Backup(Prowl.Editor.Projects.Project)
+  parent: Prowl.Editor.Migration.ProjectMigration
+  langs:
+  - csharp
+  - vb
+  name: Backup(Project)
+  nameWithType: ProjectMigration.Backup(Project)
+  fullName: Prowl.Editor.Migration.ProjectMigration.Backup(Prowl.Editor.Projects.Project)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Migration/ProjectMigration.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Backup
+    path: ../Prowl/Prowl.Editor/Migration/ProjectMigration.cs
+    startLine: 84
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Migration
+  summary: Zips everything a migration can touch into the project's Backups folder and returns the zip path.
+  example: []
+  syntax:
+    content: public static string Backup(Project project)
+    parameters:
+    - id: project
+      type: Prowl.Editor.Projects.Project
+    return:
+      type: System.String
+    content.vb: Public Shared Function Backup(project As Project) As String
+  overload: Prowl.Editor.Migration.ProjectMigration.Backup*
+references:
+- uid: Prowl.Editor.Projects.Project.CurrentVersion
+  commentId: F:Prowl.Editor.Projects.Project.CurrentVersion
+  href: Prowl.Editor.Projects.Project.html#Prowl_Editor_Projects_Project_CurrentVersion
+  name: CurrentVersion
+  nameWithType: Project.CurrentVersion
+  fullName: Prowl.Editor.Projects.Project.CurrentVersion
+- uid: Prowl.Editor.Migration.MigrationStep
+  commentId: T:Prowl.Editor.Migration.MigrationStep
+  href: Prowl.Editor.Migration.MigrationStep.html
+  name: MigrationStep
+  nameWithType: MigrationStep
+  fullName: Prowl.Editor.Migration.MigrationStep
+- uid: Prowl.Editor.Migration.MigrationRelease
+  commentId: T:Prowl.Editor.Migration.MigrationRelease
+  href: Prowl.Editor.Migration.MigrationRelease.html
+  name: MigrationRelease
+  nameWithType: MigrationRelease
+  fullName: Prowl.Editor.Migration.MigrationRelease
+- uid: Prowl.Editor.Migration
+  commentId: N:Prowl.Editor.Migration
+  name: Prowl.Editor.Migration
+  nameWithType: Prowl.Editor.Migration
+  fullName: Prowl.Editor.Migration
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Migration
+    name: Migration
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Migration
+    name: Migration
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Editor.Migration.ProjectMigration.Releases*
+  commentId: Overload:Prowl.Editor.Migration.ProjectMigration.Releases
+  href: Prowl.Editor.Migration.ProjectMigration.html#Prowl_Editor_Migration_ProjectMigration_Releases
+  name: Releases
+  nameWithType: ProjectMigration.Releases
+  fullName: Prowl.Editor.Migration.ProjectMigration.Releases
+- uid: System.Collections.Generic.IReadOnlyList{Prowl.Editor.Migration.MigrationRelease}
+  commentId: T:System.Collections.Generic.IReadOnlyList{Prowl.Editor.Migration.MigrationRelease}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<MigrationRelease>
+  nameWithType: IReadOnlyList<MigrationRelease>
+  fullName: System.Collections.Generic.IReadOnlyList<Prowl.Editor.Migration.MigrationRelease>
+  nameWithType.vb: IReadOnlyList(Of MigrationRelease)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Prowl.Editor.Migration.MigrationRelease)
+  name.vb: IReadOnlyList(Of MigrationRelease)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Editor.Migration.MigrationRelease
+    name: MigrationRelease
+    href: Prowl.Editor.Migration.MigrationRelease.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Editor.Migration.MigrationRelease
+    name: MigrationRelease
+    href: Prowl.Editor.Migration.MigrationRelease.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Prowl.Editor.Migration.ProjectMigration.StepCount*
+  commentId: Overload:Prowl.Editor.Migration.ProjectMigration.StepCount
+  href: Prowl.Editor.Migration.ProjectMigration.html#Prowl_Editor_Migration_ProjectMigration_StepCount_Prowl_Editor_Migration_EngineVersion_
+  name: StepCount
+  nameWithType: ProjectMigration.StepCount
+  fullName: Prowl.Editor.Migration.ProjectMigration.StepCount
+- uid: Prowl.Editor.Migration.EngineVersion
+  commentId: T:Prowl.Editor.Migration.EngineVersion
+  parent: Prowl.Editor.Migration
+  href: Prowl.Editor.Migration.EngineVersion.html
+  name: EngineVersion
+  nameWithType: EngineVersion
+  fullName: Prowl.Editor.Migration.EngineVersion
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Editor.Migration.ProjectMigration.PendingSteps*
+  commentId: Overload:Prowl.Editor.Migration.ProjectMigration.PendingSteps
+  href: Prowl.Editor.Migration.ProjectMigration.html#Prowl_Editor_Migration_ProjectMigration_PendingSteps_Prowl_Editor_Projects_Project_
+  name: PendingSteps
+  nameWithType: ProjectMigration.PendingSteps
+  fullName: Prowl.Editor.Migration.ProjectMigration.PendingSteps
+- uid: Prowl.Editor.Projects.Project
+  commentId: T:Prowl.Editor.Projects.Project
+  parent: Prowl.Editor.Projects
+  href: Prowl.Editor.Projects.Project.html
+  name: Project
+  nameWithType: Project
+  fullName: Prowl.Editor.Projects.Project
+- uid: System.Collections.Generic.List{System.ValueTuple{Prowl.Editor.Migration.MigrationRelease,System.Int32}}
+  commentId: T:System.Collections.Generic.List{System.ValueTuple{Prowl.Editor.Migration.MigrationRelease,System.Int32}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<(MigrationRelease Release, int Index)>
+  nameWithType: List<(MigrationRelease Release, int Index)>
+  fullName: System.Collections.Generic.List<(Prowl.Editor.Migration.MigrationRelease Release, int Index)>
+  nameWithType.vb: List(Of (Release As MigrationRelease, Index As Integer))
+  fullName.vb: System.Collections.Generic.List(Of (Release As Prowl.Editor.Migration.MigrationRelease, Index As Integer))
+  name.vb: List(Of (Release As MigrationRelease, Index As Integer))
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: (
+  - uid: Prowl.Editor.Migration.MigrationRelease
+    name: MigrationRelease
+    href: Prowl.Editor.Migration.MigrationRelease.html
+  - name: " "
+  - uid: System.ValueTuple{Prowl.Editor.Migration.MigrationRelease,System.Int32}.Release
+    name: Release
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-prowl.editor.migration.migrationrelease,system.int32-.release
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: " "
+  - uid: System.ValueTuple{Prowl.Editor.Migration.MigrationRelease,System.Int32}.Index
+    name: Index
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-prowl.editor.migration.migrationrelease,system.int32-.index
+  - name: )
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: (
+  - uid: System.ValueTuple{Prowl.Editor.Migration.MigrationRelease,System.Int32}.Release
+    name: Release
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-prowl.editor.migration.migrationrelease,system.int32-.release
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: Prowl.Editor.Migration.MigrationRelease
+    name: MigrationRelease
+    href: Prowl.Editor.Migration.MigrationRelease.html
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{Prowl.Editor.Migration.MigrationRelease,System.Int32}.Index
+    name: Index
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-prowl.editor.migration.migrationrelease,system.int32-.index
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  - name: )
+- uid: Prowl.Editor.Projects
+  commentId: N:Prowl.Editor.Projects
+  name: Prowl.Editor.Projects
+  nameWithType: Prowl.Editor.Projects
+  fullName: Prowl.Editor.Projects
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Projects
+    name: Projects
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Projects
+    name: Projects
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Editor.Migration.ProjectMigration.Migrate*
+  commentId: Overload:Prowl.Editor.Migration.ProjectMigration.Migrate
+  href: Prowl.Editor.Migration.ProjectMigration.html#Prowl_Editor_Migration_ProjectMigration_Migrate_Prowl_Editor_Projects_Project_
+  name: Migrate
+  nameWithType: ProjectMigration.Migrate
+  fullName: Prowl.Editor.Migration.ProjectMigration.Migrate
+- uid: Prowl.Editor.Migration.ProjectMigration.Backup*
+  commentId: Overload:Prowl.Editor.Migration.ProjectMigration.Backup
+  href: Prowl.Editor.Migration.ProjectMigration.html#Prowl_Editor_Migration_ProjectMigration_Backup_Prowl_Editor_Projects_Project_
+  name: Backup
+  nameWithType: ProjectMigration.Backup
+  fullName: Prowl.Editor.Migration.ProjectMigration.Backup
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

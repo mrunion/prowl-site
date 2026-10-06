@@ -1,0 +1,1512 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests
+  commentId: T:Prowl.Runtime.Test.NavMeshCrowdTests
+  id: NavMeshCrowdTests
+  parent: Prowl.Runtime.Test
+  children:
+  - Prowl.Runtime.Test.NavMeshCrowdTests.AgentTypeIdChange_RacingNavMeshEvent_LeavesNoGhostAgent
+  - Prowl.Runtime.Test.NavMeshCrowdTests.Agent_AloneNearABoundary_KeepsAvoidanceEngaged
+  - Prowl.Runtime.Test.NavMeshCrowdTests.Agent_AloneOnAStraightPath_DoesNotDriftSideways(System.Boolean)
+  - Prowl.Runtime.Test.NavMeshCrowdTests.Agent_ApproachingDestination_DoesNotWobble
+  - Prowl.Runtime.Test.NavMeshCrowdTests.Agent_NotPlanningAvoidance_IsStillAvoidedByOthers
+  - Prowl.Runtime.Test.NavMeshCrowdTests.Agent_SetPath_FollowsTheSuppliedRoute
+  - Prowl.Runtime.Test.NavMeshCrowdTests.Agent_WithNothingToSteerTowards_StopsPayingForAvoidance
+  - Prowl.Runtime.Test.NavMeshCrowdTests.ApplySettings_ReachesQueriesAndTheLiveCrowd
+  - Prowl.Runtime.Test.NavMeshCrowdTests.AreaMask_RoutesCrowdSteeringAroundExcludedArea
+  - Prowl.Runtime.Test.NavMeshCrowdTests.FilterSlots_ExhaustionFallsBackToDefault_AndReleaseFrees
+  - Prowl.Runtime.Test.NavMeshCrowdTests.FilterSlots_SharedByIdenticalConfigs
+  - Prowl.Runtime.Test.NavMeshCrowdTests.NavMeshReplacement_RebindsOnlyThatTypesCrowd
+  - Prowl.Runtime.Test.NavMeshCrowdTests.SetAreaCost_BiasesCrowdCorridorChoice
+  - Prowl.Runtime.Test.NavMeshCrowdTests.TwoAgentTypes_GetSeparateCrowds_AndBothWalk
+  langs:
+  - csharp
+  - vb
+  name: NavMeshCrowdTests
+  nameWithType: NavMeshCrowdTests
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshCrowdTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NavMeshCrowdTests
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshCrowdTests.cs
+    startLine: 16
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Per-agent-type crowds and per-agent steering filters (area mask + cost overrides flowing
+
+    through the crowd's query-filter slots, not just explicit queries).
+  example: []
+  syntax:
+    content: 'public class NavMeshCrowdTests : RuntimeTestBase, IDisposable'
+    content.vb: Public Class NavMeshCrowdTests Inherits RuntimeTestBase Implements IDisposable
+  inheritance:
+  - System.Object
+  - Prowl.Runtime.Test.RuntimeTestBase
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  - Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  - Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  - Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_WithNothingToSteerTowards_StopsPayingForAvoidance
+  commentId: M:Prowl.Runtime.Test.NavMeshCrowdTests.Agent_WithNothingToSteerTowards_StopsPayingForAvoidance
+  id: Agent_WithNothingToSteerTowards_StopsPayingForAvoidance
+  parent: Prowl.Runtime.Test.NavMeshCrowdTests
+  langs:
+  - csharp
+  - vb
+  name: Agent_WithNothingToSteerTowards_StopsPayingForAvoidance()
+  nameWithType: NavMeshCrowdTests.Agent_WithNothingToSteerTowards_StopsPayingForAvoidance()
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_WithNothingToSteerTowards_StopsPayingForAvoidance()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshCrowdTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Agent_WithNothingToSteerTowards_StopsPayingForAvoidance
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshCrowdTests.cs
+    startLine: 36
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Avoidance costs the same whether an agent is going anywhere or not, and the crowd only steers
+
+    one that has both a move target and a speed to spend — so for the rest it would plan around a
+
+    desired velocity that is provably zero. Measured at 90% of a standing crowd's navigation cost.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Agent_WithNothingToSteerTowards_StopsPayingForAvoidance()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Agent_WithNothingToSteerTowards_StopsPayingForAvoidance()
+  overload: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_WithNothingToSteerTowards_StopsPayingForAvoidance*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_NotPlanningAvoidance_IsStillAvoidedByOthers
+  commentId: M:Prowl.Runtime.Test.NavMeshCrowdTests.Agent_NotPlanningAvoidance_IsStillAvoidedByOthers
+  id: Agent_NotPlanningAvoidance_IsStillAvoidedByOthers
+  parent: Prowl.Runtime.Test.NavMeshCrowdTests
+  langs:
+  - csharp
+  - vb
+  name: Agent_NotPlanningAvoidance_IsStillAvoidedByOthers()
+  nameWithType: NavMeshCrowdTests.Agent_NotPlanningAvoidance_IsStillAvoidedByOthers()
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_NotPlanningAvoidance_IsStillAvoidedByOthers()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshCrowdTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Agent_NotPlanningAvoidance_IsStillAvoidedByOthers
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshCrowdTests.cs
+    startLine: 80
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    The half of the optimization that must not change: everyone else still avoids an agent that
+
+    has stopped planning, because a neighbour enters the obstacle query from its position and
+
+    velocity rather than from its own flags.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Agent_NotPlanningAvoidance_IsStillAvoidedByOthers()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Agent_NotPlanningAvoidance_IsStillAvoidedByOthers()
+  overload: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_NotPlanningAvoidance_IsStillAvoidedByOthers*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_ApproachingDestination_DoesNotWobble
+  commentId: M:Prowl.Runtime.Test.NavMeshCrowdTests.Agent_ApproachingDestination_DoesNotWobble
+  id: Agent_ApproachingDestination_DoesNotWobble
+  parent: Prowl.Runtime.Test.NavMeshCrowdTests
+  langs:
+  - csharp
+  - vb
+  name: Agent_ApproachingDestination_DoesNotWobble()
+  nameWithType: NavMeshCrowdTests.Agent_ApproachingDestination_DoesNotWobble()
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_ApproachingDestination_DoesNotWobble()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshCrowdTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Agent_ApproachingDestination_DoesNotWobble
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshCrowdTests.cs
+    startLine: 114
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    An agent walking a straight line must not shiver as it brakes into its destination. Facing
+
+    follows the steering vector rather than the crowd's actual velocity: the latter carries
+
+    avoidance and collision corrections that do not shrink with speed, so near the goal they
+
+    dominate a small vector and swing the agent's direction frame to frame.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Agent_ApproachingDestination_DoesNotWobble()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Agent_ApproachingDestination_DoesNotWobble()
+  overload: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_ApproachingDestination_DoesNotWobble*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_AloneOnAStraightPath_DoesNotDriftSideways(System.Boolean)
+  commentId: M:Prowl.Runtime.Test.NavMeshCrowdTests.Agent_AloneOnAStraightPath_DoesNotDriftSideways(System.Boolean)
+  id: Agent_AloneOnAStraightPath_DoesNotDriftSideways(System.Boolean)
+  parent: Prowl.Runtime.Test.NavMeshCrowdTests
+  langs:
+  - csharp
+  - vb
+  name: Agent_AloneOnAStraightPath_DoesNotDriftSideways(bool)
+  nameWithType: NavMeshCrowdTests.Agent_AloneOnAStraightPath_DoesNotDriftSideways(bool)
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_AloneOnAStraightPath_DoesNotDriftSideways(bool)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshCrowdTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Agent_AloneOnAStraightPath_DoesNotDriftSideways
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshCrowdTests.cs
+    startLine: 170
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    With nothing in range to dodge, an agent must travel the straight line it was given —
+
+    exactly, not approximately. Velocity-obstacle sampling picks from a discrete candidate set,
+
+    so running it against zero obstacles still rounds the chosen velocity, and the rounding
+
+    walks the agent centimetres off its line by the time it arrives. Skipping it also skips the
+
+    most expensive part of the crowd step.
+
+
+    <p></p>
+
+
+    The floor is deliberately far wider than the walk: the same query consumes navmesh boundary
+
+    segments, so on a floor whose edge sits inside the agent's collision query range there IS
+
+    something in range and avoidance correctly stays on. <xref href="Prowl.Runtime.Test.NavMeshObstacleTests" data-throw-if-not-resolved="false"></xref>
+
+    covers the other half — that a blocker in range still deflects it.
+  example: []
+  syntax:
+    content: >-
+      [Theory]
+
+      [InlineData(new object[] { true })]
+
+      [InlineData(new object[] { false })]
+
+      public void Agent_AloneOnAStraightPath_DoesNotDriftSideways(bool alongX)
+    parameters:
+    - id: alongX
+      type: System.Boolean
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() { True })>
+
+      <InlineData(New Object() { False })>
+
+      Public Sub Agent_AloneOnAStraightPath_DoesNotDriftSideways(alongX As Boolean)
+  overload: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_AloneOnAStraightPath_DoesNotDriftSideways*
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
+  nameWithType.vb: NavMeshCrowdTests.Agent_AloneOnAStraightPath_DoesNotDriftSideways(Boolean)
+  fullName.vb: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_AloneOnAStraightPath_DoesNotDriftSideways(Boolean)
+  name.vb: Agent_AloneOnAStraightPath_DoesNotDriftSideways(Boolean)
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_AloneNearABoundary_KeepsAvoidanceEngaged
+  commentId: M:Prowl.Runtime.Test.NavMeshCrowdTests.Agent_AloneNearABoundary_KeepsAvoidanceEngaged
+  id: Agent_AloneNearABoundary_KeepsAvoidanceEngaged
+  parent: Prowl.Runtime.Test.NavMeshCrowdTests
+  langs:
+  - csharp
+  - vb
+  name: Agent_AloneNearABoundary_KeepsAvoidanceEngaged()
+  nameWithType: NavMeshCrowdTests.Agent_AloneNearABoundary_KeepsAvoidanceEngaged()
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_AloneNearABoundary_KeepsAvoidanceEngaged()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshCrowdTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Agent_AloneNearABoundary_KeepsAvoidanceEngaged
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshCrowdTests.cs
+    startLine: 203
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    An agent alone beside a wall keeps avoidance switched on. The crowd feeds navmesh boundary
+
+    segments into the same query as neighbouring agents, so deciding on neighbour count alone
+
+    would leave a solitary agent with nothing keeping it off the edges.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Agent_AloneNearABoundary_KeepsAvoidanceEngaged()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Agent_AloneNearABoundary_KeepsAvoidanceEngaged()
+  overload: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_AloneNearABoundary_KeepsAvoidanceEngaged*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_SetPath_FollowsTheSuppliedRoute
+  commentId: M:Prowl.Runtime.Test.NavMeshCrowdTests.Agent_SetPath_FollowsTheSuppliedRoute
+  id: Agent_SetPath_FollowsTheSuppliedRoute
+  parent: Prowl.Runtime.Test.NavMeshCrowdTests
+  langs:
+  - csharp
+  - vb
+  name: Agent_SetPath_FollowsTheSuppliedRoute()
+  nameWithType: NavMeshCrowdTests.Agent_SetPath_FollowsTheSuppliedRoute()
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_SetPath_FollowsTheSuppliedRoute()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshCrowdTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Agent_SetPath_FollowsTheSuppliedRoute
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshCrowdTests.cs
+    startLine: 225
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    SetPath steers along the route it is given, rather than throwing it away and re-planning to
+
+    its endpoint. A path that does not begin where the agent stands is refused, since adopting
+
+    it would jump the corridor somewhere the agent is not.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Agent_SetPath_FollowsTheSuppliedRoute()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Agent_SetPath_FollowsTheSuppliedRoute()
+  overload: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_SetPath_FollowsTheSuppliedRoute*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.TwoAgentTypes_GetSeparateCrowds_AndBothWalk
+  commentId: M:Prowl.Runtime.Test.NavMeshCrowdTests.TwoAgentTypes_GetSeparateCrowds_AndBothWalk
+  id: TwoAgentTypes_GetSeparateCrowds_AndBothWalk
+  parent: Prowl.Runtime.Test.NavMeshCrowdTests
+  langs:
+  - csharp
+  - vb
+  name: TwoAgentTypes_GetSeparateCrowds_AndBothWalk()
+  nameWithType: NavMeshCrowdTests.TwoAgentTypes_GetSeparateCrowds_AndBothWalk()
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.TwoAgentTypes_GetSeparateCrowds_AndBothWalk()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshCrowdTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TwoAgentTypes_GetSeparateCrowds_AndBothWalk
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshCrowdTests.cs
+    startLine: 261
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Two agent types in one scene get two independent crowds, and each agent walks the mesh
+
+    baked for its own type.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void TwoAgentTypes_GetSeparateCrowds_AndBothWalk()
+    content.vb: >-
+      <Fact>
+
+      Public Sub TwoAgentTypes_GetSeparateCrowds_AndBothWalk()
+  overload: Prowl.Runtime.Test.NavMeshCrowdTests.TwoAgentTypes_GetSeparateCrowds_AndBothWalk*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.NavMeshReplacement_RebindsOnlyThatTypesCrowd
+  commentId: M:Prowl.Runtime.Test.NavMeshCrowdTests.NavMeshReplacement_RebindsOnlyThatTypesCrowd
+  id: NavMeshReplacement_RebindsOnlyThatTypesCrowd
+  parent: Prowl.Runtime.Test.NavMeshCrowdTests
+  langs:
+  - csharp
+  - vb
+  name: NavMeshReplacement_RebindsOnlyThatTypesCrowd()
+  nameWithType: NavMeshCrowdTests.NavMeshReplacement_RebindsOnlyThatTypesCrowd()
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.NavMeshReplacement_RebindsOnlyThatTypesCrowd()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshCrowdTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NavMeshReplacement_RebindsOnlyThatTypesCrowd
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshCrowdTests.cs
+    startLine: 320
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Replacing one agent type's navmesh rebinds only that type's crowd: its agents rejoin
+
+    (keeping destinations) while the other type's crowd is the same object throughout.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void NavMeshReplacement_RebindsOnlyThatTypesCrowd()
+    content.vb: >-
+      <Fact>
+
+      Public Sub NavMeshReplacement_RebindsOnlyThatTypesCrowd()
+  overload: Prowl.Runtime.Test.NavMeshCrowdTests.NavMeshReplacement_RebindsOnlyThatTypesCrowd*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.AgentTypeIdChange_RacingNavMeshEvent_LeavesNoGhostAgent
+  commentId: M:Prowl.Runtime.Test.NavMeshCrowdTests.AgentTypeIdChange_RacingNavMeshEvent_LeavesNoGhostAgent
+  id: AgentTypeIdChange_RacingNavMeshEvent_LeavesNoGhostAgent
+  parent: Prowl.Runtime.Test.NavMeshCrowdTests
+  langs:
+  - csharp
+  - vb
+  name: AgentTypeIdChange_RacingNavMeshEvent_LeavesNoGhostAgent()
+  nameWithType: NavMeshCrowdTests.AgentTypeIdChange_RacingNavMeshEvent_LeavesNoGhostAgent()
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.AgentTypeIdChange_RacingNavMeshEvent_LeavesNoGhostAgent()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshCrowdTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AgentTypeIdChange_RacingNavMeshEvent_LeavesNoGhostAgent
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshCrowdTests.cs
+    startLine: 387
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Regression: writing AgentTypeId and then having ANY navmesh event fire before the
+
+    LateUpdate drift check runs must not strand a ghost agent in the old type's still-alive
+
+    crowd. The rebind check compares against the type the agent REGISTERED under, so the
+
+    event leaves it alone and the drift check later re-places it through Unregister.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AgentTypeIdChange_RacingNavMeshEvent_LeavesNoGhostAgent()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AgentTypeIdChange_RacingNavMeshEvent_LeavesNoGhostAgent()
+  overload: Prowl.Runtime.Test.NavMeshCrowdTests.AgentTypeIdChange_RacingNavMeshEvent_LeavesNoGhostAgent*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.AreaMask_RoutesCrowdSteeringAroundExcludedArea
+  commentId: M:Prowl.Runtime.Test.NavMeshCrowdTests.AreaMask_RoutesCrowdSteeringAroundExcludedArea
+  id: AreaMask_RoutesCrowdSteeringAroundExcludedArea
+  parent: Prowl.Runtime.Test.NavMeshCrowdTests
+  langs:
+  - csharp
+  - vb
+  name: AreaMask_RoutesCrowdSteeringAroundExcludedArea()
+  nameWithType: NavMeshCrowdTests.AreaMask_RoutesCrowdSteeringAroundExcludedArea()
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.AreaMask_RoutesCrowdSteeringAroundExcludedArea()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshCrowdTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AreaMask_RoutesCrowdSteeringAroundExcludedArea
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshCrowdTests.cs
+    startLine: 514
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    The area mask steers CROWD movement, not just explicit queries: an agent whose mask
+
+    excludes the mud area takes the top corridor, while an unrestricted agent walks
+
+    straight through the mud.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AreaMask_RoutesCrowdSteeringAroundExcludedArea()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AreaMask_RoutesCrowdSteeringAroundExcludedArea()
+  overload: Prowl.Runtime.Test.NavMeshCrowdTests.AreaMask_RoutesCrowdSteeringAroundExcludedArea*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.SetAreaCost_BiasesCrowdCorridorChoice
+  commentId: M:Prowl.Runtime.Test.NavMeshCrowdTests.SetAreaCost_BiasesCrowdCorridorChoice
+  id: SetAreaCost_BiasesCrowdCorridorChoice
+  parent: Prowl.Runtime.Test.NavMeshCrowdTests
+  langs:
+  - csharp
+  - vb
+  name: SetAreaCost_BiasesCrowdCorridorChoice()
+  nameWithType: NavMeshCrowdTests.SetAreaCost_BiasesCrowdCorridorChoice()
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.SetAreaCost_BiasesCrowdCorridorChoice()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshCrowdTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetAreaCost_BiasesCrowdCorridorChoice
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshCrowdTests.cs
+    startLine: 541
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    SetAreaCost biases the crowd's corridor choice: with the mud expensive enough the
+
+    agent takes the top corridor, exactly like the mask case but by cost rather than
+
+    exclusion.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void SetAreaCost_BiasesCrowdCorridorChoice()
+    content.vb: >-
+      <Fact>
+
+      Public Sub SetAreaCost_BiasesCrowdCorridorChoice()
+  overload: Prowl.Runtime.Test.NavMeshCrowdTests.SetAreaCost_BiasesCrowdCorridorChoice*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.FilterSlots_SharedByIdenticalConfigs
+  commentId: M:Prowl.Runtime.Test.NavMeshCrowdTests.FilterSlots_SharedByIdenticalConfigs
+  id: FilterSlots_SharedByIdenticalConfigs
+  parent: Prowl.Runtime.Test.NavMeshCrowdTests
+  langs:
+  - csharp
+  - vb
+  name: FilterSlots_SharedByIdenticalConfigs()
+  nameWithType: NavMeshCrowdTests.FilterSlots_SharedByIdenticalConfigs()
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.FilterSlots_SharedByIdenticalConfigs()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshCrowdTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FilterSlots_SharedByIdenticalConfigs
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshCrowdTests.cs
+    startLine: 576
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Agents with identical steering configs share one crowd filter slot; a
+        different config gets its own; the default config stays on slot 0.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void FilterSlots_SharedByIdenticalConfigs()
+    content.vb: >-
+      <Fact>
+
+      Public Sub FilterSlots_SharedByIdenticalConfigs()
+  overload: Prowl.Runtime.Test.NavMeshCrowdTests.FilterSlots_SharedByIdenticalConfigs*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.FilterSlots_ExhaustionFallsBackToDefault_AndReleaseFrees
+  commentId: M:Prowl.Runtime.Test.NavMeshCrowdTests.FilterSlots_ExhaustionFallsBackToDefault_AndReleaseFrees
+  id: FilterSlots_ExhaustionFallsBackToDefault_AndReleaseFrees
+  parent: Prowl.Runtime.Test.NavMeshCrowdTests
+  langs:
+  - csharp
+  - vb
+  name: FilterSlots_ExhaustionFallsBackToDefault_AndReleaseFrees()
+  nameWithType: NavMeshCrowdTests.FilterSlots_ExhaustionFallsBackToDefault_AndReleaseFrees()
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.FilterSlots_ExhaustionFallsBackToDefault_AndReleaseFrees()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshCrowdTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FilterSlots_ExhaustionFallsBackToDefault_AndReleaseFrees
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshCrowdTests.cs
+    startLine: 606
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    More distinct steering configs than slots: the overflow agents warn and steer with the
+
+    default filter (slot 0) but remain fully functional, and unregistering a slotted agent
+
+    frees its slot for the next distinct config.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void FilterSlots_ExhaustionFallsBackToDefault_AndReleaseFrees()
+    content.vb: >-
+      <Fact>
+
+      Public Sub FilterSlots_ExhaustionFallsBackToDefault_AndReleaseFrees()
+  overload: Prowl.Runtime.Test.NavMeshCrowdTests.FilterSlots_ExhaustionFallsBackToDefault_AndReleaseFrees*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.ApplySettings_ReachesQueriesAndTheLiveCrowd
+  commentId: M:Prowl.Runtime.Test.NavMeshCrowdTests.ApplySettings_ReachesQueriesAndTheLiveCrowd
+  id: ApplySettings_ReachesQueriesAndTheLiveCrowd
+  parent: Prowl.Runtime.Test.NavMeshCrowdTests
+  langs:
+  - csharp
+  - vb
+  name: ApplySettings_ReachesQueriesAndTheLiveCrowd()
+  nameWithType: NavMeshCrowdTests.ApplySettings_ReachesQueriesAndTheLiveCrowd()
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.ApplySettings_ReachesQueriesAndTheLiveCrowd()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshCrowdTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ApplySettings_ReachesQueriesAndTheLiveCrowd
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshCrowdTests.cs
+    startLine: 643
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ApplySettings_ReachesQueriesAndTheLiveCrowd()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ApplySettings_ReachesQueriesAndTheLiveCrowd()
+  overload: Prowl.Runtime.Test.NavMeshCrowdTests.ApplySettings_ReachesQueriesAndTheLiveCrowd*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+references:
+- uid: Prowl.Runtime.Test
+  commentId: N:Prowl.Runtime.Test
+  name: Prowl.Runtime.Test
+  nameWithType: Prowl.Runtime.Test
+  fullName: Prowl.Runtime.Test
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.Runtime.Test.RuntimeTestBase
+  commentId: T:Prowl.Runtime.Test.RuntimeTestBase
+  parent: Prowl.Runtime.Test
+  href: Prowl.Runtime.Test.RuntimeTestBase.html
+  name: RuntimeTestBase
+  nameWithType: RuntimeTestBase
+  fullName: Prowl.Runtime.Test.RuntimeTestBase
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  commentId: P:Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_FixedDeltaTime
+  name: FixedDeltaTime
+  nameWithType: RuntimeTestBase.FixedDeltaTime
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+- uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  name: EditMode()
+  nameWithType: RuntimeTestBase.EditMode()
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.EditMode()
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+    name: EditMode
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+    name: EditMode
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  name: CreateScene(bool)
+  nameWithType: RuntimeTestBase.CreateScene(bool)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(bool)
+  nameWithType.vb: RuntimeTestBase.CreateScene(Boolean)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(Boolean)
+  name.vb: CreateScene(Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+    name: CreateScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+    name: CreateScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  name: CreateGameObject(string)
+  nameWithType: RuntimeTestBase.CreateGameObject(string)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(string)
+  nameWithType.vb: RuntimeTestBase.CreateGameObject(String)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(String)
+  name.vb: CreateGameObject(String)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+    name: CreateGameObject
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+    name: CreateGameObject
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Tick(Scene, int)
+  nameWithType: RuntimeTestBase.Tick(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.Tick(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Tick(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Update(Scene, int)
+  nameWithType: RuntimeTestBase.Update(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.Update(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Update(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Update
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Update
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: StepPhysics(Scene, int)
+  nameWithType: RuntimeTestBase.StepPhysics(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.StepPhysics(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: StepPhysics(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: StepPhysics
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: StepPhysics
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  name: ApplyFastBakeSettings(NavMeshSurface)
+  nameWithType: RuntimeTestBase.ApplyFastBakeSettings(NavMeshSurface)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+    name: ApplyFastBakeSettings
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  - name: (
+  - uid: Prowl.Runtime.NavMeshSurface
+    name: NavMeshSurface
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+    name: ApplyFastBakeSettings
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  - name: (
+  - uid: Prowl.Runtime.NavMeshSurface
+    name: NavMeshSurface
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  name: CreateFloorScene(float, bool)
+  nameWithType: RuntimeTestBase.CreateFloorScene(float, bool)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(float, bool)
+  nameWithType.vb: RuntimeTestBase.CreateFloorScene(Single, Boolean)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(Single, Boolean)
+  name.vb: CreateFloorScene(Single, Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+    name: CreateFloorScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  - name: (
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+    name: CreateFloorScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  - name: (
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  name: TickUntil(Scene, Func<bool>, int)
+  nameWithType: RuntimeTestBase.TickUntil(Scene, Func<bool>, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene, System.Func<bool>, int)
+  nameWithType.vb: RuntimeTestBase.TickUntil(Scene, Func(Of Boolean), Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene, System.Func(Of Boolean), Integer)
+  name.vb: TickUntil(Scene, Func(Of Boolean), Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+    name: TickUntil
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+    name: TickUntil
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  name: Dispose()
+  nameWithType: RuntimeTestBase.Dispose()
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Dispose()
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+    name: Dispose
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+    name: Dispose
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_WithNothingToSteerTowards_StopsPayingForAvoidance*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshCrowdTests.Agent_WithNothingToSteerTowards_StopsPayingForAvoidance
+  href: Prowl.Runtime.Test.NavMeshCrowdTests.html#Prowl_Runtime_Test_NavMeshCrowdTests_Agent_WithNothingToSteerTowards_StopsPayingForAvoidance
+  name: Agent_WithNothingToSteerTowards_StopsPayingForAvoidance
+  nameWithType: NavMeshCrowdTests.Agent_WithNothingToSteerTowards_StopsPayingForAvoidance
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_WithNothingToSteerTowards_StopsPayingForAvoidance
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_NotPlanningAvoidance_IsStillAvoidedByOthers*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshCrowdTests.Agent_NotPlanningAvoidance_IsStillAvoidedByOthers
+  href: Prowl.Runtime.Test.NavMeshCrowdTests.html#Prowl_Runtime_Test_NavMeshCrowdTests_Agent_NotPlanningAvoidance_IsStillAvoidedByOthers
+  name: Agent_NotPlanningAvoidance_IsStillAvoidedByOthers
+  nameWithType: NavMeshCrowdTests.Agent_NotPlanningAvoidance_IsStillAvoidedByOthers
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_NotPlanningAvoidance_IsStillAvoidedByOthers
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_ApproachingDestination_DoesNotWobble*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshCrowdTests.Agent_ApproachingDestination_DoesNotWobble
+  href: Prowl.Runtime.Test.NavMeshCrowdTests.html#Prowl_Runtime_Test_NavMeshCrowdTests_Agent_ApproachingDestination_DoesNotWobble
+  name: Agent_ApproachingDestination_DoesNotWobble
+  nameWithType: NavMeshCrowdTests.Agent_ApproachingDestination_DoesNotWobble
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_ApproachingDestination_DoesNotWobble
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests
+  commentId: T:Prowl.Runtime.Test.NavMeshObstacleTests
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html
+  name: NavMeshObstacleTests
+  nameWithType: NavMeshObstacleTests
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_AloneOnAStraightPath_DoesNotDriftSideways*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshCrowdTests.Agent_AloneOnAStraightPath_DoesNotDriftSideways
+  href: Prowl.Runtime.Test.NavMeshCrowdTests.html#Prowl_Runtime_Test_NavMeshCrowdTests_Agent_AloneOnAStraightPath_DoesNotDriftSideways_System_Boolean_
+  name: Agent_AloneOnAStraightPath_DoesNotDriftSideways
+  nameWithType: NavMeshCrowdTests.Agent_AloneOnAStraightPath_DoesNotDriftSideways
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_AloneOnAStraightPath_DoesNotDriftSideways
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_AloneNearABoundary_KeepsAvoidanceEngaged*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshCrowdTests.Agent_AloneNearABoundary_KeepsAvoidanceEngaged
+  href: Prowl.Runtime.Test.NavMeshCrowdTests.html#Prowl_Runtime_Test_NavMeshCrowdTests_Agent_AloneNearABoundary_KeepsAvoidanceEngaged
+  name: Agent_AloneNearABoundary_KeepsAvoidanceEngaged
+  nameWithType: NavMeshCrowdTests.Agent_AloneNearABoundary_KeepsAvoidanceEngaged
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_AloneNearABoundary_KeepsAvoidanceEngaged
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_SetPath_FollowsTheSuppliedRoute*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshCrowdTests.Agent_SetPath_FollowsTheSuppliedRoute
+  href: Prowl.Runtime.Test.NavMeshCrowdTests.html#Prowl_Runtime_Test_NavMeshCrowdTests_Agent_SetPath_FollowsTheSuppliedRoute
+  name: Agent_SetPath_FollowsTheSuppliedRoute
+  nameWithType: NavMeshCrowdTests.Agent_SetPath_FollowsTheSuppliedRoute
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.Agent_SetPath_FollowsTheSuppliedRoute
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.TwoAgentTypes_GetSeparateCrowds_AndBothWalk*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshCrowdTests.TwoAgentTypes_GetSeparateCrowds_AndBothWalk
+  href: Prowl.Runtime.Test.NavMeshCrowdTests.html#Prowl_Runtime_Test_NavMeshCrowdTests_TwoAgentTypes_GetSeparateCrowds_AndBothWalk
+  name: TwoAgentTypes_GetSeparateCrowds_AndBothWalk
+  nameWithType: NavMeshCrowdTests.TwoAgentTypes_GetSeparateCrowds_AndBothWalk
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.TwoAgentTypes_GetSeparateCrowds_AndBothWalk
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.NavMeshReplacement_RebindsOnlyThatTypesCrowd*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshCrowdTests.NavMeshReplacement_RebindsOnlyThatTypesCrowd
+  href: Prowl.Runtime.Test.NavMeshCrowdTests.html#Prowl_Runtime_Test_NavMeshCrowdTests_NavMeshReplacement_RebindsOnlyThatTypesCrowd
+  name: NavMeshReplacement_RebindsOnlyThatTypesCrowd
+  nameWithType: NavMeshCrowdTests.NavMeshReplacement_RebindsOnlyThatTypesCrowd
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.NavMeshReplacement_RebindsOnlyThatTypesCrowd
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.AgentTypeIdChange_RacingNavMeshEvent_LeavesNoGhostAgent*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshCrowdTests.AgentTypeIdChange_RacingNavMeshEvent_LeavesNoGhostAgent
+  href: Prowl.Runtime.Test.NavMeshCrowdTests.html#Prowl_Runtime_Test_NavMeshCrowdTests_AgentTypeIdChange_RacingNavMeshEvent_LeavesNoGhostAgent
+  name: AgentTypeIdChange_RacingNavMeshEvent_LeavesNoGhostAgent
+  nameWithType: NavMeshCrowdTests.AgentTypeIdChange_RacingNavMeshEvent_LeavesNoGhostAgent
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.AgentTypeIdChange_RacingNavMeshEvent_LeavesNoGhostAgent
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.AreaMask_RoutesCrowdSteeringAroundExcludedArea*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshCrowdTests.AreaMask_RoutesCrowdSteeringAroundExcludedArea
+  href: Prowl.Runtime.Test.NavMeshCrowdTests.html#Prowl_Runtime_Test_NavMeshCrowdTests_AreaMask_RoutesCrowdSteeringAroundExcludedArea
+  name: AreaMask_RoutesCrowdSteeringAroundExcludedArea
+  nameWithType: NavMeshCrowdTests.AreaMask_RoutesCrowdSteeringAroundExcludedArea
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.AreaMask_RoutesCrowdSteeringAroundExcludedArea
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.SetAreaCost_BiasesCrowdCorridorChoice*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshCrowdTests.SetAreaCost_BiasesCrowdCorridorChoice
+  href: Prowl.Runtime.Test.NavMeshCrowdTests.html#Prowl_Runtime_Test_NavMeshCrowdTests_SetAreaCost_BiasesCrowdCorridorChoice
+  name: SetAreaCost_BiasesCrowdCorridorChoice
+  nameWithType: NavMeshCrowdTests.SetAreaCost_BiasesCrowdCorridorChoice
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.SetAreaCost_BiasesCrowdCorridorChoice
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.FilterSlots_SharedByIdenticalConfigs*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshCrowdTests.FilterSlots_SharedByIdenticalConfigs
+  href: Prowl.Runtime.Test.NavMeshCrowdTests.html#Prowl_Runtime_Test_NavMeshCrowdTests_FilterSlots_SharedByIdenticalConfigs
+  name: FilterSlots_SharedByIdenticalConfigs
+  nameWithType: NavMeshCrowdTests.FilterSlots_SharedByIdenticalConfigs
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.FilterSlots_SharedByIdenticalConfigs
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.FilterSlots_ExhaustionFallsBackToDefault_AndReleaseFrees*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshCrowdTests.FilterSlots_ExhaustionFallsBackToDefault_AndReleaseFrees
+  href: Prowl.Runtime.Test.NavMeshCrowdTests.html#Prowl_Runtime_Test_NavMeshCrowdTests_FilterSlots_ExhaustionFallsBackToDefault_AndReleaseFrees
+  name: FilterSlots_ExhaustionFallsBackToDefault_AndReleaseFrees
+  nameWithType: NavMeshCrowdTests.FilterSlots_ExhaustionFallsBackToDefault_AndReleaseFrees
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.FilterSlots_ExhaustionFallsBackToDefault_AndReleaseFrees
+- uid: Prowl.Runtime.Test.NavMeshCrowdTests.ApplySettings_ReachesQueriesAndTheLiveCrowd*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshCrowdTests.ApplySettings_ReachesQueriesAndTheLiveCrowd
+  href: Prowl.Runtime.Test.NavMeshCrowdTests.html#Prowl_Runtime_Test_NavMeshCrowdTests_ApplySettings_ReachesQueriesAndTheLiveCrowd
+  name: ApplySettings_ReachesQueriesAndTheLiveCrowd
+  nameWithType: NavMeshCrowdTests.ApplySettings_ReachesQueriesAndTheLiveCrowd
+  fullName: Prowl.Runtime.Test.NavMeshCrowdTests.ApplySettings_ReachesQueriesAndTheLiveCrowd

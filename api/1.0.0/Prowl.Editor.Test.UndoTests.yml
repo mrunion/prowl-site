@@ -1,0 +1,2713 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.Test.UndoTests
+  commentId: T:Prowl.Editor.Test.UndoTests
+  id: UndoTests
+  parent: Prowl.Editor.Test
+  children:
+  - Prowl.Editor.Test.UndoTests.#ctor
+  - Prowl.Editor.Test.UndoTests.ActionAndSnapshotSameFrame_PropertySnapshotIsDiscarded
+  - Prowl.Editor.Test.UndoTests.ApplyGameObjectChanges_AppliesToAll_AsOneUndoStep
+  - Prowl.Editor.Test.UndoTests.CancelContinuous_RestoresStart_NoStep
+  - Prowl.Editor.Test.UndoTests.Clear_EmptiesHistory
+  - Prowl.Editor.Test.UndoTests.ContinuousPropertyEdits_CoalesceIntoOneStep
+  - Prowl.Editor.Test.UndoTests.Continuous_End_PushesOneStep_UndoRestoresStart_RedoReappliesEnd
+  - Prowl.Editor.Test.UndoTests.Continuous_MultipleTargets_RestoredTogether
+  - Prowl.Editor.Test.UndoTests.Continuous_NoMovement_PushesNoStep
+  - Prowl.Editor.Test.UndoTests.MaxSteps_TrimsOldestSteps
+  - Prowl.Editor.Test.UndoTests.NewAction_ClearsRedoStack
+  - Prowl.Editor.Test.UndoTests.NoOpChange_DoesNotCreateStep
+  - Prowl.Editor.Test.UndoTests.PerformUndo_DuringContinuous_CancelsInsteadOfUndoing
+  - Prowl.Editor.Test.UndoTests.PopContext_WithNothingSavedIsJustAClear
+  - Prowl.Editor.Test.UndoTests.PropertyChange_MultipleFieldsSameFrame_OneStep
+  - Prowl.Editor.Test.UndoTests.PropertyChange_Undo_NotifiesTheRestoredObject
+  - Prowl.Editor.Test.UndoTests.PropertyChange_Undo_Redo
+  - Prowl.Editor.Test.UndoTests.PropertyEdits_OutsideTimeWindow_StayAsSeparateSteps
+  - Prowl.Editor.Test.UndoTests.PropertyUndo_OnDestroyedTarget_IsSafeNoOp
+  - Prowl.Editor.Test.UndoTests.PropertyUndo_SurvivesDestroyAndRecreate
+  - Prowl.Editor.Test.UndoTests.PushContext_SetsTheHistoryAsideAndPopBringsItBack
+  - Prowl.Editor.Test.UndoTests.RegisterActionGroup_OneStep_UndoesAllInReverse
+  - Prowl.Editor.Test.UndoTests.RegisterAction_Undo_Redo
+  - Prowl.Editor.Test.UndoTests.RegisterCoalescableAction_MergesAndKeepsOriginalUndoLatestRedo
+  - Prowl.Editor.Test.UndoTests.RegisterCreatedObject_Undo_Destroys_Redo_Recreates
+  - Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_BringsBackARuntimeMaterialNothingElseHeld
+  - Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_MissingScriptKeepsItsLinkToTheRestOfTheScene
+  - Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_RestoresChildren
+  - Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_RestoresComponentDataAndIdentifier
+  - Prowl.Editor.Test.UndoTests.Undo_OnEmptyHistory_IsSafeNoOp
+  - Prowl.Editor.Test.UndoTests.WhenPlaying_RecordingIsNoOp
+  langs:
+  - csharp
+  - vb
+  name: UndoTests
+  nameWithType: UndoTests
+  fullName: Prowl.Editor.Test.UndoTests
+  type: Class
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: UndoTests
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 26
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: >-
+    Tests for the editor <xref href="Prowl.Editor.Core.Undo" data-throw-if-not-resolved="false"></xref> system - high stakes because a bug here means lost work.
+
+    Covers property snapshots, action records, structural create/destroy (full restore), identifier
+
+    survival across destroy/recreate, time-window coalescing, continuous (gizmo) operations, history
+
+    trimming, and play-mode gating. Pending records are flushed via the public <xref href="Prowl.Editor.Core.Undo.IncrementGroup" data-throw-if-not-resolved="false"></xref>
+
+    (same path as the per-frame FlushFrame).
+  example: []
+  syntax:
+    content: 'public class UndoTests : EditorTestHarness, IDisposable'
+    content.vb: Public Class UndoTests Inherits EditorTestHarness Implements IDisposable
+  inheritance:
+  - System.Object
+  - Prowl.Editor.Test.EditorTestHarness
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - Prowl.Editor.Test.EditorTestHarness.Project
+  - Prowl.Editor.Test.EditorTestHarness.Assets
+  - Prowl.Editor.Test.EditorTestHarness.Load``1(System.Guid)
+  - Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(System.String)
+  - Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid,System.String,System.Action{Prowl.Runtime.GameObject})
+  - Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+  - Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.ReopenDatabase
+  - Prowl.Editor.Test.EditorTestHarness.WriteScript(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.AssemblyBytesResolver
+  - Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly
+  - Prowl.Editor.Test.EditorTestHarness.EnterPlayMode
+  - Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(System.String,Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  - Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(System.String)
+  - Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid,Prowl.Runtime.AssetPackagingMode)
+  - Prowl.Editor.Test.EditorTestHarness.CompileLibrary(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(System.String,System.Int32)
+  - Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(System.String)
+  - Prowl.Editor.Test.EditorTestHarness.RunDotnet(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.Dispose
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Editor.Test.UndoTests.#ctor
+  commentId: M:Prowl.Editor.Test.UndoTests.#ctor
+  id: '#ctor'
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: UndoTests()
+  nameWithType: UndoTests.UndoTests()
+  fullName: Prowl.Editor.Test.UndoTests.UndoTests()
+  type: Constructor
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: .ctor
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 28
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: public UndoTests()
+    content.vb: Public Sub New()
+  overload: Prowl.Editor.Test.UndoTests.#ctor*
+  nameWithType.vb: UndoTests.New()
+  fullName.vb: Prowl.Editor.Test.UndoTests.New()
+  name.vb: New()
+- uid: Prowl.Editor.Test.UndoTests.PropertyChange_Undo_NotifiesTheRestoredObject
+  commentId: M:Prowl.Editor.Test.UndoTests.PropertyChange_Undo_NotifiesTheRestoredObject
+  id: PropertyChange_Undo_NotifiesTheRestoredObject
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: PropertyChange_Undo_NotifiesTheRestoredObject()
+  nameWithType: UndoTests.PropertyChange_Undo_NotifiesTheRestoredObject()
+  fullName: Prowl.Editor.Test.UndoTests.PropertyChange_Undo_NotifiesTheRestoredObject()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PropertyChange_Undo_NotifiesTheRestoredObject
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 69
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: >-
+    Restoring writes fields directly, so a component that pushes its fields into live state has
+
+    to be notified the same way an inspector edit notifies it. Without this, an undo restores the
+
+    field and leaves the applied state on the value being undone — a collider keeps the shape, a
+
+    nav obstacle keeps the hole.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PropertyChange_Undo_NotifiesTheRestoredObject()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PropertyChange_Undo_NotifiesTheRestoredObject()
+  overload: Prowl.Editor.Test.UndoTests.PropertyChange_Undo_NotifiesTheRestoredObject*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.PropertyChange_Undo_Redo
+  commentId: M:Prowl.Editor.Test.UndoTests.PropertyChange_Undo_Redo
+  id: PropertyChange_Undo_Redo
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: PropertyChange_Undo_Redo()
+  nameWithType: UndoTests.PropertyChange_Undo_Redo()
+  fullName: Prowl.Editor.Test.UndoTests.PropertyChange_Undo_Redo()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PropertyChange_Undo_Redo
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 95
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PropertyChange_Undo_Redo()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PropertyChange_Undo_Redo()
+  overload: Prowl.Editor.Test.UndoTests.PropertyChange_Undo_Redo*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.PropertyChange_MultipleFieldsSameFrame_OneStep
+  commentId: M:Prowl.Editor.Test.UndoTests.PropertyChange_MultipleFieldsSameFrame_OneStep
+  id: PropertyChange_MultipleFieldsSameFrame_OneStep
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: PropertyChange_MultipleFieldsSameFrame_OneStep()
+  nameWithType: UndoTests.PropertyChange_MultipleFieldsSameFrame_OneStep()
+  fullName: Prowl.Editor.Test.UndoTests.PropertyChange_MultipleFieldsSameFrame_OneStep()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PropertyChange_MultipleFieldsSameFrame_OneStep
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 113
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PropertyChange_MultipleFieldsSameFrame_OneStep()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PropertyChange_MultipleFieldsSameFrame_OneStep()
+  overload: Prowl.Editor.Test.UndoTests.PropertyChange_MultipleFieldsSameFrame_OneStep*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.NoOpChange_DoesNotCreateStep
+  commentId: M:Prowl.Editor.Test.UndoTests.NoOpChange_DoesNotCreateStep
+  id: NoOpChange_DoesNotCreateStep
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: NoOpChange_DoesNotCreateStep()
+  nameWithType: UndoTests.NoOpChange_DoesNotCreateStep()
+  fullName: Prowl.Editor.Test.UndoTests.NoOpChange_DoesNotCreateStep()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NoOpChange_DoesNotCreateStep
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 128
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void NoOpChange_DoesNotCreateStep()
+    content.vb: >-
+      <Fact>
+
+      Public Sub NoOpChange_DoesNotCreateStep()
+  overload: Prowl.Editor.Test.UndoTests.NoOpChange_DoesNotCreateStep*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.NewAction_ClearsRedoStack
+  commentId: M:Prowl.Editor.Test.UndoTests.NewAction_ClearsRedoStack
+  id: NewAction_ClearsRedoStack
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: NewAction_ClearsRedoStack()
+  nameWithType: UndoTests.NewAction_ClearsRedoStack()
+  fullName: Prowl.Editor.Test.UndoTests.NewAction_ClearsRedoStack()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NewAction_ClearsRedoStack
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 140
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void NewAction_ClearsRedoStack()
+    content.vb: >-
+      <Fact>
+
+      Public Sub NewAction_ClearsRedoStack()
+  overload: Prowl.Editor.Test.UndoTests.NewAction_ClearsRedoStack*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.RegisterAction_Undo_Redo
+  commentId: M:Prowl.Editor.Test.UndoTests.RegisterAction_Undo_Redo
+  id: RegisterAction_Undo_Redo
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: RegisterAction_Undo_Redo()
+  nameWithType: UndoTests.RegisterAction_Undo_Redo()
+  fullName: Prowl.Editor.Test.UndoTests.RegisterAction_Undo_Redo()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RegisterAction_Undo_Redo
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 160
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RegisterAction_Undo_Redo()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RegisterAction_Undo_Redo()
+  overload: Prowl.Editor.Test.UndoTests.RegisterAction_Undo_Redo*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.RegisterActionGroup_OneStep_UndoesAllInReverse
+  commentId: M:Prowl.Editor.Test.UndoTests.RegisterActionGroup_OneStep_UndoesAllInReverse
+  id: RegisterActionGroup_OneStep_UndoesAllInReverse
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: RegisterActionGroup_OneStep_UndoesAllInReverse()
+  nameWithType: UndoTests.RegisterActionGroup_OneStep_UndoesAllInReverse()
+  fullName: Prowl.Editor.Test.UndoTests.RegisterActionGroup_OneStep_UndoesAllInReverse()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RegisterActionGroup_OneStep_UndoesAllInReverse
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 174
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RegisterActionGroup_OneStep_UndoesAllInReverse()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RegisterActionGroup_OneStep_UndoesAllInReverse()
+  overload: Prowl.Editor.Test.UndoTests.RegisterActionGroup_OneStep_UndoesAllInReverse*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.RegisterCreatedObject_Undo_Destroys_Redo_Recreates
+  commentId: M:Prowl.Editor.Test.UndoTests.RegisterCreatedObject_Undo_Destroys_Redo_Recreates
+  id: RegisterCreatedObject_Undo_Destroys_Redo_Recreates
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: RegisterCreatedObject_Undo_Destroys_Redo_Recreates()
+  nameWithType: UndoTests.RegisterCreatedObject_Undo_Destroys_Redo_Recreates()
+  fullName: Prowl.Editor.Test.UndoTests.RegisterCreatedObject_Undo_Destroys_Redo_Recreates()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RegisterCreatedObject_Undo_Destroys_Redo_Recreates
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 197
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RegisterCreatedObject_Undo_Destroys_Redo_Recreates()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RegisterCreatedObject_Undo_Destroys_Redo_Recreates()
+  overload: Prowl.Editor.Test.UndoTests.RegisterCreatedObject_Undo_Destroys_Redo_Recreates*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_RestoresComponentDataAndIdentifier
+  commentId: M:Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_RestoresComponentDataAndIdentifier
+  id: RegisterDestroyObject_Undo_RestoresComponentDataAndIdentifier
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: RegisterDestroyObject_Undo_RestoresComponentDataAndIdentifier()
+  nameWithType: UndoTests.RegisterDestroyObject_Undo_RestoresComponentDataAndIdentifier()
+  fullName: Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_RestoresComponentDataAndIdentifier()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RegisterDestroyObject_Undo_RestoresComponentDataAndIdentifier
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 224
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RegisterDestroyObject_Undo_RestoresComponentDataAndIdentifier()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RegisterDestroyObject_Undo_RestoresComponentDataAndIdentifier()
+  overload: Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_RestoresComponentDataAndIdentifier*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_BringsBackARuntimeMaterialNothingElseHeld
+  commentId: M:Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_BringsBackARuntimeMaterialNothingElseHeld
+  id: RegisterDestroyObject_Undo_BringsBackARuntimeMaterialNothingElseHeld
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: RegisterDestroyObject_Undo_BringsBackARuntimeMaterialNothingElseHeld()
+  nameWithType: UndoTests.RegisterDestroyObject_Undo_BringsBackARuntimeMaterialNothingElseHeld()
+  fullName: Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_BringsBackARuntimeMaterialNothingElseHeld()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RegisterDestroyObject_Undo_BringsBackARuntimeMaterialNothingElseHeld
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 247
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RegisterDestroyObject_Undo_BringsBackARuntimeMaterialNothingElseHeld()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RegisterDestroyObject_Undo_BringsBackARuntimeMaterialNothingElseHeld()
+  overload: Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_BringsBackARuntimeMaterialNothingElseHeld*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_MissingScriptKeepsItsLinkToTheRestOfTheScene
+  commentId: M:Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_MissingScriptKeepsItsLinkToTheRestOfTheScene
+  id: RegisterDestroyObject_Undo_MissingScriptKeepsItsLinkToTheRestOfTheScene
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: RegisterDestroyObject_Undo_MissingScriptKeepsItsLinkToTheRestOfTheScene()
+  nameWithType: UndoTests.RegisterDestroyObject_Undo_MissingScriptKeepsItsLinkToTheRestOfTheScene()
+  fullName: Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_MissingScriptKeepsItsLinkToTheRestOfTheScene()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RegisterDestroyObject_Undo_MissingScriptKeepsItsLinkToTheRestOfTheScene
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 275
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RegisterDestroyObject_Undo_MissingScriptKeepsItsLinkToTheRestOfTheScene()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RegisterDestroyObject_Undo_MissingScriptKeepsItsLinkToTheRestOfTheScene()
+  overload: Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_MissingScriptKeepsItsLinkToTheRestOfTheScene*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_RestoresChildren
+  commentId: M:Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_RestoresChildren
+  id: RegisterDestroyObject_Undo_RestoresChildren
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: RegisterDestroyObject_Undo_RestoresChildren()
+  nameWithType: UndoTests.RegisterDestroyObject_Undo_RestoresChildren()
+  fullName: Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_RestoresChildren()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RegisterDestroyObject_Undo_RestoresChildren
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 306
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RegisterDestroyObject_Undo_RestoresChildren()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RegisterDestroyObject_Undo_RestoresChildren()
+  overload: Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_RestoresChildren*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.PropertyUndo_SurvivesDestroyAndRecreate
+  commentId: M:Prowl.Editor.Test.UndoTests.PropertyUndo_SurvivesDestroyAndRecreate
+  id: PropertyUndo_SurvivesDestroyAndRecreate
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: PropertyUndo_SurvivesDestroyAndRecreate()
+  nameWithType: UndoTests.PropertyUndo_SurvivesDestroyAndRecreate()
+  fullName: Prowl.Editor.Test.UndoTests.PropertyUndo_SurvivesDestroyAndRecreate()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PropertyUndo_SurvivesDestroyAndRecreate
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 337
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PropertyUndo_SurvivesDestroyAndRecreate()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PropertyUndo_SurvivesDestroyAndRecreate()
+  overload: Prowl.Editor.Test.UndoTests.PropertyUndo_SurvivesDestroyAndRecreate*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.ContinuousPropertyEdits_CoalesceIntoOneStep
+  commentId: M:Prowl.Editor.Test.UndoTests.ContinuousPropertyEdits_CoalesceIntoOneStep
+  id: ContinuousPropertyEdits_CoalesceIntoOneStep
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: ContinuousPropertyEdits_CoalesceIntoOneStep()
+  nameWithType: UndoTests.ContinuousPropertyEdits_CoalesceIntoOneStep()
+  fullName: Prowl.Editor.Test.UndoTests.ContinuousPropertyEdits_CoalesceIntoOneStep()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ContinuousPropertyEdits_CoalesceIntoOneStep
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 362
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ContinuousPropertyEdits_CoalesceIntoOneStep()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ContinuousPropertyEdits_CoalesceIntoOneStep()
+  overload: Prowl.Editor.Test.UndoTests.ContinuousPropertyEdits_CoalesceIntoOneStep*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.MaxSteps_TrimsOldestSteps
+  commentId: M:Prowl.Editor.Test.UndoTests.MaxSteps_TrimsOldestSteps
+  id: MaxSteps_TrimsOldestSteps
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: MaxSteps_TrimsOldestSteps()
+  nameWithType: UndoTests.MaxSteps_TrimsOldestSteps()
+  fullName: Prowl.Editor.Test.UndoTests.MaxSteps_TrimsOldestSteps()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MaxSteps_TrimsOldestSteps
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 382
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void MaxSteps_TrimsOldestSteps()
+    content.vb: >-
+      <Fact>
+
+      Public Sub MaxSteps_TrimsOldestSteps()
+  overload: Prowl.Editor.Test.UndoTests.MaxSteps_TrimsOldestSteps*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.Clear_EmptiesHistory
+  commentId: M:Prowl.Editor.Test.UndoTests.Clear_EmptiesHistory
+  id: Clear_EmptiesHistory
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: Clear_EmptiesHistory()
+  nameWithType: UndoTests.Clear_EmptiesHistory()
+  fullName: Prowl.Editor.Test.UndoTests.Clear_EmptiesHistory()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Clear_EmptiesHistory
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 403
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Clear_EmptiesHistory()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Clear_EmptiesHistory()
+  overload: Prowl.Editor.Test.UndoTests.Clear_EmptiesHistory*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.Continuous_End_PushesOneStep_UndoRestoresStart_RedoReappliesEnd
+  commentId: M:Prowl.Editor.Test.UndoTests.Continuous_End_PushesOneStep_UndoRestoresStart_RedoReappliesEnd
+  id: Continuous_End_PushesOneStep_UndoRestoresStart_RedoReappliesEnd
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: Continuous_End_PushesOneStep_UndoRestoresStart_RedoReappliesEnd()
+  nameWithType: UndoTests.Continuous_End_PushesOneStep_UndoRestoresStart_RedoReappliesEnd()
+  fullName: Prowl.Editor.Test.UndoTests.Continuous_End_PushesOneStep_UndoRestoresStart_RedoReappliesEnd()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Continuous_End_PushesOneStep_UndoRestoresStart_RedoReappliesEnd
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 418
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Continuous_End_PushesOneStep_UndoRestoresStart_RedoReappliesEnd()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Continuous_End_PushesOneStep_UndoRestoresStart_RedoReappliesEnd()
+  overload: Prowl.Editor.Test.UndoTests.Continuous_End_PushesOneStep_UndoRestoresStart_RedoReappliesEnd*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.CancelContinuous_RestoresStart_NoStep
+  commentId: M:Prowl.Editor.Test.UndoTests.CancelContinuous_RestoresStart_NoStep
+  id: CancelContinuous_RestoresStart_NoStep
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: CancelContinuous_RestoresStart_NoStep()
+  nameWithType: UndoTests.CancelContinuous_RestoresStart_NoStep()
+  fullName: Prowl.Editor.Test.UndoTests.CancelContinuous_RestoresStart_NoStep()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CancelContinuous_RestoresStart_NoStep
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 436
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void CancelContinuous_RestoresStart_NoStep()
+    content.vb: >-
+      <Fact>
+
+      Public Sub CancelContinuous_RestoresStart_NoStep()
+  overload: Prowl.Editor.Test.UndoTests.CancelContinuous_RestoresStart_NoStep*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.PerformUndo_DuringContinuous_CancelsInsteadOfUndoing
+  commentId: M:Prowl.Editor.Test.UndoTests.PerformUndo_DuringContinuous_CancelsInsteadOfUndoing
+  id: PerformUndo_DuringContinuous_CancelsInsteadOfUndoing
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: PerformUndo_DuringContinuous_CancelsInsteadOfUndoing()
+  nameWithType: UndoTests.PerformUndo_DuringContinuous_CancelsInsteadOfUndoing()
+  fullName: Prowl.Editor.Test.UndoTests.PerformUndo_DuringContinuous_CancelsInsteadOfUndoing()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PerformUndo_DuringContinuous_CancelsInsteadOfUndoing
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 450
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PerformUndo_DuringContinuous_CancelsInsteadOfUndoing()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PerformUndo_DuringContinuous_CancelsInsteadOfUndoing()
+  overload: Prowl.Editor.Test.UndoTests.PerformUndo_DuringContinuous_CancelsInsteadOfUndoing*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.Continuous_NoMovement_PushesNoStep
+  commentId: M:Prowl.Editor.Test.UndoTests.Continuous_NoMovement_PushesNoStep
+  id: Continuous_NoMovement_PushesNoStep
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: Continuous_NoMovement_PushesNoStep()
+  nameWithType: UndoTests.Continuous_NoMovement_PushesNoStep()
+  fullName: Prowl.Editor.Test.UndoTests.Continuous_NoMovement_PushesNoStep()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Continuous_NoMovement_PushesNoStep
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 465
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Continuous_NoMovement_PushesNoStep()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Continuous_NoMovement_PushesNoStep()
+  overload: Prowl.Editor.Test.UndoTests.Continuous_NoMovement_PushesNoStep*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.ActionAndSnapshotSameFrame_PropertySnapshotIsDiscarded
+  commentId: M:Prowl.Editor.Test.UndoTests.ActionAndSnapshotSameFrame_PropertySnapshotIsDiscarded
+  id: ActionAndSnapshotSameFrame_PropertySnapshotIsDiscarded
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: ActionAndSnapshotSameFrame_PropertySnapshotIsDiscarded()
+  nameWithType: UndoTests.ActionAndSnapshotSameFrame_PropertySnapshotIsDiscarded()
+  fullName: Prowl.Editor.Test.UndoTests.ActionAndSnapshotSameFrame_PropertySnapshotIsDiscarded()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ActionAndSnapshotSameFrame_PropertySnapshotIsDiscarded
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 478
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ActionAndSnapshotSameFrame_PropertySnapshotIsDiscarded()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ActionAndSnapshotSameFrame_PropertySnapshotIsDiscarded()
+  overload: Prowl.Editor.Test.UndoTests.ActionAndSnapshotSameFrame_PropertySnapshotIsDiscarded*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.WhenPlaying_RecordingIsNoOp
+  commentId: M:Prowl.Editor.Test.UndoTests.WhenPlaying_RecordingIsNoOp
+  id: WhenPlaying_RecordingIsNoOp
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: WhenPlaying_RecordingIsNoOp()
+  nameWithType: UndoTests.WhenPlaying_RecordingIsNoOp()
+  fullName: Prowl.Editor.Test.UndoTests.WhenPlaying_RecordingIsNoOp()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WhenPlaying_RecordingIsNoOp
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 496
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void WhenPlaying_RecordingIsNoOp()
+    content.vb: >-
+      <Fact>
+
+      Public Sub WhenPlaying_RecordingIsNoOp()
+  overload: Prowl.Editor.Test.UndoTests.WhenPlaying_RecordingIsNoOp*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.Undo_OnEmptyHistory_IsSafeNoOp
+  commentId: M:Prowl.Editor.Test.UndoTests.Undo_OnEmptyHistory_IsSafeNoOp
+  id: Undo_OnEmptyHistory_IsSafeNoOp
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: Undo_OnEmptyHistory_IsSafeNoOp()
+  nameWithType: UndoTests.Undo_OnEmptyHistory_IsSafeNoOp()
+  fullName: Prowl.Editor.Test.UndoTests.Undo_OnEmptyHistory_IsSafeNoOp()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Undo_OnEmptyHistory_IsSafeNoOp
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 514
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Undo_OnEmptyHistory_IsSafeNoOp()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Undo_OnEmptyHistory_IsSafeNoOp()
+  overload: Prowl.Editor.Test.UndoTests.Undo_OnEmptyHistory_IsSafeNoOp*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.PropertyEdits_OutsideTimeWindow_StayAsSeparateSteps
+  commentId: M:Prowl.Editor.Test.UndoTests.PropertyEdits_OutsideTimeWindow_StayAsSeparateSteps
+  id: PropertyEdits_OutsideTimeWindow_StayAsSeparateSteps
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: PropertyEdits_OutsideTimeWindow_StayAsSeparateSteps()
+  nameWithType: UndoTests.PropertyEdits_OutsideTimeWindow_StayAsSeparateSteps()
+  fullName: Prowl.Editor.Test.UndoTests.PropertyEdits_OutsideTimeWindow_StayAsSeparateSteps()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PropertyEdits_OutsideTimeWindow_StayAsSeparateSteps
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 526
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PropertyEdits_OutsideTimeWindow_StayAsSeparateSteps()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PropertyEdits_OutsideTimeWindow_StayAsSeparateSteps()
+  overload: Prowl.Editor.Test.UndoTests.PropertyEdits_OutsideTimeWindow_StayAsSeparateSteps*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.RegisterCoalescableAction_MergesAndKeepsOriginalUndoLatestRedo
+  commentId: M:Prowl.Editor.Test.UndoTests.RegisterCoalescableAction_MergesAndKeepsOriginalUndoLatestRedo
+  id: RegisterCoalescableAction_MergesAndKeepsOriginalUndoLatestRedo
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: RegisterCoalescableAction_MergesAndKeepsOriginalUndoLatestRedo()
+  nameWithType: UndoTests.RegisterCoalescableAction_MergesAndKeepsOriginalUndoLatestRedo()
+  fullName: Prowl.Editor.Test.UndoTests.RegisterCoalescableAction_MergesAndKeepsOriginalUndoLatestRedo()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RegisterCoalescableAction_MergesAndKeepsOriginalUndoLatestRedo
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 548
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RegisterCoalescableAction_MergesAndKeepsOriginalUndoLatestRedo()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RegisterCoalescableAction_MergesAndKeepsOriginalUndoLatestRedo()
+  overload: Prowl.Editor.Test.UndoTests.RegisterCoalescableAction_MergesAndKeepsOriginalUndoLatestRedo*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.ApplyGameObjectChanges_AppliesToAll_AsOneUndoStep
+  commentId: M:Prowl.Editor.Test.UndoTests.ApplyGameObjectChanges_AppliesToAll_AsOneUndoStep
+  id: ApplyGameObjectChanges_AppliesToAll_AsOneUndoStep
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: ApplyGameObjectChanges_AppliesToAll_AsOneUndoStep()
+  nameWithType: UndoTests.ApplyGameObjectChanges_AppliesToAll_AsOneUndoStep()
+  fullName: Prowl.Editor.Test.UndoTests.ApplyGameObjectChanges_AppliesToAll_AsOneUndoStep()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ApplyGameObjectChanges_AppliesToAll_AsOneUndoStep
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 569
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ApplyGameObjectChanges_AppliesToAll_AsOneUndoStep()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ApplyGameObjectChanges_AppliesToAll_AsOneUndoStep()
+  overload: Prowl.Editor.Test.UndoTests.ApplyGameObjectChanges_AppliesToAll_AsOneUndoStep*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.PropertyUndo_OnDestroyedTarget_IsSafeNoOp
+  commentId: M:Prowl.Editor.Test.UndoTests.PropertyUndo_OnDestroyedTarget_IsSafeNoOp
+  id: PropertyUndo_OnDestroyedTarget_IsSafeNoOp
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: PropertyUndo_OnDestroyedTarget_IsSafeNoOp()
+  nameWithType: UndoTests.PropertyUndo_OnDestroyedTarget_IsSafeNoOp()
+  fullName: Prowl.Editor.Test.UndoTests.PropertyUndo_OnDestroyedTarget_IsSafeNoOp()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PropertyUndo_OnDestroyedTarget_IsSafeNoOp
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 597
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PropertyUndo_OnDestroyedTarget_IsSafeNoOp()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PropertyUndo_OnDestroyedTarget_IsSafeNoOp()
+  overload: Prowl.Editor.Test.UndoTests.PropertyUndo_OnDestroyedTarget_IsSafeNoOp*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.Continuous_MultipleTargets_RestoredTogether
+  commentId: M:Prowl.Editor.Test.UndoTests.Continuous_MultipleTargets_RestoredTogether
+  id: Continuous_MultipleTargets_RestoredTogether
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: Continuous_MultipleTargets_RestoredTogether()
+  nameWithType: UndoTests.Continuous_MultipleTargets_RestoredTogether()
+  fullName: Prowl.Editor.Test.UndoTests.Continuous_MultipleTargets_RestoredTogether()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Continuous_MultipleTargets_RestoredTogether
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 612
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Continuous_MultipleTargets_RestoredTogether()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Continuous_MultipleTargets_RestoredTogether()
+  overload: Prowl.Editor.Test.UndoTests.Continuous_MultipleTargets_RestoredTogether*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.PushContext_SetsTheHistoryAsideAndPopBringsItBack
+  commentId: M:Prowl.Editor.Test.UndoTests.PushContext_SetsTheHistoryAsideAndPopBringsItBack
+  id: PushContext_SetsTheHistoryAsideAndPopBringsItBack
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: PushContext_SetsTheHistoryAsideAndPopBringsItBack()
+  nameWithType: UndoTests.PushContext_SetsTheHistoryAsideAndPopBringsItBack()
+  fullName: Prowl.Editor.Test.UndoTests.PushContext_SetsTheHistoryAsideAndPopBringsItBack()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PushContext_SetsTheHistoryAsideAndPopBringsItBack
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 640
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PushContext_SetsTheHistoryAsideAndPopBringsItBack()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PushContext_SetsTheHistoryAsideAndPopBringsItBack()
+  overload: Prowl.Editor.Test.UndoTests.PushContext_SetsTheHistoryAsideAndPopBringsItBack*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.UndoTests.PopContext_WithNothingSavedIsJustAClear
+  commentId: M:Prowl.Editor.Test.UndoTests.PopContext_WithNothingSavedIsJustAClear
+  id: PopContext_WithNothingSavedIsJustAClear
+  parent: Prowl.Editor.Test.UndoTests
+  langs:
+  - csharp
+  - vb
+  name: PopContext_WithNothingSavedIsJustAClear()
+  nameWithType: UndoTests.PopContext_WithNothingSavedIsJustAClear()
+  fullName: Prowl.Editor.Test.UndoTests.PopContext_WithNothingSavedIsJustAClear()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/UndoTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PopContext_WithNothingSavedIsJustAClear
+    path: ../Prowl/Prowl.Editor.Test/UndoTests.cs
+    startLine: 666
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PopContext_WithNothingSavedIsJustAClear()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PopContext_WithNothingSavedIsJustAClear()
+  overload: Prowl.Editor.Test.UndoTests.PopContext_WithNothingSavedIsJustAClear*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+references:
+- uid: Prowl.Editor.Core.Undo
+  commentId: T:Prowl.Editor.Core.Undo
+  href: Prowl.Editor.Core.Undo.html
+  name: Undo
+  nameWithType: Undo
+  fullName: Prowl.Editor.Core.Undo
+- uid: Prowl.Editor.Core.Undo.IncrementGroup
+  commentId: M:Prowl.Editor.Core.Undo.IncrementGroup
+  href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_IncrementGroup
+  name: IncrementGroup()
+  nameWithType: Undo.IncrementGroup()
+  fullName: Prowl.Editor.Core.Undo.IncrementGroup()
+  spec.csharp:
+  - uid: Prowl.Editor.Core.Undo.IncrementGroup
+    name: IncrementGroup
+    href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_IncrementGroup
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Core.Undo.IncrementGroup
+    name: IncrementGroup
+    href: Prowl.Editor.Core.Undo.html#Prowl_Editor_Core_Undo_IncrementGroup
+  - name: (
+  - name: )
+- uid: Prowl.Editor.Test
+  commentId: N:Prowl.Editor.Test
+  name: Prowl.Editor.Test
+  nameWithType: Prowl.Editor.Test
+  fullName: Prowl.Editor.Test
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Test
+    name: Test
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Test
+    name: Test
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.Editor.Test.EditorTestHarness
+  commentId: T:Prowl.Editor.Test.EditorTestHarness
+  parent: Prowl.Editor.Test
+  href: Prowl.Editor.Test.EditorTestHarness.html
+  name: EditorTestHarness
+  nameWithType: EditorTestHarness
+  fullName: Prowl.Editor.Test.EditorTestHarness
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Prowl.Editor.Test.EditorTestHarness.Project
+  commentId: P:Prowl.Editor.Test.EditorTestHarness.Project
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Project
+  name: Project
+  nameWithType: EditorTestHarness.Project
+  fullName: Prowl.Editor.Test.EditorTestHarness.Project
+- uid: Prowl.Editor.Test.EditorTestHarness.Assets
+  commentId: P:Prowl.Editor.Test.EditorTestHarness.Assets
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Assets
+  name: Assets
+  nameWithType: EditorTestHarness.Assets
+  fullName: Prowl.Editor.Test.EditorTestHarness.Assets
+- uid: Prowl.Editor.Test.EditorTestHarness.Load``1(System.Guid)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.Load``1(System.Guid)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Load__1_System_Guid_
+  name: Load<T>(Guid)
+  nameWithType: EditorTestHarness.Load<T>(Guid)
+  fullName: Prowl.Editor.Test.EditorTestHarness.Load<T>(System.Guid)
+  nameWithType.vb: EditorTestHarness.Load(Of T)(Guid)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.Load(Of T)(System.Guid)
+  name.vb: Load(Of T)(Guid)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.Load``1(System.Guid)
+    name: Load
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Load__1_System_Guid_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.Load``1(System.Guid)
+    name: Load
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Load__1_System_Guid_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AssetAbsolutePath_System_String_
+  name: AssetAbsolutePath(string)
+  nameWithType: EditorTestHarness.AssetAbsolutePath(string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(string)
+  nameWithType.vb: EditorTestHarness.AssetAbsolutePath(String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(String)
+  name.vb: AssetAbsolutePath(String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(System.String)
+    name: AssetAbsolutePath
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AssetAbsolutePath_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(System.String)
+    name: AssetAbsolutePath
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AssetAbsolutePath_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CreatePrefabAsset_Prowl_Runtime_GameObject_System_String_
+  name: CreatePrefabAsset(GameObject, string)
+  nameWithType: EditorTestHarness.CreatePrefabAsset(GameObject, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject, string)
+  nameWithType.vb: EditorTestHarness.CreatePrefabAsset(GameObject, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject, String)
+  name.vb: CreatePrefabAsset(GameObject, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject,System.String)
+    name: CreatePrefabAsset
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CreatePrefabAsset_Prowl_Runtime_GameObject_System_String_
+  - name: (
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject,System.String)
+    name: CreatePrefabAsset
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CreatePrefabAsset_Prowl_Runtime_GameObject_System_String_
+  - name: (
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WritePrefabFileRaw_Prowl_Runtime_GameObject_System_String_
+  name: WritePrefabFileRaw(GameObject, string)
+  nameWithType: EditorTestHarness.WritePrefabFileRaw(GameObject, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject, string)
+  nameWithType.vb: EditorTestHarness.WritePrefabFileRaw(GameObject, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject, String)
+  name.vb: WritePrefabFileRaw(GameObject, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+    name: WritePrefabFileRaw
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WritePrefabFileRaw_Prowl_Runtime_GameObject_System_String_
+  - name: (
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+    name: WritePrefabFileRaw
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WritePrefabFileRaw_Prowl_Runtime_GameObject_System_String_
+  - name: (
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid,System.String,System.Action{Prowl.Runtime.GameObject})
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid,System.String,System.Action{Prowl.Runtime.GameObject})
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_EditPrefabSource_System_Guid_System_String_System_Action_Prowl_Runtime_GameObject__
+  name: EditPrefabSource(Guid, string, Action<GameObject>)
+  nameWithType: EditorTestHarness.EditPrefabSource(Guid, string, Action<GameObject>)
+  fullName: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid, string, System.Action<Prowl.Runtime.GameObject>)
+  nameWithType.vb: EditorTestHarness.EditPrefabSource(Guid, String, Action(Of GameObject))
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid, String, System.Action(Of Prowl.Runtime.GameObject))
+  name.vb: EditPrefabSource(Guid, String, Action(Of GameObject))
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid,System.String,System.Action{Prowl.Runtime.GameObject})
+    name: EditPrefabSource
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_EditPrefabSource_System_Guid_System_String_System_Action_Prowl_Runtime_GameObject__
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid,System.String,System.Action{Prowl.Runtime.GameObject})
+    name: EditPrefabSource
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_EditPrefabSource_System_Guid_System_String_System_Action_Prowl_Runtime_GameObject__
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: )
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_GetPrefab_System_Guid_
+  name: GetPrefab(Guid)
+  nameWithType: EditorTestHarness.GetPrefab(Guid)
+  fullName: Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+    name: GetPrefab
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_GetPrefab_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+    name: GetPrefab
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_GetPrefab_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CreateSceneAsset_Prowl_Runtime_Resources_Scene_System_String_
+  name: CreateSceneAsset(Scene, string)
+  nameWithType: EditorTestHarness.CreateSceneAsset(Scene, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene, string)
+  nameWithType.vb: EditorTestHarness.CreateSceneAsset(Scene, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene, String)
+  name.vb: CreateSceneAsset(Scene, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene,System.String)
+    name: CreateSceneAsset
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CreateSceneAsset_Prowl_Runtime_Resources_Scene_System_String_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+    href: Prowl.Runtime.Resources.Scene.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene,System.String)
+    name: CreateSceneAsset
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CreateSceneAsset_Prowl_Runtime_Resources_Scene_System_String_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+    href: Prowl.Runtime.Resources.Scene.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.ReopenDatabase
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.ReopenDatabase
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_ReopenDatabase
+  name: ReopenDatabase()
+  nameWithType: EditorTestHarness.ReopenDatabase()
+  fullName: Prowl.Editor.Test.EditorTestHarness.ReopenDatabase()
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.ReopenDatabase
+    name: ReopenDatabase
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_ReopenDatabase
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.ReopenDatabase
+    name: ReopenDatabase
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_ReopenDatabase
+  - name: (
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.WriteScript(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.WriteScript(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WriteScript_System_String_System_String_
+  name: WriteScript(string, string)
+  nameWithType: EditorTestHarness.WriteScript(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.WriteScript(string, string)
+  nameWithType.vb: EditorTestHarness.WriteScript(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.WriteScript(String, String)
+  name.vb: WriteScript(String, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.WriteScript(System.String,System.String)
+    name: WriteScript
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WriteScript_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.WriteScript(System.String,System.String)
+    name: WriteScript
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WriteScript_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileGameAssembly_System_String_System_String_
+  name: CompileGameAssembly(string, string)
+  nameWithType: EditorTestHarness.CompileGameAssembly(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(string, string)
+  nameWithType.vb: EditorTestHarness.CompileGameAssembly(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(String, String)
+  name.vb: CompileGameAssembly(String, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(System.String,System.String)
+    name: CompileGameAssembly
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileGameAssembly_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(System.String,System.String)
+    name: CompileGameAssembly
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileGameAssembly_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.AssemblyBytesResolver
+  commentId: P:Prowl.Editor.Test.EditorTestHarness.AssemblyBytesResolver
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AssemblyBytesResolver
+  name: AssemblyBytesResolver
+  nameWithType: EditorTestHarness.AssemblyBytesResolver
+  fullName: Prowl.Editor.Test.EditorTestHarness.AssemblyBytesResolver
+- uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileGameAssembly
+  name: CompileGameAssembly()
+  nameWithType: EditorTestHarness.CompileGameAssembly()
+  fullName: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly()
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly
+    name: CompileGameAssembly
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileGameAssembly
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly
+    name: CompileGameAssembly
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileGameAssembly
+  - name: (
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.EnterPlayMode
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.EnterPlayMode
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_EnterPlayMode
+  name: EnterPlayMode()
+  nameWithType: EditorTestHarness.EnterPlayMode()
+  fullName: Prowl.Editor.Test.EditorTestHarness.EnterPlayMode()
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.EnterPlayMode
+    name: EnterPlayMode
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_EnterPlayMode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.EnterPlayMode
+    name: EnterPlayMode
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_EnterPlayMode
+  - name: (
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Tick(Scene, int)
+  nameWithType: EditorTestHarness.Tick(Scene, int)
+  fullName: Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: EditorTestHarness.Tick(Scene, Integer)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Tick(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+    href: Prowl.Runtime.Resources.Scene.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+    href: Prowl.Runtime.Resources.Scene.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_UpdateScene_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: UpdateScene(Scene, int)
+  nameWithType: EditorTestHarness.UpdateScene(Scene, int)
+  fullName: Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: EditorTestHarness.UpdateScene(Scene, Integer)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: UpdateScene(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: UpdateScene
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_UpdateScene_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+    href: Prowl.Runtime.Resources.Scene.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: UpdateScene
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_UpdateScene_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+    href: Prowl.Runtime.Resources.Scene.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(System.String,Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(System.String,Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WriteAssemblyDefinition_System_String_Prowl_Editor_Projects_Scripting_AssemblyDefinition_
+  name: WriteAssemblyDefinition(string, AssemblyDefinition)
+  nameWithType: EditorTestHarness.WriteAssemblyDefinition(string, AssemblyDefinition)
+  fullName: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(string, Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  nameWithType.vb: EditorTestHarness.WriteAssemblyDefinition(String, AssemblyDefinition)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(String, Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  name.vb: WriteAssemblyDefinition(String, AssemblyDefinition)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(System.String,Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+    name: WriteAssemblyDefinition
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WriteAssemblyDefinition_System_String_Prowl_Editor_Projects_Scripting_AssemblyDefinition_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Prowl.Editor.Projects.Scripting.AssemblyDefinition
+    name: AssemblyDefinition
+    href: Prowl.Editor.Projects.Scripting.AssemblyDefinition.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(System.String,Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+    name: WriteAssemblyDefinition
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WriteAssemblyDefinition_System_String_Prowl_Editor_Projects_Scripting_AssemblyDefinition_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Prowl.Editor.Projects.Scripting.AssemblyDefinition
+    name: AssemblyDefinition
+    href: Prowl.Editor.Projects.Scripting.AssemblyDefinition.html
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CopyIntoAssets_System_String_System_String_
+  name: CopyIntoAssets(string, string)
+  nameWithType: EditorTestHarness.CopyIntoAssets(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(string, string)
+  nameWithType.vb: EditorTestHarness.CopyIntoAssets(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(String, String)
+  name.vb: CopyIntoAssets(String, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(System.String,System.String)
+    name: CopyIntoAssets
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CopyIntoAssets_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(System.String,System.String)
+    name: CopyIntoAssets
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CopyIntoAssets_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AuthorEmptyScene_System_String_
+  name: AuthorEmptyScene(string)
+  nameWithType: EditorTestHarness.AuthorEmptyScene(string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(string)
+  nameWithType.vb: EditorTestHarness.AuthorEmptyScene(String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(String)
+  name.vb: AuthorEmptyScene(String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(System.String)
+    name: AuthorEmptyScene
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AuthorEmptyScene_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(System.String)
+    name: AuthorEmptyScene
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AuthorEmptyScene_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AuthorSceneWithComponent_System_String_System_String_
+  name: AuthorSceneWithComponent(string, string)
+  nameWithType: EditorTestHarness.AuthorSceneWithComponent(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(string, string)
+  nameWithType.vb: EditorTestHarness.AuthorSceneWithComponent(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(String, String)
+  name.vb: AuthorSceneWithComponent(String, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(System.String,System.String)
+    name: AuthorSceneWithComponent
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AuthorSceneWithComponent_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(System.String,System.String)
+    name: AuthorSceneWithComponent
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AuthorSceneWithComponent_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid,Prowl.Runtime.AssetPackagingMode)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid,Prowl.Runtime.AssetPackagingMode)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunBuild_System_Guid_Prowl_Runtime_AssetPackagingMode_
+  name: RunBuild(Guid, AssetPackagingMode)
+  nameWithType: EditorTestHarness.RunBuild(Guid, AssetPackagingMode)
+  fullName: Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid, Prowl.Runtime.AssetPackagingMode)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid,Prowl.Runtime.AssetPackagingMode)
+    name: RunBuild
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunBuild_System_Guid_Prowl_Runtime_AssetPackagingMode_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: Prowl.Runtime.AssetPackagingMode
+    name: AssetPackagingMode
+    href: Prowl.Runtime.AssetPackagingMode.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid,Prowl.Runtime.AssetPackagingMode)
+    name: RunBuild
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunBuild_System_Guid_Prowl_Runtime_AssetPackagingMode_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: Prowl.Runtime.AssetPackagingMode
+    name: AssetPackagingMode
+    href: Prowl.Runtime.AssetPackagingMode.html
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.CompileLibrary(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CompileLibrary(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileLibrary_System_String_System_String_
+  name: CompileLibrary(string, string)
+  nameWithType: EditorTestHarness.CompileLibrary(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.CompileLibrary(string, string)
+  nameWithType.vb: EditorTestHarness.CompileLibrary(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.CompileLibrary(String, String)
+  name.vb: CompileLibrary(String, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CompileLibrary(System.String,System.String)
+    name: CompileLibrary
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileLibrary_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CompileLibrary(System.String,System.String)
+    name: CompileLibrary
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileLibrary_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(System.String,System.Int32)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(System.String,System.Int32)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunPlayerHeadless_System_String_System_Int32_
+  name: RunPlayerHeadless(string, int)
+  nameWithType: EditorTestHarness.RunPlayerHeadless(string, int)
+  fullName: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(string, int)
+  nameWithType.vb: EditorTestHarness.RunPlayerHeadless(String, Integer)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(String, Integer)
+  name.vb: RunPlayerHeadless(String, Integer)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(System.String,System.Int32)
+    name: RunPlayerHeadless
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunPlayerHeadless_System_String_System_Int32_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(System.String,System.Int32)
+    name: RunPlayerHeadless
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunPlayerHeadless_System_String_System_Int32_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_TryDeleteDir_System_String_
+  name: TryDeleteDir(string)
+  nameWithType: EditorTestHarness.TryDeleteDir(string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(string)
+  nameWithType.vb: EditorTestHarness.TryDeleteDir(String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(String)
+  name.vb: TryDeleteDir(String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(System.String)
+    name: TryDeleteDir
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_TryDeleteDir_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(System.String)
+    name: TryDeleteDir
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_TryDeleteDir_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.RunDotnet(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.RunDotnet(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunDotnet_System_String_System_String_
+  name: RunDotnet(string, string)
+  nameWithType: EditorTestHarness.RunDotnet(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.RunDotnet(string, string)
+  nameWithType.vb: EditorTestHarness.RunDotnet(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.RunDotnet(String, String)
+  name.vb: RunDotnet(String, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.RunDotnet(System.String,System.String)
+    name: RunDotnet
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunDotnet_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.RunDotnet(System.String,System.String)
+    name: RunDotnet
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunDotnet_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.Dispose
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.Dispose
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Dispose
+  name: Dispose()
+  nameWithType: EditorTestHarness.Dispose()
+  fullName: Prowl.Editor.Test.EditorTestHarness.Dispose()
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.Dispose
+    name: Dispose
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.Dispose
+    name: Dispose
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Dispose
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Editor.Test.UndoTests.#ctor*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.#ctor
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests__ctor
+  name: UndoTests
+  nameWithType: UndoTests.UndoTests
+  fullName: Prowl.Editor.Test.UndoTests.UndoTests
+  nameWithType.vb: UndoTests.New
+  fullName.vb: Prowl.Editor.Test.UndoTests.New
+  name.vb: New
+- uid: Prowl.Editor.Test.UndoTests.PropertyChange_Undo_NotifiesTheRestoredObject*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.PropertyChange_Undo_NotifiesTheRestoredObject
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_PropertyChange_Undo_NotifiesTheRestoredObject
+  name: PropertyChange_Undo_NotifiesTheRestoredObject
+  nameWithType: UndoTests.PropertyChange_Undo_NotifiesTheRestoredObject
+  fullName: Prowl.Editor.Test.UndoTests.PropertyChange_Undo_NotifiesTheRestoredObject
+- uid: Prowl.Editor.Test.UndoTests.PropertyChange_Undo_Redo*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.PropertyChange_Undo_Redo
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_PropertyChange_Undo_Redo
+  name: PropertyChange_Undo_Redo
+  nameWithType: UndoTests.PropertyChange_Undo_Redo
+  fullName: Prowl.Editor.Test.UndoTests.PropertyChange_Undo_Redo
+- uid: Prowl.Editor.Test.UndoTests.PropertyChange_MultipleFieldsSameFrame_OneStep*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.PropertyChange_MultipleFieldsSameFrame_OneStep
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_PropertyChange_MultipleFieldsSameFrame_OneStep
+  name: PropertyChange_MultipleFieldsSameFrame_OneStep
+  nameWithType: UndoTests.PropertyChange_MultipleFieldsSameFrame_OneStep
+  fullName: Prowl.Editor.Test.UndoTests.PropertyChange_MultipleFieldsSameFrame_OneStep
+- uid: Prowl.Editor.Test.UndoTests.NoOpChange_DoesNotCreateStep*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.NoOpChange_DoesNotCreateStep
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_NoOpChange_DoesNotCreateStep
+  name: NoOpChange_DoesNotCreateStep
+  nameWithType: UndoTests.NoOpChange_DoesNotCreateStep
+  fullName: Prowl.Editor.Test.UndoTests.NoOpChange_DoesNotCreateStep
+- uid: Prowl.Editor.Test.UndoTests.NewAction_ClearsRedoStack*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.NewAction_ClearsRedoStack
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_NewAction_ClearsRedoStack
+  name: NewAction_ClearsRedoStack
+  nameWithType: UndoTests.NewAction_ClearsRedoStack
+  fullName: Prowl.Editor.Test.UndoTests.NewAction_ClearsRedoStack
+- uid: Prowl.Editor.Test.UndoTests.RegisterAction_Undo_Redo*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.RegisterAction_Undo_Redo
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_RegisterAction_Undo_Redo
+  name: RegisterAction_Undo_Redo
+  nameWithType: UndoTests.RegisterAction_Undo_Redo
+  fullName: Prowl.Editor.Test.UndoTests.RegisterAction_Undo_Redo
+- uid: Prowl.Editor.Test.UndoTests.RegisterActionGroup_OneStep_UndoesAllInReverse*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.RegisterActionGroup_OneStep_UndoesAllInReverse
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_RegisterActionGroup_OneStep_UndoesAllInReverse
+  name: RegisterActionGroup_OneStep_UndoesAllInReverse
+  nameWithType: UndoTests.RegisterActionGroup_OneStep_UndoesAllInReverse
+  fullName: Prowl.Editor.Test.UndoTests.RegisterActionGroup_OneStep_UndoesAllInReverse
+- uid: Prowl.Editor.Test.UndoTests.RegisterCreatedObject_Undo_Destroys_Redo_Recreates*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.RegisterCreatedObject_Undo_Destroys_Redo_Recreates
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_RegisterCreatedObject_Undo_Destroys_Redo_Recreates
+  name: RegisterCreatedObject_Undo_Destroys_Redo_Recreates
+  nameWithType: UndoTests.RegisterCreatedObject_Undo_Destroys_Redo_Recreates
+  fullName: Prowl.Editor.Test.UndoTests.RegisterCreatedObject_Undo_Destroys_Redo_Recreates
+- uid: Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_RestoresComponentDataAndIdentifier*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_RestoresComponentDataAndIdentifier
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_RegisterDestroyObject_Undo_RestoresComponentDataAndIdentifier
+  name: RegisterDestroyObject_Undo_RestoresComponentDataAndIdentifier
+  nameWithType: UndoTests.RegisterDestroyObject_Undo_RestoresComponentDataAndIdentifier
+  fullName: Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_RestoresComponentDataAndIdentifier
+- uid: Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_BringsBackARuntimeMaterialNothingElseHeld*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_BringsBackARuntimeMaterialNothingElseHeld
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_RegisterDestroyObject_Undo_BringsBackARuntimeMaterialNothingElseHeld
+  name: RegisterDestroyObject_Undo_BringsBackARuntimeMaterialNothingElseHeld
+  nameWithType: UndoTests.RegisterDestroyObject_Undo_BringsBackARuntimeMaterialNothingElseHeld
+  fullName: Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_BringsBackARuntimeMaterialNothingElseHeld
+- uid: Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_MissingScriptKeepsItsLinkToTheRestOfTheScene*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_MissingScriptKeepsItsLinkToTheRestOfTheScene
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_RegisterDestroyObject_Undo_MissingScriptKeepsItsLinkToTheRestOfTheScene
+  name: RegisterDestroyObject_Undo_MissingScriptKeepsItsLinkToTheRestOfTheScene
+  nameWithType: UndoTests.RegisterDestroyObject_Undo_MissingScriptKeepsItsLinkToTheRestOfTheScene
+  fullName: Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_MissingScriptKeepsItsLinkToTheRestOfTheScene
+- uid: Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_RestoresChildren*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_RestoresChildren
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_RegisterDestroyObject_Undo_RestoresChildren
+  name: RegisterDestroyObject_Undo_RestoresChildren
+  nameWithType: UndoTests.RegisterDestroyObject_Undo_RestoresChildren
+  fullName: Prowl.Editor.Test.UndoTests.RegisterDestroyObject_Undo_RestoresChildren
+- uid: Prowl.Editor.Test.UndoTests.PropertyUndo_SurvivesDestroyAndRecreate*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.PropertyUndo_SurvivesDestroyAndRecreate
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_PropertyUndo_SurvivesDestroyAndRecreate
+  name: PropertyUndo_SurvivesDestroyAndRecreate
+  nameWithType: UndoTests.PropertyUndo_SurvivesDestroyAndRecreate
+  fullName: Prowl.Editor.Test.UndoTests.PropertyUndo_SurvivesDestroyAndRecreate
+- uid: Prowl.Editor.Test.UndoTests.ContinuousPropertyEdits_CoalesceIntoOneStep*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.ContinuousPropertyEdits_CoalesceIntoOneStep
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_ContinuousPropertyEdits_CoalesceIntoOneStep
+  name: ContinuousPropertyEdits_CoalesceIntoOneStep
+  nameWithType: UndoTests.ContinuousPropertyEdits_CoalesceIntoOneStep
+  fullName: Prowl.Editor.Test.UndoTests.ContinuousPropertyEdits_CoalesceIntoOneStep
+- uid: Prowl.Editor.Test.UndoTests.MaxSteps_TrimsOldestSteps*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.MaxSteps_TrimsOldestSteps
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_MaxSteps_TrimsOldestSteps
+  name: MaxSteps_TrimsOldestSteps
+  nameWithType: UndoTests.MaxSteps_TrimsOldestSteps
+  fullName: Prowl.Editor.Test.UndoTests.MaxSteps_TrimsOldestSteps
+- uid: Prowl.Editor.Test.UndoTests.Clear_EmptiesHistory*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.Clear_EmptiesHistory
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_Clear_EmptiesHistory
+  name: Clear_EmptiesHistory
+  nameWithType: UndoTests.Clear_EmptiesHistory
+  fullName: Prowl.Editor.Test.UndoTests.Clear_EmptiesHistory
+- uid: Prowl.Editor.Test.UndoTests.Continuous_End_PushesOneStep_UndoRestoresStart_RedoReappliesEnd*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.Continuous_End_PushesOneStep_UndoRestoresStart_RedoReappliesEnd
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_Continuous_End_PushesOneStep_UndoRestoresStart_RedoReappliesEnd
+  name: Continuous_End_PushesOneStep_UndoRestoresStart_RedoReappliesEnd
+  nameWithType: UndoTests.Continuous_End_PushesOneStep_UndoRestoresStart_RedoReappliesEnd
+  fullName: Prowl.Editor.Test.UndoTests.Continuous_End_PushesOneStep_UndoRestoresStart_RedoReappliesEnd
+- uid: Prowl.Editor.Test.UndoTests.CancelContinuous_RestoresStart_NoStep*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.CancelContinuous_RestoresStart_NoStep
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_CancelContinuous_RestoresStart_NoStep
+  name: CancelContinuous_RestoresStart_NoStep
+  nameWithType: UndoTests.CancelContinuous_RestoresStart_NoStep
+  fullName: Prowl.Editor.Test.UndoTests.CancelContinuous_RestoresStart_NoStep
+- uid: Prowl.Editor.Test.UndoTests.PerformUndo_DuringContinuous_CancelsInsteadOfUndoing*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.PerformUndo_DuringContinuous_CancelsInsteadOfUndoing
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_PerformUndo_DuringContinuous_CancelsInsteadOfUndoing
+  name: PerformUndo_DuringContinuous_CancelsInsteadOfUndoing
+  nameWithType: UndoTests.PerformUndo_DuringContinuous_CancelsInsteadOfUndoing
+  fullName: Prowl.Editor.Test.UndoTests.PerformUndo_DuringContinuous_CancelsInsteadOfUndoing
+- uid: Prowl.Editor.Test.UndoTests.Continuous_NoMovement_PushesNoStep*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.Continuous_NoMovement_PushesNoStep
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_Continuous_NoMovement_PushesNoStep
+  name: Continuous_NoMovement_PushesNoStep
+  nameWithType: UndoTests.Continuous_NoMovement_PushesNoStep
+  fullName: Prowl.Editor.Test.UndoTests.Continuous_NoMovement_PushesNoStep
+- uid: Prowl.Editor.Test.UndoTests.ActionAndSnapshotSameFrame_PropertySnapshotIsDiscarded*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.ActionAndSnapshotSameFrame_PropertySnapshotIsDiscarded
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_ActionAndSnapshotSameFrame_PropertySnapshotIsDiscarded
+  name: ActionAndSnapshotSameFrame_PropertySnapshotIsDiscarded
+  nameWithType: UndoTests.ActionAndSnapshotSameFrame_PropertySnapshotIsDiscarded
+  fullName: Prowl.Editor.Test.UndoTests.ActionAndSnapshotSameFrame_PropertySnapshotIsDiscarded
+- uid: Prowl.Editor.Test.UndoTests.WhenPlaying_RecordingIsNoOp*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.WhenPlaying_RecordingIsNoOp
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_WhenPlaying_RecordingIsNoOp
+  name: WhenPlaying_RecordingIsNoOp
+  nameWithType: UndoTests.WhenPlaying_RecordingIsNoOp
+  fullName: Prowl.Editor.Test.UndoTests.WhenPlaying_RecordingIsNoOp
+- uid: Prowl.Editor.Test.UndoTests.Undo_OnEmptyHistory_IsSafeNoOp*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.Undo_OnEmptyHistory_IsSafeNoOp
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_Undo_OnEmptyHistory_IsSafeNoOp
+  name: Undo_OnEmptyHistory_IsSafeNoOp
+  nameWithType: UndoTests.Undo_OnEmptyHistory_IsSafeNoOp
+  fullName: Prowl.Editor.Test.UndoTests.Undo_OnEmptyHistory_IsSafeNoOp
+- uid: Prowl.Editor.Test.UndoTests.PropertyEdits_OutsideTimeWindow_StayAsSeparateSteps*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.PropertyEdits_OutsideTimeWindow_StayAsSeparateSteps
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_PropertyEdits_OutsideTimeWindow_StayAsSeparateSteps
+  name: PropertyEdits_OutsideTimeWindow_StayAsSeparateSteps
+  nameWithType: UndoTests.PropertyEdits_OutsideTimeWindow_StayAsSeparateSteps
+  fullName: Prowl.Editor.Test.UndoTests.PropertyEdits_OutsideTimeWindow_StayAsSeparateSteps
+- uid: Prowl.Editor.Test.UndoTests.RegisterCoalescableAction_MergesAndKeepsOriginalUndoLatestRedo*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.RegisterCoalescableAction_MergesAndKeepsOriginalUndoLatestRedo
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_RegisterCoalescableAction_MergesAndKeepsOriginalUndoLatestRedo
+  name: RegisterCoalescableAction_MergesAndKeepsOriginalUndoLatestRedo
+  nameWithType: UndoTests.RegisterCoalescableAction_MergesAndKeepsOriginalUndoLatestRedo
+  fullName: Prowl.Editor.Test.UndoTests.RegisterCoalescableAction_MergesAndKeepsOriginalUndoLatestRedo
+- uid: Prowl.Editor.Test.UndoTests.ApplyGameObjectChanges_AppliesToAll_AsOneUndoStep*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.ApplyGameObjectChanges_AppliesToAll_AsOneUndoStep
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_ApplyGameObjectChanges_AppliesToAll_AsOneUndoStep
+  name: ApplyGameObjectChanges_AppliesToAll_AsOneUndoStep
+  nameWithType: UndoTests.ApplyGameObjectChanges_AppliesToAll_AsOneUndoStep
+  fullName: Prowl.Editor.Test.UndoTests.ApplyGameObjectChanges_AppliesToAll_AsOneUndoStep
+- uid: Prowl.Editor.Test.UndoTests.PropertyUndo_OnDestroyedTarget_IsSafeNoOp*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.PropertyUndo_OnDestroyedTarget_IsSafeNoOp
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_PropertyUndo_OnDestroyedTarget_IsSafeNoOp
+  name: PropertyUndo_OnDestroyedTarget_IsSafeNoOp
+  nameWithType: UndoTests.PropertyUndo_OnDestroyedTarget_IsSafeNoOp
+  fullName: Prowl.Editor.Test.UndoTests.PropertyUndo_OnDestroyedTarget_IsSafeNoOp
+- uid: Prowl.Editor.Test.UndoTests.Continuous_MultipleTargets_RestoredTogether*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.Continuous_MultipleTargets_RestoredTogether
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_Continuous_MultipleTargets_RestoredTogether
+  name: Continuous_MultipleTargets_RestoredTogether
+  nameWithType: UndoTests.Continuous_MultipleTargets_RestoredTogether
+  fullName: Prowl.Editor.Test.UndoTests.Continuous_MultipleTargets_RestoredTogether
+- uid: Prowl.Editor.Test.UndoTests.PushContext_SetsTheHistoryAsideAndPopBringsItBack*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.PushContext_SetsTheHistoryAsideAndPopBringsItBack
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_PushContext_SetsTheHistoryAsideAndPopBringsItBack
+  name: PushContext_SetsTheHistoryAsideAndPopBringsItBack
+  nameWithType: UndoTests.PushContext_SetsTheHistoryAsideAndPopBringsItBack
+  fullName: Prowl.Editor.Test.UndoTests.PushContext_SetsTheHistoryAsideAndPopBringsItBack
+- uid: Prowl.Editor.Test.UndoTests.PopContext_WithNothingSavedIsJustAClear*
+  commentId: Overload:Prowl.Editor.Test.UndoTests.PopContext_WithNothingSavedIsJustAClear
+  href: Prowl.Editor.Test.UndoTests.html#Prowl_Editor_Test_UndoTests_PopContext_WithNothingSavedIsJustAClear
+  name: PopContext_WithNothingSavedIsJustAClear
+  nameWithType: UndoTests.PopContext_WithNothingSavedIsJustAClear
+  fullName: Prowl.Editor.Test.UndoTests.PopContext_WithNothingSavedIsJustAClear

@@ -1,0 +1,335 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.AssetImporting.IModelTextureResolver
+  commentId: T:Prowl.Runtime.AssetImporting.IModelTextureResolver
+  id: IModelTextureResolver
+  parent: Prowl.Runtime.AssetImporting
+  children:
+  - Prowl.Runtime.AssetImporting.IModelTextureResolver.ResolveEmbedded(System.String,System.Byte[],System.String)
+  - Prowl.Runtime.AssetImporting.IModelTextureResolver.ResolveExternal(System.String)
+  langs:
+  - csharp
+  - vb
+  name: IModelTextureResolver
+  nameWithType: IModelTextureResolver
+  fullName: Prowl.Runtime.AssetImporting.IModelTextureResolver
+  type: Interface
+  source:
+    remote:
+      path: Prowl.Runtime/AssetImporting/ModelImporter.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IModelTextureResolver
+    path: ../Prowl/Prowl.Runtime/AssetImporting/ModelImporter.cs
+    startLine: 259
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.AssetImporting
+  summary: >-
+    Strategy for turning a model's texture references into textures during import.
+
+    Invoked once per distinct texture the model references (the caller caches and reuses the result
+
+    across every material slot that references the same texture).
+
+
+    <p></p>
+
+
+    The default (used when nothing else is supplied) decodes and GPU-uploads immediately - correct
+
+    for a direct runtime load with no separate asset-tracking step to hand off to. The editor supplies
+
+    its own implementation that never decodes another asset's pixel data itself: an externally
+
+    referenced texture is resolved purely by path, against the asset database's existing GUID for
+
+    that file, and an embedded texture is registered as a proper sub-asset for the asset database to
+
+    own and cache - so importing a model never grows or duplicates the pixel data of anything else.
+  example: []
+  syntax:
+    content: public interface IModelTextureResolver
+    content.vb: Public Interface IModelTextureResolver
+  derivedClasses:
+  - Prowl.Runtime.AssetImporting.DefaultModelTextureResolver
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.AssetImporting.IModelTextureResolver.ResolveExternal(System.String)
+  commentId: M:Prowl.Runtime.AssetImporting.IModelTextureResolver.ResolveExternal(System.String)
+  id: ResolveExternal(System.String)
+  parent: Prowl.Runtime.AssetImporting.IModelTextureResolver
+  langs:
+  - csharp
+  - vb
+  name: ResolveExternal(string)
+  nameWithType: IModelTextureResolver.ResolveExternal(string)
+  fullName: Prowl.Runtime.AssetImporting.IModelTextureResolver.ResolveExternal(string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetImporting/ModelImporter.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ResolveExternal
+    path: ../Prowl/Prowl.Runtime/AssetImporting/ModelImporter.cs
+    startLine: 267
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.AssetImporting
+  summary: >-
+    Resolve a texture referenced by a sibling file on disk. <code class="paramref">sourcePath</code> is
+
+    always an already-resolved, existing, absolute path.
+  example: []
+  syntax:
+    content: Texture2D? ResolveExternal(string sourcePath)
+    parameters:
+    - id: sourcePath
+      type: System.String
+    return:
+      type: Prowl.Runtime.Resources.Texture2D
+      description: >-
+        The texture, or null if it can't/shouldn't be resolved - the caller falls back to the
+            material slot's built-in default texture (Grid/Normal/Surface/Emission).
+    content.vb: Function ResolveExternal(sourcePath As String) As Texture2D
+  overload: Prowl.Runtime.AssetImporting.IModelTextureResolver.ResolveExternal*
+  nameWithType.vb: IModelTextureResolver.ResolveExternal(String)
+  fullName.vb: Prowl.Runtime.AssetImporting.IModelTextureResolver.ResolveExternal(String)
+  name.vb: ResolveExternal(String)
+- uid: Prowl.Runtime.AssetImporting.IModelTextureResolver.ResolveEmbedded(System.String,System.Byte[],System.String)
+  commentId: M:Prowl.Runtime.AssetImporting.IModelTextureResolver.ResolveEmbedded(System.String,System.Byte[],System.String)
+  id: ResolveEmbedded(System.String,System.Byte[],System.String)
+  parent: Prowl.Runtime.AssetImporting.IModelTextureResolver
+  langs:
+  - csharp
+  - vb
+  name: ResolveEmbedded(string?, byte[], string?)
+  nameWithType: IModelTextureResolver.ResolveEmbedded(string?, byte[], string?)
+  fullName: Prowl.Runtime.AssetImporting.IModelTextureResolver.ResolveEmbedded(string?, byte[], string?)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetImporting/ModelImporter.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ResolveEmbedded
+    path: ../Prowl/Prowl.Runtime/AssetImporting/ModelImporter.cs
+    startLine: 274
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.AssetImporting
+  summary: >-
+    Resolve a texture embedded directly in the model file (GLB bufferView, FBX Video::Clip
+
+    content, data: URI - no file of its own).
+  example: []
+  syntax:
+    content: Texture2D? ResolveEmbedded(string? name, byte[] encodedBytes, string? mimeType)
+    parameters:
+    - id: name
+      type: System.String
+    - id: encodedBytes
+      type: System.Byte[]
+    - id: mimeType
+      type: System.String
+    return:
+      type: Prowl.Runtime.Resources.Texture2D
+      description: The texture, or null if it can't/shouldn't be resolved.
+    content.vb: Function ResolveEmbedded(name As String, encodedBytes As Byte(), mimeType As String) As Texture2D
+  overload: Prowl.Runtime.AssetImporting.IModelTextureResolver.ResolveEmbedded*
+  nameWithType.vb: IModelTextureResolver.ResolveEmbedded(String, Byte(), String)
+  fullName.vb: Prowl.Runtime.AssetImporting.IModelTextureResolver.ResolveEmbedded(String, Byte(), String)
+  name.vb: ResolveEmbedded(String, Byte(), String)
+references:
+- uid: Prowl.Runtime.AssetImporting
+  commentId: N:Prowl.Runtime.AssetImporting
+  name: Prowl.Runtime.AssetImporting
+  nameWithType: Prowl.Runtime.AssetImporting
+  fullName: Prowl.Runtime.AssetImporting
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.AssetImporting
+    name: AssetImporting
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.AssetImporting
+    name: AssetImporting
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Runtime.AssetImporting.IModelTextureResolver.ResolveExternal*
+  commentId: Overload:Prowl.Runtime.AssetImporting.IModelTextureResolver.ResolveExternal
+  href: Prowl.Runtime.AssetImporting.IModelTextureResolver.html#Prowl_Runtime_AssetImporting_IModelTextureResolver_ResolveExternal_System_String_
+  name: ResolveExternal
+  nameWithType: IModelTextureResolver.ResolveExternal
+  fullName: Prowl.Runtime.AssetImporting.IModelTextureResolver.ResolveExternal
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Prowl.Runtime.Resources.Texture2D
+  commentId: T:Prowl.Runtime.Resources.Texture2D
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.Texture2D.html
+  name: Texture2D
+  nameWithType: Texture2D
+  fullName: Prowl.Runtime.Resources.Texture2D
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.Resources
+  commentId: N:Prowl.Runtime.Resources
+  name: Prowl.Runtime.Resources
+  nameWithType: Prowl.Runtime.Resources
+  fullName: Prowl.Runtime.Resources
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+- uid: Prowl.Runtime.AssetImporting.IModelTextureResolver.ResolveEmbedded*
+  commentId: Overload:Prowl.Runtime.AssetImporting.IModelTextureResolver.ResolveEmbedded
+  href: Prowl.Runtime.AssetImporting.IModelTextureResolver.html#Prowl_Runtime_AssetImporting_IModelTextureResolver_ResolveEmbedded_System_String_System_Byte___System_String_
+  name: ResolveEmbedded
+  nameWithType: IModelTextureResolver.ResolveEmbedded
+  fullName: Prowl.Runtime.AssetImporting.IModelTextureResolver.ResolveEmbedded
+- uid: System.Byte[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte[]
+  nameWithType: byte[]
+  fullName: byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )

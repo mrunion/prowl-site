@@ -5,18 +5,17 @@ items:
   id: Application
   parent: Prowl.Runtime
   children:
-  - Prowl.Runtime.Application.AssetProvider
   - Prowl.Runtime.Application.DataPath
-  - Prowl.Runtime.Application.GetBackend
-  - Prowl.Runtime.Application.Initialize
   - Prowl.Runtime.Application.IsEditor
+  - Prowl.Runtime.Application.IsGameplayExecuting
+  - Prowl.Runtime.Application.IsHeadless
+  - Prowl.Runtime.Application.IsPaused
   - Prowl.Runtime.Application.IsPlaying
-  - Prowl.Runtime.Application.IsRunning
   - Prowl.Runtime.Application.Quit
-  - Prowl.Runtime.Application.Quitting
-  - Prowl.Runtime.Application.Render
-  - Prowl.Runtime.Application.Run(System.String,System.Int32,System.Int32,Prowl.Runtime.IAssetProvider,System.Boolean)
-  - Prowl.Runtime.Application.Update
+  - Prowl.Runtime.Application.QuitHandler
+  - Prowl.Runtime.Application.ShouldRunGameplay
+  - Prowl.Runtime.Application.TargetFrameRate
+  - Prowl.Runtime.Application.VSync
   langs:
   - csharp
   - vb
@@ -27,14 +26,16 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Application.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: Application
     path: ../Prowl/Prowl.Runtime/Application.cs
-    startLine: 12
+    startLine: 8
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: Provides global application state flags.
+  example: []
   syntax:
     content: public static class Application
     content.vb: Public Module Application
@@ -48,35 +49,8 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: Prowl.Runtime.Application.IsRunning
-  commentId: F:Prowl.Runtime.Application.IsRunning
-  id: IsRunning
-  parent: Prowl.Runtime.Application
-  langs:
-  - csharp
-  - vb
-  name: IsRunning
-  nameWithType: Application.IsRunning
-  fullName: Prowl.Runtime.Application.IsRunning
-  type: Field
-  source:
-    remote:
-      path: Prowl.Runtime/Application.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: IsRunning
-    path: ../Prowl/Prowl.Runtime/Application.cs
-    startLine: 14
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static bool IsRunning
-    return:
-      type: System.Boolean
-    content.vb: Public Shared IsRunning As Boolean
 - uid: Prowl.Runtime.Application.IsPlaying
-  commentId: F:Prowl.Runtime.Application.IsPlaying
+  commentId: P:Prowl.Runtime.Application.IsPlaying
   id: IsPlaying
   parent: Prowl.Runtime.Application
   langs:
@@ -85,23 +59,27 @@ items:
   name: IsPlaying
   nameWithType: Application.IsPlaying
   fullName: Prowl.Runtime.Application.IsPlaying
-  type: Field
+  type: Property
   source:
     remote:
       path: Prowl.Runtime/Application.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: IsPlaying
     path: ../Prowl/Prowl.Runtime/Application.cs
     startLine: 15
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: True when the game is actively running (play mode in editor, or standalone player).
+  example: []
   syntax:
-    content: public static bool IsPlaying
+    content: public static bool IsPlaying { get; set; }
+    parameters: []
     return:
       type: System.Boolean
-    content.vb: Public Shared IsPlaying As Boolean
+    content.vb: Public Shared Property IsPlaying As Boolean
+  overload: Prowl.Runtime.Application.IsPlaying*
 - uid: Prowl.Runtime.Application.IsEditor
   commentId: P:Prowl.Runtime.Application.IsEditor
   id: IsEditor
@@ -116,251 +94,269 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Application.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: IsEditor
     path: ../Prowl/Prowl.Runtime/Application.cs
-    startLine: 16
+    startLine: 32
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: True when running inside the editor (false in standalone builds).
+  example: []
   syntax:
-    content: public static bool IsEditor { get; }
+    content: public static bool IsEditor { get; set; }
     parameters: []
     return:
       type: System.Boolean
     content.vb: Public Shared Property IsEditor As Boolean
   overload: Prowl.Runtime.Application.IsEditor*
-- uid: Prowl.Runtime.Application.DataPath
-  commentId: F:Prowl.Runtime.Application.DataPath
-  id: DataPath
+- uid: Prowl.Runtime.Application.IsHeadless
+  commentId: P:Prowl.Runtime.Application.IsHeadless
+  id: IsHeadless
   parent: Prowl.Runtime.Application
   langs:
   - csharp
   - vb
-  name: DataPath
-  nameWithType: Application.DataPath
-  fullName: Prowl.Runtime.Application.DataPath
-  type: Field
+  name: IsHeadless
+  nameWithType: Application.IsHeadless
+  fullName: Prowl.Runtime.Application.IsHeadless
+  type: Property
   source:
     remote:
       path: Prowl.Runtime/Application.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: DataPath
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsHeadless
     path: ../Prowl/Prowl.Runtime/Application.cs
-    startLine: 18
+    startLine: 38
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: >-
+    True when running without a window or graphics device (e.g. a dedicated server, or a build
+
+    launched with --headless). Gameplay, physics and scripts still run; rendering does not.
+  example: []
   syntax:
-    content: public static string? DataPath
+    content: public static bool IsHeadless { get; set; }
+    parameters: []
     return:
-      type: System.String
-    content.vb: Public Shared DataPath As String
-- uid: Prowl.Runtime.Application.AssetProvider
-  commentId: F:Prowl.Runtime.Application.AssetProvider
-  id: AssetProvider
-  parent: Prowl.Runtime.Application
-  langs:
-  - csharp
-  - vb
-  name: AssetProvider
-  nameWithType: Application.AssetProvider
-  fullName: Prowl.Runtime.Application.AssetProvider
-  type: Field
-  source:
-    remote:
-      path: Prowl.Runtime/Application.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: AssetProvider
-    path: ../Prowl/Prowl.Runtime/Application.cs
-    startLine: 20
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static IAssetProvider AssetProvider
-    return:
-      type: Prowl.Runtime.IAssetProvider
-    content.vb: Public Shared AssetProvider As IAssetProvider
-- uid: Prowl.Runtime.Application.Initialize
-  commentId: E:Prowl.Runtime.Application.Initialize
-  id: Initialize
-  parent: Prowl.Runtime.Application
-  langs:
-  - csharp
-  - vb
-  name: Initialize
-  nameWithType: Application.Initialize
-  fullName: Prowl.Runtime.Application.Initialize
-  type: Event
-  source:
-    remote:
-      path: Prowl.Runtime/Application.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Initialize
-    path: ../Prowl/Prowl.Runtime/Application.cs
-    startLine: 22
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static event Action Initialize
-    return:
-      type: System.Action
-    content.vb: Public Shared Event Initialize As Action
-- uid: Prowl.Runtime.Application.Update
-  commentId: E:Prowl.Runtime.Application.Update
-  id: Update
-  parent: Prowl.Runtime.Application
-  langs:
-  - csharp
-  - vb
-  name: Update
-  nameWithType: Application.Update
-  fullName: Prowl.Runtime.Application.Update
-  type: Event
-  source:
-    remote:
-      path: Prowl.Runtime/Application.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Update
-    path: ../Prowl/Prowl.Runtime/Application.cs
-    startLine: 23
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static event Action Update
-    return:
-      type: System.Action
-    content.vb: Public Shared Event Update As Action
-- uid: Prowl.Runtime.Application.Render
-  commentId: E:Prowl.Runtime.Application.Render
-  id: Render
-  parent: Prowl.Runtime.Application
-  langs:
-  - csharp
-  - vb
-  name: Render
-  nameWithType: Application.Render
-  fullName: Prowl.Runtime.Application.Render
-  type: Event
-  source:
-    remote:
-      path: Prowl.Runtime/Application.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Render
-    path: ../Prowl/Prowl.Runtime/Application.cs
-    startLine: 24
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static event Action Render
-    return:
-      type: System.Action
-    content.vb: Public Shared Event Render As Action
-- uid: Prowl.Runtime.Application.Quitting
-  commentId: E:Prowl.Runtime.Application.Quitting
-  id: Quitting
-  parent: Prowl.Runtime.Application
-  langs:
-  - csharp
-  - vb
-  name: Quitting
-  nameWithType: Application.Quitting
-  fullName: Prowl.Runtime.Application.Quitting
-  type: Event
-  source:
-    remote:
-      path: Prowl.Runtime/Application.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Quitting
-    path: ../Prowl/Prowl.Runtime/Application.cs
-    startLine: 25
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static event Action Quitting
-    return:
-      type: System.Action
-    content.vb: Public Shared Event Quitting As Action
-- uid: Prowl.Runtime.Application.GetBackend
-  commentId: M:Prowl.Runtime.Application.GetBackend
-  id: GetBackend
-  parent: Prowl.Runtime.Application
-  langs:
-  - csharp
-  - vb
-  name: GetBackend()
-  nameWithType: Application.GetBackend()
-  fullName: Prowl.Runtime.Application.GetBackend()
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/Application.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: GetBackend
-    path: ../Prowl/Prowl.Runtime/Application.cs
-    startLine: 51
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static GraphicsBackend GetBackend()
-    return:
-      type: Veldrid.GraphicsBackend
-    content.vb: Public Shared Function GetBackend() As GraphicsBackend
-  overload: Prowl.Runtime.Application.GetBackend*
-- uid: Prowl.Runtime.Application.Run(System.String,System.Int32,System.Int32,Prowl.Runtime.IAssetProvider,System.Boolean)
-  commentId: M:Prowl.Runtime.Application.Run(System.String,System.Int32,System.Int32,Prowl.Runtime.IAssetProvider,System.Boolean)
-  id: Run(System.String,System.Int32,System.Int32,Prowl.Runtime.IAssetProvider,System.Boolean)
-  parent: Prowl.Runtime.Application
-  langs:
-  - csharp
-  - vb
-  name: Run(string, int, int, IAssetProvider, bool)
-  nameWithType: Application.Run(string, int, int, IAssetProvider, bool)
-  fullName: Prowl.Runtime.Application.Run(string, int, int, Prowl.Runtime.IAssetProvider, bool)
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/Application.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Run
-    path: ../Prowl/Prowl.Runtime/Application.cs
-    startLine: 65
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static void Run(string title, int width, int height, IAssetProvider assetProvider, bool editor)
-    parameters:
-    - id: title
-      type: System.String
-    - id: width
-      type: System.Int32
-    - id: height
-      type: System.Int32
-    - id: assetProvider
-      type: Prowl.Runtime.IAssetProvider
-    - id: editor
       type: System.Boolean
-    content.vb: Public Shared Sub Run(title As String, width As Integer, height As Integer, assetProvider As IAssetProvider, editor As Boolean)
-  overload: Prowl.Runtime.Application.Run*
-  nameWithType.vb: Application.Run(String, Integer, Integer, IAssetProvider, Boolean)
-  fullName.vb: Prowl.Runtime.Application.Run(String, Integer, Integer, Prowl.Runtime.IAssetProvider, Boolean)
-  name.vb: Run(String, Integer, Integer, IAssetProvider, Boolean)
+    content.vb: Public Shared Property IsHeadless As Boolean
+  overload: Prowl.Runtime.Application.IsHeadless*
+- uid: Prowl.Runtime.Application.IsPaused
+  commentId: P:Prowl.Runtime.Application.IsPaused
+  id: IsPaused
+  parent: Prowl.Runtime.Application
+  langs:
+  - csharp
+  - vb
+  name: IsPaused
+  nameWithType: Application.IsPaused
+  fullName: Prowl.Runtime.Application.IsPaused
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Application.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsPaused
+    path: ../Prowl/Prowl.Runtime/Application.cs
+    startLine: 43
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: True when play mode is paused. Update/FixedUpdate/LateUpdate stop, but rendering continues.
+  example: []
+  syntax:
+    content: public static bool IsPaused { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Property IsPaused As Boolean
+  overload: Prowl.Runtime.Application.IsPaused*
+- uid: Prowl.Runtime.Application.ShouldRunGameplay
+  commentId: P:Prowl.Runtime.Application.ShouldRunGameplay
+  id: ShouldRunGameplay
+  parent: Prowl.Runtime.Application
+  langs:
+  - csharp
+  - vb
+  name: ShouldRunGameplay
+  nameWithType: Application.ShouldRunGameplay
+  fullName: Prowl.Runtime.Application.ShouldRunGameplay
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Application.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShouldRunGameplay
+    path: ../Prowl/Prowl.Runtime/Application.cs
+    startLine: 52
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Whether gameplay should execute this frame (playing and not paused, or stepping).
+  example: []
+  syntax:
+    content: public static bool ShouldRunGameplay { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared ReadOnly Property ShouldRunGameplay As Boolean
+  overload: Prowl.Runtime.Application.ShouldRunGameplay*
+- uid: Prowl.Runtime.Application.IsGameplayExecuting
+  commentId: P:Prowl.Runtime.Application.IsGameplayExecuting
+  id: IsGameplayExecuting
+  parent: Prowl.Runtime.Application
+  langs:
+  - csharp
+  - vb
+  name: IsGameplayExecuting
+  nameWithType: Application.IsGameplayExecuting
+  fullName: Prowl.Runtime.Application.IsGameplayExecuting
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Application.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsGameplayExecuting
+    path: ../Prowl/Prowl.Runtime/Application.cs
+    startLine: 58
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    True while gameplay code (Update/FixedUpdate) is executing.
+
+    Used by the editor's input filtering to distinguish gameplay input from editor input.
+  example: []
+  syntax:
+    content: public static bool IsGameplayExecuting { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Property IsGameplayExecuting As Boolean
+  overload: Prowl.Runtime.Application.IsGameplayExecuting*
+- uid: Prowl.Runtime.Application.TargetFrameRate
+  commentId: P:Prowl.Runtime.Application.TargetFrameRate
+  id: TargetFrameRate
+  parent: Prowl.Runtime.Application
+  langs:
+  - csharp
+  - vb
+  name: TargetFrameRate
+  nameWithType: Application.TargetFrameRate
+  fullName: Prowl.Runtime.Application.TargetFrameRate
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Application.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TargetFrameRate
+    path: ../Prowl/Prowl.Runtime/Application.cs
+    startLine: 73
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Frames per second the loop is paced to, whether that loop is the editor's, a standalone
+
+    game's or a headless server's. Zero or less runs unlimited, which is what a game starts at
+
+    until its own code says otherwise. This is a ceiling, so with <xref href="Prowl.Runtime.Application.VSync" data-throw-if-not-resolved="false"></xref> on the
+
+    lower of the two wins.
+
+
+    <p>
+
+    In the editor this belongs to the editor's own preferences until play mode starts, which
+
+    hands it back to this default so the game's code decides, exactly as in a build.
+
+    </p>
+  example: []
+  syntax:
+    content: public static int TargetFrameRate { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Shared Property TargetFrameRate As Integer
+  overload: Prowl.Runtime.Application.TargetFrameRate*
+- uid: Prowl.Runtime.Application.VSync
+  commentId: P:Prowl.Runtime.Application.VSync
+  id: VSync
+  parent: Prowl.Runtime.Application
+  langs:
+  - csharp
+  - vb
+  name: VSync
+  nameWithType: Application.VSync
+  fullName: Prowl.Runtime.Application.VSync
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Application.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: VSync
+    path: ../Prowl/Prowl.Runtime/Application.cs
+    startLine: 85
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Whether a frame is held back until the display is ready for it, which caps the rate to the
+
+    refresh rate and removes tearing. Off in a game until its own code turns it on, and on in
+
+    the editor unless its preferences say otherwise. Has nothing to act on when
+
+    <xref href="Prowl.Runtime.Application.IsHeadless" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static bool VSync { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Property VSync As Boolean
+  overload: Prowl.Runtime.Application.VSync*
+- uid: Prowl.Runtime.Application.QuitHandler
+  commentId: P:Prowl.Runtime.Application.QuitHandler
+  id: QuitHandler
+  parent: Prowl.Runtime.Application
+  langs:
+  - csharp
+  - vb
+  name: QuitHandler
+  nameWithType: Application.QuitHandler
+  fullName: Prowl.Runtime.Application.QuitHandler
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Application.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: QuitHandler
+    path: ../Prowl/Prowl.Runtime/Application.cs
+    startLine: 102
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Replaces what <xref href="Prowl.Runtime.Application.Quit" data-throw-if-not-resolved="false"></xref> does. The editor sets this so quitting stops play mode instead of closing the editor.
+  example: []
+  syntax:
+    content: public static Action? QuitHandler { get; set; }
+    parameters: []
+    return:
+      type: System.Action
+    content.vb: Public Shared Property QuitHandler As Action
+  overload: Prowl.Runtime.Application.QuitHandler*
 - uid: Prowl.Runtime.Application.Quit
   commentId: M:Prowl.Runtime.Application.Quit
   id: Quit
@@ -375,41 +371,75 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Application.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: Quit
     path: ../Prowl/Prowl.Runtime/Application.cs
-    startLine: 136
+    startLine: 111
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: >-
+    Quits the game. In the editor this stops play mode, in a headless run it ends the loop, and in a
+
+    standalone build it closes the window. Gameplay code should call this rather than <xref href="Prowl.Runtime.Game.Quit" data-throw-if-not-resolved="false"></xref>.
+  example: []
   syntax:
     content: public static void Quit()
     content.vb: Public Shared Sub Quit()
   overload: Prowl.Runtime.Application.Quit*
+- uid: Prowl.Runtime.Application.DataPath
+  commentId: P:Prowl.Runtime.Application.DataPath
+  id: DataPath
+  parent: Prowl.Runtime.Application
+  langs:
+  - csharp
+  - vb
+  name: DataPath
+  nameWithType: Application.DataPath
+  fullName: Prowl.Runtime.Application.DataPath
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Application.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DataPath
+    path: ../Prowl/Prowl.Runtime/Application.cs
+    startLine: 122
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Directory containing the running executable (standalone) or project root (editor).
+
+    Used by PlayerAssetBackend to locate assets relative to the executable.
+  example: []
+  syntax:
+    content: public static string DataPath { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared Property DataPath As String
+  overload: Prowl.Runtime.Application.DataPath*
 references:
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
-  href: Prowl.html
   name: Prowl.Runtime
   nameWithType: Prowl.Runtime
   fullName: Prowl.Runtime
   spec.csharp:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
   spec.vb:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -647,6 +677,12 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: Prowl.Runtime.Application.IsPlaying*
+  commentId: Overload:Prowl.Runtime.Application.IsPlaying
+  href: Prowl.Runtime.Application.html#Prowl_Runtime_Application_IsPlaying
+  name: IsPlaying
+  nameWithType: Application.IsPlaying
+  fullName: Prowl.Runtime.Application.IsPlaying
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -664,55 +700,42 @@ references:
   name: IsEditor
   nameWithType: Application.IsEditor
   fullName: Prowl.Runtime.Application.IsEditor
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
-- uid: Prowl.Runtime.IAssetProvider
-  commentId: T:Prowl.Runtime.IAssetProvider
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.IAssetProvider.html
-  name: IAssetProvider
-  nameWithType: IAssetProvider
-  fullName: Prowl.Runtime.IAssetProvider
-- uid: System.Action
-  commentId: T:System.Action
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.action
-  name: Action
-  nameWithType: Action
-  fullName: System.Action
-- uid: Prowl.Runtime.Application.GetBackend*
-  commentId: Overload:Prowl.Runtime.Application.GetBackend
-  href: Prowl.Runtime.Application.html#Prowl_Runtime_Application_GetBackend
-  name: GetBackend
-  nameWithType: Application.GetBackend
-  fullName: Prowl.Runtime.Application.GetBackend
-- uid: Veldrid.GraphicsBackend
-  commentId: T:Veldrid.GraphicsBackend
-  parent: Veldrid
-  name: GraphicsBackend
-  nameWithType: GraphicsBackend
-  fullName: Veldrid.GraphicsBackend
-- uid: Veldrid
-  commentId: N:Veldrid
-  name: Veldrid
-  nameWithType: Veldrid
-  fullName: Veldrid
-- uid: Prowl.Runtime.Application.Run*
-  commentId: Overload:Prowl.Runtime.Application.Run
-  href: Prowl.Runtime.Application.html#Prowl_Runtime_Application_Run_System_String_System_Int32_System_Int32_Prowl_Runtime_IAssetProvider_System_Boolean_
-  name: Run
-  nameWithType: Application.Run
-  fullName: Prowl.Runtime.Application.Run
+- uid: Prowl.Runtime.Application.IsHeadless*
+  commentId: Overload:Prowl.Runtime.Application.IsHeadless
+  href: Prowl.Runtime.Application.html#Prowl_Runtime_Application_IsHeadless
+  name: IsHeadless
+  nameWithType: Application.IsHeadless
+  fullName: Prowl.Runtime.Application.IsHeadless
+- uid: Prowl.Runtime.Application.IsPaused*
+  commentId: Overload:Prowl.Runtime.Application.IsPaused
+  href: Prowl.Runtime.Application.html#Prowl_Runtime_Application_IsPaused
+  name: IsPaused
+  nameWithType: Application.IsPaused
+  fullName: Prowl.Runtime.Application.IsPaused
+- uid: Prowl.Runtime.Application.ShouldRunGameplay*
+  commentId: Overload:Prowl.Runtime.Application.ShouldRunGameplay
+  href: Prowl.Runtime.Application.html#Prowl_Runtime_Application_ShouldRunGameplay
+  name: ShouldRunGameplay
+  nameWithType: Application.ShouldRunGameplay
+  fullName: Prowl.Runtime.Application.ShouldRunGameplay
+- uid: Prowl.Runtime.Application.IsGameplayExecuting*
+  commentId: Overload:Prowl.Runtime.Application.IsGameplayExecuting
+  href: Prowl.Runtime.Application.html#Prowl_Runtime_Application_IsGameplayExecuting
+  name: IsGameplayExecuting
+  nameWithType: Application.IsGameplayExecuting
+  fullName: Prowl.Runtime.Application.IsGameplayExecuting
+- uid: Prowl.Runtime.Application.VSync
+  commentId: P:Prowl.Runtime.Application.VSync
+  href: Prowl.Runtime.Application.html#Prowl_Runtime_Application_VSync
+  name: VSync
+  nameWithType: Application.VSync
+  fullName: Prowl.Runtime.Application.VSync
+- uid: Prowl.Runtime.Application.TargetFrameRate*
+  commentId: Overload:Prowl.Runtime.Application.TargetFrameRate
+  href: Prowl.Runtime.Application.html#Prowl_Runtime_Application_TargetFrameRate
+  name: TargetFrameRate
+  nameWithType: Application.TargetFrameRate
+  fullName: Prowl.Runtime.Application.TargetFrameRate
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -724,9 +747,96 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
+- uid: Prowl.Runtime.Application.IsHeadless
+  commentId: P:Prowl.Runtime.Application.IsHeadless
+  href: Prowl.Runtime.Application.html#Prowl_Runtime_Application_IsHeadless
+  name: IsHeadless
+  nameWithType: Application.IsHeadless
+  fullName: Prowl.Runtime.Application.IsHeadless
+- uid: Prowl.Runtime.Application.VSync*
+  commentId: Overload:Prowl.Runtime.Application.VSync
+  href: Prowl.Runtime.Application.html#Prowl_Runtime_Application_VSync
+  name: VSync
+  nameWithType: Application.VSync
+  fullName: Prowl.Runtime.Application.VSync
+- uid: Prowl.Runtime.Application.Quit
+  commentId: M:Prowl.Runtime.Application.Quit
+  href: Prowl.Runtime.Application.html#Prowl_Runtime_Application_Quit
+  name: Quit()
+  nameWithType: Application.Quit()
+  fullName: Prowl.Runtime.Application.Quit()
+  spec.csharp:
+  - uid: Prowl.Runtime.Application.Quit
+    name: Quit
+    href: Prowl.Runtime.Application.html#Prowl_Runtime_Application_Quit
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Application.Quit
+    name: Quit
+    href: Prowl.Runtime.Application.html#Prowl_Runtime_Application_Quit
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Application.QuitHandler*
+  commentId: Overload:Prowl.Runtime.Application.QuitHandler
+  href: Prowl.Runtime.Application.html#Prowl_Runtime_Application_QuitHandler
+  name: QuitHandler
+  nameWithType: Application.QuitHandler
+  fullName: Prowl.Runtime.Application.QuitHandler
+- uid: System.Action
+  commentId: T:System.Action
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action
+  name: Action
+  nameWithType: Action
+  fullName: System.Action
+- uid: Prowl.Runtime.Game.Quit
+  commentId: M:Prowl.Runtime.Game.Quit
+  parent: Prowl.Runtime.Game
+  href: Prowl.Runtime.Game.html#Prowl_Runtime_Game_Quit
+  name: Quit()
+  nameWithType: Game.Quit()
+  fullName: Prowl.Runtime.Game.Quit()
+  spec.csharp:
+  - uid: Prowl.Runtime.Game.Quit
+    name: Quit
+    href: Prowl.Runtime.Game.html#Prowl_Runtime_Game_Quit
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Game.Quit
+    name: Quit
+    href: Prowl.Runtime.Game.html#Prowl_Runtime_Game_Quit
+  - name: (
+  - name: )
 - uid: Prowl.Runtime.Application.Quit*
   commentId: Overload:Prowl.Runtime.Application.Quit
   href: Prowl.Runtime.Application.html#Prowl_Runtime_Application_Quit
   name: Quit
   nameWithType: Application.Quit
   fullName: Prowl.Runtime.Application.Quit
+- uid: Prowl.Runtime.Game
+  commentId: T:Prowl.Runtime.Game
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.Game.html
+  name: Game
+  nameWithType: Game
+  fullName: Prowl.Runtime.Game
+- uid: Prowl.Runtime.Application.DataPath*
+  commentId: Overload:Prowl.Runtime.Application.DataPath
+  href: Prowl.Runtime.Application.html#Prowl_Runtime_Application_DataPath
+  name: DataPath
+  nameWithType: Application.DataPath
+  fullName: Prowl.Runtime.Application.DataPath
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

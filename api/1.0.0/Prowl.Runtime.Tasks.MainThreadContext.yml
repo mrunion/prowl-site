@@ -1,0 +1,1681 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.Tasks.MainThreadContext
+  commentId: T:Prowl.Runtime.Tasks.MainThreadContext
+  id: MainThreadContext
+  parent: Prowl.Runtime.Tasks
+  children:
+  - Prowl.Runtime.Tasks.MainThreadContext.CreateCopy
+  - Prowl.Runtime.Tasks.MainThreadContext.Current
+  - Prowl.Runtime.Tasks.MainThreadContext.Install
+  - Prowl.Runtime.Tasks.MainThreadContext.IsEnded
+  - Prowl.Runtime.Tasks.MainThreadContext.IsMainThread
+  - Prowl.Runtime.Tasks.MainThreadContext.NextFrame(System.Threading.CancellationToken)
+  - Prowl.Runtime.Tasks.MainThreadContext.OnMainThread
+  - Prowl.Runtime.Tasks.MainThreadContext.Origin
+  - Prowl.Runtime.Tasks.MainThreadContext.PendingCount
+  - Prowl.Runtime.Tasks.MainThreadContext.Post(System.Threading.SendOrPostCallback,System.Object)
+  - Prowl.Runtime.Tasks.MainThreadContext.Pump
+  - Prowl.Runtime.Tasks.MainThreadContext.Restart
+  - Prowl.Runtime.Tasks.MainThreadContext.Send(System.Threading.SendOrPostCallback,System.Object)
+  - Prowl.Runtime.Tasks.MainThreadContext.SessionToken
+  - Prowl.Runtime.Tasks.MainThreadContext.Stop
+  - Prowl.Runtime.Tasks.MainThreadContext.Uninstall
+  - Prowl.Runtime.Tasks.MainThreadContext.WaitFrames(System.Func{System.Boolean},System.Threading.CancellationToken)
+  langs:
+  - csharp
+  - vb
+  name: MainThreadContext
+  nameWithType: MainThreadContext
+  fullName: Prowl.Runtime.Tasks.MainThreadContext
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/MainThreadContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MainThreadContext
+    path: ../Prowl/Prowl.Runtime/Tasks/MainThreadContext.cs
+    startLine: 36
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Tasks
+  summary: >-
+    Sends async continuations back to the main thread, so <code>await</code> in game code resumes where the
+
+    scene actually lives.
+  remarks: >-
+    Without a synchronization context everything after an <code>await</code> resumes on a thread pool thread,
+
+    and ordinary game code ends up touching the scene from the wrong thread, which only sometimes
+
+    crashes. Installing one makes await behave the way the code reads.
+
+
+    <p></p>
+
+
+    Each context is one session. The editor ends a session when play starts or stops and when scripts
+
+    reload: the session token is cancelled and every continuation still waiting on it is dropped, so a
+
+    method that awaited during play never resumes against the edit scene or runs code that was reloaded.
+
+    A dropped method simply stops, so its <code>finally</code> blocks do not run. Work that must clean up
+
+    watches <xref href="Prowl.Runtime.Tasks.MainThreadContext.SessionToken" data-throw-if-not-resolved="false"></xref> instead.
+
+
+    <p></p>
+
+
+    Gameplay work stays tied to its session across threads: anything started from a scene callback or from
+
+    main thread queued work carries the session with its execution context, so a worker that hops back with
+
+    <code>await GameTask.MainThread()</code> after its session ended is dropped too. Everything else, such as editor
+
+    code, long lived threads and work that suppresses execution context flow, follows the current session.
+
+    Blocking <xref href="Prowl.Runtime.Tasks.MainThreadContext.Send(System.Threading.SendOrPostCallback%2cSystem.Object)" data-throw-if-not-resolved="false"></xref> calls are the exception and carry over, since a thread is waiting on them.
+  example: []
+  syntax:
+    content: 'public sealed class MainThreadContext : SynchronizationContext'
+    content.vb: Public NotInheritable Class MainThreadContext Inherits SynchronizationContext
+  inheritance:
+  - System.Object
+  - System.Threading.SynchronizationContext
+  inheritedMembers:
+  - System.Threading.SynchronizationContext.IsWaitNotificationRequired
+  - System.Threading.SynchronizationContext.OperationCompleted
+  - System.Threading.SynchronizationContext.OperationStarted
+  - System.Threading.SynchronizationContext.SetSynchronizationContext(System.Threading.SynchronizationContext)
+  - System.Threading.SynchronizationContext.Wait(System.IntPtr[],System.Boolean,System.Int32)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Current
+  commentId: P:Prowl.Runtime.Tasks.MainThreadContext.Current
+  id: Current
+  parent: Prowl.Runtime.Tasks.MainThreadContext
+  langs:
+  - csharp
+  - vb
+  name: Current
+  nameWithType: MainThreadContext.Current
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Current
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/MainThreadContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Current
+    path: ../Prowl/Prowl.Runtime/Tasks/MainThreadContext.cs
+    startLine: 62
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Tasks
+  summary: The context the engine installed, or null when no loop is running.
+  example: []
+  syntax:
+    content: public static MainThreadContext? Current { get; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.Tasks.MainThreadContext
+    content.vb: Public Shared Property Current As MainThreadContext
+  overload: Prowl.Runtime.Tasks.MainThreadContext.Current*
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Origin
+  commentId: P:Prowl.Runtime.Tasks.MainThreadContext.Origin
+  id: Origin
+  parent: Prowl.Runtime.Tasks.MainThreadContext
+  langs:
+  - csharp
+  - vb
+  name: Origin
+  nameWithType: MainThreadContext.Origin
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Origin
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/MainThreadContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Origin
+    path: ../Prowl/Prowl.Runtime/Tasks/MainThreadContext.cs
+    startLine: 69
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Tasks
+  summary: >-
+    The session the calling code belongs to: the current one on the main thread, and on a worker the one
+
+    that started the gameplay work it is running, falling back to the current one. After <xref href="Prowl.Runtime.Tasks.MainThreadContext.Stop" data-throw-if-not-resolved="false"></xref>
+
+    it is the stopped session, so anything asking for the main thread is refused. Null when no loop is running.
+  example: []
+  syntax:
+    content: public static MainThreadContext? Origin { get; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.Tasks.MainThreadContext
+    content.vb: Public Shared ReadOnly Property Origin As MainThreadContext
+  overload: Prowl.Runtime.Tasks.MainThreadContext.Origin*
+- uid: Prowl.Runtime.Tasks.MainThreadContext.IsMainThread
+  commentId: P:Prowl.Runtime.Tasks.MainThreadContext.IsMainThread
+  id: IsMainThread
+  parent: Prowl.Runtime.Tasks.MainThreadContext
+  langs:
+  - csharp
+  - vb
+  name: IsMainThread
+  nameWithType: MainThreadContext.IsMainThread
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.IsMainThread
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/MainThreadContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsMainThread
+    path: ../Prowl/Prowl.Runtime/Tasks/MainThreadContext.cs
+    startLine: 83
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Tasks
+  summary: Whether the caller is on the thread the engine pumps.
+  example: []
+  syntax:
+    content: public bool IsMainThread { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsMainThread As Boolean
+  overload: Prowl.Runtime.Tasks.MainThreadContext.IsMainThread*
+- uid: Prowl.Runtime.Tasks.MainThreadContext.OnMainThread
+  commentId: P:Prowl.Runtime.Tasks.MainThreadContext.OnMainThread
+  id: OnMainThread
+  parent: Prowl.Runtime.Tasks.MainThreadContext
+  langs:
+  - csharp
+  - vb
+  name: OnMainThread
+  nameWithType: MainThreadContext.OnMainThread
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.OnMainThread
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/MainThreadContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnMainThread
+    path: ../Prowl/Prowl.Runtime/Tasks/MainThreadContext.cs
+    startLine: 90
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Tasks
+  summary: >-
+    Whether the caller is on the engine's thread, for main thread only APIs to check themselves.
+
+    True when no context has been installed (tests, tools, early startup), since there is no engine
+
+    thread to be off yet and refusing to run would be worse than the race being guarded against.
+  example: []
+  syntax:
+    content: public static bool OnMainThread { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared ReadOnly Property OnMainThread As Boolean
+  overload: Prowl.Runtime.Tasks.MainThreadContext.OnMainThread*
+- uid: Prowl.Runtime.Tasks.MainThreadContext.SessionToken
+  commentId: P:Prowl.Runtime.Tasks.MainThreadContext.SessionToken
+  id: SessionToken
+  parent: Prowl.Runtime.Tasks.MainThreadContext
+  langs:
+  - csharp
+  - vb
+  name: SessionToken
+  nameWithType: MainThreadContext.SessionToken
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.SessionToken
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/MainThreadContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SessionToken
+    path: ../Prowl/Prowl.Runtime/Tasks/MainThreadContext.cs
+    startLine: 101
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Tasks
+  summary: Cancelled when this session ends.
+  example: []
+  syntax:
+    content: public CancellationToken SessionToken { get; }
+    parameters: []
+    return:
+      type: System.Threading.CancellationToken
+    content.vb: Public ReadOnly Property SessionToken As CancellationToken
+  overload: Prowl.Runtime.Tasks.MainThreadContext.SessionToken*
+- uid: Prowl.Runtime.Tasks.MainThreadContext.IsEnded
+  commentId: P:Prowl.Runtime.Tasks.MainThreadContext.IsEnded
+  id: IsEnded
+  parent: Prowl.Runtime.Tasks.MainThreadContext
+  langs:
+  - csharp
+  - vb
+  name: IsEnded
+  nameWithType: MainThreadContext.IsEnded
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.IsEnded
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/MainThreadContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsEnded
+    path: ../Prowl/Prowl.Runtime/Tasks/MainThreadContext.cs
+    startLine: 104
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Tasks
+  summary: Whether this session has ended.
+  example: []
+  syntax:
+    content: public bool IsEnded { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsEnded As Boolean
+  overload: Prowl.Runtime.Tasks.MainThreadContext.IsEnded*
+- uid: Prowl.Runtime.Tasks.MainThreadContext.PendingCount
+  commentId: P:Prowl.Runtime.Tasks.MainThreadContext.PendingCount
+  id: PendingCount
+  parent: Prowl.Runtime.Tasks.MainThreadContext
+  langs:
+  - csharp
+  - vb
+  name: PendingCount
+  nameWithType: MainThreadContext.PendingCount
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.PendingCount
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/MainThreadContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PendingCount
+    path: ../Prowl/Prowl.Runtime/Tasks/MainThreadContext.cs
+    startLine: 107
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Tasks
+  summary: How much work is waiting for the next pump.
+  example: []
+  syntax:
+    content: public int PendingCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property PendingCount As Integer
+  overload: Prowl.Runtime.Tasks.MainThreadContext.PendingCount*
+- uid: Prowl.Runtime.Tasks.MainThreadContext.NextFrame(System.Threading.CancellationToken)
+  commentId: M:Prowl.Runtime.Tasks.MainThreadContext.NextFrame(System.Threading.CancellationToken)
+  id: NextFrame(System.Threading.CancellationToken)
+  parent: Prowl.Runtime.Tasks.MainThreadContext
+  langs:
+  - csharp
+  - vb
+  name: NextFrame(CancellationToken)
+  nameWithType: MainThreadContext.NextFrame(CancellationToken)
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.NextFrame(System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/MainThreadContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NextFrame
+    path: ../Prowl/Prowl.Runtime/Tasks/MainThreadContext.cs
+    startLine: 110
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Tasks
+  summary: Completes at the start of the next <xref href="Prowl.Runtime.Tasks.MainThreadContext.Pump" data-throw-if-not-resolved="false"></xref>, or is cancelled if the session ends first.
+  example: []
+  syntax:
+    content: public Task NextFrame(CancellationToken cancel = default)
+    parameters:
+    - id: cancel
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Function NextFrame(cancel As CancellationToken = Nothing) As Task
+  overload: Prowl.Runtime.Tasks.MainThreadContext.NextFrame*
+- uid: Prowl.Runtime.Tasks.MainThreadContext.WaitFrames(System.Func{System.Boolean},System.Threading.CancellationToken)
+  commentId: M:Prowl.Runtime.Tasks.MainThreadContext.WaitFrames(System.Func{System.Boolean},System.Threading.CancellationToken)
+  id: WaitFrames(System.Func{System.Boolean},System.Threading.CancellationToken)
+  parent: Prowl.Runtime.Tasks.MainThreadContext
+  langs:
+  - csharp
+  - vb
+  name: WaitFrames(Func<bool>?, CancellationToken)
+  nameWithType: MainThreadContext.WaitFrames(Func<bool>?, CancellationToken)
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.WaitFrames(System.Func<bool>?, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/MainThreadContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WaitFrames
+    path: ../Prowl/Prowl.Runtime/Tasks/MainThreadContext.cs
+    startLine: 116
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Tasks
+  summary: >-
+    Completes at the start of the first <xref href="Prowl.Runtime.Tasks.MainThreadContext.Pump" data-throw-if-not-resolved="false"></xref> where <code class="paramref">ready</code> returns true,
+
+    checked on the main thread once per frame. Cancelled if the session ends first, so it never hangs.
+  example: []
+  syntax:
+    content: public Task WaitFrames(Func<bool>? ready, CancellationToken cancel = default)
+    parameters:
+    - id: ready
+      type: System.Func{System.Boolean}
+    - id: cancel
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Function WaitFrames(ready As Func(Of Boolean), cancel As CancellationToken = Nothing) As Task
+  overload: Prowl.Runtime.Tasks.MainThreadContext.WaitFrames*
+  nameWithType.vb: MainThreadContext.WaitFrames(Func(Of Boolean), CancellationToken)
+  fullName.vb: Prowl.Runtime.Tasks.MainThreadContext.WaitFrames(System.Func(Of Boolean), System.Threading.CancellationToken)
+  name.vb: WaitFrames(Func(Of Boolean), CancellationToken)
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Install
+  commentId: M:Prowl.Runtime.Tasks.MainThreadContext.Install
+  id: Install
+  parent: Prowl.Runtime.Tasks.MainThreadContext
+  langs:
+  - csharp
+  - vb
+  name: Install()
+  nameWithType: MainThreadContext.Install()
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Install()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/MainThreadContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Install
+    path: ../Prowl/Prowl.Runtime/Tasks/MainThreadContext.cs
+    startLine: 142
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Tasks
+  summary: >-
+    Installs a context bound to the calling thread, which must be the one running the loop. Replaces any
+
+    installed one the way <xref href="Prowl.Runtime.Tasks.MainThreadContext.Restart" data-throw-if-not-resolved="false"></xref> does.
+  example: []
+  syntax:
+    content: public static void Install()
+    content.vb: Public Shared Sub Install()
+  overload: Prowl.Runtime.Tasks.MainThreadContext.Install*
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Restart
+  commentId: M:Prowl.Runtime.Tasks.MainThreadContext.Restart
+  id: Restart
+  parent: Prowl.Runtime.Tasks.MainThreadContext
+  langs:
+  - csharp
+  - vb
+  name: Restart()
+  nameWithType: MainThreadContext.Restart()
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Restart()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/MainThreadContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Restart
+    path: ../Prowl/Prowl.Runtime/Tasks/MainThreadContext.cs
+    startLine: 156
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Tasks
+  summary: >-
+    Ends the current session and starts a new one on the same thread. Must be called on the main thread.
+
+    Called from inside async code, the thread's synchronization context is put back by the runtime when
+
+    that code returns, so the next <xref href="Prowl.Runtime.Tasks.MainThreadContext.Pump" data-throw-if-not-resolved="false"></xref> points it at the new session again.
+  example: []
+  syntax:
+    content: public static void Restart()
+    content.vb: Public Shared Sub Restart()
+  overload: Prowl.Runtime.Tasks.MainThreadContext.Restart*
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Stop
+  commentId: M:Prowl.Runtime.Tasks.MainThreadContext.Stop
+  id: Stop
+  parent: Prowl.Runtime.Tasks.MainThreadContext
+  langs:
+  - csharp
+  - vb
+  name: Stop()
+  nameWithType: MainThreadContext.Stop()
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Stop()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/MainThreadContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Stop
+    path: ../Prowl/Prowl.Runtime/Tasks/MainThreadContext.cs
+    startLine: 173
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Tasks
+  summary: >-
+    Ends the session for good, for when the loop stops. Blocked <xref href="Prowl.Runtime.Tasks.MainThreadContext.Send(System.Threading.SendOrPostCallback%2cSystem.Object)" data-throw-if-not-resolved="false"></xref> calls still queued run
+
+    here. Until <xref href="Prowl.Runtime.Tasks.MainThreadContext.Uninstall" data-throw-if-not-resolved="false"></xref> the ownership checks stay armed and any request for the main thread
+
+    is refused, so a worker cannot run main thread work alongside the shutdown.
+  example: []
+  syntax:
+    content: public static void Stop()
+    content.vb: Public Shared Sub [Stop]()
+  overload: Prowl.Runtime.Tasks.MainThreadContext.Stop*
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Uninstall
+  commentId: M:Prowl.Runtime.Tasks.MainThreadContext.Uninstall
+  id: Uninstall
+  parent: Prowl.Runtime.Tasks.MainThreadContext
+  langs:
+  - csharp
+  - vb
+  name: Uninstall()
+  nameWithType: MainThreadContext.Uninstall()
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Uninstall()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/MainThreadContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Uninstall
+    path: ../Prowl/Prowl.Runtime/Tasks/MainThreadContext.cs
+    startLine: 185
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Tasks
+  summary: Stops the loop if it is still running and removes it, so every thread counts as the main thread again.
+  example: []
+  syntax:
+    content: public static void Uninstall()
+    content.vb: Public Shared Sub Uninstall()
+  overload: Prowl.Runtime.Tasks.MainThreadContext.Uninstall*
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Post(System.Threading.SendOrPostCallback,System.Object)
+  commentId: M:Prowl.Runtime.Tasks.MainThreadContext.Post(System.Threading.SendOrPostCallback,System.Object)
+  id: Post(System.Threading.SendOrPostCallback,System.Object)
+  parent: Prowl.Runtime.Tasks.MainThreadContext
+  langs:
+  - csharp
+  - vb
+  name: Post(SendOrPostCallback, object?)
+  nameWithType: MainThreadContext.Post(SendOrPostCallback, object?)
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Post(System.Threading.SendOrPostCallback, object?)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/MainThreadContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Post
+    path: ../Prowl/Prowl.Runtime/Tasks/MainThreadContext.cs
+    startLine: 264
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Tasks
+  summary: When overridden in a derived class, dispatches an asynchronous message to a synchronization context.
+  example: []
+  syntax:
+    content: public override void Post(SendOrPostCallback d, object? state)
+    parameters:
+    - id: d
+      type: System.Threading.SendOrPostCallback
+      description: The <xref href="System.Threading.SendOrPostCallback" data-throw-if-not-resolved="false"></xref> delegate to call.
+    - id: state
+      type: System.Object
+      description: The object passed to the delegate.
+    content.vb: Public Overrides Sub Post(d As SendOrPostCallback, state As Object)
+  overridden: System.Threading.SynchronizationContext.Post(System.Threading.SendOrPostCallback,System.Object)
+  overload: Prowl.Runtime.Tasks.MainThreadContext.Post*
+  nameWithType.vb: MainThreadContext.Post(SendOrPostCallback, Object)
+  fullName.vb: Prowl.Runtime.Tasks.MainThreadContext.Post(System.Threading.SendOrPostCallback, Object)
+  name.vb: Post(SendOrPostCallback, Object)
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Send(System.Threading.SendOrPostCallback,System.Object)
+  commentId: M:Prowl.Runtime.Tasks.MainThreadContext.Send(System.Threading.SendOrPostCallback,System.Object)
+  id: Send(System.Threading.SendOrPostCallback,System.Object)
+  parent: Prowl.Runtime.Tasks.MainThreadContext
+  langs:
+  - csharp
+  - vb
+  name: Send(SendOrPostCallback, object?)
+  nameWithType: MainThreadContext.Send(SendOrPostCallback, object?)
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Send(System.Threading.SendOrPostCallback, object?)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/MainThreadContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Send
+    path: ../Prowl/Prowl.Runtime/Tasks/MainThreadContext.cs
+    startLine: 280
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Tasks
+  summary: When overridden in a derived class, dispatches a synchronous message to a synchronization context.
+  example: []
+  syntax:
+    content: public override void Send(SendOrPostCallback d, object? state)
+    parameters:
+    - id: d
+      type: System.Threading.SendOrPostCallback
+      description: The <xref href="System.Threading.SendOrPostCallback" data-throw-if-not-resolved="false"></xref> delegate to call.
+    - id: state
+      type: System.Object
+      description: The object passed to the delegate.
+    content.vb: Public Overrides Sub Send(d As SendOrPostCallback, state As Object)
+  overridden: System.Threading.SynchronizationContext.Send(System.Threading.SendOrPostCallback,System.Object)
+  overload: Prowl.Runtime.Tasks.MainThreadContext.Send*
+  exceptions:
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: The method was called in a Windows Store app. The implementation of <xref href="System.Threading.SynchronizationContext" data-throw-if-not-resolved="false"></xref> for Windows Store apps does not support the <xref href="System.Threading.SynchronizationContext.Send(System.Threading.SendOrPostCallback%2cSystem.Object)" data-throw-if-not-resolved="false"></xref> method.
+  nameWithType.vb: MainThreadContext.Send(SendOrPostCallback, Object)
+  fullName.vb: Prowl.Runtime.Tasks.MainThreadContext.Send(System.Threading.SendOrPostCallback, Object)
+  name.vb: Send(SendOrPostCallback, Object)
+- uid: Prowl.Runtime.Tasks.MainThreadContext.CreateCopy
+  commentId: M:Prowl.Runtime.Tasks.MainThreadContext.CreateCopy
+  id: CreateCopy
+  parent: Prowl.Runtime.Tasks.MainThreadContext
+  langs:
+  - csharp
+  - vb
+  name: CreateCopy()
+  nameWithType: MainThreadContext.CreateCopy()
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.CreateCopy()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/MainThreadContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CreateCopy
+    path: ../Prowl/Prowl.Runtime/Tasks/MainThreadContext.cs
+    startLine: 321
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Tasks
+  summary: When overridden in a derived class, creates a copy of the synchronization context.
+  example: []
+  syntax:
+    content: public override SynchronizationContext CreateCopy()
+    return:
+      type: System.Threading.SynchronizationContext
+      description: A new <xref href="System.Threading.SynchronizationContext" data-throw-if-not-resolved="false"></xref> object.
+    content.vb: Public Overrides Function CreateCopy() As SynchronizationContext
+  overridden: System.Threading.SynchronizationContext.CreateCopy
+  overload: Prowl.Runtime.Tasks.MainThreadContext.CreateCopy*
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Pump
+  commentId: M:Prowl.Runtime.Tasks.MainThreadContext.Pump
+  id: Pump
+  parent: Prowl.Runtime.Tasks.MainThreadContext
+  langs:
+  - csharp
+  - vb
+  name: Pump()
+  nameWithType: MainThreadContext.Pump()
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Pump()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Tasks/MainThreadContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Pump
+    path: ../Prowl/Prowl.Runtime/Tasks/MainThreadContext.cs
+    startLine: 330
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Tasks
+  summary: Runs everything queued for the main thread. Called once per frame by the game loop.
+  remarks: >-
+    Drains a snapshot of what was already waiting rather than looping until empty, so a continuation
+
+    that queues more work cannot keep the pump running and stall the frame.
+  example: []
+  syntax:
+    content: public void Pump()
+    content.vb: Public Sub Pump()
+  overload: Prowl.Runtime.Tasks.MainThreadContext.Pump*
+references:
+- uid: Prowl.Runtime.Tasks.MainThreadContext.SessionToken
+  commentId: P:Prowl.Runtime.Tasks.MainThreadContext.SessionToken
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_SessionToken
+  name: SessionToken
+  nameWithType: MainThreadContext.SessionToken
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.SessionToken
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Send(System.Threading.SendOrPostCallback,System.Object)
+  commentId: M:Prowl.Runtime.Tasks.MainThreadContext.Send(System.Threading.SendOrPostCallback,System.Object)
+  isExternal: true
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Send_System_Threading_SendOrPostCallback_System_Object_
+  name: Send(SendOrPostCallback, object)
+  nameWithType: MainThreadContext.Send(SendOrPostCallback, object)
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Send(System.Threading.SendOrPostCallback, object)
+  nameWithType.vb: MainThreadContext.Send(SendOrPostCallback, Object)
+  fullName.vb: Prowl.Runtime.Tasks.MainThreadContext.Send(System.Threading.SendOrPostCallback, Object)
+  name.vb: Send(SendOrPostCallback, Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.Tasks.MainThreadContext.Send(System.Threading.SendOrPostCallback,System.Object)
+    name: Send
+    href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Send_System_Threading_SendOrPostCallback_System_Object_
+  - name: (
+  - uid: System.Threading.SendOrPostCallback
+    name: SendOrPostCallback
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.sendorpostcallback
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Tasks.MainThreadContext.Send(System.Threading.SendOrPostCallback,System.Object)
+    name: Send
+    href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Send_System_Threading_SendOrPostCallback_System_Object_
+  - name: (
+  - uid: System.Threading.SendOrPostCallback
+    name: SendOrPostCallback
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.sendorpostcallback
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.Tasks
+  commentId: N:Prowl.Runtime.Tasks
+  name: Prowl.Runtime.Tasks
+  nameWithType: Prowl.Runtime.Tasks
+  fullName: Prowl.Runtime.Tasks
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Tasks
+    name: Tasks
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Tasks
+    name: Tasks
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Threading.SynchronizationContext
+  commentId: T:System.Threading.SynchronizationContext
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext
+  name: SynchronizationContext
+  nameWithType: SynchronizationContext
+  fullName: System.Threading.SynchronizationContext
+- uid: System.Threading.SynchronizationContext.IsWaitNotificationRequired
+  commentId: M:System.Threading.SynchronizationContext.IsWaitNotificationRequired
+  parent: System.Threading.SynchronizationContext
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.iswaitnotificationrequired
+  name: IsWaitNotificationRequired()
+  nameWithType: SynchronizationContext.IsWaitNotificationRequired()
+  fullName: System.Threading.SynchronizationContext.IsWaitNotificationRequired()
+  spec.csharp:
+  - uid: System.Threading.SynchronizationContext.IsWaitNotificationRequired
+    name: IsWaitNotificationRequired
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.iswaitnotificationrequired
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Threading.SynchronizationContext.IsWaitNotificationRequired
+    name: IsWaitNotificationRequired
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.iswaitnotificationrequired
+  - name: (
+  - name: )
+- uid: System.Threading.SynchronizationContext.OperationCompleted
+  commentId: M:System.Threading.SynchronizationContext.OperationCompleted
+  parent: System.Threading.SynchronizationContext
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.operationcompleted
+  name: OperationCompleted()
+  nameWithType: SynchronizationContext.OperationCompleted()
+  fullName: System.Threading.SynchronizationContext.OperationCompleted()
+  spec.csharp:
+  - uid: System.Threading.SynchronizationContext.OperationCompleted
+    name: OperationCompleted
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.operationcompleted
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Threading.SynchronizationContext.OperationCompleted
+    name: OperationCompleted
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.operationcompleted
+  - name: (
+  - name: )
+- uid: System.Threading.SynchronizationContext.OperationStarted
+  commentId: M:System.Threading.SynchronizationContext.OperationStarted
+  parent: System.Threading.SynchronizationContext
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.operationstarted
+  name: OperationStarted()
+  nameWithType: SynchronizationContext.OperationStarted()
+  fullName: System.Threading.SynchronizationContext.OperationStarted()
+  spec.csharp:
+  - uid: System.Threading.SynchronizationContext.OperationStarted
+    name: OperationStarted
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.operationstarted
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Threading.SynchronizationContext.OperationStarted
+    name: OperationStarted
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.operationstarted
+  - name: (
+  - name: )
+- uid: System.Threading.SynchronizationContext.SetSynchronizationContext(System.Threading.SynchronizationContext)
+  commentId: M:System.Threading.SynchronizationContext.SetSynchronizationContext(System.Threading.SynchronizationContext)
+  parent: System.Threading.SynchronizationContext
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.setsynchronizationcontext
+  name: SetSynchronizationContext(SynchronizationContext)
+  nameWithType: SynchronizationContext.SetSynchronizationContext(SynchronizationContext)
+  fullName: System.Threading.SynchronizationContext.SetSynchronizationContext(System.Threading.SynchronizationContext)
+  spec.csharp:
+  - uid: System.Threading.SynchronizationContext.SetSynchronizationContext(System.Threading.SynchronizationContext)
+    name: SetSynchronizationContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.setsynchronizationcontext
+  - name: (
+  - uid: System.Threading.SynchronizationContext
+    name: SynchronizationContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext
+  - name: )
+  spec.vb:
+  - uid: System.Threading.SynchronizationContext.SetSynchronizationContext(System.Threading.SynchronizationContext)
+    name: SetSynchronizationContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.setsynchronizationcontext
+  - name: (
+  - uid: System.Threading.SynchronizationContext
+    name: SynchronizationContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext
+  - name: )
+- uid: System.Threading.SynchronizationContext.Wait(System.IntPtr[],System.Boolean,System.Int32)
+  commentId: M:System.Threading.SynchronizationContext.Wait(System.IntPtr[],System.Boolean,System.Int32)
+  parent: System.Threading.SynchronizationContext
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.wait
+  name: Wait(nint[], bool, int)
+  nameWithType: SynchronizationContext.Wait(nint[], bool, int)
+  fullName: System.Threading.SynchronizationContext.Wait(nint[], bool, int)
+  nameWithType.vb: SynchronizationContext.Wait(IntPtr(), Boolean, Integer)
+  fullName.vb: System.Threading.SynchronizationContext.Wait(System.IntPtr(), Boolean, Integer)
+  name.vb: Wait(IntPtr(), Boolean, Integer)
+  spec.csharp:
+  - uid: System.Threading.SynchronizationContext.Wait(System.IntPtr[],System.Boolean,System.Int32)
+    name: Wait
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.wait
+  - name: (
+  - uid: System.IntPtr
+    name: nint
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.intptr
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Threading.SynchronizationContext.Wait(System.IntPtr[],System.Boolean,System.Int32)
+    name: Wait
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.wait
+  - name: (
+  - uid: System.IntPtr
+    name: IntPtr
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.intptr
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Current*
+  commentId: Overload:Prowl.Runtime.Tasks.MainThreadContext.Current
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Current
+  name: Current
+  nameWithType: MainThreadContext.Current
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Current
+- uid: Prowl.Runtime.Tasks.MainThreadContext
+  commentId: T:Prowl.Runtime.Tasks.MainThreadContext
+  parent: Prowl.Runtime.Tasks
+  href: Prowl.Runtime.Tasks.MainThreadContext.html
+  name: MainThreadContext
+  nameWithType: MainThreadContext
+  fullName: Prowl.Runtime.Tasks.MainThreadContext
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Stop
+  commentId: M:Prowl.Runtime.Tasks.MainThreadContext.Stop
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Stop
+  name: Stop()
+  nameWithType: MainThreadContext.Stop()
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Stop()
+  spec.csharp:
+  - uid: Prowl.Runtime.Tasks.MainThreadContext.Stop
+    name: Stop
+    href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Stop
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Tasks.MainThreadContext.Stop
+    name: Stop
+    href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Stop
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Origin*
+  commentId: Overload:Prowl.Runtime.Tasks.MainThreadContext.Origin
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Origin
+  name: Origin
+  nameWithType: MainThreadContext.Origin
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Origin
+- uid: Prowl.Runtime.Tasks.MainThreadContext.IsMainThread*
+  commentId: Overload:Prowl.Runtime.Tasks.MainThreadContext.IsMainThread
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_IsMainThread
+  name: IsMainThread
+  nameWithType: MainThreadContext.IsMainThread
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.IsMainThread
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Runtime.Tasks.MainThreadContext.OnMainThread*
+  commentId: Overload:Prowl.Runtime.Tasks.MainThreadContext.OnMainThread
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_OnMainThread
+  name: OnMainThread
+  nameWithType: MainThreadContext.OnMainThread
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.OnMainThread
+- uid: Prowl.Runtime.Tasks.MainThreadContext.SessionToken*
+  commentId: Overload:Prowl.Runtime.Tasks.MainThreadContext.SessionToken
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_SessionToken
+  name: SessionToken
+  nameWithType: MainThreadContext.SessionToken
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.SessionToken
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: Prowl.Runtime.Tasks.MainThreadContext.IsEnded*
+  commentId: Overload:Prowl.Runtime.Tasks.MainThreadContext.IsEnded
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_IsEnded
+  name: IsEnded
+  nameWithType: MainThreadContext.IsEnded
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.IsEnded
+- uid: Prowl.Runtime.Tasks.MainThreadContext.PendingCount*
+  commentId: Overload:Prowl.Runtime.Tasks.MainThreadContext.PendingCount
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_PendingCount
+  name: PendingCount
+  nameWithType: MainThreadContext.PendingCount
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.PendingCount
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Pump
+  commentId: M:Prowl.Runtime.Tasks.MainThreadContext.Pump
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Pump
+  name: Pump()
+  nameWithType: MainThreadContext.Pump()
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Pump()
+  spec.csharp:
+  - uid: Prowl.Runtime.Tasks.MainThreadContext.Pump
+    name: Pump
+    href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Pump
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Tasks.MainThreadContext.Pump
+    name: Pump
+    href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Pump
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Tasks.MainThreadContext.NextFrame*
+  commentId: Overload:Prowl.Runtime.Tasks.MainThreadContext.NextFrame
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_NextFrame_System_Threading_CancellationToken_
+  name: NextFrame
+  nameWithType: MainThreadContext.NextFrame
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.NextFrame
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Prowl.Runtime.Tasks.MainThreadContext.WaitFrames*
+  commentId: Overload:Prowl.Runtime.Tasks.MainThreadContext.WaitFrames
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_WaitFrames_System_Func_System_Boolean__System_Threading_CancellationToken_
+  name: WaitFrames
+  nameWithType: MainThreadContext.WaitFrames
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.WaitFrames
+- uid: System.Func{System.Boolean}
+  commentId: T:System.Func{System.Boolean}
+  parent: System
+  definition: System.Func`1
+  href: https://learn.microsoft.com/dotnet/api/system.func-1
+  name: Func<bool>
+  nameWithType: Func<bool>
+  fullName: System.Func<bool>
+  nameWithType.vb: Func(Of Boolean)
+  fullName.vb: System.Func(Of Boolean)
+  name.vb: Func(Of Boolean)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Func`1
+  commentId: T:System.Func`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-1
+  name: Func<TResult>
+  nameWithType: Func<TResult>
+  fullName: System.Func<TResult>
+  nameWithType.vb: Func(Of TResult)
+  fullName.vb: System.Func(Of TResult)
+  name.vb: Func(Of TResult)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Restart
+  commentId: M:Prowl.Runtime.Tasks.MainThreadContext.Restart
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Restart
+  name: Restart()
+  nameWithType: MainThreadContext.Restart()
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Restart()
+  spec.csharp:
+  - uid: Prowl.Runtime.Tasks.MainThreadContext.Restart
+    name: Restart
+    href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Restart
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Tasks.MainThreadContext.Restart
+    name: Restart
+    href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Restart
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Install*
+  commentId: Overload:Prowl.Runtime.Tasks.MainThreadContext.Install
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Install
+  name: Install
+  nameWithType: MainThreadContext.Install
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Install
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Restart*
+  commentId: Overload:Prowl.Runtime.Tasks.MainThreadContext.Restart
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Restart
+  name: Restart
+  nameWithType: MainThreadContext.Restart
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Restart
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Uninstall
+  commentId: M:Prowl.Runtime.Tasks.MainThreadContext.Uninstall
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Uninstall
+  name: Uninstall()
+  nameWithType: MainThreadContext.Uninstall()
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Uninstall()
+  spec.csharp:
+  - uid: Prowl.Runtime.Tasks.MainThreadContext.Uninstall
+    name: Uninstall
+    href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Uninstall
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Tasks.MainThreadContext.Uninstall
+    name: Uninstall
+    href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Uninstall
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Stop*
+  commentId: Overload:Prowl.Runtime.Tasks.MainThreadContext.Stop
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Stop
+  name: Stop
+  nameWithType: MainThreadContext.Stop
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Stop
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Uninstall*
+  commentId: Overload:Prowl.Runtime.Tasks.MainThreadContext.Uninstall
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Uninstall
+  name: Uninstall
+  nameWithType: MainThreadContext.Uninstall
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Uninstall
+- uid: System.Threading.SendOrPostCallback
+  commentId: T:System.Threading.SendOrPostCallback
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.sendorpostcallback
+  name: SendOrPostCallback
+  nameWithType: SendOrPostCallback
+  fullName: System.Threading.SendOrPostCallback
+- uid: System.Threading.SynchronizationContext.Post(System.Threading.SendOrPostCallback,System.Object)
+  commentId: M:System.Threading.SynchronizationContext.Post(System.Threading.SendOrPostCallback,System.Object)
+  parent: System.Threading.SynchronizationContext
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.post
+  name: Post(SendOrPostCallback, object)
+  nameWithType: SynchronizationContext.Post(SendOrPostCallback, object)
+  fullName: System.Threading.SynchronizationContext.Post(System.Threading.SendOrPostCallback, object)
+  nameWithType.vb: SynchronizationContext.Post(SendOrPostCallback, Object)
+  fullName.vb: System.Threading.SynchronizationContext.Post(System.Threading.SendOrPostCallback, Object)
+  name.vb: Post(SendOrPostCallback, Object)
+  spec.csharp:
+  - uid: System.Threading.SynchronizationContext.Post(System.Threading.SendOrPostCallback,System.Object)
+    name: Post
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.post
+  - name: (
+  - uid: System.Threading.SendOrPostCallback
+    name: SendOrPostCallback
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.sendorpostcallback
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Threading.SynchronizationContext.Post(System.Threading.SendOrPostCallback,System.Object)
+    name: Post
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.post
+  - name: (
+  - uid: System.Threading.SendOrPostCallback
+    name: SendOrPostCallback
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.sendorpostcallback
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Post*
+  commentId: Overload:Prowl.Runtime.Tasks.MainThreadContext.Post
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Post_System_Threading_SendOrPostCallback_System_Object_
+  name: Post
+  nameWithType: MainThreadContext.Post
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Post
+- uid: System.Threading.SynchronizationContext.Send(System.Threading.SendOrPostCallback,System.Object)
+  commentId: M:System.Threading.SynchronizationContext.Send(System.Threading.SendOrPostCallback,System.Object)
+  parent: System.Threading.SynchronizationContext
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.send
+  name: Send(SendOrPostCallback, object)
+  nameWithType: SynchronizationContext.Send(SendOrPostCallback, object)
+  fullName: System.Threading.SynchronizationContext.Send(System.Threading.SendOrPostCallback, object)
+  nameWithType.vb: SynchronizationContext.Send(SendOrPostCallback, Object)
+  fullName.vb: System.Threading.SynchronizationContext.Send(System.Threading.SendOrPostCallback, Object)
+  name.vb: Send(SendOrPostCallback, Object)
+  spec.csharp:
+  - uid: System.Threading.SynchronizationContext.Send(System.Threading.SendOrPostCallback,System.Object)
+    name: Send
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.send
+  - name: (
+  - uid: System.Threading.SendOrPostCallback
+    name: SendOrPostCallback
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.sendorpostcallback
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Threading.SynchronizationContext.Send(System.Threading.SendOrPostCallback,System.Object)
+    name: Send
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.send
+  - name: (
+  - uid: System.Threading.SendOrPostCallback
+    name: SendOrPostCallback
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.sendorpostcallback
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.NotSupportedException
+  commentId: T:System.NotSupportedException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.notsupportedexception
+  name: NotSupportedException
+  nameWithType: NotSupportedException
+  fullName: System.NotSupportedException
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Send*
+  commentId: Overload:Prowl.Runtime.Tasks.MainThreadContext.Send
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Send_System_Threading_SendOrPostCallback_System_Object_
+  name: Send
+  nameWithType: MainThreadContext.Send
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Send
+- uid: System.Threading.SynchronizationContext.CreateCopy
+  commentId: M:System.Threading.SynchronizationContext.CreateCopy
+  parent: System.Threading.SynchronizationContext
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.createcopy
+  name: CreateCopy()
+  nameWithType: SynchronizationContext.CreateCopy()
+  fullName: System.Threading.SynchronizationContext.CreateCopy()
+  spec.csharp:
+  - uid: System.Threading.SynchronizationContext.CreateCopy
+    name: CreateCopy
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.createcopy
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Threading.SynchronizationContext.CreateCopy
+    name: CreateCopy
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.createcopy
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Tasks.MainThreadContext.CreateCopy*
+  commentId: Overload:Prowl.Runtime.Tasks.MainThreadContext.CreateCopy
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_CreateCopy
+  name: CreateCopy
+  nameWithType: MainThreadContext.CreateCopy
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.CreateCopy
+- uid: Prowl.Runtime.Tasks.MainThreadContext.Pump*
+  commentId: Overload:Prowl.Runtime.Tasks.MainThreadContext.Pump
+  href: Prowl.Runtime.Tasks.MainThreadContext.html#Prowl_Runtime_Tasks_MainThreadContext_Pump
+  name: Pump
+  nameWithType: MainThreadContext.Pump
+  fullName: Prowl.Runtime.Tasks.MainThreadContext.Pump

@@ -1,0 +1,991 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.AssetBackend
+  commentId: T:Prowl.Runtime.AssetBackend
+  id: AssetBackend
+  parent: Prowl.Runtime
+  children:
+  - Prowl.Runtime.AssetBackend.GetAssetPath(System.Guid)
+  - Prowl.Runtime.AssetBackend.GetAssetType(System.Guid)
+  - Prowl.Runtime.AssetBackend.GetEstimatedSize(System.Guid)
+  - Prowl.Runtime.AssetBackend.GetHardDependencies(System.Guid)
+  - Prowl.Runtime.AssetBackend.NeedsMainThread(System.Guid)
+  - Prowl.Runtime.AssetBackend.PrepareOnMainThread(System.Guid)
+  - Prowl.Runtime.AssetBackend.ReadContent(System.Guid,Prowl.Runtime.Asset,Prowl.Echo.SerializationContext)
+  - Prowl.Runtime.AssetBackend.ReadInto(Prowl.Echo.EchoObject,Prowl.Runtime.Asset,Prowl.Echo.SerializationContext)
+  - Prowl.Runtime.AssetBackend.Resources
+  langs:
+  - csharp
+  - vb
+  name: AssetBackend
+  nameWithType: AssetBackend
+  fullName: Prowl.Runtime.AssetBackend
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime/AssetBackend.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AssetBackend
+    path: ../Prowl/Prowl.Runtime/AssetBackend.cs
+    startLine: 19
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Where asset content comes from: the editor's project, a built player's paks, or memory. A backend only answers
+
+    questions about GUIDs and reads content into a copy the database hands it. It never keeps assets itself.
+  example: []
+  syntax:
+    content: public abstract class AssetBackend
+    content.vb: Public MustInherit Class AssetBackend
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - Prowl.Editor.EditorAssetBackend
+  - Prowl.Runtime.MemoryAssetBackend
+  - Prowl.Runtime.PlayerAssetBackend
+  - Prowl.Runtime.SourceAssetBackend
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.AssetBackend.GetAssetType(System.Guid)
+  commentId: M:Prowl.Runtime.AssetBackend.GetAssetType(System.Guid)
+  id: GetAssetType(System.Guid)
+  parent: Prowl.Runtime.AssetBackend
+  langs:
+  - csharp
+  - vb
+  name: GetAssetType(Guid)
+  nameWithType: AssetBackend.GetAssetType(Guid)
+  fullName: Prowl.Runtime.AssetBackend.GetAssetType(System.Guid)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetBackend.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetAssetType
+    path: ../Prowl/Prowl.Runtime/AssetBackend.cs
+    startLine: 22
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The type a GUID loads as, or null when this backend does not know the GUID.
+  example: []
+  syntax:
+    content: public abstract Type? GetAssetType(Guid assetId)
+    parameters:
+    - id: assetId
+      type: System.Guid
+    return:
+      type: System.Type
+    content.vb: Public MustOverride Function GetAssetType(assetId As Guid) As Type
+  overload: Prowl.Runtime.AssetBackend.GetAssetType*
+- uid: Prowl.Runtime.AssetBackend.GetAssetPath(System.Guid)
+  commentId: M:Prowl.Runtime.AssetBackend.GetAssetPath(System.Guid)
+  id: GetAssetPath(System.Guid)
+  parent: Prowl.Runtime.AssetBackend
+  langs:
+  - csharp
+  - vb
+  name: GetAssetPath(Guid)
+  nameWithType: AssetBackend.GetAssetPath(Guid)
+  fullName: Prowl.Runtime.AssetBackend.GetAssetPath(System.Guid)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetBackend.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetAssetPath
+    path: ../Prowl/Prowl.Runtime/AssetBackend.cs
+    startLine: 25
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The asset's path, "Folder/Rock.png" or "Model.fbx#Body" for a sub asset.
+  example: []
+  syntax:
+    content: public virtual string? GetAssetPath(Guid assetId)
+    parameters:
+    - id: assetId
+      type: System.Guid
+    return:
+      type: System.String
+    content.vb: Public Overridable Function GetAssetPath(assetId As Guid) As String
+  overload: Prowl.Runtime.AssetBackend.GetAssetPath*
+- uid: Prowl.Runtime.AssetBackend.GetHardDependencies(System.Guid)
+  commentId: M:Prowl.Runtime.AssetBackend.GetHardDependencies(System.Guid)
+  id: GetHardDependencies(System.Guid)
+  parent: Prowl.Runtime.AssetBackend
+  langs:
+  - csharp
+  - vb
+  name: GetHardDependencies(Guid)
+  nameWithType: AssetBackend.GetHardDependencies(Guid)
+  fullName: Prowl.Runtime.AssetBackend.GetHardDependencies(System.Guid)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetBackend.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetHardDependencies
+    path: ../Prowl/Prowl.Runtime/AssetBackend.cs
+    startLine: 27
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public virtual IReadOnlyList<Guid> GetHardDependencies(Guid assetId)
+    parameters:
+    - id: assetId
+      type: System.Guid
+    return:
+      type: System.Collections.Generic.IReadOnlyList{System.Guid}
+    content.vb: Public Overridable Function GetHardDependencies(assetId As Guid) As IReadOnlyList(Of Guid)
+  overload: Prowl.Runtime.AssetBackend.GetHardDependencies*
+- uid: Prowl.Runtime.AssetBackend.GetEstimatedSize(System.Guid)
+  commentId: M:Prowl.Runtime.AssetBackend.GetEstimatedSize(System.Guid)
+  id: GetEstimatedSize(System.Guid)
+  parent: Prowl.Runtime.AssetBackend
+  langs:
+  - csharp
+  - vb
+  name: GetEstimatedSize(Guid)
+  nameWithType: AssetBackend.GetEstimatedSize(Guid)
+  fullName: Prowl.Runtime.AssetBackend.GetEstimatedSize(System.Guid)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetBackend.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetEstimatedSize
+    path: ../Prowl/Prowl.Runtime/AssetBackend.cs
+    startLine: 29
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public virtual long GetEstimatedSize(Guid assetId)
+    parameters:
+    - id: assetId
+      type: System.Guid
+    return:
+      type: System.Int64
+    content.vb: Public Overridable Function GetEstimatedSize(assetId As Guid) As Long
+  overload: Prowl.Runtime.AssetBackend.GetEstimatedSize*
+- uid: Prowl.Runtime.AssetBackend.Resources
+  commentId: P:Prowl.Runtime.AssetBackend.Resources
+  id: Resources
+  parent: Prowl.Runtime.AssetBackend
+  langs:
+  - csharp
+  - vb
+  name: Resources
+  nameWithType: AssetBackend.Resources
+  fullName: Prowl.Runtime.AssetBackend.Resources
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/AssetBackend.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Resources
+    path: ../Prowl/Prowl.Runtime/AssetBackend.cs
+    startLine: 32
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Every asset under a Resources folder, in the order that decides which one a shared load path picks.
+  example: []
+  syntax:
+    content: public virtual IReadOnlyList<ResourceEntry> Resources { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.ResourceEntry}
+    content.vb: Public Overridable ReadOnly Property Resources As IReadOnlyList(Of ResourceEntry)
+  overload: Prowl.Runtime.AssetBackend.Resources*
+- uid: Prowl.Runtime.AssetBackend.ReadContent(System.Guid,Prowl.Runtime.Asset,Prowl.Echo.SerializationContext)
+  commentId: M:Prowl.Runtime.AssetBackend.ReadContent(System.Guid,Prowl.Runtime.Asset,Prowl.Echo.SerializationContext)
+  id: ReadContent(System.Guid,Prowl.Runtime.Asset,Prowl.Echo.SerializationContext)
+  parent: Prowl.Runtime.AssetBackend
+  langs:
+  - csharp
+  - vb
+  name: ReadContent(Guid, Asset, SerializationContext)
+  nameWithType: AssetBackend.ReadContent(Guid, Asset, SerializationContext)
+  fullName: Prowl.Runtime.AssetBackend.ReadContent(System.Guid, Prowl.Runtime.Asset, Prowl.Echo.SerializationContext)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetBackend.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ReadContent
+    path: ../Prowl/Prowl.Runtime/AssetBackend.cs
+    startLine: 38
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Reads an asset's content into <code class="paramref">staging</code>, a fresh object of its type that nothing else has
+
+    seen. Runs on the loader thread or the main thread. False when there is nothing to read.
+  example: []
+  syntax:
+    content: protected abstract bool ReadContent(Guid assetId, Asset staging, SerializationContext context)
+    parameters:
+    - id: assetId
+      type: System.Guid
+    - id: staging
+      type: Prowl.Runtime.Asset
+    - id: context
+      type: Prowl.Echo.SerializationContext
+    return:
+      type: System.Boolean
+    content.vb: Protected MustOverride Function ReadContent(assetId As Guid, staging As Asset, context As SerializationContext) As Boolean
+  overload: Prowl.Runtime.AssetBackend.ReadContent*
+- uid: Prowl.Runtime.AssetBackend.NeedsMainThread(System.Guid)
+  commentId: M:Prowl.Runtime.AssetBackend.NeedsMainThread(System.Guid)
+  id: NeedsMainThread(System.Guid)
+  parent: Prowl.Runtime.AssetBackend
+  langs:
+  - csharp
+  - vb
+  name: NeedsMainThread(Guid)
+  nameWithType: AssetBackend.NeedsMainThread(Guid)
+  fullName: Prowl.Runtime.AssetBackend.NeedsMainThread(System.Guid)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetBackend.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NeedsMainThread
+    path: ../Prowl/Prowl.Runtime/AssetBackend.cs
+    startLine: 41
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: True when reading this asset first needs work only the main thread may do, such as importing it.
+  example: []
+  syntax:
+    content: protected virtual bool NeedsMainThread(Guid assetId)
+    parameters:
+    - id: assetId
+      type: System.Guid
+    return:
+      type: System.Boolean
+    content.vb: Protected Overridable Function NeedsMainThread(assetId As Guid) As Boolean
+  overload: Prowl.Runtime.AssetBackend.NeedsMainThread*
+- uid: Prowl.Runtime.AssetBackend.PrepareOnMainThread(System.Guid)
+  commentId: M:Prowl.Runtime.AssetBackend.PrepareOnMainThread(System.Guid)
+  id: PrepareOnMainThread(System.Guid)
+  parent: Prowl.Runtime.AssetBackend
+  langs:
+  - csharp
+  - vb
+  name: PrepareOnMainThread(Guid)
+  nameWithType: AssetBackend.PrepareOnMainThread(Guid)
+  fullName: Prowl.Runtime.AssetBackend.PrepareOnMainThread(System.Guid)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetBackend.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PrepareOnMainThread
+    path: ../Prowl/Prowl.Runtime/AssetBackend.cs
+    startLine: 44
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Does the main thread only work <xref href="Prowl.Runtime.AssetBackend.NeedsMainThread(System.Guid)" data-throw-if-not-resolved="false"></xref> asked for.
+  example: []
+  syntax:
+    content: protected virtual void PrepareOnMainThread(Guid assetId)
+    parameters:
+    - id: assetId
+      type: System.Guid
+    content.vb: Protected Overridable Sub PrepareOnMainThread(assetId As Guid)
+  overload: Prowl.Runtime.AssetBackend.PrepareOnMainThread*
+- uid: Prowl.Runtime.AssetBackend.ReadInto(Prowl.Echo.EchoObject,Prowl.Runtime.Asset,Prowl.Echo.SerializationContext)
+  commentId: M:Prowl.Runtime.AssetBackend.ReadInto(Prowl.Echo.EchoObject,Prowl.Runtime.Asset,Prowl.Echo.SerializationContext)
+  id: ReadInto(Prowl.Echo.EchoObject,Prowl.Runtime.Asset,Prowl.Echo.SerializationContext)
+  parent: Prowl.Runtime.AssetBackend
+  langs:
+  - csharp
+  - vb
+  name: ReadInto(EchoObject, Asset, SerializationContext)
+  nameWithType: AssetBackend.ReadInto(EchoObject, Asset, SerializationContext)
+  fullName: Prowl.Runtime.AssetBackend.ReadInto(Prowl.Echo.EchoObject, Prowl.Runtime.Asset, Prowl.Echo.SerializationContext)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetBackend.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ReadInto
+    path: ../Prowl/Prowl.Runtime/AssetBackend.cs
+    startLine: 47
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Deserializes an Echo tree into the staging copy, whatever type envelope the tree carries. False for a tree that is no object.
+  example: []
+  syntax:
+    content: protected static bool ReadInto(EchoObject echo, Asset staging, SerializationContext context)
+    parameters:
+    - id: echo
+      type: Prowl.Echo.EchoObject
+    - id: staging
+      type: Prowl.Runtime.Asset
+    - id: context
+      type: Prowl.Echo.SerializationContext
+    return:
+      type: System.Boolean
+    content.vb: Protected Shared Function ReadInto(echo As EchoObject, staging As Asset, context As SerializationContext) As Boolean
+  overload: Prowl.Runtime.AssetBackend.ReadInto*
+references:
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime.AssetBackend.GetAssetType*
+  commentId: Overload:Prowl.Runtime.AssetBackend.GetAssetType
+  href: Prowl.Runtime.AssetBackend.html#Prowl_Runtime_AssetBackend_GetAssetType_System_Guid_
+  name: GetAssetType
+  nameWithType: AssetBackend.GetAssetType
+  fullName: Prowl.Runtime.AssetBackend.GetAssetType
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: Prowl.Runtime.AssetBackend.GetAssetPath*
+  commentId: Overload:Prowl.Runtime.AssetBackend.GetAssetPath
+  href: Prowl.Runtime.AssetBackend.html#Prowl_Runtime_AssetBackend_GetAssetPath_System_Guid_
+  name: GetAssetPath
+  nameWithType: AssetBackend.GetAssetPath
+  fullName: Prowl.Runtime.AssetBackend.GetAssetPath
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Prowl.Runtime.AssetBackend.GetHardDependencies*
+  commentId: Overload:Prowl.Runtime.AssetBackend.GetHardDependencies
+  href: Prowl.Runtime.AssetBackend.html#Prowl_Runtime_AssetBackend_GetHardDependencies_System_Guid_
+  name: GetHardDependencies
+  nameWithType: AssetBackend.GetHardDependencies
+  fullName: Prowl.Runtime.AssetBackend.GetHardDependencies
+- uid: System.Collections.Generic.IReadOnlyList{System.Guid}
+  commentId: T:System.Collections.Generic.IReadOnlyList{System.Guid}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<Guid>
+  nameWithType: IReadOnlyList<Guid>
+  fullName: System.Collections.Generic.IReadOnlyList<System.Guid>
+  nameWithType.vb: IReadOnlyList(Of Guid)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of System.Guid)
+  name.vb: IReadOnlyList(Of Guid)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Prowl.Runtime.AssetBackend.GetEstimatedSize*
+  commentId: Overload:Prowl.Runtime.AssetBackend.GetEstimatedSize
+  href: Prowl.Runtime.AssetBackend.html#Prowl_Runtime_AssetBackend_GetEstimatedSize_System_Guid_
+  name: GetEstimatedSize
+  nameWithType: AssetBackend.GetEstimatedSize
+  fullName: Prowl.Runtime.AssetBackend.GetEstimatedSize
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: Prowl.Runtime.AssetBackend.Resources*
+  commentId: Overload:Prowl.Runtime.AssetBackend.Resources
+  href: Prowl.Runtime.AssetBackend.html#Prowl_Runtime_AssetBackend_Resources
+  name: Resources
+  nameWithType: AssetBackend.Resources
+  fullName: Prowl.Runtime.AssetBackend.Resources
+- uid: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.ResourceEntry}
+  commentId: T:System.Collections.Generic.IReadOnlyList{Prowl.Runtime.ResourceEntry}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<ResourceEntry>
+  nameWithType: IReadOnlyList<ResourceEntry>
+  fullName: System.Collections.Generic.IReadOnlyList<Prowl.Runtime.ResourceEntry>
+  nameWithType.vb: IReadOnlyList(Of ResourceEntry)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.ResourceEntry)
+  name.vb: IReadOnlyList(Of ResourceEntry)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Runtime.ResourceEntry
+    name: ResourceEntry
+    href: Prowl.Runtime.ResourceEntry.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.ResourceEntry
+    name: ResourceEntry
+    href: Prowl.Runtime.ResourceEntry.html
+  - name: )
+- uid: Prowl.Runtime.AssetBackend.ReadContent*
+  commentId: Overload:Prowl.Runtime.AssetBackend.ReadContent
+  href: Prowl.Runtime.AssetBackend.html#Prowl_Runtime_AssetBackend_ReadContent_System_Guid_Prowl_Runtime_Asset_Prowl_Echo_SerializationContext_
+  name: ReadContent
+  nameWithType: AssetBackend.ReadContent
+  fullName: Prowl.Runtime.AssetBackend.ReadContent
+- uid: Prowl.Runtime.Asset
+  commentId: T:Prowl.Runtime.Asset
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.Asset.html
+  name: Asset
+  nameWithType: Asset
+  fullName: Prowl.Runtime.Asset
+- uid: Prowl.Echo.SerializationContext
+  commentId: T:Prowl.Echo.SerializationContext
+  parent: Prowl.Echo
+  isExternal: true
+  name: SerializationContext
+  nameWithType: SerializationContext
+  fullName: Prowl.Echo.SerializationContext
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Echo
+  commentId: N:Prowl.Echo
+  name: Prowl.Echo
+  nameWithType: Prowl.Echo
+  fullName: Prowl.Echo
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
+- uid: Prowl.Runtime.AssetBackend.NeedsMainThread*
+  commentId: Overload:Prowl.Runtime.AssetBackend.NeedsMainThread
+  href: Prowl.Runtime.AssetBackend.html#Prowl_Runtime_AssetBackend_NeedsMainThread_System_Guid_
+  name: NeedsMainThread
+  nameWithType: AssetBackend.NeedsMainThread
+  fullName: Prowl.Runtime.AssetBackend.NeedsMainThread
+- uid: Prowl.Runtime.AssetBackend.NeedsMainThread(System.Guid)
+  commentId: M:Prowl.Runtime.AssetBackend.NeedsMainThread(System.Guid)
+  parent: Prowl.Runtime.AssetBackend
+  isExternal: true
+  href: Prowl.Runtime.AssetBackend.html#Prowl_Runtime_AssetBackend_NeedsMainThread_System_Guid_
+  name: NeedsMainThread(Guid)
+  nameWithType: AssetBackend.NeedsMainThread(Guid)
+  fullName: Prowl.Runtime.AssetBackend.NeedsMainThread(System.Guid)
+  spec.csharp:
+  - uid: Prowl.Runtime.AssetBackend.NeedsMainThread(System.Guid)
+    name: NeedsMainThread
+    href: Prowl.Runtime.AssetBackend.html#Prowl_Runtime_AssetBackend_NeedsMainThread_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.AssetBackend.NeedsMainThread(System.Guid)
+    name: NeedsMainThread
+    href: Prowl.Runtime.AssetBackend.html#Prowl_Runtime_AssetBackend_NeedsMainThread_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+- uid: Prowl.Runtime.AssetBackend.PrepareOnMainThread*
+  commentId: Overload:Prowl.Runtime.AssetBackend.PrepareOnMainThread
+  href: Prowl.Runtime.AssetBackend.html#Prowl_Runtime_AssetBackend_PrepareOnMainThread_System_Guid_
+  name: PrepareOnMainThread
+  nameWithType: AssetBackend.PrepareOnMainThread
+  fullName: Prowl.Runtime.AssetBackend.PrepareOnMainThread
+- uid: Prowl.Runtime.AssetBackend
+  commentId: T:Prowl.Runtime.AssetBackend
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.AssetBackend.html
+  name: AssetBackend
+  nameWithType: AssetBackend
+  fullName: Prowl.Runtime.AssetBackend
+- uid: Prowl.Runtime.AssetBackend.ReadInto*
+  commentId: Overload:Prowl.Runtime.AssetBackend.ReadInto
+  href: Prowl.Runtime.AssetBackend.html#Prowl_Runtime_AssetBackend_ReadInto_Prowl_Echo_EchoObject_Prowl_Runtime_Asset_Prowl_Echo_SerializationContext_
+  name: ReadInto
+  nameWithType: AssetBackend.ReadInto
+  fullName: Prowl.Runtime.AssetBackend.ReadInto
+- uid: Prowl.Echo.EchoObject
+  commentId: T:Prowl.Echo.EchoObject
+  parent: Prowl.Echo
+  isExternal: true
+  name: EchoObject
+  nameWithType: EchoObject
+  fullName: Prowl.Echo.EchoObject

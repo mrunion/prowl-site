@@ -1,0 +1,2696 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests
+  commentId: T:Prowl.Runtime.Test.NavMeshObstacleTests
+  id: NavMeshObstacleTests
+  parent: Prowl.Runtime.Test
+  children:
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Agent_PathsAroundCarve
+  - Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_BehindACacheThatNeverSettles_StillLands
+  - Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_DuringAPendingCarve_LandsOnTheSettledFrame
+  - Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_HeldBatch_DoesNotOverwriteANewerRebuild
+  - Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_HeldPastUnregistration_IsDropped
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ClampsTileSizeToLayerFormatLimit
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesCarvingObstacleGeometry
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesObstacleGeometry(System.Boolean)
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesObstacleGeometry_EvenWhileDisabled
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Bake_WithDefaultSettings_ProducesQueryableMesh
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Carve_FinishingInOneUpdate_StillReportsTheChange
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Carve_KeepsAgentsAFullRadiusClear
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Carve_ReportsEveryFrame_ButSettlesOnlyWhenDone
+  - Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_ObstacleSpanningRebuiltAndUntouchedTiles
+  - Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_OnARuntimeBake_LandsOnTheDataItself
+  - Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_OnAnAsset_MirrorsIntoACopyAndLeavesTheAsset
+  - Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_PreservesExistingCarves
+  - Prowl.Runtime.Test.NavMeshObstacleTests.LiveTriangulation_ShowsTheCarve
+  - Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_DeflectsAgent_WithoutTouchingMesh
+  - Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_FollowsAMovingObstacle
+  - Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_OffNavMesh_WarnsItCannotBlock
+  - Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_StaysPutUnderPressure
+  - Prowl.Runtime.Test.NavMeshObstacleTests.ObstacleShape_KeepsTheValuesScenesWereSavedWith
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveOnlyStationary_LiftsWhileMoving
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveSwitchedOnWithoutStationaryMode_CarvesWithoutMoving
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveTurnedOff_RemovesExistingHole
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarvesAndFollowsOutsidePlayMode
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarvesHole_AndRemovalRestores
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_RestingOnASampledPointOnASlope_StillCarves
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_RotatedBox_CarvesOrientedFootprint
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_ScalingItsParent_ResizesTheCarve
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_SwitchingCarveMode_LeavesNothingBehind
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_WritingCenter_MovesTheCarve
+  - Prowl.Runtime.Test.NavMeshObstacleTests.RebuildTilesAsync_AppliesLikeSyncPath
+  - Prowl.Runtime.Test.NavMeshObstacleTests.RebuildTiles_ReflectsGeometry
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Surface_BakesQueriesAndRoundTrips
+  - Prowl.Runtime.Test.NavMeshObstacleTests.Surface_WithoutPendingWork_IsNotPumped
+  langs:
+  - csharp
+  - vb
+  name: NavMeshObstacleTests
+  nameWithType: NavMeshObstacleTests
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NavMeshObstacleTests
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 22
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    NavMeshObstacle carving: obstacles carve holes that incremental updates apply across frames,
+
+    carve-only-stationary lifts the carve while moving, and the non-carving mode blocks agents by
+
+    local avoidance instead. Also covers the bake side that carving depends on — cache layers
+
+    query like finished tiles and round-trip through the asset.
+  example: []
+  syntax:
+    content: 'public class NavMeshObstacleTests : RuntimeTestBase, IDisposable'
+    content.vb: Public Class NavMeshObstacleTests Inherits RuntimeTestBase Implements IDisposable
+  inheritance:
+  - System.Object
+  - Prowl.Runtime.Test.RuntimeTestBase
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  - Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  - Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  - Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.ObstacleShape_KeepsTheValuesScenesWereSavedWith
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.ObstacleShape_KeepsTheValuesScenesWereSavedWith
+  id: ObstacleShape_KeepsTheValuesScenesWereSavedWith
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: ObstacleShape_KeepsTheValuesScenesWereSavedWith()
+  nameWithType: NavMeshObstacleTests.ObstacleShape_KeepsTheValuesScenesWereSavedWith()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.ObstacleShape_KeepsTheValuesScenesWereSavedWith()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ObstacleShape_KeepsTheValuesScenesWereSavedWith
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 29
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Echo stores an enum as its number, so reordering these members would repoint every
+        saved obstacle at a different shape. The values are asserted, not just the round-trip.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ObstacleShape_KeepsTheValuesScenesWereSavedWith()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ObstacleShape_KeepsTheValuesScenesWereSavedWith()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.ObstacleShape_KeepsTheValuesScenesWereSavedWith*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Surface_BakesQueriesAndRoundTrips
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Surface_BakesQueriesAndRoundTrips
+  id: Surface_BakesQueriesAndRoundTrips
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Surface_BakesQueriesAndRoundTrips()
+  nameWithType: NavMeshObstacleTests.Surface_BakesQueriesAndRoundTrips()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Surface_BakesQueriesAndRoundTrips()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Surface_BakesQueriesAndRoundTrips
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 41
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A bake produces cache layers, is queryable, and the layers survive an Echo
+        round-trip and re-instantiation.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Surface_BakesQueriesAndRoundTrips()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Surface_BakesQueriesAndRoundTrips()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Surface_BakesQueriesAndRoundTrips*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_WithDefaultSettings_ProducesQueryableMesh
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Bake_WithDefaultSettings_ProducesQueryableMesh
+  id: Bake_WithDefaultSettings_ProducesQueryableMesh
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Bake_WithDefaultSettings_ProducesQueryableMesh()
+  nameWithType: NavMeshObstacleTests.Bake_WithDefaultSettings_ProducesQueryableMesh()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_WithDefaultSettings_ProducesQueryableMesh()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Bake_WithDefaultSettings_ProducesQueryableMesh
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 72
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A surface with NOTHING overridden has to produce a usable navmesh. A tile wider than a
+
+    compressed layer header can describe (its dimensions are bytes) wraps to an empty layer:
+
+    the bake reports success and every tile comes out with no polygons — no gizmo, no agent
+
+    placement, no movement. Every other test here overrides the tile size, which is exactly
+
+    why that went unseen once.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Bake_WithDefaultSettings_ProducesQueryableMesh()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Bake_WithDefaultSettings_ProducesQueryableMesh()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_WithDefaultSettings_ProducesQueryableMesh*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ClampsTileSizeToLayerFormatLimit
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ClampsTileSizeToLayerFormatLimit
+  id: Bake_ClampsTileSizeToLayerFormatLimit
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Bake_ClampsTileSizeToLayerFormatLimit()
+  nameWithType: NavMeshObstacleTests.Bake_ClampsTileSizeToLayerFormatLimit()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ClampsTileSizeToLayerFormatLimit()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Bake_ClampsTileSizeToLayerFormatLimit
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 100
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    An explicit oversized tile size is clamped rather than silently producing an
+        empty mesh, and the asset records the size actually used — the TileCache instantiated
+        from it later reads those same settings.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Bake_ClampsTileSizeToLayerFormatLimit()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Bake_ClampsTileSizeToLayerFormatLimit()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ClampsTileSizeToLayerFormatLimit*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Surface_WithoutPendingWork_IsNotPumped
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Surface_WithoutPendingWork_IsNotPumped
+  id: Surface_WithoutPendingWork_IsNotPumped
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Surface_WithoutPendingWork_IsNotPumped()
+  nameWithType: NavMeshObstacleTests.Surface_WithoutPendingWork_IsNotPumped()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Surface_WithoutPendingWork_IsNotPumped()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Surface_WithoutPendingWork_IsNotPumped
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 120
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Carving costs nothing until something carves. A navmesh nobody has put an obstacle on is
+
+    never handed to the per-frame pump at all — that is what lets every surface be
+
+    carve-capable without every surface paying for it. A carve marks it, and convergence
+
+    clears the mark again.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Surface_WithoutPendingWork_IsNotPumped()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Surface_WithoutPendingWork_IsNotPumped()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Surface_WithoutPendingWork_IsNotPumped*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_WritingCenter_MovesTheCarve
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_WritingCenter_MovesTheCarve
+  id: Obstacle_WritingCenter_MovesTheCarve
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Obstacle_WritingCenter_MovesTheCarve()
+  nameWithType: NavMeshObstacleTests.Obstacle_WritingCenter_MovesTheCarve()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_WritingCenter_MovesTheCarve()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Obstacle_WritingCenter_MovesTheCarve
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 148
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Writing an obstacle's authored geometry re-carves at once. Center in particular was never
+
+    part of the per-frame drift check the setters replaced, so moving a carve by Center alone
+
+    did nothing at all until the obstacle's Transform happened to move.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Obstacle_WritingCenter_MovesTheCarve()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Obstacle_WritingCenter_MovesTheCarve()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_WritingCenter_MovesTheCarve*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveSwitchedOnWithoutStationaryMode_CarvesWithoutMoving
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveSwitchedOnWithoutStationaryMode_CarvesWithoutMoving
+  id: Obstacle_CarveSwitchedOnWithoutStationaryMode_CarvesWithoutMoving
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Obstacle_CarveSwitchedOnWithoutStationaryMode_CarvesWithoutMoving()
+  nameWithType: NavMeshObstacleTests.Obstacle_CarveSwitchedOnWithoutStationaryMode_CarvesWithoutMoving()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveSwitchedOnWithoutStationaryMode_CarvesWithoutMoving()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Obstacle_CarveSwitchedOnWithoutStationaryMode_CarvesWithoutMoving
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 174
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Switching Carve on for an obstacle that re-carves on every move (not only when
+        stationary) carves straight away rather than waiting for the obstacle to move.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Obstacle_CarveSwitchedOnWithoutStationaryMode_CarvesWithoutMoving()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Obstacle_CarveSwitchedOnWithoutStationaryMode_CarvesWithoutMoving()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveSwitchedOnWithoutStationaryMode_CarvesWithoutMoving*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_RestingOnASampledPointOnASlope_StillCarves
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_RestingOnASampledPointOnASlope_StillCarves
+  id: Obstacle_RestingOnASampledPointOnASlope_StillCarves
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Obstacle_RestingOnASampledPointOnASlope_StillCarves()
+  nameWithType: NavMeshObstacleTests.Obstacle_RestingOnASampledPointOnASlope_StillCarves()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_RestingOnASampledPointOnASlope_StillCarves()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Obstacle_RestingOnASampledPointOnASlope_StillCarves
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 203
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A box obstacle placed on a point from SamplePosition has to carve there: the navmesh surface
+
+    sits above the column it was built from, so a box resting exactly on the sampled point starts
+
+    above every cell it means to mark and carves nothing. The lift at the sampled column is
+
+    contouring's choice, so this can rot into passing without the fix — NavCarveFixTest key Q in
+
+    the NavMeshTest project is the coverage on real terrain.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Obstacle_RestingOnASampledPointOnASlope_StillCarves()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Obstacle_RestingOnASampledPointOnASlope_StillCarves()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_RestingOnASampledPointOnASlope_StillCarves*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_ScalingItsParent_ResizesTheCarve
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_ScalingItsParent_ResizesTheCarve
+  id: Obstacle_ScalingItsParent_ResizesTheCarve
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Obstacle_ScalingItsParent_ResizesTheCarve()
+  nameWithType: NavMeshObstacleTests.Obstacle_ScalingItsParent_ResizesTheCarve()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_ScalingItsParent_ResizesTheCarve()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Obstacle_ScalingItsParent_ResizesTheCarve
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 241
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    The carve reads Transform.LossyScale when it is issued, so scaling the obstacle or a
+        parent afterwards has to re-issue it — no setter sees a Transform change.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Obstacle_ScalingItsParent_ResizesTheCarve()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Obstacle_ScalingItsParent_ResizesTheCarve()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_ScalingItsParent_ResizesTheCarve*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarvesHole_AndRemovalRestores
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarvesHole_AndRemovalRestores
+  id: Obstacle_CarvesHole_AndRemovalRestores
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Obstacle_CarvesHole_AndRemovalRestores()
+  nameWithType: NavMeshObstacleTests.Obstacle_CarvesHole_AndRemovalRestores()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarvesHole_AndRemovalRestores()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Obstacle_CarvesHole_AndRemovalRestores
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 273
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    An obstacle carves a hole (paths detour, the hole is unwalkable) and removing
+        it restores the surface — all through incremental frame updates, no rebake.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Obstacle_CarvesHole_AndRemovalRestores()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Obstacle_CarvesHole_AndRemovalRestores()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarvesHole_AndRemovalRestores*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveOnlyStationary_LiftsWhileMoving
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveOnlyStationary_LiftsWhileMoving
+  id: Obstacle_CarveOnlyStationary_LiftsWhileMoving
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Obstacle_CarveOnlyStationary_LiftsWhileMoving()
+  nameWithType: NavMeshObstacleTests.Obstacle_CarveOnlyStationary_LiftsWhileMoving()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveOnlyStationary_LiftsWhileMoving()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Obstacle_CarveOnlyStationary_LiftsWhileMoving
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 315
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    With CarveOnlyStationary, the carve lifts while the obstacle moves and
+        re-applies after it has settled for CarvingTimeToStationary.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Obstacle_CarveOnlyStationary_LiftsWhileMoving()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Obstacle_CarveOnlyStationary_LiftsWhileMoving()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveOnlyStationary_LiftsWhileMoving*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveTurnedOff_RemovesExistingHole
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveTurnedOff_RemovesExistingHole
+  id: Obstacle_CarveTurnedOff_RemovesExistingHole
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Obstacle_CarveTurnedOff_RemovesExistingHole()
+  nameWithType: NavMeshObstacleTests.Obstacle_CarveTurnedOff_RemovesExistingHole()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveTurnedOff_RemovesExistingHole()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Obstacle_CarveTurnedOff_RemovesExistingHole
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 353
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Flipping Carve off at runtime must remove the existing hole, not leave it
+        carved forever (the non-carving mode is unsupported and does nothing).
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Obstacle_CarveTurnedOff_RemovesExistingHole()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Obstacle_CarveTurnedOff_RemovesExistingHole()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveTurnedOff_RemovesExistingHole*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_RotatedBox_CarvesOrientedFootprint
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_RotatedBox_CarvesOrientedFootprint
+  id: Obstacle_RotatedBox_CarvesOrientedFootprint
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Obstacle_RotatedBox_CarvesOrientedFootprint()
+  nameWithType: NavMeshObstacleTests.Obstacle_RotatedBox_CarvesOrientedFootprint()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_RotatedBox_CarvesOrientedFootprint()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Obstacle_RotatedBox_CarvesOrientedFootprint
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 381
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A yawed box carves its ORIENTED footprint. The box is deliberately non-square (long
+
+    axis local Z), so a yaw-sign mismatch against Detour's convention would mirror the
+
+    carve onto the other diagonal and fail both assertions.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Obstacle_RotatedBox_CarvesOrientedFootprint()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Obstacle_RotatedBox_CarvesOrientedFootprint()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_RotatedBox_CarvesOrientedFootprint*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.RebuildTiles_ReflectsGeometry
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.RebuildTiles_ReflectsGeometry
+  id: RebuildTiles_ReflectsGeometry
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: RebuildTiles_ReflectsGeometry()
+  nameWithType: NavMeshObstacleTests.RebuildTiles_ReflectsGeometry()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.RebuildTiles_ReflectsGeometry()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RebuildTiles_ReflectsGeometry
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 415
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    RebuildTiles regenerates the affected tiles' compressed layers: dropped geometry
+        blocks paths, removal restores them — no rebake.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RebuildTiles_ReflectsGeometry()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RebuildTiles_ReflectsGeometry()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.RebuildTiles_ReflectsGeometry*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_PreservesExistingCarves
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_PreservesExistingCarves
+  id: LayerRegeneration_PreservesExistingCarves
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: LayerRegeneration_PreservesExistingCarves()
+  nameWithType: NavMeshObstacleTests.LayerRegeneration_PreservesExistingCarves()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_PreservesExistingCarves()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LayerRegeneration_PreservesExistingCarves
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 446
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    The stage-3b headline: an obstacle's carve survives regeneration of the tiles it sits
+
+    in. Tile replacement invalidates the refs in every obstacle's touched list (salt
+
+    bump); without the refresh step the regenerated tiles rebuild WITHOUT their carves.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void LayerRegeneration_PreservesExistingCarves()
+    content.vb: >-
+      <Fact>
+
+      Public Sub LayerRegeneration_PreservesExistingCarves()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_PreservesExistingCarves*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_ObstacleSpanningRebuiltAndUntouchedTiles
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_ObstacleSpanningRebuiltAndUntouchedTiles
+  id: LayerRegeneration_ObstacleSpanningRebuiltAndUntouchedTiles
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: LayerRegeneration_ObstacleSpanningRebuiltAndUntouchedTiles()
+  nameWithType: NavMeshObstacleTests.LayerRegeneration_ObstacleSpanningRebuiltAndUntouchedTiles()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_ObstacleSpanningRebuiltAndUntouchedTiles()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LayerRegeneration_ObstacleSpanningRebuiltAndUntouchedTiles
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 488
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    An obstacle STRADDLING a regenerated tile and an untouched one: the refresh must
+
+    produce a mixed touched list (new ref for the regenerated tile + surviving ref for the
+
+    untouched one). A subtle refresh bug keeps half the carve — or loses half on removal.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void LayerRegeneration_ObstacleSpanningRebuiltAndUntouchedTiles()
+    content.vb: >-
+      <Fact>
+
+      Public Sub LayerRegeneration_ObstacleSpanningRebuiltAndUntouchedTiles()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_ObstacleSpanningRebuiltAndUntouchedTiles*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_OnARuntimeBake_LandsOnTheDataItself
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_OnARuntimeBake_LandsOnTheDataItself
+  id: LayerRegeneration_OnARuntimeBake_LandsOnTheDataItself
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: LayerRegeneration_OnARuntimeBake_LandsOnTheDataItself()
+  nameWithType: NavMeshObstacleTests.LayerRegeneration_OnARuntimeBake_LandsOnTheDataItself()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_OnARuntimeBake_LandsOnTheDataItself()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LayerRegeneration_OnARuntimeBake_LandsOnTheDataItself
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 529
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A navmesh built at runtime is the surface's own — nothing else points at it — so rebuilds
+
+    land on it directly. Copying it would mean the next registration rebuilt from the original
+
+    bake and threw away every rebuild since, which for a game that generates its map is the
+
+    whole navmesh.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void LayerRegeneration_OnARuntimeBake_LandsOnTheDataItself()
+    content.vb: >-
+      <Fact>
+
+      Public Sub LayerRegeneration_OnARuntimeBake_LandsOnTheDataItself()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_OnARuntimeBake_LandsOnTheDataItself*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_OnAnAsset_MirrorsIntoACopyAndLeavesTheAsset
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_OnAnAsset_MirrorsIntoACopyAndLeavesTheAsset
+  id: LayerRegeneration_OnAnAsset_MirrorsIntoACopyAndLeavesTheAsset
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: LayerRegeneration_OnAnAsset_MirrorsIntoACopyAndLeavesTheAsset()
+  nameWithType: NavMeshObstacleTests.LayerRegeneration_OnAnAsset_MirrorsIntoACopyAndLeavesTheAsset()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_OnAnAsset_MirrorsIntoACopyAndLeavesTheAsset()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LayerRegeneration_OnAnAsset_MirrorsIntoACopyAndLeavesTheAsset
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 563
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A navmesh the asset database handed out is shared with every other surface pointing at the
+
+    same .navmesh and with the next scene that loads it, so the surface rebuilds a copy and
+
+    leaves the asset holding every blob it was baked with. That copy still round-trips.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void LayerRegeneration_OnAnAsset_MirrorsIntoACopyAndLeavesTheAsset()
+    content.vb: >-
+      <Fact>
+
+      Public Sub LayerRegeneration_OnAnAsset_MirrorsIntoACopyAndLeavesTheAsset()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_OnAnAsset_MirrorsIntoACopyAndLeavesTheAsset*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.RebuildTilesAsync_AppliesLikeSyncPath
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.RebuildTilesAsync_AppliesLikeSyncPath
+  id: RebuildTilesAsync_AppliesLikeSyncPath
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: RebuildTilesAsync_AppliesLikeSyncPath()
+  nameWithType: NavMeshObstacleTests.RebuildTilesAsync_AppliesLikeSyncPath()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.RebuildTilesAsync_AppliesLikeSyncPath()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RebuildTilesAsync_AppliesLikeSyncPath
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 606
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: 'The async pair: layers regenerate off the main thread and apply as a swap.'
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task RebuildTilesAsync_AppliesLikeSyncPath()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function RebuildTilesAsync_AppliesLikeSyncPath() As Task
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.RebuildTilesAsync_AppliesLikeSyncPath*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_DuringAPendingCarve_LandsOnTheSettledFrame
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_DuringAPendingCarve_LandsOnTheSettledFrame
+  id: ApplyRebuiltTiles_DuringAPendingCarve_LandsOnTheSettledFrame
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: ApplyRebuiltTiles_DuringAPendingCarve_LandsOnTheSettledFrame()
+  nameWithType: NavMeshObstacleTests.ApplyRebuiltTiles_DuringAPendingCarve_LandsOnTheSettledFrame()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_DuringAPendingCarve_LandsOnTheSettledFrame()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ApplyRebuiltTiles_DuringAPendingCarve_LandsOnTheSettledFrame
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 657
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A tile swap cannot run against a cache mid-carve, and draining the carve queue inline
+
+    costs milliseconds per queued tile under the write lock. So an apply that arrives while a
+
+    carve is in flight is held and lands on the frame the pump settles, instead of paying for
+
+    the drain or being refused.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task ApplyRebuiltTiles_DuringAPendingCarve_LandsOnTheSettledFrame()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function ApplyRebuiltTiles_DuringAPendingCarve_LandsOnTheSettledFrame() As Task
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_DuringAPendingCarve_LandsOnTheSettledFrame*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_BehindACacheThatNeverSettles_StillLands
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_BehindACacheThatNeverSettles_StillLands
+  id: ApplyRebuiltTiles_BehindACacheThatNeverSettles_StillLands
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: ApplyRebuiltTiles_BehindACacheThatNeverSettles_StillLands()
+  nameWithType: NavMeshObstacleTests.ApplyRebuiltTiles_BehindACacheThatNeverSettles_StillLands()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_BehindACacheThatNeverSettles_StillLands()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ApplyRebuiltTiles_BehindACacheThatNeverSettles_StillLands
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 691
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A cache is not guaranteed to settle: an obstacle moving every frame re-queues a remove and
+
+    an add from every LateUpdate, and the pump refills as fast as it drains. Waiting on that
+
+    would hold the swap forever and grow the queue with every rebuild, so the wait is bounded
+
+    and the swap pays the inline drain instead.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task ApplyRebuiltTiles_BehindACacheThatNeverSettles_StillLands()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function ApplyRebuiltTiles_BehindACacheThatNeverSettles_StillLands() As Task
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_BehindACacheThatNeverSettles_StillLands*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_HeldPastUnregistration_IsDropped
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_HeldPastUnregistration_IsDropped
+  id: ApplyRebuiltTiles_HeldPastUnregistration_IsDropped
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: ApplyRebuiltTiles_HeldPastUnregistration_IsDropped()
+  nameWithType: NavMeshObstacleTests.ApplyRebuiltTiles_HeldPastUnregistration_IsDropped()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_HeldPastUnregistration_IsDropped()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ApplyRebuiltTiles_HeldPastUnregistration_IsDropped
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 756
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A held swap whose navmesh went away must be dropped, not applied to whatever replaced it:
+
+    its layers were voxelized against the grid of an instance that is no longer live.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task ApplyRebuiltTiles_HeldPastUnregistration_IsDropped()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function ApplyRebuiltTiles_HeldPastUnregistration_IsDropped() As Task
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_HeldPastUnregistration_IsDropped*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_HeldBatch_DoesNotOverwriteANewerRebuild
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_HeldBatch_DoesNotOverwriteANewerRebuild
+  id: ApplyRebuiltTiles_HeldBatch_DoesNotOverwriteANewerRebuild
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: ApplyRebuiltTiles_HeldBatch_DoesNotOverwriteANewerRebuild()
+  nameWithType: NavMeshObstacleTests.ApplyRebuiltTiles_HeldBatch_DoesNotOverwriteANewerRebuild()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_HeldBatch_DoesNotOverwriteANewerRebuild()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ApplyRebuiltTiles_HeldBatch_DoesNotOverwriteANewerRebuild
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 788
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A swap applied directly has to come last. A held batch was voxelized earlier, so landing it
+
+    afterwards reverts the tiles the newer rebuild just wrote — and because the asset mirror is
+
+    rewritten with it, nothing downstream can tell.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public Task ApplyRebuiltTiles_HeldBatch_DoesNotOverwriteANewerRebuild()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <Fact>
+
+      Public Function ApplyRebuiltTiles_HeldBatch_DoesNotOverwriteANewerRebuild() As Task
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_HeldBatch_DoesNotOverwriteANewerRebuild*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Agent_PathsAroundCarve
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Agent_PathsAroundCarve
+  id: Agent_PathsAroundCarve
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Agent_PathsAroundCarve()
+  nameWithType: NavMeshObstacleTests.Agent_PathsAroundCarve()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Agent_PathsAroundCarve()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Agent_PathsAroundCarve
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 817
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A crowd agent routes around a carve rather than walking through it — the two halves of
+
+    the feature (carving, crowd) had no test that exercised them together.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Agent_PathsAroundCarve()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Agent_PathsAroundCarve()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Agent_PathsAroundCarve*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesCarvingObstacleGeometry
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesCarvingObstacleGeometry
+  id: Bake_ExcludesCarvingObstacleGeometry
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Bake_ExcludesCarvingObstacleGeometry()
+  nameWithType: NavMeshObstacleTests.Bake_ExcludesCarvingObstacleGeometry()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesCarvingObstacleGeometry()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Bake_ExcludesCarvingObstacleGeometry
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 861
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A bake must not voxelize a carving obstacle's own geometry: the carve is the hole. Baking
+
+    it too freezes a second hole in the mesh that stays behind forever once the obstacle
+
+    moves — the carve follows, the baked one does not.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Bake_ExcludesCarvingObstacleGeometry()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Bake_ExcludesCarvingObstacleGeometry()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesCarvingObstacleGeometry*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesObstacleGeometry(System.Boolean)
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesObstacleGeometry(System.Boolean)
+  id: Bake_ExcludesObstacleGeometry(System.Boolean)
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Bake_ExcludesObstacleGeometry(bool)
+  nameWithType: NavMeshObstacleTests.Bake_ExcludesObstacleGeometry(bool)
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesObstacleGeometry(bool)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Bake_ExcludesObstacleGeometry
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 892
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Obstacles stay out of bakes in both carve settings — they block at runtime,
+        from wherever the object actually is.
+  example: []
+  syntax:
+    content: >-
+      [Theory]
+
+      [InlineData(new object[] { true })]
+
+      [InlineData(new object[] { false })]
+
+      public void Bake_ExcludesObstacleGeometry(bool carve)
+    parameters:
+    - id: carve
+      type: System.Boolean
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() { True })>
+
+      <InlineData(New Object() { False })>
+
+      Public Sub Bake_ExcludesObstacleGeometry(carve As Boolean)
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesObstacleGeometry*
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
+  nameWithType.vb: NavMeshObstacleTests.Bake_ExcludesObstacleGeometry(Boolean)
+  fullName.vb: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesObstacleGeometry(Boolean)
+  name.vb: Bake_ExcludesObstacleGeometry(Boolean)
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesObstacleGeometry_EvenWhileDisabled
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesObstacleGeometry_EvenWhileDisabled
+  id: Bake_ExcludesObstacleGeometry_EvenWhileDisabled
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Bake_ExcludesObstacleGeometry_EvenWhileDisabled()
+  nameWithType: NavMeshObstacleTests.Bake_ExcludesObstacleGeometry_EvenWhileDisabled()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesObstacleGeometry_EvenWhileDisabled()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Bake_ExcludesObstacleGeometry_EvenWhileDisabled
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 916
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Exclusion is by presence, not enabled state — deliberately, so a bake can never depend
+
+    on when a component was last toggled. A disabled obstacle that bakes its geometry would
+
+    freeze a hole at that spot, and enabling it later and moving it would strand that hole
+
+    forever while the runtime blocking correctly follows.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Bake_ExcludesObstacleGeometry_EvenWhileDisabled()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Bake_ExcludesObstacleGeometry_EvenWhileDisabled()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesObstacleGeometry_EvenWhileDisabled*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_OffNavMesh_WarnsItCannotBlock
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_OffNavMesh_WarnsItCannotBlock
+  id: NonCarvingObstacle_OffNavMesh_WarnsItCannotBlock
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: NonCarvingObstacle_OffNavMesh_WarnsItCannotBlock()
+  nameWithType: NavMeshObstacleTests.NonCarvingObstacle_OffNavMesh_WarnsItCannotBlock()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_OffNavMesh_WarnsItCannotBlock()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NonCarvingObstacle_OffNavMesh_WarnsItCannotBlock
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 932
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A blocker that cannot be placed on the navmesh is an invisible failure — it must
+        say so rather than sit there avoided by nobody.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void NonCarvingObstacle_OffNavMesh_WarnsItCannotBlock()
+    content.vb: >-
+      <Fact>
+
+      Public Sub NonCarvingObstacle_OffNavMesh_WarnsItCannotBlock()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_OffNavMesh_WarnsItCannotBlock*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarvesAndFollowsOutsidePlayMode
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarvesAndFollowsOutsidePlayMode
+  id: Obstacle_CarvesAndFollowsOutsidePlayMode
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Obstacle_CarvesAndFollowsOutsidePlayMode()
+  nameWithType: NavMeshObstacleTests.Obstacle_CarvesAndFollowsOutsidePlayMode()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarvesAndFollowsOutsidePlayMode()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Obstacle_CarvesAndFollowsOutsidePlayMode
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 975
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Carving works outside play mode, because that is where you place buildings. The scene here
+
+    is opened rather than baked — its asset came from an earlier session — so the surface has
+
+    to register from OnEnable alone. Without that there is no live navmesh for the obstacle to
+
+    carve, and the scene view shows an untouched mesh while play mode avoids the crate fine.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Obstacle_CarvesAndFollowsOutsidePlayMode()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Obstacle_CarvesAndFollowsOutsidePlayMode()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarvesAndFollowsOutsidePlayMode*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Carve_ReportsEveryFrame_ButSettlesOnlyWhenDone
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Carve_ReportsEveryFrame_ButSettlesOnlyWhenDone
+  id: Carve_ReportsEveryFrame_ButSettlesOnlyWhenDone
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Carve_ReportsEveryFrame_ButSettlesOnlyWhenDone()
+  nameWithType: NavMeshObstacleTests.Carve_ReportsEveryFrame_ButSettlesOnlyWhenDone()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Carve_ReportsEveryFrame_ButSettlesOnlyWhenDone()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Carve_ReportsEveryFrame_ButSettlesOnlyWhenDone
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 1015
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A carve reports progress on every frame it works, but settles only when it finishes.
+
+    Anything expensive — replanning a crowd, rebuilding a cached triangulation — hangs off the
+
+    settled event so it runs on the finished navmesh rather than on each intermediate frame.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Carve_ReportsEveryFrame_ButSettlesOnlyWhenDone()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Carve_ReportsEveryFrame_ButSettlesOnlyWhenDone()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Carve_ReportsEveryFrame_ButSettlesOnlyWhenDone*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Carve_KeepsAgentsAFullRadiusClear
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Carve_KeepsAgentsAFullRadiusClear
+  id: Carve_KeepsAgentsAFullRadiusClear
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Carve_KeepsAgentsAFullRadiusClear()
+  nameWithType: NavMeshObstacleTests.Carve_KeepsAgentsAFullRadiusClear()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Carve_KeepsAgentsAFullRadiusClear()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Carve_KeepsAgentsAFullRadiusClear
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 1065
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A carved hole has to keep agents off the obstacle the way a baked wall does. A navmesh
+
+    records where an agent's CENTRE may be, not where its body fits — a bake pulls the mesh
+
+    back from every wall by the agent radius — so a hole cut to the obstacle's exact
+
+    footprint let agents walk their centre onto its surface and stand half inside it. On a
+
+    10x10 floor the baked edge sits a full radius in from the rim; a carve must match.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Carve_KeepsAgentsAFullRadiusClear()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Carve_KeepsAgentsAFullRadiusClear()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Carve_KeepsAgentsAFullRadiusClear*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Carve_FinishingInOneUpdate_StillReportsTheChange
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Carve_FinishingInOneUpdate_StillReportsTheChange
+  id: Carve_FinishingInOneUpdate_StillReportsTheChange
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Carve_FinishingInOneUpdate_StillReportsTheChange()
+  nameWithType: NavMeshObstacleTests.Carve_FinishingInOneUpdate_StillReportsTheChange()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Carve_FinishingInOneUpdate_StillReportsTheChange()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Carve_FinishingInOneUpdate_StillReportsTheChange
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 1110
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A carve has to ANNOUNCE itself. The scene-view overlay caches its triangulation and rebuilds
+
+    it when the world reports a change, so a carve nobody is told about leaves the overlay
+
+    drawing intact floor over a real hole. Anything queued into a cache reports every frame it
+
+    works AND on the frame it finishes — a carve small enough to complete inside one cache
+
+    update would otherwise never announce at all.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Carve_FinishingInOneUpdate_StillReportsTheChange()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Carve_FinishingInOneUpdate_StillReportsTheChange()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Carve_FinishingInOneUpdate_StillReportsTheChange*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.LiveTriangulation_ShowsTheCarve
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.LiveTriangulation_ShowsTheCarve
+  id: LiveTriangulation_ShowsTheCarve
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: LiveTriangulation_ShowsTheCarve()
+  nameWithType: NavMeshObstacleTests.LiveTriangulation_ShowsTheCarve()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.LiveTriangulation_ShowsTheCarve()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LiveTriangulation_ShowsTheCarve
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 1151
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    What the scene-view overlay draws must show the carve, or there is no way to tell a real
+
+    hole from an agent merely steering around something. The live triangulation reflects it;
+
+    the asset's does not, and cannot — obstacles are runtime state and never serialize — so
+
+    the overlay has to be reading the live navmesh whenever one is registered.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void LiveTriangulation_ShowsTheCarve()
+    content.vb: >-
+      <Fact>
+
+      Public Sub LiveTriangulation_ShowsTheCarve()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.LiveTriangulation_ShowsTheCarve*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_DeflectsAgent_WithoutTouchingMesh
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_DeflectsAgent_WithoutTouchingMesh
+  id: NonCarvingObstacle_DeflectsAgent_WithoutTouchingMesh
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: NonCarvingObstacle_DeflectsAgent_WithoutTouchingMesh()
+  nameWithType: NavMeshObstacleTests.NonCarvingObstacle_DeflectsAgent_WithoutTouchingMesh()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_DeflectsAgent_WithoutTouchingMesh()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NonCarvingObstacle_DeflectsAgent_WithoutTouchingMesh
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 1188
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Carve off is velocity-obstacle mode, not a disabled component: the mesh is
+
+    untouched (the path still leads straight through) but agents steer around the obstacle
+
+    locally. It joins the crowd as an immovable neighbour, so it works on Static surfaces
+
+    too, where carving is impossible.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void NonCarvingObstacle_DeflectsAgent_WithoutTouchingMesh()
+    content.vb: >-
+      <Fact>
+
+      Public Sub NonCarvingObstacle_DeflectsAgent_WithoutTouchingMesh()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_DeflectsAgent_WithoutTouchingMesh*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_FollowsAMovingObstacle
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_FollowsAMovingObstacle
+  id: NonCarvingObstacle_FollowsAMovingObstacle
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: NonCarvingObstacle_FollowsAMovingObstacle()
+  nameWithType: NavMeshObstacleTests.NonCarvingObstacle_FollowsAMovingObstacle()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_FollowsAMovingObstacle()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NonCarvingObstacle_FollowsAMovingObstacle
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 1238
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    The mode's reason for existing: an obstacle that moves. A blocker has no steering of its
+
+    own, so it only tracks the Transform because the component writes its position each
+
+    frame — and this costs no rebuild at all, unlike carving, which lifts and re-cuts the
+
+    mesh on every move.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void NonCarvingObstacle_FollowsAMovingObstacle()
+    content.vb: >-
+      <Fact>
+
+      Public Sub NonCarvingObstacle_FollowsAMovingObstacle()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_FollowsAMovingObstacle*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_StaysPutUnderPressure
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_StaysPutUnderPressure
+  id: NonCarvingObstacle_StaysPutUnderPressure
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: NonCarvingObstacle_StaysPutUnderPressure()
+  nameWithType: NavMeshObstacleTests.NonCarvingObstacle_StaysPutUnderPressure()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_StaysPutUnderPressure()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NonCarvingObstacle_StaysPutUnderPressure
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 1278
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    The blocker holds its ground rather than being shoved aside by the traffic it
+        exists to deflect.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void NonCarvingObstacle_StaysPutUnderPressure()
+    content.vb: >-
+      <Fact>
+
+      Public Sub NonCarvingObstacle_StaysPutUnderPressure()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_StaysPutUnderPressure*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_SwitchingCarveMode_LeavesNothingBehind
+  commentId: M:Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_SwitchingCarveMode_LeavesNothingBehind
+  id: Obstacle_SwitchingCarveMode_LeavesNothingBehind
+  parent: Prowl.Runtime.Test.NavMeshObstacleTests
+  langs:
+  - csharp
+  - vb
+  name: Obstacle_SwitchingCarveMode_LeavesNothingBehind()
+  nameWithType: NavMeshObstacleTests.Obstacle_SwitchingCarveMode_LeavesNothingBehind()
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_SwitchingCarveMode_LeavesNothingBehind()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshObstacleTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Obstacle_SwitchingCarveMode_LeavesNothingBehind
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshObstacleTests.cs
+    startLine: 1318
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Flipping Carve at runtime swaps modes cleanly: neither the hole nor the blocker
+        is left behind by the other.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Obstacle_SwitchingCarveMode_LeavesNothingBehind()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Obstacle_SwitchingCarveMode_LeavesNothingBehind()
+  overload: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_SwitchingCarveMode_LeavesNothingBehind*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+references:
+- uid: Prowl.Runtime.Test
+  commentId: N:Prowl.Runtime.Test
+  name: Prowl.Runtime.Test
+  nameWithType: Prowl.Runtime.Test
+  fullName: Prowl.Runtime.Test
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.Runtime.Test.RuntimeTestBase
+  commentId: T:Prowl.Runtime.Test.RuntimeTestBase
+  parent: Prowl.Runtime.Test
+  href: Prowl.Runtime.Test.RuntimeTestBase.html
+  name: RuntimeTestBase
+  nameWithType: RuntimeTestBase
+  fullName: Prowl.Runtime.Test.RuntimeTestBase
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  commentId: P:Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_FixedDeltaTime
+  name: FixedDeltaTime
+  nameWithType: RuntimeTestBase.FixedDeltaTime
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+- uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  name: EditMode()
+  nameWithType: RuntimeTestBase.EditMode()
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.EditMode()
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+    name: EditMode
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+    name: EditMode
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  name: CreateScene(bool)
+  nameWithType: RuntimeTestBase.CreateScene(bool)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(bool)
+  nameWithType.vb: RuntimeTestBase.CreateScene(Boolean)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(Boolean)
+  name.vb: CreateScene(Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+    name: CreateScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+    name: CreateScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  name: CreateGameObject(string)
+  nameWithType: RuntimeTestBase.CreateGameObject(string)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(string)
+  nameWithType.vb: RuntimeTestBase.CreateGameObject(String)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(String)
+  name.vb: CreateGameObject(String)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+    name: CreateGameObject
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+    name: CreateGameObject
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Tick(Scene, int)
+  nameWithType: RuntimeTestBase.Tick(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.Tick(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Tick(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Update(Scene, int)
+  nameWithType: RuntimeTestBase.Update(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.Update(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Update(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Update
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Update
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: StepPhysics(Scene, int)
+  nameWithType: RuntimeTestBase.StepPhysics(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.StepPhysics(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: StepPhysics(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: StepPhysics
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: StepPhysics
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  name: ApplyFastBakeSettings(NavMeshSurface)
+  nameWithType: RuntimeTestBase.ApplyFastBakeSettings(NavMeshSurface)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+    name: ApplyFastBakeSettings
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  - name: (
+  - uid: Prowl.Runtime.NavMeshSurface
+    name: NavMeshSurface
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+    name: ApplyFastBakeSettings
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  - name: (
+  - uid: Prowl.Runtime.NavMeshSurface
+    name: NavMeshSurface
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  name: CreateFloorScene(float, bool)
+  nameWithType: RuntimeTestBase.CreateFloorScene(float, bool)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(float, bool)
+  nameWithType.vb: RuntimeTestBase.CreateFloorScene(Single, Boolean)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(Single, Boolean)
+  name.vb: CreateFloorScene(Single, Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+    name: CreateFloorScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  - name: (
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+    name: CreateFloorScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  - name: (
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  name: TickUntil(Scene, Func<bool>, int)
+  nameWithType: RuntimeTestBase.TickUntil(Scene, Func<bool>, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene, System.Func<bool>, int)
+  nameWithType.vb: RuntimeTestBase.TickUntil(Scene, Func(Of Boolean), Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene, System.Func(Of Boolean), Integer)
+  name.vb: TickUntil(Scene, Func(Of Boolean), Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+    name: TickUntil
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+    name: TickUntil
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  name: Dispose()
+  nameWithType: RuntimeTestBase.Dispose()
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Dispose()
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+    name: Dispose
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+    name: Dispose
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.ObstacleShape_KeepsTheValuesScenesWereSavedWith*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.ObstacleShape_KeepsTheValuesScenesWereSavedWith
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_ObstacleShape_KeepsTheValuesScenesWereSavedWith
+  name: ObstacleShape_KeepsTheValuesScenesWereSavedWith
+  nameWithType: NavMeshObstacleTests.ObstacleShape_KeepsTheValuesScenesWereSavedWith
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.ObstacleShape_KeepsTheValuesScenesWereSavedWith
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Surface_BakesQueriesAndRoundTrips*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Surface_BakesQueriesAndRoundTrips
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Surface_BakesQueriesAndRoundTrips
+  name: Surface_BakesQueriesAndRoundTrips
+  nameWithType: NavMeshObstacleTests.Surface_BakesQueriesAndRoundTrips
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Surface_BakesQueriesAndRoundTrips
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_WithDefaultSettings_ProducesQueryableMesh*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Bake_WithDefaultSettings_ProducesQueryableMesh
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Bake_WithDefaultSettings_ProducesQueryableMesh
+  name: Bake_WithDefaultSettings_ProducesQueryableMesh
+  nameWithType: NavMeshObstacleTests.Bake_WithDefaultSettings_ProducesQueryableMesh
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_WithDefaultSettings_ProducesQueryableMesh
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ClampsTileSizeToLayerFormatLimit*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ClampsTileSizeToLayerFormatLimit
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Bake_ClampsTileSizeToLayerFormatLimit
+  name: Bake_ClampsTileSizeToLayerFormatLimit
+  nameWithType: NavMeshObstacleTests.Bake_ClampsTileSizeToLayerFormatLimit
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ClampsTileSizeToLayerFormatLimit
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Surface_WithoutPendingWork_IsNotPumped*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Surface_WithoutPendingWork_IsNotPumped
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Surface_WithoutPendingWork_IsNotPumped
+  name: Surface_WithoutPendingWork_IsNotPumped
+  nameWithType: NavMeshObstacleTests.Surface_WithoutPendingWork_IsNotPumped
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Surface_WithoutPendingWork_IsNotPumped
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_WritingCenter_MovesTheCarve*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_WritingCenter_MovesTheCarve
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Obstacle_WritingCenter_MovesTheCarve
+  name: Obstacle_WritingCenter_MovesTheCarve
+  nameWithType: NavMeshObstacleTests.Obstacle_WritingCenter_MovesTheCarve
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_WritingCenter_MovesTheCarve
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveSwitchedOnWithoutStationaryMode_CarvesWithoutMoving*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveSwitchedOnWithoutStationaryMode_CarvesWithoutMoving
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Obstacle_CarveSwitchedOnWithoutStationaryMode_CarvesWithoutMoving
+  name: Obstacle_CarveSwitchedOnWithoutStationaryMode_CarvesWithoutMoving
+  nameWithType: NavMeshObstacleTests.Obstacle_CarveSwitchedOnWithoutStationaryMode_CarvesWithoutMoving
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveSwitchedOnWithoutStationaryMode_CarvesWithoutMoving
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_RestingOnASampledPointOnASlope_StillCarves*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_RestingOnASampledPointOnASlope_StillCarves
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Obstacle_RestingOnASampledPointOnASlope_StillCarves
+  name: Obstacle_RestingOnASampledPointOnASlope_StillCarves
+  nameWithType: NavMeshObstacleTests.Obstacle_RestingOnASampledPointOnASlope_StillCarves
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_RestingOnASampledPointOnASlope_StillCarves
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_ScalingItsParent_ResizesTheCarve*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_ScalingItsParent_ResizesTheCarve
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Obstacle_ScalingItsParent_ResizesTheCarve
+  name: Obstacle_ScalingItsParent_ResizesTheCarve
+  nameWithType: NavMeshObstacleTests.Obstacle_ScalingItsParent_ResizesTheCarve
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_ScalingItsParent_ResizesTheCarve
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarvesHole_AndRemovalRestores*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarvesHole_AndRemovalRestores
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Obstacle_CarvesHole_AndRemovalRestores
+  name: Obstacle_CarvesHole_AndRemovalRestores
+  nameWithType: NavMeshObstacleTests.Obstacle_CarvesHole_AndRemovalRestores
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarvesHole_AndRemovalRestores
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveOnlyStationary_LiftsWhileMoving*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveOnlyStationary_LiftsWhileMoving
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Obstacle_CarveOnlyStationary_LiftsWhileMoving
+  name: Obstacle_CarveOnlyStationary_LiftsWhileMoving
+  nameWithType: NavMeshObstacleTests.Obstacle_CarveOnlyStationary_LiftsWhileMoving
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveOnlyStationary_LiftsWhileMoving
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveTurnedOff_RemovesExistingHole*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveTurnedOff_RemovesExistingHole
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Obstacle_CarveTurnedOff_RemovesExistingHole
+  name: Obstacle_CarveTurnedOff_RemovesExistingHole
+  nameWithType: NavMeshObstacleTests.Obstacle_CarveTurnedOff_RemovesExistingHole
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarveTurnedOff_RemovesExistingHole
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_RotatedBox_CarvesOrientedFootprint*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_RotatedBox_CarvesOrientedFootprint
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Obstacle_RotatedBox_CarvesOrientedFootprint
+  name: Obstacle_RotatedBox_CarvesOrientedFootprint
+  nameWithType: NavMeshObstacleTests.Obstacle_RotatedBox_CarvesOrientedFootprint
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_RotatedBox_CarvesOrientedFootprint
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.RebuildTiles_ReflectsGeometry*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.RebuildTiles_ReflectsGeometry
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_RebuildTiles_ReflectsGeometry
+  name: RebuildTiles_ReflectsGeometry
+  nameWithType: NavMeshObstacleTests.RebuildTiles_ReflectsGeometry
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.RebuildTiles_ReflectsGeometry
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_PreservesExistingCarves*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_PreservesExistingCarves
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_LayerRegeneration_PreservesExistingCarves
+  name: LayerRegeneration_PreservesExistingCarves
+  nameWithType: NavMeshObstacleTests.LayerRegeneration_PreservesExistingCarves
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_PreservesExistingCarves
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_ObstacleSpanningRebuiltAndUntouchedTiles*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_ObstacleSpanningRebuiltAndUntouchedTiles
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_LayerRegeneration_ObstacleSpanningRebuiltAndUntouchedTiles
+  name: LayerRegeneration_ObstacleSpanningRebuiltAndUntouchedTiles
+  nameWithType: NavMeshObstacleTests.LayerRegeneration_ObstacleSpanningRebuiltAndUntouchedTiles
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_ObstacleSpanningRebuiltAndUntouchedTiles
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_OnARuntimeBake_LandsOnTheDataItself*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_OnARuntimeBake_LandsOnTheDataItself
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_LayerRegeneration_OnARuntimeBake_LandsOnTheDataItself
+  name: LayerRegeneration_OnARuntimeBake_LandsOnTheDataItself
+  nameWithType: NavMeshObstacleTests.LayerRegeneration_OnARuntimeBake_LandsOnTheDataItself
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_OnARuntimeBake_LandsOnTheDataItself
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_OnAnAsset_MirrorsIntoACopyAndLeavesTheAsset*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_OnAnAsset_MirrorsIntoACopyAndLeavesTheAsset
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_LayerRegeneration_OnAnAsset_MirrorsIntoACopyAndLeavesTheAsset
+  name: LayerRegeneration_OnAnAsset_MirrorsIntoACopyAndLeavesTheAsset
+  nameWithType: NavMeshObstacleTests.LayerRegeneration_OnAnAsset_MirrorsIntoACopyAndLeavesTheAsset
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.LayerRegeneration_OnAnAsset_MirrorsIntoACopyAndLeavesTheAsset
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.RebuildTilesAsync_AppliesLikeSyncPath*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.RebuildTilesAsync_AppliesLikeSyncPath
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_RebuildTilesAsync_AppliesLikeSyncPath
+  name: RebuildTilesAsync_AppliesLikeSyncPath
+  nameWithType: NavMeshObstacleTests.RebuildTilesAsync_AppliesLikeSyncPath
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.RebuildTilesAsync_AppliesLikeSyncPath
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_DuringAPendingCarve_LandsOnTheSettledFrame*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_DuringAPendingCarve_LandsOnTheSettledFrame
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_ApplyRebuiltTiles_DuringAPendingCarve_LandsOnTheSettledFrame
+  name: ApplyRebuiltTiles_DuringAPendingCarve_LandsOnTheSettledFrame
+  nameWithType: NavMeshObstacleTests.ApplyRebuiltTiles_DuringAPendingCarve_LandsOnTheSettledFrame
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_DuringAPendingCarve_LandsOnTheSettledFrame
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_BehindACacheThatNeverSettles_StillLands*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_BehindACacheThatNeverSettles_StillLands
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_ApplyRebuiltTiles_BehindACacheThatNeverSettles_StillLands
+  name: ApplyRebuiltTiles_BehindACacheThatNeverSettles_StillLands
+  nameWithType: NavMeshObstacleTests.ApplyRebuiltTiles_BehindACacheThatNeverSettles_StillLands
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_BehindACacheThatNeverSettles_StillLands
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_HeldPastUnregistration_IsDropped*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_HeldPastUnregistration_IsDropped
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_ApplyRebuiltTiles_HeldPastUnregistration_IsDropped
+  name: ApplyRebuiltTiles_HeldPastUnregistration_IsDropped
+  nameWithType: NavMeshObstacleTests.ApplyRebuiltTiles_HeldPastUnregistration_IsDropped
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_HeldPastUnregistration_IsDropped
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_HeldBatch_DoesNotOverwriteANewerRebuild*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_HeldBatch_DoesNotOverwriteANewerRebuild
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_ApplyRebuiltTiles_HeldBatch_DoesNotOverwriteANewerRebuild
+  name: ApplyRebuiltTiles_HeldBatch_DoesNotOverwriteANewerRebuild
+  nameWithType: NavMeshObstacleTests.ApplyRebuiltTiles_HeldBatch_DoesNotOverwriteANewerRebuild
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.ApplyRebuiltTiles_HeldBatch_DoesNotOverwriteANewerRebuild
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Agent_PathsAroundCarve*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Agent_PathsAroundCarve
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Agent_PathsAroundCarve
+  name: Agent_PathsAroundCarve
+  nameWithType: NavMeshObstacleTests.Agent_PathsAroundCarve
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Agent_PathsAroundCarve
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesCarvingObstacleGeometry*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesCarvingObstacleGeometry
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Bake_ExcludesCarvingObstacleGeometry
+  name: Bake_ExcludesCarvingObstacleGeometry
+  nameWithType: NavMeshObstacleTests.Bake_ExcludesCarvingObstacleGeometry
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesCarvingObstacleGeometry
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesObstacleGeometry*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesObstacleGeometry
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Bake_ExcludesObstacleGeometry_System_Boolean_
+  name: Bake_ExcludesObstacleGeometry
+  nameWithType: NavMeshObstacleTests.Bake_ExcludesObstacleGeometry
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesObstacleGeometry
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesObstacleGeometry_EvenWhileDisabled*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesObstacleGeometry_EvenWhileDisabled
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Bake_ExcludesObstacleGeometry_EvenWhileDisabled
+  name: Bake_ExcludesObstacleGeometry_EvenWhileDisabled
+  nameWithType: NavMeshObstacleTests.Bake_ExcludesObstacleGeometry_EvenWhileDisabled
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Bake_ExcludesObstacleGeometry_EvenWhileDisabled
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_OffNavMesh_WarnsItCannotBlock*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_OffNavMesh_WarnsItCannotBlock
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_NonCarvingObstacle_OffNavMesh_WarnsItCannotBlock
+  name: NonCarvingObstacle_OffNavMesh_WarnsItCannotBlock
+  nameWithType: NavMeshObstacleTests.NonCarvingObstacle_OffNavMesh_WarnsItCannotBlock
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_OffNavMesh_WarnsItCannotBlock
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarvesAndFollowsOutsidePlayMode*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarvesAndFollowsOutsidePlayMode
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Obstacle_CarvesAndFollowsOutsidePlayMode
+  name: Obstacle_CarvesAndFollowsOutsidePlayMode
+  nameWithType: NavMeshObstacleTests.Obstacle_CarvesAndFollowsOutsidePlayMode
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_CarvesAndFollowsOutsidePlayMode
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Carve_ReportsEveryFrame_ButSettlesOnlyWhenDone*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Carve_ReportsEveryFrame_ButSettlesOnlyWhenDone
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Carve_ReportsEveryFrame_ButSettlesOnlyWhenDone
+  name: Carve_ReportsEveryFrame_ButSettlesOnlyWhenDone
+  nameWithType: NavMeshObstacleTests.Carve_ReportsEveryFrame_ButSettlesOnlyWhenDone
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Carve_ReportsEveryFrame_ButSettlesOnlyWhenDone
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Carve_KeepsAgentsAFullRadiusClear*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Carve_KeepsAgentsAFullRadiusClear
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Carve_KeepsAgentsAFullRadiusClear
+  name: Carve_KeepsAgentsAFullRadiusClear
+  nameWithType: NavMeshObstacleTests.Carve_KeepsAgentsAFullRadiusClear
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Carve_KeepsAgentsAFullRadiusClear
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Carve_FinishingInOneUpdate_StillReportsTheChange*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Carve_FinishingInOneUpdate_StillReportsTheChange
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Carve_FinishingInOneUpdate_StillReportsTheChange
+  name: Carve_FinishingInOneUpdate_StillReportsTheChange
+  nameWithType: NavMeshObstacleTests.Carve_FinishingInOneUpdate_StillReportsTheChange
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Carve_FinishingInOneUpdate_StillReportsTheChange
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.LiveTriangulation_ShowsTheCarve*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.LiveTriangulation_ShowsTheCarve
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_LiveTriangulation_ShowsTheCarve
+  name: LiveTriangulation_ShowsTheCarve
+  nameWithType: NavMeshObstacleTests.LiveTriangulation_ShowsTheCarve
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.LiveTriangulation_ShowsTheCarve
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_DeflectsAgent_WithoutTouchingMesh*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_DeflectsAgent_WithoutTouchingMesh
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_NonCarvingObstacle_DeflectsAgent_WithoutTouchingMesh
+  name: NonCarvingObstacle_DeflectsAgent_WithoutTouchingMesh
+  nameWithType: NavMeshObstacleTests.NonCarvingObstacle_DeflectsAgent_WithoutTouchingMesh
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_DeflectsAgent_WithoutTouchingMesh
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_FollowsAMovingObstacle*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_FollowsAMovingObstacle
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_NonCarvingObstacle_FollowsAMovingObstacle
+  name: NonCarvingObstacle_FollowsAMovingObstacle
+  nameWithType: NavMeshObstacleTests.NonCarvingObstacle_FollowsAMovingObstacle
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_FollowsAMovingObstacle
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_StaysPutUnderPressure*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_StaysPutUnderPressure
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_NonCarvingObstacle_StaysPutUnderPressure
+  name: NonCarvingObstacle_StaysPutUnderPressure
+  nameWithType: NavMeshObstacleTests.NonCarvingObstacle_StaysPutUnderPressure
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.NonCarvingObstacle_StaysPutUnderPressure
+- uid: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_SwitchingCarveMode_LeavesNothingBehind*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_SwitchingCarveMode_LeavesNothingBehind
+  href: Prowl.Runtime.Test.NavMeshObstacleTests.html#Prowl_Runtime_Test_NavMeshObstacleTests_Obstacle_SwitchingCarveMode_LeavesNothingBehind
+  name: Obstacle_SwitchingCarveMode_LeavesNothingBehind
+  nameWithType: NavMeshObstacleTests.Obstacle_SwitchingCarveMode_LeavesNothingBehind
+  fullName: Prowl.Runtime.Test.NavMeshObstacleTests.Obstacle_SwitchingCarveMode_LeavesNothingBehind

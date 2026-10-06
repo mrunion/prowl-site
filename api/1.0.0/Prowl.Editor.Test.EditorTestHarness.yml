@@ -1,0 +1,2187 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.Test.EditorTestHarness
+  commentId: T:Prowl.Editor.Test.EditorTestHarness
+  id: EditorTestHarness
+  parent: Prowl.Editor.Test
+  children:
+  - Prowl.Editor.Test.EditorTestHarness.#ctor
+  - Prowl.Editor.Test.EditorTestHarness.AssemblyBytesResolver
+  - Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(System.String)
+  - Prowl.Editor.Test.EditorTestHarness.Assets
+  - Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(System.String)
+  - Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly
+  - Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.CompileLibrary(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.Dispose
+  - Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid,System.String,System.Action{Prowl.Runtime.GameObject})
+  - Prowl.Editor.Test.EditorTestHarness.EnterPlayMode
+  - Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+  - Prowl.Editor.Test.EditorTestHarness.Load``1(System.Guid)
+  - Prowl.Editor.Test.EditorTestHarness.Project
+  - Prowl.Editor.Test.EditorTestHarness.ReopenDatabase
+  - Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid,Prowl.Runtime.AssetPackagingMode)
+  - Prowl.Editor.Test.EditorTestHarness.RunDotnet(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(System.String,System.Int32)
+  - Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(System.String)
+  - Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(System.String,Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  - Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.WriteScript(System.String,System.String)
+  langs:
+  - csharp
+  - vb
+  name: EditorTestHarness
+  nameWithType: EditorTestHarness
+  fullName: Prowl.Editor.Test.EditorTestHarness
+  type: Class
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EditorTestHarness
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 28
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: >-
+    Base class for headless editor tests. Each test gets a fresh throwaway project on disk with a live
+
+    <xref href="Prowl.Editor.EditorAssetBackend" data-throw-if-not-resolved="false"></xref>, and everything is torn down (including the temp directory) when
+
+    the test finishes.
+
+
+    This deliberately avoids the editor GUI/graphics layer: never instantiate EditorApplication and
+
+    never import graphics-bound assets (textures/shaders/models), since <code>Graphics.GL</code> is unguarded.
+
+    Tests in this assembly run without parallelization (see TestAssemblyConfig) because the editor uses
+
+    global static state.
+  example: []
+  syntax:
+    content: 'public abstract class EditorTestHarness : IDisposable'
+    content.vb: Public MustInherit Class EditorTestHarness Implements IDisposable
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - Prowl.Editor.Test.AssemblyDefinitionTests
+  - Prowl.Editor.Test.AssetDatabaseTests
+  - Prowl.Editor.Test.AssetRobustnessTests
+  - Prowl.Editor.Test.AudioAssetTests
+  - Prowl.Editor.Test.BlockingWaitAnalyzerTests
+  - Prowl.Editor.Test.BuildSystemProjectTests
+  - Prowl.Editor.Test.ComponentClipboardTests
+  - Prowl.Editor.Test.CustomAssetInspectorTests
+  - Prowl.Editor.Test.DirectoryBuildPropsTests
+  - Prowl.Editor.Test.EditorHarnessSmokeTests
+  - Prowl.Editor.Test.GameResourcesMapTests
+  - Prowl.Editor.Test.HotReloadAnalyzerTests
+  - Prowl.Editor.Test.HotReloadSceneTests
+  - Prowl.Editor.Test.MonoBehaviourConstructorAnalyzerTests
+  - Prowl.Editor.Test.PluginTests
+  - Prowl.Editor.Test.PrefabTests
+  - Prowl.Editor.Test.ProjectSettingsTests
+  - Prowl.Editor.Test.ScriptCompilationTests
+  - Prowl.Editor.Test.ShaderCatalogTests
+  - Prowl.Editor.Test.SubAssetDependencyPersistenceTests
+  - Prowl.Editor.Test.UndoTests
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Editor.Test.EditorTestHarness.Project
+  commentId: P:Prowl.Editor.Test.EditorTestHarness.Project
+  id: Project
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: Project
+  nameWithType: EditorTestHarness.Project
+  fullName: Prowl.Editor.Test.EditorTestHarness.Project
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Project
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 35
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: The throwaway project for this test.
+  example: []
+  syntax:
+    content: protected Project Project { get; }
+    parameters: []
+    return:
+      type: Prowl.Editor.Projects.Project
+    content.vb: Protected ReadOnly Property Project As Project
+  overload: Prowl.Editor.Test.EditorTestHarness.Project*
+- uid: Prowl.Editor.Test.EditorTestHarness.Assets
+  commentId: P:Prowl.Editor.Test.EditorTestHarness.Assets
+  id: Assets
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: Assets
+  nameWithType: EditorTestHarness.Assets
+  fullName: Prowl.Editor.Test.EditorTestHarness.Assets
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Assets
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 38
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: The live asset database for the project.
+  example: []
+  syntax:
+    content: protected EditorAssetBackend Assets { get; }
+    parameters: []
+    return:
+      type: Prowl.Editor.EditorAssetBackend
+    content.vb: Protected Property Assets As EditorAssetBackend
+  overload: Prowl.Editor.Test.EditorTestHarness.Assets*
+- uid: Prowl.Editor.Test.EditorTestHarness.#ctor
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.#ctor
+  id: '#ctor'
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: EditorTestHarness()
+  nameWithType: EditorTestHarness.EditorTestHarness()
+  fullName: Prowl.Editor.Test.EditorTestHarness.EditorTestHarness()
+  type: Constructor
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: .ctor
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 40
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: protected EditorTestHarness()
+    content.vb: Protected Sub New()
+  overload: Prowl.Editor.Test.EditorTestHarness.#ctor*
+  nameWithType.vb: EditorTestHarness.New()
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.New()
+  name.vb: New()
+- uid: Prowl.Editor.Test.EditorTestHarness.Load``1(System.Guid)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.Load``1(System.Guid)
+  id: Load``1(System.Guid)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: Load<T>(Guid)
+  nameWithType: EditorTestHarness.Load<T>(Guid)
+  fullName: Prowl.Editor.Test.EditorTestHarness.Load<T>(System.Guid)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Load
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 61
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: The asset with this GUID, loaded.
+  example: []
+  syntax:
+    content: 'protected static T? Load<T>(Guid guid) where T : Asset'
+    parameters:
+    - id: guid
+      type: System.Guid
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Protected Shared Function Load(Of T As Asset)(guid As Guid) As T
+  overload: Prowl.Editor.Test.EditorTestHarness.Load*
+  nameWithType.vb: EditorTestHarness.Load(Of T)(Guid)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.Load(Of T)(System.Guid)
+  name.vb: Load(Of T)(Guid)
+- uid: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(System.String)
+  id: AssetAbsolutePath(System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: AssetAbsolutePath(string)
+  nameWithType: EditorTestHarness.AssetAbsolutePath(string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AssetAbsolutePath
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 64
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: Absolute path to a path relative to the project's Assets folder.
+  example: []
+  syntax:
+    content: protected string AssetAbsolutePath(string relativePath)
+    parameters:
+    - id: relativePath
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Protected Function AssetAbsolutePath(relativePath As String) As String
+  overload: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath*
+  nameWithType.vb: EditorTestHarness.AssetAbsolutePath(String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(String)
+  name.vb: AssetAbsolutePath(String)
+- uid: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject,System.String)
+  id: CreatePrefabAsset(Prowl.Runtime.GameObject,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: CreatePrefabAsset(GameObject, string)
+  nameWithType: EditorTestHarness.CreatePrefabAsset(GameObject, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject, string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CreatePrefabAsset
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 74
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: >-
+    Creates a .prefab asset the way the editor does and returns its GUID. Goes through the
+
+    production path, so what a test builds on is what a user would have: the source becomes an
+
+    instance of the asset, identifiers are stabilised, and anything nested is flattened.
+
+
+    <p></p>
+
+
+    Use <xref href="Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject%2cSystem.String)" data-throw-if-not-resolved="false"></xref> instead when a test needs an asset the creation path
+
+    would never produce.
+  example: []
+  syntax:
+    content: protected Guid CreatePrefabAsset(GameObject source, string relativePath = "Prefab.prefab")
+    parameters:
+    - id: source
+      type: Prowl.Runtime.GameObject
+    - id: relativePath
+      type: System.String
+    return:
+      type: System.Guid
+    content.vb: Protected Function CreatePrefabAsset(source As GameObject, relativePath As String = "Prefab.prefab") As Guid
+  overload: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset*
+  nameWithType.vb: EditorTestHarness.CreatePrefabAsset(GameObject, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject, String)
+  name.vb: CreatePrefabAsset(GameObject, String)
+- uid: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+  id: WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: WritePrefabFileRaw(GameObject, string)
+  nameWithType: EditorTestHarness.WritePrefabFileRaw(GameObject, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject, string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WritePrefabFileRaw
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 97
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: >-
+    Writes a prefab file directly, bypassing the creation path. For tests that need an asset in a
+
+    shape the editor would not write, such as one authored before a rule was enforced.
+  example: []
+  syntax:
+    content: protected Guid WritePrefabFileRaw(GameObject source, string relativePath)
+    parameters:
+    - id: source
+      type: Prowl.Runtime.GameObject
+    - id: relativePath
+      type: System.String
+    return:
+      type: System.Guid
+    content.vb: Protected Function WritePrefabFileRaw(source As GameObject, relativePath As String) As Guid
+  overload: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw*
+  nameWithType.vb: EditorTestHarness.WritePrefabFileRaw(GameObject, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject, String)
+  name.vb: WritePrefabFileRaw(GameObject, String)
+- uid: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid,System.String,System.Action{Prowl.Runtime.GameObject})
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid,System.String,System.Action{Prowl.Runtime.GameObject})
+  id: EditPrefabSource(System.Guid,System.String,System.Action{Prowl.Runtime.GameObject})
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: EditPrefabSource(Guid, string, Action<GameObject>)
+  nameWithType: EditorTestHarness.EditPrefabSource(Guid, string, Action<GameObject>)
+  fullName: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid, string, System.Action<Prowl.Runtime.GameObject>)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EditPrefabSource
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 113
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: >-
+    Change a prefab's contents the way the editor does: take what the asset currently holds, edit
+
+    it, and write it back with its object identities intact. Writing a freshly built tree instead
+
+    would be a different set of objects, and overrides pointing at the old ones would not carry.
+  example: []
+  syntax:
+    content: protected void EditPrefabSource(Guid guid, string relativePath, Action<GameObject> edit)
+    parameters:
+    - id: guid
+      type: System.Guid
+    - id: relativePath
+      type: System.String
+    - id: edit
+      type: System.Action{Prowl.Runtime.GameObject}
+    content.vb: Protected Sub EditPrefabSource(guid As Guid, relativePath As String, edit As Action(Of GameObject))
+  overload: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource*
+  nameWithType.vb: EditorTestHarness.EditPrefabSource(Guid, String, Action(Of GameObject))
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid, String, System.Action(Of Prowl.Runtime.GameObject))
+  name.vb: EditPrefabSource(Guid, String, Action(Of GameObject))
+- uid: Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+  id: GetPrefab(System.Guid)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: GetPrefab(Guid)
+  nameWithType: EditorTestHarness.GetPrefab(Guid)
+  fullName: Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetPrefab
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 131
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: Resolve a prefab asset by GUID.
+  example: []
+  syntax:
+    content: protected PrefabAsset? GetPrefab(Guid guid)
+    parameters:
+    - id: guid
+      type: System.Guid
+    return:
+      type: Prowl.Runtime.Resources.PrefabAsset
+    content.vb: Protected Function GetPrefab(guid As Guid) As PrefabAsset
+  overload: Prowl.Editor.Test.EditorTestHarness.GetPrefab*
+- uid: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene,System.String)
+  id: CreateSceneAsset(Prowl.Runtime.Resources.Scene,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: CreateSceneAsset(Scene, string)
+  nameWithType: EditorTestHarness.CreateSceneAsset(Scene, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene, string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CreateSceneAsset
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 134
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: Persist a Scene as a .scene file, the way the editor saves one, and return its GUID.
+  example: []
+  syntax:
+    content: protected Guid CreateSceneAsset(Scene scene, string relativePath = "Scene.scene")
+    parameters:
+    - id: scene
+      type: Prowl.Runtime.Resources.Scene
+    - id: relativePath
+      type: System.String
+    return:
+      type: System.Guid
+    content.vb: Protected Function CreateSceneAsset(scene As Scene, relativePath As String = "Scene.scene") As Guid
+  overload: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset*
+  nameWithType.vb: EditorTestHarness.CreateSceneAsset(Scene, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene, String)
+  name.vb: CreateSceneAsset(Scene, String)
+- uid: Prowl.Editor.Test.EditorTestHarness.ReopenDatabase
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.ReopenDatabase
+  id: ReopenDatabase
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: ReopenDatabase()
+  nameWithType: EditorTestHarness.ReopenDatabase()
+  fullName: Prowl.Editor.Test.EditorTestHarness.ReopenDatabase()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ReopenDatabase
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 146
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: >-
+    Disposes the current asset database and opens a fresh one over the same project, simulating
+
+    closing and re-opening the editor (re-scan, reading .meta files and the metadata cache).
+  example: []
+  syntax:
+    content: protected EditorAssetBackend ReopenDatabase()
+    return:
+      type: Prowl.Editor.EditorAssetBackend
+    content.vb: Protected Function ReopenDatabase() As EditorAssetBackend
+  overload: Prowl.Editor.Test.EditorTestHarness.ReopenDatabase*
+- uid: Prowl.Editor.Test.EditorTestHarness.WriteScript(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.WriteScript(System.String,System.String)
+  id: WriteScript(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: WriteScript(string, string)
+  nameWithType: EditorTestHarness.WriteScript(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.WriteScript(string, string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WriteScript
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 159
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: Write a file (usually a .cs script) relative to the project's Assets folder.
+  example: []
+  syntax:
+    content: protected void WriteScript(string relativePath, string content)
+    parameters:
+    - id: relativePath
+      type: System.String
+    - id: content
+      type: System.String
+    content.vb: Protected Sub WriteScript(relativePath As String, content As String)
+  overload: Prowl.Editor.Test.EditorTestHarness.WriteScript*
+  nameWithType.vb: EditorTestHarness.WriteScript(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.WriteScript(String, String)
+  name.vb: WriteScript(String, String)
+- uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(System.String,System.String)
+  id: CompileGameAssembly(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: CompileGameAssembly(string, string)
+  nameWithType: EditorTestHarness.CompileGameAssembly(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(string, string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CompileGameAssembly
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 170
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: >-
+    Write a script, compile, assert success, and load the fresh game assembly from bytes. Each call yields a
+
+    distinct <xref href="System.Reflection.Assembly" data-throw-if-not-resolved="false"></xref>, so overwriting the same file and calling again gives the "v2".
+  example: []
+  syntax:
+    content: protected Assembly CompileGameAssembly(string relativePath, string code)
+    parameters:
+    - id: relativePath
+      type: System.String
+    - id: code
+      type: System.String
+    return:
+      type: System.Reflection.Assembly
+    content.vb: Protected Function CompileGameAssembly(relativePath As String, code As String) As Assembly
+  overload: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly*
+  nameWithType.vb: EditorTestHarness.CompileGameAssembly(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(String, String)
+  name.vb: CompileGameAssembly(String, String)
+- uid: Prowl.Editor.Test.EditorTestHarness.AssemblyBytesResolver
+  commentId: P:Prowl.Editor.Test.EditorTestHarness.AssemblyBytesResolver
+  id: AssemblyBytesResolver
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: AssemblyBytesResolver
+  nameWithType: EditorTestHarness.AssemblyBytesResolver
+  fullName: Prowl.Editor.Test.EditorTestHarness.AssemblyBytesResolver
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AssemblyBytesResolver
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 178
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: protected Func<Assembly, byte[]?> AssemblyBytesResolver { get; }
+    parameters: []
+    return:
+      type: System.Func{System.Reflection.Assembly,System.Byte[]}
+    content.vb: Protected ReadOnly Property AssemblyBytesResolver As Func(Of Assembly, Byte())
+  overload: Prowl.Editor.Test.EditorTestHarness.AssemblyBytesResolver*
+- uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly
+  id: CompileGameAssembly
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: CompileGameAssembly()
+  nameWithType: EditorTestHarness.CompileGameAssembly()
+  fullName: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CompileGameAssembly
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 181
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: Compile whatever scripts are on disk, assert success, and load the fresh game assembly.
+  example: []
+  syntax:
+    content: protected Assembly CompileGameAssembly()
+    return:
+      type: System.Reflection.Assembly
+    content.vb: Protected Function CompileGameAssembly() As Assembly
+  overload: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly*
+- uid: Prowl.Editor.Test.EditorTestHarness.EnterPlayMode
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.EnterPlayMode
+  id: EnterPlayMode
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: EnterPlayMode()
+  nameWithType: EditorTestHarness.EnterPlayMode()
+  fullName: Prowl.Editor.Test.EditorTestHarness.EnterPlayMode()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EnterPlayMode
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 192
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: Enters play mode with a deterministic time source until the returned scope is disposed.
+  example: []
+  syntax:
+    content: protected static EditorTestHarness.PlayModeScope EnterPlayMode()
+    return:
+      type: Prowl.Editor.Test.EditorTestHarness.PlayModeScope
+    content.vb: Protected Shared Function EnterPlayMode() As EditorTestHarness.PlayModeScope
+  overload: Prowl.Editor.Test.EditorTestHarness.EnterPlayMode*
+- uid: Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  id: Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: Tick(Scene, int)
+  nameWithType: EditorTestHarness.Tick(Scene, int)
+  fullName: Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Tick
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 195
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: 'Advances full frames: FixedUpdate then Update.'
+  example: []
+  syntax:
+    content: protected static void Tick(Scene scene, int steps = 1)
+    parameters:
+    - id: scene
+      type: Prowl.Runtime.Resources.Scene
+    - id: steps
+      type: System.Int32
+    content.vb: Protected Shared Sub Tick(scene As Scene, steps As Integer = 1)
+  overload: Prowl.Editor.Test.EditorTestHarness.Tick*
+  nameWithType.vb: EditorTestHarness.Tick(Scene, Integer)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Tick(Scene, Integer)
+- uid: Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene,System.Int32)
+  id: UpdateScene(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: UpdateScene(Scene, int)
+  nameWithType: EditorTestHarness.UpdateScene(Scene, int)
+  fullName: Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: UpdateScene
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 205
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: Runs Scene.Update the given number of frames (no physics step).
+  example: []
+  syntax:
+    content: protected static void UpdateScene(Scene scene, int frames = 1)
+    parameters:
+    - id: scene
+      type: Prowl.Runtime.Resources.Scene
+    - id: frames
+      type: System.Int32
+    content.vb: Protected Shared Sub UpdateScene(scene As Scene, frames As Integer = 1)
+  overload: Prowl.Editor.Test.EditorTestHarness.UpdateScene*
+  nameWithType.vb: EditorTestHarness.UpdateScene(Scene, Integer)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: UpdateScene(Scene, Integer)
+- uid: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(System.String,Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(System.String,Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  id: WriteAssemblyDefinition(System.String,Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: WriteAssemblyDefinition(string, AssemblyDefinition)
+  nameWithType: EditorTestHarness.WriteAssemblyDefinition(string, AssemblyDefinition)
+  fullName: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(string, Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WriteAssemblyDefinition
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 238
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: Write an assembly definition (.asmdef) into a folder under Assets.
+  example: []
+  syntax:
+    content: protected void WriteAssemblyDefinition(string relativeFolder, AssemblyDefinition def)
+    parameters:
+    - id: relativeFolder
+      type: System.String
+    - id: def
+      type: Prowl.Editor.Projects.Scripting.AssemblyDefinition
+    content.vb: Protected Sub WriteAssemblyDefinition(relativeFolder As String, def As AssemblyDefinition)
+  overload: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition*
+  nameWithType.vb: EditorTestHarness.WriteAssemblyDefinition(String, AssemblyDefinition)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(String, Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  name.vb: WriteAssemblyDefinition(String, AssemblyDefinition)
+- uid: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(System.String,System.String)
+  id: CopyIntoAssets(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: CopyIntoAssets(string, string)
+  nameWithType: EditorTestHarness.CopyIntoAssets(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(string, string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CopyIntoAssets
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 246
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: Copy a file into the project's Assets folder (creating parent folders).
+  example: []
+  syntax:
+    content: protected void CopyIntoAssets(string sourceFile, string relativeDest)
+    parameters:
+    - id: sourceFile
+      type: System.String
+    - id: relativeDest
+      type: System.String
+    content.vb: Protected Sub CopyIntoAssets(sourceFile As String, relativeDest As String)
+  overload: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets*
+  nameWithType.vb: EditorTestHarness.CopyIntoAssets(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(String, String)
+  name.vb: CopyIntoAssets(String, String)
+- uid: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(System.String)
+  id: AuthorEmptyScene(System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: AuthorEmptyScene(string)
+  nameWithType: EditorTestHarness.AuthorEmptyScene(string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AuthorEmptyScene
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 254
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: Author a scene containing a single empty GameObject and save it as Main.scene.
+  example: []
+  syntax:
+    content: protected Guid AuthorEmptyScene(string relativePath = "Main.scene")
+    parameters:
+    - id: relativePath
+      type: System.String
+    return:
+      type: System.Guid
+    content.vb: Protected Function AuthorEmptyScene(relativePath As String = "Main.scene") As Guid
+  overload: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene*
+  nameWithType.vb: EditorTestHarness.AuthorEmptyScene(String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(String)
+  name.vb: AuthorEmptyScene(String)
+- uid: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(System.String,System.String)
+  id: AuthorSceneWithComponent(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: AuthorSceneWithComponent(string, string)
+  nameWithType: EditorTestHarness.AuthorSceneWithComponent(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(string, string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AuthorSceneWithComponent
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 264
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: Author a scene whose root has the named component from the compiled game assembly.
+  example: []
+  syntax:
+    content: protected Guid AuthorSceneWithComponent(string componentTypeName, string relativePath = "Main.scene")
+    parameters:
+    - id: componentTypeName
+      type: System.String
+    - id: relativePath
+      type: System.String
+    return:
+      type: System.Guid
+    content.vb: Protected Function AuthorSceneWithComponent(componentTypeName As String, relativePath As String = "Main.scene") As Guid
+  overload: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent*
+  nameWithType.vb: EditorTestHarness.AuthorSceneWithComponent(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(String, String)
+  name.vb: AuthorSceneWithComponent(String, String)
+- uid: Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid,Prowl.Runtime.AssetPackagingMode)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid,Prowl.Runtime.AssetPackagingMode)
+  id: RunBuild(System.Guid,Prowl.Runtime.AssetPackagingMode)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: RunBuild(Guid, AssetPackagingMode)
+  nameWithType: EditorTestHarness.RunBuild(Guid, AssetPackagingMode)
+  fullName: Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid, Prowl.Runtime.AssetPackagingMode)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RunBuild
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 280
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: Build the project to a fresh temp output directory and assert success. Returns the output path.
+  example: []
+  syntax:
+    content: protected string RunBuild(Guid sceneGuid, AssetPackagingMode packaging = AssetPackagingMode.LooseFiles)
+    parameters:
+    - id: sceneGuid
+      type: System.Guid
+    - id: packaging
+      type: Prowl.Runtime.AssetPackagingMode
+    return:
+      type: System.String
+    content.vb: Protected Function RunBuild(sceneGuid As Guid, packaging As AssetPackagingMode = AssetPackagingMode.LooseFiles) As String
+  overload: Prowl.Editor.Test.EditorTestHarness.RunBuild*
+- uid: Prowl.Editor.Test.EditorTestHarness.CompileLibrary(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CompileLibrary(System.String,System.String)
+  id: CompileLibrary(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: CompileLibrary(string, string)
+  nameWithType: EditorTestHarness.CompileLibrary(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.CompileLibrary(string, string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CompileLibrary
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 298
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: Compile a tiny class library with a given assembly name via `dotnet build`; returns the DLL path.
+  example: []
+  syntax:
+    content: protected static string CompileLibrary(string assemblyName, string code)
+    parameters:
+    - id: assemblyName
+      type: System.String
+    - id: code
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Protected Shared Function CompileLibrary(assemblyName As String, code As String) As String
+  overload: Prowl.Editor.Test.EditorTestHarness.CompileLibrary*
+  nameWithType.vb: EditorTestHarness.CompileLibrary(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.CompileLibrary(String, String)
+  name.vb: CompileLibrary(String, String)
+- uid: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(System.String,System.Int32)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(System.String,System.Int32)
+  id: RunPlayerHeadless(System.String,System.Int32)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: RunPlayerHeadless(string, int)
+  nameWithType: EditorTestHarness.RunPlayerHeadless(string, int)
+  fullName: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(string, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RunPlayerHeadless
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 321
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: Run the built player headlessly for a few frames and return its stdout (asserts a clean exit).
+  example: []
+  syntax:
+    content: protected string RunPlayerHeadless(string outputDir, int frames = 30)
+    parameters:
+    - id: outputDir
+      type: System.String
+    - id: frames
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Protected Function RunPlayerHeadless(outputDir As String, frames As Integer = 30) As String
+  overload: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless*
+  nameWithType.vb: EditorTestHarness.RunPlayerHeadless(String, Integer)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(String, Integer)
+  name.vb: RunPlayerHeadless(String, Integer)
+- uid: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(System.String)
+  id: TryDeleteDir(System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: TryDeleteDir(string)
+  nameWithType: EditorTestHarness.TryDeleteDir(string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TryDeleteDir
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 353
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: Best-effort recursive delete (used to clean up temp build outputs).
+  example: []
+  syntax:
+    content: protected static void TryDeleteDir(string dir)
+    parameters:
+    - id: dir
+      type: System.String
+    content.vb: Protected Shared Sub TryDeleteDir(dir As String)
+  overload: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir*
+  nameWithType.vb: EditorTestHarness.TryDeleteDir(String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(String)
+  name.vb: TryDeleteDir(String)
+- uid: Prowl.Editor.Test.EditorTestHarness.RunDotnet(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.RunDotnet(System.String,System.String)
+  id: RunDotnet(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: RunDotnet(string, string)
+  nameWithType: EditorTestHarness.RunDotnet(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.RunDotnet(string, string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RunDotnet
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 359
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: Run a `dotnet` command and capture its output.
+  example: []
+  syntax:
+    content: protected static (int exit, string stdout, string stderr) RunDotnet(string args, string workingDir)
+    parameters:
+    - id: args
+      type: System.String
+    - id: workingDir
+      type: System.String
+    return:
+      type: System.ValueTuple{System.Int32,System.String,System.String}
+    content.vb: Protected Shared Function RunDotnet(args As String, workingDir As String) As ([exit] As Integer, stdout As String, stderr As String)
+  overload: Prowl.Editor.Test.EditorTestHarness.RunDotnet*
+  nameWithType.vb: EditorTestHarness.RunDotnet(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.RunDotnet(String, String)
+  name.vb: RunDotnet(String, String)
+- uid: Prowl.Editor.Test.EditorTestHarness.Dispose
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.Dispose
+  id: Dispose
+  parent: Prowl.Editor.Test.EditorTestHarness
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: EditorTestHarness.Dispose()
+  fullName: Prowl.Editor.Test.EditorTestHarness.Dispose()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/EditorTestHarness.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Dispose
+    path: ../Prowl/Prowl.Editor.Test/EditorTestHarness.cs
+    startLine: 376
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+  example: []
+  syntax:
+    content: public virtual void Dispose()
+    content.vb: Public Overridable Sub Dispose()
+  overload: Prowl.Editor.Test.EditorTestHarness.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+references:
+- uid: Prowl.Editor.EditorAssetBackend
+  commentId: T:Prowl.Editor.EditorAssetBackend
+  parent: Prowl.Editor
+  href: Prowl.Editor.EditorAssetBackend.html
+  name: EditorAssetBackend
+  nameWithType: EditorAssetBackend
+  fullName: Prowl.Editor.EditorAssetBackend
+- uid: Prowl.Editor.Test
+  commentId: N:Prowl.Editor.Test
+  name: Prowl.Editor.Test
+  nameWithType: Prowl.Editor.Test
+  fullName: Prowl.Editor.Test
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Test
+    name: Test
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Test
+    name: Test
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Editor
+  commentId: N:Prowl.Editor
+  name: Prowl.Editor
+  nameWithType: Prowl.Editor
+  fullName: Prowl.Editor
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Editor.Test.EditorTestHarness.Project*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.Project
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Project
+  name: Project
+  nameWithType: EditorTestHarness.Project
+  fullName: Prowl.Editor.Test.EditorTestHarness.Project
+- uid: Prowl.Editor.Projects.Project
+  commentId: T:Prowl.Editor.Projects.Project
+  parent: Prowl.Editor.Projects
+  href: Prowl.Editor.Projects.Project.html
+  name: Project
+  nameWithType: Project
+  fullName: Prowl.Editor.Projects.Project
+- uid: Prowl.Editor.Projects
+  commentId: N:Prowl.Editor.Projects
+  name: Prowl.Editor.Projects
+  nameWithType: Prowl.Editor.Projects
+  fullName: Prowl.Editor.Projects
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Projects
+    name: Projects
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Projects
+    name: Projects
+- uid: Prowl.Editor.Test.EditorTestHarness.Assets*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.Assets
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Assets
+  name: Assets
+  nameWithType: EditorTestHarness.Assets
+  fullName: Prowl.Editor.Test.EditorTestHarness.Assets
+- uid: Prowl.Editor.Test.EditorTestHarness.#ctor*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.#ctor
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness__ctor
+  name: EditorTestHarness
+  nameWithType: EditorTestHarness.EditorTestHarness
+  fullName: Prowl.Editor.Test.EditorTestHarness.EditorTestHarness
+  nameWithType.vb: EditorTestHarness.New
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.New
+  name.vb: New
+- uid: Prowl.Editor.Test.EditorTestHarness.Load*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.Load
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Load__1_System_Guid_
+  name: Load
+  nameWithType: EditorTestHarness.Load
+  fullName: Prowl.Editor.Test.EditorTestHarness.Load
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AssetAbsolutePath_System_String_
+  name: AssetAbsolutePath
+  nameWithType: EditorTestHarness.AssetAbsolutePath
+  fullName: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WritePrefabFileRaw_Prowl_Runtime_GameObject_System_String_
+  name: WritePrefabFileRaw(GameObject, string)
+  nameWithType: EditorTestHarness.WritePrefabFileRaw(GameObject, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject, string)
+  nameWithType.vb: EditorTestHarness.WritePrefabFileRaw(GameObject, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject, String)
+  name.vb: WritePrefabFileRaw(GameObject, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+    name: WritePrefabFileRaw
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WritePrefabFileRaw_Prowl_Runtime_GameObject_System_String_
+  - name: (
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+    name: WritePrefabFileRaw
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WritePrefabFileRaw_Prowl_Runtime_GameObject_System_String_
+  - name: (
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CreatePrefabAsset_Prowl_Runtime_GameObject_System_String_
+  name: CreatePrefabAsset
+  nameWithType: EditorTestHarness.CreatePrefabAsset
+  fullName: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset
+- uid: Prowl.Runtime.GameObject
+  commentId: T:Prowl.Runtime.GameObject
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.GameObject.html
+  name: GameObject
+  nameWithType: GameObject
+  fullName: Prowl.Runtime.GameObject
+- uid: Prowl.Editor.Test.EditorTestHarness
+  commentId: T:Prowl.Editor.Test.EditorTestHarness
+  parent: Prowl.Editor.Test
+  href: Prowl.Editor.Test.EditorTestHarness.html
+  name: EditorTestHarness
+  nameWithType: EditorTestHarness
+  fullName: Prowl.Editor.Test.EditorTestHarness
+- uid: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WritePrefabFileRaw_Prowl_Runtime_GameObject_System_String_
+  name: WritePrefabFileRaw
+  nameWithType: EditorTestHarness.WritePrefabFileRaw
+  fullName: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw
+- uid: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.EditPrefabSource
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_EditPrefabSource_System_Guid_System_String_System_Action_Prowl_Runtime_GameObject__
+  name: EditPrefabSource
+  nameWithType: EditorTestHarness.EditPrefabSource
+  fullName: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource
+- uid: System.Action{Prowl.Runtime.GameObject}
+  commentId: T:System.Action{Prowl.Runtime.GameObject}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<GameObject>
+  nameWithType: Action<GameObject>
+  fullName: System.Action<Prowl.Runtime.GameObject>
+  nameWithType.vb: Action(Of GameObject)
+  fullName.vb: System.Action(Of Prowl.Runtime.GameObject)
+  name.vb: Action(Of GameObject)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.GetPrefab*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.GetPrefab
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_GetPrefab_System_Guid_
+  name: GetPrefab
+  nameWithType: EditorTestHarness.GetPrefab
+  fullName: Prowl.Editor.Test.EditorTestHarness.GetPrefab
+- uid: Prowl.Runtime.Resources.PrefabAsset
+  commentId: T:Prowl.Runtime.Resources.PrefabAsset
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.PrefabAsset.html
+  name: PrefabAsset
+  nameWithType: PrefabAsset
+  fullName: Prowl.Runtime.Resources.PrefabAsset
+- uid: Prowl.Runtime.Resources
+  commentId: N:Prowl.Runtime.Resources
+  name: Prowl.Runtime.Resources
+  nameWithType: Prowl.Runtime.Resources
+  fullName: Prowl.Runtime.Resources
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+- uid: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CreateSceneAsset_Prowl_Runtime_Resources_Scene_System_String_
+  name: CreateSceneAsset
+  nameWithType: EditorTestHarness.CreateSceneAsset
+  fullName: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset
+- uid: Prowl.Runtime.Resources.Scene
+  commentId: T:Prowl.Runtime.Resources.Scene
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.Scene.html
+  name: Scene
+  nameWithType: Scene
+  fullName: Prowl.Runtime.Resources.Scene
+- uid: Prowl.Editor.Test.EditorTestHarness.ReopenDatabase*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.ReopenDatabase
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_ReopenDatabase
+  name: ReopenDatabase
+  nameWithType: EditorTestHarness.ReopenDatabase
+  fullName: Prowl.Editor.Test.EditorTestHarness.ReopenDatabase
+- uid: Prowl.Editor.Test.EditorTestHarness.WriteScript*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.WriteScript
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WriteScript_System_String_System_String_
+  name: WriteScript
+  nameWithType: EditorTestHarness.WriteScript
+  fullName: Prowl.Editor.Test.EditorTestHarness.WriteScript
+- uid: System.Reflection.Assembly
+  commentId: T:System.Reflection.Assembly
+  parent: System.Reflection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.reflection.assembly
+  name: Assembly
+  nameWithType: Assembly
+  fullName: System.Reflection.Assembly
+- uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileGameAssembly_System_String_System_String_
+  name: CompileGameAssembly
+  nameWithType: EditorTestHarness.CompileGameAssembly
+  fullName: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly
+- uid: System.Reflection
+  commentId: N:System.Reflection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Reflection
+  nameWithType: System.Reflection
+  fullName: System.Reflection
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Reflection
+    name: Reflection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Reflection
+    name: Reflection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection
+- uid: Prowl.Editor.Test.EditorTestHarness.AssemblyBytesResolver*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.AssemblyBytesResolver
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AssemblyBytesResolver
+  name: AssemblyBytesResolver
+  nameWithType: EditorTestHarness.AssemblyBytesResolver
+  fullName: Prowl.Editor.Test.EditorTestHarness.AssemblyBytesResolver
+- uid: System.Func{System.Reflection.Assembly,System.Byte[]}
+  commentId: T:System.Func{System.Reflection.Assembly,System.Byte[]}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<Assembly, byte[]>
+  nameWithType: Func<Assembly, byte[]>
+  fullName: System.Func<System.Reflection.Assembly, byte[]>
+  nameWithType.vb: Func(Of Assembly, Byte())
+  fullName.vb: System.Func(Of System.Reflection.Assembly, Byte())
+  name.vb: Func(Of Assembly, Byte())
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.assembly
+  - name: ','
+  - name: " "
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.assembly
+  - name: ','
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+  - name: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.EnterPlayMode*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.EnterPlayMode
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_EnterPlayMode
+  name: EnterPlayMode
+  nameWithType: EditorTestHarness.EnterPlayMode
+  fullName: Prowl.Editor.Test.EditorTestHarness.EnterPlayMode
+- uid: Prowl.Editor.Test.EditorTestHarness.PlayModeScope
+  commentId: T:Prowl.Editor.Test.EditorTestHarness.PlayModeScope
+  parent: Prowl.Editor.Test
+  href: Prowl.Editor.Test.EditorTestHarness.html
+  name: EditorTestHarness.PlayModeScope
+  nameWithType: EditorTestHarness.PlayModeScope
+  fullName: Prowl.Editor.Test.EditorTestHarness.PlayModeScope
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness
+    name: EditorTestHarness
+    href: Prowl.Editor.Test.EditorTestHarness.html
+  - name: .
+  - uid: Prowl.Editor.Test.EditorTestHarness.PlayModeScope
+    name: PlayModeScope
+    href: Prowl.Editor.Test.EditorTestHarness.PlayModeScope.html
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness
+    name: EditorTestHarness
+    href: Prowl.Editor.Test.EditorTestHarness.html
+  - name: .
+  - uid: Prowl.Editor.Test.EditorTestHarness.PlayModeScope
+    name: PlayModeScope
+    href: Prowl.Editor.Test.EditorTestHarness.PlayModeScope.html
+- uid: Prowl.Editor.Test.EditorTestHarness.Tick*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.Tick
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Tick
+  nameWithType: EditorTestHarness.Tick
+  fullName: Prowl.Editor.Test.EditorTestHarness.Tick
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Editor.Test.EditorTestHarness.UpdateScene*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.UpdateScene
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_UpdateScene_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: UpdateScene
+  nameWithType: EditorTestHarness.UpdateScene
+  fullName: Prowl.Editor.Test.EditorTestHarness.UpdateScene
+- uid: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WriteAssemblyDefinition_System_String_Prowl_Editor_Projects_Scripting_AssemblyDefinition_
+  name: WriteAssemblyDefinition
+  nameWithType: EditorTestHarness.WriteAssemblyDefinition
+  fullName: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition
+- uid: Prowl.Editor.Projects.Scripting.AssemblyDefinition
+  commentId: T:Prowl.Editor.Projects.Scripting.AssemblyDefinition
+  parent: Prowl.Editor.Projects.Scripting
+  href: Prowl.Editor.Projects.Scripting.AssemblyDefinition.html
+  name: AssemblyDefinition
+  nameWithType: AssemblyDefinition
+  fullName: Prowl.Editor.Projects.Scripting.AssemblyDefinition
+- uid: Prowl.Editor.Projects.Scripting
+  commentId: N:Prowl.Editor.Projects.Scripting
+  name: Prowl.Editor.Projects.Scripting
+  nameWithType: Prowl.Editor.Projects.Scripting
+  fullName: Prowl.Editor.Projects.Scripting
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Projects
+    name: Projects
+  - name: .
+  - uid: Prowl.Editor.Projects.Scripting
+    name: Scripting
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Projects
+    name: Projects
+  - name: .
+  - uid: Prowl.Editor.Projects.Scripting
+    name: Scripting
+- uid: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CopyIntoAssets_System_String_System_String_
+  name: CopyIntoAssets
+  nameWithType: EditorTestHarness.CopyIntoAssets
+  fullName: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets
+- uid: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AuthorEmptyScene_System_String_
+  name: AuthorEmptyScene
+  nameWithType: EditorTestHarness.AuthorEmptyScene
+  fullName: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene
+- uid: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AuthorSceneWithComponent_System_String_System_String_
+  name: AuthorSceneWithComponent
+  nameWithType: EditorTestHarness.AuthorSceneWithComponent
+  fullName: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent
+- uid: Prowl.Editor.Test.EditorTestHarness.RunBuild*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.RunBuild
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunBuild_System_Guid_Prowl_Runtime_AssetPackagingMode_
+  name: RunBuild
+  nameWithType: EditorTestHarness.RunBuild
+  fullName: Prowl.Editor.Test.EditorTestHarness.RunBuild
+- uid: Prowl.Runtime.AssetPackagingMode
+  commentId: T:Prowl.Runtime.AssetPackagingMode
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.AssetPackagingMode.html
+  name: AssetPackagingMode
+  nameWithType: AssetPackagingMode
+  fullName: Prowl.Runtime.AssetPackagingMode
+- uid: Prowl.Editor.Test.EditorTestHarness.CompileLibrary*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.CompileLibrary
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileLibrary_System_String_System_String_
+  name: CompileLibrary
+  nameWithType: EditorTestHarness.CompileLibrary
+  fullName: Prowl.Editor.Test.EditorTestHarness.CompileLibrary
+- uid: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunPlayerHeadless_System_String_System_Int32_
+  name: RunPlayerHeadless
+  nameWithType: EditorTestHarness.RunPlayerHeadless
+  fullName: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless
+- uid: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.TryDeleteDir
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_TryDeleteDir_System_String_
+  name: TryDeleteDir
+  nameWithType: EditorTestHarness.TryDeleteDir
+  fullName: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir
+- uid: Prowl.Editor.Test.EditorTestHarness.RunDotnet*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.RunDotnet
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunDotnet_System_String_System_String_
+  name: RunDotnet
+  nameWithType: EditorTestHarness.RunDotnet
+  fullName: Prowl.Editor.Test.EditorTestHarness.RunDotnet
+- uid: System.ValueTuple{System.Int32,System.String,System.String}
+  commentId: T:System.ValueTuple{System.Int32,System.String,System.String}
+  parent: System
+  definition: System.ValueTuple`3
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: (int exit, string stdout, string stderr)
+  nameWithType: (int exit, string stdout, string stderr)
+  fullName: (int exit, string stdout, string stderr)
+  nameWithType.vb: (exit As Integer, stdout As String, stderr As String)
+  fullName.vb: (exit As Integer, stdout As String, stderr As String)
+  name.vb: (exit As Integer, stdout As String, stderr As String)
+  spec.csharp:
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.String,System.String}.exit
+    name: exit
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.string,system.string-.exit
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.String,System.String}.stdout
+    name: stdout
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.string,system.string-.stdout
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.String,System.String}.stderr
+    name: stderr
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.string,system.string-.stderr
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: System.ValueTuple{System.Int32,System.String,System.String}.exit
+    name: exit
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.string,system.string-.exit
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.String,System.String}.stdout
+    name: stdout
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.string,system.string-.stdout
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.String,System.String}.stderr
+    name: stderr
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.string,system.string-.stderr
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.ValueTuple`3
+  commentId: T:System.ValueTuple`3
+  name: (T1, T2, T3)
+  nameWithType: (T1, T2, T3)
+  fullName: (T1, T2, T3)
+  spec.csharp:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: ','
+  - name: " "
+  - name: T3
+  - name: )
+  spec.vb:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: ','
+  - name: " "
+  - name: T3
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.Dispose*
+  commentId: Overload:Prowl.Editor.Test.EditorTestHarness.Dispose
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Dispose
+  name: Dispose
+  nameWithType: EditorTestHarness.Dispose
+  fullName: Prowl.Editor.Test.EditorTestHarness.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )

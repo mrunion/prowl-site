@@ -5,18 +5,38 @@ items:
   id: RuntimeUtils
   parent: Prowl.Runtime
   children:
+  - Prowl.Runtime.RuntimeUtils.AsInt(System.Boolean)
+  - Prowl.Runtime.RuntimeUtils.AssemblySource
+  - Prowl.Runtime.RuntimeUtils.DeclaredFieldsDeep(System.Reflection.TypeInfo)
+  - Prowl.Runtime.RuntimeUtils.DeclaredMembersDeep(System.Reflection.TypeInfo)
+  - Prowl.Runtime.RuntimeUtils.DeclaredPropertiesDeep(System.Reflection.TypeInfo)
   - Prowl.Runtime.RuntimeUtils.FindType(System.String)
-  - Prowl.Runtime.RuntimeUtils.FindTypesImplementing(System.Type)
+  - Prowl.Runtime.RuntimeUtils.FindTypesImplementing(System.Type,System.Boolean)
   - Prowl.Runtime.RuntimeUtils.GetAllFields(System.Type)
+  - Prowl.Runtime.RuntimeUtils.GetAttributes``1(System.Reflection.MemberInfo)
+  - Prowl.Runtime.RuntimeUtils.GetBaseTypeInfo(System.Reflection.TypeInfo)
+  - Prowl.Runtime.RuntimeUtils.GetInheritanceDepth(System.Reflection.TypeInfo)
+  - Prowl.Runtime.RuntimeUtils.GetInstanceField(System.Type,System.String)
+  - Prowl.Runtime.RuntimeUtils.GetInstanceProperty(System.Type,System.String)
+  - Prowl.Runtime.RuntimeUtils.GetLoadableTypes(System.Reflection.Assembly)
+  - Prowl.Runtime.RuntimeUtils.GetOSPlatform
   - Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
   - Prowl.Runtime.RuntimeUtils.GetTypesWithAttribute``1
   - Prowl.Runtime.RuntimeUtils.GetUniquePath(System.String)
   - Prowl.Runtime.RuntimeUtils.GetValue(System.Reflection.MemberInfo,System.Object)
+  - Prowl.Runtime.RuntimeUtils.HasAttribute``1(System.Reflection.MemberInfo)
+  - Prowl.Runtime.RuntimeUtils.IsARM
+  - Prowl.Runtime.RuntimeUtils.IsBrowser
+  - Prowl.Runtime.RuntimeUtils.IsDeepCopyByAssignment(System.Reflection.TypeInfo)
+  - Prowl.Runtime.RuntimeUtils.IsEquivalent(System.Reflection.MemberInfo,System.Reflection.MemberInfo)
   - Prowl.Runtime.RuntimeUtils.IsFreeBSD
   - Prowl.Runtime.RuntimeUtils.IsLinux
   - Prowl.Runtime.RuntimeUtils.IsMac
+  - Prowl.Runtime.RuntimeUtils.IsPublic(System.Reflection.PropertyInfo)
+  - Prowl.Runtime.RuntimeUtils.IsStatic(System.Reflection.PropertyInfo)
   - Prowl.Runtime.RuntimeUtils.IsWindows
   - Prowl.Runtime.RuntimeUtils.Prettify(System.String)
+  - Prowl.Runtime.RuntimeUtils.ResolveType(System.String)
   - Prowl.Runtime.RuntimeUtils.SetValue(System.Reflection.MemberInfo,System.Object,System.Object)
   langs:
   - csharp
@@ -28,17 +48,23 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Utils/RuntimeUtils.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: RuntimeUtils
     path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
-    startLine: 13
+    startLine: 44
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static class RuntimeUtils
-    content.vb: Public Module RuntimeUtils
+    content: >-
+      [RequiresUnreferencedCode("These methods use reflection and can't be statically analyzed.")]
+
+      public static class RuntimeUtils
+    content.vb: >-
+      <RequiresUnreferencedCode("These methods use reflection and can't be statically analyzed.")>
+
+      Public Module RuntimeUtils
   inheritance:
   - System.Object
   inheritedMembers:
@@ -49,6 +75,76 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  attributes:
+  - type: System.Diagnostics.CodeAnalysis.RequiresUnreferencedCodeAttribute
+    ctor: System.Diagnostics.CodeAnalysis.RequiresUnreferencedCodeAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: These methods use reflection and can't be statically analyzed.
+- uid: Prowl.Runtime.RuntimeUtils.AssemblySource
+  commentId: P:Prowl.Runtime.RuntimeUtils.AssemblySource
+  id: AssemblySource
+  parent: Prowl.Runtime.RuntimeUtils
+  langs:
+  - csharp
+  - vb
+  name: AssemblySource
+  nameWithType: RuntimeUtils.AssemblySource
+  fullName: Prowl.Runtime.RuntimeUtils.AssemblySource
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/RuntimeUtils.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AssemblySource
+    path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
+    startLine: 60
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Where reflection lookups enumerate assemblies. The editor points this at the live script assemblies,
+
+    because after a hot reload both builds are loaded under the same simple name and the domain lists them
+
+    in load order, so a name would otherwise always resolve to the outgoing build.
+  example: []
+  syntax:
+    content: public static Func<IEnumerable<Assembly>> AssemblySource { get; set; }
+    parameters: []
+    return:
+      type: System.Func{System.Collections.Generic.IEnumerable{System.Reflection.Assembly}}
+    content.vb: Public Shared Property AssemblySource As Func(Of IEnumerable(Of Assembly))
+  overload: Prowl.Runtime.RuntimeUtils.AssemblySource*
+- uid: Prowl.Runtime.RuntimeUtils.IsARM
+  commentId: M:Prowl.Runtime.RuntimeUtils.IsARM
+  id: IsARM
+  parent: Prowl.Runtime.RuntimeUtils
+  langs:
+  - csharp
+  - vb
+  name: IsARM()
+  nameWithType: RuntimeUtils.IsARM()
+  fullName: Prowl.Runtime.RuntimeUtils.IsARM()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/RuntimeUtils.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsARM
+    path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
+    startLine: 63
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static bool IsARM()
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsARM() As Boolean
+  overload: Prowl.Runtime.RuntimeUtils.IsARM*
 - uid: Prowl.Runtime.RuntimeUtils.IsWindows
   commentId: M:Prowl.Runtime.RuntimeUtils.IsWindows
   id: IsWindows
@@ -63,11 +159,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Utils/RuntimeUtils.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: IsWindows
     path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
-    startLine: 16
+    startLine: 67
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -91,11 +187,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Utils/RuntimeUtils.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: IsLinux
     path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
-    startLine: 17
+    startLine: 68
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -119,11 +215,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Utils/RuntimeUtils.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: IsFreeBSD
     path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
-    startLine: 18
+    startLine: 69
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -147,11 +243,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Utils/RuntimeUtils.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: IsMac
     path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
-    startLine: 19
+    startLine: 70
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -161,6 +257,62 @@ items:
       type: System.Boolean
     content.vb: Public Shared Function IsMac() As Boolean
   overload: Prowl.Runtime.RuntimeUtils.IsMac*
+- uid: Prowl.Runtime.RuntimeUtils.IsBrowser
+  commentId: M:Prowl.Runtime.RuntimeUtils.IsBrowser
+  id: IsBrowser
+  parent: Prowl.Runtime.RuntimeUtils
+  langs:
+  - csharp
+  - vb
+  name: IsBrowser()
+  nameWithType: RuntimeUtils.IsBrowser()
+  fullName: Prowl.Runtime.RuntimeUtils.IsBrowser()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/RuntimeUtils.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsBrowser
+    path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
+    startLine: 71
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static bool IsBrowser()
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsBrowser() As Boolean
+  overload: Prowl.Runtime.RuntimeUtils.IsBrowser*
+- uid: Prowl.Runtime.RuntimeUtils.GetOSPlatform
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetOSPlatform
+  id: GetOSPlatform
+  parent: Prowl.Runtime.RuntimeUtils
+  langs:
+  - csharp
+  - vb
+  name: GetOSPlatform()
+  nameWithType: RuntimeUtils.GetOSPlatform()
+  fullName: Prowl.Runtime.RuntimeUtils.GetOSPlatform()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/RuntimeUtils.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetOSPlatform
+    path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
+    startLine: 74
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static Platform GetOSPlatform()
+    return:
+      type: Prowl.Runtime.Platform
+    content.vb: Public Shared Function GetOSPlatform() As Platform
+  overload: Prowl.Runtime.RuntimeUtils.GetOSPlatform*
 - uid: Prowl.Runtime.RuntimeUtils.FindType(System.String)
   commentId: M:Prowl.Runtime.RuntimeUtils.FindType(System.String)
   id: FindType(System.String)
@@ -175,11 +327,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Utils/RuntimeUtils.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: FindType
     path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
-    startLine: 21
+    startLine: 81
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -195,6 +347,271 @@ items:
   nameWithType.vb: RuntimeUtils.FindType(String)
   fullName.vb: Prowl.Runtime.RuntimeUtils.FindType(String)
   name.vb: FindType(String)
+- uid: Prowl.Runtime.RuntimeUtils.GetLoadableTypes(System.Reflection.Assembly)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetLoadableTypes(System.Reflection.Assembly)
+  id: GetLoadableTypes(System.Reflection.Assembly)
+  parent: Prowl.Runtime.RuntimeUtils
+  langs:
+  - csharp
+  - vb
+  name: GetLoadableTypes(Assembly)
+  nameWithType: RuntimeUtils.GetLoadableTypes(Assembly)
+  fullName: Prowl.Runtime.RuntimeUtils.GetLoadableTypes(System.Reflection.Assembly)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/RuntimeUtils.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetLoadableTypes
+    path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
+    startLine: 143
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Returns an assembly's loadable types, tolerating partially-loadable assemblies.
+  example: []
+  syntax:
+    content: public static IEnumerable<Type> GetLoadableTypes(Assembly asm)
+    parameters:
+    - id: asm
+      type: System.Reflection.Assembly
+    return:
+      type: System.Collections.Generic.IEnumerable{System.Type}
+    content.vb: Public Shared Function GetLoadableTypes(asm As Assembly) As IEnumerable(Of Type)
+  overload: Prowl.Runtime.RuntimeUtils.GetLoadableTypes*
+- uid: Prowl.Runtime.RuntimeUtils.ResolveType(System.String)
+  commentId: M:Prowl.Runtime.RuntimeUtils.ResolveType(System.String)
+  id: ResolveType(System.String)
+  parent: Prowl.Runtime.RuntimeUtils
+  langs:
+  - csharp
+  - vb
+  name: ResolveType(string)
+  nameWithType: RuntimeUtils.ResolveType(string)
+  fullName: Prowl.Runtime.RuntimeUtils.ResolveType(string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/RuntimeUtils.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ResolveType
+    path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
+    startLine: 164
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Resolves a type from an assembly-qualified name across ALL loaded assembly load contexts,
+
+    including the collectible context user scripts are loaded into. <xref href="System.Type.GetType(System.String)" data-throw-if-not-resolved="false"></xref>
+
+    can only bind names into the default context by CLR rule, so it returns null for any type
+
+    declared in a user assembly - which is why persisted type names (asset entries, and anything
+
+    else round-tripped through <xref href="System.Type.AssemblyQualifiedName" data-throw-if-not-resolved="false"></xref>) need this instead.
+  remarks: >-
+    Unlike <xref href="Prowl.Runtime.RuntimeUtils.FindType(System.String)" data-throw-if-not-resolved="false"></xref>, this honors the assembly recorded in the name and never falls
+
+    back to a loose simple-name match, so it cannot return the wrong type when two assemblies
+
+    declare types that share a name. Assemblies are matched on simple name only: a script assembly
+
+    keeps its name but gets a fresh version and load context on every hot-reload, so matching full
+
+    identity would miss it. Returns null rather than throwing for malformed or unloadable names.
+  example: []
+  syntax:
+    content: public static Type? ResolveType(string assemblyQualifiedName)
+    parameters:
+    - id: assemblyQualifiedName
+      type: System.String
+    return:
+      type: System.Type
+    content.vb: Public Shared Function ResolveType(assemblyQualifiedName As String) As Type
+  overload: Prowl.Runtime.RuntimeUtils.ResolveType*
+  nameWithType.vb: RuntimeUtils.ResolveType(String)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.ResolveType(String)
+  name.vb: ResolveType(String)
+- uid: Prowl.Runtime.RuntimeUtils.GetInstanceProperty(System.Type,System.String)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetInstanceProperty(System.Type,System.String)
+  id: GetInstanceProperty(System.Type,System.String)
+  isExtensionMethod: true
+  parent: Prowl.Runtime.RuntimeUtils
+  langs:
+  - csharp
+  - vb
+  name: GetInstanceProperty(Type, string)
+  nameWithType: RuntimeUtils.GetInstanceProperty(Type, string)
+  fullName: Prowl.Runtime.RuntimeUtils.GetInstanceProperty(System.Type, string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/RuntimeUtils.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetInstanceProperty
+    path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
+    startLine: 222
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static PropertyInfo GetInstanceProperty(this Type type, string name)
+    parameters:
+    - id: type
+      type: System.Type
+    - id: name
+      type: System.String
+    return:
+      type: System.Reflection.PropertyInfo
+    content.vb: Public Shared Function GetInstanceProperty(type As Type, name As String) As PropertyInfo
+  overload: Prowl.Runtime.RuntimeUtils.GetInstanceProperty*
+  nameWithType.vb: RuntimeUtils.GetInstanceProperty(Type, String)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetInstanceProperty(System.Type, String)
+  name.vb: GetInstanceProperty(Type, String)
+- uid: Prowl.Runtime.RuntimeUtils.GetInstanceField(System.Type,System.String)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetInstanceField(System.Type,System.String)
+  id: GetInstanceField(System.Type,System.String)
+  isExtensionMethod: true
+  parent: Prowl.Runtime.RuntimeUtils
+  langs:
+  - csharp
+  - vb
+  name: GetInstanceField(Type, string)
+  nameWithType: RuntimeUtils.GetInstanceField(Type, string)
+  fullName: Prowl.Runtime.RuntimeUtils.GetInstanceField(System.Type, string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/RuntimeUtils.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetInstanceField
+    path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
+    startLine: 230
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static FieldInfo GetInstanceField(this Type type, string name)
+    parameters:
+    - id: type
+      type: System.Type
+    - id: name
+      type: System.String
+    return:
+      type: System.Reflection.FieldInfo
+    content.vb: Public Shared Function GetInstanceField(type As Type, name As String) As FieldInfo
+  overload: Prowl.Runtime.RuntimeUtils.GetInstanceField*
+  nameWithType.vb: RuntimeUtils.GetInstanceField(Type, String)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetInstanceField(System.Type, String)
+  name.vb: GetInstanceField(Type, String)
+- uid: Prowl.Runtime.RuntimeUtils.IsPublic(System.Reflection.PropertyInfo)
+  commentId: M:Prowl.Runtime.RuntimeUtils.IsPublic(System.Reflection.PropertyInfo)
+  id: IsPublic(System.Reflection.PropertyInfo)
+  isExtensionMethod: true
+  parent: Prowl.Runtime.RuntimeUtils
+  langs:
+  - csharp
+  - vb
+  name: IsPublic(PropertyInfo)
+  nameWithType: RuntimeUtils.IsPublic(PropertyInfo)
+  fullName: Prowl.Runtime.RuntimeUtils.IsPublic(System.Reflection.PropertyInfo)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/RuntimeUtils.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsPublic
+    path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
+    startLine: 238
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static bool IsPublic(this PropertyInfo property)
+    parameters:
+    - id: property
+      type: System.Reflection.PropertyInfo
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsPublic([property] As PropertyInfo) As Boolean
+  overload: Prowl.Runtime.RuntimeUtils.IsPublic*
+- uid: Prowl.Runtime.RuntimeUtils.IsStatic(System.Reflection.PropertyInfo)
+  commentId: M:Prowl.Runtime.RuntimeUtils.IsStatic(System.Reflection.PropertyInfo)
+  id: IsStatic(System.Reflection.PropertyInfo)
+  isExtensionMethod: true
+  parent: Prowl.Runtime.RuntimeUtils
+  langs:
+  - csharp
+  - vb
+  name: IsStatic(PropertyInfo)
+  nameWithType: RuntimeUtils.IsStatic(PropertyInfo)
+  fullName: Prowl.Runtime.RuntimeUtils.IsStatic(System.Reflection.PropertyInfo)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/RuntimeUtils.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsStatic
+    path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
+    startLine: 244
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static bool IsStatic(this PropertyInfo property)
+    parameters:
+    - id: property
+      type: System.Reflection.PropertyInfo
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsStatic([property] As PropertyInfo) As Boolean
+  overload: Prowl.Runtime.RuntimeUtils.IsStatic*
+- uid: Prowl.Runtime.RuntimeUtils.IsEquivalent(System.Reflection.MemberInfo,System.Reflection.MemberInfo)
+  commentId: M:Prowl.Runtime.RuntimeUtils.IsEquivalent(System.Reflection.MemberInfo,System.Reflection.MemberInfo)
+  id: IsEquivalent(System.Reflection.MemberInfo,System.Reflection.MemberInfo)
+  isExtensionMethod: true
+  parent: Prowl.Runtime.RuntimeUtils
+  langs:
+  - csharp
+  - vb
+  name: IsEquivalent(MemberInfo, MemberInfo)
+  nameWithType: RuntimeUtils.IsEquivalent(MemberInfo, MemberInfo)
+  fullName: Prowl.Runtime.RuntimeUtils.IsEquivalent(System.Reflection.MemberInfo, System.Reflection.MemberInfo)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/RuntimeUtils.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsEquivalent
+    path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
+    startLine: 255
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Determines whether two <xref href="System.Reflection.MemberInfo" data-throw-if-not-resolved="false"></xref> instances refer to the same member,
+
+    regardless of the context in which each instance was obtained.
+  example: []
+  syntax:
+    content: public static bool IsEquivalent(this MemberInfo first, MemberInfo second)
+    parameters:
+    - id: first
+      type: System.Reflection.MemberInfo
+    - id: second
+      type: System.Reflection.MemberInfo
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsEquivalent(first As MemberInfo, second As MemberInfo) As Boolean
+  overload: Prowl.Runtime.RuntimeUtils.IsEquivalent*
 - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
   commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
   id: GetSerializableFields(System.Object)
@@ -210,11 +627,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Utils/RuntimeUtils.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: GetSerializableFields
     path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
-    startLine: 41
+    startLine: 342
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -244,11 +661,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Utils/RuntimeUtils.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: GetAllFields
     path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
-    startLine: 51
+    startLine: 352
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -279,11 +696,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Utils/RuntimeUtils.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: GetValue
     path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
-    startLine: 62
+    startLine: 363
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -316,11 +733,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Utils/RuntimeUtils.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: SetValue
     path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
-    startLine: 72
+    startLine: 373
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -352,11 +769,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Utils/RuntimeUtils.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: Prettify
     path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
-    startLine: 80
+    startLine: 381
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -386,11 +803,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Utils/RuntimeUtils.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: GetTypesWithAttribute
     path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
-    startLine: 110
+    startLine: 411
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -405,37 +822,42 @@ items:
   nameWithType.vb: RuntimeUtils.GetTypesWithAttribute(Of T)()
   fullName.vb: Prowl.Runtime.RuntimeUtils.GetTypesWithAttribute(Of T)()
   name.vb: GetTypesWithAttribute(Of T)()
-- uid: Prowl.Runtime.RuntimeUtils.FindTypesImplementing(System.Type)
-  commentId: M:Prowl.Runtime.RuntimeUtils.FindTypesImplementing(System.Type)
-  id: FindTypesImplementing(System.Type)
+- uid: Prowl.Runtime.RuntimeUtils.FindTypesImplementing(System.Type,System.Boolean)
+  commentId: M:Prowl.Runtime.RuntimeUtils.FindTypesImplementing(System.Type,System.Boolean)
+  id: FindTypesImplementing(System.Type,System.Boolean)
   parent: Prowl.Runtime.RuntimeUtils
   langs:
   - csharp
   - vb
-  name: FindTypesImplementing(Type)
-  nameWithType: RuntimeUtils.FindTypesImplementing(Type)
-  fullName: Prowl.Runtime.RuntimeUtils.FindTypesImplementing(System.Type)
+  name: FindTypesImplementing(Type, bool)
+  nameWithType: RuntimeUtils.FindTypesImplementing(Type, bool)
+  fullName: Prowl.Runtime.RuntimeUtils.FindTypesImplementing(System.Type, bool)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/Utils/RuntimeUtils.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: FindTypesImplementing
     path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
-    startLine: 119
+    startLine: 420
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static List<Type> FindTypesImplementing(Type propertyType)
+    content: public static List<Type> FindTypesImplementing(Type propertyType, bool ignoreGenerics = false)
     parameters:
     - id: propertyType
       type: System.Type
+    - id: ignoreGenerics
+      type: System.Boolean
     return:
       type: System.Collections.Generic.List{System.Type}
-    content.vb: Public Shared Function FindTypesImplementing(propertyType As Type) As List(Of Type)
+    content.vb: Public Shared Function FindTypesImplementing(propertyType As Type, ignoreGenerics As Boolean = False) As List(Of Type)
   overload: Prowl.Runtime.RuntimeUtils.FindTypesImplementing*
+  nameWithType.vb: RuntimeUtils.FindTypesImplementing(Type, Boolean)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.FindTypesImplementing(System.Type, Boolean)
+  name.vb: FindTypesImplementing(Type, Boolean)
 - uid: Prowl.Runtime.RuntimeUtils.GetUniquePath(System.String)
   commentId: M:Prowl.Runtime.RuntimeUtils.GetUniquePath(System.String)
   id: GetUniquePath(System.String)
@@ -450,11 +872,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Utils/RuntimeUtils.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: GetUniquePath
     path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
-    startLine: 135
+    startLine: 439
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -470,29 +892,355 @@ items:
   nameWithType.vb: RuntimeUtils.GetUniquePath(String)
   fullName.vb: Prowl.Runtime.RuntimeUtils.GetUniquePath(String)
   name.vb: GetUniquePath(String)
+- uid: Prowl.Runtime.RuntimeUtils.HasAttribute``1(System.Reflection.MemberInfo)
+  commentId: M:Prowl.Runtime.RuntimeUtils.HasAttribute``1(System.Reflection.MemberInfo)
+  id: HasAttribute``1(System.Reflection.MemberInfo)
+  isExtensionMethod: true
+  parent: Prowl.Runtime.RuntimeUtils
+  langs:
+  - csharp
+  - vb
+  name: HasAttribute<T>(MemberInfo)
+  nameWithType: RuntimeUtils.HasAttribute<T>(MemberInfo)
+  fullName: Prowl.Runtime.RuntimeUtils.HasAttribute<T>(System.Reflection.MemberInfo)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/RuntimeUtils.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: HasAttribute
+    path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
+    startLine: 456
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: 'public static bool HasAttribute<T>(this MemberInfo member) where T : Attribute'
+    parameters:
+    - id: member
+      type: System.Reflection.MemberInfo
+    typeParameters:
+    - id: T
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function HasAttribute(Of T As Attribute)(member As MemberInfo) As Boolean
+  overload: Prowl.Runtime.RuntimeUtils.HasAttribute*
+  nameWithType.vb: RuntimeUtils.HasAttribute(Of T)(MemberInfo)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.HasAttribute(Of T)(System.Reflection.MemberInfo)
+  name.vb: HasAttribute(Of T)(MemberInfo)
+- uid: Prowl.Runtime.RuntimeUtils.GetAttributes``1(System.Reflection.MemberInfo)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetAttributes``1(System.Reflection.MemberInfo)
+  id: GetAttributes``1(System.Reflection.MemberInfo)
+  isExtensionMethod: true
+  parent: Prowl.Runtime.RuntimeUtils
+  langs:
+  - csharp
+  - vb
+  name: GetAttributes<T>(MemberInfo)
+  nameWithType: RuntimeUtils.GetAttributes<T>(MemberInfo)
+  fullName: Prowl.Runtime.RuntimeUtils.GetAttributes<T>(System.Reflection.MemberInfo)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/RuntimeUtils.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetAttributes
+    path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
+    startLine: 457
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: 'public static IEnumerable<T> GetAttributes<T>(this MemberInfo member) where T : Attribute'
+    parameters:
+    - id: member
+      type: System.Reflection.MemberInfo
+    typeParameters:
+    - id: T
+    return:
+      type: System.Collections.Generic.IEnumerable{{T}}
+    content.vb: Public Shared Function GetAttributes(Of T As Attribute)(member As MemberInfo) As IEnumerable(Of T)
+  overload: Prowl.Runtime.RuntimeUtils.GetAttributes*
+  nameWithType.vb: RuntimeUtils.GetAttributes(Of T)(MemberInfo)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetAttributes(Of T)(System.Reflection.MemberInfo)
+  name.vb: GetAttributes(Of T)(MemberInfo)
+- uid: Prowl.Runtime.RuntimeUtils.IsDeepCopyByAssignment(System.Reflection.TypeInfo)
+  commentId: M:Prowl.Runtime.RuntimeUtils.IsDeepCopyByAssignment(System.Reflection.TypeInfo)
+  id: IsDeepCopyByAssignment(System.Reflection.TypeInfo)
+  isExtensionMethod: true
+  parent: Prowl.Runtime.RuntimeUtils
+  langs:
+  - csharp
+  - vb
+  name: IsDeepCopyByAssignment(TypeInfo)
+  nameWithType: RuntimeUtils.IsDeepCopyByAssignment(TypeInfo)
+  fullName: Prowl.Runtime.RuntimeUtils.IsDeepCopyByAssignment(System.Reflection.TypeInfo)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/RuntimeUtils.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsDeepCopyByAssignment
+    path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
+    startLine: 464
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Returns whether the specified type is a primitive, enum, string, decimal, or struct that
+
+    consists only of those types, allowing to do a deep-copy by simply assigning it.
+  example: []
+  syntax:
+    content: public static bool IsDeepCopyByAssignment(this TypeInfo typeInfo)
+    parameters:
+    - id: typeInfo
+      type: System.Reflection.TypeInfo
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsDeepCopyByAssignment(typeInfo As TypeInfo) As Boolean
+  overload: Prowl.Runtime.RuntimeUtils.IsDeepCopyByAssignment*
+- uid: Prowl.Runtime.RuntimeUtils.GetBaseTypeInfo(System.Reflection.TypeInfo)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetBaseTypeInfo(System.Reflection.TypeInfo)
+  id: GetBaseTypeInfo(System.Reflection.TypeInfo)
+  isExtensionMethod: true
+  parent: Prowl.Runtime.RuntimeUtils
+  langs:
+  - csharp
+  - vb
+  name: GetBaseTypeInfo(TypeInfo)
+  nameWithType: RuntimeUtils.GetBaseTypeInfo(TypeInfo)
+  fullName: Prowl.Runtime.RuntimeUtils.GetBaseTypeInfo(System.Reflection.TypeInfo)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/RuntimeUtils.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetBaseTypeInfo
+    path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
+    startLine: 512
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Returns a TypeInfos BaseType as a TypeInfo, or null if it was null.
+  example: []
+  syntax:
+    content: public static TypeInfo GetBaseTypeInfo(this TypeInfo type)
+    parameters:
+    - id: type
+      type: System.Reflection.TypeInfo
+      description: ''
+    return:
+      type: System.Reflection.TypeInfo
+    content.vb: Public Shared Function GetBaseTypeInfo(type As TypeInfo) As TypeInfo
+  overload: Prowl.Runtime.RuntimeUtils.GetBaseTypeInfo*
+- uid: Prowl.Runtime.RuntimeUtils.GetInheritanceDepth(System.Reflection.TypeInfo)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetInheritanceDepth(System.Reflection.TypeInfo)
+  id: GetInheritanceDepth(System.Reflection.TypeInfo)
+  isExtensionMethod: true
+  parent: Prowl.Runtime.RuntimeUtils
+  langs:
+  - csharp
+  - vb
+  name: GetInheritanceDepth(TypeInfo)
+  nameWithType: RuntimeUtils.GetInheritanceDepth(TypeInfo)
+  fullName: Prowl.Runtime.RuntimeUtils.GetInheritanceDepth(System.Reflection.TypeInfo)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/RuntimeUtils.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetInheritanceDepth
+    path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
+    startLine: 522
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Returns a Types inheritance level. The <code>object</code>-Type has an inheritance level of
+
+    zero, each subsequent inheritance increases it by one.
+  example: []
+  syntax:
+    content: public static int GetInheritanceDepth(this TypeInfo type)
+    parameters:
+    - id: type
+      type: System.Reflection.TypeInfo
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function GetInheritanceDepth(type As TypeInfo) As Integer
+  overload: Prowl.Runtime.RuntimeUtils.GetInheritanceDepth*
+- uid: Prowl.Runtime.RuntimeUtils.DeclaredFieldsDeep(System.Reflection.TypeInfo)
+  commentId: M:Prowl.Runtime.RuntimeUtils.DeclaredFieldsDeep(System.Reflection.TypeInfo)
+  id: DeclaredFieldsDeep(System.Reflection.TypeInfo)
+  isExtensionMethod: true
+  parent: Prowl.Runtime.RuntimeUtils
+  langs:
+  - csharp
+  - vb
+  name: DeclaredFieldsDeep(TypeInfo)
+  nameWithType: RuntimeUtils.DeclaredFieldsDeep(TypeInfo)
+  fullName: Prowl.Runtime.RuntimeUtils.DeclaredFieldsDeep(System.Reflection.TypeInfo)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/RuntimeUtils.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DeclaredFieldsDeep
+    path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
+    startLine: 538
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Returns all fields that are declared within this Type, or any of its base Types.
+
+    Includes public, non-public, static and instance fields.
+  example: []
+  syntax:
+    content: public static IEnumerable<FieldInfo> DeclaredFieldsDeep(this TypeInfo type)
+    parameters:
+    - id: type
+      type: System.Reflection.TypeInfo
+    return:
+      type: System.Collections.Generic.IEnumerable{System.Reflection.FieldInfo}
+    content.vb: Public Shared Function DeclaredFieldsDeep(type As TypeInfo) As IEnumerable(Of FieldInfo)
+  overload: Prowl.Runtime.RuntimeUtils.DeclaredFieldsDeep*
+- uid: Prowl.Runtime.RuntimeUtils.DeclaredPropertiesDeep(System.Reflection.TypeInfo)
+  commentId: M:Prowl.Runtime.RuntimeUtils.DeclaredPropertiesDeep(System.Reflection.TypeInfo)
+  id: DeclaredPropertiesDeep(System.Reflection.TypeInfo)
+  isExtensionMethod: true
+  parent: Prowl.Runtime.RuntimeUtils
+  langs:
+  - csharp
+  - vb
+  name: DeclaredPropertiesDeep(TypeInfo)
+  nameWithType: RuntimeUtils.DeclaredPropertiesDeep(TypeInfo)
+  fullName: Prowl.Runtime.RuntimeUtils.DeclaredPropertiesDeep(System.Reflection.TypeInfo)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/RuntimeUtils.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DeclaredPropertiesDeep
+    path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
+    startLine: 556
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Returns all properties that are declared within this Type, or any of its base Types.
+
+    Includes public, non-public, static and instance properties.
+  example: []
+  syntax:
+    content: public static IEnumerable<PropertyInfo> DeclaredPropertiesDeep(this TypeInfo type)
+    parameters:
+    - id: type
+      type: System.Reflection.TypeInfo
+    return:
+      type: System.Collections.Generic.IEnumerable{System.Reflection.PropertyInfo}
+    content.vb: Public Shared Function DeclaredPropertiesDeep(type As TypeInfo) As IEnumerable(Of PropertyInfo)
+  overload: Prowl.Runtime.RuntimeUtils.DeclaredPropertiesDeep*
+- uid: Prowl.Runtime.RuntimeUtils.DeclaredMembersDeep(System.Reflection.TypeInfo)
+  commentId: M:Prowl.Runtime.RuntimeUtils.DeclaredMembersDeep(System.Reflection.TypeInfo)
+  id: DeclaredMembersDeep(System.Reflection.TypeInfo)
+  isExtensionMethod: true
+  parent: Prowl.Runtime.RuntimeUtils
+  langs:
+  - csharp
+  - vb
+  name: DeclaredMembersDeep(TypeInfo)
+  nameWithType: RuntimeUtils.DeclaredMembersDeep(TypeInfo)
+  fullName: Prowl.Runtime.RuntimeUtils.DeclaredMembersDeep(System.Reflection.TypeInfo)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/RuntimeUtils.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DeclaredMembersDeep
+    path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
+    startLine: 574
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Returns all members that are declared within this Type, or any of its base Types.
+
+    Includes public, non-public, static and instance fields.
+  example: []
+  syntax:
+    content: public static IEnumerable<MemberInfo> DeclaredMembersDeep(this TypeInfo type)
+    parameters:
+    - id: type
+      type: System.Reflection.TypeInfo
+    return:
+      type: System.Collections.Generic.IEnumerable{System.Reflection.MemberInfo}
+    content.vb: Public Shared Function DeclaredMembersDeep(type As TypeInfo) As IEnumerable(Of MemberInfo)
+  overload: Prowl.Runtime.RuntimeUtils.DeclaredMembersDeep*
+- uid: Prowl.Runtime.RuntimeUtils.AsInt(System.Boolean)
+  commentId: M:Prowl.Runtime.RuntimeUtils.AsInt(System.Boolean)
+  id: AsInt(System.Boolean)
+  isExtensionMethod: true
+  parent: Prowl.Runtime.RuntimeUtils
+  langs:
+  - csharp
+  - vb
+  name: AsInt(bool)
+  nameWithType: RuntimeUtils.AsInt(bool)
+  fullName: Prowl.Runtime.RuntimeUtils.AsInt(bool)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/RuntimeUtils.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AsInt
+    path: ../Prowl/Prowl.Runtime/Utils/RuntimeUtils.cs
+    startLine: 590
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: An ultra-fast way to convert a bool to an int.
+  example: []
+  syntax:
+    content: public static int AsInt(this bool b)
+    parameters:
+    - id: b
+      type: System.Boolean
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function AsInt(b As Boolean) As Integer
+  overload: Prowl.Runtime.RuntimeUtils.AsInt*
+  nameWithType.vb: RuntimeUtils.AsInt(Boolean)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.AsInt(Boolean)
+  name.vb: AsInt(Boolean)
 references:
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
-  href: Prowl.html
   name: Prowl.Runtime
   nameWithType: Prowl.Runtime
   fullName: Prowl.Runtime
   spec.csharp:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
   spec.vb:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -730,12 +1478,95 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Prowl.Runtime.RuntimeUtils.IsWindows*
-  commentId: Overload:Prowl.Runtime.RuntimeUtils.IsWindows
-  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_IsWindows
-  name: IsWindows
-  nameWithType: RuntimeUtils.IsWindows
-  fullName: Prowl.Runtime.RuntimeUtils.IsWindows
+- uid: Prowl.Runtime.RuntimeUtils.AssemblySource*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.AssemblySource
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_AssemblySource
+  name: AssemblySource
+  nameWithType: RuntimeUtils.AssemblySource
+  fullName: Prowl.Runtime.RuntimeUtils.AssemblySource
+- uid: System.Func{System.Collections.Generic.IEnumerable{System.Reflection.Assembly}}
+  commentId: T:System.Func{System.Collections.Generic.IEnumerable{System.Reflection.Assembly}}
+  parent: System
+  definition: System.Func`1
+  href: https://learn.microsoft.com/dotnet/api/system.func-1
+  name: Func<IEnumerable<Assembly>>
+  nameWithType: Func<IEnumerable<Assembly>>
+  fullName: System.Func<System.Collections.Generic.IEnumerable<System.Reflection.Assembly>>
+  nameWithType.vb: Func(Of IEnumerable(Of Assembly))
+  fullName.vb: System.Func(Of System.Collections.Generic.IEnumerable(Of System.Reflection.Assembly))
+  name.vb: Func(Of IEnumerable(Of Assembly))
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.assembly
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.assembly
+  - name: )
+  - name: )
+- uid: System.Func`1
+  commentId: T:System.Func`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-1
+  name: Func<TResult>
+  nameWithType: Func<TResult>
+  fullName: System.Func<TResult>
+  nameWithType.vb: Func(Of TResult)
+  fullName.vb: System.Func(Of TResult)
+  name.vb: Func(Of TResult)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils.IsARM*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.IsARM
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_IsARM
+  name: IsARM
+  nameWithType: RuntimeUtils.IsARM
+  fullName: Prowl.Runtime.RuntimeUtils.IsARM
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -747,6 +1578,12 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
+- uid: Prowl.Runtime.RuntimeUtils.IsWindows*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.IsWindows
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_IsWindows
+  name: IsWindows
+  nameWithType: RuntimeUtils.IsWindows
+  fullName: Prowl.Runtime.RuntimeUtils.IsWindows
 - uid: Prowl.Runtime.RuntimeUtils.IsLinux*
   commentId: Overload:Prowl.Runtime.RuntimeUtils.IsLinux
   href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_IsLinux
@@ -765,6 +1602,25 @@ references:
   name: IsMac
   nameWithType: RuntimeUtils.IsMac
   fullName: Prowl.Runtime.RuntimeUtils.IsMac
+- uid: Prowl.Runtime.RuntimeUtils.IsBrowser*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.IsBrowser
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_IsBrowser
+  name: IsBrowser
+  nameWithType: RuntimeUtils.IsBrowser
+  fullName: Prowl.Runtime.RuntimeUtils.IsBrowser
+- uid: Prowl.Runtime.RuntimeUtils.GetOSPlatform*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.GetOSPlatform
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetOSPlatform
+  name: GetOSPlatform
+  nameWithType: RuntimeUtils.GetOSPlatform
+  fullName: Prowl.Runtime.RuntimeUtils.GetOSPlatform
+- uid: Prowl.Runtime.Platform
+  commentId: T:Prowl.Runtime.Platform
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.Platform.html
+  name: Platform
+  nameWithType: Platform
+  fullName: Prowl.Runtime.Platform
 - uid: Prowl.Runtime.RuntimeUtils.FindType*
   commentId: Overload:Prowl.Runtime.RuntimeUtils.FindType
   href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_FindType_System_String_
@@ -790,6 +1646,276 @@ references:
   name: Type
   nameWithType: Type
   fullName: System.Type
+- uid: Prowl.Runtime.RuntimeUtils.GetLoadableTypes*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.GetLoadableTypes
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetLoadableTypes_System_Reflection_Assembly_
+  name: GetLoadableTypes
+  nameWithType: RuntimeUtils.GetLoadableTypes
+  fullName: Prowl.Runtime.RuntimeUtils.GetLoadableTypes
+- uid: System.Reflection.Assembly
+  commentId: T:System.Reflection.Assembly
+  parent: System.Reflection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.reflection.assembly
+  name: Assembly
+  nameWithType: Assembly
+  fullName: System.Reflection.Assembly
+- uid: System.Collections.Generic.IEnumerable{System.Type}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Type}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<Type>
+  nameWithType: IEnumerable<Type>
+  fullName: System.Collections.Generic.IEnumerable<System.Type>
+  nameWithType.vb: IEnumerable(Of Type)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Type)
+  name.vb: IEnumerable(Of Type)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+- uid: System.Reflection
+  commentId: N:System.Reflection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Reflection
+  nameWithType: System.Reflection
+  fullName: System.Reflection
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Reflection
+    name: Reflection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Reflection
+    name: Reflection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Type.GetType(System.String)
+  commentId: M:System.Type.GetType(System.String)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type.gettype#system-type-gettype(system-string)
+  name: GetType(string)
+  nameWithType: Type.GetType(string)
+  fullName: System.Type.GetType(string)
+  nameWithType.vb: Type.GetType(String)
+  fullName.vb: System.Type.GetType(String)
+  name.vb: GetType(String)
+  spec.csharp:
+  - uid: System.Type.GetType(System.String)
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type.gettype#system-type-gettype(system-string)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.Type.GetType(System.String)
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type.gettype#system-type-gettype(system-string)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Type.AssemblyQualifiedName
+  commentId: P:System.Type.AssemblyQualifiedName
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type.assemblyqualifiedname
+  name: AssemblyQualifiedName
+  nameWithType: Type.AssemblyQualifiedName
+  fullName: System.Type.AssemblyQualifiedName
+- uid: Prowl.Runtime.RuntimeUtils.FindType(System.String)
+  commentId: M:Prowl.Runtime.RuntimeUtils.FindType(System.String)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_FindType_System_String_
+  name: FindType(string)
+  nameWithType: RuntimeUtils.FindType(string)
+  fullName: Prowl.Runtime.RuntimeUtils.FindType(string)
+  nameWithType.vb: RuntimeUtils.FindType(String)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.FindType(String)
+  name.vb: FindType(String)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.FindType(System.String)
+    name: FindType
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_FindType_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.FindType(System.String)
+    name: FindType
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_FindType_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils.ResolveType*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.ResolveType
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_ResolveType_System_String_
+  name: ResolveType
+  nameWithType: RuntimeUtils.ResolveType
+  fullName: Prowl.Runtime.RuntimeUtils.ResolveType
+- uid: Prowl.Runtime.RuntimeUtils.GetInstanceProperty*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.GetInstanceProperty
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetInstanceProperty_System_Type_System_String_
+  name: GetInstanceProperty
+  nameWithType: RuntimeUtils.GetInstanceProperty
+  fullName: Prowl.Runtime.RuntimeUtils.GetInstanceProperty
+- uid: System.Reflection.PropertyInfo
+  commentId: T:System.Reflection.PropertyInfo
+  parent: System.Reflection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo
+  name: PropertyInfo
+  nameWithType: PropertyInfo
+  fullName: System.Reflection.PropertyInfo
+- uid: Prowl.Runtime.RuntimeUtils.GetInstanceField*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.GetInstanceField
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetInstanceField_System_Type_System_String_
+  name: GetInstanceField
+  nameWithType: RuntimeUtils.GetInstanceField
+  fullName: Prowl.Runtime.RuntimeUtils.GetInstanceField
+- uid: System.Reflection.FieldInfo
+  commentId: T:System.Reflection.FieldInfo
+  parent: System.Reflection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  name: FieldInfo
+  nameWithType: FieldInfo
+  fullName: System.Reflection.FieldInfo
+- uid: Prowl.Runtime.RuntimeUtils.IsPublic*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.IsPublic
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_IsPublic_System_Reflection_PropertyInfo_
+  name: IsPublic
+  nameWithType: RuntimeUtils.IsPublic
+  fullName: Prowl.Runtime.RuntimeUtils.IsPublic
+- uid: Prowl.Runtime.RuntimeUtils.IsStatic*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.IsStatic
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_IsStatic_System_Reflection_PropertyInfo_
+  name: IsStatic
+  nameWithType: RuntimeUtils.IsStatic
+  fullName: Prowl.Runtime.RuntimeUtils.IsStatic
+- uid: System.Reflection.MemberInfo
+  commentId: T:System.Reflection.MemberInfo
+  parent: System.Reflection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.reflection.memberinfo
+  name: MemberInfo
+  nameWithType: MemberInfo
+  fullName: System.Reflection.MemberInfo
+- uid: Prowl.Runtime.RuntimeUtils.IsEquivalent*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.IsEquivalent
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_IsEquivalent_System_Reflection_MemberInfo_System_Reflection_MemberInfo_
+  name: IsEquivalent
+  nameWithType: RuntimeUtils.IsEquivalent
+  fullName: Prowl.Runtime.RuntimeUtils.IsEquivalent
 - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields*
   commentId: Overload:Prowl.Runtime.RuntimeUtils.GetSerializableFields
   href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
@@ -860,112 +1986,12 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
   - name: )
-- uid: System.Collections.Generic.IEnumerable`1
-  commentId: T:System.Collections.Generic.IEnumerable`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  name: IEnumerable<T>
-  nameWithType: IEnumerable<T>
-  fullName: System.Collections.Generic.IEnumerable<T>
-  nameWithType.vb: IEnumerable(Of T)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
-  name.vb: IEnumerable(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Collections
-    name: Collections
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections
-  - name: .
-  - uid: System.Collections.Generic
-    name: Generic
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Collections
-    name: Collections
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections
-  - name: .
-  - uid: System.Collections.Generic
-    name: Generic
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: Prowl.Runtime.RuntimeUtils.GetValue*
   commentId: Overload:Prowl.Runtime.RuntimeUtils.GetValue
   href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetValue_System_Reflection_MemberInfo_System_Object_
   name: GetValue
   nameWithType: RuntimeUtils.GetValue
   fullName: Prowl.Runtime.RuntimeUtils.GetValue
-- uid: System.Reflection.MemberInfo
-  commentId: T:System.Reflection.MemberInfo
-  parent: System.Reflection
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.reflection.memberinfo
-  name: MemberInfo
-  nameWithType: MemberInfo
-  fullName: System.Reflection.MemberInfo
-- uid: System.Reflection
-  commentId: N:System.Reflection
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Reflection
-  nameWithType: System.Reflection
-  fullName: System.Reflection
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Reflection
-    name: Reflection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.reflection
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Reflection
-    name: Reflection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.reflection
 - uid: Prowl.Runtime.RuntimeUtils.SetValue*
   commentId: Overload:Prowl.Runtime.RuntimeUtils.SetValue
   href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_SetValue_System_Reflection_MemberInfo_System_Object_System_Object_
@@ -984,44 +2010,9 @@ references:
   name: GetTypesWithAttribute
   nameWithType: RuntimeUtils.GetTypesWithAttribute
   fullName: Prowl.Runtime.RuntimeUtils.GetTypesWithAttribute
-- uid: System.Collections.Generic.IEnumerable{System.Type}
-  commentId: T:System.Collections.Generic.IEnumerable{System.Type}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.IEnumerable`1
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  name: IEnumerable<Type>
-  nameWithType: IEnumerable<Type>
-  fullName: System.Collections.Generic.IEnumerable<System.Type>
-  nameWithType.vb: IEnumerable(Of Type)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Type)
-  name.vb: IEnumerable(Of Type)
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: <
-  - uid: System.Type
-    name: Type
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.type
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Type
-    name: Type
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.type
-  - name: )
 - uid: Prowl.Runtime.RuntimeUtils.FindTypesImplementing*
   commentId: Overload:Prowl.Runtime.RuntimeUtils.FindTypesImplementing
-  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_FindTypesImplementing_System_Type_
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_FindTypesImplementing_System_Type_System_Boolean_
   name: FindTypesImplementing
   nameWithType: RuntimeUtils.FindTypesImplementing
   fullName: Prowl.Runtime.RuntimeUtils.FindTypesImplementing
@@ -1094,3 +2085,175 @@ references:
   name: GetUniquePath
   nameWithType: RuntimeUtils.GetUniquePath
   fullName: Prowl.Runtime.RuntimeUtils.GetUniquePath
+- uid: Prowl.Runtime.RuntimeUtils.HasAttribute*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.HasAttribute
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_HasAttribute__1_System_Reflection_MemberInfo_
+  name: HasAttribute
+  nameWithType: RuntimeUtils.HasAttribute
+  fullName: Prowl.Runtime.RuntimeUtils.HasAttribute
+- uid: Prowl.Runtime.RuntimeUtils.GetAttributes*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.GetAttributes
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetAttributes__1_System_Reflection_MemberInfo_
+  name: GetAttributes
+  nameWithType: RuntimeUtils.GetAttributes
+  fullName: Prowl.Runtime.RuntimeUtils.GetAttributes
+- uid: System.Collections.Generic.IEnumerable{{T}}
+  commentId: T:System.Collections.Generic.IEnumerable{``0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils.IsDeepCopyByAssignment*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.IsDeepCopyByAssignment
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_IsDeepCopyByAssignment_System_Reflection_TypeInfo_
+  name: IsDeepCopyByAssignment
+  nameWithType: RuntimeUtils.IsDeepCopyByAssignment
+  fullName: Prowl.Runtime.RuntimeUtils.IsDeepCopyByAssignment
+- uid: System.Reflection.TypeInfo
+  commentId: T:System.Reflection.TypeInfo
+  parent: System.Reflection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.reflection.typeinfo
+  name: TypeInfo
+  nameWithType: TypeInfo
+  fullName: System.Reflection.TypeInfo
+- uid: Prowl.Runtime.RuntimeUtils.GetBaseTypeInfo*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.GetBaseTypeInfo
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetBaseTypeInfo_System_Reflection_TypeInfo_
+  name: GetBaseTypeInfo
+  nameWithType: RuntimeUtils.GetBaseTypeInfo
+  fullName: Prowl.Runtime.RuntimeUtils.GetBaseTypeInfo
+- uid: Prowl.Runtime.RuntimeUtils.GetInheritanceDepth*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.GetInheritanceDepth
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetInheritanceDepth_System_Reflection_TypeInfo_
+  name: GetInheritanceDepth
+  nameWithType: RuntimeUtils.GetInheritanceDepth
+  fullName: Prowl.Runtime.RuntimeUtils.GetInheritanceDepth
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Runtime.RuntimeUtils.DeclaredFieldsDeep*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.DeclaredFieldsDeep
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_DeclaredFieldsDeep_System_Reflection_TypeInfo_
+  name: DeclaredFieldsDeep
+  nameWithType: RuntimeUtils.DeclaredFieldsDeep
+  fullName: Prowl.Runtime.RuntimeUtils.DeclaredFieldsDeep
+- uid: Prowl.Runtime.RuntimeUtils.DeclaredPropertiesDeep*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.DeclaredPropertiesDeep
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_DeclaredPropertiesDeep_System_Reflection_TypeInfo_
+  name: DeclaredPropertiesDeep
+  nameWithType: RuntimeUtils.DeclaredPropertiesDeep
+  fullName: Prowl.Runtime.RuntimeUtils.DeclaredPropertiesDeep
+- uid: System.Collections.Generic.IEnumerable{System.Reflection.PropertyInfo}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Reflection.PropertyInfo}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<PropertyInfo>
+  nameWithType: IEnumerable<PropertyInfo>
+  fullName: System.Collections.Generic.IEnumerable<System.Reflection.PropertyInfo>
+  nameWithType.vb: IEnumerable(Of PropertyInfo)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Reflection.PropertyInfo)
+  name.vb: IEnumerable(Of PropertyInfo)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.Reflection.PropertyInfo
+    name: PropertyInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.PropertyInfo
+    name: PropertyInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils.DeclaredMembersDeep*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.DeclaredMembersDeep
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_DeclaredMembersDeep_System_Reflection_TypeInfo_
+  name: DeclaredMembersDeep
+  nameWithType: RuntimeUtils.DeclaredMembersDeep
+  fullName: Prowl.Runtime.RuntimeUtils.DeclaredMembersDeep
+- uid: System.Collections.Generic.IEnumerable{System.Reflection.MemberInfo}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Reflection.MemberInfo}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<MemberInfo>
+  nameWithType: IEnumerable<MemberInfo>
+  fullName: System.Collections.Generic.IEnumerable<System.Reflection.MemberInfo>
+  nameWithType.vb: IEnumerable(Of MemberInfo)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Reflection.MemberInfo)
+  name.vb: IEnumerable(Of MemberInfo)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.memberinfo
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.memberinfo
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils.AsInt*
+  commentId: Overload:Prowl.Runtime.RuntimeUtils.AsInt
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_AsInt_System_Boolean_
+  name: AsInt
+  nameWithType: RuntimeUtils.AsInt
+  fullName: Prowl.Runtime.RuntimeUtils.AsInt

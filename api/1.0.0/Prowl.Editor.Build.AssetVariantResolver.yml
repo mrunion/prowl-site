@@ -1,0 +1,878 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.Build.AssetVariantResolver
+  commentId: T:Prowl.Editor.Build.AssetVariantResolver
+  id: AssetVariantResolver
+  parent: Prowl.Editor.Build
+  children:
+  - Prowl.Editor.Build.AssetVariantResolver.#ctor(System.Collections.Generic.IEnumerable{Prowl.Editor.Build.IAssetVariantProcessor},Prowl.Editor.Build.IVariantCache)
+  - Prowl.Editor.Build.AssetVariantResolver.OpenAsync(Prowl.Editor.Build.ResolvedVariant,System.Threading.CancellationToken)
+  - Prowl.Editor.Build.AssetVariantResolver.ResolveAsync(Prowl.Editor.AssetEntry,System.String,Prowl.Editor.Build.PlatformTarget,System.Threading.CancellationToken)
+  - Prowl.Editor.Build.AssetVariantResolver.SelectProcessor(Prowl.Editor.AssetEntry,Prowl.Editor.Build.PlatformTarget)
+  langs:
+  - csharp
+  - vb
+  name: AssetVariantResolver
+  nameWithType: AssetVariantResolver
+  fullName: Prowl.Editor.Build.AssetVariantResolver
+  type: Class
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Assets/AssetVariantResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AssetVariantResolver
+    path: ../Prowl/Prowl.Editor/Projects/Build/Assets/AssetVariantResolver.cs
+    startLine: 56
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Picks a processor, consults the cache, and processes only on a miss.
+  example: []
+  syntax:
+    content: public sealed class AssetVariantResolver
+    content.vb: Public NotInheritable Class AssetVariantResolver
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Editor.Build.AssetVariantResolver.#ctor(System.Collections.Generic.IEnumerable{Prowl.Editor.Build.IAssetVariantProcessor},Prowl.Editor.Build.IVariantCache)
+  commentId: M:Prowl.Editor.Build.AssetVariantResolver.#ctor(System.Collections.Generic.IEnumerable{Prowl.Editor.Build.IAssetVariantProcessor},Prowl.Editor.Build.IVariantCache)
+  id: '#ctor(System.Collections.Generic.IEnumerable{Prowl.Editor.Build.IAssetVariantProcessor},Prowl.Editor.Build.IVariantCache)'
+  parent: Prowl.Editor.Build.AssetVariantResolver
+  langs:
+  - csharp
+  - vb
+  name: AssetVariantResolver(IEnumerable<IAssetVariantProcessor>, IVariantCache)
+  nameWithType: AssetVariantResolver.AssetVariantResolver(IEnumerable<IAssetVariantProcessor>, IVariantCache)
+  fullName: Prowl.Editor.Build.AssetVariantResolver.AssetVariantResolver(System.Collections.Generic.IEnumerable<Prowl.Editor.Build.IAssetVariantProcessor>, Prowl.Editor.Build.IVariantCache)
+  type: Constructor
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Assets/AssetVariantResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: .ctor
+    path: ../Prowl/Prowl.Editor/Projects/Build/Assets/AssetVariantResolver.cs
+    startLine: 62
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Initialises the resolver with the available processors and the cache to use. Throws ArgumentNullException when either argument is null.
+  example: []
+  syntax:
+    content: public AssetVariantResolver(IEnumerable<IAssetVariantProcessor> processors, IVariantCache cache)
+    parameters:
+    - id: processors
+      type: System.Collections.Generic.IEnumerable{Prowl.Editor.Build.IAssetVariantProcessor}
+    - id: cache
+      type: Prowl.Editor.Build.IVariantCache
+    content.vb: Public Sub New(processors As IEnumerable(Of IAssetVariantProcessor), cache As IVariantCache)
+  overload: Prowl.Editor.Build.AssetVariantResolver.#ctor*
+  nameWithType.vb: AssetVariantResolver.New(IEnumerable(Of IAssetVariantProcessor), IVariantCache)
+  fullName.vb: Prowl.Editor.Build.AssetVariantResolver.New(System.Collections.Generic.IEnumerable(Of Prowl.Editor.Build.IAssetVariantProcessor), Prowl.Editor.Build.IVariantCache)
+  name.vb: New(IEnumerable(Of IAssetVariantProcessor), IVariantCache)
+- uid: Prowl.Editor.Build.AssetVariantResolver.SelectProcessor(Prowl.Editor.AssetEntry,Prowl.Editor.Build.PlatformTarget)
+  commentId: M:Prowl.Editor.Build.AssetVariantResolver.SelectProcessor(Prowl.Editor.AssetEntry,Prowl.Editor.Build.PlatformTarget)
+  id: SelectProcessor(Prowl.Editor.AssetEntry,Prowl.Editor.Build.PlatformTarget)
+  parent: Prowl.Editor.Build.AssetVariantResolver
+  langs:
+  - csharp
+  - vb
+  name: SelectProcessor(AssetEntry, PlatformTarget)
+  nameWithType: AssetVariantResolver.SelectProcessor(AssetEntry, PlatformTarget)
+  fullName: Prowl.Editor.Build.AssetVariantResolver.SelectProcessor(Prowl.Editor.AssetEntry, Prowl.Editor.Build.PlatformTarget)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Assets/AssetVariantResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SelectProcessor
+    path: ../Prowl/Prowl.Editor/Projects/Build/Assets/AssetVariantResolver.cs
+    startLine: 75
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: The processor to use, or null when none applies and the imported form ships as it is.
+  remarks: >-
+    Chosen by the target's preference order rather than the processor's, so a target that would
+
+    rather have ASTC than raw gets ASTC without every processor having to know about every target.
+  example: []
+  syntax:
+    content: public IAssetVariantProcessor? SelectProcessor(AssetEntry asset, PlatformTarget target)
+    parameters:
+    - id: asset
+      type: Prowl.Editor.AssetEntry
+    - id: target
+      type: Prowl.Editor.Build.PlatformTarget
+    return:
+      type: Prowl.Editor.Build.IAssetVariantProcessor
+    content.vb: Public Function SelectProcessor(asset As AssetEntry, target As PlatformTarget) As IAssetVariantProcessor
+  overload: Prowl.Editor.Build.AssetVariantResolver.SelectProcessor*
+- uid: Prowl.Editor.Build.AssetVariantResolver.ResolveAsync(Prowl.Editor.AssetEntry,System.String,Prowl.Editor.Build.PlatformTarget,System.Threading.CancellationToken)
+  commentId: M:Prowl.Editor.Build.AssetVariantResolver.ResolveAsync(Prowl.Editor.AssetEntry,System.String,Prowl.Editor.Build.PlatformTarget,System.Threading.CancellationToken)
+  id: ResolveAsync(Prowl.Editor.AssetEntry,System.String,Prowl.Editor.Build.PlatformTarget,System.Threading.CancellationToken)
+  parent: Prowl.Editor.Build.AssetVariantResolver
+  langs:
+  - csharp
+  - vb
+  name: ResolveAsync(AssetEntry, string, PlatformTarget, CancellationToken)
+  nameWithType: AssetVariantResolver.ResolveAsync(AssetEntry, string, PlatformTarget, CancellationToken)
+  fullName: Prowl.Editor.Build.AssetVariantResolver.ResolveAsync(Prowl.Editor.AssetEntry, string, Prowl.Editor.Build.PlatformTarget, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Assets/AssetVariantResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ResolveAsync
+    path: ../Prowl/Prowl.Editor/Projects/Build/Assets/AssetVariantResolver.cs
+    startLine: 91
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: >-
+    Produces the bytes this target should ship for <code class="paramref">asset</code>, reusing cached output
+
+    whenever the source content and the processor are both unchanged.
+  example: []
+  syntax:
+    content: public Task<ResolvedVariant> ResolveAsync(AssetEntry asset, string importedPath, PlatformTarget target, CancellationToken ct = default)
+    parameters:
+    - id: asset
+      type: Prowl.Editor.AssetEntry
+    - id: importedPath
+      type: System.String
+    - id: target
+      type: Prowl.Editor.Build.PlatformTarget
+    - id: ct
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{Prowl.Editor.Build.ResolvedVariant}
+    content.vb: Public Function ResolveAsync(asset As AssetEntry, importedPath As String, target As PlatformTarget, ct As CancellationToken = Nothing) As Task(Of ResolvedVariant)
+  overload: Prowl.Editor.Build.AssetVariantResolver.ResolveAsync*
+  nameWithType.vb: AssetVariantResolver.ResolveAsync(AssetEntry, String, PlatformTarget, CancellationToken)
+  fullName.vb: Prowl.Editor.Build.AssetVariantResolver.ResolveAsync(Prowl.Editor.AssetEntry, String, Prowl.Editor.Build.PlatformTarget, System.Threading.CancellationToken)
+  name.vb: ResolveAsync(AssetEntry, String, PlatformTarget, CancellationToken)
+- uid: Prowl.Editor.Build.AssetVariantResolver.OpenAsync(Prowl.Editor.Build.ResolvedVariant,System.Threading.CancellationToken)
+  commentId: M:Prowl.Editor.Build.AssetVariantResolver.OpenAsync(Prowl.Editor.Build.ResolvedVariant,System.Threading.CancellationToken)
+  id: OpenAsync(Prowl.Editor.Build.ResolvedVariant,System.Threading.CancellationToken)
+  parent: Prowl.Editor.Build.AssetVariantResolver
+  langs:
+  - csharp
+  - vb
+  name: OpenAsync(ResolvedVariant, CancellationToken)
+  nameWithType: AssetVariantResolver.OpenAsync(ResolvedVariant, CancellationToken)
+  fullName: Prowl.Editor.Build.AssetVariantResolver.OpenAsync(Prowl.Editor.Build.ResolvedVariant, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Assets/AssetVariantResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OpenAsync
+    path: ../Prowl/Prowl.Editor/Projects/Build/Assets/AssetVariantResolver.cs
+    startLine: 127
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Opens the resolved bytes, from the cache when it was processed and from disk otherwise.
+  example: []
+  syntax:
+    content: public Task<Stream> OpenAsync(ResolvedVariant variant, CancellationToken ct = default)
+    parameters:
+    - id: variant
+      type: Prowl.Editor.Build.ResolvedVariant
+    - id: ct
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{System.IO.Stream}
+    content.vb: Public Function OpenAsync([variant] As ResolvedVariant, ct As CancellationToken = Nothing) As Task(Of Stream)
+  overload: Prowl.Editor.Build.AssetVariantResolver.OpenAsync*
+references:
+- uid: Prowl.Editor.Build
+  commentId: N:Prowl.Editor.Build
+  name: Prowl.Editor.Build
+  nameWithType: Prowl.Editor.Build
+  fullName: Prowl.Editor.Build
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Build
+    name: Build
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Build
+    name: Build
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Editor.Build.AssetVariantResolver.#ctor*
+  commentId: Overload:Prowl.Editor.Build.AssetVariantResolver.#ctor
+  href: Prowl.Editor.Build.AssetVariantResolver.html#Prowl_Editor_Build_AssetVariantResolver__ctor_System_Collections_Generic_IEnumerable_Prowl_Editor_Build_IAssetVariantProcessor__Prowl_Editor_Build_IVariantCache_
+  name: AssetVariantResolver
+  nameWithType: AssetVariantResolver.AssetVariantResolver
+  fullName: Prowl.Editor.Build.AssetVariantResolver.AssetVariantResolver
+  nameWithType.vb: AssetVariantResolver.New
+  fullName.vb: Prowl.Editor.Build.AssetVariantResolver.New
+  name.vb: New
+- uid: System.Collections.Generic.IEnumerable{Prowl.Editor.Build.IAssetVariantProcessor}
+  commentId: T:System.Collections.Generic.IEnumerable{Prowl.Editor.Build.IAssetVariantProcessor}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<IAssetVariantProcessor>
+  nameWithType: IEnumerable<IAssetVariantProcessor>
+  fullName: System.Collections.Generic.IEnumerable<Prowl.Editor.Build.IAssetVariantProcessor>
+  nameWithType.vb: IEnumerable(Of IAssetVariantProcessor)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of Prowl.Editor.Build.IAssetVariantProcessor)
+  name.vb: IEnumerable(Of IAssetVariantProcessor)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: Prowl.Editor.Build.IAssetVariantProcessor
+    name: IAssetVariantProcessor
+    href: Prowl.Editor.Build.IAssetVariantProcessor.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Editor.Build.IAssetVariantProcessor
+    name: IAssetVariantProcessor
+    href: Prowl.Editor.Build.IAssetVariantProcessor.html
+  - name: )
+- uid: Prowl.Editor.Build.IVariantCache
+  commentId: T:Prowl.Editor.Build.IVariantCache
+  parent: Prowl.Editor.Build
+  href: Prowl.Editor.Build.IVariantCache.html
+  name: IVariantCache
+  nameWithType: IVariantCache
+  fullName: Prowl.Editor.Build.IVariantCache
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Prowl.Editor.Build.AssetVariantResolver.SelectProcessor*
+  commentId: Overload:Prowl.Editor.Build.AssetVariantResolver.SelectProcessor
+  href: Prowl.Editor.Build.AssetVariantResolver.html#Prowl_Editor_Build_AssetVariantResolver_SelectProcessor_Prowl_Editor_AssetEntry_Prowl_Editor_Build_PlatformTarget_
+  name: SelectProcessor
+  nameWithType: AssetVariantResolver.SelectProcessor
+  fullName: Prowl.Editor.Build.AssetVariantResolver.SelectProcessor
+- uid: Prowl.Editor.AssetEntry
+  commentId: T:Prowl.Editor.AssetEntry
+  parent: Prowl.Editor
+  href: Prowl.Editor.AssetEntry.html
+  name: AssetEntry
+  nameWithType: AssetEntry
+  fullName: Prowl.Editor.AssetEntry
+- uid: Prowl.Editor.Build.PlatformTarget
+  commentId: T:Prowl.Editor.Build.PlatformTarget
+  parent: Prowl.Editor.Build
+  href: Prowl.Editor.Build.PlatformTarget.html
+  name: PlatformTarget
+  nameWithType: PlatformTarget
+  fullName: Prowl.Editor.Build.PlatformTarget
+- uid: Prowl.Editor.Build.IAssetVariantProcessor
+  commentId: T:Prowl.Editor.Build.IAssetVariantProcessor
+  parent: Prowl.Editor.Build
+  href: Prowl.Editor.Build.IAssetVariantProcessor.html
+  name: IAssetVariantProcessor
+  nameWithType: IAssetVariantProcessor
+  fullName: Prowl.Editor.Build.IAssetVariantProcessor
+- uid: Prowl.Editor
+  commentId: N:Prowl.Editor
+  name: Prowl.Editor
+  nameWithType: Prowl.Editor
+  fullName: Prowl.Editor
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+- uid: Prowl.Editor.Build.AssetVariantResolver.ResolveAsync*
+  commentId: Overload:Prowl.Editor.Build.AssetVariantResolver.ResolveAsync
+  href: Prowl.Editor.Build.AssetVariantResolver.html#Prowl_Editor_Build_AssetVariantResolver_ResolveAsync_Prowl_Editor_AssetEntry_System_String_Prowl_Editor_Build_PlatformTarget_System_Threading_CancellationToken_
+  name: ResolveAsync
+  nameWithType: AssetVariantResolver.ResolveAsync
+  fullName: Prowl.Editor.Build.AssetVariantResolver.ResolveAsync
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task{Prowl.Editor.Build.ResolvedVariant}
+  commentId: T:System.Threading.Tasks.Task{Prowl.Editor.Build.ResolvedVariant}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<ResolvedVariant>
+  nameWithType: Task<ResolvedVariant>
+  fullName: System.Threading.Tasks.Task<Prowl.Editor.Build.ResolvedVariant>
+  nameWithType.vb: Task(Of ResolvedVariant)
+  fullName.vb: System.Threading.Tasks.Task(Of Prowl.Editor.Build.ResolvedVariant)
+  name.vb: Task(Of ResolvedVariant)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: Prowl.Editor.Build.ResolvedVariant
+    name: ResolvedVariant
+    href: Prowl.Editor.Build.ResolvedVariant.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Editor.Build.ResolvedVariant
+    name: ResolvedVariant
+    href: Prowl.Editor.Build.ResolvedVariant.html
+  - name: )
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Prowl.Editor.Build.AssetVariantResolver.OpenAsync*
+  commentId: Overload:Prowl.Editor.Build.AssetVariantResolver.OpenAsync
+  href: Prowl.Editor.Build.AssetVariantResolver.html#Prowl_Editor_Build_AssetVariantResolver_OpenAsync_Prowl_Editor_Build_ResolvedVariant_System_Threading_CancellationToken_
+  name: OpenAsync
+  nameWithType: AssetVariantResolver.OpenAsync
+  fullName: Prowl.Editor.Build.AssetVariantResolver.OpenAsync
+- uid: Prowl.Editor.Build.ResolvedVariant
+  commentId: T:Prowl.Editor.Build.ResolvedVariant
+  parent: Prowl.Editor.Build
+  href: Prowl.Editor.Build.ResolvedVariant.html
+  name: ResolvedVariant
+  nameWithType: ResolvedVariant
+  fullName: Prowl.Editor.Build.ResolvedVariant
+- uid: System.Threading.Tasks.Task{System.IO.Stream}
+  commentId: T:System.Threading.Tasks.Task{System.IO.Stream}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<Stream>
+  nameWithType: Task<Stream>
+  fullName: System.Threading.Tasks.Task<System.IO.Stream>
+  nameWithType.vb: Task(Of Stream)
+  fullName.vb: System.Threading.Tasks.Task(Of System.IO.Stream)
+  name.vb: Task(Of Stream)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )

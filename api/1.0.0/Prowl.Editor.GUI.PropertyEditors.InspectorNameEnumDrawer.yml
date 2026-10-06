@@ -1,0 +1,825 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer
+  commentId: T:Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer
+  id: InspectorNameEnumDrawer
+  parent: Prowl.Editor.GUI.PropertyEditors
+  children:
+  - Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.AppliesTo(System.Type)
+  - Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.Draw(Prowl.PaperUI.Paper,System.String,System.Object,System.Type,System.Action{System.Object},System.Int32)
+  - Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.EnsureRegistered(Prowl.OrigamiUI.FieldDrawerRegistry,System.Type)
+  - Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.GetEnumDisplayName(System.Type,System.Object)
+  langs:
+  - csharp
+  - vb
+  name: InspectorNameEnumDrawer
+  nameWithType: InspectorNameEnumDrawer
+  fullName: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer
+  type: Class
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PropertyEditors/InspectorNameEnumDrawer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: InspectorNameEnumDrawer
+    path: ../Prowl/Prowl.Editor/GUI/PropertyEditors/InspectorNameEnumDrawer.cs
+    startLine: 17
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI.PropertyEditors
+  summary: >-
+    Draws a non-flags enum using its members' [InspectorName]s — the one place that naming lives, whether or not the field itself carries the attribute.
+
+    The property grid has no per-member naming of its own, so the enum type gets its own drawer, registered on demand.
+
+    InspectorNameAttributeHandler's own enum branch delegates here so there is one dropdown.
+  example: []
+  syntax:
+    content: 'public sealed class InspectorNameEnumDrawer : FieldDrawer'
+    content.vb: Public NotInheritable Class InspectorNameEnumDrawer Inherits FieldDrawer
+  inheritance:
+  - System.Object
+  - Prowl.OrigamiUI.FieldDrawer
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.GetEnumDisplayName(System.Type,System.Object)
+  commentId: M:Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.GetEnumDisplayName(System.Type,System.Object)
+  id: GetEnumDisplayName(System.Type,System.Object)
+  parent: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer
+  langs:
+  - csharp
+  - vb
+  name: GetEnumDisplayName(Type, object)
+  nameWithType: InspectorNameEnumDrawer.GetEnumDisplayName(Type, object)
+  fullName: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.GetEnumDisplayName(System.Type, object)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PropertyEditors/InspectorNameEnumDrawer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetEnumDisplayName
+    path: ../Prowl/Prowl.Editor/GUI/PropertyEditors/InspectorNameEnumDrawer.cs
+    startLine: 24
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI.PropertyEditors
+  summary: >-
+    Display name for an enum member: its [InspectorName] if present, else the
+        nicified member name.
+  example: []
+  syntax:
+    content: public static string GetEnumDisplayName(Type enumType, object value)
+    parameters:
+    - id: enumType
+      type: System.Type
+    - id: value
+      type: System.Object
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetEnumDisplayName(enumType As Type, value As Object) As String
+  overload: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.GetEnumDisplayName*
+  nameWithType.vb: InspectorNameEnumDrawer.GetEnumDisplayName(Type, Object)
+  fullName.vb: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.GetEnumDisplayName(System.Type, Object)
+  name.vb: GetEnumDisplayName(Type, Object)
+- uid: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.AppliesTo(System.Type)
+  commentId: M:Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.AppliesTo(System.Type)
+  id: AppliesTo(System.Type)
+  parent: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer
+  langs:
+  - csharp
+  - vb
+  name: AppliesTo(Type)
+  nameWithType: InspectorNameEnumDrawer.AppliesTo(Type)
+  fullName: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.AppliesTo(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PropertyEditors/InspectorNameEnumDrawer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AppliesTo
+    path: ../Prowl/Prowl.Editor/GUI/PropertyEditors/InspectorNameEnumDrawer.cs
+    startLine: 33
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI.PropertyEditors
+  summary: >-
+    Whether this type needs the drawer at all — only enums that actually rename a
+        member, so every other enum keeps the grid's own rendering.
+  example: []
+  syntax:
+    content: public static bool AppliesTo(Type type)
+    parameters:
+    - id: type
+      type: System.Type
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function AppliesTo(type As Type) As Boolean
+  overload: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.AppliesTo*
+- uid: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.EnsureRegistered(Prowl.OrigamiUI.FieldDrawerRegistry,System.Type)
+  commentId: M:Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.EnsureRegistered(Prowl.OrigamiUI.FieldDrawerRegistry,System.Type)
+  id: EnsureRegistered(Prowl.OrigamiUI.FieldDrawerRegistry,System.Type)
+  parent: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer
+  langs:
+  - csharp
+  - vb
+  name: EnsureRegistered(FieldDrawerRegistry, Type)
+  nameWithType: InspectorNameEnumDrawer.EnsureRegistered(FieldDrawerRegistry, Type)
+  fullName: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.EnsureRegistered(Prowl.OrigamiUI.FieldDrawerRegistry, System.Type)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PropertyEditors/InspectorNameEnumDrawer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EnsureRegistered
+    path: ../Prowl/Prowl.Editor/GUI/PropertyEditors/InspectorNameEnumDrawer.cs
+    startLine: 38
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI.PropertyEditors
+  syntax:
+    content: public static void EnsureRegistered(FieldDrawerRegistry drawers, Type type)
+    parameters:
+    - id: drawers
+      type: Prowl.OrigamiUI.FieldDrawerRegistry
+    - id: type
+      type: System.Type
+    content.vb: Public Shared Sub EnsureRegistered(drawers As FieldDrawerRegistry, type As Type)
+  overload: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.EnsureRegistered*
+- uid: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.Draw(Prowl.PaperUI.Paper,System.String,System.Object,System.Type,System.Action{System.Object},System.Int32)
+  commentId: M:Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.Draw(Prowl.PaperUI.Paper,System.String,System.Object,System.Type,System.Action{System.Object},System.Int32)
+  id: Draw(Prowl.PaperUI.Paper,System.String,System.Object,System.Type,System.Action{System.Object},System.Int32)
+  parent: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer
+  langs:
+  - csharp
+  - vb
+  name: Draw(Paper, string, object?, Type, Action<object?>, int)
+  nameWithType: InspectorNameEnumDrawer.Draw(Paper, string, object?, Type, Action<object?>, int)
+  fullName: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.Draw(Prowl.PaperUI.Paper, string, object?, System.Type, System.Action<object?>, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/GUI/PropertyEditors/InspectorNameEnumDrawer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Draw
+    path: ../Prowl/Prowl.Editor/GUI/PropertyEditors/InspectorNameEnumDrawer.cs
+    startLine: 44
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI.PropertyEditors
+  example: []
+  syntax:
+    content: public override void Draw(Paper paper, string id, object? value, Type type, Action<object?> onChange, int depth)
+    parameters:
+    - id: paper
+      type: Prowl.PaperUI.Paper
+    - id: id
+      type: System.String
+    - id: value
+      type: System.Object
+    - id: type
+      type: System.Type
+    - id: onChange
+      type: System.Action{System.Object}
+    - id: depth
+      type: System.Int32
+    content.vb: Public Overrides Sub Draw(paper As Paper, id As String, value As Object, type As Type, onChange As Action(Of Object), depth As Integer)
+  overridden: Prowl.OrigamiUI.FieldDrawer.Draw(Prowl.PaperUI.Paper,System.String,System.Object,System.Type,System.Action{System.Object},System.Int32)
+  overload: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.Draw*
+  nameWithType.vb: InspectorNameEnumDrawer.Draw(Paper, String, Object, Type, Action(Of Object), Integer)
+  fullName.vb: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.Draw(Prowl.PaperUI.Paper, String, Object, System.Type, System.Action(Of Object), Integer)
+  name.vb: Draw(Paper, String, Object, Type, Action(Of Object), Integer)
+references:
+- uid: Prowl.Editor.GUI.PropertyEditors
+  commentId: N:Prowl.Editor.GUI.PropertyEditors
+  name: Prowl.Editor.GUI.PropertyEditors
+  nameWithType: Prowl.Editor.GUI.PropertyEditors
+  fullName: Prowl.Editor.GUI.PropertyEditors
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.GUI
+    name: GUI
+  - name: .
+  - uid: Prowl.Editor.GUI.PropertyEditors
+    name: PropertyEditors
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.GUI
+    name: GUI
+  - name: .
+  - uid: Prowl.Editor.GUI.PropertyEditors
+    name: PropertyEditors
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.OrigamiUI.FieldDrawer
+  commentId: T:Prowl.OrigamiUI.FieldDrawer
+  parent: Prowl.OrigamiUI
+  isExternal: true
+  name: FieldDrawer
+  nameWithType: FieldDrawer
+  fullName: Prowl.OrigamiUI.FieldDrawer
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.OrigamiUI
+  commentId: N:Prowl.OrigamiUI
+  isExternal: true
+  name: Prowl.OrigamiUI
+  nameWithType: Prowl.OrigamiUI
+  fullName: Prowl.OrigamiUI
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+    isExternal: true
+  - name: .
+  - uid: Prowl.OrigamiUI
+    name: OrigamiUI
+    isExternal: true
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+    isExternal: true
+  - name: .
+  - uid: Prowl.OrigamiUI
+    name: OrigamiUI
+    isExternal: true
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.GetEnumDisplayName*
+  commentId: Overload:Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.GetEnumDisplayName
+  href: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.html#Prowl_Editor_GUI_PropertyEditors_InspectorNameEnumDrawer_GetEnumDisplayName_System_Type_System_Object_
+  name: GetEnumDisplayName
+  nameWithType: InspectorNameEnumDrawer.GetEnumDisplayName
+  fullName: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.GetEnumDisplayName
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.AppliesTo*
+  commentId: Overload:Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.AppliesTo
+  href: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.html#Prowl_Editor_GUI_PropertyEditors_InspectorNameEnumDrawer_AppliesTo_System_Type_
+  name: AppliesTo
+  nameWithType: InspectorNameEnumDrawer.AppliesTo
+  fullName: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.AppliesTo
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.EnsureRegistered*
+  commentId: Overload:Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.EnsureRegistered
+  href: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.html#Prowl_Editor_GUI_PropertyEditors_InspectorNameEnumDrawer_EnsureRegistered_Prowl_OrigamiUI_FieldDrawerRegistry_System_Type_
+  name: EnsureRegistered
+  nameWithType: InspectorNameEnumDrawer.EnsureRegistered
+  fullName: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.EnsureRegistered
+- uid: Prowl.OrigamiUI.FieldDrawerRegistry
+  commentId: T:Prowl.OrigamiUI.FieldDrawerRegistry
+  parent: Prowl.OrigamiUI
+  isExternal: true
+  name: FieldDrawerRegistry
+  nameWithType: FieldDrawerRegistry
+  fullName: Prowl.OrigamiUI.FieldDrawerRegistry
+- uid: Prowl.OrigamiUI.FieldDrawer.Draw(Prowl.PaperUI.Paper,System.String,System.Object,System.Type,System.Action{System.Object},System.Int32)
+  commentId: M:Prowl.OrigamiUI.FieldDrawer.Draw(Prowl.PaperUI.Paper,System.String,System.Object,System.Type,System.Action{System.Object},System.Int32)
+  parent: Prowl.OrigamiUI.FieldDrawer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: Draw(Paper, string, object, Type, Action<object>, int)
+  nameWithType: FieldDrawer.Draw(Paper, string, object, Type, Action<object>, int)
+  fullName: Prowl.OrigamiUI.FieldDrawer.Draw(Prowl.PaperUI.Paper, string, object, System.Type, System.Action<object>, int)
+  nameWithType.vb: FieldDrawer.Draw(Paper, String, Object, Type, Action(Of Object), Integer)
+  fullName.vb: Prowl.OrigamiUI.FieldDrawer.Draw(Prowl.PaperUI.Paper, String, Object, System.Type, System.Action(Of Object), Integer)
+  name.vb: Draw(Paper, String, Object, Type, Action(Of Object), Integer)
+  spec.csharp:
+  - uid: Prowl.OrigamiUI.FieldDrawer.Draw(Prowl.PaperUI.Paper,System.String,System.Object,System.Type,System.Action{System.Object},System.Int32)
+    name: Draw
+    isExternal: true
+  - name: (
+  - uid: Prowl.PaperUI.Paper
+    name: Paper
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.OrigamiUI.FieldDrawer.Draw(Prowl.PaperUI.Paper,System.String,System.Object,System.Type,System.Action{System.Object},System.Int32)
+    name: Draw
+    isExternal: true
+  - name: (
+  - uid: Prowl.PaperUI.Paper
+    name: Paper
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.Draw*
+  commentId: Overload:Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.Draw
+  href: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.html#Prowl_Editor_GUI_PropertyEditors_InspectorNameEnumDrawer_Draw_Prowl_PaperUI_Paper_System_String_System_Object_System_Type_System_Action_System_Object__System_Int32_
+  name: Draw
+  nameWithType: InspectorNameEnumDrawer.Draw
+  fullName: Prowl.Editor.GUI.PropertyEditors.InspectorNameEnumDrawer.Draw
+- uid: Prowl.PaperUI.Paper
+  commentId: T:Prowl.PaperUI.Paper
+  parent: Prowl.PaperUI
+  isExternal: true
+  name: Paper
+  nameWithType: Paper
+  fullName: Prowl.PaperUI.Paper
+- uid: System.Action{System.Object}
+  commentId: T:System.Action{System.Object}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<object>
+  nameWithType: Action<object>
+  fullName: System.Action<object>
+  nameWithType.vb: Action(Of Object)
+  fullName.vb: System.Action(Of Object)
+  name.vb: Action(Of Object)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.PaperUI
+  commentId: N:Prowl.PaperUI
+  isExternal: true
+  name: Prowl.PaperUI
+  nameWithType: Prowl.PaperUI
+  fullName: Prowl.PaperUI
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+    isExternal: true
+  - name: .
+  - uid: Prowl.PaperUI
+    name: PaperUI
+    isExternal: true
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+    isExternal: true
+  - name: .
+  - uid: Prowl.PaperUI
+    name: PaperUI
+    isExternal: true
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

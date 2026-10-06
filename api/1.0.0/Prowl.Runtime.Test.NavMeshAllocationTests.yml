@@ -1,0 +1,545 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.Test.NavMeshAllocationTests
+  commentId: T:Prowl.Runtime.Test.NavMeshAllocationTests
+  id: NavMeshAllocationTests
+  parent: Prowl.Runtime.Test
+  children:
+  - Prowl.Runtime.Test.NavMeshAllocationTests.EmptyTile_SkipsPipeline_AllocatingAlmostNothing
+  - Prowl.Runtime.Test.NavMeshAllocationTests.PooledRebuilds_ProduceIdenticalTiles
+  - Prowl.Runtime.Test.NavMeshAllocationTests.RebuildTiles_WithGeometryLargerThanTheRegion_StillRasterizes
+  langs:
+  - csharp
+  - vb
+  name: NavMeshAllocationTests
+  nameWithType: NavMeshAllocationTests
+  fullName: Prowl.Runtime.Test.NavMeshAllocationTests
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshAllocationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NavMeshAllocationTests
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshAllocationTests.cs
+    startLine: 15
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Locks in the tile-bake allocation behaviour destructible-map games depend on: tiles with
+
+    no geometry skip the pipeline entirely, and span-pool recycling across rebuilds does not
+
+    change build output.
+  example: []
+  syntax:
+    content: public class NavMeshAllocationTests
+    content.vb: Public Class NavMeshAllocationTests
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.Test.NavMeshAllocationTests.EmptyTile_SkipsPipeline_AllocatingAlmostNothing
+  commentId: M:Prowl.Runtime.Test.NavMeshAllocationTests.EmptyTile_SkipsPipeline_AllocatingAlmostNothing
+  id: EmptyTile_SkipsPipeline_AllocatingAlmostNothing
+  parent: Prowl.Runtime.Test.NavMeshAllocationTests
+  langs:
+  - csharp
+  - vb
+  name: EmptyTile_SkipsPipeline_AllocatingAlmostNothing()
+  nameWithType: NavMeshAllocationTests.EmptyTile_SkipsPipeline_AllocatingAlmostNothing()
+  fullName: Prowl.Runtime.Test.NavMeshAllocationTests.EmptyTile_SkipsPipeline_AllocatingAlmostNothing()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshAllocationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EmptyTile_SkipsPipeline_AllocatingAlmostNothing
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshAllocationTests.cs
+    startLine: 42
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Tiles nothing overlaps must cost (almost) nothing: the chunky-index check replaces the
+
+    full heightfield + pipeline run (~132 KB each before the skip). On bounded bakes of
+
+    mostly-sealed worlds ~99% of tiles take this path, so this bound is what keeps
+
+    full-bake allocation proportional to walkable area rather than world area.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void EmptyTile_SkipsPipeline_AllocatingAlmostNothing()
+    content.vb: >-
+      <Fact>
+
+      Public Sub EmptyTile_SkipsPipeline_AllocatingAlmostNothing()
+  overload: Prowl.Runtime.Test.NavMeshAllocationTests.EmptyTile_SkipsPipeline_AllocatingAlmostNothing*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshAllocationTests.PooledRebuilds_ProduceIdenticalTiles
+  commentId: M:Prowl.Runtime.Test.NavMeshAllocationTests.PooledRebuilds_ProduceIdenticalTiles
+  id: PooledRebuilds_ProduceIdenticalTiles
+  parent: Prowl.Runtime.Test.NavMeshAllocationTests
+  langs:
+  - csharp
+  - vb
+  name: PooledRebuilds_ProduceIdenticalTiles()
+  nameWithType: NavMeshAllocationTests.PooledRebuilds_ProduceIdenticalTiles()
+  fullName: Prowl.Runtime.Test.NavMeshAllocationTests.PooledRebuilds_ProduceIdenticalTiles()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshAllocationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PooledRebuilds_ProduceIdenticalTiles
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshAllocationTests.cs
+    startLine: 67
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Span pooling must not change output: rebuilding the same tile repeatedly (cold pool,
+
+    then warm recycled pool) must produce byte-identical layers. This is the guard against a
+
+    recycled span leaking stale state into a later build.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PooledRebuilds_ProduceIdenticalTiles()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PooledRebuilds_ProduceIdenticalTiles()
+  overload: Prowl.Runtime.Test.NavMeshAllocationTests.PooledRebuilds_ProduceIdenticalTiles*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.NavMeshAllocationTests.RebuildTiles_WithGeometryLargerThanTheRegion_StillRasterizes
+  commentId: M:Prowl.Runtime.Test.NavMeshAllocationTests.RebuildTiles_WithGeometryLargerThanTheRegion_StillRasterizes
+  id: RebuildTiles_WithGeometryLargerThanTheRegion_StillRasterizes
+  parent: Prowl.Runtime.Test.NavMeshAllocationTests
+  langs:
+  - csharp
+  - vb
+  name: RebuildTiles_WithGeometryLargerThanTheRegion_StillRasterizes()
+  nameWithType: NavMeshAllocationTests.RebuildTiles_WithGeometryLargerThanTheRegion_StillRasterizes()
+  fullName: Prowl.Runtime.Test.NavMeshAllocationTests.RebuildTiles_WithGeometryLargerThanTheRegion_StillRasterizes()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/NavMeshAllocationTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RebuildTiles_WithGeometryLargerThanTheRegion_StillRasterizes
+    path: ../Prowl/Prowl.Runtime.Test/NavMeshAllocationTests.cs
+    startLine: 96
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    A partial rebuild clips its geometry to the tiles it is building, and the test for that is
+
+    AABB overlap, not corner containment: one quad covering the whole world has no corner
+
+    anywhere near the tile being rebuilt, and is still the only thing the tile stands on.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RebuildTiles_WithGeometryLargerThanTheRegion_StillRasterizes()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RebuildTiles_WithGeometryLargerThanTheRegion_StillRasterizes()
+  overload: Prowl.Runtime.Test.NavMeshAllocationTests.RebuildTiles_WithGeometryLargerThanTheRegion_StillRasterizes*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+references:
+- uid: Prowl.Runtime.Test
+  commentId: N:Prowl.Runtime.Test
+  name: Prowl.Runtime.Test
+  nameWithType: Prowl.Runtime.Test
+  fullName: Prowl.Runtime.Test
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Runtime.Test.NavMeshAllocationTests.EmptyTile_SkipsPipeline_AllocatingAlmostNothing*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshAllocationTests.EmptyTile_SkipsPipeline_AllocatingAlmostNothing
+  href: Prowl.Runtime.Test.NavMeshAllocationTests.html#Prowl_Runtime_Test_NavMeshAllocationTests_EmptyTile_SkipsPipeline_AllocatingAlmostNothing
+  name: EmptyTile_SkipsPipeline_AllocatingAlmostNothing
+  nameWithType: NavMeshAllocationTests.EmptyTile_SkipsPipeline_AllocatingAlmostNothing
+  fullName: Prowl.Runtime.Test.NavMeshAllocationTests.EmptyTile_SkipsPipeline_AllocatingAlmostNothing
+- uid: Prowl.Runtime.Test.NavMeshAllocationTests.PooledRebuilds_ProduceIdenticalTiles*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshAllocationTests.PooledRebuilds_ProduceIdenticalTiles
+  href: Prowl.Runtime.Test.NavMeshAllocationTests.html#Prowl_Runtime_Test_NavMeshAllocationTests_PooledRebuilds_ProduceIdenticalTiles
+  name: PooledRebuilds_ProduceIdenticalTiles
+  nameWithType: NavMeshAllocationTests.PooledRebuilds_ProduceIdenticalTiles
+  fullName: Prowl.Runtime.Test.NavMeshAllocationTests.PooledRebuilds_ProduceIdenticalTiles
+- uid: Prowl.Runtime.Test.NavMeshAllocationTests.RebuildTiles_WithGeometryLargerThanTheRegion_StillRasterizes*
+  commentId: Overload:Prowl.Runtime.Test.NavMeshAllocationTests.RebuildTiles_WithGeometryLargerThanTheRegion_StillRasterizes
+  href: Prowl.Runtime.Test.NavMeshAllocationTests.html#Prowl_Runtime_Test_NavMeshAllocationTests_RebuildTiles_WithGeometryLargerThanTheRegion_StillRasterizes
+  name: RebuildTiles_WithGeometryLargerThanTheRegion_StillRasterizes
+  nameWithType: NavMeshAllocationTests.RebuildTiles_WithGeometryLargerThanTheRegion_StillRasterizes
+  fullName: Prowl.Runtime.Test.NavMeshAllocationTests.RebuildTiles_WithGeometryLargerThanTheRegion_StillRasterizes

@@ -5,7 +5,8 @@ items:
   id: AddComponentMenuAttribute
   parent: Prowl.Runtime
   children:
-  - Prowl.Runtime.AddComponentMenuAttribute.#ctor(System.String)
+  - Prowl.Runtime.AddComponentMenuAttribute.#ctor(System.String,System.String)
+  - Prowl.Runtime.AddComponentMenuAttribute.Icon
   - Prowl.Runtime.AddComponentMenuAttribute.Path
   langs:
   - csharp
@@ -16,22 +17,27 @@ items:
   type: Class
   source:
     remote:
-      path: Prowl.Runtime/GameObject/Attributes/AddComponentMenuAttribute.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      path: Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: AddComponentMenuAttribute
-    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/AddComponentMenuAttribute.cs
-    startLine: 7
+    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+    startLine: 92
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: >-
+    Organizes a MonoBehaviour in the Add Component menu.
+
+    Path uses '/' for categories, e.g. "Physics/Rigidbody".
+  example: []
   syntax:
     content: >-
-      [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+      [AttributeUsage(AttributeTargets.Class)]
 
       public class AddComponentMenuAttribute : Attribute
     content.vb: >-
-      <AttributeUsage(AttributeTargets.Class, AllowMultiple:=False)>
+      <AttributeUsage(AttributeTargets.Class)>
 
       Public Class AddComponentMenuAttribute Inherits Attribute
   inheritance:
@@ -88,10 +94,6 @@ items:
     arguments:
     - type: System.AttributeTargets
       value: 4
-    namedArguments:
-    - name: AllowMultiple
-      type: System.Boolean
-      value: false
 - uid: Prowl.Runtime.AddComponentMenuAttribute.Path
   commentId: P:Prowl.Runtime.AddComponentMenuAttribute.Path
   id: Path
@@ -105,12 +107,12 @@ items:
   type: Property
   source:
     remote:
-      path: Prowl.Runtime/GameObject/Attributes/AddComponentMenuAttribute.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      path: Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: Path
-    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/AddComponentMenuAttribute.cs
-    startLine: 10
+    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+    startLine: 95
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -121,61 +123,87 @@ items:
       type: System.String
     content.vb: Public ReadOnly Property Path As String
   overload: Prowl.Runtime.AddComponentMenuAttribute.Path*
-- uid: Prowl.Runtime.AddComponentMenuAttribute.#ctor(System.String)
-  commentId: M:Prowl.Runtime.AddComponentMenuAttribute.#ctor(System.String)
-  id: '#ctor(System.String)'
+- uid: Prowl.Runtime.AddComponentMenuAttribute.Icon
+  commentId: P:Prowl.Runtime.AddComponentMenuAttribute.Icon
+  id: Icon
   parent: Prowl.Runtime.AddComponentMenuAttribute
   langs:
   - csharp
   - vb
-  name: AddComponentMenuAttribute(string)
-  nameWithType: AddComponentMenuAttribute.AddComponentMenuAttribute(string)
-  fullName: Prowl.Runtime.AddComponentMenuAttribute.AddComponentMenuAttribute(string)
-  type: Constructor
+  name: Icon
+  nameWithType: AddComponentMenuAttribute.Icon
+  fullName: Prowl.Runtime.AddComponentMenuAttribute.Icon
+  type: Property
   source:
     remote:
-      path: Prowl.Runtime/GameObject/Attributes/AddComponentMenuAttribute.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: .ctor
-    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/AddComponentMenuAttribute.cs
-    startLine: 11
+      path: Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Icon
+    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+    startLine: 96
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public AddComponentMenuAttribute(string path)
+    content: public string Icon { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Icon As String
+  overload: Prowl.Runtime.AddComponentMenuAttribute.Icon*
+- uid: Prowl.Runtime.AddComponentMenuAttribute.#ctor(System.String,System.String)
+  commentId: M:Prowl.Runtime.AddComponentMenuAttribute.#ctor(System.String,System.String)
+  id: '#ctor(System.String,System.String)'
+  parent: Prowl.Runtime.AddComponentMenuAttribute
+  langs:
+  - csharp
+  - vb
+  name: AddComponentMenuAttribute(string, string)
+  nameWithType: AddComponentMenuAttribute.AddComponentMenuAttribute(string, string)
+  fullName: Prowl.Runtime.AddComponentMenuAttribute.AddComponentMenuAttribute(string, string)
+  type: Constructor
+  source:
+    remote:
+      path: Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: .ctor
+    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+    startLine: 97
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public AddComponentMenuAttribute(string path, string icon = "")
     parameters:
     - id: path
       type: System.String
-    content.vb: Public Sub New(path As String)
+    - id: icon
+      type: System.String
+    content.vb: Public Sub New(path As String, icon As String = "")
   overload: Prowl.Runtime.AddComponentMenuAttribute.#ctor*
-  nameWithType.vb: AddComponentMenuAttribute.New(String)
-  fullName.vb: Prowl.Runtime.AddComponentMenuAttribute.New(String)
-  name.vb: New(String)
+  nameWithType.vb: AddComponentMenuAttribute.New(String, String)
+  fullName.vb: Prowl.Runtime.AddComponentMenuAttribute.New(String, String)
+  name.vb: New(String, String)
 references:
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
-  href: Prowl.html
   name: Prowl.Runtime
   nameWithType: Prowl.Runtime
   fullName: Prowl.Runtime
   spec.csharp:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
   spec.vb:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -2055,9 +2083,15 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: Prowl.Runtime.AddComponentMenuAttribute.Icon*
+  commentId: Overload:Prowl.Runtime.AddComponentMenuAttribute.Icon
+  href: Prowl.Runtime.AddComponentMenuAttribute.html#Prowl_Runtime_AddComponentMenuAttribute_Icon
+  name: Icon
+  nameWithType: AddComponentMenuAttribute.Icon
+  fullName: Prowl.Runtime.AddComponentMenuAttribute.Icon
 - uid: Prowl.Runtime.AddComponentMenuAttribute.#ctor*
   commentId: Overload:Prowl.Runtime.AddComponentMenuAttribute.#ctor
-  href: Prowl.Runtime.AddComponentMenuAttribute.html#Prowl_Runtime_AddComponentMenuAttribute__ctor_System_String_
+  href: Prowl.Runtime.AddComponentMenuAttribute.html#Prowl_Runtime_AddComponentMenuAttribute__ctor_System_String_System_String_
   name: AddComponentMenuAttribute
   nameWithType: AddComponentMenuAttribute.AddComponentMenuAttribute
   fullName: Prowl.Runtime.AddComponentMenuAttribute.AddComponentMenuAttribute

@@ -1,0 +1,1504 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.Rendering.LightBVH
+  commentId: T:Prowl.Runtime.Rendering.LightBVH
+  id: LightBVH
+  parent: Prowl.Runtime.Rendering
+  children:
+  - Prowl.Runtime.Rendering.LightBVH.#ctor(System.Int32,System.Single)
+  - Prowl.Runtime.Rendering.LightBVH.ActiveLightCount
+  - Prowl.Runtime.Rendering.LightBVH.Add(Prowl.Runtime.Rendering.IRenderableLight,Prowl.Runtime.Rendering.ForwardLightData@)
+  - Prowl.Runtime.Rendering.LightBVH.ClearDirtyRanges
+  - Prowl.Runtime.Rendering.LightBVH.DefaultLooseFactor
+  - Prowl.Runtime.Rendering.LightBVH.EncodeLeafHit(System.Int32)
+  - Prowl.Runtime.Rendering.LightBVH.GetSlot(Prowl.Runtime.Rendering.IRenderableLight)
+  - Prowl.Runtime.Rendering.LightBVH.HasNodeDirty
+  - Prowl.Runtime.Rendering.LightBVH.HasSlotDirty
+  - Prowl.Runtime.Rendering.LightBVH.MarkAllDirty
+  - Prowl.Runtime.Rendering.LightBVH.NodeCount
+  - Prowl.Runtime.Rendering.LightBVH.Nodes
+  - Prowl.Runtime.Rendering.LightBVH.Remove(Prowl.Runtime.Rendering.IRenderableLight)
+  - Prowl.Runtime.Rendering.LightBVH.SetShadowSlot(Prowl.Runtime.Rendering.IRenderableLight,System.Int32)
+  - Prowl.Runtime.Rendering.LightBVH.SlotCapacity
+  - Prowl.Runtime.Rendering.LightBVH.SlotHighWater
+  - Prowl.Runtime.Rendering.LightBVH.Slots
+  - Prowl.Runtime.Rendering.LightBVH.Sync
+  - Prowl.Runtime.Rendering.LightBVH.TexelsPerLight
+  - Prowl.Runtime.Rendering.LightBVH.TexelsPerNode
+  - Prowl.Runtime.Rendering.LightBVH.TryGetNodeDirtyRange(System.Int32@,System.Int32@)
+  - Prowl.Runtime.Rendering.LightBVH.TryGetSlotDirtyRange(System.Int32@,System.Int32@)
+  - Prowl.Runtime.Rendering.LightBVH.Update(Prowl.Runtime.Rendering.IRenderableLight,Prowl.Runtime.Rendering.ForwardLightData@)
+  langs:
+  - csharp
+  - vb
+  name: LightBVH
+  nameWithType: LightBVH
+  fullName: Prowl.Runtime.Rendering.LightBVH
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LightBVH
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 24
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: >-
+    Bounding-volume hierarchy of localized lights (point + spot) for forward rendering.
+
+
+    One instance is owned by each <xref href="Prowl.Runtime.Resources.Scene" data-throw-if-not-resolved="false"></xref>: a "static" tree for lights flagged
+
+    non-moving and a "dynamic" tree for everything else. Per fragment the shader walks both trees
+
+    stacklessly via rope links to find lights whose tight AABB contains the fragment position,
+
+    then accumulates their contributions.
+
+
+    Light slots are stable identifiers in [0, capacity). They survive topology changes so the
+
+    per-light data texture rarely needs to be re-uploaded. Topology changes (add / remove /
+
+    "moved past loose buffer") rebuild the tree top-down with a median split. Lights whose new
+
+    tight AABB still fits inside the previously-stored loose AABB only refit a single leaf node
+
+    no parent updates needed because internal node bounds were derived from the loose bounds.
+  example: []
+  syntax:
+    content: public sealed class LightBVH
+    content.vb: Public NotInheritable Class LightBVH
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.Rendering.LightBVH.DefaultLooseFactor
+  commentId: F:Prowl.Runtime.Rendering.LightBVH.DefaultLooseFactor
+  id: DefaultLooseFactor
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: DefaultLooseFactor
+  nameWithType: LightBVH.DefaultLooseFactor
+  fullName: Prowl.Runtime.Rendering.LightBVH.DefaultLooseFactor
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DefaultLooseFactor
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 28
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: >-
+    How much each light's tight AABB is inflated to produce its loose AABB.
+        0.25 means the light can drift 25 % of its range past its tight bounds before reinsertion.
+  example: []
+  syntax:
+    content: public const float DefaultLooseFactor = 0.25
+    return:
+      type: System.Single
+    content.vb: Public Const DefaultLooseFactor As Single = 0.25
+- uid: Prowl.Runtime.Rendering.LightBVH.TexelsPerLight
+  commentId: F:Prowl.Runtime.Rendering.LightBVH.TexelsPerLight
+  id: TexelsPerLight
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: TexelsPerLight
+  nameWithType: LightBVH.TexelsPerLight
+  fullName: Prowl.Runtime.Rendering.LightBVH.TexelsPerLight
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TexelsPerLight
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 31
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: One float4 of light data uploaded per slot. Must match <code>LightBVH.glsl</code>.
+  example: []
+  syntax:
+    content: public const int TexelsPerLight = 5
+    return:
+      type: System.Int32
+    content.vb: Public Const TexelsPerLight As Integer = 5
+- uid: Prowl.Runtime.Rendering.LightBVH.TexelsPerNode
+  commentId: F:Prowl.Runtime.Rendering.LightBVH.TexelsPerNode
+  id: TexelsPerNode
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: TexelsPerNode
+  nameWithType: LightBVH.TexelsPerNode
+  fullName: Prowl.Runtime.Rendering.LightBVH.TexelsPerNode
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TexelsPerNode
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 34
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Two float4 per node (min/hit, max/miss). Must match <code>LightBVH.glsl</code>.
+  example: []
+  syntax:
+    content: public const int TexelsPerNode = 2
+    return:
+      type: System.Int32
+    content.vb: Public Const TexelsPerNode As Integer = 2
+- uid: Prowl.Runtime.Rendering.LightBVH.EncodeLeafHit(System.Int32)
+  commentId: M:Prowl.Runtime.Rendering.LightBVH.EncodeLeafHit(System.Int32)
+  id: EncodeLeafHit(System.Int32)
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: EncodeLeafHit(int)
+  nameWithType: LightBVH.EncodeLeafHit(int)
+  fullName: Prowl.Runtime.Rendering.LightBVH.EncodeLeafHit(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EncodeLeafHit
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 79
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Encode a leaf hit pointer for slot index <code class="paramref">slot</code>.
+  example: []
+  syntax:
+    content: public static int EncodeLeafHit(int slot)
+    parameters:
+    - id: slot
+      type: System.Int32
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function EncodeLeafHit(slot As Integer) As Integer
+  overload: Prowl.Runtime.Rendering.LightBVH.EncodeLeafHit*
+  nameWithType.vb: LightBVH.EncodeLeafHit(Integer)
+  fullName.vb: Prowl.Runtime.Rendering.LightBVH.EncodeLeafHit(Integer)
+  name.vb: EncodeLeafHit(Integer)
+- uid: Prowl.Runtime.Rendering.LightBVH.ActiveLightCount
+  commentId: P:Prowl.Runtime.Rendering.LightBVH.ActiveLightCount
+  id: ActiveLightCount
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: ActiveLightCount
+  nameWithType: LightBVH.ActiveLightCount
+  fullName: Prowl.Runtime.Rendering.LightBVH.ActiveLightCount
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ActiveLightCount
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 105
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  syntax:
+    content: public int ActiveLightCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property ActiveLightCount As Integer
+  overload: Prowl.Runtime.Rendering.LightBVH.ActiveLightCount*
+- uid: Prowl.Runtime.Rendering.LightBVH.NodeCount
+  commentId: P:Prowl.Runtime.Rendering.LightBVH.NodeCount
+  id: NodeCount
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: NodeCount
+  nameWithType: LightBVH.NodeCount
+  fullName: Prowl.Runtime.Rendering.LightBVH.NodeCount
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NodeCount
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 106
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  syntax:
+    content: public int NodeCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property NodeCount As Integer
+  overload: Prowl.Runtime.Rendering.LightBVH.NodeCount*
+- uid: Prowl.Runtime.Rendering.LightBVH.SlotHighWater
+  commentId: P:Prowl.Runtime.Rendering.LightBVH.SlotHighWater
+  id: SlotHighWater
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: SlotHighWater
+  nameWithType: LightBVH.SlotHighWater
+  fullName: Prowl.Runtime.Rendering.LightBVH.SlotHighWater
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SlotHighWater
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 107
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  syntax:
+    content: public int SlotHighWater { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property SlotHighWater As Integer
+  overload: Prowl.Runtime.Rendering.LightBVH.SlotHighWater*
+- uid: Prowl.Runtime.Rendering.LightBVH.SlotCapacity
+  commentId: P:Prowl.Runtime.Rendering.LightBVH.SlotCapacity
+  id: SlotCapacity
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: SlotCapacity
+  nameWithType: LightBVH.SlotCapacity
+  fullName: Prowl.Runtime.Rendering.LightBVH.SlotCapacity
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SlotCapacity
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 108
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  syntax:
+    content: public int SlotCapacity { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property SlotCapacity As Integer
+  overload: Prowl.Runtime.Rendering.LightBVH.SlotCapacity*
+- uid: Prowl.Runtime.Rendering.LightBVH.HasSlotDirty
+  commentId: P:Prowl.Runtime.Rendering.LightBVH.HasSlotDirty
+  id: HasSlotDirty
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: HasSlotDirty
+  nameWithType: LightBVH.HasSlotDirty
+  fullName: Prowl.Runtime.Rendering.LightBVH.HasSlotDirty
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: HasSlotDirty
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 111
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: True when the per-light data texture has rows that the GPU hasn't seen yet.
+  example: []
+  syntax:
+    content: public bool HasSlotDirty { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property HasSlotDirty As Boolean
+  overload: Prowl.Runtime.Rendering.LightBVH.HasSlotDirty*
+- uid: Prowl.Runtime.Rendering.LightBVH.HasNodeDirty
+  commentId: P:Prowl.Runtime.Rendering.LightBVH.HasNodeDirty
+  id: HasNodeDirty
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: HasNodeDirty
+  nameWithType: LightBVH.HasNodeDirty
+  fullName: Prowl.Runtime.Rendering.LightBVH.HasNodeDirty
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: HasNodeDirty
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 114
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: True when the BVH node texture has rows that the GPU hasn't seen yet.
+  example: []
+  syntax:
+    content: public bool HasNodeDirty { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property HasNodeDirty As Boolean
+  overload: Prowl.Runtime.Rendering.LightBVH.HasNodeDirty*
+- uid: Prowl.Runtime.Rendering.LightBVH.Slots
+  commentId: P:Prowl.Runtime.Rendering.LightBVH.Slots
+  id: Slots
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: Slots
+  nameWithType: LightBVH.Slots
+  fullName: Prowl.Runtime.Rendering.LightBVH.Slots
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Slots
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 117
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Read-only view of all slots (active or freed). Index by slot id.
+  example: []
+  syntax:
+    content: public ReadOnlySpan<LightBVH.SlotInfo> Slots { get; }
+    parameters: []
+    return:
+      type: System.ReadOnlySpan{Prowl.Runtime.Rendering.LightBVH.SlotInfo}
+    content.vb: Public ReadOnly Property Slots As ReadOnlySpan(Of LightBVH.SlotInfo)
+  overload: Prowl.Runtime.Rendering.LightBVH.Slots*
+- uid: Prowl.Runtime.Rendering.LightBVH.Nodes
+  commentId: P:Prowl.Runtime.Rendering.LightBVH.Nodes
+  id: Nodes
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: Nodes
+  nameWithType: LightBVH.Nodes
+  fullName: Prowl.Runtime.Rendering.LightBVH.Nodes
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Nodes
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 120
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Read-only view of the live BVH nodes.
+  example: []
+  syntax:
+    content: public ReadOnlySpan<LightBVH.Node> Nodes { get; }
+    parameters: []
+    return:
+      type: System.ReadOnlySpan{Prowl.Runtime.Rendering.LightBVH.Node}
+    content.vb: Public ReadOnly Property Nodes As ReadOnlySpan(Of LightBVH.Node)
+  overload: Prowl.Runtime.Rendering.LightBVH.Nodes*
+- uid: Prowl.Runtime.Rendering.LightBVH.#ctor(System.Int32,System.Single)
+  commentId: M:Prowl.Runtime.Rendering.LightBVH.#ctor(System.Int32,System.Single)
+  id: '#ctor(System.Int32,System.Single)'
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: LightBVH(int, float)
+  nameWithType: LightBVH.LightBVH(int, float)
+  fullName: Prowl.Runtime.Rendering.LightBVH.LightBVH(int, float)
+  type: Constructor
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: .ctor
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 122
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  syntax:
+    content: public LightBVH(int initialCapacity = 32, float looseFactor = 0.25)
+    parameters:
+    - id: initialCapacity
+      type: System.Int32
+    - id: looseFactor
+      type: System.Single
+    content.vb: Public Sub New(initialCapacity As Integer = 32, looseFactor As Single = 0.25)
+  overload: Prowl.Runtime.Rendering.LightBVH.#ctor*
+  nameWithType.vb: LightBVH.New(Integer, Single)
+  fullName.vb: Prowl.Runtime.Rendering.LightBVH.New(Integer, Single)
+  name.vb: New(Integer, Single)
+- uid: Prowl.Runtime.Rendering.LightBVH.GetSlot(Prowl.Runtime.Rendering.IRenderableLight)
+  commentId: M:Prowl.Runtime.Rendering.LightBVH.GetSlot(Prowl.Runtime.Rendering.IRenderableLight)
+  id: GetSlot(Prowl.Runtime.Rendering.IRenderableLight)
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: GetSlot(IRenderableLight)
+  nameWithType: LightBVH.GetSlot(IRenderableLight)
+  fullName: Prowl.Runtime.Rendering.LightBVH.GetSlot(Prowl.Runtime.Rendering.IRenderableLight)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetSlot
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 133
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Returns the slot index for <code class="paramref">light</code>, or -1 if not registered.
+  example: []
+  syntax:
+    content: public int GetSlot(IRenderableLight light)
+    parameters:
+    - id: light
+      type: Prowl.Runtime.Rendering.IRenderableLight
+    return:
+      type: System.Int32
+    content.vb: Public Function GetSlot(light As IRenderableLight) As Integer
+  overload: Prowl.Runtime.Rendering.LightBVH.GetSlot*
+- uid: Prowl.Runtime.Rendering.LightBVH.Add(Prowl.Runtime.Rendering.IRenderableLight,Prowl.Runtime.Rendering.ForwardLightData@)
+  commentId: M:Prowl.Runtime.Rendering.LightBVH.Add(Prowl.Runtime.Rendering.IRenderableLight,Prowl.Runtime.Rendering.ForwardLightData@)
+  id: Add(Prowl.Runtime.Rendering.IRenderableLight,Prowl.Runtime.Rendering.ForwardLightData@)
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: Add(IRenderableLight, in ForwardLightData)
+  nameWithType: LightBVH.Add(IRenderableLight, in ForwardLightData)
+  fullName: Prowl.Runtime.Rendering.LightBVH.Add(Prowl.Runtime.Rendering.IRenderableLight, in Prowl.Runtime.Rendering.ForwardLightData)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Add
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 140
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: >-
+    Add a light to the tree. Slot is stable until <xref href="Prowl.Runtime.Rendering.LightBVH.Remove(Prowl.Runtime.Rendering.IRenderableLight)" data-throw-if-not-resolved="false"></xref> is called for the same
+
+    light. Topology is marked dirty so the next <xref href="Prowl.Runtime.Rendering.LightBVH.Sync" data-throw-if-not-resolved="false"></xref> will rebuild.
+  example: []
+  syntax:
+    content: public int Add(IRenderableLight light, in ForwardLightData data)
+    parameters:
+    - id: light
+      type: Prowl.Runtime.Rendering.IRenderableLight
+    - id: data
+      type: Prowl.Runtime.Rendering.ForwardLightData
+    return:
+      type: System.Int32
+    content.vb: Public Function Add(light As IRenderableLight, data As ForwardLightData) As Integer
+  overload: Prowl.Runtime.Rendering.LightBVH.Add*
+  nameWithType.vb: LightBVH.Add(IRenderableLight, ForwardLightData)
+  fullName.vb: Prowl.Runtime.Rendering.LightBVH.Add(Prowl.Runtime.Rendering.IRenderableLight, Prowl.Runtime.Rendering.ForwardLightData)
+  name.vb: Add(IRenderableLight, ForwardLightData)
+- uid: Prowl.Runtime.Rendering.LightBVH.Remove(Prowl.Runtime.Rendering.IRenderableLight)
+  commentId: M:Prowl.Runtime.Rendering.LightBVH.Remove(Prowl.Runtime.Rendering.IRenderableLight)
+  id: Remove(Prowl.Runtime.Rendering.IRenderableLight)
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: Remove(IRenderableLight)
+  nameWithType: LightBVH.Remove(IRenderableLight)
+  fullName: Prowl.Runtime.Rendering.LightBVH.Remove(Prowl.Runtime.Rendering.IRenderableLight)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Remove
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 162
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: >-
+    Remove a registered light. Frees its slot for reuse. Topology marked dirty.
+
+    Returns true if the light was registered.
+  example: []
+  syntax:
+    content: public bool Remove(IRenderableLight light)
+    parameters:
+    - id: light
+      type: Prowl.Runtime.Rendering.IRenderableLight
+    return:
+      type: System.Boolean
+    content.vb: Public Function Remove(light As IRenderableLight) As Boolean
+  overload: Prowl.Runtime.Rendering.LightBVH.Remove*
+- uid: Prowl.Runtime.Rendering.LightBVH.Update(Prowl.Runtime.Rendering.IRenderableLight,Prowl.Runtime.Rendering.ForwardLightData@)
+  commentId: M:Prowl.Runtime.Rendering.LightBVH.Update(Prowl.Runtime.Rendering.IRenderableLight,Prowl.Runtime.Rendering.ForwardLightData@)
+  id: Update(Prowl.Runtime.Rendering.IRenderableLight,Prowl.Runtime.Rendering.ForwardLightData@)
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: Update(IRenderableLight, in ForwardLightData)
+  nameWithType: LightBVH.Update(IRenderableLight, in ForwardLightData)
+  fullName: Prowl.Runtime.Rendering.LightBVH.Update(Prowl.Runtime.Rendering.IRenderableLight, in Prowl.Runtime.Rendering.ForwardLightData)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Update
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 183
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: >-
+    Update a registered light's parameters. Cheap when the new tight AABB still sits inside
+
+    the previously-stored loose AABB (just refits one leaf node). Otherwise marks topology
+
+    dirty so the tree will be rebuilt with a fresh loose envelope.
+  example: []
+  syntax:
+    content: public void Update(IRenderableLight light, in ForwardLightData data)
+    parameters:
+    - id: light
+      type: Prowl.Runtime.Rendering.IRenderableLight
+    - id: data
+      type: Prowl.Runtime.Rendering.ForwardLightData
+    content.vb: Public Sub Update(light As IRenderableLight, data As ForwardLightData)
+  overload: Prowl.Runtime.Rendering.LightBVH.Update*
+  nameWithType.vb: LightBVH.Update(IRenderableLight, ForwardLightData)
+  fullName.vb: Prowl.Runtime.Rendering.LightBVH.Update(Prowl.Runtime.Rendering.IRenderableLight, Prowl.Runtime.Rendering.ForwardLightData)
+  name.vb: Update(IRenderableLight, ForwardLightData)
+- uid: Prowl.Runtime.Rendering.LightBVH.Sync
+  commentId: M:Prowl.Runtime.Rendering.LightBVH.Sync
+  id: Sync
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: Sync()
+  nameWithType: LightBVH.Sync()
+  fullName: Prowl.Runtime.Rendering.LightBVH.Sync()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Sync
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 239
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Bring the tree and dirty ranges up to date. Call once per frame before uploading textures.
+  example: []
+  syntax:
+    content: public void Sync()
+    content.vb: Public Sub Sync()
+  overload: Prowl.Runtime.Rendering.LightBVH.Sync*
+- uid: Prowl.Runtime.Rendering.LightBVH.ClearDirtyRanges
+  commentId: M:Prowl.Runtime.Rendering.LightBVH.ClearDirtyRanges
+  id: ClearDirtyRanges
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: ClearDirtyRanges()
+  nameWithType: LightBVH.ClearDirtyRanges()
+  fullName: Prowl.Runtime.Rendering.LightBVH.ClearDirtyRanges()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ClearDirtyRanges
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 249
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Mark every dirty range as uploaded. Call after the texture upload has consumed it.
+  example: []
+  syntax:
+    content: public void ClearDirtyRanges()
+    content.vb: Public Sub ClearDirtyRanges()
+  overload: Prowl.Runtime.Rendering.LightBVH.ClearDirtyRanges*
+- uid: Prowl.Runtime.Rendering.LightBVH.TryGetSlotDirtyRange(System.Int32@,System.Int32@)
+  commentId: M:Prowl.Runtime.Rendering.LightBVH.TryGetSlotDirtyRange(System.Int32@,System.Int32@)
+  id: TryGetSlotDirtyRange(System.Int32@,System.Int32@)
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: TryGetSlotDirtyRange(out int, out int)
+  nameWithType: LightBVH.TryGetSlotDirtyRange(out int, out int)
+  fullName: Prowl.Runtime.Rendering.LightBVH.TryGetSlotDirtyRange(out int, out int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TryGetSlotDirtyRange
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 257
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  syntax:
+    content: public bool TryGetSlotDirtyRange(out int minSlot, out int maxSlot)
+    parameters:
+    - id: minSlot
+      type: System.Int32
+    - id: maxSlot
+      type: System.Int32
+    return:
+      type: System.Boolean
+    content.vb: Public Function TryGetSlotDirtyRange(minSlot As Integer, maxSlot As Integer) As Boolean
+  overload: Prowl.Runtime.Rendering.LightBVH.TryGetSlotDirtyRange*
+  nameWithType.vb: LightBVH.TryGetSlotDirtyRange(Integer, Integer)
+  fullName.vb: Prowl.Runtime.Rendering.LightBVH.TryGetSlotDirtyRange(Integer, Integer)
+  name.vb: TryGetSlotDirtyRange(Integer, Integer)
+- uid: Prowl.Runtime.Rendering.LightBVH.TryGetNodeDirtyRange(System.Int32@,System.Int32@)
+  commentId: M:Prowl.Runtime.Rendering.LightBVH.TryGetNodeDirtyRange(System.Int32@,System.Int32@)
+  id: TryGetNodeDirtyRange(System.Int32@,System.Int32@)
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: TryGetNodeDirtyRange(out int, out int)
+  nameWithType: LightBVH.TryGetNodeDirtyRange(out int, out int)
+  fullName: Prowl.Runtime.Rendering.LightBVH.TryGetNodeDirtyRange(out int, out int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TryGetNodeDirtyRange
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 265
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  syntax:
+    content: public bool TryGetNodeDirtyRange(out int minNode, out int maxNode)
+    parameters:
+    - id: minNode
+      type: System.Int32
+    - id: maxNode
+      type: System.Int32
+    return:
+      type: System.Boolean
+    content.vb: Public Function TryGetNodeDirtyRange(minNode As Integer, maxNode As Integer) As Boolean
+  overload: Prowl.Runtime.Rendering.LightBVH.TryGetNodeDirtyRange*
+  nameWithType.vb: LightBVH.TryGetNodeDirtyRange(Integer, Integer)
+  fullName.vb: Prowl.Runtime.Rendering.LightBVH.TryGetNodeDirtyRange(Integer, Integer)
+  name.vb: TryGetNodeDirtyRange(Integer, Integer)
+- uid: Prowl.Runtime.Rendering.LightBVH.MarkAllDirty
+  commentId: M:Prowl.Runtime.Rendering.LightBVH.MarkAllDirty
+  id: MarkAllDirty
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: MarkAllDirty()
+  nameWithType: LightBVH.MarkAllDirty()
+  fullName: Prowl.Runtime.Rendering.LightBVH.MarkAllDirty()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MarkAllDirty
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 277
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: >-
+    Mark the entire current state as dirty. Used after the textures resize and the GPU view
+
+    of the data is invalidated.
+  example: []
+  syntax:
+    content: public void MarkAllDirty()
+    content.vb: Public Sub MarkAllDirty()
+  overload: Prowl.Runtime.Rendering.LightBVH.MarkAllDirty*
+- uid: Prowl.Runtime.Rendering.LightBVH.SetShadowSlot(Prowl.Runtime.Rendering.IRenderableLight,System.Int32)
+  commentId: M:Prowl.Runtime.Rendering.LightBVH.SetShadowSlot(Prowl.Runtime.Rendering.IRenderableLight,System.Int32)
+  id: SetShadowSlot(Prowl.Runtime.Rendering.IRenderableLight,System.Int32)
+  parent: Prowl.Runtime.Rendering.LightBVH
+  langs:
+  - csharp
+  - vb
+  name: SetShadowSlot(IRenderableLight, int)
+  nameWithType: LightBVH.SetShadowSlot(IRenderableLight, int)
+  fullName: Prowl.Runtime.Rendering.LightBVH.SetShadowSlot(Prowl.Runtime.Rendering.IRenderableLight, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/LightBVH.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetShadowSlot
+    path: ../Prowl/Prowl.Runtime/Rendering/LightBVH.cs
+    startLine: 343
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Update only the shadow-slot field on a registered light. Cheap, marks one row dirty.
+  example: []
+  syntax:
+    content: public void SetShadowSlot(IRenderableLight light, int shadowSlot)
+    parameters:
+    - id: light
+      type: Prowl.Runtime.Rendering.IRenderableLight
+    - id: shadowSlot
+      type: System.Int32
+    content.vb: Public Sub SetShadowSlot(light As IRenderableLight, shadowSlot As Integer)
+  overload: Prowl.Runtime.Rendering.LightBVH.SetShadowSlot*
+  nameWithType.vb: LightBVH.SetShadowSlot(IRenderableLight, Integer)
+  fullName.vb: Prowl.Runtime.Rendering.LightBVH.SetShadowSlot(Prowl.Runtime.Rendering.IRenderableLight, Integer)
+  name.vb: SetShadowSlot(IRenderableLight, Integer)
+references:
+- uid: Prowl.Runtime.Resources.Scene
+  commentId: T:Prowl.Runtime.Resources.Scene
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.Scene.html
+  name: Scene
+  nameWithType: Scene
+  fullName: Prowl.Runtime.Resources.Scene
+- uid: Prowl.Runtime.Rendering
+  commentId: N:Prowl.Runtime.Rendering
+  name: Prowl.Runtime.Rendering
+  nameWithType: Prowl.Runtime.Rendering
+  fullName: Prowl.Runtime.Rendering
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Rendering
+    name: Rendering
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Rendering
+    name: Rendering
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.Resources
+  commentId: N:Prowl.Runtime.Resources
+  name: Prowl.Runtime.Resources
+  nameWithType: Prowl.Runtime.Resources
+  fullName: Prowl.Runtime.Resources
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Runtime.Rendering.LightBVH.EncodeLeafHit*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVH.EncodeLeafHit
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_EncodeLeafHit_System_Int32_
+  name: EncodeLeafHit
+  nameWithType: LightBVH.EncodeLeafHit
+  fullName: Prowl.Runtime.Rendering.LightBVH.EncodeLeafHit
+- uid: Prowl.Runtime.Rendering.LightBVH.ActiveLightCount*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVH.ActiveLightCount
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_ActiveLightCount
+  name: ActiveLightCount
+  nameWithType: LightBVH.ActiveLightCount
+  fullName: Prowl.Runtime.Rendering.LightBVH.ActiveLightCount
+- uid: Prowl.Runtime.Rendering.LightBVH.NodeCount*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVH.NodeCount
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_NodeCount
+  name: NodeCount
+  nameWithType: LightBVH.NodeCount
+  fullName: Prowl.Runtime.Rendering.LightBVH.NodeCount
+- uid: Prowl.Runtime.Rendering.LightBVH.SlotHighWater*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVH.SlotHighWater
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_SlotHighWater
+  name: SlotHighWater
+  nameWithType: LightBVH.SlotHighWater
+  fullName: Prowl.Runtime.Rendering.LightBVH.SlotHighWater
+- uid: Prowl.Runtime.Rendering.LightBVH.SlotCapacity*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVH.SlotCapacity
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_SlotCapacity
+  name: SlotCapacity
+  nameWithType: LightBVH.SlotCapacity
+  fullName: Prowl.Runtime.Rendering.LightBVH.SlotCapacity
+- uid: Prowl.Runtime.Rendering.LightBVH.HasSlotDirty*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVH.HasSlotDirty
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_HasSlotDirty
+  name: HasSlotDirty
+  nameWithType: LightBVH.HasSlotDirty
+  fullName: Prowl.Runtime.Rendering.LightBVH.HasSlotDirty
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Runtime.Rendering.LightBVH.HasNodeDirty*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVH.HasNodeDirty
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_HasNodeDirty
+  name: HasNodeDirty
+  nameWithType: LightBVH.HasNodeDirty
+  fullName: Prowl.Runtime.Rendering.LightBVH.HasNodeDirty
+- uid: Prowl.Runtime.Rendering.LightBVH.Slots*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVH.Slots
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_Slots
+  name: Slots
+  nameWithType: LightBVH.Slots
+  fullName: Prowl.Runtime.Rendering.LightBVH.Slots
+- uid: System.ReadOnlySpan{Prowl.Runtime.Rendering.LightBVH.SlotInfo}
+  commentId: T:System.ReadOnlySpan{Prowl.Runtime.Rendering.LightBVH.SlotInfo}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<LightBVH.SlotInfo>
+  nameWithType: ReadOnlySpan<LightBVH.SlotInfo>
+  fullName: System.ReadOnlySpan<Prowl.Runtime.Rendering.LightBVH.SlotInfo>
+  nameWithType.vb: ReadOnlySpan(Of LightBVH.SlotInfo)
+  fullName.vb: System.ReadOnlySpan(Of Prowl.Runtime.Rendering.LightBVH.SlotInfo)
+  name.vb: ReadOnlySpan(Of LightBVH.SlotInfo)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: Prowl.Runtime.Rendering.LightBVH
+    name: LightBVH
+    href: Prowl.Runtime.Rendering.LightBVH.html
+  - name: .
+  - uid: Prowl.Runtime.Rendering.LightBVH.SlotInfo
+    name: SlotInfo
+    href: Prowl.Runtime.Rendering.LightBVH.SlotInfo.html
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Rendering.LightBVH
+    name: LightBVH
+    href: Prowl.Runtime.Rendering.LightBVH.html
+  - name: .
+  - uid: Prowl.Runtime.Rendering.LightBVH.SlotInfo
+    name: SlotInfo
+    href: Prowl.Runtime.Rendering.LightBVH.SlotInfo.html
+  - name: )
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Runtime.Rendering.LightBVH.Nodes*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVH.Nodes
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_Nodes
+  name: Nodes
+  nameWithType: LightBVH.Nodes
+  fullName: Prowl.Runtime.Rendering.LightBVH.Nodes
+- uid: System.ReadOnlySpan{Prowl.Runtime.Rendering.LightBVH.Node}
+  commentId: T:System.ReadOnlySpan{Prowl.Runtime.Rendering.LightBVH.Node}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<LightBVH.Node>
+  nameWithType: ReadOnlySpan<LightBVH.Node>
+  fullName: System.ReadOnlySpan<Prowl.Runtime.Rendering.LightBVH.Node>
+  nameWithType.vb: ReadOnlySpan(Of LightBVH.Node)
+  fullName.vb: System.ReadOnlySpan(Of Prowl.Runtime.Rendering.LightBVH.Node)
+  name.vb: ReadOnlySpan(Of LightBVH.Node)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: Prowl.Runtime.Rendering.LightBVH
+    name: LightBVH
+    href: Prowl.Runtime.Rendering.LightBVH.html
+  - name: .
+  - uid: Prowl.Runtime.Rendering.LightBVH.Node
+    name: Node
+    href: Prowl.Runtime.Rendering.LightBVH.Node.html
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Rendering.LightBVH
+    name: LightBVH
+    href: Prowl.Runtime.Rendering.LightBVH.html
+  - name: .
+  - uid: Prowl.Runtime.Rendering.LightBVH.Node
+    name: Node
+    href: Prowl.Runtime.Rendering.LightBVH.Node.html
+  - name: )
+- uid: Prowl.Runtime.Rendering.LightBVH.#ctor*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVH.#ctor
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH__ctor_System_Int32_System_Single_
+  name: LightBVH
+  nameWithType: LightBVH.LightBVH
+  fullName: Prowl.Runtime.Rendering.LightBVH.LightBVH
+  nameWithType.vb: LightBVH.New
+  fullName.vb: Prowl.Runtime.Rendering.LightBVH.New
+  name.vb: New
+- uid: Prowl.Runtime.Rendering.LightBVH.GetSlot*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVH.GetSlot
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_GetSlot_Prowl_Runtime_Rendering_IRenderableLight_
+  name: GetSlot
+  nameWithType: LightBVH.GetSlot
+  fullName: Prowl.Runtime.Rendering.LightBVH.GetSlot
+- uid: Prowl.Runtime.Rendering.IRenderableLight
+  commentId: T:Prowl.Runtime.Rendering.IRenderableLight
+  parent: Prowl.Runtime.Rendering
+  href: Prowl.Runtime.Rendering.IRenderableLight.html
+  name: IRenderableLight
+  nameWithType: IRenderableLight
+  fullName: Prowl.Runtime.Rendering.IRenderableLight
+- uid: Prowl.Runtime.Rendering.LightBVH.Remove(Prowl.Runtime.Rendering.IRenderableLight)
+  commentId: M:Prowl.Runtime.Rendering.LightBVH.Remove(Prowl.Runtime.Rendering.IRenderableLight)
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_Remove_Prowl_Runtime_Rendering_IRenderableLight_
+  name: Remove(IRenderableLight)
+  nameWithType: LightBVH.Remove(IRenderableLight)
+  fullName: Prowl.Runtime.Rendering.LightBVH.Remove(Prowl.Runtime.Rendering.IRenderableLight)
+  spec.csharp:
+  - uid: Prowl.Runtime.Rendering.LightBVH.Remove(Prowl.Runtime.Rendering.IRenderableLight)
+    name: Remove
+    href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_Remove_Prowl_Runtime_Rendering_IRenderableLight_
+  - name: (
+  - uid: Prowl.Runtime.Rendering.IRenderableLight
+    name: IRenderableLight
+    href: Prowl.Runtime.Rendering.IRenderableLight.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Rendering.LightBVH.Remove(Prowl.Runtime.Rendering.IRenderableLight)
+    name: Remove
+    href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_Remove_Prowl_Runtime_Rendering_IRenderableLight_
+  - name: (
+  - uid: Prowl.Runtime.Rendering.IRenderableLight
+    name: IRenderableLight
+    href: Prowl.Runtime.Rendering.IRenderableLight.html
+  - name: )
+- uid: Prowl.Runtime.Rendering.LightBVH.Sync
+  commentId: M:Prowl.Runtime.Rendering.LightBVH.Sync
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_Sync
+  name: Sync()
+  nameWithType: LightBVH.Sync()
+  fullName: Prowl.Runtime.Rendering.LightBVH.Sync()
+  spec.csharp:
+  - uid: Prowl.Runtime.Rendering.LightBVH.Sync
+    name: Sync
+    href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_Sync
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Rendering.LightBVH.Sync
+    name: Sync
+    href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_Sync
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Rendering.LightBVH.Add*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVH.Add
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_Add_Prowl_Runtime_Rendering_IRenderableLight_Prowl_Runtime_Rendering_ForwardLightData__
+  name: Add
+  nameWithType: LightBVH.Add
+  fullName: Prowl.Runtime.Rendering.LightBVH.Add
+- uid: Prowl.Runtime.Rendering.ForwardLightData
+  commentId: T:Prowl.Runtime.Rendering.ForwardLightData
+  parent: Prowl.Runtime.Rendering
+  href: Prowl.Runtime.Rendering.ForwardLightData.html
+  name: ForwardLightData
+  nameWithType: ForwardLightData
+  fullName: Prowl.Runtime.Rendering.ForwardLightData
+- uid: Prowl.Runtime.Rendering.LightBVH.Remove*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVH.Remove
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_Remove_Prowl_Runtime_Rendering_IRenderableLight_
+  name: Remove
+  nameWithType: LightBVH.Remove
+  fullName: Prowl.Runtime.Rendering.LightBVH.Remove
+- uid: Prowl.Runtime.Rendering.LightBVH.Update*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVH.Update
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_Update_Prowl_Runtime_Rendering_IRenderableLight_Prowl_Runtime_Rendering_ForwardLightData__
+  name: Update
+  nameWithType: LightBVH.Update
+  fullName: Prowl.Runtime.Rendering.LightBVH.Update
+- uid: Prowl.Runtime.Rendering.LightBVH.Sync*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVH.Sync
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_Sync
+  name: Sync
+  nameWithType: LightBVH.Sync
+  fullName: Prowl.Runtime.Rendering.LightBVH.Sync
+- uid: Prowl.Runtime.Rendering.LightBVH.ClearDirtyRanges*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVH.ClearDirtyRanges
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_ClearDirtyRanges
+  name: ClearDirtyRanges
+  nameWithType: LightBVH.ClearDirtyRanges
+  fullName: Prowl.Runtime.Rendering.LightBVH.ClearDirtyRanges
+- uid: Prowl.Runtime.Rendering.LightBVH.TryGetSlotDirtyRange*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVH.TryGetSlotDirtyRange
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_TryGetSlotDirtyRange_System_Int32__System_Int32__
+  name: TryGetSlotDirtyRange
+  nameWithType: LightBVH.TryGetSlotDirtyRange
+  fullName: Prowl.Runtime.Rendering.LightBVH.TryGetSlotDirtyRange
+- uid: Prowl.Runtime.Rendering.LightBVH.TryGetNodeDirtyRange*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVH.TryGetNodeDirtyRange
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_TryGetNodeDirtyRange_System_Int32__System_Int32__
+  name: TryGetNodeDirtyRange
+  nameWithType: LightBVH.TryGetNodeDirtyRange
+  fullName: Prowl.Runtime.Rendering.LightBVH.TryGetNodeDirtyRange
+- uid: Prowl.Runtime.Rendering.LightBVH.MarkAllDirty*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVH.MarkAllDirty
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_MarkAllDirty
+  name: MarkAllDirty
+  nameWithType: LightBVH.MarkAllDirty
+  fullName: Prowl.Runtime.Rendering.LightBVH.MarkAllDirty
+- uid: Prowl.Runtime.Rendering.LightBVH.SetShadowSlot*
+  commentId: Overload:Prowl.Runtime.Rendering.LightBVH.SetShadowSlot
+  href: Prowl.Runtime.Rendering.LightBVH.html#Prowl_Runtime_Rendering_LightBVH_SetShadowSlot_Prowl_Runtime_Rendering_IRenderableLight_System_Int32_
+  name: SetShadowSlot
+  nameWithType: LightBVH.SetShadowSlot
+  fullName: Prowl.Runtime.Rendering.LightBVH.SetShadowSlot

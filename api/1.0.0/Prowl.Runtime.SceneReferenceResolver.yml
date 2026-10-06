@@ -1,0 +1,1197 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.SceneReferenceResolver
+  commentId: T:Prowl.Runtime.SceneReferenceResolver
+  id: SceneReferenceResolver
+  parent: Prowl.Runtime
+  children:
+  - Prowl.Runtime.SceneReferenceResolver.#ctor(System.Object[])
+  - Prowl.Runtime.SceneReferenceResolver.ContextForLinking(Prowl.Runtime.Resources.Scene)
+  - Prowl.Runtime.SceneReferenceResolver.ContextForTree(Prowl.Runtime.GameObject)
+  - Prowl.Runtime.SceneReferenceResolver.ForTree(Prowl.Runtime.GameObject)
+  - Prowl.Runtime.SceneReferenceResolver.ForTrees(System.Collections.Generic.IEnumerable{Prowl.Runtime.GameObject})
+  - Prowl.Runtime.SceneReferenceResolver.GetReferenceKey(System.Object)
+  - Prowl.Runtime.SceneReferenceResolver.LinkedOut
+  - Prowl.Runtime.SceneReferenceResolver.None
+  - Prowl.Runtime.SceneReferenceResolver.ResolveIn
+  - Prowl.Runtime.SceneReferenceResolver.ResolveReference(System.Object,System.Type)
+  - Prowl.Runtime.SceneReferenceResolver.WriteMemoryCopy(Prowl.Runtime.GameObject)
+  langs:
+  - csharp
+  - vb
+  name: SceneReferenceResolver
+  nameWithType: SceneReferenceResolver
+  fullName: Prowl.Runtime.SceneReferenceResolver
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/SceneReferenceResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SceneReferenceResolver
+    path: ../Prowl/Prowl.Runtime/Utils/SceneReferenceResolver.cs
+    startLine: 28
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Echo external-reference resolver for scene objects. The objects passed to the constructor - the
+
+    copy selection, or the tree being written to an asset - serialize by value; every other
+
+    GameObject / MonoBehaviour / Transform reference is linked by its persistence id and resolved back
+
+    against the current scene, so the copy keeps its references to the rest of the scene instead of
+
+    deep-cloning them into orphans. References that can't be resolved (different scene, deleted
+
+    object) become null.
+
+
+    Shared across the flows that serialize part of a scene: component copy/paste, GameObject
+
+    duplication, and prefab creation/apply. Each passes the roots it is serializing by value, and
+
+    everything outside that set is linked.
+  example: []
+  syntax:
+    content: 'public sealed class SceneReferenceResolver : IExternalReferenceResolver'
+    content.vb: Public NotInheritable Class SceneReferenceResolver Implements IExternalReferenceResolver
+  inheritance:
+  - System.Object
+  implements:
+  - Prowl.Echo.IExternalReferenceResolver
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.SceneReferenceResolver.None
+  commentId: F:Prowl.Runtime.SceneReferenceResolver.None
+  id: None
+  parent: Prowl.Runtime.SceneReferenceResolver
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: SceneReferenceResolver.None
+  fullName: Prowl.Runtime.SceneReferenceResolver.None
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/SceneReferenceResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: None
+    path: ../Prowl/Prowl.Runtime/Utils/SceneReferenceResolver.cs
+    startLine: 39
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Links nothing and resolves nothing, for reading content that must not bind to the scene at
+
+    all - a prefab asset, which cannot legally reference scene objects. Echo only recognises a
+
+    reference stub while a resolver is present, so this is what turns an external reference into
+
+    null instead of an empty object rebuilt from the stub. Deserialization only: serializing with
+
+    it would deep-copy every reference rather than link it.
+  example: []
+  syntax:
+    content: public static readonly IExternalReferenceResolver None
+    return:
+      type: Prowl.Echo.IExternalReferenceResolver
+    content.vb: Public Shared ReadOnly None As IExternalReferenceResolver
+- uid: Prowl.Runtime.SceneReferenceResolver.#ctor(System.Object[])
+  commentId: M:Prowl.Runtime.SceneReferenceResolver.#ctor(System.Object[])
+  id: '#ctor(System.Object[])'
+  parent: Prowl.Runtime.SceneReferenceResolver
+  langs:
+  - csharp
+  - vb
+  name: SceneReferenceResolver(params object[])
+  nameWithType: SceneReferenceResolver.SceneReferenceResolver(params object[])
+  fullName: Prowl.Runtime.SceneReferenceResolver.SceneReferenceResolver(params object[])
+  type: Constructor
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/SceneReferenceResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: .ctor
+    path: ../Prowl/Prowl.Runtime/Utils/SceneReferenceResolver.cs
+    startLine: 46
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  example: []
+  syntax:
+    content: public SceneReferenceResolver(params object[] copied)
+    parameters:
+    - id: copied
+      type: System.Object[]
+      description: >-
+        The objects being serialized by value. Anything they reference that isn't in this set is
+
+        linked by id instead of cloned. Pass nothing when only deserializing (paste), since the key
+
+        side is never consulted then.
+    content.vb: Public Sub New(ParamArray copied As Object())
+  overload: Prowl.Runtime.SceneReferenceResolver.#ctor*
+  nameWithType.vb: SceneReferenceResolver.New(ParamArray Object())
+  fullName.vb: Prowl.Runtime.SceneReferenceResolver.New(ParamArray Object())
+  name.vb: New(ParamArray Object())
+- uid: Prowl.Runtime.SceneReferenceResolver.ResolveIn
+  commentId: P:Prowl.Runtime.SceneReferenceResolver.ResolveIn
+  id: ResolveIn
+  parent: Prowl.Runtime.SceneReferenceResolver
+  langs:
+  - csharp
+  - vb
+  name: ResolveIn
+  nameWithType: SceneReferenceResolver.ResolveIn
+  fullName: Prowl.Runtime.SceneReferenceResolver.ResolveIn
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/SceneReferenceResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ResolveIn
+    path: ../Prowl/Prowl.Runtime/Utils/SceneReferenceResolver.cs
+    startLine: 55
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Which scene a link resolves against. Null means the open one, which is right for everything the
+
+    user does directly. A caller working on a scene that is not open - a build reading one off disk -
+
+    has to say so, or its references resolve against whatever scene happens to be open and bind to
+
+    the wrong objects or to nothing.
+  example: []
+  syntax:
+    content: public Scene? ResolveIn { get; init; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.Resources.Scene
+    content.vb: Public Property ResolveIn As Scene
+  overload: Prowl.Runtime.SceneReferenceResolver.ResolveIn*
+- uid: Prowl.Runtime.SceneReferenceResolver.ContextForTree(Prowl.Runtime.GameObject)
+  commentId: M:Prowl.Runtime.SceneReferenceResolver.ContextForTree(Prowl.Runtime.GameObject)
+  id: ContextForTree(Prowl.Runtime.GameObject)
+  parent: Prowl.Runtime.SceneReferenceResolver
+  langs:
+  - csharp
+  - vb
+  name: ContextForTree(GameObject)
+  nameWithType: SceneReferenceResolver.ContextForTree(GameObject)
+  fullName: Prowl.Runtime.SceneReferenceResolver.ContextForTree(Prowl.Runtime.GameObject)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/SceneReferenceResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ContextForTree
+    path: ../Prowl/Prowl.Runtime/Utils/SceneReferenceResolver.cs
+    startLine: 58
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Context for writing a tree out by value, linking everything it references beyond itself.
+  example: []
+  syntax:
+    content: public static SerializationContext ContextForTree(GameObject root)
+    parameters:
+    - id: root
+      type: Prowl.Runtime.GameObject
+    return:
+      type: Prowl.Echo.SerializationContext
+    content.vb: Public Shared Function ContextForTree(root As GameObject) As SerializationContext
+  overload: Prowl.Runtime.SceneReferenceResolver.ContextForTree*
+- uid: Prowl.Runtime.SceneReferenceResolver.WriteMemoryCopy(Prowl.Runtime.GameObject)
+  commentId: M:Prowl.Runtime.SceneReferenceResolver.WriteMemoryCopy(Prowl.Runtime.GameObject)
+  id: WriteMemoryCopy(Prowl.Runtime.GameObject)
+  parent: Prowl.Runtime.SceneReferenceResolver
+  langs:
+  - csharp
+  - vb
+  name: WriteMemoryCopy(GameObject)
+  nameWithType: SceneReferenceResolver.WriteMemoryCopy(GameObject)
+  fullName: Prowl.Runtime.SceneReferenceResolver.WriteMemoryCopy(Prowl.Runtime.GameObject)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/SceneReferenceResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WriteMemoryCopy
+    path: ../Prowl/Prowl.Runtime/Utils/SceneReferenceResolver.cs
+    startLine: 69
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Writes a tree for an in-memory copy, holding the runtime assets it links so they live as long as the copy.
+  example: []
+  syntax:
+    content: public static MemoryCopy WriteMemoryCopy(GameObject root)
+    parameters:
+    - id: root
+      type: Prowl.Runtime.GameObject
+    return:
+      type: Prowl.Runtime.MemoryCopy
+    content.vb: Public Shared Function WriteMemoryCopy(root As GameObject) As MemoryCopy
+  overload: Prowl.Runtime.SceneReferenceResolver.WriteMemoryCopy*
+- uid: Prowl.Runtime.SceneReferenceResolver.ContextForLinking(Prowl.Runtime.Resources.Scene)
+  commentId: M:Prowl.Runtime.SceneReferenceResolver.ContextForLinking(Prowl.Runtime.Resources.Scene)
+  id: ContextForLinking(Prowl.Runtime.Resources.Scene)
+  parent: Prowl.Runtime.SceneReferenceResolver
+  langs:
+  - csharp
+  - vb
+  name: ContextForLinking(Scene?)
+  nameWithType: SceneReferenceResolver.ContextForLinking(Scene?)
+  fullName: Prowl.Runtime.SceneReferenceResolver.ContextForLinking(Prowl.Runtime.Resources.Scene?)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/SceneReferenceResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ContextForLinking
+    path: ../Prowl/Prowl.Runtime/Utils/SceneReferenceResolver.cs
+    startLine: 79
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Context for reading data back, binding every link to the live object it names.
+  example: []
+  syntax:
+    content: public static SerializationContext ContextForLinking(Scene? scene = null)
+    parameters:
+    - id: scene
+      type: Prowl.Runtime.Resources.Scene
+      description: The scene to resolve in, or null for the open one.
+    return:
+      type: Prowl.Echo.SerializationContext
+    content.vb: Public Shared Function ContextForLinking(scene As Scene = Nothing) As SerializationContext
+  overload: Prowl.Runtime.SceneReferenceResolver.ContextForLinking*
+  nameWithType.vb: SceneReferenceResolver.ContextForLinking(Scene)
+  fullName.vb: Prowl.Runtime.SceneReferenceResolver.ContextForLinking(Prowl.Runtime.Resources.Scene)
+  name.vb: ContextForLinking(Scene)
+- uid: Prowl.Runtime.SceneReferenceResolver.ForTree(Prowl.Runtime.GameObject)
+  commentId: M:Prowl.Runtime.SceneReferenceResolver.ForTree(Prowl.Runtime.GameObject)
+  id: ForTree(Prowl.Runtime.GameObject)
+  parent: Prowl.Runtime.SceneReferenceResolver
+  langs:
+  - csharp
+  - vb
+  name: ForTree(GameObject)
+  nameWithType: SceneReferenceResolver.ForTree(GameObject)
+  fullName: Prowl.Runtime.SceneReferenceResolver.ForTree(Prowl.Runtime.GameObject)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/SceneReferenceResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ForTree
+    path: ../Prowl/Prowl.Runtime/Utils/SceneReferenceResolver.cs
+    startLine: 87
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    A resolver for writing out a whole GameObject tree: the tree serializes by value, and anything
+
+    it references from outside is linked. Transforms and components have to be listed alongside
+
+    their GameObjects, or they would serialize as links themselves.
+  example: []
+  syntax:
+    content: public static SceneReferenceResolver ForTree(GameObject root)
+    parameters:
+    - id: root
+      type: Prowl.Runtime.GameObject
+    return:
+      type: Prowl.Runtime.SceneReferenceResolver
+    content.vb: Public Shared Function ForTree(root As GameObject) As SceneReferenceResolver
+  overload: Prowl.Runtime.SceneReferenceResolver.ForTree*
+- uid: Prowl.Runtime.SceneReferenceResolver.ForTrees(System.Collections.Generic.IEnumerable{Prowl.Runtime.GameObject})
+  commentId: M:Prowl.Runtime.SceneReferenceResolver.ForTrees(System.Collections.Generic.IEnumerable{Prowl.Runtime.GameObject})
+  id: ForTrees(System.Collections.Generic.IEnumerable{Prowl.Runtime.GameObject})
+  parent: Prowl.Runtime.SceneReferenceResolver
+  langs:
+  - csharp
+  - vb
+  name: ForTrees(IEnumerable<GameObject>)
+  nameWithType: SceneReferenceResolver.ForTrees(IEnumerable<GameObject>)
+  fullName: Prowl.Runtime.SceneReferenceResolver.ForTrees(System.Collections.Generic.IEnumerable<Prowl.Runtime.GameObject>)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/SceneReferenceResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ForTrees
+    path: ../Prowl/Prowl.Runtime/Utils/SceneReferenceResolver.cs
+    startLine: 93
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    A resolver for writing out several trees as one operation, so a reference from one to another
+
+    stays inside the data instead of being linked out or copied twice.
+  example: []
+  syntax:
+    content: public static SceneReferenceResolver ForTrees(IEnumerable<GameObject> roots)
+    parameters:
+    - id: roots
+      type: System.Collections.Generic.IEnumerable{Prowl.Runtime.GameObject}
+    return:
+      type: Prowl.Runtime.SceneReferenceResolver
+    content.vb: Public Shared Function ForTrees(roots As IEnumerable(Of GameObject)) As SceneReferenceResolver
+  overload: Prowl.Runtime.SceneReferenceResolver.ForTrees*
+  nameWithType.vb: SceneReferenceResolver.ForTrees(IEnumerable(Of GameObject))
+  fullName.vb: Prowl.Runtime.SceneReferenceResolver.ForTrees(System.Collections.Generic.IEnumerable(Of Prowl.Runtime.GameObject))
+  name.vb: ForTrees(IEnumerable(Of GameObject))
+- uid: Prowl.Runtime.SceneReferenceResolver.LinkedOut
+  commentId: P:Prowl.Runtime.SceneReferenceResolver.LinkedOut
+  id: LinkedOut
+  parent: Prowl.Runtime.SceneReferenceResolver
+  langs:
+  - csharp
+  - vb
+  name: LinkedOut
+  nameWithType: SceneReferenceResolver.LinkedOut
+  fullName: Prowl.Runtime.SceneReferenceResolver.LinkedOut
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/SceneReferenceResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LinkedOut
+    path: ../Prowl/Prowl.Runtime/Utils/SceneReferenceResolver.cs
+    startLine: 126
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    The objects this resolver linked out rather than serialized, in the order it met them.
+
+
+    <p></p>
+
+
+    Linking out is right for a copy, which lands back in the same scene. It is a loss for a prefab
+
+    asset, which cannot hold a scene reference at all and will read the link back as null. The
+
+    resolver is the only place that knows it happened, so it records it and lets the caller decide
+
+    whether that is worth saying anything about.
+  example: []
+  syntax:
+    content: public IReadOnlyList<object> LinkedOut { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{System.Object}
+    content.vb: Public ReadOnly Property LinkedOut As IReadOnlyList(Of Object)
+  overload: Prowl.Runtime.SceneReferenceResolver.LinkedOut*
+- uid: Prowl.Runtime.SceneReferenceResolver.GetReferenceKey(System.Object)
+  commentId: M:Prowl.Runtime.SceneReferenceResolver.GetReferenceKey(System.Object)
+  id: GetReferenceKey(System.Object)
+  parent: Prowl.Runtime.SceneReferenceResolver
+  langs:
+  - csharp
+  - vb
+  name: GetReferenceKey(object)
+  nameWithType: SceneReferenceResolver.GetReferenceKey(object)
+  fullName: Prowl.Runtime.SceneReferenceResolver.GetReferenceKey(object)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/SceneReferenceResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetReferenceKey
+    path: ../Prowl/Prowl.Runtime/Utils/SceneReferenceResolver.cs
+    startLine: 130
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  example: []
+  syntax:
+    content: public object? GetReferenceKey(object value)
+    parameters:
+    - id: value
+      type: System.Object
+    return:
+      type: System.Object
+    content.vb: Public Function GetReferenceKey(value As Object) As Object
+  overload: Prowl.Runtime.SceneReferenceResolver.GetReferenceKey*
+  implements:
+  - Prowl.Echo.IExternalReferenceResolver.GetReferenceKey(System.Object)
+  nameWithType.vb: SceneReferenceResolver.GetReferenceKey(Object)
+  fullName.vb: Prowl.Runtime.SceneReferenceResolver.GetReferenceKey(Object)
+  name.vb: GetReferenceKey(Object)
+- uid: Prowl.Runtime.SceneReferenceResolver.ResolveReference(System.Object,System.Type)
+  commentId: M:Prowl.Runtime.SceneReferenceResolver.ResolveReference(System.Object,System.Type)
+  id: ResolveReference(System.Object,System.Type)
+  parent: Prowl.Runtime.SceneReferenceResolver
+  langs:
+  - csharp
+  - vb
+  name: ResolveReference(object, Type)
+  nameWithType: SceneReferenceResolver.ResolveReference(object, Type)
+  fullName: Prowl.Runtime.SceneReferenceResolver.ResolveReference(object, System.Type)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Utils/SceneReferenceResolver.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ResolveReference
+    path: ../Prowl/Prowl.Runtime/Utils/SceneReferenceResolver.cs
+    startLine: 149
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  example: []
+  syntax:
+    content: public object? ResolveReference(object key, Type targetType)
+    parameters:
+    - id: key
+      type: System.Object
+    - id: targetType
+      type: System.Type
+    return:
+      type: System.Object
+    content.vb: Public Function ResolveReference(key As Object, targetType As Type) As Object
+  overload: Prowl.Runtime.SceneReferenceResolver.ResolveReference*
+  implements:
+  - Prowl.Echo.IExternalReferenceResolver.ResolveReference(System.Object,System.Type)
+  nameWithType.vb: SceneReferenceResolver.ResolveReference(Object, Type)
+  fullName.vb: Prowl.Runtime.SceneReferenceResolver.ResolveReference(Object, System.Type)
+  name.vb: ResolveReference(Object, Type)
+references:
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.Echo.IExternalReferenceResolver
+  commentId: T:Prowl.Echo.IExternalReferenceResolver
+  parent: Prowl.Echo
+  isExternal: true
+  name: IExternalReferenceResolver
+  nameWithType: IExternalReferenceResolver
+  fullName: Prowl.Echo.IExternalReferenceResolver
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Echo
+  commentId: N:Prowl.Echo
+  name: Prowl.Echo
+  nameWithType: Prowl.Echo
+  fullName: Prowl.Echo
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime.SceneReferenceResolver.#ctor*
+  commentId: Overload:Prowl.Runtime.SceneReferenceResolver.#ctor
+  href: Prowl.Runtime.SceneReferenceResolver.html#Prowl_Runtime_SceneReferenceResolver__ctor_System_Object___
+  name: SceneReferenceResolver
+  nameWithType: SceneReferenceResolver.SceneReferenceResolver
+  fullName: Prowl.Runtime.SceneReferenceResolver.SceneReferenceResolver
+  nameWithType.vb: SceneReferenceResolver.New
+  fullName.vb: Prowl.Runtime.SceneReferenceResolver.New
+  name.vb: New
+- uid: System.Object[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object[]
+  nameWithType: object[]
+  fullName: object[]
+  nameWithType.vb: Object()
+  fullName.vb: Object()
+  name.vb: Object()
+  spec.csharp:
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.SceneReferenceResolver.ResolveIn*
+  commentId: Overload:Prowl.Runtime.SceneReferenceResolver.ResolveIn
+  href: Prowl.Runtime.SceneReferenceResolver.html#Prowl_Runtime_SceneReferenceResolver_ResolveIn
+  name: ResolveIn
+  nameWithType: SceneReferenceResolver.ResolveIn
+  fullName: Prowl.Runtime.SceneReferenceResolver.ResolveIn
+- uid: Prowl.Runtime.Resources.Scene
+  commentId: T:Prowl.Runtime.Resources.Scene
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.Scene.html
+  name: Scene
+  nameWithType: Scene
+  fullName: Prowl.Runtime.Resources.Scene
+- uid: Prowl.Runtime.Resources
+  commentId: N:Prowl.Runtime.Resources
+  name: Prowl.Runtime.Resources
+  nameWithType: Prowl.Runtime.Resources
+  fullName: Prowl.Runtime.Resources
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+- uid: Prowl.Runtime.SceneReferenceResolver.ContextForTree*
+  commentId: Overload:Prowl.Runtime.SceneReferenceResolver.ContextForTree
+  href: Prowl.Runtime.SceneReferenceResolver.html#Prowl_Runtime_SceneReferenceResolver_ContextForTree_Prowl_Runtime_GameObject_
+  name: ContextForTree
+  nameWithType: SceneReferenceResolver.ContextForTree
+  fullName: Prowl.Runtime.SceneReferenceResolver.ContextForTree
+- uid: Prowl.Runtime.GameObject
+  commentId: T:Prowl.Runtime.GameObject
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.GameObject.html
+  name: GameObject
+  nameWithType: GameObject
+  fullName: Prowl.Runtime.GameObject
+- uid: Prowl.Echo.SerializationContext
+  commentId: T:Prowl.Echo.SerializationContext
+  parent: Prowl.Echo
+  isExternal: true
+  name: SerializationContext
+  nameWithType: SerializationContext
+  fullName: Prowl.Echo.SerializationContext
+- uid: Prowl.Runtime.SceneReferenceResolver.WriteMemoryCopy*
+  commentId: Overload:Prowl.Runtime.SceneReferenceResolver.WriteMemoryCopy
+  href: Prowl.Runtime.SceneReferenceResolver.html#Prowl_Runtime_SceneReferenceResolver_WriteMemoryCopy_Prowl_Runtime_GameObject_
+  name: WriteMemoryCopy
+  nameWithType: SceneReferenceResolver.WriteMemoryCopy
+  fullName: Prowl.Runtime.SceneReferenceResolver.WriteMemoryCopy
+- uid: Prowl.Runtime.MemoryCopy
+  commentId: T:Prowl.Runtime.MemoryCopy
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.MemoryCopy.html
+  name: MemoryCopy
+  nameWithType: MemoryCopy
+  fullName: Prowl.Runtime.MemoryCopy
+- uid: Prowl.Runtime.SceneReferenceResolver.ContextForLinking*
+  commentId: Overload:Prowl.Runtime.SceneReferenceResolver.ContextForLinking
+  href: Prowl.Runtime.SceneReferenceResolver.html#Prowl_Runtime_SceneReferenceResolver_ContextForLinking_Prowl_Runtime_Resources_Scene_
+  name: ContextForLinking
+  nameWithType: SceneReferenceResolver.ContextForLinking
+  fullName: Prowl.Runtime.SceneReferenceResolver.ContextForLinking
+- uid: Prowl.Runtime.SceneReferenceResolver.ForTree*
+  commentId: Overload:Prowl.Runtime.SceneReferenceResolver.ForTree
+  href: Prowl.Runtime.SceneReferenceResolver.html#Prowl_Runtime_SceneReferenceResolver_ForTree_Prowl_Runtime_GameObject_
+  name: ForTree
+  nameWithType: SceneReferenceResolver.ForTree
+  fullName: Prowl.Runtime.SceneReferenceResolver.ForTree
+- uid: Prowl.Runtime.SceneReferenceResolver
+  commentId: T:Prowl.Runtime.SceneReferenceResolver
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.SceneReferenceResolver.html
+  name: SceneReferenceResolver
+  nameWithType: SceneReferenceResolver
+  fullName: Prowl.Runtime.SceneReferenceResolver
+- uid: Prowl.Runtime.SceneReferenceResolver.ForTrees*
+  commentId: Overload:Prowl.Runtime.SceneReferenceResolver.ForTrees
+  href: Prowl.Runtime.SceneReferenceResolver.html#Prowl_Runtime_SceneReferenceResolver_ForTrees_System_Collections_Generic_IEnumerable_Prowl_Runtime_GameObject__
+  name: ForTrees
+  nameWithType: SceneReferenceResolver.ForTrees
+  fullName: Prowl.Runtime.SceneReferenceResolver.ForTrees
+- uid: System.Collections.Generic.IEnumerable{Prowl.Runtime.GameObject}
+  commentId: T:System.Collections.Generic.IEnumerable{Prowl.Runtime.GameObject}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<GameObject>
+  nameWithType: IEnumerable<GameObject>
+  fullName: System.Collections.Generic.IEnumerable<Prowl.Runtime.GameObject>
+  nameWithType.vb: IEnumerable(Of GameObject)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of Prowl.Runtime.GameObject)
+  name.vb: IEnumerable(Of GameObject)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Prowl.Runtime.SceneReferenceResolver.LinkedOut*
+  commentId: Overload:Prowl.Runtime.SceneReferenceResolver.LinkedOut
+  href: Prowl.Runtime.SceneReferenceResolver.html#Prowl_Runtime_SceneReferenceResolver_LinkedOut
+  name: LinkedOut
+  nameWithType: SceneReferenceResolver.LinkedOut
+  fullName: Prowl.Runtime.SceneReferenceResolver.LinkedOut
+- uid: System.Collections.Generic.IReadOnlyList{System.Object}
+  commentId: T:System.Collections.Generic.IReadOnlyList{System.Object}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<object>
+  nameWithType: IReadOnlyList<object>
+  fullName: System.Collections.Generic.IReadOnlyList<object>
+  nameWithType.vb: IReadOnlyList(Of Object)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Object)
+  name.vb: IReadOnlyList(Of Object)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Runtime.SceneReferenceResolver.GetReferenceKey*
+  commentId: Overload:Prowl.Runtime.SceneReferenceResolver.GetReferenceKey
+  href: Prowl.Runtime.SceneReferenceResolver.html#Prowl_Runtime_SceneReferenceResolver_GetReferenceKey_System_Object_
+  name: GetReferenceKey
+  nameWithType: SceneReferenceResolver.GetReferenceKey
+  fullName: Prowl.Runtime.SceneReferenceResolver.GetReferenceKey
+- uid: Prowl.Echo.IExternalReferenceResolver.GetReferenceKey(System.Object)
+  commentId: M:Prowl.Echo.IExternalReferenceResolver.GetReferenceKey(System.Object)
+  parent: Prowl.Echo.IExternalReferenceResolver
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: GetReferenceKey(object)
+  nameWithType: IExternalReferenceResolver.GetReferenceKey(object)
+  fullName: Prowl.Echo.IExternalReferenceResolver.GetReferenceKey(object)
+  nameWithType.vb: IExternalReferenceResolver.GetReferenceKey(Object)
+  fullName.vb: Prowl.Echo.IExternalReferenceResolver.GetReferenceKey(Object)
+  name.vb: GetReferenceKey(Object)
+  spec.csharp:
+  - uid: Prowl.Echo.IExternalReferenceResolver.GetReferenceKey(System.Object)
+    name: GetReferenceKey
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Echo.IExternalReferenceResolver.GetReferenceKey(System.Object)
+    name: GetReferenceKey
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.SceneReferenceResolver.ResolveReference*
+  commentId: Overload:Prowl.Runtime.SceneReferenceResolver.ResolveReference
+  href: Prowl.Runtime.SceneReferenceResolver.html#Prowl_Runtime_SceneReferenceResolver_ResolveReference_System_Object_System_Type_
+  name: ResolveReference
+  nameWithType: SceneReferenceResolver.ResolveReference
+  fullName: Prowl.Runtime.SceneReferenceResolver.ResolveReference
+- uid: Prowl.Echo.IExternalReferenceResolver.ResolveReference(System.Object,System.Type)
+  commentId: M:Prowl.Echo.IExternalReferenceResolver.ResolveReference(System.Object,System.Type)
+  parent: Prowl.Echo.IExternalReferenceResolver
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: ResolveReference(object, Type)
+  nameWithType: IExternalReferenceResolver.ResolveReference(object, Type)
+  fullName: Prowl.Echo.IExternalReferenceResolver.ResolveReference(object, System.Type)
+  nameWithType.vb: IExternalReferenceResolver.ResolveReference(Object, Type)
+  fullName.vb: Prowl.Echo.IExternalReferenceResolver.ResolveReference(Object, System.Type)
+  name.vb: ResolveReference(Object, Type)
+  spec.csharp:
+  - uid: Prowl.Echo.IExternalReferenceResolver.ResolveReference(System.Object,System.Type)
+    name: ResolveReference
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+  spec.vb:
+  - uid: Prowl.Echo.IExternalReferenceResolver.ResolveReference(System.Object,System.Type)
+    name: ResolveReference
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type
+  nameWithType: Type
+  fullName: System.Type

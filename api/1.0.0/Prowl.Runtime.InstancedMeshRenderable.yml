@@ -1,0 +1,1305 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.InstancedMeshRenderable
+  commentId: T:Prowl.Runtime.InstancedMeshRenderable
+  id: InstancedMeshRenderable
+  parent: Prowl.Runtime
+  children:
+  - Prowl.Runtime.InstancedMeshRenderable.#ctor(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material,Prowl.Runtime.Rendering.InstanceData[],Prowl.Vector.Float3,System.Int32,Prowl.Runtime.Rendering.PropertyState,System.Nullable{Prowl.Vector.AABB},System.Int32)
+  - Prowl.Runtime.InstancedMeshRenderable.CreateBatched(System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material,Prowl.Vector.Float4x4[],Prowl.Vector.Float3,Prowl.Vector.Float4[],Prowl.Vector.Float4[],System.Int32,Prowl.Runtime.Rendering.PropertyState,System.Nullable{Prowl.Vector.AABB},System.Int32)
+  - Prowl.Runtime.InstancedMeshRenderable.GetCullingData(System.Boolean@,Prowl.Vector.AABB@)
+  - Prowl.Runtime.InstancedMeshRenderable.GetLayer
+  - Prowl.Runtime.InstancedMeshRenderable.GetMaterial
+  - Prowl.Runtime.InstancedMeshRenderable.GetPosition
+  - Prowl.Runtime.InstancedMeshRenderable.GetRenderingData(Prowl.Runtime.Rendering.ViewerData,Prowl.Runtime.Rendering.PropertyState@,Prowl.Runtime.Resources.Mesh@,Prowl.Vector.Float4x4@,Prowl.Runtime.Rendering.InstanceData[]@)
+  - Prowl.Runtime.InstancedMeshRenderable.GetSubMeshIndex
+  langs:
+  - csharp
+  - vb
+  name: InstancedMeshRenderable
+  nameWithType: InstancedMeshRenderable
+  fullName: Prowl.Runtime.InstancedMeshRenderable
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime/InstancedMeshRenderable.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: InstancedMeshRenderable
+    path: ../Prowl/Prowl.Runtime/InstancedMeshRenderable.cs
+    startLine: 16
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    A simple instanced renderable for drawing multiple instances of a mesh.
+
+    Useful for drawing many copies of the same object efficiently (trees, grass, particles, etc.)
+
+    Uses the mesh's cached instance VAO for optimal performance.
+  example: []
+  syntax:
+    content: 'public class InstancedMeshRenderable : IRenderable'
+    content.vb: Public Class InstancedMeshRenderable Implements IRenderable
+  inheritance:
+  - System.Object
+  implements:
+  - Prowl.Runtime.Rendering.IRenderable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.InstancedMeshRenderable.#ctor(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material,Prowl.Runtime.Rendering.InstanceData[],Prowl.Vector.Float3,System.Int32,Prowl.Runtime.Rendering.PropertyState,System.Nullable{Prowl.Vector.AABB},System.Int32)
+  commentId: M:Prowl.Runtime.InstancedMeshRenderable.#ctor(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material,Prowl.Runtime.Rendering.InstanceData[],Prowl.Vector.Float3,System.Int32,Prowl.Runtime.Rendering.PropertyState,System.Nullable{Prowl.Vector.AABB},System.Int32)
+  id: '#ctor(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material,Prowl.Runtime.Rendering.InstanceData[],Prowl.Vector.Float3,System.Int32,Prowl.Runtime.Rendering.PropertyState,System.Nullable{Prowl.Vector.AABB},System.Int32)'
+  parent: Prowl.Runtime.InstancedMeshRenderable
+  langs:
+  - csharp
+  - vb
+  name: InstancedMeshRenderable(Mesh, Material, InstanceData[], Float3, int, PropertyState?, AABB?, int)
+  nameWithType: InstancedMeshRenderable.InstancedMeshRenderable(Mesh, Material, InstanceData[], Float3, int, PropertyState?, AABB?, int)
+  fullName: Prowl.Runtime.InstancedMeshRenderable.InstancedMeshRenderable(Prowl.Runtime.Resources.Mesh, Prowl.Runtime.Resources.Material, Prowl.Runtime.Rendering.InstanceData[], Prowl.Vector.Float3, int, Prowl.Runtime.Rendering.PropertyState?, Prowl.Vector.AABB?, int)
+  type: Constructor
+  source:
+    remote:
+      path: Prowl.Runtime/InstancedMeshRenderable.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: .ctor
+    path: ../Prowl/Prowl.Runtime/InstancedMeshRenderable.cs
+    startLine: 35
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  example: []
+  syntax:
+    content: public InstancedMeshRenderable(Mesh mesh, Material material, InstanceData[] instanceData, Float3 sortPosition, int layerIndex = 0, PropertyState? sharedProperties = null, AABB? bounds = null, int subMeshIndex = -1)
+    parameters:
+    - id: mesh
+      type: Prowl.Runtime.Resources.Mesh
+      description: Source mesh whose vertex/index buffers are reused for every instance.
+    - id: material
+      type: Prowl.Runtime.Resources.Material
+      description: Material applied to all instances.
+    - id: instanceData
+      type: Prowl.Runtime.Rendering.InstanceData[]
+      description: Per-instance transform/colour data uploaded as the instance buffer.
+    - id: sortPosition
+      type: Prowl.Vector.Float3
+      description: World-space origin for depth sorting. Should be a stable position (e.g., particle system transform, terrain chunk center) to avoid flickering.
+    - id: layerIndex
+      type: System.Int32
+      description: Layer index used for culling/render-ordering.
+    - id: sharedProperties
+      type: Prowl.Runtime.Rendering.PropertyState
+      description: Optional shared property block applied to the material; null creates an empty one.
+    - id: bounds
+      type: System.Nullable{Prowl.Vector.AABB}
+      description: Optional explicit world-space AABB for culling; falls back to the mesh bounds when null.
+    - id: subMeshIndex
+      type: System.Int32
+      description: Which submesh to draw (0..mesh.SubMeshCount-1), or -1 for the entire mesh.
+    content.vb: Public Sub New(mesh As Mesh, material As Material, instanceData As InstanceData(), sortPosition As Float3, layerIndex As Integer = 0, sharedProperties As PropertyState = Nothing, bounds As AABB? = Nothing, subMeshIndex As Integer = -1)
+  overload: Prowl.Runtime.InstancedMeshRenderable.#ctor*
+  nameWithType.vb: InstancedMeshRenderable.New(Mesh, Material, InstanceData(), Float3, Integer, PropertyState, AABB?, Integer)
+  fullName.vb: Prowl.Runtime.InstancedMeshRenderable.New(Prowl.Runtime.Resources.Mesh, Prowl.Runtime.Resources.Material, Prowl.Runtime.Rendering.InstanceData(), Prowl.Vector.Float3, Integer, Prowl.Runtime.Rendering.PropertyState, Prowl.Vector.AABB?, Integer)
+  name.vb: New(Mesh, Material, InstanceData(), Float3, Integer, PropertyState, AABB?, Integer)
+- uid: Prowl.Runtime.InstancedMeshRenderable.GetMaterial
+  commentId: M:Prowl.Runtime.InstancedMeshRenderable.GetMaterial
+  id: GetMaterial
+  parent: Prowl.Runtime.InstancedMeshRenderable
+  langs:
+  - csharp
+  - vb
+  name: GetMaterial()
+  nameWithType: InstancedMeshRenderable.GetMaterial()
+  fullName: Prowl.Runtime.InstancedMeshRenderable.GetMaterial()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InstancedMeshRenderable.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetMaterial
+    path: ../Prowl/Prowl.Runtime/InstancedMeshRenderable.cs
+    startLine: 88
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  example: []
+  syntax:
+    content: public Material GetMaterial()
+    return:
+      type: Prowl.Runtime.Resources.Material
+    content.vb: Public Function GetMaterial() As Material
+  overload: Prowl.Runtime.InstancedMeshRenderable.GetMaterial*
+  implements:
+  - Prowl.Runtime.Rendering.IRenderable.GetMaterial
+- uid: Prowl.Runtime.InstancedMeshRenderable.GetLayer
+  commentId: M:Prowl.Runtime.InstancedMeshRenderable.GetLayer
+  id: GetLayer
+  parent: Prowl.Runtime.InstancedMeshRenderable
+  langs:
+  - csharp
+  - vb
+  name: GetLayer()
+  nameWithType: InstancedMeshRenderable.GetLayer()
+  fullName: Prowl.Runtime.InstancedMeshRenderable.GetLayer()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InstancedMeshRenderable.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetLayer
+    path: ../Prowl/Prowl.Runtime/InstancedMeshRenderable.cs
+    startLine: 89
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  example: []
+  syntax:
+    content: public int GetLayer()
+    return:
+      type: System.Int32
+    content.vb: Public Function GetLayer() As Integer
+  overload: Prowl.Runtime.InstancedMeshRenderable.GetLayer*
+  implements:
+  - Prowl.Runtime.Rendering.IRenderable.GetLayer
+- uid: Prowl.Runtime.InstancedMeshRenderable.GetSubMeshIndex
+  commentId: M:Prowl.Runtime.InstancedMeshRenderable.GetSubMeshIndex
+  id: GetSubMeshIndex
+  parent: Prowl.Runtime.InstancedMeshRenderable
+  langs:
+  - csharp
+  - vb
+  name: GetSubMeshIndex()
+  nameWithType: InstancedMeshRenderable.GetSubMeshIndex()
+  fullName: Prowl.Runtime.InstancedMeshRenderable.GetSubMeshIndex()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InstancedMeshRenderable.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetSubMeshIndex
+    path: ../Prowl/Prowl.Runtime/InstancedMeshRenderable.cs
+    startLine: 90
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Gets the submesh index to draw. -1 means draw the entire index buffer (no submeshes).
+  example: []
+  syntax:
+    content: public int GetSubMeshIndex()
+    return:
+      type: System.Int32
+    content.vb: Public Function GetSubMeshIndex() As Integer
+  overload: Prowl.Runtime.InstancedMeshRenderable.GetSubMeshIndex*
+  implements:
+  - Prowl.Runtime.Rendering.IRenderable.GetSubMeshIndex
+- uid: Prowl.Runtime.InstancedMeshRenderable.GetPosition
+  commentId: M:Prowl.Runtime.InstancedMeshRenderable.GetPosition
+  id: GetPosition
+  parent: Prowl.Runtime.InstancedMeshRenderable
+  langs:
+  - csharp
+  - vb
+  name: GetPosition()
+  nameWithType: InstancedMeshRenderable.GetPosition()
+  fullName: Prowl.Runtime.InstancedMeshRenderable.GetPosition()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InstancedMeshRenderable.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetPosition
+    path: ../Prowl/Prowl.Runtime/InstancedMeshRenderable.cs
+    startLine: 92
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Gets the world-space position of this renderable (typically the transform position).
+
+    Used for depth sorting (e.g., back-to-front sorting for transparent objects).
+  example: []
+  syntax:
+    content: public Float3 GetPosition()
+    return:
+      type: Prowl.Vector.Float3
+    content.vb: Public Function GetPosition() As Float3
+  overload: Prowl.Runtime.InstancedMeshRenderable.GetPosition*
+  implements:
+  - Prowl.Runtime.Rendering.IRenderable.GetPosition
+- uid: Prowl.Runtime.InstancedMeshRenderable.GetRenderingData(Prowl.Runtime.Rendering.ViewerData,Prowl.Runtime.Rendering.PropertyState@,Prowl.Runtime.Resources.Mesh@,Prowl.Vector.Float4x4@,Prowl.Runtime.Rendering.InstanceData[]@)
+  commentId: M:Prowl.Runtime.InstancedMeshRenderable.GetRenderingData(Prowl.Runtime.Rendering.ViewerData,Prowl.Runtime.Rendering.PropertyState@,Prowl.Runtime.Resources.Mesh@,Prowl.Vector.Float4x4@,Prowl.Runtime.Rendering.InstanceData[]@)
+  id: GetRenderingData(Prowl.Runtime.Rendering.ViewerData,Prowl.Runtime.Rendering.PropertyState@,Prowl.Runtime.Resources.Mesh@,Prowl.Vector.Float4x4@,Prowl.Runtime.Rendering.InstanceData[]@)
+  parent: Prowl.Runtime.InstancedMeshRenderable
+  langs:
+  - csharp
+  - vb
+  name: GetRenderingData(ViewerData, out PropertyState, out Mesh, out Float4x4, out InstanceData[]?)
+  nameWithType: InstancedMeshRenderable.GetRenderingData(ViewerData, out PropertyState, out Mesh, out Float4x4, out InstanceData[]?)
+  fullName: Prowl.Runtime.InstancedMeshRenderable.GetRenderingData(Prowl.Runtime.Rendering.ViewerData, out Prowl.Runtime.Rendering.PropertyState, out Prowl.Runtime.Resources.Mesh, out Prowl.Vector.Float4x4, out Prowl.Runtime.Rendering.InstanceData[]?)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InstancedMeshRenderable.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetRenderingData
+    path: ../Prowl/Prowl.Runtime/InstancedMeshRenderable.cs
+    startLine: 98
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Gets the rendering data for this renderable.
+  example: []
+  syntax:
+    content: public void GetRenderingData(ViewerData viewer, out PropertyState properties, out Mesh mesh, out Float4x4 model, out InstanceData[]? instanceData)
+    parameters:
+    - id: viewer
+      type: Prowl.Runtime.Rendering.ViewerData
+      description: Camera viewing data for culling/LOD
+    - id: properties
+      type: Prowl.Runtime.Rendering.PropertyState
+      description: Shader properties (per-object or shared for instances)
+    - id: mesh
+      type: Prowl.Runtime.Resources.Mesh
+      description: Mesh to render
+    - id: model
+      type: Prowl.Vector.Float4x4
+      description: Model matrix (only used for single-instance rendering)
+    - id: instanceData
+      type: Prowl.Runtime.Rendering.InstanceData[]
+      description: Instance data array for GPU instancing, or null for single-instance rendering
+    content.vb: Public Sub GetRenderingData(viewer As ViewerData, properties As PropertyState, mesh As Mesh, model As Float4x4, instanceData As InstanceData())
+  overload: Prowl.Runtime.InstancedMeshRenderable.GetRenderingData*
+  implements:
+  - Prowl.Runtime.Rendering.IRenderable.GetRenderingData(Prowl.Runtime.Rendering.ViewerData,Prowl.Runtime.Rendering.PropertyState@,Prowl.Runtime.Resources.Mesh@,Prowl.Vector.Float4x4@,Prowl.Runtime.Rendering.InstanceData[]@)
+  nameWithType.vb: InstancedMeshRenderable.GetRenderingData(ViewerData, PropertyState, Mesh, Float4x4, InstanceData())
+  fullName.vb: Prowl.Runtime.InstancedMeshRenderable.GetRenderingData(Prowl.Runtime.Rendering.ViewerData, Prowl.Runtime.Rendering.PropertyState, Prowl.Runtime.Resources.Mesh, Prowl.Vector.Float4x4, Prowl.Runtime.Rendering.InstanceData())
+  name.vb: GetRenderingData(ViewerData, PropertyState, Mesh, Float4x4, InstanceData())
+- uid: Prowl.Runtime.InstancedMeshRenderable.GetCullingData(System.Boolean@,Prowl.Vector.AABB@)
+  commentId: M:Prowl.Runtime.InstancedMeshRenderable.GetCullingData(System.Boolean@,Prowl.Vector.AABB@)
+  id: GetCullingData(System.Boolean@,Prowl.Vector.AABB@)
+  parent: Prowl.Runtime.InstancedMeshRenderable
+  langs:
+  - csharp
+  - vb
+  name: GetCullingData(out bool, out AABB)
+  nameWithType: InstancedMeshRenderable.GetCullingData(out bool, out AABB)
+  fullName: Prowl.Runtime.InstancedMeshRenderable.GetCullingData(out bool, out Prowl.Vector.AABB)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InstancedMeshRenderable.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetCullingData
+    path: ../Prowl/Prowl.Runtime/InstancedMeshRenderable.cs
+    startLine: 106
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  example: []
+  syntax:
+    content: public void GetCullingData(out bool isRenderable, out AABB bounds)
+    parameters:
+    - id: isRenderable
+      type: System.Boolean
+    - id: bounds
+      type: Prowl.Vector.AABB
+    content.vb: Public Sub GetCullingData(isRenderable As Boolean, bounds As AABB)
+  overload: Prowl.Runtime.InstancedMeshRenderable.GetCullingData*
+  implements:
+  - Prowl.Runtime.Rendering.IRenderable.GetCullingData(System.Boolean@,Prowl.Vector.AABB@)
+  nameWithType.vb: InstancedMeshRenderable.GetCullingData(Boolean, AABB)
+  fullName.vb: Prowl.Runtime.InstancedMeshRenderable.GetCullingData(Boolean, Prowl.Vector.AABB)
+  name.vb: GetCullingData(Boolean, AABB)
+- uid: Prowl.Runtime.InstancedMeshRenderable.CreateBatched(System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material,Prowl.Vector.Float4x4[],Prowl.Vector.Float3,Prowl.Vector.Float4[],Prowl.Vector.Float4[],System.Int32,Prowl.Runtime.Rendering.PropertyState,System.Nullable{Prowl.Vector.AABB},System.Int32)
+  commentId: M:Prowl.Runtime.InstancedMeshRenderable.CreateBatched(System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material,Prowl.Vector.Float4x4[],Prowl.Vector.Float3,Prowl.Vector.Float4[],Prowl.Vector.Float4[],System.Int32,Prowl.Runtime.Rendering.PropertyState,System.Nullable{Prowl.Vector.AABB},System.Int32)
+  id: CreateBatched(System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material,Prowl.Vector.Float4x4[],Prowl.Vector.Float3,Prowl.Vector.Float4[],Prowl.Vector.Float4[],System.Int32,Prowl.Runtime.Rendering.PropertyState,System.Nullable{Prowl.Vector.AABB},System.Int32)
+  parent: Prowl.Runtime.InstancedMeshRenderable
+  langs:
+  - csharp
+  - vb
+  name: CreateBatched(List<IRenderable>, Mesh, Material, Float4x4[], Float3, Float4[]?, Float4[]?, int, PropertyState?, AABB?, int)
+  nameWithType: InstancedMeshRenderable.CreateBatched(List<IRenderable>, Mesh, Material, Float4x4[], Float3, Float4[]?, Float4[]?, int, PropertyState?, AABB?, int)
+  fullName: Prowl.Runtime.InstancedMeshRenderable.CreateBatched(System.Collections.Generic.List<Prowl.Runtime.Rendering.IRenderable>, Prowl.Runtime.Resources.Mesh, Prowl.Runtime.Resources.Material, Prowl.Vector.Float4x4[], Prowl.Vector.Float3, Prowl.Vector.Float4[]?, Prowl.Vector.Float4[]?, int, Prowl.Runtime.Rendering.PropertyState?, Prowl.Vector.AABB?, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/InstancedMeshRenderable.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CreateBatched
+    path: ../Prowl/Prowl.Runtime/InstancedMeshRenderable.cs
+    startLine: 116
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Creates batched instanced renderables from transform/color/custom arrays.
+
+    Automatically splits into batches of maxBatchSize for GPU limits.
+  example: []
+  syntax:
+    content: public static void CreateBatched(List<IRenderable> output, Mesh mesh, Material material, Float4x4[] transforms, Float3 sortPosition, Float4[]? colors = null, Float4[]? customData = null, int layer = 0, PropertyState? properties = null, AABB? bounds = null, int maxBatchSize = 1023)
+    parameters:
+    - id: output
+      type: System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable}
+    - id: mesh
+      type: Prowl.Runtime.Resources.Mesh
+    - id: material
+      type: Prowl.Runtime.Resources.Material
+    - id: transforms
+      type: Prowl.Vector.Float4x4[]
+    - id: sortPosition
+      type: Prowl.Vector.Float3
+    - id: colors
+      type: Prowl.Vector.Float4[]
+    - id: customData
+      type: Prowl.Vector.Float4[]
+    - id: layer
+      type: System.Int32
+    - id: properties
+      type: Prowl.Runtime.Rendering.PropertyState
+    - id: bounds
+      type: System.Nullable{Prowl.Vector.AABB}
+    - id: maxBatchSize
+      type: System.Int32
+    content.vb: Public Shared Sub CreateBatched(output As List(Of IRenderable), mesh As Mesh, material As Material, transforms As Float4x4(), sortPosition As Float3, colors As Float4() = Nothing, customData As Float4() = Nothing, layer As Integer = 0, properties As PropertyState = Nothing, bounds As AABB? = Nothing, maxBatchSize As Integer = 1023)
+  overload: Prowl.Runtime.InstancedMeshRenderable.CreateBatched*
+  nameWithType.vb: InstancedMeshRenderable.CreateBatched(List(Of IRenderable), Mesh, Material, Float4x4(), Float3, Float4(), Float4(), Integer, PropertyState, AABB?, Integer)
+  fullName.vb: Prowl.Runtime.InstancedMeshRenderable.CreateBatched(System.Collections.Generic.List(Of Prowl.Runtime.Rendering.IRenderable), Prowl.Runtime.Resources.Mesh, Prowl.Runtime.Resources.Material, Prowl.Vector.Float4x4(), Prowl.Vector.Float3, Prowl.Vector.Float4(), Prowl.Vector.Float4(), Integer, Prowl.Runtime.Rendering.PropertyState, Prowl.Vector.AABB?, Integer)
+  name.vb: CreateBatched(List(Of IRenderable), Mesh, Material, Float4x4(), Float3, Float4(), Float4(), Integer, PropertyState, AABB?, Integer)
+references:
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.Runtime.Rendering.IRenderable
+  commentId: T:Prowl.Runtime.Rendering.IRenderable
+  parent: Prowl.Runtime.Rendering
+  href: Prowl.Runtime.Rendering.IRenderable.html
+  name: IRenderable
+  nameWithType: IRenderable
+  fullName: Prowl.Runtime.Rendering.IRenderable
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.Rendering
+  commentId: N:Prowl.Runtime.Rendering
+  name: Prowl.Runtime.Rendering
+  nameWithType: Prowl.Runtime.Rendering
+  fullName: Prowl.Runtime.Rendering
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Rendering
+    name: Rendering
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Rendering
+    name: Rendering
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime.InstancedMeshRenderable.#ctor*
+  commentId: Overload:Prowl.Runtime.InstancedMeshRenderable.#ctor
+  href: Prowl.Runtime.InstancedMeshRenderable.html#Prowl_Runtime_InstancedMeshRenderable__ctor_Prowl_Runtime_Resources_Mesh_Prowl_Runtime_Resources_Material_Prowl_Runtime_Rendering_InstanceData___Prowl_Vector_Float3_System_Int32_Prowl_Runtime_Rendering_PropertyState_System_Nullable_Prowl_Vector_AABB__System_Int32_
+  name: InstancedMeshRenderable
+  nameWithType: InstancedMeshRenderable.InstancedMeshRenderable
+  fullName: Prowl.Runtime.InstancedMeshRenderable.InstancedMeshRenderable
+  nameWithType.vb: InstancedMeshRenderable.New
+  fullName.vb: Prowl.Runtime.InstancedMeshRenderable.New
+  name.vb: New
+- uid: Prowl.Runtime.Resources.Mesh
+  commentId: T:Prowl.Runtime.Resources.Mesh
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.Mesh.html
+  name: Mesh
+  nameWithType: Mesh
+  fullName: Prowl.Runtime.Resources.Mesh
+- uid: Prowl.Runtime.Resources.Material
+  commentId: T:Prowl.Runtime.Resources.Material
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.Material.html
+  name: Material
+  nameWithType: Material
+  fullName: Prowl.Runtime.Resources.Material
+- uid: Prowl.Runtime.Rendering.InstanceData[]
+  isExternal: true
+  href: Prowl.Runtime.Rendering.InstanceData.html
+  name: InstanceData[]
+  nameWithType: InstanceData[]
+  fullName: Prowl.Runtime.Rendering.InstanceData[]
+  nameWithType.vb: InstanceData()
+  fullName.vb: Prowl.Runtime.Rendering.InstanceData()
+  name.vb: InstanceData()
+  spec.csharp:
+  - uid: Prowl.Runtime.Rendering.InstanceData
+    name: InstanceData
+    href: Prowl.Runtime.Rendering.InstanceData.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Prowl.Runtime.Rendering.InstanceData
+    name: InstanceData
+    href: Prowl.Runtime.Rendering.InstanceData.html
+  - name: (
+  - name: )
+- uid: Prowl.Vector.Float3
+  commentId: T:Prowl.Vector.Float3
+  parent: Prowl.Vector
+  isExternal: true
+  name: Float3
+  nameWithType: Float3
+  fullName: Prowl.Vector.Float3
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Runtime.Rendering.PropertyState
+  commentId: T:Prowl.Runtime.Rendering.PropertyState
+  parent: Prowl.Runtime.Rendering
+  href: Prowl.Runtime.Rendering.PropertyState.html
+  name: PropertyState
+  nameWithType: PropertyState
+  fullName: Prowl.Runtime.Rendering.PropertyState
+- uid: System.Nullable{Prowl.Vector.AABB}
+  commentId: T:System.Nullable{Prowl.Vector.AABB}
+  parent: System
+  definition: System.Nullable`1
+  name: AABB?
+  nameWithType: AABB?
+  fullName: Prowl.Vector.AABB?
+  spec.csharp:
+  - uid: Prowl.Vector.AABB
+    name: AABB
+    isExternal: true
+  - name: '?'
+  spec.vb:
+  - uid: Prowl.Vector.AABB
+    name: AABB
+    isExternal: true
+  - name: '?'
+- uid: Prowl.Runtime.Resources
+  commentId: N:Prowl.Runtime.Resources
+  name: Prowl.Runtime.Resources
+  nameWithType: Prowl.Runtime.Resources
+  fullName: Prowl.Runtime.Resources
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+- uid: Prowl.Vector
+  commentId: N:Prowl.Vector
+  name: Prowl.Vector
+  nameWithType: Prowl.Vector
+  fullName: Prowl.Vector
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Runtime.InstancedMeshRenderable.GetMaterial*
+  commentId: Overload:Prowl.Runtime.InstancedMeshRenderable.GetMaterial
+  href: Prowl.Runtime.InstancedMeshRenderable.html#Prowl_Runtime_InstancedMeshRenderable_GetMaterial
+  name: GetMaterial
+  nameWithType: InstancedMeshRenderable.GetMaterial
+  fullName: Prowl.Runtime.InstancedMeshRenderable.GetMaterial
+- uid: Prowl.Runtime.Rendering.IRenderable.GetMaterial
+  commentId: M:Prowl.Runtime.Rendering.IRenderable.GetMaterial
+  parent: Prowl.Runtime.Rendering.IRenderable
+  href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_GetMaterial
+  name: GetMaterial()
+  nameWithType: IRenderable.GetMaterial()
+  fullName: Prowl.Runtime.Rendering.IRenderable.GetMaterial()
+  spec.csharp:
+  - uid: Prowl.Runtime.Rendering.IRenderable.GetMaterial
+    name: GetMaterial
+    href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_GetMaterial
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Rendering.IRenderable.GetMaterial
+    name: GetMaterial
+    href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_GetMaterial
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.InstancedMeshRenderable.GetLayer*
+  commentId: Overload:Prowl.Runtime.InstancedMeshRenderable.GetLayer
+  href: Prowl.Runtime.InstancedMeshRenderable.html#Prowl_Runtime_InstancedMeshRenderable_GetLayer
+  name: GetLayer
+  nameWithType: InstancedMeshRenderable.GetLayer
+  fullName: Prowl.Runtime.InstancedMeshRenderable.GetLayer
+- uid: Prowl.Runtime.Rendering.IRenderable.GetLayer
+  commentId: M:Prowl.Runtime.Rendering.IRenderable.GetLayer
+  parent: Prowl.Runtime.Rendering.IRenderable
+  href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_GetLayer
+  name: GetLayer()
+  nameWithType: IRenderable.GetLayer()
+  fullName: Prowl.Runtime.Rendering.IRenderable.GetLayer()
+  spec.csharp:
+  - uid: Prowl.Runtime.Rendering.IRenderable.GetLayer
+    name: GetLayer
+    href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_GetLayer
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Rendering.IRenderable.GetLayer
+    name: GetLayer
+    href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_GetLayer
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.InstancedMeshRenderable.GetSubMeshIndex*
+  commentId: Overload:Prowl.Runtime.InstancedMeshRenderable.GetSubMeshIndex
+  href: Prowl.Runtime.InstancedMeshRenderable.html#Prowl_Runtime_InstancedMeshRenderable_GetSubMeshIndex
+  name: GetSubMeshIndex
+  nameWithType: InstancedMeshRenderable.GetSubMeshIndex
+  fullName: Prowl.Runtime.InstancedMeshRenderable.GetSubMeshIndex
+- uid: Prowl.Runtime.Rendering.IRenderable.GetSubMeshIndex
+  commentId: M:Prowl.Runtime.Rendering.IRenderable.GetSubMeshIndex
+  parent: Prowl.Runtime.Rendering.IRenderable
+  href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_GetSubMeshIndex
+  name: GetSubMeshIndex()
+  nameWithType: IRenderable.GetSubMeshIndex()
+  fullName: Prowl.Runtime.Rendering.IRenderable.GetSubMeshIndex()
+  spec.csharp:
+  - uid: Prowl.Runtime.Rendering.IRenderable.GetSubMeshIndex
+    name: GetSubMeshIndex
+    href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_GetSubMeshIndex
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Rendering.IRenderable.GetSubMeshIndex
+    name: GetSubMeshIndex
+    href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_GetSubMeshIndex
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.InstancedMeshRenderable.GetPosition*
+  commentId: Overload:Prowl.Runtime.InstancedMeshRenderable.GetPosition
+  href: Prowl.Runtime.InstancedMeshRenderable.html#Prowl_Runtime_InstancedMeshRenderable_GetPosition
+  name: GetPosition
+  nameWithType: InstancedMeshRenderable.GetPosition
+  fullName: Prowl.Runtime.InstancedMeshRenderable.GetPosition
+- uid: Prowl.Runtime.Rendering.IRenderable.GetPosition
+  commentId: M:Prowl.Runtime.Rendering.IRenderable.GetPosition
+  parent: Prowl.Runtime.Rendering.IRenderable
+  href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_GetPosition
+  name: GetPosition()
+  nameWithType: IRenderable.GetPosition()
+  fullName: Prowl.Runtime.Rendering.IRenderable.GetPosition()
+  spec.csharp:
+  - uid: Prowl.Runtime.Rendering.IRenderable.GetPosition
+    name: GetPosition
+    href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_GetPosition
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Rendering.IRenderable.GetPosition
+    name: GetPosition
+    href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_GetPosition
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.InstancedMeshRenderable.GetRenderingData*
+  commentId: Overload:Prowl.Runtime.InstancedMeshRenderable.GetRenderingData
+  href: Prowl.Runtime.InstancedMeshRenderable.html#Prowl_Runtime_InstancedMeshRenderable_GetRenderingData_Prowl_Runtime_Rendering_ViewerData_Prowl_Runtime_Rendering_PropertyState__Prowl_Runtime_Resources_Mesh__Prowl_Vector_Float4x4__Prowl_Runtime_Rendering_InstanceData____
+  name: GetRenderingData
+  nameWithType: InstancedMeshRenderable.GetRenderingData
+  fullName: Prowl.Runtime.InstancedMeshRenderable.GetRenderingData
+- uid: Prowl.Runtime.Rendering.IRenderable.GetRenderingData(Prowl.Runtime.Rendering.ViewerData,Prowl.Runtime.Rendering.PropertyState@,Prowl.Runtime.Resources.Mesh@,Prowl.Vector.Float4x4@,Prowl.Runtime.Rendering.InstanceData[]@)
+  commentId: M:Prowl.Runtime.Rendering.IRenderable.GetRenderingData(Prowl.Runtime.Rendering.ViewerData,Prowl.Runtime.Rendering.PropertyState@,Prowl.Runtime.Resources.Mesh@,Prowl.Vector.Float4x4@,Prowl.Runtime.Rendering.InstanceData[]@)
+  parent: Prowl.Runtime.Rendering.IRenderable
+  isExternal: true
+  href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_GetRenderingData_Prowl_Runtime_Rendering_ViewerData_Prowl_Runtime_Rendering_PropertyState__Prowl_Runtime_Resources_Mesh__Prowl_Vector_Float4x4__Prowl_Runtime_Rendering_InstanceData____
+  name: GetRenderingData(ViewerData, out PropertyState, out Mesh, out Float4x4, out InstanceData[])
+  nameWithType: IRenderable.GetRenderingData(ViewerData, out PropertyState, out Mesh, out Float4x4, out InstanceData[])
+  fullName: Prowl.Runtime.Rendering.IRenderable.GetRenderingData(Prowl.Runtime.Rendering.ViewerData, out Prowl.Runtime.Rendering.PropertyState, out Prowl.Runtime.Resources.Mesh, out Prowl.Vector.Float4x4, out Prowl.Runtime.Rendering.InstanceData[])
+  nameWithType.vb: IRenderable.GetRenderingData(ViewerData, PropertyState, Mesh, Float4x4, InstanceData())
+  fullName.vb: Prowl.Runtime.Rendering.IRenderable.GetRenderingData(Prowl.Runtime.Rendering.ViewerData, Prowl.Runtime.Rendering.PropertyState, Prowl.Runtime.Resources.Mesh, Prowl.Vector.Float4x4, Prowl.Runtime.Rendering.InstanceData())
+  name.vb: GetRenderingData(ViewerData, PropertyState, Mesh, Float4x4, InstanceData())
+  spec.csharp:
+  - uid: Prowl.Runtime.Rendering.IRenderable.GetRenderingData(Prowl.Runtime.Rendering.ViewerData,Prowl.Runtime.Rendering.PropertyState@,Prowl.Runtime.Resources.Mesh@,Prowl.Vector.Float4x4@,Prowl.Runtime.Rendering.InstanceData[]@)
+    name: GetRenderingData
+    href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_GetRenderingData_Prowl_Runtime_Rendering_ViewerData_Prowl_Runtime_Rendering_PropertyState__Prowl_Runtime_Resources_Mesh__Prowl_Vector_Float4x4__Prowl_Runtime_Rendering_InstanceData____
+  - name: (
+  - uid: Prowl.Runtime.Rendering.ViewerData
+    name: ViewerData
+    href: Prowl.Runtime.Rendering.ViewerData.html
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - uid: Prowl.Runtime.Rendering.PropertyState
+    name: PropertyState
+    href: Prowl.Runtime.Rendering.PropertyState.html
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - uid: Prowl.Runtime.Resources.Mesh
+    name: Mesh
+    href: Prowl.Runtime.Resources.Mesh.html
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - uid: Prowl.Vector.Float4x4
+    name: Float4x4
+    isExternal: true
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - uid: Prowl.Runtime.Rendering.InstanceData
+    name: InstanceData
+    href: Prowl.Runtime.Rendering.InstanceData.html
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Rendering.IRenderable.GetRenderingData(Prowl.Runtime.Rendering.ViewerData,Prowl.Runtime.Rendering.PropertyState@,Prowl.Runtime.Resources.Mesh@,Prowl.Vector.Float4x4@,Prowl.Runtime.Rendering.InstanceData[]@)
+    name: GetRenderingData
+    href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_GetRenderingData_Prowl_Runtime_Rendering_ViewerData_Prowl_Runtime_Rendering_PropertyState__Prowl_Runtime_Resources_Mesh__Prowl_Vector_Float4x4__Prowl_Runtime_Rendering_InstanceData____
+  - name: (
+  - uid: Prowl.Runtime.Rendering.ViewerData
+    name: ViewerData
+    href: Prowl.Runtime.Rendering.ViewerData.html
+  - name: ','
+  - name: " "
+  - uid: Prowl.Runtime.Rendering.PropertyState
+    name: PropertyState
+    href: Prowl.Runtime.Rendering.PropertyState.html
+  - name: ','
+  - name: " "
+  - uid: Prowl.Runtime.Resources.Mesh
+    name: Mesh
+    href: Prowl.Runtime.Resources.Mesh.html
+  - name: ','
+  - name: " "
+  - uid: Prowl.Vector.Float4x4
+    name: Float4x4
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Prowl.Runtime.Rendering.InstanceData
+    name: InstanceData
+    href: Prowl.Runtime.Rendering.InstanceData.html
+  - name: (
+  - name: )
+  - name: )
+- uid: Prowl.Runtime.Rendering.ViewerData
+  commentId: T:Prowl.Runtime.Rendering.ViewerData
+  parent: Prowl.Runtime.Rendering
+  href: Prowl.Runtime.Rendering.ViewerData.html
+  name: ViewerData
+  nameWithType: ViewerData
+  fullName: Prowl.Runtime.Rendering.ViewerData
+- uid: Prowl.Vector.Float4x4
+  commentId: T:Prowl.Vector.Float4x4
+  parent: Prowl.Vector
+  isExternal: true
+  name: Float4x4
+  nameWithType: Float4x4
+  fullName: Prowl.Vector.Float4x4
+- uid: Prowl.Runtime.InstancedMeshRenderable.GetCullingData*
+  commentId: Overload:Prowl.Runtime.InstancedMeshRenderable.GetCullingData
+  href: Prowl.Runtime.InstancedMeshRenderable.html#Prowl_Runtime_InstancedMeshRenderable_GetCullingData_System_Boolean__Prowl_Vector_AABB__
+  name: GetCullingData
+  nameWithType: InstancedMeshRenderable.GetCullingData
+  fullName: Prowl.Runtime.InstancedMeshRenderable.GetCullingData
+- uid: Prowl.Runtime.Rendering.IRenderable.GetCullingData(System.Boolean@,Prowl.Vector.AABB@)
+  commentId: M:Prowl.Runtime.Rendering.IRenderable.GetCullingData(System.Boolean@,Prowl.Vector.AABB@)
+  parent: Prowl.Runtime.Rendering.IRenderable
+  isExternal: true
+  href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_GetCullingData_System_Boolean__Prowl_Vector_AABB__
+  name: GetCullingData(out bool, out AABB)
+  nameWithType: IRenderable.GetCullingData(out bool, out AABB)
+  fullName: Prowl.Runtime.Rendering.IRenderable.GetCullingData(out bool, out Prowl.Vector.AABB)
+  nameWithType.vb: IRenderable.GetCullingData(Boolean, AABB)
+  fullName.vb: Prowl.Runtime.Rendering.IRenderable.GetCullingData(Boolean, Prowl.Vector.AABB)
+  name.vb: GetCullingData(Boolean, AABB)
+  spec.csharp:
+  - uid: Prowl.Runtime.Rendering.IRenderable.GetCullingData(System.Boolean@,Prowl.Vector.AABB@)
+    name: GetCullingData
+    href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_GetCullingData_System_Boolean__Prowl_Vector_AABB__
+  - name: (
+  - name: out
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - uid: Prowl.Vector.AABB
+    name: AABB
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Rendering.IRenderable.GetCullingData(System.Boolean@,Prowl.Vector.AABB@)
+    name: GetCullingData
+    href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_GetCullingData_System_Boolean__Prowl_Vector_AABB__
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: Prowl.Vector.AABB
+    name: AABB
+    isExternal: true
+  - name: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Vector.AABB
+  commentId: T:Prowl.Vector.AABB
+  parent: Prowl.Vector
+  isExternal: true
+  name: AABB
+  nameWithType: AABB
+  fullName: Prowl.Vector.AABB
+- uid: Prowl.Runtime.InstancedMeshRenderable.CreateBatched*
+  commentId: Overload:Prowl.Runtime.InstancedMeshRenderable.CreateBatched
+  href: Prowl.Runtime.InstancedMeshRenderable.html#Prowl_Runtime_InstancedMeshRenderable_CreateBatched_System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderable__Prowl_Runtime_Resources_Mesh_Prowl_Runtime_Resources_Material_Prowl_Vector_Float4x4___Prowl_Vector_Float3_Prowl_Vector_Float4___Prowl_Vector_Float4___System_Int32_Prowl_Runtime_Rendering_PropertyState_System_Nullable_Prowl_Vector_AABB__System_Int32_
+  name: CreateBatched
+  nameWithType: InstancedMeshRenderable.CreateBatched
+  fullName: Prowl.Runtime.InstancedMeshRenderable.CreateBatched
+- uid: System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable}
+  commentId: T:System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<IRenderable>
+  nameWithType: List<IRenderable>
+  fullName: System.Collections.Generic.List<Prowl.Runtime.Rendering.IRenderable>
+  nameWithType.vb: List(Of IRenderable)
+  fullName.vb: System.Collections.Generic.List(Of Prowl.Runtime.Rendering.IRenderable)
+  name.vb: List(Of IRenderable)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Prowl.Runtime.Rendering.IRenderable
+    name: IRenderable
+    href: Prowl.Runtime.Rendering.IRenderable.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Rendering.IRenderable
+    name: IRenderable
+    href: Prowl.Runtime.Rendering.IRenderable.html
+  - name: )
+- uid: Prowl.Vector.Float4x4[]
+  isExternal: true
+  name: Float4x4[]
+  nameWithType: Float4x4[]
+  fullName: Prowl.Vector.Float4x4[]
+  nameWithType.vb: Float4x4()
+  fullName.vb: Prowl.Vector.Float4x4()
+  name.vb: Float4x4()
+  spec.csharp:
+  - uid: Prowl.Vector.Float4x4
+    name: Float4x4
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Prowl.Vector.Float4x4
+    name: Float4x4
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Prowl.Vector.Float4[]
+  isExternal: true
+  name: Float4[]
+  nameWithType: Float4[]
+  fullName: Prowl.Vector.Float4[]
+  nameWithType.vb: Float4()
+  fullName.vb: Prowl.Vector.Float4()
+  name.vb: Float4()
+  spec.csharp:
+  - uid: Prowl.Vector.Float4
+    name: Float4
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Prowl.Vector.Float4
+    name: Float4
+    isExternal: true
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic

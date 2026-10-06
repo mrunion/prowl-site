@@ -1,0 +1,1079 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.Rendering.RenderStats
+  commentId: T:Prowl.Runtime.Rendering.RenderStats
+  id: RenderStats
+  parent: Prowl.Runtime.Rendering
+  children:
+  - Prowl.Runtime.Rendering.RenderStats.AddBatch
+  - Prowl.Runtime.Rendering.RenderStats.AddCamera
+  - Prowl.Runtime.Rendering.RenderStats.AddImageEffect(System.Int32)
+  - Prowl.Runtime.Rendering.RenderStats.AddLightCounts(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  - Prowl.Runtime.Rendering.RenderStats.AddRenderables(System.Int32,System.Int32,System.Int32)
+  - Prowl.Runtime.Rendering.RenderStats.BeginColorPass
+  - Prowl.Runtime.Rendering.RenderStats.BeginFrame
+  - Prowl.Runtime.Rendering.RenderStats.BeginPostFx
+  - Prowl.Runtime.Rendering.RenderStats.BeginShadowPass
+  - Prowl.Runtime.Rendering.RenderStats.EndColorPass
+  - Prowl.Runtime.Rendering.RenderStats.EndFrame
+  - Prowl.Runtime.Rendering.RenderStats.EndPostFx
+  - Prowl.Runtime.Rendering.RenderStats.EndShadowPass
+  - Prowl.Runtime.Rendering.RenderStats.FrameTimeHistory
+  - Prowl.Runtime.Rendering.RenderStats.FrameTimeIndex
+  - Prowl.Runtime.Rendering.RenderStats.Last
+  - Prowl.Runtime.Rendering.RenderStats.RecordDraw(Prowl.Runtime.Topology,System.UInt32,System.UInt32)
+  langs:
+  - csharp
+  - vb
+  name: RenderStats
+  nameWithType: RenderStats
+  fullName: Prowl.Runtime.Rendering.RenderStats
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderStats.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RenderStats
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderStats.cs
+    startLine: 12
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: >-
+    Per-frame rendering counters captured by the pipeline and the low-level <xref href="Prowl.Runtime.Graphics" data-throw-if-not-resolved="false"></xref>
+
+    draw calls. The pipeline calls <xref href="Prowl.Runtime.Rendering.RenderStats.BeginFrame" data-throw-if-not-resolved="false"></xref> before its first draw and
+
+    <xref href="Prowl.Runtime.Rendering.RenderStats.EndFrame" data-throw-if-not-resolved="false"></xref> after the last one; the editor reads the snapshot exposed in
+
+    <xref href="Prowl.Runtime.Rendering.RenderStats.Last" data-throw-if-not-resolved="false"></xref>. Counters are global because both <xref href="Prowl.Runtime.Graphics" data-throw-if-not-resolved="false"></xref> and the active
+
+    pipeline write to the same accumulator; multi-camera renders are summed into one frame.
+  example: []
+  syntax:
+    content: public static class RenderStats
+    content.vb: Public Module RenderStats
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Prowl.Runtime.Rendering.RenderStats.Last
+  commentId: P:Prowl.Runtime.Rendering.RenderStats.Last
+  id: Last
+  parent: Prowl.Runtime.Rendering.RenderStats
+  langs:
+  - csharp
+  - vb
+  name: Last
+  nameWithType: RenderStats.Last
+  fullName: Prowl.Runtime.Rendering.RenderStats.Last
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderStats.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Last
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderStats.cs
+    startLine: 72
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Snapshot of the most recently completed frame. Safe for UI to read.
+  example: []
+  syntax:
+    content: public static RenderStats.Frame Last { get; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.Rendering.RenderStats.Frame
+    content.vb: Public Shared ReadOnly Property Last As RenderStats.Frame
+  overload: Prowl.Runtime.Rendering.RenderStats.Last*
+- uid: Prowl.Runtime.Rendering.RenderStats.FrameTimeHistory
+  commentId: P:Prowl.Runtime.Rendering.RenderStats.FrameTimeHistory
+  id: FrameTimeHistory
+  parent: Prowl.Runtime.Rendering.RenderStats
+  langs:
+  - csharp
+  - vb
+  name: FrameTimeHistory
+  nameWithType: RenderStats.FrameTimeHistory
+  fullName: Prowl.Runtime.Rendering.RenderStats.FrameTimeHistory
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderStats.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FrameTimeHistory
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderStats.cs
+    startLine: 75
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Ring buffer of recent frame times (ms) for plotting. Length = 120.
+  example: []
+  syntax:
+    content: public static float[] FrameTimeHistory { get; }
+    parameters: []
+    return:
+      type: System.Single[]
+    content.vb: Public Shared ReadOnly Property FrameTimeHistory As Single()
+  overload: Prowl.Runtime.Rendering.RenderStats.FrameTimeHistory*
+- uid: Prowl.Runtime.Rendering.RenderStats.FrameTimeIndex
+  commentId: P:Prowl.Runtime.Rendering.RenderStats.FrameTimeIndex
+  id: FrameTimeIndex
+  parent: Prowl.Runtime.Rendering.RenderStats
+  langs:
+  - csharp
+  - vb
+  name: FrameTimeIndex
+  nameWithType: RenderStats.FrameTimeIndex
+  fullName: Prowl.Runtime.Rendering.RenderStats.FrameTimeIndex
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderStats.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FrameTimeIndex
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderStats.cs
+    startLine: 78
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Current write index in the history ring buffer.
+  example: []
+  syntax:
+    content: public static int FrameTimeIndex { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Shared ReadOnly Property FrameTimeIndex As Integer
+  overload: Prowl.Runtime.Rendering.RenderStats.FrameTimeIndex*
+- uid: Prowl.Runtime.Rendering.RenderStats.BeginFrame
+  commentId: M:Prowl.Runtime.Rendering.RenderStats.BeginFrame
+  id: BeginFrame
+  parent: Prowl.Runtime.Rendering.RenderStats
+  langs:
+  - csharp
+  - vb
+  name: BeginFrame()
+  nameWithType: RenderStats.BeginFrame()
+  fullName: Prowl.Runtime.Rendering.RenderStats.BeginFrame()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderStats.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: BeginFrame
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderStats.cs
+    startLine: 81
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Reset all counters. Called by the pipeline at the start of a frame.
+  example: []
+  syntax:
+    content: public static void BeginFrame()
+    content.vb: Public Shared Sub BeginFrame()
+  overload: Prowl.Runtime.Rendering.RenderStats.BeginFrame*
+- uid: Prowl.Runtime.Rendering.RenderStats.EndFrame
+  commentId: M:Prowl.Runtime.Rendering.RenderStats.EndFrame
+  id: EndFrame
+  parent: Prowl.Runtime.Rendering.RenderStats
+  langs:
+  - csharp
+  - vb
+  name: EndFrame()
+  nameWithType: RenderStats.EndFrame()
+  fullName: Prowl.Runtime.Rendering.RenderStats.EndFrame()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderStats.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EndFrame
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderStats.cs
+    startLine: 88
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Promote the in-progress counters to <xref href="Prowl.Runtime.Rendering.RenderStats.Last" data-throw-if-not-resolved="false"></xref>. Called by the pipeline at the end of a frame.
+  example: []
+  syntax:
+    content: public static void EndFrame()
+    content.vb: Public Shared Sub EndFrame()
+  overload: Prowl.Runtime.Rendering.RenderStats.EndFrame*
+- uid: Prowl.Runtime.Rendering.RenderStats.BeginShadowPass
+  commentId: M:Prowl.Runtime.Rendering.RenderStats.BeginShadowPass
+  id: BeginShadowPass
+  parent: Prowl.Runtime.Rendering.RenderStats
+  langs:
+  - csharp
+  - vb
+  name: BeginShadowPass()
+  nameWithType: RenderStats.BeginShadowPass()
+  fullName: Prowl.Runtime.Rendering.RenderStats.BeginShadowPass()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderStats.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: BeginShadowPass
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderStats.cs
+    startLine: 101
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Mark the start of a shadow pass so following draw calls count toward shadows.
+  example: []
+  syntax:
+    content: public static void BeginShadowPass()
+    content.vb: Public Shared Sub BeginShadowPass()
+  overload: Prowl.Runtime.Rendering.RenderStats.BeginShadowPass*
+- uid: Prowl.Runtime.Rendering.RenderStats.EndShadowPass
+  commentId: M:Prowl.Runtime.Rendering.RenderStats.EndShadowPass
+  id: EndShadowPass
+  parent: Prowl.Runtime.Rendering.RenderStats
+  langs:
+  - csharp
+  - vb
+  name: EndShadowPass()
+  nameWithType: RenderStats.EndShadowPass()
+  fullName: Prowl.Runtime.Rendering.RenderStats.EndShadowPass()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderStats.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EndShadowPass
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderStats.cs
+    startLine: 108
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  syntax:
+    content: public static void EndShadowPass()
+    content.vb: Public Shared Sub EndShadowPass()
+  overload: Prowl.Runtime.Rendering.RenderStats.EndShadowPass*
+- uid: Prowl.Runtime.Rendering.RenderStats.BeginColorPass
+  commentId: M:Prowl.Runtime.Rendering.RenderStats.BeginColorPass
+  id: BeginColorPass
+  parent: Prowl.Runtime.Rendering.RenderStats
+  langs:
+  - csharp
+  - vb
+  name: BeginColorPass()
+  nameWithType: RenderStats.BeginColorPass()
+  fullName: Prowl.Runtime.Rendering.RenderStats.BeginColorPass()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderStats.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: BeginColorPass
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderStats.cs
+    startLine: 114
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  syntax:
+    content: public static void BeginColorPass()
+    content.vb: Public Shared Sub BeginColorPass()
+  overload: Prowl.Runtime.Rendering.RenderStats.BeginColorPass*
+- uid: Prowl.Runtime.Rendering.RenderStats.EndColorPass
+  commentId: M:Prowl.Runtime.Rendering.RenderStats.EndColorPass
+  id: EndColorPass
+  parent: Prowl.Runtime.Rendering.RenderStats
+  langs:
+  - csharp
+  - vb
+  name: EndColorPass()
+  nameWithType: RenderStats.EndColorPass()
+  fullName: Prowl.Runtime.Rendering.RenderStats.EndColorPass()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderStats.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EndColorPass
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderStats.cs
+    startLine: 115
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  syntax:
+    content: public static void EndColorPass()
+    content.vb: Public Shared Sub EndColorPass()
+  overload: Prowl.Runtime.Rendering.RenderStats.EndColorPass*
+- uid: Prowl.Runtime.Rendering.RenderStats.BeginPostFx
+  commentId: M:Prowl.Runtime.Rendering.RenderStats.BeginPostFx
+  id: BeginPostFx
+  parent: Prowl.Runtime.Rendering.RenderStats
+  langs:
+  - csharp
+  - vb
+  name: BeginPostFx()
+  nameWithType: RenderStats.BeginPostFx()
+  fullName: Prowl.Runtime.Rendering.RenderStats.BeginPostFx()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderStats.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: BeginPostFx
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderStats.cs
+    startLine: 117
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  syntax:
+    content: public static void BeginPostFx()
+    content.vb: Public Shared Sub BeginPostFx()
+  overload: Prowl.Runtime.Rendering.RenderStats.BeginPostFx*
+- uid: Prowl.Runtime.Rendering.RenderStats.EndPostFx
+  commentId: M:Prowl.Runtime.Rendering.RenderStats.EndPostFx
+  id: EndPostFx
+  parent: Prowl.Runtime.Rendering.RenderStats
+  langs:
+  - csharp
+  - vb
+  name: EndPostFx()
+  nameWithType: RenderStats.EndPostFx()
+  fullName: Prowl.Runtime.Rendering.RenderStats.EndPostFx()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderStats.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EndPostFx
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderStats.cs
+    startLine: 118
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  syntax:
+    content: public static void EndPostFx()
+    content.vb: Public Shared Sub EndPostFx()
+  overload: Prowl.Runtime.Rendering.RenderStats.EndPostFx*
+- uid: Prowl.Runtime.Rendering.RenderStats.AddCamera
+  commentId: M:Prowl.Runtime.Rendering.RenderStats.AddCamera
+  id: AddCamera
+  parent: Prowl.Runtime.Rendering.RenderStats
+  langs:
+  - csharp
+  - vb
+  name: AddCamera()
+  nameWithType: RenderStats.AddCamera()
+  fullName: Prowl.Runtime.Rendering.RenderStats.AddCamera()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderStats.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddCamera
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderStats.cs
+    startLine: 126
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  syntax:
+    content: public static void AddCamera()
+    content.vb: Public Shared Sub AddCamera()
+  overload: Prowl.Runtime.Rendering.RenderStats.AddCamera*
+- uid: Prowl.Runtime.Rendering.RenderStats.AddBatch
+  commentId: M:Prowl.Runtime.Rendering.RenderStats.AddBatch
+  id: AddBatch
+  parent: Prowl.Runtime.Rendering.RenderStats
+  langs:
+  - csharp
+  - vb
+  name: AddBatch()
+  nameWithType: RenderStats.AddBatch()
+  fullName: Prowl.Runtime.Rendering.RenderStats.AddBatch()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderStats.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddBatch
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderStats.cs
+    startLine: 128
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  syntax:
+    content: public static void AddBatch()
+    content.vb: Public Shared Sub AddBatch()
+  overload: Prowl.Runtime.Rendering.RenderStats.AddBatch*
+- uid: Prowl.Runtime.Rendering.RenderStats.AddRenderables(System.Int32,System.Int32,System.Int32)
+  commentId: M:Prowl.Runtime.Rendering.RenderStats.AddRenderables(System.Int32,System.Int32,System.Int32)
+  id: AddRenderables(System.Int32,System.Int32,System.Int32)
+  parent: Prowl.Runtime.Rendering.RenderStats
+  langs:
+  - csharp
+  - vb
+  name: AddRenderables(int, int, int)
+  nameWithType: RenderStats.AddRenderables(int, int, int)
+  fullName: Prowl.Runtime.Rendering.RenderStats.AddRenderables(int, int, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderStats.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddRenderables
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderStats.cs
+    startLine: 130
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  syntax:
+    content: public static void AddRenderables(int collected, int culled, int drawn)
+    parameters:
+    - id: collected
+      type: System.Int32
+    - id: culled
+      type: System.Int32
+    - id: drawn
+      type: System.Int32
+    content.vb: Public Shared Sub AddRenderables(collected As Integer, culled As Integer, drawn As Integer)
+  overload: Prowl.Runtime.Rendering.RenderStats.AddRenderables*
+  nameWithType.vb: RenderStats.AddRenderables(Integer, Integer, Integer)
+  fullName.vb: Prowl.Runtime.Rendering.RenderStats.AddRenderables(Integer, Integer, Integer)
+  name.vb: AddRenderables(Integer, Integer, Integer)
+- uid: Prowl.Runtime.Rendering.RenderStats.AddLightCounts(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:Prowl.Runtime.Rendering.RenderStats.AddLightCounts(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: AddLightCounts(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: Prowl.Runtime.Rendering.RenderStats
+  langs:
+  - csharp
+  - vb
+  name: AddLightCounts(int, int, int, int, int)
+  nameWithType: RenderStats.AddLightCounts(int, int, int, int, int)
+  fullName: Prowl.Runtime.Rendering.RenderStats.AddLightCounts(int, int, int, int, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderStats.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddLightCounts
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderStats.cs
+    startLine: 146
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  syntax:
+    content: public static void AddLightCounts(int total, int directional, int point, int spot, int shadowCasters)
+    parameters:
+    - id: total
+      type: System.Int32
+    - id: directional
+      type: System.Int32
+    - id: point
+      type: System.Int32
+    - id: spot
+      type: System.Int32
+    - id: shadowCasters
+      type: System.Int32
+    content.vb: Public Shared Sub AddLightCounts(total As Integer, directional As Integer, point As Integer, spot As Integer, shadowCasters As Integer)
+  overload: Prowl.Runtime.Rendering.RenderStats.AddLightCounts*
+  nameWithType.vb: RenderStats.AddLightCounts(Integer, Integer, Integer, Integer, Integer)
+  fullName.vb: Prowl.Runtime.Rendering.RenderStats.AddLightCounts(Integer, Integer, Integer, Integer, Integer)
+  name.vb: AddLightCounts(Integer, Integer, Integer, Integer, Integer)
+- uid: Prowl.Runtime.Rendering.RenderStats.AddImageEffect(System.Int32)
+  commentId: M:Prowl.Runtime.Rendering.RenderStats.AddImageEffect(System.Int32)
+  id: AddImageEffect(System.Int32)
+  parent: Prowl.Runtime.Rendering.RenderStats
+  langs:
+  - csharp
+  - vb
+  name: AddImageEffect(int)
+  nameWithType: RenderStats.AddImageEffect(int)
+  fullName: Prowl.Runtime.Rendering.RenderStats.AddImageEffect(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderStats.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddImageEffect
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderStats.cs
+    startLine: 156
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Record an image effect execution.
+  example: []
+  syntax:
+    content: public static void AddImageEffect(int passes = 1)
+    parameters:
+    - id: passes
+      type: System.Int32
+    content.vb: Public Shared Sub AddImageEffect(passes As Integer = 1)
+  overload: Prowl.Runtime.Rendering.RenderStats.AddImageEffect*
+  nameWithType.vb: RenderStats.AddImageEffect(Integer)
+  fullName.vb: Prowl.Runtime.Rendering.RenderStats.AddImageEffect(Integer)
+  name.vb: AddImageEffect(Integer)
+- uid: Prowl.Runtime.Rendering.RenderStats.RecordDraw(Prowl.Runtime.Topology,System.UInt32,System.UInt32)
+  commentId: M:Prowl.Runtime.Rendering.RenderStats.RecordDraw(Prowl.Runtime.Topology,System.UInt32,System.UInt32)
+  id: RecordDraw(Prowl.Runtime.Topology,System.UInt32,System.UInt32)
+  parent: Prowl.Runtime.Rendering.RenderStats
+  langs:
+  - csharp
+  - vb
+  name: RecordDraw(Topology, uint, uint)
+  nameWithType: RenderStats.RecordDraw(Topology, uint, uint)
+  fullName: Prowl.Runtime.Rendering.RenderStats.RecordDraw(Prowl.Runtime.Topology, uint, uint)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderStats.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RecordDraw
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderStats.cs
+    startLine: 166
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: >-
+    Record a draw call. Called from <xref href="Prowl.Runtime.Graphics" data-throw-if-not-resolved="false"></xref>. <code class="paramref">indexCount</code> is
+
+    the number of indices and <code class="paramref">topology</code> determines the triangle count.
+  example: []
+  syntax:
+    content: public static void RecordDraw(Topology topology, uint indexCount, uint instances = 1)
+    parameters:
+    - id: topology
+      type: Prowl.Runtime.Topology
+    - id: indexCount
+      type: System.UInt32
+    - id: instances
+      type: System.UInt32
+    content.vb: Public Shared Sub RecordDraw(topology As Topology, indexCount As UInteger, instances As UInteger = 1)
+  overload: Prowl.Runtime.Rendering.RenderStats.RecordDraw*
+  nameWithType.vb: RenderStats.RecordDraw(Topology, UInteger, UInteger)
+  fullName.vb: Prowl.Runtime.Rendering.RenderStats.RecordDraw(Prowl.Runtime.Topology, UInteger, UInteger)
+  name.vb: RecordDraw(Topology, UInteger, UInteger)
+references:
+- uid: Prowl.Runtime.Graphics
+  commentId: T:Prowl.Runtime.Graphics
+  href: Prowl.Runtime.Graphics.html
+  name: Graphics
+  nameWithType: Graphics
+  fullName: Prowl.Runtime.Graphics
+- uid: Prowl.Runtime.Rendering.RenderStats.BeginFrame
+  commentId: M:Prowl.Runtime.Rendering.RenderStats.BeginFrame
+  href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_BeginFrame
+  name: BeginFrame()
+  nameWithType: RenderStats.BeginFrame()
+  fullName: Prowl.Runtime.Rendering.RenderStats.BeginFrame()
+  spec.csharp:
+  - uid: Prowl.Runtime.Rendering.RenderStats.BeginFrame
+    name: BeginFrame
+    href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_BeginFrame
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Rendering.RenderStats.BeginFrame
+    name: BeginFrame
+    href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_BeginFrame
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Rendering.RenderStats.EndFrame
+  commentId: M:Prowl.Runtime.Rendering.RenderStats.EndFrame
+  href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_EndFrame
+  name: EndFrame()
+  nameWithType: RenderStats.EndFrame()
+  fullName: Prowl.Runtime.Rendering.RenderStats.EndFrame()
+  spec.csharp:
+  - uid: Prowl.Runtime.Rendering.RenderStats.EndFrame
+    name: EndFrame
+    href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_EndFrame
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Rendering.RenderStats.EndFrame
+    name: EndFrame
+    href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_EndFrame
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Rendering.RenderStats.Last
+  commentId: P:Prowl.Runtime.Rendering.RenderStats.Last
+  href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_Last
+  name: Last
+  nameWithType: RenderStats.Last
+  fullName: Prowl.Runtime.Rendering.RenderStats.Last
+- uid: Prowl.Runtime.Rendering
+  commentId: N:Prowl.Runtime.Rendering
+  name: Prowl.Runtime.Rendering
+  nameWithType: Prowl.Runtime.Rendering
+  fullName: Prowl.Runtime.Rendering
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Rendering
+    name: Rendering
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Rendering
+    name: Rendering
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.Rendering.RenderStats.Last*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderStats.Last
+  href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_Last
+  name: Last
+  nameWithType: RenderStats.Last
+  fullName: Prowl.Runtime.Rendering.RenderStats.Last
+- uid: Prowl.Runtime.Rendering.RenderStats.Frame
+  commentId: T:Prowl.Runtime.Rendering.RenderStats.Frame
+  parent: Prowl.Runtime.Rendering
+  href: Prowl.Runtime.Rendering.RenderStats.html
+  name: RenderStats.Frame
+  nameWithType: RenderStats.Frame
+  fullName: Prowl.Runtime.Rendering.RenderStats.Frame
+  spec.csharp:
+  - uid: Prowl.Runtime.Rendering.RenderStats
+    name: RenderStats
+    href: Prowl.Runtime.Rendering.RenderStats.html
+  - name: .
+  - uid: Prowl.Runtime.Rendering.RenderStats.Frame
+    name: Frame
+    href: Prowl.Runtime.Rendering.RenderStats.Frame.html
+  spec.vb:
+  - uid: Prowl.Runtime.Rendering.RenderStats
+    name: RenderStats
+    href: Prowl.Runtime.Rendering.RenderStats.html
+  - name: .
+  - uid: Prowl.Runtime.Rendering.RenderStats.Frame
+    name: Frame
+    href: Prowl.Runtime.Rendering.RenderStats.Frame.html
+- uid: Prowl.Runtime.Rendering.RenderStats.FrameTimeHistory*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderStats.FrameTimeHistory
+  href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_FrameTimeHistory
+  name: FrameTimeHistory
+  nameWithType: RenderStats.FrameTimeHistory
+  fullName: Prowl.Runtime.Rendering.RenderStats.FrameTimeHistory
+- uid: System.Single[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float[]
+  nameWithType: float[]
+  fullName: float[]
+  nameWithType.vb: Single()
+  fullName.vb: Single()
+  name.vb: Single()
+  spec.csharp:
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Rendering.RenderStats.FrameTimeIndex*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderStats.FrameTimeIndex
+  href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_FrameTimeIndex
+  name: FrameTimeIndex
+  nameWithType: RenderStats.FrameTimeIndex
+  fullName: Prowl.Runtime.Rendering.RenderStats.FrameTimeIndex
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Runtime.Rendering.RenderStats.BeginFrame*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderStats.BeginFrame
+  href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_BeginFrame
+  name: BeginFrame
+  nameWithType: RenderStats.BeginFrame
+  fullName: Prowl.Runtime.Rendering.RenderStats.BeginFrame
+- uid: Prowl.Runtime.Rendering.RenderStats.EndFrame*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderStats.EndFrame
+  href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_EndFrame
+  name: EndFrame
+  nameWithType: RenderStats.EndFrame
+  fullName: Prowl.Runtime.Rendering.RenderStats.EndFrame
+- uid: Prowl.Runtime.Rendering.RenderStats.BeginShadowPass*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderStats.BeginShadowPass
+  href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_BeginShadowPass
+  name: BeginShadowPass
+  nameWithType: RenderStats.BeginShadowPass
+  fullName: Prowl.Runtime.Rendering.RenderStats.BeginShadowPass
+- uid: Prowl.Runtime.Rendering.RenderStats.EndShadowPass*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderStats.EndShadowPass
+  href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_EndShadowPass
+  name: EndShadowPass
+  nameWithType: RenderStats.EndShadowPass
+  fullName: Prowl.Runtime.Rendering.RenderStats.EndShadowPass
+- uid: Prowl.Runtime.Rendering.RenderStats.BeginColorPass*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderStats.BeginColorPass
+  href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_BeginColorPass
+  name: BeginColorPass
+  nameWithType: RenderStats.BeginColorPass
+  fullName: Prowl.Runtime.Rendering.RenderStats.BeginColorPass
+- uid: Prowl.Runtime.Rendering.RenderStats.EndColorPass*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderStats.EndColorPass
+  href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_EndColorPass
+  name: EndColorPass
+  nameWithType: RenderStats.EndColorPass
+  fullName: Prowl.Runtime.Rendering.RenderStats.EndColorPass
+- uid: Prowl.Runtime.Rendering.RenderStats.BeginPostFx*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderStats.BeginPostFx
+  href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_BeginPostFx
+  name: BeginPostFx
+  nameWithType: RenderStats.BeginPostFx
+  fullName: Prowl.Runtime.Rendering.RenderStats.BeginPostFx
+- uid: Prowl.Runtime.Rendering.RenderStats.EndPostFx*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderStats.EndPostFx
+  href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_EndPostFx
+  name: EndPostFx
+  nameWithType: RenderStats.EndPostFx
+  fullName: Prowl.Runtime.Rendering.RenderStats.EndPostFx
+- uid: Prowl.Runtime.Rendering.RenderStats.AddCamera*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderStats.AddCamera
+  href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_AddCamera
+  name: AddCamera
+  nameWithType: RenderStats.AddCamera
+  fullName: Prowl.Runtime.Rendering.RenderStats.AddCamera
+- uid: Prowl.Runtime.Rendering.RenderStats.AddBatch*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderStats.AddBatch
+  href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_AddBatch
+  name: AddBatch
+  nameWithType: RenderStats.AddBatch
+  fullName: Prowl.Runtime.Rendering.RenderStats.AddBatch
+- uid: Prowl.Runtime.Rendering.RenderStats.AddRenderables*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderStats.AddRenderables
+  href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_AddRenderables_System_Int32_System_Int32_System_Int32_
+  name: AddRenderables
+  nameWithType: RenderStats.AddRenderables
+  fullName: Prowl.Runtime.Rendering.RenderStats.AddRenderables
+- uid: Prowl.Runtime.Rendering.RenderStats.AddLightCounts*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderStats.AddLightCounts
+  href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_AddLightCounts_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_
+  name: AddLightCounts
+  nameWithType: RenderStats.AddLightCounts
+  fullName: Prowl.Runtime.Rendering.RenderStats.AddLightCounts
+- uid: Prowl.Runtime.Rendering.RenderStats.AddImageEffect*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderStats.AddImageEffect
+  href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_AddImageEffect_System_Int32_
+  name: AddImageEffect
+  nameWithType: RenderStats.AddImageEffect
+  fullName: Prowl.Runtime.Rendering.RenderStats.AddImageEffect
+- uid: Prowl.Runtime.Rendering.RenderStats.RecordDraw*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderStats.RecordDraw
+  href: Prowl.Runtime.Rendering.RenderStats.html#Prowl_Runtime_Rendering_RenderStats_RecordDraw_Prowl_Runtime_Topology_System_UInt32_System_UInt32_
+  name: RecordDraw
+  nameWithType: RenderStats.RecordDraw
+  fullName: Prowl.Runtime.Rendering.RenderStats.RecordDraw
+- uid: Prowl.Runtime.Topology
+  commentId: T:Prowl.Runtime.Topology
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.Topology.html
+  name: Topology
+  nameWithType: Topology
+  fullName: Prowl.Runtime.Topology
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime

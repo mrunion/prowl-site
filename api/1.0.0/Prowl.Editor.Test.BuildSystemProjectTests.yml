@@ -1,0 +1,2349 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.Test.BuildSystemProjectTests
+  commentId: T:Prowl.Editor.Test.BuildSystemProjectTests
+  id: BuildSystemProjectTests
+  parent: Prowl.Editor.Test
+  children:
+  - Prowl.Editor.Test.BuildSystemProjectTests.#ctor
+  - Prowl.Editor.Test.BuildSystemProjectTests.AsyncVoidInAGameScript_RunsInABuild(System.Boolean)
+  - Prowl.Editor.Test.BuildSystemProjectTests.CanRunOnHost_IsTrueOnlyForTheHostsOwnPlatform
+  - Prowl.Editor.Test.BuildSystemProjectTests.ClearingTheProcessors_StopsShippingTheirOutput
+  - Prowl.Editor.Test.BuildSystemProjectTests.Collect_ExcludesUnreferencedEditorFolderAsset
+  - Prowl.Editor.Test.BuildSystemProjectTests.Collect_IncludesRuntimeDependencyLivingUnderEditorFolder
+  - Prowl.Editor.Test.BuildSystemProjectTests.Collect_WalksDependenciesOfSubAssetsIncludedOnlyViaParent
+  - Prowl.Editor.Test.BuildSystemProjectTests.CopyingAssets_StopsPartWayWhenCancelled
+  - Prowl.Editor.Test.BuildSystemProjectTests.CopyingAssets_WithAnAlreadyCancelledToken_WritesNothing
+  - Prowl.Editor.Test.BuildSystemProjectTests.DeletingParent_RemovesSubAssetDependencyGraphEntries
+  - Prowl.Editor.Test.BuildSystemProjectTests.Dispose
+  - Prowl.Editor.Test.BuildSystemProjectTests.EachBuild_TakesItsOwnFolderAndLeavesTheRestAlone
+  - Prowl.Editor.Test.BuildSystemProjectTests.FullPipeline_Compile_Build_RunHeadless
+  - Prowl.Editor.Test.BuildSystemProjectTests.GenerateManifest_IsByteIdenticalRegardlessOfSetOrder
+  - Prowl.Editor.Test.BuildSystemProjectTests.NoProcessors_LeavesTheBuildUntouched
+  - Prowl.Editor.Test.BuildSystemProjectTests.ProcessedBytes_AreWhatShips
+  - Prowl.Editor.Test.BuildSystemProjectTests.RegisteredProcessor_IsInvokedAndPopulatesTheCache
+  - Prowl.Editor.Test.BuildSystemProjectTests.ReimportRemovingSubAsset_RemovesSubAssetDependencyGraphEntries
+  - Prowl.Editor.Test.BuildSystemProjectTests.SecondBuild_ReusesTheCacheInsteadOfReprocessing
+  - Prowl.Editor.Test.BuildSystemProjectTests.SelfContainedBuild_KeepsTheFrameworkInTheRootAndRuns
+  - Prowl.Editor.Test.BuildSystemProjectTests.UniversalTarget_FailsInsteadOfBuildingOneArchitecture
+  - Prowl.Editor.Test.BuildSystemProjectTests.UsableOutputRoot_RefusesTheProjectAndItsAssets
+  langs:
+  - csharp
+  - vb
+  name: BuildSystemProjectTests
+  nameWithType: BuildSystemProjectTests
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests
+  type: Class
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: BuildSystemProjectTests
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 24
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: >-
+    The parts of the build that need a real project: collecting its assets, compiling its scripts,
+
+    producing a player and running it. Separate from <xref href="Prowl.Editor.Test.BuildSystemTests" data-throw-if-not-resolved="false"></xref> because every test
+
+    here constructs an editor and a project on disk.
+  example: []
+  syntax:
+    content: >-
+      [Trait("Category", "Build")]
+
+      public class BuildSystemProjectTests : EditorTestHarness, IDisposable
+    content.vb: >-
+      <Trait("Category", "Build")>
+
+      Public Class BuildSystemProjectTests Inherits EditorTestHarness Implements IDisposable
+  inheritance:
+  - System.Object
+  - Prowl.Editor.Test.EditorTestHarness
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - Prowl.Editor.Test.EditorTestHarness.Project
+  - Prowl.Editor.Test.EditorTestHarness.Assets
+  - Prowl.Editor.Test.EditorTestHarness.Load``1(System.Guid)
+  - Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(System.String)
+  - Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid,System.String,System.Action{Prowl.Runtime.GameObject})
+  - Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+  - Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.ReopenDatabase
+  - Prowl.Editor.Test.EditorTestHarness.WriteScript(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.AssemblyBytesResolver
+  - Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly
+  - Prowl.Editor.Test.EditorTestHarness.EnterPlayMode
+  - Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(System.String,Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  - Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(System.String)
+  - Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid,Prowl.Runtime.AssetPackagingMode)
+  - Prowl.Editor.Test.EditorTestHarness.CompileLibrary(System.String,System.String)
+  - Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(System.String,System.Int32)
+  - Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(System.String)
+  - Prowl.Editor.Test.EditorTestHarness.RunDotnet(System.String,System.String)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  attributes:
+  - type: Xunit.TraitAttribute
+    ctor: Xunit.TraitAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Category
+    - type: System.String
+      value: Build
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.#ctor
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.#ctor
+  id: '#ctor'
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: BuildSystemProjectTests()
+  nameWithType: BuildSystemProjectTests.BuildSystemProjectTests()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.BuildSystemProjectTests()
+  type: Constructor
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: .ctor
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 29
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: public BuildSystemProjectTests()
+    content.vb: Public Sub New()
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.#ctor*
+  nameWithType.vb: BuildSystemProjectTests.New()
+  fullName.vb: Prowl.Editor.Test.BuildSystemProjectTests.New()
+  name.vb: New()
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.Dispose
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.Dispose
+  id: Dispose
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: BuildSystemProjectTests.Dispose()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.Dispose()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Dispose
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 42
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: >-
+    Build profiles are shared editor state that survives a project being reopened, so a test picking
+
+    a target has to put it back. Leaving Linux selected makes every later build in the run produce a
+
+    Linux player and fail on the executable name.
+  example: []
+  syntax:
+    content: public override void Dispose()
+    content.vb: Public Overrides Sub Dispose()
+  overridden: Prowl.Editor.Test.EditorTestHarness.Dispose
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.Dispose*
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.EachBuild_TakesItsOwnFolderAndLeavesTheRestAlone
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.EachBuild_TakesItsOwnFolderAndLeavesTheRestAlone
+  id: EachBuild_TakesItsOwnFolderAndLeavesTheRestAlone
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: EachBuild_TakesItsOwnFolderAndLeavesTheRestAlone()
+  nameWithType: BuildSystemProjectTests.EachBuild_TakesItsOwnFolderAndLeavesTheRestAlone()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.EachBuild_TakesItsOwnFolderAndLeavesTheRestAlone()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EachBuild_TakesItsOwnFolderAndLeavesTheRestAlone
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 52
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void EachBuild_TakesItsOwnFolderAndLeavesTheRestAlone()
+    content.vb: >-
+      <Fact>
+
+      Public Sub EachBuild_TakesItsOwnFolderAndLeavesTheRestAlone()
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.EachBuild_TakesItsOwnFolderAndLeavesTheRestAlone*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.UsableOutputRoot_RefusesTheProjectAndItsAssets
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.UsableOutputRoot_RefusesTheProjectAndItsAssets
+  id: UsableOutputRoot_RefusesTheProjectAndItsAssets
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: UsableOutputRoot_RefusesTheProjectAndItsAssets()
+  nameWithType: BuildSystemProjectTests.UsableOutputRoot_RefusesTheProjectAndItsAssets()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.UsableOutputRoot_RefusesTheProjectAndItsAssets()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: UsableOutputRoot_RefusesTheProjectAndItsAssets
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 88
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void UsableOutputRoot_RefusesTheProjectAndItsAssets()
+    content.vb: >-
+      <Fact>
+
+      Public Sub UsableOutputRoot_RefusesTheProjectAndItsAssets()
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.UsableOutputRoot_RefusesTheProjectAndItsAssets*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.DeletingParent_RemovesSubAssetDependencyGraphEntries
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.DeletingParent_RemovesSubAssetDependencyGraphEntries
+  id: DeletingParent_RemovesSubAssetDependencyGraphEntries
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: DeletingParent_RemovesSubAssetDependencyGraphEntries()
+  nameWithType: BuildSystemProjectTests.DeletingParent_RemovesSubAssetDependencyGraphEntries()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.DeletingParent_RemovesSubAssetDependencyGraphEntries()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DeletingParent_RemovesSubAssetDependencyGraphEntries
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 104
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DeletingParent_RemovesSubAssetDependencyGraphEntries()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DeletingParent_RemovesSubAssetDependencyGraphEntries()
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.DeletingParent_RemovesSubAssetDependencyGraphEntries*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.Collect_WalksDependenciesOfSubAssetsIncludedOnlyViaParent
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.Collect_WalksDependenciesOfSubAssetsIncludedOnlyViaParent
+  id: Collect_WalksDependenciesOfSubAssetsIncludedOnlyViaParent
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: Collect_WalksDependenciesOfSubAssetsIncludedOnlyViaParent()
+  nameWithType: BuildSystemProjectTests.Collect_WalksDependenciesOfSubAssetsIncludedOnlyViaParent()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.Collect_WalksDependenciesOfSubAssetsIncludedOnlyViaParent()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Collect_WalksDependenciesOfSubAssetsIncludedOnlyViaParent
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 130
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Collect_WalksDependenciesOfSubAssetsIncludedOnlyViaParent()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Collect_WalksDependenciesOfSubAssetsIncludedOnlyViaParent()
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.Collect_WalksDependenciesOfSubAssetsIncludedOnlyViaParent*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.ReimportRemovingSubAsset_RemovesSubAssetDependencyGraphEntries
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.ReimportRemovingSubAsset_RemovesSubAssetDependencyGraphEntries
+  id: ReimportRemovingSubAsset_RemovesSubAssetDependencyGraphEntries
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: ReimportRemovingSubAsset_RemovesSubAssetDependencyGraphEntries()
+  nameWithType: BuildSystemProjectTests.ReimportRemovingSubAsset_RemovesSubAssetDependencyGraphEntries()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.ReimportRemovingSubAsset_RemovesSubAssetDependencyGraphEntries()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ReimportRemovingSubAsset_RemovesSubAssetDependencyGraphEntries
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 182
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ReimportRemovingSubAsset_RemovesSubAssetDependencyGraphEntries()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ReimportRemovingSubAsset_RemovesSubAssetDependencyGraphEntries()
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.ReimportRemovingSubAsset_RemovesSubAssetDependencyGraphEntries*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.Collect_IncludesRuntimeDependencyLivingUnderEditorFolder
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.Collect_IncludesRuntimeDependencyLivingUnderEditorFolder
+  id: Collect_IncludesRuntimeDependencyLivingUnderEditorFolder
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: Collect_IncludesRuntimeDependencyLivingUnderEditorFolder()
+  nameWithType: BuildSystemProjectTests.Collect_IncludesRuntimeDependencyLivingUnderEditorFolder()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.Collect_IncludesRuntimeDependencyLivingUnderEditorFolder()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Collect_IncludesRuntimeDependencyLivingUnderEditorFolder
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 208
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Collect_IncludesRuntimeDependencyLivingUnderEditorFolder()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Collect_IncludesRuntimeDependencyLivingUnderEditorFolder()
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.Collect_IncludesRuntimeDependencyLivingUnderEditorFolder*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.Collect_ExcludesUnreferencedEditorFolderAsset
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.Collect_ExcludesUnreferencedEditorFolderAsset
+  id: Collect_ExcludesUnreferencedEditorFolderAsset
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: Collect_ExcludesUnreferencedEditorFolderAsset()
+  nameWithType: BuildSystemProjectTests.Collect_ExcludesUnreferencedEditorFolderAsset()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.Collect_ExcludesUnreferencedEditorFolderAsset()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Collect_ExcludesUnreferencedEditorFolderAsset
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 247
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Collect_ExcludesUnreferencedEditorFolderAsset()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Collect_ExcludesUnreferencedEditorFolderAsset()
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.Collect_ExcludesUnreferencedEditorFolderAsset*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.GenerateManifest_IsByteIdenticalRegardlessOfSetOrder
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.GenerateManifest_IsByteIdenticalRegardlessOfSetOrder
+  id: GenerateManifest_IsByteIdenticalRegardlessOfSetOrder
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: GenerateManifest_IsByteIdenticalRegardlessOfSetOrder()
+  nameWithType: BuildSystemProjectTests.GenerateManifest_IsByteIdenticalRegardlessOfSetOrder()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.GenerateManifest_IsByteIdenticalRegardlessOfSetOrder()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GenerateManifest_IsByteIdenticalRegardlessOfSetOrder
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 266
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void GenerateManifest_IsByteIdenticalRegardlessOfSetOrder()
+    content.vb: >-
+      <Fact>
+
+      Public Sub GenerateManifest_IsByteIdenticalRegardlessOfSetOrder()
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.GenerateManifest_IsByteIdenticalRegardlessOfSetOrder*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.CopyingAssets_StopsPartWayWhenCancelled
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.CopyingAssets_StopsPartWayWhenCancelled
+  id: CopyingAssets_StopsPartWayWhenCancelled
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: CopyingAssets_StopsPartWayWhenCancelled()
+  nameWithType: BuildSystemProjectTests.CopyingAssets_StopsPartWayWhenCancelled()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.CopyingAssets_StopsPartWayWhenCancelled()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CopyingAssets_StopsPartWayWhenCancelled
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 291
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void CopyingAssets_StopsPartWayWhenCancelled()
+    content.vb: >-
+      <Fact>
+
+      Public Sub CopyingAssets_StopsPartWayWhenCancelled()
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.CopyingAssets_StopsPartWayWhenCancelled*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.CopyingAssets_WithAnAlreadyCancelledToken_WritesNothing
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.CopyingAssets_WithAnAlreadyCancelledToken_WritesNothing
+  id: CopyingAssets_WithAnAlreadyCancelledToken_WritesNothing
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: CopyingAssets_WithAnAlreadyCancelledToken_WritesNothing()
+  nameWithType: BuildSystemProjectTests.CopyingAssets_WithAnAlreadyCancelledToken_WritesNothing()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.CopyingAssets_WithAnAlreadyCancelledToken_WritesNothing()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CopyingAssets_WithAnAlreadyCancelledToken_WritesNothing
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 315
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void CopyingAssets_WithAnAlreadyCancelledToken_WritesNothing()
+    content.vb: >-
+      <Fact>
+
+      Public Sub CopyingAssets_WithAnAlreadyCancelledToken_WritesNothing()
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.CopyingAssets_WithAnAlreadyCancelledToken_WritesNothing*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.FullPipeline_Compile_Build_RunHeadless
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.FullPipeline_Compile_Build_RunHeadless
+  id: FullPipeline_Compile_Build_RunHeadless
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: FullPipeline_Compile_Build_RunHeadless()
+  nameWithType: BuildSystemProjectTests.FullPipeline_Compile_Build_RunHeadless()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.FullPipeline_Compile_Build_RunHeadless()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FullPipeline_Compile_Build_RunHeadless
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 372
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void FullPipeline_Compile_Build_RunHeadless()
+    content.vb: >-
+      <Fact>
+
+      Public Sub FullPipeline_Compile_Build_RunHeadless()
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.FullPipeline_Compile_Build_RunHeadless*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.AsyncVoidInAGameScript_RunsInABuild(System.Boolean)
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.AsyncVoidInAGameScript_RunsInABuild(System.Boolean)
+  id: AsyncVoidInAGameScript_RunsInABuild(System.Boolean)
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: AsyncVoidInAGameScript_RunsInABuild(bool)
+  nameWithType: BuildSystemProjectTests.AsyncVoidInAGameScript_RunsInABuild(bool)
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.AsyncVoidInAGameScript_RunsInABuild(bool)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AsyncVoidInAGameScript_RunsInABuild
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 507
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: >-
+    An <code>async void</code> method in a game script. Its state machine calls
+
+    <code>AsyncVoidMethodBuilder.Create()</code>, which lives in the core library and is reached through
+
+    type forwards in the framework facades, so it is the first thing to break when the player loads
+
+    those facades from somewhere the runtime did not put them.
+  example: []
+  syntax:
+    content: >-
+      [Theory]
+
+      [InlineData(new object[] { false })]
+
+      [InlineData(new object[] { true })]
+
+      public void AsyncVoidInAGameScript_RunsInABuild(bool selfContained)
+    parameters:
+    - id: selfContained
+      type: System.Boolean
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() { False })>
+
+      <InlineData(New Object() { True })>
+
+      Public Sub AsyncVoidInAGameScript_RunsInABuild(selfContained As Boolean)
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.AsyncVoidInAGameScript_RunsInABuild*
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
+  nameWithType.vb: BuildSystemProjectTests.AsyncVoidInAGameScript_RunsInABuild(Boolean)
+  fullName.vb: Prowl.Editor.Test.BuildSystemProjectTests.AsyncVoidInAGameScript_RunsInABuild(Boolean)
+  name.vb: AsyncVoidInAGameScript_RunsInABuild(Boolean)
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.SelfContainedBuild_KeepsTheFrameworkInTheRootAndRuns
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.SelfContainedBuild_KeepsTheFrameworkInTheRootAndRuns
+  id: SelfContainedBuild_KeepsTheFrameworkInTheRootAndRuns
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: SelfContainedBuild_KeepsTheFrameworkInTheRootAndRuns()
+  nameWithType: BuildSystemProjectTests.SelfContainedBuild_KeepsTheFrameworkInTheRootAndRuns()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.SelfContainedBuild_KeepsTheFrameworkInTheRootAndRuns()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SelfContainedBuild_KeepsTheFrameworkInTheRootAndRuns
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 611
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  summary: >-
+    A self contained build carries its own copy of the framework in the output root, and the runtime
+
+    resolves those itself before any of the player's code runs. Moving one into runtimes/ is a game
+
+    that dies on startup with "Could not load file or assembly", which is what a hand written list of
+
+    the framework assemblies somebody had seen fail produced.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void SelfContainedBuild_KeepsTheFrameworkInTheRootAndRuns()
+    content.vb: >-
+      <Fact>
+
+      Public Sub SelfContainedBuild_KeepsTheFrameworkInTheRootAndRuns()
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.SelfContainedBuild_KeepsTheFrameworkInTheRootAndRuns*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.RegisteredProcessor_IsInvokedAndPopulatesTheCache
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.RegisteredProcessor_IsInvokedAndPopulatesTheCache
+  id: RegisteredProcessor_IsInvokedAndPopulatesTheCache
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: RegisteredProcessor_IsInvokedAndPopulatesTheCache()
+  nameWithType: BuildSystemProjectTests.RegisteredProcessor_IsInvokedAndPopulatesTheCache()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.RegisteredProcessor_IsInvokedAndPopulatesTheCache()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RegisteredProcessor_IsInvokedAndPopulatesTheCache
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 703
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RegisteredProcessor_IsInvokedAndPopulatesTheCache()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RegisteredProcessor_IsInvokedAndPopulatesTheCache()
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.RegisteredProcessor_IsInvokedAndPopulatesTheCache*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.SecondBuild_ReusesTheCacheInsteadOfReprocessing
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.SecondBuild_ReusesTheCacheInsteadOfReprocessing
+  id: SecondBuild_ReusesTheCacheInsteadOfReprocessing
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: SecondBuild_ReusesTheCacheInsteadOfReprocessing()
+  nameWithType: BuildSystemProjectTests.SecondBuild_ReusesTheCacheInsteadOfReprocessing()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.SecondBuild_ReusesTheCacheInsteadOfReprocessing()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SecondBuild_ReusesTheCacheInsteadOfReprocessing
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 730
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void SecondBuild_ReusesTheCacheInsteadOfReprocessing()
+    content.vb: >-
+      <Fact>
+
+      Public Sub SecondBuild_ReusesTheCacheInsteadOfReprocessing()
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.SecondBuild_ReusesTheCacheInsteadOfReprocessing*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.ProcessedBytes_AreWhatShips
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.ProcessedBytes_AreWhatShips
+  id: ProcessedBytes_AreWhatShips
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: ProcessedBytes_AreWhatShips()
+  nameWithType: BuildSystemProjectTests.ProcessedBytes_AreWhatShips()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.ProcessedBytes_AreWhatShips()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ProcessedBytes_AreWhatShips
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 767
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ProcessedBytes_AreWhatShips()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ProcessedBytes_AreWhatShips()
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.ProcessedBytes_AreWhatShips*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.ClearingTheProcessors_StopsShippingTheirOutput
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.ClearingTheProcessors_StopsShippingTheirOutput
+  id: ClearingTheProcessors_StopsShippingTheirOutput
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: ClearingTheProcessors_StopsShippingTheirOutput()
+  nameWithType: BuildSystemProjectTests.ClearingTheProcessors_StopsShippingTheirOutput()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.ClearingTheProcessors_StopsShippingTheirOutput()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ClearingTheProcessors_StopsShippingTheirOutput
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 790
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ClearingTheProcessors_StopsShippingTheirOutput()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ClearingTheProcessors_StopsShippingTheirOutput()
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.ClearingTheProcessors_StopsShippingTheirOutput*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.NoProcessors_LeavesTheBuildUntouched
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.NoProcessors_LeavesTheBuildUntouched
+  id: NoProcessors_LeavesTheBuildUntouched
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: NoProcessors_LeavesTheBuildUntouched()
+  nameWithType: BuildSystemProjectTests.NoProcessors_LeavesTheBuildUntouched()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.NoProcessors_LeavesTheBuildUntouched()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NoProcessors_LeavesTheBuildUntouched
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 816
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void NoProcessors_LeavesTheBuildUntouched()
+    content.vb: >-
+      <Fact>
+
+      Public Sub NoProcessors_LeavesTheBuildUntouched()
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.NoProcessors_LeavesTheBuildUntouched*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.UniversalTarget_FailsInsteadOfBuildingOneArchitecture
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.UniversalTarget_FailsInsteadOfBuildingOneArchitecture
+  id: UniversalTarget_FailsInsteadOfBuildingOneArchitecture
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: UniversalTarget_FailsInsteadOfBuildingOneArchitecture()
+  nameWithType: BuildSystemProjectTests.UniversalTarget_FailsInsteadOfBuildingOneArchitecture()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.UniversalTarget_FailsInsteadOfBuildingOneArchitecture()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: UniversalTarget_FailsInsteadOfBuildingOneArchitecture
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 850
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void UniversalTarget_FailsInsteadOfBuildingOneArchitecture()
+    content.vb: >-
+      <Fact>
+
+      Public Sub UniversalTarget_FailsInsteadOfBuildingOneArchitecture()
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.UniversalTarget_FailsInsteadOfBuildingOneArchitecture*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.CanRunOnHost_IsTrueOnlyForTheHostsOwnPlatform
+  commentId: M:Prowl.Editor.Test.BuildSystemProjectTests.CanRunOnHost_IsTrueOnlyForTheHostsOwnPlatform
+  id: CanRunOnHost_IsTrueOnlyForTheHostsOwnPlatform
+  parent: Prowl.Editor.Test.BuildSystemProjectTests
+  langs:
+  - csharp
+  - vb
+  name: CanRunOnHost_IsTrueOnlyForTheHostsOwnPlatform()
+  nameWithType: BuildSystemProjectTests.CanRunOnHost_IsTrueOnlyForTheHostsOwnPlatform()
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.CanRunOnHost_IsTrueOnlyForTheHostsOwnPlatform()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor.Test/BuildSystemProjectTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CanRunOnHost_IsTrueOnlyForTheHostsOwnPlatform
+    path: ../Prowl/Prowl.Editor.Test/BuildSystemProjectTests.cs
+    startLine: 866
+  assemblies:
+  - Prowl.Editor.Test
+  namespace: Prowl.Editor.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void CanRunOnHost_IsTrueOnlyForTheHostsOwnPlatform()
+    content.vb: >-
+      <Fact>
+
+      Public Sub CanRunOnHost_IsTrueOnlyForTheHostsOwnPlatform()
+  overload: Prowl.Editor.Test.BuildSystemProjectTests.CanRunOnHost_IsTrueOnlyForTheHostsOwnPlatform*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+references:
+- uid: Prowl.Editor.Test.BuildSystemTests
+  commentId: T:Prowl.Editor.Test.BuildSystemTests
+  href: Prowl.Editor.Test.BuildSystemTests.html
+  name: BuildSystemTests
+  nameWithType: BuildSystemTests
+  fullName: Prowl.Editor.Test.BuildSystemTests
+- uid: Prowl.Editor.Test
+  commentId: N:Prowl.Editor.Test
+  name: Prowl.Editor.Test
+  nameWithType: Prowl.Editor.Test
+  fullName: Prowl.Editor.Test
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Test
+    name: Test
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Test
+    name: Test
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.Editor.Test.EditorTestHarness
+  commentId: T:Prowl.Editor.Test.EditorTestHarness
+  parent: Prowl.Editor.Test
+  href: Prowl.Editor.Test.EditorTestHarness.html
+  name: EditorTestHarness
+  nameWithType: EditorTestHarness
+  fullName: Prowl.Editor.Test.EditorTestHarness
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Prowl.Editor.Test.EditorTestHarness.Project
+  commentId: P:Prowl.Editor.Test.EditorTestHarness.Project
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Project
+  name: Project
+  nameWithType: EditorTestHarness.Project
+  fullName: Prowl.Editor.Test.EditorTestHarness.Project
+- uid: Prowl.Editor.Test.EditorTestHarness.Assets
+  commentId: P:Prowl.Editor.Test.EditorTestHarness.Assets
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Assets
+  name: Assets
+  nameWithType: EditorTestHarness.Assets
+  fullName: Prowl.Editor.Test.EditorTestHarness.Assets
+- uid: Prowl.Editor.Test.EditorTestHarness.Load``1(System.Guid)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.Load``1(System.Guid)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Load__1_System_Guid_
+  name: Load<T>(Guid)
+  nameWithType: EditorTestHarness.Load<T>(Guid)
+  fullName: Prowl.Editor.Test.EditorTestHarness.Load<T>(System.Guid)
+  nameWithType.vb: EditorTestHarness.Load(Of T)(Guid)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.Load(Of T)(System.Guid)
+  name.vb: Load(Of T)(Guid)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.Load``1(System.Guid)
+    name: Load
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Load__1_System_Guid_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.Load``1(System.Guid)
+    name: Load
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Load__1_System_Guid_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AssetAbsolutePath_System_String_
+  name: AssetAbsolutePath(string)
+  nameWithType: EditorTestHarness.AssetAbsolutePath(string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(string)
+  nameWithType.vb: EditorTestHarness.AssetAbsolutePath(String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(String)
+  name.vb: AssetAbsolutePath(String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(System.String)
+    name: AssetAbsolutePath
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AssetAbsolutePath_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.AssetAbsolutePath(System.String)
+    name: AssetAbsolutePath
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AssetAbsolutePath_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CreatePrefabAsset_Prowl_Runtime_GameObject_System_String_
+  name: CreatePrefabAsset(GameObject, string)
+  nameWithType: EditorTestHarness.CreatePrefabAsset(GameObject, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject, string)
+  nameWithType.vb: EditorTestHarness.CreatePrefabAsset(GameObject, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject, String)
+  name.vb: CreatePrefabAsset(GameObject, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject,System.String)
+    name: CreatePrefabAsset
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CreatePrefabAsset_Prowl_Runtime_GameObject_System_String_
+  - name: (
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CreatePrefabAsset(Prowl.Runtime.GameObject,System.String)
+    name: CreatePrefabAsset
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CreatePrefabAsset_Prowl_Runtime_GameObject_System_String_
+  - name: (
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WritePrefabFileRaw_Prowl_Runtime_GameObject_System_String_
+  name: WritePrefabFileRaw(GameObject, string)
+  nameWithType: EditorTestHarness.WritePrefabFileRaw(GameObject, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject, string)
+  nameWithType.vb: EditorTestHarness.WritePrefabFileRaw(GameObject, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject, String)
+  name.vb: WritePrefabFileRaw(GameObject, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+    name: WritePrefabFileRaw
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WritePrefabFileRaw_Prowl_Runtime_GameObject_System_String_
+  - name: (
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.WritePrefabFileRaw(Prowl.Runtime.GameObject,System.String)
+    name: WritePrefabFileRaw
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WritePrefabFileRaw_Prowl_Runtime_GameObject_System_String_
+  - name: (
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid,System.String,System.Action{Prowl.Runtime.GameObject})
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid,System.String,System.Action{Prowl.Runtime.GameObject})
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_EditPrefabSource_System_Guid_System_String_System_Action_Prowl_Runtime_GameObject__
+  name: EditPrefabSource(Guid, string, Action<GameObject>)
+  nameWithType: EditorTestHarness.EditPrefabSource(Guid, string, Action<GameObject>)
+  fullName: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid, string, System.Action<Prowl.Runtime.GameObject>)
+  nameWithType.vb: EditorTestHarness.EditPrefabSource(Guid, String, Action(Of GameObject))
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid, String, System.Action(Of Prowl.Runtime.GameObject))
+  name.vb: EditPrefabSource(Guid, String, Action(Of GameObject))
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid,System.String,System.Action{Prowl.Runtime.GameObject})
+    name: EditPrefabSource
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_EditPrefabSource_System_Guid_System_String_System_Action_Prowl_Runtime_GameObject__
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.EditPrefabSource(System.Guid,System.String,System.Action{Prowl.Runtime.GameObject})
+    name: EditPrefabSource
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_EditPrefabSource_System_Guid_System_String_System_Action_Prowl_Runtime_GameObject__
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: )
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_GetPrefab_System_Guid_
+  name: GetPrefab(Guid)
+  nameWithType: EditorTestHarness.GetPrefab(Guid)
+  fullName: Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+    name: GetPrefab
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_GetPrefab_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.GetPrefab(System.Guid)
+    name: GetPrefab
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_GetPrefab_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CreateSceneAsset_Prowl_Runtime_Resources_Scene_System_String_
+  name: CreateSceneAsset(Scene, string)
+  nameWithType: EditorTestHarness.CreateSceneAsset(Scene, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene, string)
+  nameWithType.vb: EditorTestHarness.CreateSceneAsset(Scene, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene, String)
+  name.vb: CreateSceneAsset(Scene, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene,System.String)
+    name: CreateSceneAsset
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CreateSceneAsset_Prowl_Runtime_Resources_Scene_System_String_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+    href: Prowl.Runtime.Resources.Scene.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CreateSceneAsset(Prowl.Runtime.Resources.Scene,System.String)
+    name: CreateSceneAsset
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CreateSceneAsset_Prowl_Runtime_Resources_Scene_System_String_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+    href: Prowl.Runtime.Resources.Scene.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.ReopenDatabase
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.ReopenDatabase
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_ReopenDatabase
+  name: ReopenDatabase()
+  nameWithType: EditorTestHarness.ReopenDatabase()
+  fullName: Prowl.Editor.Test.EditorTestHarness.ReopenDatabase()
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.ReopenDatabase
+    name: ReopenDatabase
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_ReopenDatabase
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.ReopenDatabase
+    name: ReopenDatabase
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_ReopenDatabase
+  - name: (
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.WriteScript(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.WriteScript(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WriteScript_System_String_System_String_
+  name: WriteScript(string, string)
+  nameWithType: EditorTestHarness.WriteScript(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.WriteScript(string, string)
+  nameWithType.vb: EditorTestHarness.WriteScript(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.WriteScript(String, String)
+  name.vb: WriteScript(String, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.WriteScript(System.String,System.String)
+    name: WriteScript
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WriteScript_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.WriteScript(System.String,System.String)
+    name: WriteScript
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WriteScript_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileGameAssembly_System_String_System_String_
+  name: CompileGameAssembly(string, string)
+  nameWithType: EditorTestHarness.CompileGameAssembly(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(string, string)
+  nameWithType.vb: EditorTestHarness.CompileGameAssembly(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(String, String)
+  name.vb: CompileGameAssembly(String, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(System.String,System.String)
+    name: CompileGameAssembly
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileGameAssembly_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly(System.String,System.String)
+    name: CompileGameAssembly
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileGameAssembly_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.AssemblyBytesResolver
+  commentId: P:Prowl.Editor.Test.EditorTestHarness.AssemblyBytesResolver
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AssemblyBytesResolver
+  name: AssemblyBytesResolver
+  nameWithType: EditorTestHarness.AssemblyBytesResolver
+  fullName: Prowl.Editor.Test.EditorTestHarness.AssemblyBytesResolver
+- uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileGameAssembly
+  name: CompileGameAssembly()
+  nameWithType: EditorTestHarness.CompileGameAssembly()
+  fullName: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly()
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly
+    name: CompileGameAssembly
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileGameAssembly
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CompileGameAssembly
+    name: CompileGameAssembly
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileGameAssembly
+  - name: (
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.EnterPlayMode
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.EnterPlayMode
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_EnterPlayMode
+  name: EnterPlayMode()
+  nameWithType: EditorTestHarness.EnterPlayMode()
+  fullName: Prowl.Editor.Test.EditorTestHarness.EnterPlayMode()
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.EnterPlayMode
+    name: EnterPlayMode
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_EnterPlayMode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.EnterPlayMode
+    name: EnterPlayMode
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_EnterPlayMode
+  - name: (
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Tick(Scene, int)
+  nameWithType: EditorTestHarness.Tick(Scene, int)
+  fullName: Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: EditorTestHarness.Tick(Scene, Integer)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Tick(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+    href: Prowl.Runtime.Resources.Scene.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+    href: Prowl.Runtime.Resources.Scene.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_UpdateScene_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: UpdateScene(Scene, int)
+  nameWithType: EditorTestHarness.UpdateScene(Scene, int)
+  fullName: Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: EditorTestHarness.UpdateScene(Scene, Integer)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: UpdateScene(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: UpdateScene
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_UpdateScene_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+    href: Prowl.Runtime.Resources.Scene.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.UpdateScene(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: UpdateScene
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_UpdateScene_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+    href: Prowl.Runtime.Resources.Scene.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(System.String,Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(System.String,Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WriteAssemblyDefinition_System_String_Prowl_Editor_Projects_Scripting_AssemblyDefinition_
+  name: WriteAssemblyDefinition(string, AssemblyDefinition)
+  nameWithType: EditorTestHarness.WriteAssemblyDefinition(string, AssemblyDefinition)
+  fullName: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(string, Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  nameWithType.vb: EditorTestHarness.WriteAssemblyDefinition(String, AssemblyDefinition)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(String, Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+  name.vb: WriteAssemblyDefinition(String, AssemblyDefinition)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(System.String,Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+    name: WriteAssemblyDefinition
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WriteAssemblyDefinition_System_String_Prowl_Editor_Projects_Scripting_AssemblyDefinition_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Prowl.Editor.Projects.Scripting.AssemblyDefinition
+    name: AssemblyDefinition
+    href: Prowl.Editor.Projects.Scripting.AssemblyDefinition.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.WriteAssemblyDefinition(System.String,Prowl.Editor.Projects.Scripting.AssemblyDefinition)
+    name: WriteAssemblyDefinition
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_WriteAssemblyDefinition_System_String_Prowl_Editor_Projects_Scripting_AssemblyDefinition_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Prowl.Editor.Projects.Scripting.AssemblyDefinition
+    name: AssemblyDefinition
+    href: Prowl.Editor.Projects.Scripting.AssemblyDefinition.html
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CopyIntoAssets_System_String_System_String_
+  name: CopyIntoAssets(string, string)
+  nameWithType: EditorTestHarness.CopyIntoAssets(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(string, string)
+  nameWithType.vb: EditorTestHarness.CopyIntoAssets(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(String, String)
+  name.vb: CopyIntoAssets(String, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(System.String,System.String)
+    name: CopyIntoAssets
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CopyIntoAssets_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CopyIntoAssets(System.String,System.String)
+    name: CopyIntoAssets
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CopyIntoAssets_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AuthorEmptyScene_System_String_
+  name: AuthorEmptyScene(string)
+  nameWithType: EditorTestHarness.AuthorEmptyScene(string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(string)
+  nameWithType.vb: EditorTestHarness.AuthorEmptyScene(String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(String)
+  name.vb: AuthorEmptyScene(String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(System.String)
+    name: AuthorEmptyScene
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AuthorEmptyScene_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.AuthorEmptyScene(System.String)
+    name: AuthorEmptyScene
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AuthorEmptyScene_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AuthorSceneWithComponent_System_String_System_String_
+  name: AuthorSceneWithComponent(string, string)
+  nameWithType: EditorTestHarness.AuthorSceneWithComponent(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(string, string)
+  nameWithType.vb: EditorTestHarness.AuthorSceneWithComponent(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(String, String)
+  name.vb: AuthorSceneWithComponent(String, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(System.String,System.String)
+    name: AuthorSceneWithComponent
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AuthorSceneWithComponent_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.AuthorSceneWithComponent(System.String,System.String)
+    name: AuthorSceneWithComponent
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_AuthorSceneWithComponent_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid,Prowl.Runtime.AssetPackagingMode)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid,Prowl.Runtime.AssetPackagingMode)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunBuild_System_Guid_Prowl_Runtime_AssetPackagingMode_
+  name: RunBuild(Guid, AssetPackagingMode)
+  nameWithType: EditorTestHarness.RunBuild(Guid, AssetPackagingMode)
+  fullName: Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid, Prowl.Runtime.AssetPackagingMode)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid,Prowl.Runtime.AssetPackagingMode)
+    name: RunBuild
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunBuild_System_Guid_Prowl_Runtime_AssetPackagingMode_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: Prowl.Runtime.AssetPackagingMode
+    name: AssetPackagingMode
+    href: Prowl.Runtime.AssetPackagingMode.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.RunBuild(System.Guid,Prowl.Runtime.AssetPackagingMode)
+    name: RunBuild
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunBuild_System_Guid_Prowl_Runtime_AssetPackagingMode_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: Prowl.Runtime.AssetPackagingMode
+    name: AssetPackagingMode
+    href: Prowl.Runtime.AssetPackagingMode.html
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.CompileLibrary(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.CompileLibrary(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileLibrary_System_String_System_String_
+  name: CompileLibrary(string, string)
+  nameWithType: EditorTestHarness.CompileLibrary(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.CompileLibrary(string, string)
+  nameWithType.vb: EditorTestHarness.CompileLibrary(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.CompileLibrary(String, String)
+  name.vb: CompileLibrary(String, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CompileLibrary(System.String,System.String)
+    name: CompileLibrary
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileLibrary_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.CompileLibrary(System.String,System.String)
+    name: CompileLibrary
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_CompileLibrary_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(System.String,System.Int32)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(System.String,System.Int32)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunPlayerHeadless_System_String_System_Int32_
+  name: RunPlayerHeadless(string, int)
+  nameWithType: EditorTestHarness.RunPlayerHeadless(string, int)
+  fullName: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(string, int)
+  nameWithType.vb: EditorTestHarness.RunPlayerHeadless(String, Integer)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(String, Integer)
+  name.vb: RunPlayerHeadless(String, Integer)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(System.String,System.Int32)
+    name: RunPlayerHeadless
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunPlayerHeadless_System_String_System_Int32_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.RunPlayerHeadless(System.String,System.Int32)
+    name: RunPlayerHeadless
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunPlayerHeadless_System_String_System_Int32_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_TryDeleteDir_System_String_
+  name: TryDeleteDir(string)
+  nameWithType: EditorTestHarness.TryDeleteDir(string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(string)
+  nameWithType.vb: EditorTestHarness.TryDeleteDir(String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(String)
+  name.vb: TryDeleteDir(String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(System.String)
+    name: TryDeleteDir
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_TryDeleteDir_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.TryDeleteDir(System.String)
+    name: TryDeleteDir
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_TryDeleteDir_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Test.EditorTestHarness.RunDotnet(System.String,System.String)
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.RunDotnet(System.String,System.String)
+  parent: Prowl.Editor.Test.EditorTestHarness
+  isExternal: true
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunDotnet_System_String_System_String_
+  name: RunDotnet(string, string)
+  nameWithType: EditorTestHarness.RunDotnet(string, string)
+  fullName: Prowl.Editor.Test.EditorTestHarness.RunDotnet(string, string)
+  nameWithType.vb: EditorTestHarness.RunDotnet(String, String)
+  fullName.vb: Prowl.Editor.Test.EditorTestHarness.RunDotnet(String, String)
+  name.vb: RunDotnet(String, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.RunDotnet(System.String,System.String)
+    name: RunDotnet
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunDotnet_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.RunDotnet(System.String,System.String)
+    name: RunDotnet
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_RunDotnet_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.#ctor*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.#ctor
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests__ctor
+  name: BuildSystemProjectTests
+  nameWithType: BuildSystemProjectTests.BuildSystemProjectTests
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.BuildSystemProjectTests
+  nameWithType.vb: BuildSystemProjectTests.New
+  fullName.vb: Prowl.Editor.Test.BuildSystemProjectTests.New
+  name.vb: New
+- uid: Prowl.Editor.Test.EditorTestHarness.Dispose
+  commentId: M:Prowl.Editor.Test.EditorTestHarness.Dispose
+  parent: Prowl.Editor.Test.EditorTestHarness
+  href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Dispose
+  name: Dispose()
+  nameWithType: EditorTestHarness.Dispose()
+  fullName: Prowl.Editor.Test.EditorTestHarness.Dispose()
+  spec.csharp:
+  - uid: Prowl.Editor.Test.EditorTestHarness.Dispose
+    name: Dispose
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Test.EditorTestHarness.Dispose
+    name: Dispose
+    href: Prowl.Editor.Test.EditorTestHarness.html#Prowl_Editor_Test_EditorTestHarness_Dispose
+  - name: (
+  - name: )
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.Dispose*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.Dispose
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_Dispose
+  name: Dispose
+  nameWithType: BuildSystemProjectTests.Dispose
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.Dispose
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.EachBuild_TakesItsOwnFolderAndLeavesTheRestAlone*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.EachBuild_TakesItsOwnFolderAndLeavesTheRestAlone
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_EachBuild_TakesItsOwnFolderAndLeavesTheRestAlone
+  name: EachBuild_TakesItsOwnFolderAndLeavesTheRestAlone
+  nameWithType: BuildSystemProjectTests.EachBuild_TakesItsOwnFolderAndLeavesTheRestAlone
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.EachBuild_TakesItsOwnFolderAndLeavesTheRestAlone
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.UsableOutputRoot_RefusesTheProjectAndItsAssets*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.UsableOutputRoot_RefusesTheProjectAndItsAssets
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_UsableOutputRoot_RefusesTheProjectAndItsAssets
+  name: UsableOutputRoot_RefusesTheProjectAndItsAssets
+  nameWithType: BuildSystemProjectTests.UsableOutputRoot_RefusesTheProjectAndItsAssets
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.UsableOutputRoot_RefusesTheProjectAndItsAssets
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.DeletingParent_RemovesSubAssetDependencyGraphEntries*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.DeletingParent_RemovesSubAssetDependencyGraphEntries
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_DeletingParent_RemovesSubAssetDependencyGraphEntries
+  name: DeletingParent_RemovesSubAssetDependencyGraphEntries
+  nameWithType: BuildSystemProjectTests.DeletingParent_RemovesSubAssetDependencyGraphEntries
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.DeletingParent_RemovesSubAssetDependencyGraphEntries
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.Collect_WalksDependenciesOfSubAssetsIncludedOnlyViaParent*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.Collect_WalksDependenciesOfSubAssetsIncludedOnlyViaParent
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_Collect_WalksDependenciesOfSubAssetsIncludedOnlyViaParent
+  name: Collect_WalksDependenciesOfSubAssetsIncludedOnlyViaParent
+  nameWithType: BuildSystemProjectTests.Collect_WalksDependenciesOfSubAssetsIncludedOnlyViaParent
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.Collect_WalksDependenciesOfSubAssetsIncludedOnlyViaParent
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.ReimportRemovingSubAsset_RemovesSubAssetDependencyGraphEntries*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.ReimportRemovingSubAsset_RemovesSubAssetDependencyGraphEntries
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_ReimportRemovingSubAsset_RemovesSubAssetDependencyGraphEntries
+  name: ReimportRemovingSubAsset_RemovesSubAssetDependencyGraphEntries
+  nameWithType: BuildSystemProjectTests.ReimportRemovingSubAsset_RemovesSubAssetDependencyGraphEntries
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.ReimportRemovingSubAsset_RemovesSubAssetDependencyGraphEntries
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.Collect_IncludesRuntimeDependencyLivingUnderEditorFolder*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.Collect_IncludesRuntimeDependencyLivingUnderEditorFolder
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_Collect_IncludesRuntimeDependencyLivingUnderEditorFolder
+  name: Collect_IncludesRuntimeDependencyLivingUnderEditorFolder
+  nameWithType: BuildSystemProjectTests.Collect_IncludesRuntimeDependencyLivingUnderEditorFolder
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.Collect_IncludesRuntimeDependencyLivingUnderEditorFolder
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.Collect_ExcludesUnreferencedEditorFolderAsset*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.Collect_ExcludesUnreferencedEditorFolderAsset
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_Collect_ExcludesUnreferencedEditorFolderAsset
+  name: Collect_ExcludesUnreferencedEditorFolderAsset
+  nameWithType: BuildSystemProjectTests.Collect_ExcludesUnreferencedEditorFolderAsset
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.Collect_ExcludesUnreferencedEditorFolderAsset
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.GenerateManifest_IsByteIdenticalRegardlessOfSetOrder*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.GenerateManifest_IsByteIdenticalRegardlessOfSetOrder
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_GenerateManifest_IsByteIdenticalRegardlessOfSetOrder
+  name: GenerateManifest_IsByteIdenticalRegardlessOfSetOrder
+  nameWithType: BuildSystemProjectTests.GenerateManifest_IsByteIdenticalRegardlessOfSetOrder
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.GenerateManifest_IsByteIdenticalRegardlessOfSetOrder
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.CopyingAssets_StopsPartWayWhenCancelled*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.CopyingAssets_StopsPartWayWhenCancelled
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_CopyingAssets_StopsPartWayWhenCancelled
+  name: CopyingAssets_StopsPartWayWhenCancelled
+  nameWithType: BuildSystemProjectTests.CopyingAssets_StopsPartWayWhenCancelled
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.CopyingAssets_StopsPartWayWhenCancelled
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.CopyingAssets_WithAnAlreadyCancelledToken_WritesNothing*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.CopyingAssets_WithAnAlreadyCancelledToken_WritesNothing
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_CopyingAssets_WithAnAlreadyCancelledToken_WritesNothing
+  name: CopyingAssets_WithAnAlreadyCancelledToken_WritesNothing
+  nameWithType: BuildSystemProjectTests.CopyingAssets_WithAnAlreadyCancelledToken_WritesNothing
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.CopyingAssets_WithAnAlreadyCancelledToken_WritesNothing
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.FullPipeline_Compile_Build_RunHeadless*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.FullPipeline_Compile_Build_RunHeadless
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_FullPipeline_Compile_Build_RunHeadless
+  name: FullPipeline_Compile_Build_RunHeadless
+  nameWithType: BuildSystemProjectTests.FullPipeline_Compile_Build_RunHeadless
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.FullPipeline_Compile_Build_RunHeadless
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.AsyncVoidInAGameScript_RunsInABuild*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.AsyncVoidInAGameScript_RunsInABuild
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_AsyncVoidInAGameScript_RunsInABuild_System_Boolean_
+  name: AsyncVoidInAGameScript_RunsInABuild
+  nameWithType: BuildSystemProjectTests.AsyncVoidInAGameScript_RunsInABuild
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.AsyncVoidInAGameScript_RunsInABuild
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.SelfContainedBuild_KeepsTheFrameworkInTheRootAndRuns*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.SelfContainedBuild_KeepsTheFrameworkInTheRootAndRuns
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_SelfContainedBuild_KeepsTheFrameworkInTheRootAndRuns
+  name: SelfContainedBuild_KeepsTheFrameworkInTheRootAndRuns
+  nameWithType: BuildSystemProjectTests.SelfContainedBuild_KeepsTheFrameworkInTheRootAndRuns
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.SelfContainedBuild_KeepsTheFrameworkInTheRootAndRuns
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.RegisteredProcessor_IsInvokedAndPopulatesTheCache*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.RegisteredProcessor_IsInvokedAndPopulatesTheCache
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_RegisteredProcessor_IsInvokedAndPopulatesTheCache
+  name: RegisteredProcessor_IsInvokedAndPopulatesTheCache
+  nameWithType: BuildSystemProjectTests.RegisteredProcessor_IsInvokedAndPopulatesTheCache
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.RegisteredProcessor_IsInvokedAndPopulatesTheCache
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.SecondBuild_ReusesTheCacheInsteadOfReprocessing*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.SecondBuild_ReusesTheCacheInsteadOfReprocessing
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_SecondBuild_ReusesTheCacheInsteadOfReprocessing
+  name: SecondBuild_ReusesTheCacheInsteadOfReprocessing
+  nameWithType: BuildSystemProjectTests.SecondBuild_ReusesTheCacheInsteadOfReprocessing
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.SecondBuild_ReusesTheCacheInsteadOfReprocessing
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.ProcessedBytes_AreWhatShips*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.ProcessedBytes_AreWhatShips
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_ProcessedBytes_AreWhatShips
+  name: ProcessedBytes_AreWhatShips
+  nameWithType: BuildSystemProjectTests.ProcessedBytes_AreWhatShips
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.ProcessedBytes_AreWhatShips
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.ClearingTheProcessors_StopsShippingTheirOutput*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.ClearingTheProcessors_StopsShippingTheirOutput
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_ClearingTheProcessors_StopsShippingTheirOutput
+  name: ClearingTheProcessors_StopsShippingTheirOutput
+  nameWithType: BuildSystemProjectTests.ClearingTheProcessors_StopsShippingTheirOutput
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.ClearingTheProcessors_StopsShippingTheirOutput
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.NoProcessors_LeavesTheBuildUntouched*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.NoProcessors_LeavesTheBuildUntouched
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_NoProcessors_LeavesTheBuildUntouched
+  name: NoProcessors_LeavesTheBuildUntouched
+  nameWithType: BuildSystemProjectTests.NoProcessors_LeavesTheBuildUntouched
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.NoProcessors_LeavesTheBuildUntouched
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.UniversalTarget_FailsInsteadOfBuildingOneArchitecture*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.UniversalTarget_FailsInsteadOfBuildingOneArchitecture
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_UniversalTarget_FailsInsteadOfBuildingOneArchitecture
+  name: UniversalTarget_FailsInsteadOfBuildingOneArchitecture
+  nameWithType: BuildSystemProjectTests.UniversalTarget_FailsInsteadOfBuildingOneArchitecture
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.UniversalTarget_FailsInsteadOfBuildingOneArchitecture
+- uid: Prowl.Editor.Test.BuildSystemProjectTests.CanRunOnHost_IsTrueOnlyForTheHostsOwnPlatform*
+  commentId: Overload:Prowl.Editor.Test.BuildSystemProjectTests.CanRunOnHost_IsTrueOnlyForTheHostsOwnPlatform
+  href: Prowl.Editor.Test.BuildSystemProjectTests.html#Prowl_Editor_Test_BuildSystemProjectTests_CanRunOnHost_IsTrueOnlyForTheHostsOwnPlatform
+  name: CanRunOnHost_IsTrueOnlyForTheHostsOwnPlatform
+  nameWithType: BuildSystemProjectTests.CanRunOnHost_IsTrueOnlyForTheHostsOwnPlatform
+  fullName: Prowl.Editor.Test.BuildSystemProjectTests.CanRunOnHost_IsTrueOnlyForTheHostsOwnPlatform

@@ -1,0 +1,2943 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.Test.ThreadingTests
+  commentId: T:Prowl.Runtime.Test.ThreadingTests
+  id: ThreadingTests
+  parent: Prowl.Runtime.Test
+  children:
+  - Prowl.Runtime.Test.ThreadingTests.ACancellationThatWasATimeoutIsReportedAndADeliberateOneIsNot
+  - Prowl.Runtime.Test.ThreadingTests.AComponentOnALiveObjectCannotBeToggledFromAnotherThread
+  - Prowl.Runtime.Test.ThreadingTests.AContinuationThatResumesAfterItsSessionEndedNeverRuns
+  - Prowl.Runtime.Test.ThreadingTests.AFrameWaitOnAnEndedSessionIsCancelledRatherThanThrowing
+  - Prowl.Runtime.Test.ThreadingTests.ASkippedSwapStillEndsTheSession
+  - Prowl.Runtime.Test.ThreadingTests.AThreadStartedOutsideGameplayFollowsTheCurrentSession
+  - Prowl.Runtime.Test.ThreadingTests.AWaitConditionThatThrowsFaultsTheWait
+  - Prowl.Runtime.Test.ThreadingTests.AWaitStartedDuringAPumpWaitsForTheNextOne
+  - Prowl.Runtime.Test.ThreadingTests.AWaitWhoseCheckEndsTheSessionIsCancelledRatherThanStranded
+  - Prowl.Runtime.Test.ThreadingTests.AWorkerHoppingBackAfterItsSessionEndedNeverResumes
+  - Prowl.Runtime.Test.ThreadingTests.AWorkerSeesItsOwnSessionEndEvenAfterANewOneStarted
+  - Prowl.Runtime.Test.ThreadingTests.AWorkerStartedInANewSessionStillGetsBack
+  - Prowl.Runtime.Test.ThreadingTests.AfterTheLoopStopsWorkersAreRefusedUntilItIsUninstalled
+  - Prowl.Runtime.Test.ThreadingTests.AnAsyncVoidThatFailsAfterItsSessionEndedIsStillReported
+  - Prowl.Runtime.Test.ThreadingTests.AwaitingTheNextFrameResumesInThatFramesPump
+  - Prowl.Runtime.Test.ThreadingTests.BlockedWorkRunsWhenTheLoopStopsWithoutHoldingTheContext
+  - Prowl.Runtime.Test.ThreadingTests.CancellingAFrameWaitCompletesItWithoutAFrame
+  - Prowl.Runtime.Test.ThreadingTests.DelayCountsGameTimeAndStandsStillWhileTimeDoes
+  - Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsEvenWhenOnDisposeSkipsBase
+  - Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsWhenTheComponentIsDestroyed
+  - Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsWithItsGameObject
+  - Prowl.Runtime.Test.ThreadingTests.DestroyFromAnotherThreadIsQueuedForTheMainThread
+  - Prowl.Runtime.Test.ThreadingTests.DisposingALiveComponentFromAnotherThreadThrowsBeforeTearingAnythingDown
+  - Prowl.Runtime.Test.ThreadingTests.DisposingALiveObjectFromAnotherThreadThrowsBeforeTearingAnythingDown
+  - Prowl.Runtime.Test.ThreadingTests.DisposingALiveSceneFromAnotherThreadThrows
+  - Prowl.Runtime.Test.ThreadingTests.EndingASessionDropsQueuedWorkCancelsItsTokenAndItsFrameWaits
+  - Prowl.Runtime.Test.ThreadingTests.EndingTheSessionAtASwapSplitsTheTwoScenesBetweenSessions
+  - Prowl.Runtime.Test.ThreadingTests.EveryStructuralChangeToALiveSceneIsChecked
+  - Prowl.Runtime.Test.ThreadingTests.FrameWaitsCompleteAsCancelledWhenTheirSessionEnds
+  - Prowl.Runtime.Test.ThreadingTests.FramesCountsFrames
+  - Prowl.Runtime.Test.ThreadingTests.HoppingToAWorkerAndBackEndsOnTheMainThread
+  - Prowl.Runtime.Test.ThreadingTests.InstallingOverALoopCarriesBlockedWorkToTheNewOne
+  - Prowl.Runtime.Test.ThreadingTests.MainThreadAwaitOnTheMainThreadContinuesImmediately
+  - Prowl.Runtime.Test.ThreadingTests.MovingALiveObjectFromAnotherThreadThrowsAndChangesNothing
+  - Prowl.Runtime.Test.ThreadingTests.ObjectsBuiltOffSceneOnAWorkerCanJoinTheSceneOnTheMainThread
+  - Prowl.Runtime.Test.ThreadingTests.PhysicsAndAnimationComponentsOnALiveObjectAreChecked
+  - Prowl.Runtime.Test.ThreadingTests.PhysicsQueriesFromAnotherThreadThrow
+  - Prowl.Runtime.Test.ThreadingTests.ReadingTheCurrentSceneFromAnotherThreadCannotLeaveAnInactiveOneBehind
+  - Prowl.Runtime.Test.ThreadingTests.ReadingTimeFromAnotherThreadWhileTheLoopSwapsItNeverThrows
+  - Prowl.Runtime.Test.ThreadingTests.ReadingWorldTransformsFromAnotherThreadGivesTheRightAnswer
+  - Prowl.Runtime.Test.ThreadingTests.RestartingInsideAQueuedContinuationLeavesTheThreadOnTheNewSession
+  - Prowl.Runtime.Test.ThreadingTests.RestartingInsideAsyncCodeIsPutRightByTheNextPump
+  - Prowl.Runtime.Test.ThreadingTests.RunRethrowsWhatTheWorkThrewOnTheCallingThread
+  - Prowl.Runtime.Test.ThreadingTests.RunReturnsItsResult
+  - Prowl.Runtime.Test.ThreadingTests.SendAfterTheLoopStoppedThrowsInsteadOfRunningOnTheCaller
+  - Prowl.Runtime.Test.ThreadingTests.WaitUntilChecksOncePerFrame
+  - Prowl.Runtime.Test.ThreadingTests.WithoutALoopEveryThreadCountsAsTheMainThread
+  - Prowl.Runtime.Test.ThreadingTests.WithoutALoopOtherThreadsAreNotStopped
+  - Prowl.Runtime.Test.ThreadingTests.WorkBlockingOnTheMainThreadCarriesAcrossASessionEnd
+  - Prowl.Runtime.Test.ThreadingTests.WorkStartedFromAComponentStaysBoundToItsSession
+  langs:
+  - csharp
+  - vb
+  name: ThreadingTests
+  nameWithType: ThreadingTests
+  fullName: Prowl.Runtime.Test.ThreadingTests
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ThreadingTests
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 48
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    The main thread model: async sessions on the main thread, moving between threads with GameTask, and the
+
+    ownership checks that stop another thread from touching a running scene.
+  example: []
+  syntax:
+    content: 'public class ThreadingTests : RuntimeTestBase, IDisposable'
+    content.vb: Public Class ThreadingTests Inherits RuntimeTestBase Implements IDisposable
+  inheritance:
+  - System.Object
+  - Prowl.Runtime.Test.RuntimeTestBase
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  - Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  - Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  - Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.Test.ThreadingTests.AwaitingTheNextFrameResumesInThatFramesPump
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.AwaitingTheNextFrameResumesInThatFramesPump
+  id: AwaitingTheNextFrameResumesInThatFramesPump
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: AwaitingTheNextFrameResumesInThatFramesPump()
+  nameWithType: ThreadingTests.AwaitingTheNextFrameResumesInThatFramesPump()
+  fullName: Prowl.Runtime.Test.ThreadingTests.AwaitingTheNextFrameResumesInThatFramesPump()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AwaitingTheNextFrameResumesInThatFramesPump
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 96
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AwaitingTheNextFrameResumesInThatFramesPump()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AwaitingTheNextFrameResumesInThatFramesPump()
+  overload: Prowl.Runtime.Test.ThreadingTests.AwaitingTheNextFrameResumesInThatFramesPump*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.AWaitStartedDuringAPumpWaitsForTheNextOne
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.AWaitStartedDuringAPumpWaitsForTheNextOne
+  id: AWaitStartedDuringAPumpWaitsForTheNextOne
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: AWaitStartedDuringAPumpWaitsForTheNextOne()
+  nameWithType: ThreadingTests.AWaitStartedDuringAPumpWaitsForTheNextOne()
+  fullName: Prowl.Runtime.Test.ThreadingTests.AWaitStartedDuringAPumpWaitsForTheNextOne()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AWaitStartedDuringAPumpWaitsForTheNextOne
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 117
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AWaitStartedDuringAPumpWaitsForTheNextOne()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AWaitStartedDuringAPumpWaitsForTheNextOne()
+  overload: Prowl.Runtime.Test.ThreadingTests.AWaitStartedDuringAPumpWaitsForTheNextOne*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.HoppingToAWorkerAndBackEndsOnTheMainThread
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.HoppingToAWorkerAndBackEndsOnTheMainThread
+  id: HoppingToAWorkerAndBackEndsOnTheMainThread
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: HoppingToAWorkerAndBackEndsOnTheMainThread()
+  nameWithType: ThreadingTests.HoppingToAWorkerAndBackEndsOnTheMainThread()
+  fullName: Prowl.Runtime.Test.ThreadingTests.HoppingToAWorkerAndBackEndsOnTheMainThread()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: HoppingToAWorkerAndBackEndsOnTheMainThread
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 138
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void HoppingToAWorkerAndBackEndsOnTheMainThread()
+    content.vb: >-
+      <Fact>
+
+      Public Sub HoppingToAWorkerAndBackEndsOnTheMainThread()
+  overload: Prowl.Runtime.Test.ThreadingTests.HoppingToAWorkerAndBackEndsOnTheMainThread*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.MainThreadAwaitOnTheMainThreadContinuesImmediately
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.MainThreadAwaitOnTheMainThreadContinuesImmediately
+  id: MainThreadAwaitOnTheMainThreadContinuesImmediately
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: MainThreadAwaitOnTheMainThreadContinuesImmediately()
+  nameWithType: ThreadingTests.MainThreadAwaitOnTheMainThreadContinuesImmediately()
+  fullName: Prowl.Runtime.Test.ThreadingTests.MainThreadAwaitOnTheMainThreadContinuesImmediately()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MainThreadAwaitOnTheMainThreadContinuesImmediately
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 160
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void MainThreadAwaitOnTheMainThreadContinuesImmediately()
+    content.vb: >-
+      <Fact>
+
+      Public Sub MainThreadAwaitOnTheMainThreadContinuesImmediately()
+  overload: Prowl.Runtime.Test.ThreadingTests.MainThreadAwaitOnTheMainThreadContinuesImmediately*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.DelayCountsGameTimeAndStandsStillWhileTimeDoes
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.DelayCountsGameTimeAndStandsStillWhileTimeDoes
+  id: DelayCountsGameTimeAndStandsStillWhileTimeDoes
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: DelayCountsGameTimeAndStandsStillWhileTimeDoes()
+  nameWithType: ThreadingTests.DelayCountsGameTimeAndStandsStillWhileTimeDoes()
+  fullName: Prowl.Runtime.Test.ThreadingTests.DelayCountsGameTimeAndStandsStillWhileTimeDoes()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DelayCountsGameTimeAndStandsStillWhileTimeDoes
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 176
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DelayCountsGameTimeAndStandsStillWhileTimeDoes()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DelayCountsGameTimeAndStandsStillWhileTimeDoes()
+  overload: Prowl.Runtime.Test.ThreadingTests.DelayCountsGameTimeAndStandsStillWhileTimeDoes*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.WaitUntilChecksOncePerFrame
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.WaitUntilChecksOncePerFrame
+  id: WaitUntilChecksOncePerFrame
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: WaitUntilChecksOncePerFrame()
+  nameWithType: ThreadingTests.WaitUntilChecksOncePerFrame()
+  fullName: Prowl.Runtime.Test.ThreadingTests.WaitUntilChecksOncePerFrame()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WaitUntilChecksOncePerFrame
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 205
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void WaitUntilChecksOncePerFrame()
+    content.vb: >-
+      <Fact>
+
+      Public Sub WaitUntilChecksOncePerFrame()
+  overload: Prowl.Runtime.Test.ThreadingTests.WaitUntilChecksOncePerFrame*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.CancellingAFrameWaitCompletesItWithoutAFrame
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.CancellingAFrameWaitCompletesItWithoutAFrame
+  id: CancellingAFrameWaitCompletesItWithoutAFrame
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: CancellingAFrameWaitCompletesItWithoutAFrame()
+  nameWithType: ThreadingTests.CancellingAFrameWaitCompletesItWithoutAFrame()
+  fullName: Prowl.Runtime.Test.ThreadingTests.CancellingAFrameWaitCompletesItWithoutAFrame()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CancellingAFrameWaitCompletesItWithoutAFrame
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 223
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void CancellingAFrameWaitCompletesItWithoutAFrame()
+    content.vb: >-
+      <Fact>
+
+      Public Sub CancellingAFrameWaitCompletesItWithoutAFrame()
+  overload: Prowl.Runtime.Test.ThreadingTests.CancellingAFrameWaitCompletesItWithoutAFrame*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.AContinuationThatResumesAfterItsSessionEndedNeverRuns
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.AContinuationThatResumesAfterItsSessionEndedNeverRuns
+  id: AContinuationThatResumesAfterItsSessionEndedNeverRuns
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: AContinuationThatResumesAfterItsSessionEndedNeverRuns()
+  nameWithType: ThreadingTests.AContinuationThatResumesAfterItsSessionEndedNeverRuns()
+  fullName: Prowl.Runtime.Test.ThreadingTests.AContinuationThatResumesAfterItsSessionEndedNeverRuns()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AContinuationThatResumesAfterItsSessionEndedNeverRuns
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 239
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    The play mode bug: a component awaits something slow, play stops, and the rest of its method used to
+
+    run against the edit scene once the wait finished.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AContinuationThatResumesAfterItsSessionEndedNeverRuns()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AContinuationThatResumesAfterItsSessionEndedNeverRuns()
+  overload: Prowl.Runtime.Test.ThreadingTests.AContinuationThatResumesAfterItsSessionEndedNeverRuns*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.EndingASessionDropsQueuedWorkCancelsItsTokenAndItsFrameWaits
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.EndingASessionDropsQueuedWorkCancelsItsTokenAndItsFrameWaits
+  id: EndingASessionDropsQueuedWorkCancelsItsTokenAndItsFrameWaits
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: EndingASessionDropsQueuedWorkCancelsItsTokenAndItsFrameWaits()
+  nameWithType: ThreadingTests.EndingASessionDropsQueuedWorkCancelsItsTokenAndItsFrameWaits()
+  fullName: Prowl.Runtime.Test.ThreadingTests.EndingASessionDropsQueuedWorkCancelsItsTokenAndItsFrameWaits()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EndingASessionDropsQueuedWorkCancelsItsTokenAndItsFrameWaits
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 260
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void EndingASessionDropsQueuedWorkCancelsItsTokenAndItsFrameWaits()
+    content.vb: >-
+      <Fact>
+
+      Public Sub EndingASessionDropsQueuedWorkCancelsItsTokenAndItsFrameWaits()
+  overload: Prowl.Runtime.Test.ThreadingTests.EndingASessionDropsQueuedWorkCancelsItsTokenAndItsFrameWaits*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.WorkBlockingOnTheMainThreadCarriesAcrossASessionEnd
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.WorkBlockingOnTheMainThreadCarriesAcrossASessionEnd
+  id: WorkBlockingOnTheMainThreadCarriesAcrossASessionEnd
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: WorkBlockingOnTheMainThreadCarriesAcrossASessionEnd()
+  nameWithType: ThreadingTests.WorkBlockingOnTheMainThreadCarriesAcrossASessionEnd()
+  fullName: Prowl.Runtime.Test.ThreadingTests.WorkBlockingOnTheMainThreadCarriesAcrossASessionEnd()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WorkBlockingOnTheMainThreadCarriesAcrossASessionEnd
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 278
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void WorkBlockingOnTheMainThreadCarriesAcrossASessionEnd()
+    content.vb: >-
+      <Fact>
+
+      Public Sub WorkBlockingOnTheMainThreadCarriesAcrossASessionEnd()
+  overload: Prowl.Runtime.Test.ThreadingTests.WorkBlockingOnTheMainThreadCarriesAcrossASessionEnd*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.RunRethrowsWhatTheWorkThrewOnTheCallingThread
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.RunRethrowsWhatTheWorkThrewOnTheCallingThread
+  id: RunRethrowsWhatTheWorkThrewOnTheCallingThread
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: RunRethrowsWhatTheWorkThrewOnTheCallingThread()
+  nameWithType: ThreadingTests.RunRethrowsWhatTheWorkThrewOnTheCallingThread()
+  fullName: Prowl.Runtime.Test.ThreadingTests.RunRethrowsWhatTheWorkThrewOnTheCallingThread()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RunRethrowsWhatTheWorkThrewOnTheCallingThread
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 295
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RunRethrowsWhatTheWorkThrewOnTheCallingThread()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RunRethrowsWhatTheWorkThrewOnTheCallingThread()
+  overload: Prowl.Runtime.Test.ThreadingTests.RunRethrowsWhatTheWorkThrewOnTheCallingThread*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.RunReturnsItsResult
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.RunReturnsItsResult
+  id: RunReturnsItsResult
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: RunReturnsItsResult()
+  nameWithType: ThreadingTests.RunReturnsItsResult()
+  fullName: Prowl.Runtime.Test.ThreadingTests.RunReturnsItsResult()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RunReturnsItsResult
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 306
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RunReturnsItsResult()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RunReturnsItsResult()
+  overload: Prowl.Runtime.Test.ThreadingTests.RunReturnsItsResult*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.SendAfterTheLoopStoppedThrowsInsteadOfRunningOnTheCaller
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.SendAfterTheLoopStoppedThrowsInsteadOfRunningOnTheCaller
+  id: SendAfterTheLoopStoppedThrowsInsteadOfRunningOnTheCaller
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: SendAfterTheLoopStoppedThrowsInsteadOfRunningOnTheCaller()
+  nameWithType: ThreadingTests.SendAfterTheLoopStoppedThrowsInsteadOfRunningOnTheCaller()
+  fullName: Prowl.Runtime.Test.ThreadingTests.SendAfterTheLoopStoppedThrowsInsteadOfRunningOnTheCaller()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SendAfterTheLoopStoppedThrowsInsteadOfRunningOnTheCaller
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 317
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void SendAfterTheLoopStoppedThrowsInsteadOfRunningOnTheCaller()
+    content.vb: >-
+      <Fact>
+
+      Public Sub SendAfterTheLoopStoppedThrowsInsteadOfRunningOnTheCaller()
+  overload: Prowl.Runtime.Test.ThreadingTests.SendAfterTheLoopStoppedThrowsInsteadOfRunningOnTheCaller*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.WithoutALoopEveryThreadCountsAsTheMainThread
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.WithoutALoopEveryThreadCountsAsTheMainThread
+  id: WithoutALoopEveryThreadCountsAsTheMainThread
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: WithoutALoopEveryThreadCountsAsTheMainThread()
+  nameWithType: ThreadingTests.WithoutALoopEveryThreadCountsAsTheMainThread()
+  fullName: Prowl.Runtime.Test.ThreadingTests.WithoutALoopEveryThreadCountsAsTheMainThread()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WithoutALoopEveryThreadCountsAsTheMainThread
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 330
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void WithoutALoopEveryThreadCountsAsTheMainThread()
+    content.vb: >-
+      <Fact>
+
+      Public Sub WithoutALoopEveryThreadCountsAsTheMainThread()
+  overload: Prowl.Runtime.Test.ThreadingTests.WithoutALoopEveryThreadCountsAsTheMainThread*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.AWorkerHoppingBackAfterItsSessionEndedNeverResumes
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.AWorkerHoppingBackAfterItsSessionEndedNeverResumes
+  id: AWorkerHoppingBackAfterItsSessionEndedNeverResumes
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: AWorkerHoppingBackAfterItsSessionEndedNeverResumes()
+  nameWithType: ThreadingTests.AWorkerHoppingBackAfterItsSessionEndedNeverResumes()
+  fullName: Prowl.Runtime.Test.ThreadingTests.AWorkerHoppingBackAfterItsSessionEndedNeverResumes()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AWorkerHoppingBackAfterItsSessionEndedNeverResumes
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 346
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: The documented worker pattern, with play stopping while the worker computes.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AWorkerHoppingBackAfterItsSessionEndedNeverResumes()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AWorkerHoppingBackAfterItsSessionEndedNeverResumes()
+  overload: Prowl.Runtime.Test.ThreadingTests.AWorkerHoppingBackAfterItsSessionEndedNeverResumes*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.AWorkerStartedInANewSessionStillGetsBack
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.AWorkerStartedInANewSessionStillGetsBack
+  id: AWorkerStartedInANewSessionStillGetsBack
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: AWorkerStartedInANewSessionStillGetsBack()
+  nameWithType: ThreadingTests.AWorkerStartedInANewSessionStillGetsBack()
+  fullName: Prowl.Runtime.Test.ThreadingTests.AWorkerStartedInANewSessionStillGetsBack()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AWorkerStartedInANewSessionStillGetsBack
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 376
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AWorkerStartedInANewSessionStillGetsBack()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AWorkerStartedInANewSessionStillGetsBack()
+  overload: Prowl.Runtime.Test.ThreadingTests.AWorkerStartedInANewSessionStillGetsBack*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.AWorkerSeesItsOwnSessionEndEvenAfterANewOneStarted
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.AWorkerSeesItsOwnSessionEndEvenAfterANewOneStarted
+  id: AWorkerSeesItsOwnSessionEndEvenAfterANewOneStarted
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: AWorkerSeesItsOwnSessionEndEvenAfterANewOneStarted()
+  nameWithType: ThreadingTests.AWorkerSeesItsOwnSessionEndEvenAfterANewOneStarted()
+  fullName: Prowl.Runtime.Test.ThreadingTests.AWorkerSeesItsOwnSessionEndEvenAfterANewOneStarted()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AWorkerSeesItsOwnSessionEndEvenAfterANewOneStarted
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 395
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AWorkerSeesItsOwnSessionEndEvenAfterANewOneStarted()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AWorkerSeesItsOwnSessionEndEvenAfterANewOneStarted()
+  overload: Prowl.Runtime.Test.ThreadingTests.AWorkerSeesItsOwnSessionEndEvenAfterANewOneStarted*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.WorkStartedFromAComponentStaysBoundToItsSession
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.WorkStartedFromAComponentStaysBoundToItsSession
+  id: WorkStartedFromAComponentStaysBoundToItsSession
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: WorkStartedFromAComponentStaysBoundToItsSession()
+  nameWithType: ThreadingTests.WorkStartedFromAComponentStaysBoundToItsSession()
+  fullName: Prowl.Runtime.Test.ThreadingTests.WorkStartedFromAComponentStaysBoundToItsSession()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WorkStartedFromAComponentStaysBoundToItsSession
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 424
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void WorkStartedFromAComponentStaysBoundToItsSession()
+    content.vb: >-
+      <Fact>
+
+      Public Sub WorkStartedFromAComponentStaysBoundToItsSession()
+  overload: Prowl.Runtime.Test.ThreadingTests.WorkStartedFromAComponentStaysBoundToItsSession*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.AThreadStartedOutsideGameplayFollowsTheCurrentSession
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.AThreadStartedOutsideGameplayFollowsTheCurrentSession
+  id: AThreadStartedOutsideGameplayFollowsTheCurrentSession
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: AThreadStartedOutsideGameplayFollowsTheCurrentSession()
+  nameWithType: ThreadingTests.AThreadStartedOutsideGameplayFollowsTheCurrentSession()
+  fullName: Prowl.Runtime.Test.ThreadingTests.AThreadStartedOutsideGameplayFollowsTheCurrentSession()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AThreadStartedOutsideGameplayFollowsTheCurrentSession
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 452
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: A service thread started outside gameplay is not play session work, so a play toggle leaves it working.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AThreadStartedOutsideGameplayFollowsTheCurrentSession()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AThreadStartedOutsideGameplayFollowsTheCurrentSession()
+  overload: Prowl.Runtime.Test.ThreadingTests.AThreadStartedOutsideGameplayFollowsTheCurrentSession*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.RestartingInsideAQueuedContinuationLeavesTheThreadOnTheNewSession
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.RestartingInsideAQueuedContinuationLeavesTheThreadOnTheNewSession
+  id: RestartingInsideAQueuedContinuationLeavesTheThreadOnTheNewSession
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: RestartingInsideAQueuedContinuationLeavesTheThreadOnTheNewSession()
+  nameWithType: ThreadingTests.RestartingInsideAQueuedContinuationLeavesTheThreadOnTheNewSession()
+  fullName: Prowl.Runtime.Test.ThreadingTests.RestartingInsideAQueuedContinuationLeavesTheThreadOnTheNewSession()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RestartingInsideAQueuedContinuationLeavesTheThreadOnTheNewSession
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 476
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RestartingInsideAQueuedContinuationLeavesTheThreadOnTheNewSession()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RestartingInsideAQueuedContinuationLeavesTheThreadOnTheNewSession()
+  overload: Prowl.Runtime.Test.ThreadingTests.RestartingInsideAQueuedContinuationLeavesTheThreadOnTheNewSession*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.RestartingInsideAsyncCodeIsPutRightByTheNextPump
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.RestartingInsideAsyncCodeIsPutRightByTheNextPump
+  id: RestartingInsideAsyncCodeIsPutRightByTheNextPump
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: RestartingInsideAsyncCodeIsPutRightByTheNextPump()
+  nameWithType: ThreadingTests.RestartingInsideAsyncCodeIsPutRightByTheNextPump()
+  fullName: Prowl.Runtime.Test.ThreadingTests.RestartingInsideAsyncCodeIsPutRightByTheNextPump()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RestartingInsideAsyncCodeIsPutRightByTheNextPump
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 505
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: The runtime puts the thread's context back when async code returns, so the next pump has to fix it.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RestartingInsideAsyncCodeIsPutRightByTheNextPump()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RestartingInsideAsyncCodeIsPutRightByTheNextPump()
+  overload: Prowl.Runtime.Test.ThreadingTests.RestartingInsideAsyncCodeIsPutRightByTheNextPump*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.AfterTheLoopStopsWorkersAreRefusedUntilItIsUninstalled
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.AfterTheLoopStopsWorkersAreRefusedUntilItIsUninstalled
+  id: AfterTheLoopStopsWorkersAreRefusedUntilItIsUninstalled
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: AfterTheLoopStopsWorkersAreRefusedUntilItIsUninstalled()
+  nameWithType: ThreadingTests.AfterTheLoopStopsWorkersAreRefusedUntilItIsUninstalled()
+  fullName: Prowl.Runtime.Test.ThreadingTests.AfterTheLoopStopsWorkersAreRefusedUntilItIsUninstalled()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AfterTheLoopStopsWorkersAreRefusedUntilItIsUninstalled
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 523
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AfterTheLoopStopsWorkersAreRefusedUntilItIsUninstalled()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AfterTheLoopStopsWorkersAreRefusedUntilItIsUninstalled()
+  overload: Prowl.Runtime.Test.ThreadingTests.AfterTheLoopStopsWorkersAreRefusedUntilItIsUninstalled*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.AWaitWhoseCheckEndsTheSessionIsCancelledRatherThanStranded
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.AWaitWhoseCheckEndsTheSessionIsCancelledRatherThanStranded
+  id: AWaitWhoseCheckEndsTheSessionIsCancelledRatherThanStranded
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: AWaitWhoseCheckEndsTheSessionIsCancelledRatherThanStranded()
+  nameWithType: ThreadingTests.AWaitWhoseCheckEndsTheSessionIsCancelledRatherThanStranded()
+  fullName: Prowl.Runtime.Test.ThreadingTests.AWaitWhoseCheckEndsTheSessionIsCancelledRatherThanStranded()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AWaitWhoseCheckEndsTheSessionIsCancelledRatherThanStranded
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 550
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AWaitWhoseCheckEndsTheSessionIsCancelledRatherThanStranded()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AWaitWhoseCheckEndsTheSessionIsCancelledRatherThanStranded()
+  overload: Prowl.Runtime.Test.ThreadingTests.AWaitWhoseCheckEndsTheSessionIsCancelledRatherThanStranded*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.ACancellationThatWasATimeoutIsReportedAndADeliberateOneIsNot
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.ACancellationThatWasATimeoutIsReportedAndADeliberateOneIsNot
+  id: ACancellationThatWasATimeoutIsReportedAndADeliberateOneIsNot
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: ACancellationThatWasATimeoutIsReportedAndADeliberateOneIsNot()
+  nameWithType: ThreadingTests.ACancellationThatWasATimeoutIsReportedAndADeliberateOneIsNot()
+  fullName: Prowl.Runtime.Test.ThreadingTests.ACancellationThatWasATimeoutIsReportedAndADeliberateOneIsNot()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ACancellationThatWasATimeoutIsReportedAndADeliberateOneIsNot
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 566
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ACancellationThatWasATimeoutIsReportedAndADeliberateOneIsNot()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ACancellationThatWasATimeoutIsReportedAndADeliberateOneIsNot()
+  overload: Prowl.Runtime.Test.ThreadingTests.ACancellationThatWasATimeoutIsReportedAndADeliberateOneIsNot*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.FrameWaitsCompleteAsCancelledWhenTheirSessionEnds
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.FrameWaitsCompleteAsCancelledWhenTheirSessionEnds
+  id: FrameWaitsCompleteAsCancelledWhenTheirSessionEnds
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: FrameWaitsCompleteAsCancelledWhenTheirSessionEnds()
+  nameWithType: ThreadingTests.FrameWaitsCompleteAsCancelledWhenTheirSessionEnds()
+  fullName: Prowl.Runtime.Test.ThreadingTests.FrameWaitsCompleteAsCancelledWhenTheirSessionEnds()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FrameWaitsCompleteAsCancelledWhenTheirSessionEnds
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 603
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void FrameWaitsCompleteAsCancelledWhenTheirSessionEnds()
+    content.vb: >-
+      <Fact>
+
+      Public Sub FrameWaitsCompleteAsCancelledWhenTheirSessionEnds()
+  overload: Prowl.Runtime.Test.ThreadingTests.FrameWaitsCompleteAsCancelledWhenTheirSessionEnds*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.AFrameWaitOnAnEndedSessionIsCancelledRatherThanThrowing
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.AFrameWaitOnAnEndedSessionIsCancelledRatherThanThrowing
+  id: AFrameWaitOnAnEndedSessionIsCancelledRatherThanThrowing
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: AFrameWaitOnAnEndedSessionIsCancelledRatherThanThrowing()
+  nameWithType: ThreadingTests.AFrameWaitOnAnEndedSessionIsCancelledRatherThanThrowing()
+  fullName: Prowl.Runtime.Test.ThreadingTests.AFrameWaitOnAnEndedSessionIsCancelledRatherThanThrowing()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AFrameWaitOnAnEndedSessionIsCancelledRatherThanThrowing
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 620
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AFrameWaitOnAnEndedSessionIsCancelledRatherThanThrowing()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AFrameWaitOnAnEndedSessionIsCancelledRatherThanThrowing()
+  overload: Prowl.Runtime.Test.ThreadingTests.AFrameWaitOnAnEndedSessionIsCancelledRatherThanThrowing*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.FramesCountsFrames
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.FramesCountsFrames
+  id: FramesCountsFrames
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: FramesCountsFrames()
+  nameWithType: ThreadingTests.FramesCountsFrames()
+  fullName: Prowl.Runtime.Test.ThreadingTests.FramesCountsFrames()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FramesCountsFrames
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 632
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void FramesCountsFrames()
+    content.vb: >-
+      <Fact>
+
+      Public Sub FramesCountsFrames()
+  overload: Prowl.Runtime.Test.ThreadingTests.FramesCountsFrames*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.AWaitConditionThatThrowsFaultsTheWait
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.AWaitConditionThatThrowsFaultsTheWait
+  id: AWaitConditionThatThrowsFaultsTheWait
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: AWaitConditionThatThrowsFaultsTheWait()
+  nameWithType: ThreadingTests.AWaitConditionThatThrowsFaultsTheWait()
+  fullName: Prowl.Runtime.Test.ThreadingTests.AWaitConditionThatThrowsFaultsTheWait()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AWaitConditionThatThrowsFaultsTheWait
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 644
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AWaitConditionThatThrowsFaultsTheWait()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AWaitConditionThatThrowsFaultsTheWait()
+  overload: Prowl.Runtime.Test.ThreadingTests.AWaitConditionThatThrowsFaultsTheWait*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.AnAsyncVoidThatFailsAfterItsSessionEndedIsStillReported
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.AnAsyncVoidThatFailsAfterItsSessionEndedIsStillReported
+  id: AnAsyncVoidThatFailsAfterItsSessionEndedIsStillReported
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: AnAsyncVoidThatFailsAfterItsSessionEndedIsStillReported()
+  nameWithType: ThreadingTests.AnAsyncVoidThatFailsAfterItsSessionEndedIsStillReported()
+  fullName: Prowl.Runtime.Test.ThreadingTests.AnAsyncVoidThatFailsAfterItsSessionEndedIsStillReported()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AnAsyncVoidThatFailsAfterItsSessionEndedIsStillReported
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 657
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AnAsyncVoidThatFailsAfterItsSessionEndedIsStillReported()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AnAsyncVoidThatFailsAfterItsSessionEndedIsStillReported()
+  overload: Prowl.Runtime.Test.ThreadingTests.AnAsyncVoidThatFailsAfterItsSessionEndedIsStillReported*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.BlockedWorkRunsWhenTheLoopStopsWithoutHoldingTheContext
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.BlockedWorkRunsWhenTheLoopStopsWithoutHoldingTheContext
+  id: BlockedWorkRunsWhenTheLoopStopsWithoutHoldingTheContext
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: BlockedWorkRunsWhenTheLoopStopsWithoutHoldingTheContext()
+  nameWithType: ThreadingTests.BlockedWorkRunsWhenTheLoopStopsWithoutHoldingTheContext()
+  fullName: Prowl.Runtime.Test.ThreadingTests.BlockedWorkRunsWhenTheLoopStopsWithoutHoldingTheContext()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: BlockedWorkRunsWhenTheLoopStopsWithoutHoldingTheContext
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 685
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void BlockedWorkRunsWhenTheLoopStopsWithoutHoldingTheContext()
+    content.vb: >-
+      <Fact>
+
+      Public Sub BlockedWorkRunsWhenTheLoopStopsWithoutHoldingTheContext()
+  overload: Prowl.Runtime.Test.ThreadingTests.BlockedWorkRunsWhenTheLoopStopsWithoutHoldingTheContext*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.InstallingOverALoopCarriesBlockedWorkToTheNewOne
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.InstallingOverALoopCarriesBlockedWorkToTheNewOne
+  id: InstallingOverALoopCarriesBlockedWorkToTheNewOne
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: InstallingOverALoopCarriesBlockedWorkToTheNewOne()
+  nameWithType: ThreadingTests.InstallingOverALoopCarriesBlockedWorkToTheNewOne()
+  fullName: Prowl.Runtime.Test.ThreadingTests.InstallingOverALoopCarriesBlockedWorkToTheNewOne()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: InstallingOverALoopCarriesBlockedWorkToTheNewOne
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 705
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void InstallingOverALoopCarriesBlockedWorkToTheNewOne()
+    content.vb: >-
+      <Fact>
+
+      Public Sub InstallingOverALoopCarriesBlockedWorkToTheNewOne()
+  overload: Prowl.Runtime.Test.ThreadingTests.InstallingOverALoopCarriesBlockedWorkToTheNewOne*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.EndingTheSessionAtASwapSplitsTheTwoScenesBetweenSessions
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.EndingTheSessionAtASwapSplitsTheTwoScenesBetweenSessions
+  id: EndingTheSessionAtASwapSplitsTheTwoScenesBetweenSessions
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: EndingTheSessionAtASwapSplitsTheTwoScenesBetweenSessions()
+  nameWithType: ThreadingTests.EndingTheSessionAtASwapSplitsTheTwoScenesBetweenSessions()
+  fullName: Prowl.Runtime.Test.ThreadingTests.EndingTheSessionAtASwapSplitsTheTwoScenesBetweenSessions()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EndingTheSessionAtASwapSplitsTheTwoScenesBetweenSessions
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 726
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    The editor ends the session at the scene swap, so the outgoing scene's teardown runs in the session it
+
+    belongs to, and the incoming scene starts in the next one.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void EndingTheSessionAtASwapSplitsTheTwoScenesBetweenSessions()
+    content.vb: >-
+      <Fact>
+
+      Public Sub EndingTheSessionAtASwapSplitsTheTwoScenesBetweenSessions()
+  overload: Prowl.Runtime.Test.ThreadingTests.EndingTheSessionAtASwapSplitsTheTwoScenesBetweenSessions*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.ASkippedSwapStillEndsTheSession
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.ASkippedSwapStillEndsTheSession
+  id: ASkippedSwapStillEndsTheSession
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: ASkippedSwapStillEndsTheSession()
+  nameWithType: ThreadingTests.ASkippedSwapStillEndsTheSession()
+  fullName: Prowl.Runtime.Test.ThreadingTests.ASkippedSwapStillEndsTheSession()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ASkippedSwapStillEndsTheSession
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 755
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ASkippedSwapStillEndsTheSession()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ASkippedSwapStillEndsTheSession()
+  overload: Prowl.Runtime.Test.ThreadingTests.ASkippedSwapStillEndsTheSession*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.DisposingALiveComponentFromAnotherThreadThrowsBeforeTearingAnythingDown
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.DisposingALiveComponentFromAnotherThreadThrowsBeforeTearingAnythingDown
+  id: DisposingALiveComponentFromAnotherThreadThrowsBeforeTearingAnythingDown
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: DisposingALiveComponentFromAnotherThreadThrowsBeforeTearingAnythingDown()
+  nameWithType: ThreadingTests.DisposingALiveComponentFromAnotherThreadThrowsBeforeTearingAnythingDown()
+  fullName: Prowl.Runtime.Test.ThreadingTests.DisposingALiveComponentFromAnotherThreadThrowsBeforeTearingAnythingDown()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DisposingALiveComponentFromAnotherThreadThrowsBeforeTearingAnythingDown
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 773
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DisposingALiveComponentFromAnotherThreadThrowsBeforeTearingAnythingDown()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DisposingALiveComponentFromAnotherThreadThrowsBeforeTearingAnythingDown()
+  overload: Prowl.Runtime.Test.ThreadingTests.DisposingALiveComponentFromAnotherThreadThrowsBeforeTearingAnythingDown*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.DisposingALiveObjectFromAnotherThreadThrowsBeforeTearingAnythingDown
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.DisposingALiveObjectFromAnotherThreadThrowsBeforeTearingAnythingDown
+  id: DisposingALiveObjectFromAnotherThreadThrowsBeforeTearingAnythingDown
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: DisposingALiveObjectFromAnotherThreadThrowsBeforeTearingAnythingDown()
+  nameWithType: ThreadingTests.DisposingALiveObjectFromAnotherThreadThrowsBeforeTearingAnythingDown()
+  fullName: Prowl.Runtime.Test.ThreadingTests.DisposingALiveObjectFromAnotherThreadThrowsBeforeTearingAnythingDown()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DisposingALiveObjectFromAnotherThreadThrowsBeforeTearingAnythingDown
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 788
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DisposingALiveObjectFromAnotherThreadThrowsBeforeTearingAnythingDown()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DisposingALiveObjectFromAnotherThreadThrowsBeforeTearingAnythingDown()
+  overload: Prowl.Runtime.Test.ThreadingTests.DisposingALiveObjectFromAnotherThreadThrowsBeforeTearingAnythingDown*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.DisposingALiveSceneFromAnotherThreadThrows
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.DisposingALiveSceneFromAnotherThreadThrows
+  id: DisposingALiveSceneFromAnotherThreadThrows
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: DisposingALiveSceneFromAnotherThreadThrows()
+  nameWithType: ThreadingTests.DisposingALiveSceneFromAnotherThreadThrows()
+  fullName: Prowl.Runtime.Test.ThreadingTests.DisposingALiveSceneFromAnotherThreadThrows()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DisposingALiveSceneFromAnotherThreadThrows
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 807
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DisposingALiveSceneFromAnotherThreadThrows()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DisposingALiveSceneFromAnotherThreadThrows()
+  overload: Prowl.Runtime.Test.ThreadingTests.DisposingALiveSceneFromAnotherThreadThrows*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.ReadingTheCurrentSceneFromAnotherThreadCannotLeaveAnInactiveOneBehind
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.ReadingTheCurrentSceneFromAnotherThreadCannotLeaveAnInactiveOneBehind
+  id: ReadingTheCurrentSceneFromAnotherThreadCannotLeaveAnInactiveOneBehind
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: ReadingTheCurrentSceneFromAnotherThreadCannotLeaveAnInactiveOneBehind()
+  nameWithType: ThreadingTests.ReadingTheCurrentSceneFromAnotherThreadCannotLeaveAnInactiveOneBehind()
+  fullName: Prowl.Runtime.Test.ThreadingTests.ReadingTheCurrentSceneFromAnotherThreadCannotLeaveAnInactiveOneBehind()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ReadingTheCurrentSceneFromAnotherThreadCannotLeaveAnInactiveOneBehind
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 817
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ReadingTheCurrentSceneFromAnotherThreadCannotLeaveAnInactiveOneBehind()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ReadingTheCurrentSceneFromAnotherThreadCannotLeaveAnInactiveOneBehind()
+  overload: Prowl.Runtime.Test.ThreadingTests.ReadingTheCurrentSceneFromAnotherThreadCannotLeaveAnInactiveOneBehind*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.PhysicsAndAnimationComponentsOnALiveObjectAreChecked
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.PhysicsAndAnimationComponentsOnALiveObjectAreChecked
+  id: PhysicsAndAnimationComponentsOnALiveObjectAreChecked
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: PhysicsAndAnimationComponentsOnALiveObjectAreChecked()
+  nameWithType: ThreadingTests.PhysicsAndAnimationComponentsOnALiveObjectAreChecked()
+  fullName: Prowl.Runtime.Test.ThreadingTests.PhysicsAndAnimationComponentsOnALiveObjectAreChecked()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PhysicsAndAnimationComponentsOnALiveObjectAreChecked
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 830
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PhysicsAndAnimationComponentsOnALiveObjectAreChecked()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PhysicsAndAnimationComponentsOnALiveObjectAreChecked()
+  overload: Prowl.Runtime.Test.ThreadingTests.PhysicsAndAnimationComponentsOnALiveObjectAreChecked*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.MovingALiveObjectFromAnotherThreadThrowsAndChangesNothing
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.MovingALiveObjectFromAnotherThreadThrowsAndChangesNothing
+  id: MovingALiveObjectFromAnotherThreadThrowsAndChangesNothing
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: MovingALiveObjectFromAnotherThreadThrowsAndChangesNothing()
+  nameWithType: ThreadingTests.MovingALiveObjectFromAnotherThreadThrowsAndChangesNothing()
+  fullName: Prowl.Runtime.Test.ThreadingTests.MovingALiveObjectFromAnotherThreadThrowsAndChangesNothing()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MovingALiveObjectFromAnotherThreadThrowsAndChangesNothing
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 851
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void MovingALiveObjectFromAnotherThreadThrowsAndChangesNothing()
+    content.vb: >-
+      <Fact>
+
+      Public Sub MovingALiveObjectFromAnotherThreadThrowsAndChangesNothing()
+  overload: Prowl.Runtime.Test.ThreadingTests.MovingALiveObjectFromAnotherThreadThrowsAndChangesNothing*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.EveryStructuralChangeToALiveSceneIsChecked
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.EveryStructuralChangeToALiveSceneIsChecked
+  id: EveryStructuralChangeToALiveSceneIsChecked
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: EveryStructuralChangeToALiveSceneIsChecked()
+  nameWithType: ThreadingTests.EveryStructuralChangeToALiveSceneIsChecked()
+  fullName: Prowl.Runtime.Test.ThreadingTests.EveryStructuralChangeToALiveSceneIsChecked()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EveryStructuralChangeToALiveSceneIsChecked
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 863
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void EveryStructuralChangeToALiveSceneIsChecked()
+    content.vb: >-
+      <Fact>
+
+      Public Sub EveryStructuralChangeToALiveSceneIsChecked()
+  overload: Prowl.Runtime.Test.ThreadingTests.EveryStructuralChangeToALiveSceneIsChecked*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.AComponentOnALiveObjectCannotBeToggledFromAnotherThread
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.AComponentOnALiveObjectCannotBeToggledFromAnotherThread
+  id: AComponentOnALiveObjectCannotBeToggledFromAnotherThread
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: AComponentOnALiveObjectCannotBeToggledFromAnotherThread()
+  nameWithType: ThreadingTests.AComponentOnALiveObjectCannotBeToggledFromAnotherThread()
+  fullName: Prowl.Runtime.Test.ThreadingTests.AComponentOnALiveObjectCannotBeToggledFromAnotherThread()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AComponentOnALiveObjectCannotBeToggledFromAnotherThread
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 890
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void AComponentOnALiveObjectCannotBeToggledFromAnotherThread()
+    content.vb: >-
+      <Fact>
+
+      Public Sub AComponentOnALiveObjectCannotBeToggledFromAnotherThread()
+  overload: Prowl.Runtime.Test.ThreadingTests.AComponentOnALiveObjectCannotBeToggledFromAnotherThread*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.ObjectsBuiltOffSceneOnAWorkerCanJoinTheSceneOnTheMainThread
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.ObjectsBuiltOffSceneOnAWorkerCanJoinTheSceneOnTheMainThread
+  id: ObjectsBuiltOffSceneOnAWorkerCanJoinTheSceneOnTheMainThread
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: ObjectsBuiltOffSceneOnAWorkerCanJoinTheSceneOnTheMainThread()
+  nameWithType: ThreadingTests.ObjectsBuiltOffSceneOnAWorkerCanJoinTheSceneOnTheMainThread()
+  fullName: Prowl.Runtime.Test.ThreadingTests.ObjectsBuiltOffSceneOnAWorkerCanJoinTheSceneOnTheMainThread()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ObjectsBuiltOffSceneOnAWorkerCanJoinTheSceneOnTheMainThread
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 902
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: Objects outside a running scene are free to build anywhere, which is how background spawning works.
+  example: []
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ObjectsBuiltOffSceneOnAWorkerCanJoinTheSceneOnTheMainThread()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ObjectsBuiltOffSceneOnAWorkerCanJoinTheSceneOnTheMainThread()
+  overload: Prowl.Runtime.Test.ThreadingTests.ObjectsBuiltOffSceneOnAWorkerCanJoinTheSceneOnTheMainThread*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.DestroyFromAnotherThreadIsQueuedForTheMainThread
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.DestroyFromAnotherThreadIsQueuedForTheMainThread
+  id: DestroyFromAnotherThreadIsQueuedForTheMainThread
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: DestroyFromAnotherThreadIsQueuedForTheMainThread()
+  nameWithType: ThreadingTests.DestroyFromAnotherThreadIsQueuedForTheMainThread()
+  fullName: Prowl.Runtime.Test.ThreadingTests.DestroyFromAnotherThreadIsQueuedForTheMainThread()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DestroyFromAnotherThreadIsQueuedForTheMainThread
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 926
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DestroyFromAnotherThreadIsQueuedForTheMainThread()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DestroyFromAnotherThreadIsQueuedForTheMainThread()
+  overload: Prowl.Runtime.Test.ThreadingTests.DestroyFromAnotherThreadIsQueuedForTheMainThread*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.ReadingWorldTransformsFromAnotherThreadGivesTheRightAnswer
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.ReadingWorldTransformsFromAnotherThreadGivesTheRightAnswer
+  id: ReadingWorldTransformsFromAnotherThreadGivesTheRightAnswer
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: ReadingWorldTransformsFromAnotherThreadGivesTheRightAnswer()
+  nameWithType: ThreadingTests.ReadingWorldTransformsFromAnotherThreadGivesTheRightAnswer()
+  fullName: Prowl.Runtime.Test.ThreadingTests.ReadingWorldTransformsFromAnotherThreadGivesTheRightAnswer()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ReadingWorldTransformsFromAnotherThreadGivesTheRightAnswer
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 939
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ReadingWorldTransformsFromAnotherThreadGivesTheRightAnswer()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ReadingWorldTransformsFromAnotherThreadGivesTheRightAnswer()
+  overload: Prowl.Runtime.Test.ThreadingTests.ReadingWorldTransformsFromAnotherThreadGivesTheRightAnswer*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.PhysicsQueriesFromAnotherThreadThrow
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.PhysicsQueriesFromAnotherThreadThrow
+  id: PhysicsQueriesFromAnotherThreadThrow
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: PhysicsQueriesFromAnotherThreadThrow()
+  nameWithType: ThreadingTests.PhysicsQueriesFromAnotherThreadThrow()
+  fullName: Prowl.Runtime.Test.ThreadingTests.PhysicsQueriesFromAnotherThreadThrow()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PhysicsQueriesFromAnotherThreadThrow
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 966
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PhysicsQueriesFromAnotherThreadThrow()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PhysicsQueriesFromAnotherThreadThrow()
+  overload: Prowl.Runtime.Test.ThreadingTests.PhysicsQueriesFromAnotherThreadThrow*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.WithoutALoopOtherThreadsAreNotStopped
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.WithoutALoopOtherThreadsAreNotStopped
+  id: WithoutALoopOtherThreadsAreNotStopped
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: WithoutALoopOtherThreadsAreNotStopped()
+  nameWithType: ThreadingTests.WithoutALoopOtherThreadsAreNotStopped()
+  fullName: Prowl.Runtime.Test.ThreadingTests.WithoutALoopOtherThreadsAreNotStopped()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WithoutALoopOtherThreadsAreNotStopped
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 979
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void WithoutALoopOtherThreadsAreNotStopped()
+    content.vb: >-
+      <Fact>
+
+      Public Sub WithoutALoopOtherThreadsAreNotStopped()
+  overload: Prowl.Runtime.Test.ThreadingTests.WithoutALoopOtherThreadsAreNotStopped*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsWhenTheComponentIsDestroyed
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsWhenTheComponentIsDestroyed
+  id: DestroyCancellationTokenCancelsWhenTheComponentIsDestroyed
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: DestroyCancellationTokenCancelsWhenTheComponentIsDestroyed()
+  nameWithType: ThreadingTests.DestroyCancellationTokenCancelsWhenTheComponentIsDestroyed()
+  fullName: Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsWhenTheComponentIsDestroyed()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DestroyCancellationTokenCancelsWhenTheComponentIsDestroyed
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 991
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DestroyCancellationTokenCancelsWhenTheComponentIsDestroyed()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DestroyCancellationTokenCancelsWhenTheComponentIsDestroyed()
+  overload: Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsWhenTheComponentIsDestroyed*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsWithItsGameObject
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsWithItsGameObject
+  id: DestroyCancellationTokenCancelsWithItsGameObject
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: DestroyCancellationTokenCancelsWithItsGameObject()
+  nameWithType: ThreadingTests.DestroyCancellationTokenCancelsWithItsGameObject()
+  fullName: Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsWithItsGameObject()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DestroyCancellationTokenCancelsWithItsGameObject
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 1006
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DestroyCancellationTokenCancelsWithItsGameObject()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DestroyCancellationTokenCancelsWithItsGameObject()
+  overload: Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsWithItsGameObject*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsEvenWhenOnDisposeSkipsBase
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsEvenWhenOnDisposeSkipsBase
+  id: DestroyCancellationTokenCancelsEvenWhenOnDisposeSkipsBase
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: DestroyCancellationTokenCancelsEvenWhenOnDisposeSkipsBase()
+  nameWithType: ThreadingTests.DestroyCancellationTokenCancelsEvenWhenOnDisposeSkipsBase()
+  fullName: Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsEvenWhenOnDisposeSkipsBase()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DestroyCancellationTokenCancelsEvenWhenOnDisposeSkipsBase
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 1017
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DestroyCancellationTokenCancelsEvenWhenOnDisposeSkipsBase()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DestroyCancellationTokenCancelsEvenWhenOnDisposeSkipsBase()
+  overload: Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsEvenWhenOnDisposeSkipsBase*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ThreadingTests.ReadingTimeFromAnotherThreadWhileTheLoopSwapsItNeverThrows
+  commentId: M:Prowl.Runtime.Test.ThreadingTests.ReadingTimeFromAnotherThreadWhileTheLoopSwapsItNeverThrows
+  id: ReadingTimeFromAnotherThreadWhileTheLoopSwapsItNeverThrows
+  parent: Prowl.Runtime.Test.ThreadingTests
+  langs:
+  - csharp
+  - vb
+  name: ReadingTimeFromAnotherThreadWhileTheLoopSwapsItNeverThrows()
+  nameWithType: ThreadingTests.ReadingTimeFromAnotherThreadWhileTheLoopSwapsItNeverThrows()
+  fullName: Prowl.Runtime.Test.ThreadingTests.ReadingTimeFromAnotherThreadWhileTheLoopSwapsItNeverThrows()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ThreadingTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ReadingTimeFromAnotherThreadWhileTheLoopSwapsItNeverThrows
+    path: ../Prowl/Prowl.Runtime.Test/ThreadingTests.cs
+    startLine: 1031
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ReadingTimeFromAnotherThreadWhileTheLoopSwapsItNeverThrows()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ReadingTimeFromAnotherThreadWhileTheLoopSwapsItNeverThrows()
+  overload: Prowl.Runtime.Test.ThreadingTests.ReadingTimeFromAnotherThreadWhileTheLoopSwapsItNeverThrows*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+references:
+- uid: Prowl.Runtime.Test
+  commentId: N:Prowl.Runtime.Test
+  name: Prowl.Runtime.Test
+  nameWithType: Prowl.Runtime.Test
+  fullName: Prowl.Runtime.Test
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.Runtime.Test.RuntimeTestBase
+  commentId: T:Prowl.Runtime.Test.RuntimeTestBase
+  parent: Prowl.Runtime.Test
+  href: Prowl.Runtime.Test.RuntimeTestBase.html
+  name: RuntimeTestBase
+  nameWithType: RuntimeTestBase
+  fullName: Prowl.Runtime.Test.RuntimeTestBase
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  commentId: P:Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_FixedDeltaTime
+  name: FixedDeltaTime
+  nameWithType: RuntimeTestBase.FixedDeltaTime
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+- uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  name: EditMode()
+  nameWithType: RuntimeTestBase.EditMode()
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.EditMode()
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+    name: EditMode
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+    name: EditMode
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  name: CreateScene(bool)
+  nameWithType: RuntimeTestBase.CreateScene(bool)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(bool)
+  nameWithType.vb: RuntimeTestBase.CreateScene(Boolean)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(Boolean)
+  name.vb: CreateScene(Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+    name: CreateScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+    name: CreateScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  name: CreateGameObject(string)
+  nameWithType: RuntimeTestBase.CreateGameObject(string)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(string)
+  nameWithType.vb: RuntimeTestBase.CreateGameObject(String)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(String)
+  name.vb: CreateGameObject(String)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+    name: CreateGameObject
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+    name: CreateGameObject
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Tick(Scene, int)
+  nameWithType: RuntimeTestBase.Tick(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.Tick(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Tick(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Update(Scene, int)
+  nameWithType: RuntimeTestBase.Update(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.Update(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Update(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Update
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Update
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: StepPhysics(Scene, int)
+  nameWithType: RuntimeTestBase.StepPhysics(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.StepPhysics(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: StepPhysics(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: StepPhysics
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: StepPhysics
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  name: ApplyFastBakeSettings(NavMeshSurface)
+  nameWithType: RuntimeTestBase.ApplyFastBakeSettings(NavMeshSurface)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+    name: ApplyFastBakeSettings
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  - name: (
+  - uid: Prowl.Runtime.NavMeshSurface
+    name: NavMeshSurface
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+    name: ApplyFastBakeSettings
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  - name: (
+  - uid: Prowl.Runtime.NavMeshSurface
+    name: NavMeshSurface
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  name: CreateFloorScene(float, bool)
+  nameWithType: RuntimeTestBase.CreateFloorScene(float, bool)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(float, bool)
+  nameWithType.vb: RuntimeTestBase.CreateFloorScene(Single, Boolean)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(Single, Boolean)
+  name.vb: CreateFloorScene(Single, Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+    name: CreateFloorScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  - name: (
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+    name: CreateFloorScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  - name: (
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  name: TickUntil(Scene, Func<bool>, int)
+  nameWithType: RuntimeTestBase.TickUntil(Scene, Func<bool>, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene, System.Func<bool>, int)
+  nameWithType.vb: RuntimeTestBase.TickUntil(Scene, Func(Of Boolean), Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene, System.Func(Of Boolean), Integer)
+  name.vb: TickUntil(Scene, Func(Of Boolean), Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+    name: TickUntil
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+    name: TickUntil
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  name: Dispose()
+  nameWithType: RuntimeTestBase.Dispose()
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Dispose()
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+    name: Dispose
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+    name: Dispose
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Runtime.Test.ThreadingTests.AwaitingTheNextFrameResumesInThatFramesPump*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.AwaitingTheNextFrameResumesInThatFramesPump
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_AwaitingTheNextFrameResumesInThatFramesPump
+  name: AwaitingTheNextFrameResumesInThatFramesPump
+  nameWithType: ThreadingTests.AwaitingTheNextFrameResumesInThatFramesPump
+  fullName: Prowl.Runtime.Test.ThreadingTests.AwaitingTheNextFrameResumesInThatFramesPump
+- uid: Prowl.Runtime.Test.ThreadingTests.AWaitStartedDuringAPumpWaitsForTheNextOne*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.AWaitStartedDuringAPumpWaitsForTheNextOne
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_AWaitStartedDuringAPumpWaitsForTheNextOne
+  name: AWaitStartedDuringAPumpWaitsForTheNextOne
+  nameWithType: ThreadingTests.AWaitStartedDuringAPumpWaitsForTheNextOne
+  fullName: Prowl.Runtime.Test.ThreadingTests.AWaitStartedDuringAPumpWaitsForTheNextOne
+- uid: Prowl.Runtime.Test.ThreadingTests.HoppingToAWorkerAndBackEndsOnTheMainThread*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.HoppingToAWorkerAndBackEndsOnTheMainThread
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_HoppingToAWorkerAndBackEndsOnTheMainThread
+  name: HoppingToAWorkerAndBackEndsOnTheMainThread
+  nameWithType: ThreadingTests.HoppingToAWorkerAndBackEndsOnTheMainThread
+  fullName: Prowl.Runtime.Test.ThreadingTests.HoppingToAWorkerAndBackEndsOnTheMainThread
+- uid: Prowl.Runtime.Test.ThreadingTests.MainThreadAwaitOnTheMainThreadContinuesImmediately*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.MainThreadAwaitOnTheMainThreadContinuesImmediately
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_MainThreadAwaitOnTheMainThreadContinuesImmediately
+  name: MainThreadAwaitOnTheMainThreadContinuesImmediately
+  nameWithType: ThreadingTests.MainThreadAwaitOnTheMainThreadContinuesImmediately
+  fullName: Prowl.Runtime.Test.ThreadingTests.MainThreadAwaitOnTheMainThreadContinuesImmediately
+- uid: Prowl.Runtime.Test.ThreadingTests.DelayCountsGameTimeAndStandsStillWhileTimeDoes*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.DelayCountsGameTimeAndStandsStillWhileTimeDoes
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_DelayCountsGameTimeAndStandsStillWhileTimeDoes
+  name: DelayCountsGameTimeAndStandsStillWhileTimeDoes
+  nameWithType: ThreadingTests.DelayCountsGameTimeAndStandsStillWhileTimeDoes
+  fullName: Prowl.Runtime.Test.ThreadingTests.DelayCountsGameTimeAndStandsStillWhileTimeDoes
+- uid: Prowl.Runtime.Test.ThreadingTests.WaitUntilChecksOncePerFrame*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.WaitUntilChecksOncePerFrame
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_WaitUntilChecksOncePerFrame
+  name: WaitUntilChecksOncePerFrame
+  nameWithType: ThreadingTests.WaitUntilChecksOncePerFrame
+  fullName: Prowl.Runtime.Test.ThreadingTests.WaitUntilChecksOncePerFrame
+- uid: Prowl.Runtime.Test.ThreadingTests.CancellingAFrameWaitCompletesItWithoutAFrame*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.CancellingAFrameWaitCompletesItWithoutAFrame
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_CancellingAFrameWaitCompletesItWithoutAFrame
+  name: CancellingAFrameWaitCompletesItWithoutAFrame
+  nameWithType: ThreadingTests.CancellingAFrameWaitCompletesItWithoutAFrame
+  fullName: Prowl.Runtime.Test.ThreadingTests.CancellingAFrameWaitCompletesItWithoutAFrame
+- uid: Prowl.Runtime.Test.ThreadingTests.AContinuationThatResumesAfterItsSessionEndedNeverRuns*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.AContinuationThatResumesAfterItsSessionEndedNeverRuns
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_AContinuationThatResumesAfterItsSessionEndedNeverRuns
+  name: AContinuationThatResumesAfterItsSessionEndedNeverRuns
+  nameWithType: ThreadingTests.AContinuationThatResumesAfterItsSessionEndedNeverRuns
+  fullName: Prowl.Runtime.Test.ThreadingTests.AContinuationThatResumesAfterItsSessionEndedNeverRuns
+- uid: Prowl.Runtime.Test.ThreadingTests.EndingASessionDropsQueuedWorkCancelsItsTokenAndItsFrameWaits*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.EndingASessionDropsQueuedWorkCancelsItsTokenAndItsFrameWaits
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_EndingASessionDropsQueuedWorkCancelsItsTokenAndItsFrameWaits
+  name: EndingASessionDropsQueuedWorkCancelsItsTokenAndItsFrameWaits
+  nameWithType: ThreadingTests.EndingASessionDropsQueuedWorkCancelsItsTokenAndItsFrameWaits
+  fullName: Prowl.Runtime.Test.ThreadingTests.EndingASessionDropsQueuedWorkCancelsItsTokenAndItsFrameWaits
+- uid: Prowl.Runtime.Test.ThreadingTests.WorkBlockingOnTheMainThreadCarriesAcrossASessionEnd*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.WorkBlockingOnTheMainThreadCarriesAcrossASessionEnd
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_WorkBlockingOnTheMainThreadCarriesAcrossASessionEnd
+  name: WorkBlockingOnTheMainThreadCarriesAcrossASessionEnd
+  nameWithType: ThreadingTests.WorkBlockingOnTheMainThreadCarriesAcrossASessionEnd
+  fullName: Prowl.Runtime.Test.ThreadingTests.WorkBlockingOnTheMainThreadCarriesAcrossASessionEnd
+- uid: Prowl.Runtime.Test.ThreadingTests.RunRethrowsWhatTheWorkThrewOnTheCallingThread*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.RunRethrowsWhatTheWorkThrewOnTheCallingThread
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_RunRethrowsWhatTheWorkThrewOnTheCallingThread
+  name: RunRethrowsWhatTheWorkThrewOnTheCallingThread
+  nameWithType: ThreadingTests.RunRethrowsWhatTheWorkThrewOnTheCallingThread
+  fullName: Prowl.Runtime.Test.ThreadingTests.RunRethrowsWhatTheWorkThrewOnTheCallingThread
+- uid: Prowl.Runtime.Test.ThreadingTests.RunReturnsItsResult*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.RunReturnsItsResult
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_RunReturnsItsResult
+  name: RunReturnsItsResult
+  nameWithType: ThreadingTests.RunReturnsItsResult
+  fullName: Prowl.Runtime.Test.ThreadingTests.RunReturnsItsResult
+- uid: Prowl.Runtime.Test.ThreadingTests.SendAfterTheLoopStoppedThrowsInsteadOfRunningOnTheCaller*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.SendAfterTheLoopStoppedThrowsInsteadOfRunningOnTheCaller
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_SendAfterTheLoopStoppedThrowsInsteadOfRunningOnTheCaller
+  name: SendAfterTheLoopStoppedThrowsInsteadOfRunningOnTheCaller
+  nameWithType: ThreadingTests.SendAfterTheLoopStoppedThrowsInsteadOfRunningOnTheCaller
+  fullName: Prowl.Runtime.Test.ThreadingTests.SendAfterTheLoopStoppedThrowsInsteadOfRunningOnTheCaller
+- uid: Prowl.Runtime.Test.ThreadingTests.WithoutALoopEveryThreadCountsAsTheMainThread*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.WithoutALoopEveryThreadCountsAsTheMainThread
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_WithoutALoopEveryThreadCountsAsTheMainThread
+  name: WithoutALoopEveryThreadCountsAsTheMainThread
+  nameWithType: ThreadingTests.WithoutALoopEveryThreadCountsAsTheMainThread
+  fullName: Prowl.Runtime.Test.ThreadingTests.WithoutALoopEveryThreadCountsAsTheMainThread
+- uid: Prowl.Runtime.Test.ThreadingTests.AWorkerHoppingBackAfterItsSessionEndedNeverResumes*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.AWorkerHoppingBackAfterItsSessionEndedNeverResumes
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_AWorkerHoppingBackAfterItsSessionEndedNeverResumes
+  name: AWorkerHoppingBackAfterItsSessionEndedNeverResumes
+  nameWithType: ThreadingTests.AWorkerHoppingBackAfterItsSessionEndedNeverResumes
+  fullName: Prowl.Runtime.Test.ThreadingTests.AWorkerHoppingBackAfterItsSessionEndedNeverResumes
+- uid: Prowl.Runtime.Test.ThreadingTests.AWorkerStartedInANewSessionStillGetsBack*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.AWorkerStartedInANewSessionStillGetsBack
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_AWorkerStartedInANewSessionStillGetsBack
+  name: AWorkerStartedInANewSessionStillGetsBack
+  nameWithType: ThreadingTests.AWorkerStartedInANewSessionStillGetsBack
+  fullName: Prowl.Runtime.Test.ThreadingTests.AWorkerStartedInANewSessionStillGetsBack
+- uid: Prowl.Runtime.Test.ThreadingTests.AWorkerSeesItsOwnSessionEndEvenAfterANewOneStarted*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.AWorkerSeesItsOwnSessionEndEvenAfterANewOneStarted
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_AWorkerSeesItsOwnSessionEndEvenAfterANewOneStarted
+  name: AWorkerSeesItsOwnSessionEndEvenAfterANewOneStarted
+  nameWithType: ThreadingTests.AWorkerSeesItsOwnSessionEndEvenAfterANewOneStarted
+  fullName: Prowl.Runtime.Test.ThreadingTests.AWorkerSeesItsOwnSessionEndEvenAfterANewOneStarted
+- uid: Prowl.Runtime.Test.ThreadingTests.WorkStartedFromAComponentStaysBoundToItsSession*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.WorkStartedFromAComponentStaysBoundToItsSession
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_WorkStartedFromAComponentStaysBoundToItsSession
+  name: WorkStartedFromAComponentStaysBoundToItsSession
+  nameWithType: ThreadingTests.WorkStartedFromAComponentStaysBoundToItsSession
+  fullName: Prowl.Runtime.Test.ThreadingTests.WorkStartedFromAComponentStaysBoundToItsSession
+- uid: Prowl.Runtime.Test.ThreadingTests.AThreadStartedOutsideGameplayFollowsTheCurrentSession*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.AThreadStartedOutsideGameplayFollowsTheCurrentSession
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_AThreadStartedOutsideGameplayFollowsTheCurrentSession
+  name: AThreadStartedOutsideGameplayFollowsTheCurrentSession
+  nameWithType: ThreadingTests.AThreadStartedOutsideGameplayFollowsTheCurrentSession
+  fullName: Prowl.Runtime.Test.ThreadingTests.AThreadStartedOutsideGameplayFollowsTheCurrentSession
+- uid: Prowl.Runtime.Test.ThreadingTests.RestartingInsideAQueuedContinuationLeavesTheThreadOnTheNewSession*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.RestartingInsideAQueuedContinuationLeavesTheThreadOnTheNewSession
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_RestartingInsideAQueuedContinuationLeavesTheThreadOnTheNewSession
+  name: RestartingInsideAQueuedContinuationLeavesTheThreadOnTheNewSession
+  nameWithType: ThreadingTests.RestartingInsideAQueuedContinuationLeavesTheThreadOnTheNewSession
+  fullName: Prowl.Runtime.Test.ThreadingTests.RestartingInsideAQueuedContinuationLeavesTheThreadOnTheNewSession
+- uid: Prowl.Runtime.Test.ThreadingTests.RestartingInsideAsyncCodeIsPutRightByTheNextPump*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.RestartingInsideAsyncCodeIsPutRightByTheNextPump
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_RestartingInsideAsyncCodeIsPutRightByTheNextPump
+  name: RestartingInsideAsyncCodeIsPutRightByTheNextPump
+  nameWithType: ThreadingTests.RestartingInsideAsyncCodeIsPutRightByTheNextPump
+  fullName: Prowl.Runtime.Test.ThreadingTests.RestartingInsideAsyncCodeIsPutRightByTheNextPump
+- uid: Prowl.Runtime.Test.ThreadingTests.AfterTheLoopStopsWorkersAreRefusedUntilItIsUninstalled*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.AfterTheLoopStopsWorkersAreRefusedUntilItIsUninstalled
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_AfterTheLoopStopsWorkersAreRefusedUntilItIsUninstalled
+  name: AfterTheLoopStopsWorkersAreRefusedUntilItIsUninstalled
+  nameWithType: ThreadingTests.AfterTheLoopStopsWorkersAreRefusedUntilItIsUninstalled
+  fullName: Prowl.Runtime.Test.ThreadingTests.AfterTheLoopStopsWorkersAreRefusedUntilItIsUninstalled
+- uid: Prowl.Runtime.Test.ThreadingTests.AWaitWhoseCheckEndsTheSessionIsCancelledRatherThanStranded*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.AWaitWhoseCheckEndsTheSessionIsCancelledRatherThanStranded
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_AWaitWhoseCheckEndsTheSessionIsCancelledRatherThanStranded
+  name: AWaitWhoseCheckEndsTheSessionIsCancelledRatherThanStranded
+  nameWithType: ThreadingTests.AWaitWhoseCheckEndsTheSessionIsCancelledRatherThanStranded
+  fullName: Prowl.Runtime.Test.ThreadingTests.AWaitWhoseCheckEndsTheSessionIsCancelledRatherThanStranded
+- uid: Prowl.Runtime.Test.ThreadingTests.ACancellationThatWasATimeoutIsReportedAndADeliberateOneIsNot*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.ACancellationThatWasATimeoutIsReportedAndADeliberateOneIsNot
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_ACancellationThatWasATimeoutIsReportedAndADeliberateOneIsNot
+  name: ACancellationThatWasATimeoutIsReportedAndADeliberateOneIsNot
+  nameWithType: ThreadingTests.ACancellationThatWasATimeoutIsReportedAndADeliberateOneIsNot
+  fullName: Prowl.Runtime.Test.ThreadingTests.ACancellationThatWasATimeoutIsReportedAndADeliberateOneIsNot
+- uid: Prowl.Runtime.Test.ThreadingTests.FrameWaitsCompleteAsCancelledWhenTheirSessionEnds*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.FrameWaitsCompleteAsCancelledWhenTheirSessionEnds
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_FrameWaitsCompleteAsCancelledWhenTheirSessionEnds
+  name: FrameWaitsCompleteAsCancelledWhenTheirSessionEnds
+  nameWithType: ThreadingTests.FrameWaitsCompleteAsCancelledWhenTheirSessionEnds
+  fullName: Prowl.Runtime.Test.ThreadingTests.FrameWaitsCompleteAsCancelledWhenTheirSessionEnds
+- uid: Prowl.Runtime.Test.ThreadingTests.AFrameWaitOnAnEndedSessionIsCancelledRatherThanThrowing*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.AFrameWaitOnAnEndedSessionIsCancelledRatherThanThrowing
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_AFrameWaitOnAnEndedSessionIsCancelledRatherThanThrowing
+  name: AFrameWaitOnAnEndedSessionIsCancelledRatherThanThrowing
+  nameWithType: ThreadingTests.AFrameWaitOnAnEndedSessionIsCancelledRatherThanThrowing
+  fullName: Prowl.Runtime.Test.ThreadingTests.AFrameWaitOnAnEndedSessionIsCancelledRatherThanThrowing
+- uid: Prowl.Runtime.Test.ThreadingTests.FramesCountsFrames*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.FramesCountsFrames
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_FramesCountsFrames
+  name: FramesCountsFrames
+  nameWithType: ThreadingTests.FramesCountsFrames
+  fullName: Prowl.Runtime.Test.ThreadingTests.FramesCountsFrames
+- uid: Prowl.Runtime.Test.ThreadingTests.AWaitConditionThatThrowsFaultsTheWait*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.AWaitConditionThatThrowsFaultsTheWait
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_AWaitConditionThatThrowsFaultsTheWait
+  name: AWaitConditionThatThrowsFaultsTheWait
+  nameWithType: ThreadingTests.AWaitConditionThatThrowsFaultsTheWait
+  fullName: Prowl.Runtime.Test.ThreadingTests.AWaitConditionThatThrowsFaultsTheWait
+- uid: Prowl.Runtime.Test.ThreadingTests.AnAsyncVoidThatFailsAfterItsSessionEndedIsStillReported*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.AnAsyncVoidThatFailsAfterItsSessionEndedIsStillReported
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_AnAsyncVoidThatFailsAfterItsSessionEndedIsStillReported
+  name: AnAsyncVoidThatFailsAfterItsSessionEndedIsStillReported
+  nameWithType: ThreadingTests.AnAsyncVoidThatFailsAfterItsSessionEndedIsStillReported
+  fullName: Prowl.Runtime.Test.ThreadingTests.AnAsyncVoidThatFailsAfterItsSessionEndedIsStillReported
+- uid: Prowl.Runtime.Test.ThreadingTests.BlockedWorkRunsWhenTheLoopStopsWithoutHoldingTheContext*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.BlockedWorkRunsWhenTheLoopStopsWithoutHoldingTheContext
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_BlockedWorkRunsWhenTheLoopStopsWithoutHoldingTheContext
+  name: BlockedWorkRunsWhenTheLoopStopsWithoutHoldingTheContext
+  nameWithType: ThreadingTests.BlockedWorkRunsWhenTheLoopStopsWithoutHoldingTheContext
+  fullName: Prowl.Runtime.Test.ThreadingTests.BlockedWorkRunsWhenTheLoopStopsWithoutHoldingTheContext
+- uid: Prowl.Runtime.Test.ThreadingTests.InstallingOverALoopCarriesBlockedWorkToTheNewOne*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.InstallingOverALoopCarriesBlockedWorkToTheNewOne
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_InstallingOverALoopCarriesBlockedWorkToTheNewOne
+  name: InstallingOverALoopCarriesBlockedWorkToTheNewOne
+  nameWithType: ThreadingTests.InstallingOverALoopCarriesBlockedWorkToTheNewOne
+  fullName: Prowl.Runtime.Test.ThreadingTests.InstallingOverALoopCarriesBlockedWorkToTheNewOne
+- uid: Prowl.Runtime.Test.ThreadingTests.EndingTheSessionAtASwapSplitsTheTwoScenesBetweenSessions*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.EndingTheSessionAtASwapSplitsTheTwoScenesBetweenSessions
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_EndingTheSessionAtASwapSplitsTheTwoScenesBetweenSessions
+  name: EndingTheSessionAtASwapSplitsTheTwoScenesBetweenSessions
+  nameWithType: ThreadingTests.EndingTheSessionAtASwapSplitsTheTwoScenesBetweenSessions
+  fullName: Prowl.Runtime.Test.ThreadingTests.EndingTheSessionAtASwapSplitsTheTwoScenesBetweenSessions
+- uid: Prowl.Runtime.Test.ThreadingTests.ASkippedSwapStillEndsTheSession*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.ASkippedSwapStillEndsTheSession
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_ASkippedSwapStillEndsTheSession
+  name: ASkippedSwapStillEndsTheSession
+  nameWithType: ThreadingTests.ASkippedSwapStillEndsTheSession
+  fullName: Prowl.Runtime.Test.ThreadingTests.ASkippedSwapStillEndsTheSession
+- uid: Prowl.Runtime.Test.ThreadingTests.DisposingALiveComponentFromAnotherThreadThrowsBeforeTearingAnythingDown*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.DisposingALiveComponentFromAnotherThreadThrowsBeforeTearingAnythingDown
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_DisposingALiveComponentFromAnotherThreadThrowsBeforeTearingAnythingDown
+  name: DisposingALiveComponentFromAnotherThreadThrowsBeforeTearingAnythingDown
+  nameWithType: ThreadingTests.DisposingALiveComponentFromAnotherThreadThrowsBeforeTearingAnythingDown
+  fullName: Prowl.Runtime.Test.ThreadingTests.DisposingALiveComponentFromAnotherThreadThrowsBeforeTearingAnythingDown
+- uid: Prowl.Runtime.Test.ThreadingTests.DisposingALiveObjectFromAnotherThreadThrowsBeforeTearingAnythingDown*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.DisposingALiveObjectFromAnotherThreadThrowsBeforeTearingAnythingDown
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_DisposingALiveObjectFromAnotherThreadThrowsBeforeTearingAnythingDown
+  name: DisposingALiveObjectFromAnotherThreadThrowsBeforeTearingAnythingDown
+  nameWithType: ThreadingTests.DisposingALiveObjectFromAnotherThreadThrowsBeforeTearingAnythingDown
+  fullName: Prowl.Runtime.Test.ThreadingTests.DisposingALiveObjectFromAnotherThreadThrowsBeforeTearingAnythingDown
+- uid: Prowl.Runtime.Test.ThreadingTests.DisposingALiveSceneFromAnotherThreadThrows*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.DisposingALiveSceneFromAnotherThreadThrows
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_DisposingALiveSceneFromAnotherThreadThrows
+  name: DisposingALiveSceneFromAnotherThreadThrows
+  nameWithType: ThreadingTests.DisposingALiveSceneFromAnotherThreadThrows
+  fullName: Prowl.Runtime.Test.ThreadingTests.DisposingALiveSceneFromAnotherThreadThrows
+- uid: Prowl.Runtime.Test.ThreadingTests.ReadingTheCurrentSceneFromAnotherThreadCannotLeaveAnInactiveOneBehind*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.ReadingTheCurrentSceneFromAnotherThreadCannotLeaveAnInactiveOneBehind
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_ReadingTheCurrentSceneFromAnotherThreadCannotLeaveAnInactiveOneBehind
+  name: ReadingTheCurrentSceneFromAnotherThreadCannotLeaveAnInactiveOneBehind
+  nameWithType: ThreadingTests.ReadingTheCurrentSceneFromAnotherThreadCannotLeaveAnInactiveOneBehind
+  fullName: Prowl.Runtime.Test.ThreadingTests.ReadingTheCurrentSceneFromAnotherThreadCannotLeaveAnInactiveOneBehind
+- uid: Prowl.Runtime.Test.ThreadingTests.PhysicsAndAnimationComponentsOnALiveObjectAreChecked*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.PhysicsAndAnimationComponentsOnALiveObjectAreChecked
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_PhysicsAndAnimationComponentsOnALiveObjectAreChecked
+  name: PhysicsAndAnimationComponentsOnALiveObjectAreChecked
+  nameWithType: ThreadingTests.PhysicsAndAnimationComponentsOnALiveObjectAreChecked
+  fullName: Prowl.Runtime.Test.ThreadingTests.PhysicsAndAnimationComponentsOnALiveObjectAreChecked
+- uid: Prowl.Runtime.Test.ThreadingTests.MovingALiveObjectFromAnotherThreadThrowsAndChangesNothing*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.MovingALiveObjectFromAnotherThreadThrowsAndChangesNothing
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_MovingALiveObjectFromAnotherThreadThrowsAndChangesNothing
+  name: MovingALiveObjectFromAnotherThreadThrowsAndChangesNothing
+  nameWithType: ThreadingTests.MovingALiveObjectFromAnotherThreadThrowsAndChangesNothing
+  fullName: Prowl.Runtime.Test.ThreadingTests.MovingALiveObjectFromAnotherThreadThrowsAndChangesNothing
+- uid: Prowl.Runtime.Test.ThreadingTests.EveryStructuralChangeToALiveSceneIsChecked*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.EveryStructuralChangeToALiveSceneIsChecked
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_EveryStructuralChangeToALiveSceneIsChecked
+  name: EveryStructuralChangeToALiveSceneIsChecked
+  nameWithType: ThreadingTests.EveryStructuralChangeToALiveSceneIsChecked
+  fullName: Prowl.Runtime.Test.ThreadingTests.EveryStructuralChangeToALiveSceneIsChecked
+- uid: Prowl.Runtime.Test.ThreadingTests.AComponentOnALiveObjectCannotBeToggledFromAnotherThread*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.AComponentOnALiveObjectCannotBeToggledFromAnotherThread
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_AComponentOnALiveObjectCannotBeToggledFromAnotherThread
+  name: AComponentOnALiveObjectCannotBeToggledFromAnotherThread
+  nameWithType: ThreadingTests.AComponentOnALiveObjectCannotBeToggledFromAnotherThread
+  fullName: Prowl.Runtime.Test.ThreadingTests.AComponentOnALiveObjectCannotBeToggledFromAnotherThread
+- uid: Prowl.Runtime.Test.ThreadingTests.ObjectsBuiltOffSceneOnAWorkerCanJoinTheSceneOnTheMainThread*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.ObjectsBuiltOffSceneOnAWorkerCanJoinTheSceneOnTheMainThread
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_ObjectsBuiltOffSceneOnAWorkerCanJoinTheSceneOnTheMainThread
+  name: ObjectsBuiltOffSceneOnAWorkerCanJoinTheSceneOnTheMainThread
+  nameWithType: ThreadingTests.ObjectsBuiltOffSceneOnAWorkerCanJoinTheSceneOnTheMainThread
+  fullName: Prowl.Runtime.Test.ThreadingTests.ObjectsBuiltOffSceneOnAWorkerCanJoinTheSceneOnTheMainThread
+- uid: Prowl.Runtime.Test.ThreadingTests.DestroyFromAnotherThreadIsQueuedForTheMainThread*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.DestroyFromAnotherThreadIsQueuedForTheMainThread
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_DestroyFromAnotherThreadIsQueuedForTheMainThread
+  name: DestroyFromAnotherThreadIsQueuedForTheMainThread
+  nameWithType: ThreadingTests.DestroyFromAnotherThreadIsQueuedForTheMainThread
+  fullName: Prowl.Runtime.Test.ThreadingTests.DestroyFromAnotherThreadIsQueuedForTheMainThread
+- uid: Prowl.Runtime.Test.ThreadingTests.ReadingWorldTransformsFromAnotherThreadGivesTheRightAnswer*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.ReadingWorldTransformsFromAnotherThreadGivesTheRightAnswer
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_ReadingWorldTransformsFromAnotherThreadGivesTheRightAnswer
+  name: ReadingWorldTransformsFromAnotherThreadGivesTheRightAnswer
+  nameWithType: ThreadingTests.ReadingWorldTransformsFromAnotherThreadGivesTheRightAnswer
+  fullName: Prowl.Runtime.Test.ThreadingTests.ReadingWorldTransformsFromAnotherThreadGivesTheRightAnswer
+- uid: Prowl.Runtime.Test.ThreadingTests.PhysicsQueriesFromAnotherThreadThrow*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.PhysicsQueriesFromAnotherThreadThrow
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_PhysicsQueriesFromAnotherThreadThrow
+  name: PhysicsQueriesFromAnotherThreadThrow
+  nameWithType: ThreadingTests.PhysicsQueriesFromAnotherThreadThrow
+  fullName: Prowl.Runtime.Test.ThreadingTests.PhysicsQueriesFromAnotherThreadThrow
+- uid: Prowl.Runtime.Test.ThreadingTests.WithoutALoopOtherThreadsAreNotStopped*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.WithoutALoopOtherThreadsAreNotStopped
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_WithoutALoopOtherThreadsAreNotStopped
+  name: WithoutALoopOtherThreadsAreNotStopped
+  nameWithType: ThreadingTests.WithoutALoopOtherThreadsAreNotStopped
+  fullName: Prowl.Runtime.Test.ThreadingTests.WithoutALoopOtherThreadsAreNotStopped
+- uid: Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsWhenTheComponentIsDestroyed*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsWhenTheComponentIsDestroyed
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_DestroyCancellationTokenCancelsWhenTheComponentIsDestroyed
+  name: DestroyCancellationTokenCancelsWhenTheComponentIsDestroyed
+  nameWithType: ThreadingTests.DestroyCancellationTokenCancelsWhenTheComponentIsDestroyed
+  fullName: Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsWhenTheComponentIsDestroyed
+- uid: Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsWithItsGameObject*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsWithItsGameObject
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_DestroyCancellationTokenCancelsWithItsGameObject
+  name: DestroyCancellationTokenCancelsWithItsGameObject
+  nameWithType: ThreadingTests.DestroyCancellationTokenCancelsWithItsGameObject
+  fullName: Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsWithItsGameObject
+- uid: Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsEvenWhenOnDisposeSkipsBase*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsEvenWhenOnDisposeSkipsBase
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_DestroyCancellationTokenCancelsEvenWhenOnDisposeSkipsBase
+  name: DestroyCancellationTokenCancelsEvenWhenOnDisposeSkipsBase
+  nameWithType: ThreadingTests.DestroyCancellationTokenCancelsEvenWhenOnDisposeSkipsBase
+  fullName: Prowl.Runtime.Test.ThreadingTests.DestroyCancellationTokenCancelsEvenWhenOnDisposeSkipsBase
+- uid: Prowl.Runtime.Test.ThreadingTests.ReadingTimeFromAnotherThreadWhileTheLoopSwapsItNeverThrows*
+  commentId: Overload:Prowl.Runtime.Test.ThreadingTests.ReadingTimeFromAnotherThreadWhileTheLoopSwapsItNeverThrows
+  href: Prowl.Runtime.Test.ThreadingTests.html#Prowl_Runtime_Test_ThreadingTests_ReadingTimeFromAnotherThreadWhileTheLoopSwapsItNeverThrows
+  name: ReadingTimeFromAnotherThreadWhileTheLoopSwapsItNeverThrows
+  nameWithType: ThreadingTests.ReadingTimeFromAnotherThreadWhileTheLoopSwapsItNeverThrows
+  fullName: Prowl.Runtime.Test.ThreadingTests.ReadingTimeFromAnotherThreadWhileTheLoopSwapsItNeverThrows

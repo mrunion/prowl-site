@@ -1,0 +1,619 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.Projects.SaveManager
+  commentId: T:Prowl.Editor.Projects.SaveManager
+  id: SaveManager
+  parent: Prowl.Editor.Projects
+  children:
+  - Prowl.Editor.Projects.SaveManager.AutoSaveEnabled
+  - Prowl.Editor.Projects.SaveManager.AutoSaveInterval
+  - Prowl.Editor.Projects.SaveManager.IsAutoSave
+  - Prowl.Editor.Projects.SaveManager.OnSave
+  - Prowl.Editor.Projects.SaveManager.RequestSave(System.Boolean)
+  - Prowl.Editor.Projects.SaveManager.ResetTimer
+  - Prowl.Editor.Projects.SaveManager.Update(System.Single)
+  langs:
+  - csharp
+  - vb
+  name: SaveManager
+  nameWithType: SaveManager
+  fullName: Prowl.Editor.Projects.SaveManager
+  type: Class
+  source:
+    remote:
+      path: Prowl.Editor/Projects/SaveManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SaveManager
+    path: ../Prowl/Prowl.Editor/Projects/SaveManager.cs
+    startLine: 20
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Projects
+  summary: >-
+    Centralized save system for the editor. Handles Ctrl+S, auto-save, and
+
+    compiles results from all save handlers into a single toast notification.
+
+
+    Subsystems register via <xref href="Prowl.Editor.Projects.SaveManager.OnSave" data-throw-if-not-resolved="false"></xref> and return what they saved.
+
+    The manager fires all handlers, collects labels, and shows one combined toast.
+  example: []
+  syntax:
+    content: public static class SaveManager
+    content.vb: Public Module SaveManager
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Prowl.Editor.Projects.SaveManager.OnSave
+  commentId: E:Prowl.Editor.Projects.SaveManager.OnSave
+  id: OnSave
+  parent: Prowl.Editor.Projects.SaveManager
+  langs:
+  - csharp
+  - vb
+  name: OnSave
+  nameWithType: SaveManager.OnSave
+  fullName: Prowl.Editor.Projects.SaveManager.OnSave
+  type: Event
+  source:
+    remote:
+      path: Prowl.Editor/Projects/SaveManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnSave
+    path: ../Prowl/Prowl.Editor/Projects/SaveManager.cs
+    startLine: 32
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Projects
+  summary: >-
+    Event fired when a project save is requested (Ctrl+S or auto-save).
+
+    Each subscriber should save its dirty state and return a label, or null if clean.
+  example: []
+  syntax:
+    content: public static event SaveManager.SaveHandler? OnSave
+    return:
+      type: Prowl.Editor.Projects.SaveManager.SaveHandler
+    content.vb: Public Shared Event OnSave As SaveManager.SaveHandler
+- uid: Prowl.Editor.Projects.SaveManager.AutoSaveInterval
+  commentId: F:Prowl.Editor.Projects.SaveManager.AutoSaveInterval
+  id: AutoSaveInterval
+  parent: Prowl.Editor.Projects.SaveManager
+  langs:
+  - csharp
+  - vb
+  name: AutoSaveInterval
+  nameWithType: SaveManager.AutoSaveInterval
+  fullName: Prowl.Editor.Projects.SaveManager.AutoSaveInterval
+  type: Field
+  source:
+    remote:
+      path: Prowl.Editor/Projects/SaveManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AutoSaveInterval
+    path: ../Prowl/Prowl.Editor/Projects/SaveManager.cs
+    startLine: 35
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Projects
+  summary: Auto-save interval in seconds. Set to 0 to disable. Default 300 (5 minutes).
+  example: []
+  syntax:
+    content: public static float AutoSaveInterval
+    return:
+      type: System.Single
+    content.vb: Public Shared AutoSaveInterval As Single
+- uid: Prowl.Editor.Projects.SaveManager.AutoSaveEnabled
+  commentId: F:Prowl.Editor.Projects.SaveManager.AutoSaveEnabled
+  id: AutoSaveEnabled
+  parent: Prowl.Editor.Projects.SaveManager
+  langs:
+  - csharp
+  - vb
+  name: AutoSaveEnabled
+  nameWithType: SaveManager.AutoSaveEnabled
+  fullName: Prowl.Editor.Projects.SaveManager.AutoSaveEnabled
+  type: Field
+  source:
+    remote:
+      path: Prowl.Editor/Projects/SaveManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AutoSaveEnabled
+    path: ../Prowl/Prowl.Editor/Projects/SaveManager.cs
+    startLine: 38
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Projects
+  summary: Whether auto-save is enabled.
+  example: []
+  syntax:
+    content: public static bool AutoSaveEnabled
+    return:
+      type: System.Boolean
+    content.vb: Public Shared AutoSaveEnabled As Boolean
+- uid: Prowl.Editor.Projects.SaveManager.IsAutoSave
+  commentId: P:Prowl.Editor.Projects.SaveManager.IsAutoSave
+  id: IsAutoSave
+  parent: Prowl.Editor.Projects.SaveManager
+  langs:
+  - csharp
+  - vb
+  name: IsAutoSave
+  nameWithType: SaveManager.IsAutoSave
+  fullName: Prowl.Editor.Projects.SaveManager.IsAutoSave
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Projects/SaveManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsAutoSave
+    path: ../Prowl/Prowl.Editor/Projects/SaveManager.cs
+    startLine: 45
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Projects
+  summary: >-
+    True while <xref href="Prowl.Editor.Projects.SaveManager.OnSave" data-throw-if-not-resolved="false"></xref> handlers are running as part of an auto-save rather than a
+
+    manual Ctrl+S. Handlers should check this before showing user-facing prompts (e.g. a Save As
+
+    dialog for a never-saved scene) - auto-save must never interrupt the user unattended.
+  example: []
+  syntax:
+    content: public static bool IsAutoSave { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Property IsAutoSave As Boolean
+  overload: Prowl.Editor.Projects.SaveManager.IsAutoSave*
+- uid: Prowl.Editor.Projects.SaveManager.Update(System.Single)
+  commentId: M:Prowl.Editor.Projects.SaveManager.Update(System.Single)
+  id: Update(System.Single)
+  parent: Prowl.Editor.Projects.SaveManager
+  langs:
+  - csharp
+  - vb
+  name: Update(float)
+  nameWithType: SaveManager.Update(float)
+  fullName: Prowl.Editor.Projects.SaveManager.Update(float)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/SaveManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Update
+    path: ../Prowl/Prowl.Editor/Projects/SaveManager.cs
+    startLine: 54
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Projects
+  summary: >-
+    Call once per frame from the editor's update loop.
+
+    Checks for Ctrl+S shortcut and auto-save timer.
+  example: []
+  syntax:
+    content: public static void Update(float deltaTime)
+    parameters:
+    - id: deltaTime
+      type: System.Single
+    content.vb: Public Shared Sub Update(deltaTime As Single)
+  overload: Prowl.Editor.Projects.SaveManager.Update*
+  nameWithType.vb: SaveManager.Update(Single)
+  fullName.vb: Prowl.Editor.Projects.SaveManager.Update(Single)
+  name.vb: Update(Single)
+- uid: Prowl.Editor.Projects.SaveManager.RequestSave(System.Boolean)
+  commentId: M:Prowl.Editor.Projects.SaveManager.RequestSave(System.Boolean)
+  id: RequestSave(System.Boolean)
+  parent: Prowl.Editor.Projects.SaveManager
+  langs:
+  - csharp
+  - vb
+  name: RequestSave(bool)
+  nameWithType: SaveManager.RequestSave(bool)
+  fullName: Prowl.Editor.Projects.SaveManager.RequestSave(bool)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/SaveManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RequestSave
+    path: ../Prowl/Prowl.Editor/Projects/SaveManager.cs
+    startLine: 86
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Projects
+  summary: >-
+    Trigger a save. Fires all <xref href="Prowl.Editor.Projects.SaveManager.OnSave" data-throw-if-not-resolved="false"></xref> handlers and shows a combined toast.
+
+    Can be called manually from menu items or other systems.
+  example: []
+  syntax:
+    content: public static void RequestSave(bool isAutoSave = false)
+    parameters:
+    - id: isAutoSave
+      type: System.Boolean
+    content.vb: Public Shared Sub RequestSave(isAutoSave As Boolean = False)
+  overload: Prowl.Editor.Projects.SaveManager.RequestSave*
+  nameWithType.vb: SaveManager.RequestSave(Boolean)
+  fullName.vb: Prowl.Editor.Projects.SaveManager.RequestSave(Boolean)
+  name.vb: RequestSave(Boolean)
+- uid: Prowl.Editor.Projects.SaveManager.ResetTimer
+  commentId: M:Prowl.Editor.Projects.SaveManager.ResetTimer
+  id: ResetTimer
+  parent: Prowl.Editor.Projects.SaveManager
+  langs:
+  - csharp
+  - vb
+  name: ResetTimer()
+  nameWithType: SaveManager.ResetTimer()
+  fullName: Prowl.Editor.Projects.SaveManager.ResetTimer()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/SaveManager.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ResetTimer
+    path: ../Prowl/Prowl.Editor/Projects/SaveManager.cs
+    startLine: 133
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Projects
+  summary: Reset the auto-save timer (e.g. after a manual save).
+  example: []
+  syntax:
+    content: public static void ResetTimer()
+    content.vb: Public Shared Sub ResetTimer()
+  overload: Prowl.Editor.Projects.SaveManager.ResetTimer*
+references:
+- uid: Prowl.Editor.Projects.SaveManager.OnSave
+  commentId: E:Prowl.Editor.Projects.SaveManager.OnSave
+  href: Prowl.Editor.Projects.SaveManager.html#Prowl_Editor_Projects_SaveManager_OnSave
+  name: OnSave
+  nameWithType: SaveManager.OnSave
+  fullName: Prowl.Editor.Projects.SaveManager.OnSave
+- uid: Prowl.Editor.Projects
+  commentId: N:Prowl.Editor.Projects
+  name: Prowl.Editor.Projects
+  nameWithType: Prowl.Editor.Projects
+  fullName: Prowl.Editor.Projects
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Projects
+    name: Projects
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Projects
+    name: Projects
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Editor.Projects.SaveManager.SaveHandler
+  commentId: T:Prowl.Editor.Projects.SaveManager.SaveHandler
+  parent: Prowl.Editor.Projects
+  href: Prowl.Editor.Projects.SaveManager.html
+  name: SaveManager.SaveHandler
+  nameWithType: SaveManager.SaveHandler
+  fullName: Prowl.Editor.Projects.SaveManager.SaveHandler
+  spec.csharp:
+  - uid: Prowl.Editor.Projects.SaveManager
+    name: SaveManager
+    href: Prowl.Editor.Projects.SaveManager.html
+  - name: .
+  - uid: Prowl.Editor.Projects.SaveManager.SaveHandler
+    name: SaveHandler
+    href: Prowl.Editor.Projects.SaveManager.SaveHandler.html
+  spec.vb:
+  - uid: Prowl.Editor.Projects.SaveManager
+    name: SaveManager
+    href: Prowl.Editor.Projects.SaveManager.html
+  - name: .
+  - uid: Prowl.Editor.Projects.SaveManager.SaveHandler
+    name: SaveHandler
+    href: Prowl.Editor.Projects.SaveManager.SaveHandler.html
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Editor.Projects.SaveManager.IsAutoSave*
+  commentId: Overload:Prowl.Editor.Projects.SaveManager.IsAutoSave
+  href: Prowl.Editor.Projects.SaveManager.html#Prowl_Editor_Projects_SaveManager_IsAutoSave
+  name: IsAutoSave
+  nameWithType: SaveManager.IsAutoSave
+  fullName: Prowl.Editor.Projects.SaveManager.IsAutoSave
+- uid: Prowl.Editor.Projects.SaveManager.Update*
+  commentId: Overload:Prowl.Editor.Projects.SaveManager.Update
+  href: Prowl.Editor.Projects.SaveManager.html#Prowl_Editor_Projects_SaveManager_Update_System_Single_
+  name: Update
+  nameWithType: SaveManager.Update
+  fullName: Prowl.Editor.Projects.SaveManager.Update
+- uid: Prowl.Editor.Projects.SaveManager.RequestSave*
+  commentId: Overload:Prowl.Editor.Projects.SaveManager.RequestSave
+  href: Prowl.Editor.Projects.SaveManager.html#Prowl_Editor_Projects_SaveManager_RequestSave_System_Boolean_
+  name: RequestSave
+  nameWithType: SaveManager.RequestSave
+  fullName: Prowl.Editor.Projects.SaveManager.RequestSave
+- uid: Prowl.Editor.Projects.SaveManager.ResetTimer*
+  commentId: Overload:Prowl.Editor.Projects.SaveManager.ResetTimer
+  href: Prowl.Editor.Projects.SaveManager.html#Prowl_Editor_Projects_SaveManager_ResetTimer
+  name: ResetTimer
+  nameWithType: SaveManager.ResetTimer
+  fullName: Prowl.Editor.Projects.SaveManager.ResetTimer

@@ -1,0 +1,672 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.Importers.AssetImporter
+  commentId: T:Prowl.Editor.Importers.AssetImporter
+  id: AssetImporter
+  parent: Prowl.Editor.Importers
+  children:
+  - Prowl.Editor.Importers.AssetImporter.DefaultSettings
+  - Prowl.Editor.Importers.AssetImporter.Import(Prowl.Editor.Importers.ImportContext)
+  - Prowl.Editor.Importers.AssetImporter.IsEditorOnlyAsset
+  - Prowl.Editor.Importers.AssetImporter.Source
+  - Prowl.Editor.Importers.AssetImporter.Version
+  langs:
+  - csharp
+  - vb
+  name: AssetImporter
+  nameWithType: AssetImporter
+  fullName: Prowl.Editor.Importers.AssetImporter
+  type: Class
+  source:
+    remote:
+      path: Prowl.Editor/AssetsDatabase/Importers/AssetImporter.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AssetImporter
+    path: ../Prowl/Prowl.Editor/AssetsDatabase/Importers/AssetImporter.cs
+    startLine: 20
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Importers
+  summary: >-
+    Base class for all asset importers. Each importer handles specific file types
+
+    and converts raw files into runtime EngineObjects via the ImportContext.
+  example: []
+  syntax:
+    content: public abstract class AssetImporter
+    content.vb: Public MustInherit Class AssetImporter
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - Prowl.Editor.Importers.AssemblyDefinitionImporter
+  - Prowl.Editor.Importers.AudioImporter
+  - Prowl.Editor.Importers.AudioMixerImporter
+  - Prowl.Editor.Importers.CustomAssetImporter
+  - Prowl.Editor.Importers.DefaultImporter
+  - Prowl.Editor.Importers.EditorModelImporter
+  - Prowl.Editor.Importers.FontImporter
+  - Prowl.Editor.Importers.InputActionMapImporter
+  - Prowl.Editor.Importers.MaterialImporter
+  - Prowl.Editor.Importers.MeshImporter
+  - Prowl.Editor.Importers.NavMeshDataImporter
+  - Prowl.Editor.Importers.PluginImporter
+  - Prowl.Editor.Importers.PrefabImporter
+  - Prowl.Editor.Importers.RenderTextureImporter
+  - Prowl.Editor.Importers.SceneImporter
+  - Prowl.Editor.Importers.ScriptImporter
+  - Prowl.Editor.Importers.ShaderImporter
+  - Prowl.Editor.Importers.TerrainDataImporter
+  - Prowl.Editor.Importers.TextureImporter
+  - Prowl.Editor.Test.ThrowingTestImporter
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Editor.Importers.AssetImporter.Version
+  commentId: P:Prowl.Editor.Importers.AssetImporter.Version
+  id: Version
+  parent: Prowl.Editor.Importers.AssetImporter
+  langs:
+  - csharp
+  - vb
+  name: Version
+  nameWithType: AssetImporter.Version
+  fullName: Prowl.Editor.Importers.AssetImporter.Version
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/AssetsDatabase/Importers/AssetImporter.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Version
+    path: ../Prowl/Prowl.Editor/AssetsDatabase/Importers/AssetImporter.cs
+    startLine: 23
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Importers
+  summary: Version number for cache invalidation. Bump when import logic changes.
+  example: []
+  syntax:
+    content: public abstract int Version { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public MustOverride ReadOnly Property Version As Integer
+  overload: Prowl.Editor.Importers.AssetImporter.Version*
+- uid: Prowl.Editor.Importers.AssetImporter.Import(Prowl.Editor.Importers.ImportContext)
+  commentId: M:Prowl.Editor.Importers.AssetImporter.Import(Prowl.Editor.Importers.ImportContext)
+  id: Import(Prowl.Editor.Importers.ImportContext)
+  parent: Prowl.Editor.Importers.AssetImporter
+  langs:
+  - csharp
+  - vb
+  name: Import(ImportContext)
+  nameWithType: AssetImporter.Import(ImportContext)
+  fullName: Prowl.Editor.Importers.AssetImporter.Import(Prowl.Editor.Importers.ImportContext)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/AssetsDatabase/Importers/AssetImporter.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Import
+    path: ../Prowl/Prowl.Editor/AssetsDatabase/Importers/AssetImporter.cs
+    startLine: 29
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Importers
+  summary: Import a raw asset file. Push results into ctx via SetMainAsset/AddSubAsset.
+  example: []
+  syntax:
+    content: public abstract bool Import(ImportContext ctx)
+    parameters:
+    - id: ctx
+      type: Prowl.Editor.Importers.ImportContext
+    return:
+      type: System.Boolean
+      description: True if import succeeded.
+    content.vb: Public MustOverride Function Import(ctx As ImportContext) As Boolean
+  overload: Prowl.Editor.Importers.AssetImporter.Import*
+- uid: Prowl.Editor.Importers.AssetImporter.DefaultSettings
+  commentId: M:Prowl.Editor.Importers.AssetImporter.DefaultSettings
+  id: DefaultSettings
+  parent: Prowl.Editor.Importers.AssetImporter
+  langs:
+  - csharp
+  - vb
+  name: DefaultSettings()
+  nameWithType: AssetImporter.DefaultSettings()
+  fullName: Prowl.Editor.Importers.AssetImporter.DefaultSettings()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/AssetsDatabase/Importers/AssetImporter.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DefaultSettings
+    path: ../Prowl/Prowl.Editor/AssetsDatabase/Importers/AssetImporter.cs
+    startLine: 34
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Importers
+  summary: Returns default settings for this importer type. Override to provide defaults.
+  example: []
+  syntax:
+    content: public virtual EchoObject? DefaultSettings()
+    return:
+      type: Prowl.Echo.EchoObject
+    content.vb: Public Overridable Function DefaultSettings() As EchoObject
+  overload: Prowl.Editor.Importers.AssetImporter.DefaultSettings*
+- uid: Prowl.Editor.Importers.AssetImporter.IsEditorOnlyAsset
+  commentId: P:Prowl.Editor.Importers.AssetImporter.IsEditorOnlyAsset
+  id: IsEditorOnlyAsset
+  parent: Prowl.Editor.Importers.AssetImporter
+  langs:
+  - csharp
+  - vb
+  name: IsEditorOnlyAsset
+  nameWithType: AssetImporter.IsEditorOnlyAsset
+  fullName: Prowl.Editor.Importers.AssetImporter.IsEditorOnlyAsset
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/AssetsDatabase/Importers/AssetImporter.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsEditorOnlyAsset
+    path: ../Prowl/Prowl.Editor/AssetsDatabase/Importers/AssetImporter.cs
+    startLine: 41
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Importers
+  summary: >-
+    When true, files handled by this importer are not real runtime assets and are excluded from
+
+    build packaging (e.g. scripts, plugins, assembly definitions). Plugins are still shipped, but
+
+    through the dedicated plugin pipeline rather than the asset manifest.
+  example: []
+  syntax:
+    content: public virtual bool IsEditorOnlyAsset { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Overridable ReadOnly Property IsEditorOnlyAsset As Boolean
+  overload: Prowl.Editor.Importers.AssetImporter.IsEditorOnlyAsset*
+- uid: Prowl.Editor.Importers.AssetImporter.Source
+  commentId: P:Prowl.Editor.Importers.AssetImporter.Source
+  id: Source
+  parent: Prowl.Editor.Importers.AssetImporter
+  langs:
+  - csharp
+  - vb
+  name: Source
+  nameWithType: AssetImporter.Source
+  fullName: Prowl.Editor.Importers.AssetImporter.Source
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/AssetsDatabase/Importers/AssetImporter.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Source
+    path: ../Prowl/Prowl.Editor/AssetsDatabase/Importers/AssetImporter.cs
+    startLine: 47
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Importers
+  summary: >-
+    How the source file holds the asset when it is the asset itself written by Echo, which is what lets an edit
+
+    made in memory be saved back to it. None for a file imported from any other format.
+  example: []
+  syntax:
+    content: public virtual EchoSource Source { get; }
+    parameters: []
+    return:
+      type: Prowl.Editor.Importers.EchoSource
+    content.vb: Public Overridable ReadOnly Property Source As EchoSource
+  overload: Prowl.Editor.Importers.AssetImporter.Source*
+references:
+- uid: Prowl.Editor.Importers
+  commentId: N:Prowl.Editor.Importers
+  name: Prowl.Editor.Importers
+  nameWithType: Prowl.Editor.Importers
+  fullName: Prowl.Editor.Importers
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Importers
+    name: Importers
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Importers
+    name: Importers
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Editor.Importers.AssetImporter.Version*
+  commentId: Overload:Prowl.Editor.Importers.AssetImporter.Version
+  href: Prowl.Editor.Importers.AssetImporter.html#Prowl_Editor_Importers_AssetImporter_Version
+  name: Version
+  nameWithType: AssetImporter.Version
+  fullName: Prowl.Editor.Importers.AssetImporter.Version
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Editor.Importers.AssetImporter.Import*
+  commentId: Overload:Prowl.Editor.Importers.AssetImporter.Import
+  href: Prowl.Editor.Importers.AssetImporter.html#Prowl_Editor_Importers_AssetImporter_Import_Prowl_Editor_Importers_ImportContext_
+  name: Import
+  nameWithType: AssetImporter.Import
+  fullName: Prowl.Editor.Importers.AssetImporter.Import
+- uid: Prowl.Editor.Importers.ImportContext
+  commentId: T:Prowl.Editor.Importers.ImportContext
+  parent: Prowl.Editor.Importers
+  href: Prowl.Editor.Importers.ImportContext.html
+  name: ImportContext
+  nameWithType: ImportContext
+  fullName: Prowl.Editor.Importers.ImportContext
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Editor.Importers.AssetImporter.DefaultSettings*
+  commentId: Overload:Prowl.Editor.Importers.AssetImporter.DefaultSettings
+  href: Prowl.Editor.Importers.AssetImporter.html#Prowl_Editor_Importers_AssetImporter_DefaultSettings
+  name: DefaultSettings
+  nameWithType: AssetImporter.DefaultSettings
+  fullName: Prowl.Editor.Importers.AssetImporter.DefaultSettings
+- uid: Prowl.Echo.EchoObject
+  commentId: T:Prowl.Echo.EchoObject
+  parent: Prowl.Echo
+  isExternal: true
+  name: EchoObject
+  nameWithType: EchoObject
+  fullName: Prowl.Echo.EchoObject
+- uid: Prowl.Echo
+  commentId: N:Prowl.Echo
+  name: Prowl.Echo
+  nameWithType: Prowl.Echo
+  fullName: Prowl.Echo
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
+- uid: Prowl.Editor.Importers.AssetImporter.IsEditorOnlyAsset*
+  commentId: Overload:Prowl.Editor.Importers.AssetImporter.IsEditorOnlyAsset
+  href: Prowl.Editor.Importers.AssetImporter.html#Prowl_Editor_Importers_AssetImporter_IsEditorOnlyAsset
+  name: IsEditorOnlyAsset
+  nameWithType: AssetImporter.IsEditorOnlyAsset
+  fullName: Prowl.Editor.Importers.AssetImporter.IsEditorOnlyAsset
+- uid: Prowl.Editor.Importers.AssetImporter.Source*
+  commentId: Overload:Prowl.Editor.Importers.AssetImporter.Source
+  href: Prowl.Editor.Importers.AssetImporter.html#Prowl_Editor_Importers_AssetImporter_Source
+  name: Source
+  nameWithType: AssetImporter.Source
+  fullName: Prowl.Editor.Importers.AssetImporter.Source
+- uid: Prowl.Editor.Importers.EchoSource
+  commentId: T:Prowl.Editor.Importers.EchoSource
+  parent: Prowl.Editor.Importers
+  href: Prowl.Editor.Importers.EchoSource.html
+  name: EchoSource
+  nameWithType: EchoSource
+  fullName: Prowl.Editor.Importers.EchoSource

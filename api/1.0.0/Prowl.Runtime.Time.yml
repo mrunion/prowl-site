@@ -5,20 +5,23 @@ items:
   id: Time
   parent: Prowl.Runtime
   children:
+  - Prowl.Runtime.Time.AddTimeScaleModifier(System.Single)
   - Prowl.Runtime.Time.CurrentTime
+  - Prowl.Runtime.Time.DeltaTime
+  - Prowl.Runtime.Time.EffectiveTimeScale
+  - Prowl.Runtime.Time.FixedAccumulator
+  - Prowl.Runtime.Time.FixedAlpha
+  - Prowl.Runtime.Time.FixedDeltaTime
+  - Prowl.Runtime.Time.FrameCount
+  - Prowl.Runtime.Time.MaxFixedIterations
+  - Prowl.Runtime.Time.SmoothDeltaTime
+  - Prowl.Runtime.Time.SmoothUnscaledDeltaTime
+  - Prowl.Runtime.Time.TimeScale
+  - Prowl.Runtime.Time.TimeSinceStartup
+  - Prowl.Runtime.Time.TimeSmoothFactor
   - Prowl.Runtime.Time.TimeStack
-  - Prowl.Runtime.Time.deltaTime
-  - Prowl.Runtime.Time.deltaTimeF
-  - Prowl.Runtime.Time.fixedDeltaTime
-  - Prowl.Runtime.Time.frameCount
-  - Prowl.Runtime.Time.smoothDeltaTime
-  - Prowl.Runtime.Time.smoothUnscaledDeltaTime
-  - Prowl.Runtime.Time.time
-  - Prowl.Runtime.Time.timeScale
-  - Prowl.Runtime.Time.timeScaleF
-  - Prowl.Runtime.Time.timeSmoothFactor
-  - Prowl.Runtime.Time.unscaledDeltaTime
-  - Prowl.Runtime.Time.unscaledTotalTime
+  - Prowl.Runtime.Time.UnscaledDeltaTime
+  - Prowl.Runtime.Time.UnscaledTotalTime
   langs:
   - csharp
   - vb
@@ -29,11 +32,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Time.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: Time
     path: ../Prowl/Prowl.Runtime/Time.cs
-    startLine: 49
+    startLine: 106
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -64,11 +67,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Time.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: TimeStack
     path: ../Prowl/Prowl.Runtime/Time.cs
-    startLine: 52
+    startLine: 110
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -93,11 +96,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Time.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: CurrentTime
     path: ../Prowl/Prowl.Runtime/Time.cs
-    startLine: 54
+    startLine: 112
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -108,377 +111,489 @@ items:
       type: Prowl.Runtime.TimeData
     content.vb: Public Shared ReadOnly Property CurrentTime As TimeData
   overload: Prowl.Runtime.Time.CurrentTime*
-- uid: Prowl.Runtime.Time.unscaledDeltaTime
-  commentId: P:Prowl.Runtime.Time.unscaledDeltaTime
-  id: unscaledDeltaTime
+- uid: Prowl.Runtime.Time.UnscaledDeltaTime
+  commentId: P:Prowl.Runtime.Time.UnscaledDeltaTime
+  id: UnscaledDeltaTime
   parent: Prowl.Runtime.Time
   langs:
   - csharp
   - vb
-  name: unscaledDeltaTime
-  nameWithType: Time.unscaledDeltaTime
-  fullName: Prowl.Runtime.Time.unscaledDeltaTime
+  name: UnscaledDeltaTime
+  nameWithType: Time.UnscaledDeltaTime
+  fullName: Prowl.Runtime.Time.UnscaledDeltaTime
   type: Property
   source:
     remote:
       path: Prowl.Runtime/Time.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: unscaledDeltaTime
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: UnscaledDeltaTime
     path: ../Prowl/Prowl.Runtime/Time.cs
-    startLine: 56
+    startLine: 114
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static double unscaledDeltaTime { get; }
-    parameters: []
-    return:
-      type: System.Double
-    content.vb: Public Shared ReadOnly Property unscaledDeltaTime As Double
-  overload: Prowl.Runtime.Time.unscaledDeltaTime*
-- uid: Prowl.Runtime.Time.unscaledTotalTime
-  commentId: P:Prowl.Runtime.Time.unscaledTotalTime
-  id: unscaledTotalTime
-  parent: Prowl.Runtime.Time
-  langs:
-  - csharp
-  - vb
-  name: unscaledTotalTime
-  nameWithType: Time.unscaledTotalTime
-  fullName: Prowl.Runtime.Time.unscaledTotalTime
-  type: Property
-  source:
-    remote:
-      path: Prowl.Runtime/Time.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: unscaledTotalTime
-    path: ../Prowl/Prowl.Runtime/Time.cs
-    startLine: 57
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static double unscaledTotalTime { get; }
-    parameters: []
-    return:
-      type: System.Double
-    content.vb: Public Shared ReadOnly Property unscaledTotalTime As Double
-  overload: Prowl.Runtime.Time.unscaledTotalTime*
-- uid: Prowl.Runtime.Time.deltaTime
-  commentId: P:Prowl.Runtime.Time.deltaTime
-  id: deltaTime
-  parent: Prowl.Runtime.Time
-  langs:
-  - csharp
-  - vb
-  name: deltaTime
-  nameWithType: Time.deltaTime
-  fullName: Prowl.Runtime.Time.deltaTime
-  type: Property
-  source:
-    remote:
-      path: Prowl.Runtime/Time.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: deltaTime
-    path: ../Prowl/Prowl.Runtime/Time.cs
-    startLine: 59
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static double deltaTime { get; }
-    parameters: []
-    return:
-      type: System.Double
-    content.vb: Public Shared ReadOnly Property deltaTime As Double
-  overload: Prowl.Runtime.Time.deltaTime*
-- uid: Prowl.Runtime.Time.deltaTimeF
-  commentId: P:Prowl.Runtime.Time.deltaTimeF
-  id: deltaTimeF
-  parent: Prowl.Runtime.Time
-  langs:
-  - csharp
-  - vb
-  name: deltaTimeF
-  nameWithType: Time.deltaTimeF
-  fullName: Prowl.Runtime.Time.deltaTimeF
-  type: Property
-  source:
-    remote:
-      path: Prowl.Runtime/Time.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: deltaTimeF
-    path: ../Prowl/Prowl.Runtime/Time.cs
-    startLine: 60
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static float deltaTimeF { get; }
+    content: public static float UnscaledDeltaTime { get; }
     parameters: []
     return:
       type: System.Single
-    content.vb: Public Shared ReadOnly Property deltaTimeF As Single
-  overload: Prowl.Runtime.Time.deltaTimeF*
-- uid: Prowl.Runtime.Time.fixedDeltaTime
-  commentId: P:Prowl.Runtime.Time.fixedDeltaTime
-  id: fixedDeltaTime
+    content.vb: Public Shared ReadOnly Property UnscaledDeltaTime As Single
+  overload: Prowl.Runtime.Time.UnscaledDeltaTime*
+- uid: Prowl.Runtime.Time.UnscaledTotalTime
+  commentId: P:Prowl.Runtime.Time.UnscaledTotalTime
+  id: UnscaledTotalTime
   parent: Prowl.Runtime.Time
   langs:
   - csharp
   - vb
-  name: fixedDeltaTime
-  nameWithType: Time.fixedDeltaTime
-  fullName: Prowl.Runtime.Time.fixedDeltaTime
+  name: UnscaledTotalTime
+  nameWithType: Time.UnscaledTotalTime
+  fullName: Prowl.Runtime.Time.UnscaledTotalTime
   type: Property
   source:
     remote:
       path: Prowl.Runtime/Time.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: fixedDeltaTime
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: UnscaledTotalTime
     path: ../Prowl/Prowl.Runtime/Time.cs
-    startLine: 61
+    startLine: 115
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static double fixedDeltaTime { get; }
+    content: public static float UnscaledTotalTime { get; }
     parameters: []
     return:
-      type: System.Double
-    content.vb: Public Shared ReadOnly Property fixedDeltaTime As Double
-  overload: Prowl.Runtime.Time.fixedDeltaTime*
-- uid: Prowl.Runtime.Time.time
-  commentId: P:Prowl.Runtime.Time.time
-  id: time
+      type: System.Single
+    content.vb: Public Shared ReadOnly Property UnscaledTotalTime As Single
+  overload: Prowl.Runtime.Time.UnscaledTotalTime*
+- uid: Prowl.Runtime.Time.DeltaTime
+  commentId: P:Prowl.Runtime.Time.DeltaTime
+  id: DeltaTime
   parent: Prowl.Runtime.Time
   langs:
   - csharp
   - vb
-  name: time
-  nameWithType: Time.time
-  fullName: Prowl.Runtime.Time.time
+  name: DeltaTime
+  nameWithType: Time.DeltaTime
+  fullName: Prowl.Runtime.Time.DeltaTime
   type: Property
   source:
     remote:
       path: Prowl.Runtime/Time.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: time
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DeltaTime
     path: ../Prowl/Prowl.Runtime/Time.cs
-    startLine: 62
+    startLine: 117
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static double time { get; }
+    content: public static float DeltaTime { get; }
     parameters: []
     return:
-      type: System.Double
-    content.vb: Public Shared ReadOnly Property time As Double
-  overload: Prowl.Runtime.Time.time*
-- uid: Prowl.Runtime.Time.smoothUnscaledDeltaTime
-  commentId: P:Prowl.Runtime.Time.smoothUnscaledDeltaTime
-  id: smoothUnscaledDeltaTime
+      type: System.Single
+    content.vb: Public Shared ReadOnly Property DeltaTime As Single
+  overload: Prowl.Runtime.Time.DeltaTime*
+- uid: Prowl.Runtime.Time.FixedDeltaTime
+  commentId: F:Prowl.Runtime.Time.FixedDeltaTime
+  id: FixedDeltaTime
   parent: Prowl.Runtime.Time
   langs:
   - csharp
   - vb
-  name: smoothUnscaledDeltaTime
-  nameWithType: Time.smoothUnscaledDeltaTime
-  fullName: Prowl.Runtime.Time.smoothUnscaledDeltaTime
-  type: Property
+  name: FixedDeltaTime
+  nameWithType: Time.FixedDeltaTime
+  fullName: Prowl.Runtime.Time.FixedDeltaTime
+  type: Field
   source:
     remote:
       path: Prowl.Runtime/Time.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: smoothUnscaledDeltaTime
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FixedDeltaTime
     path: ../Prowl/Prowl.Runtime/Time.cs
-    startLine: 64
+    startLine: 118
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static double smoothUnscaledDeltaTime { get; }
+    content: public static float FixedDeltaTime
+    return:
+      type: System.Single
+    content.vb: Public Shared FixedDeltaTime As Single
+- uid: Prowl.Runtime.Time.MaxFixedIterations
+  commentId: F:Prowl.Runtime.Time.MaxFixedIterations
+  id: MaxFixedIterations
+  parent: Prowl.Runtime.Time
+  langs:
+  - csharp
+  - vb
+  name: MaxFixedIterations
+  nameWithType: Time.MaxFixedIterations
+  fullName: Prowl.Runtime.Time.MaxFixedIterations
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Time.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MaxFixedIterations
+    path: ../Prowl/Prowl.Runtime/Time.cs
+    startLine: 119
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static int MaxFixedIterations
+    return:
+      type: System.Int32
+    content.vb: Public Shared MaxFixedIterations As Integer
+- uid: Prowl.Runtime.Time.FixedAccumulator
+  commentId: F:Prowl.Runtime.Time.FixedAccumulator
+  id: FixedAccumulator
+  parent: Prowl.Runtime.Time
+  langs:
+  - csharp
+  - vb
+  name: FixedAccumulator
+  nameWithType: Time.FixedAccumulator
+  fullName: Prowl.Runtime.Time.FixedAccumulator
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Time.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FixedAccumulator
+    path: ../Prowl/Prowl.Runtime/Time.cs
+    startLine: 132
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    How far the frame being drawn sits past the last fixed step, in seconds - the fixed loop
+
+    leaves this holding whatever part of the frame its steps did not consume, so it is always
+
+    under <xref href="Prowl.Runtime.Time.FixedDeltaTime" data-throw-if-not-resolved="false"></xref> by the time the scene's Update runs.
+
+
+    This is the alpha physics interpolation has to render at. Counting time since the last step
+
+    with a per-frame accumulator instead does not work: the step that resets such a counter
+
+    happens partway through a frame, and the whole of that frame's delta then gets added on top
+
+    of time the step already consumed, which reads back a pose the body has not reached yet.
+
+    Owned by the game loop - read it, do not write it.
+  example: []
+  syntax:
+    content: public static float FixedAccumulator
+    return:
+      type: System.Single
+    content.vb: Public Shared FixedAccumulator As Single
+- uid: Prowl.Runtime.Time.FixedAlpha
+  commentId: P:Prowl.Runtime.Time.FixedAlpha
+  id: FixedAlpha
+  parent: Prowl.Runtime.Time
+  langs:
+  - csharp
+  - vb
+  name: FixedAlpha
+  nameWithType: Time.FixedAlpha
+  fullName: Prowl.Runtime.Time.FixedAlpha
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Time.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FixedAlpha
+    path: ../Prowl/Prowl.Runtime/Time.cs
+    startLine: 135
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: How far drawing is from the last fixed step toward the next, 0 to 1.
+  example: []
+  syntax:
+    content: public static float FixedAlpha { get; }
     parameters: []
     return:
-      type: System.Double
-    content.vb: Public Shared ReadOnly Property smoothUnscaledDeltaTime As Double
-  overload: Prowl.Runtime.Time.smoothUnscaledDeltaTime*
-- uid: Prowl.Runtime.Time.smoothDeltaTime
-  commentId: P:Prowl.Runtime.Time.smoothDeltaTime
-  id: smoothDeltaTime
+      type: System.Single
+    content.vb: Public Shared ReadOnly Property FixedAlpha As Single
+  overload: Prowl.Runtime.Time.FixedAlpha*
+- uid: Prowl.Runtime.Time.TimeSinceStartup
+  commentId: P:Prowl.Runtime.Time.TimeSinceStartup
+  id: TimeSinceStartup
   parent: Prowl.Runtime.Time
   langs:
   - csharp
   - vb
-  name: smoothDeltaTime
-  nameWithType: Time.smoothDeltaTime
-  fullName: Prowl.Runtime.Time.smoothDeltaTime
+  name: TimeSinceStartup
+  nameWithType: Time.TimeSinceStartup
+  fullName: Prowl.Runtime.Time.TimeSinceStartup
   type: Property
   source:
     remote:
       path: Prowl.Runtime/Time.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: smoothDeltaTime
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TimeSinceStartup
     path: ../Prowl/Prowl.Runtime/Time.cs
-    startLine: 65
+    startLine: 136
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static double smoothDeltaTime { get; }
+    content: public static float TimeSinceStartup { get; }
     parameters: []
     return:
-      type: System.Double
-    content.vb: Public Shared ReadOnly Property smoothDeltaTime As Double
-  overload: Prowl.Runtime.Time.smoothDeltaTime*
-- uid: Prowl.Runtime.Time.frameCount
-  commentId: P:Prowl.Runtime.Time.frameCount
-  id: frameCount
+      type: System.Single
+    content.vb: Public Shared ReadOnly Property TimeSinceStartup As Single
+  overload: Prowl.Runtime.Time.TimeSinceStartup*
+- uid: Prowl.Runtime.Time.SmoothUnscaledDeltaTime
+  commentId: P:Prowl.Runtime.Time.SmoothUnscaledDeltaTime
+  id: SmoothUnscaledDeltaTime
   parent: Prowl.Runtime.Time
   langs:
   - csharp
   - vb
-  name: frameCount
-  nameWithType: Time.frameCount
-  fullName: Prowl.Runtime.Time.frameCount
+  name: SmoothUnscaledDeltaTime
+  nameWithType: Time.SmoothUnscaledDeltaTime
+  fullName: Prowl.Runtime.Time.SmoothUnscaledDeltaTime
   type: Property
   source:
     remote:
       path: Prowl.Runtime/Time.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: frameCount
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SmoothUnscaledDeltaTime
     path: ../Prowl/Prowl.Runtime/Time.cs
-    startLine: 67
+    startLine: 138
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static long frameCount { get; }
+    content: public static float SmoothUnscaledDeltaTime { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Shared ReadOnly Property SmoothUnscaledDeltaTime As Single
+  overload: Prowl.Runtime.Time.SmoothUnscaledDeltaTime*
+- uid: Prowl.Runtime.Time.SmoothDeltaTime
+  commentId: P:Prowl.Runtime.Time.SmoothDeltaTime
+  id: SmoothDeltaTime
+  parent: Prowl.Runtime.Time
+  langs:
+  - csharp
+  - vb
+  name: SmoothDeltaTime
+  nameWithType: Time.SmoothDeltaTime
+  fullName: Prowl.Runtime.Time.SmoothDeltaTime
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Time.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SmoothDeltaTime
+    path: ../Prowl/Prowl.Runtime/Time.cs
+    startLine: 139
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static float SmoothDeltaTime { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Shared ReadOnly Property SmoothDeltaTime As Single
+  overload: Prowl.Runtime.Time.SmoothDeltaTime*
+- uid: Prowl.Runtime.Time.FrameCount
+  commentId: P:Prowl.Runtime.Time.FrameCount
+  id: FrameCount
+  parent: Prowl.Runtime.Time
+  langs:
+  - csharp
+  - vb
+  name: FrameCount
+  nameWithType: Time.FrameCount
+  fullName: Prowl.Runtime.Time.FrameCount
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Time.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FrameCount
+    path: ../Prowl/Prowl.Runtime/Time.cs
+    startLine: 141
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static long FrameCount { get; }
     parameters: []
     return:
       type: System.Int64
-    content.vb: Public Shared ReadOnly Property frameCount As Long
-  overload: Prowl.Runtime.Time.frameCount*
-- uid: Prowl.Runtime.Time.timeScale
-  commentId: P:Prowl.Runtime.Time.timeScale
-  id: timeScale
+    content.vb: Public Shared ReadOnly Property FrameCount As Long
+  overload: Prowl.Runtime.Time.FrameCount*
+- uid: Prowl.Runtime.Time.TimeScale
+  commentId: P:Prowl.Runtime.Time.TimeScale
+  id: TimeScale
   parent: Prowl.Runtime.Time
   langs:
   - csharp
   - vb
-  name: timeScale
-  nameWithType: Time.timeScale
-  fullName: Prowl.Runtime.Time.timeScale
+  name: TimeScale
+  nameWithType: Time.TimeScale
+  fullName: Prowl.Runtime.Time.TimeScale
   type: Property
   source:
     remote:
       path: Prowl.Runtime/Time.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: timeScale
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TimeScale
     path: ../Prowl/Prowl.Runtime/Time.cs
-    startLine: 69
+    startLine: 144
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: The base time scale. Time runs at <xref href="Prowl.Runtime.Time.EffectiveTimeScale" data-throw-if-not-resolved="false"></xref>, this times every active modifier.
+  example: []
   syntax:
-    content: public static double timeScale { get; set; }
-    parameters: []
-    return:
-      type: System.Double
-    content.vb: Public Shared Property timeScale As Double
-  overload: Prowl.Runtime.Time.timeScale*
-- uid: Prowl.Runtime.Time.timeScaleF
-  commentId: P:Prowl.Runtime.Time.timeScaleF
-  id: timeScaleF
-  parent: Prowl.Runtime.Time
-  langs:
-  - csharp
-  - vb
-  name: timeScaleF
-  nameWithType: Time.timeScaleF
-  fullName: Prowl.Runtime.Time.timeScaleF
-  type: Property
-  source:
-    remote:
-      path: Prowl.Runtime/Time.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: timeScaleF
-    path: ../Prowl/Prowl.Runtime/Time.cs
-    startLine: 75
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static float timeScaleF { get; set; }
+    content: public static float TimeScale { get; set; }
     parameters: []
     return:
       type: System.Single
-    content.vb: Public Shared Property timeScaleF As Single
-  overload: Prowl.Runtime.Time.timeScaleF*
-- uid: Prowl.Runtime.Time.timeSmoothFactor
-  commentId: P:Prowl.Runtime.Time.timeSmoothFactor
-  id: timeSmoothFactor
+    content.vb: Public Shared Property TimeScale As Single
+  overload: Prowl.Runtime.Time.TimeScale*
+- uid: Prowl.Runtime.Time.EffectiveTimeScale
+  commentId: P:Prowl.Runtime.Time.EffectiveTimeScale
+  id: EffectiveTimeScale
   parent: Prowl.Runtime.Time
   langs:
   - csharp
   - vb
-  name: timeSmoothFactor
-  nameWithType: Time.timeSmoothFactor
-  fullName: Prowl.Runtime.Time.timeSmoothFactor
+  name: EffectiveTimeScale
+  nameWithType: Time.EffectiveTimeScale
+  fullName: Prowl.Runtime.Time.EffectiveTimeScale
   type: Property
   source:
     remote:
       path: Prowl.Runtime/Time.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: timeSmoothFactor
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EffectiveTimeScale
     path: ../Prowl/Prowl.Runtime/Time.cs
-    startLine: 81
+    startLine: 151
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: 'The scale time actually runs at: <xref href="Prowl.Runtime.Time.TimeScale" data-throw-if-not-resolved="false"></xref> times every active <xref href="Prowl.Runtime.TimeScaleModifier" data-throw-if-not-resolved="false"></xref>.'
+  example: []
+  syntax:
+    content: public static float EffectiveTimeScale { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Shared ReadOnly Property EffectiveTimeScale As Single
+  overload: Prowl.Runtime.Time.EffectiveTimeScale*
+- uid: Prowl.Runtime.Time.AddTimeScaleModifier(System.Single)
+  commentId: M:Prowl.Runtime.Time.AddTimeScaleModifier(System.Single)
+  id: AddTimeScaleModifier(System.Single)
+  parent: Prowl.Runtime.Time
+  langs:
+  - csharp
+  - vb
+  name: AddTimeScaleModifier(float)
+  nameWithType: Time.AddTimeScaleModifier(float)
+  fullName: Prowl.Runtime.Time.AddTimeScaleModifier(float)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Time.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddTimeScaleModifier
+    path: ../Prowl/Prowl.Runtime/Time.cs
+    startLine: 158
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Multiplies the time scale until the returned modifier is removed. Use this rather than setting <xref href="Prowl.Runtime.Time.TimeScale" data-throw-if-not-resolved="false"></xref>
+
+    for temporary effects (slow motion, hit stop), since several can overlap and each removes only its own.
+
+    Modifiers belong to the current time context, so play mode's end with it.
+  example: []
+  syntax:
+    content: public static TimeScaleModifier AddTimeScaleModifier(float scale)
+    parameters:
+    - id: scale
+      type: System.Single
+    return:
+      type: Prowl.Runtime.TimeScaleModifier
+    content.vb: Public Shared Function AddTimeScaleModifier(scale As Single) As TimeScaleModifier
+  overload: Prowl.Runtime.Time.AddTimeScaleModifier*
+  nameWithType.vb: Time.AddTimeScaleModifier(Single)
+  fullName.vb: Prowl.Runtime.Time.AddTimeScaleModifier(Single)
+  name.vb: AddTimeScaleModifier(Single)
+- uid: Prowl.Runtime.Time.TimeSmoothFactor
+  commentId: P:Prowl.Runtime.Time.TimeSmoothFactor
+  id: TimeSmoothFactor
+  parent: Prowl.Runtime.Time
+  langs:
+  - csharp
+  - vb
+  name: TimeSmoothFactor
+  nameWithType: Time.TimeSmoothFactor
+  fullName: Prowl.Runtime.Time.TimeSmoothFactor
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Time.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TimeSmoothFactor
+    path: ../Prowl/Prowl.Runtime/Time.cs
+    startLine: 160
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static double timeSmoothFactor { get; set; }
+    content: public static float TimeSmoothFactor { get; set; }
     parameters: []
     return:
-      type: System.Double
-    content.vb: Public Shared Property timeSmoothFactor As Double
-  overload: Prowl.Runtime.Time.timeSmoothFactor*
+      type: System.Single
+    content.vb: Public Shared Property TimeSmoothFactor As Single
+  overload: Prowl.Runtime.Time.TimeSmoothFactor*
 references:
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
-  href: Prowl.html
   name: Prowl.Runtime
   nameWithType: Prowl.Runtime
   fullName: Prowl.Runtime
   spec.csharp:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
   spec.vb:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -833,41 +948,12 @@ references:
   name: TimeData
   nameWithType: TimeData
   fullName: Prowl.Runtime.TimeData
-- uid: Prowl.Runtime.Time.unscaledDeltaTime*
-  commentId: Overload:Prowl.Runtime.Time.unscaledDeltaTime
-  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_unscaledDeltaTime
-  name: unscaledDeltaTime
-  nameWithType: Time.unscaledDeltaTime
-  fullName: Prowl.Runtime.Time.unscaledDeltaTime
-- uid: System.Double
-  commentId: T:System.Double
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.double
-  name: double
-  nameWithType: double
-  fullName: double
-  nameWithType.vb: Double
-  fullName.vb: Double
-  name.vb: Double
-- uid: Prowl.Runtime.Time.unscaledTotalTime*
-  commentId: Overload:Prowl.Runtime.Time.unscaledTotalTime
-  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_unscaledTotalTime
-  name: unscaledTotalTime
-  nameWithType: Time.unscaledTotalTime
-  fullName: Prowl.Runtime.Time.unscaledTotalTime
-- uid: Prowl.Runtime.Time.deltaTime*
-  commentId: Overload:Prowl.Runtime.Time.deltaTime
-  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_deltaTime
-  name: deltaTime
-  nameWithType: Time.deltaTime
-  fullName: Prowl.Runtime.Time.deltaTime
-- uid: Prowl.Runtime.Time.deltaTimeF*
-  commentId: Overload:Prowl.Runtime.Time.deltaTimeF
-  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_deltaTimeF
-  name: deltaTimeF
-  nameWithType: Time.deltaTimeF
-  fullName: Prowl.Runtime.Time.deltaTimeF
+- uid: Prowl.Runtime.Time.UnscaledDeltaTime*
+  commentId: Overload:Prowl.Runtime.Time.UnscaledDeltaTime
+  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_UnscaledDeltaTime
+  name: UnscaledDeltaTime
+  nameWithType: Time.UnscaledDeltaTime
+  fullName: Prowl.Runtime.Time.UnscaledDeltaTime
 - uid: System.Single
   commentId: T:System.Single
   parent: System
@@ -879,36 +965,65 @@ references:
   nameWithType.vb: Single
   fullName.vb: Single
   name.vb: Single
-- uid: Prowl.Runtime.Time.fixedDeltaTime*
-  commentId: Overload:Prowl.Runtime.Time.fixedDeltaTime
-  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_fixedDeltaTime
-  name: fixedDeltaTime
-  nameWithType: Time.fixedDeltaTime
-  fullName: Prowl.Runtime.Time.fixedDeltaTime
-- uid: Prowl.Runtime.Time.time*
-  commentId: Overload:Prowl.Runtime.Time.time
-  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_time
-  name: time
-  nameWithType: Time.time
-  fullName: Prowl.Runtime.Time.time
-- uid: Prowl.Runtime.Time.smoothUnscaledDeltaTime*
-  commentId: Overload:Prowl.Runtime.Time.smoothUnscaledDeltaTime
-  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_smoothUnscaledDeltaTime
-  name: smoothUnscaledDeltaTime
-  nameWithType: Time.smoothUnscaledDeltaTime
-  fullName: Prowl.Runtime.Time.smoothUnscaledDeltaTime
-- uid: Prowl.Runtime.Time.smoothDeltaTime*
-  commentId: Overload:Prowl.Runtime.Time.smoothDeltaTime
-  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_smoothDeltaTime
-  name: smoothDeltaTime
-  nameWithType: Time.smoothDeltaTime
-  fullName: Prowl.Runtime.Time.smoothDeltaTime
-- uid: Prowl.Runtime.Time.frameCount*
-  commentId: Overload:Prowl.Runtime.Time.frameCount
-  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_frameCount
-  name: frameCount
-  nameWithType: Time.frameCount
-  fullName: Prowl.Runtime.Time.frameCount
+- uid: Prowl.Runtime.Time.UnscaledTotalTime*
+  commentId: Overload:Prowl.Runtime.Time.UnscaledTotalTime
+  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_UnscaledTotalTime
+  name: UnscaledTotalTime
+  nameWithType: Time.UnscaledTotalTime
+  fullName: Prowl.Runtime.Time.UnscaledTotalTime
+- uid: Prowl.Runtime.Time.DeltaTime*
+  commentId: Overload:Prowl.Runtime.Time.DeltaTime
+  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_DeltaTime
+  name: DeltaTime
+  nameWithType: Time.DeltaTime
+  fullName: Prowl.Runtime.Time.DeltaTime
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Runtime.Time.FixedDeltaTime
+  commentId: F:Prowl.Runtime.Time.FixedDeltaTime
+  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_FixedDeltaTime
+  name: FixedDeltaTime
+  nameWithType: Time.FixedDeltaTime
+  fullName: Prowl.Runtime.Time.FixedDeltaTime
+- uid: Prowl.Runtime.Time.FixedAlpha*
+  commentId: Overload:Prowl.Runtime.Time.FixedAlpha
+  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_FixedAlpha
+  name: FixedAlpha
+  nameWithType: Time.FixedAlpha
+  fullName: Prowl.Runtime.Time.FixedAlpha
+- uid: Prowl.Runtime.Time.TimeSinceStartup*
+  commentId: Overload:Prowl.Runtime.Time.TimeSinceStartup
+  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_TimeSinceStartup
+  name: TimeSinceStartup
+  nameWithType: Time.TimeSinceStartup
+  fullName: Prowl.Runtime.Time.TimeSinceStartup
+- uid: Prowl.Runtime.Time.SmoothUnscaledDeltaTime*
+  commentId: Overload:Prowl.Runtime.Time.SmoothUnscaledDeltaTime
+  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_SmoothUnscaledDeltaTime
+  name: SmoothUnscaledDeltaTime
+  nameWithType: Time.SmoothUnscaledDeltaTime
+  fullName: Prowl.Runtime.Time.SmoothUnscaledDeltaTime
+- uid: Prowl.Runtime.Time.SmoothDeltaTime*
+  commentId: Overload:Prowl.Runtime.Time.SmoothDeltaTime
+  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_SmoothDeltaTime
+  name: SmoothDeltaTime
+  nameWithType: Time.SmoothDeltaTime
+  fullName: Prowl.Runtime.Time.SmoothDeltaTime
+- uid: Prowl.Runtime.Time.FrameCount*
+  commentId: Overload:Prowl.Runtime.Time.FrameCount
+  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_FrameCount
+  name: FrameCount
+  nameWithType: Time.FrameCount
+  fullName: Prowl.Runtime.Time.FrameCount
 - uid: System.Int64
   commentId: T:System.Int64
   parent: System
@@ -920,21 +1035,46 @@ references:
   nameWithType.vb: Long
   fullName.vb: Long
   name.vb: Long
-- uid: Prowl.Runtime.Time.timeScale*
-  commentId: Overload:Prowl.Runtime.Time.timeScale
-  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_timeScale
-  name: timeScale
-  nameWithType: Time.timeScale
-  fullName: Prowl.Runtime.Time.timeScale
-- uid: Prowl.Runtime.Time.timeScaleF*
-  commentId: Overload:Prowl.Runtime.Time.timeScaleF
-  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_timeScaleF
-  name: timeScaleF
-  nameWithType: Time.timeScaleF
-  fullName: Prowl.Runtime.Time.timeScaleF
-- uid: Prowl.Runtime.Time.timeSmoothFactor*
-  commentId: Overload:Prowl.Runtime.Time.timeSmoothFactor
-  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_timeSmoothFactor
-  name: timeSmoothFactor
-  nameWithType: Time.timeSmoothFactor
-  fullName: Prowl.Runtime.Time.timeSmoothFactor
+- uid: Prowl.Runtime.Time.EffectiveTimeScale
+  commentId: P:Prowl.Runtime.Time.EffectiveTimeScale
+  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_EffectiveTimeScale
+  name: EffectiveTimeScale
+  nameWithType: Time.EffectiveTimeScale
+  fullName: Prowl.Runtime.Time.EffectiveTimeScale
+- uid: Prowl.Runtime.Time.TimeScale*
+  commentId: Overload:Prowl.Runtime.Time.TimeScale
+  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_TimeScale
+  name: TimeScale
+  nameWithType: Time.TimeScale
+  fullName: Prowl.Runtime.Time.TimeScale
+- uid: Prowl.Runtime.Time.TimeScale
+  commentId: P:Prowl.Runtime.Time.TimeScale
+  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_TimeScale
+  name: TimeScale
+  nameWithType: Time.TimeScale
+  fullName: Prowl.Runtime.Time.TimeScale
+- uid: Prowl.Runtime.TimeScaleModifier
+  commentId: T:Prowl.Runtime.TimeScaleModifier
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.TimeScaleModifier.html
+  name: TimeScaleModifier
+  nameWithType: TimeScaleModifier
+  fullName: Prowl.Runtime.TimeScaleModifier
+- uid: Prowl.Runtime.Time.EffectiveTimeScale*
+  commentId: Overload:Prowl.Runtime.Time.EffectiveTimeScale
+  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_EffectiveTimeScale
+  name: EffectiveTimeScale
+  nameWithType: Time.EffectiveTimeScale
+  fullName: Prowl.Runtime.Time.EffectiveTimeScale
+- uid: Prowl.Runtime.Time.AddTimeScaleModifier*
+  commentId: Overload:Prowl.Runtime.Time.AddTimeScaleModifier
+  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_AddTimeScaleModifier_System_Single_
+  name: AddTimeScaleModifier
+  nameWithType: Time.AddTimeScaleModifier
+  fullName: Prowl.Runtime.Time.AddTimeScaleModifier
+- uid: Prowl.Runtime.Time.TimeSmoothFactor*
+  commentId: Overload:Prowl.Runtime.Time.TimeSmoothFactor
+  href: Prowl.Runtime.Time.html#Prowl_Runtime_Time_TimeSmoothFactor
+  name: TimeSmoothFactor
+  nameWithType: Time.TimeSmoothFactor
+  fullName: Prowl.Runtime.Time.TimeSmoothFactor

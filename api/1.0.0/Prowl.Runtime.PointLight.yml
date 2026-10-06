@@ -5,10 +5,14 @@ items:
   id: PointLight
   parent: Prowl.Runtime
   children:
-  - Prowl.Runtime.PointLight.GetCullingData(System.Boolean@,System.Boolean@,Prowl.Runtime.Bounds@)
-  - Prowl.Runtime.PointLight.GetMaterial
-  - Prowl.Runtime.PointLight.GetRenderingData(Prowl.Runtime.LightType@,Prowl.Runtime.Vector3@)
-  - Prowl.Runtime.PointLight.radius
+  - Prowl.Runtime.PointLight.DrawGizmos
+  - Prowl.Runtime.PointLight.DrawGizmosSelected
+  - Prowl.Runtime.PointLight.GetForwardLightData
+  - Prowl.Runtime.PointLight.GetLightType
+  - Prowl.Runtime.PointLight.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
+  - Prowl.Runtime.PointLight.Range
+  - Prowl.Runtime.PointLight.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
+  - Prowl.Runtime.PointLight.ShadowResolution
   langs:
   - csharp
   - vb
@@ -19,23 +23,27 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Components/Lights/PointLight.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: PointLight
     path: ../Prowl/Prowl.Runtime/Components/Lights/PointLight.cs
-    startLine: 7
+    startLine: 10
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
     content: >-
-      [AddComponentMenu("  Rendering/  Point Light")]
+      [AddComponentMenu("Light/Point Light", "")]
 
-      public class PointLight : Light, IDisposable, IRenderableLight
+      [ComponentIcon("")]
+
+      public class PointLight : Light, IDisposable, ISerializationCallbackReceiver, IRenderableLight
     content.vb: >-
-      <AddComponentMenu("  Rendering/  Point Light")>
+      <AddComponentMenu("Light/Point Light", "")>
 
-      Public Class PointLight Inherits Light Implements IDisposable, IRenderableLight
+      <ComponentIcon("")>
+
+      Public Class PointLight Inherits Light Implements IDisposable, ISerializationCallbackReceiver, IRenderableLight
   inheritance:
   - System.Object
   - Prowl.Runtime.EngineObject
@@ -43,34 +51,47 @@ items:
   - Prowl.Runtime.Light
   implements:
   - System.IDisposable
-  - Prowl.Runtime.IRenderableLight
+  - Prowl.Echo.ISerializationCallbackReceiver
+  - Prowl.Runtime.Rendering.IRenderableLight
   inheritedMembers:
-  - Prowl.Runtime.Light.color
-  - Prowl.Runtime.Light.intensity
-  - Prowl.Runtime.Light.shadowBias
-  - Prowl.Runtime.Light.shadowNormalBias
-  - Prowl.Runtime.Light.castShadows
-  - Prowl.Runtime.Light.Update
+  - Prowl.Runtime.Light.Color
+  - Prowl.Runtime.Light.Intensity
+  - Prowl.Runtime.Light.ShadowStrength
+  - Prowl.Runtime.Light.ShadowBias
+  - Prowl.Runtime.Light.ShadowNormalBias
+  - Prowl.Runtime.Light.CastShadows
+  - Prowl.Runtime.Light.ShadowQuality
+  - Prowl.Runtime.Light.BakeMode
+  - Prowl.Runtime.Light.ShadowSlot
+  - Prowl.Runtime.Light.GetLayer
+  - Prowl.Runtime.Light.GetLightID
+  - Prowl.Runtime.Light.GetLightPosition
+  - Prowl.Runtime.Light.GetLightDirection
+  - Prowl.Runtime.Light.DoCastShadows
+  - Prowl.Runtime.MonoBehaviour.IsFromPrefab
   - Prowl.Runtime.MonoBehaviour._enabled
   - Prowl.Runtime.MonoBehaviour._enabledInHierarchy
-  - Prowl.Runtime.MonoBehaviour.hideFlags
+  - Prowl.Runtime.MonoBehaviour.HideFlags
+  - Prowl.Runtime.MonoBehaviour.DestroyCancellationToken
+  - Prowl.Runtime.MonoBehaviour.Identifier
+  - Prowl.Runtime.MonoBehaviour.SourceIdentifier
   - Prowl.Runtime.MonoBehaviour.GameObject
   - Prowl.Runtime.MonoBehaviour.Transform
-  - Prowl.Runtime.MonoBehaviour.ExecuteAlways
-  - Prowl.Runtime.MonoBehaviour.HasAwoken
   - Prowl.Runtime.MonoBehaviour.HasStarted
+  - Prowl.Runtime.MonoBehaviour.HasBeenEnabled
   - Prowl.Runtime.MonoBehaviour.Tag
   - Prowl.Runtime.MonoBehaviour.Enabled
   - Prowl.Runtime.MonoBehaviour.EnabledInHierarchy
+  - Prowl.Runtime.MonoBehaviour.Scene
   - Prowl.Runtime.MonoBehaviour.CompareTag(System.String)
   - Prowl.Runtime.MonoBehaviour.AddComponent``1
   - Prowl.Runtime.MonoBehaviour.AddComponent(System.Type)
-  - Prowl.Runtime.MonoBehaviour.RemoveAll``1
   - Prowl.Runtime.MonoBehaviour.RemoveComponent``1({T})
   - Prowl.Runtime.MonoBehaviour.RemoveComponent(Prowl.Runtime.MonoBehaviour)
   - Prowl.Runtime.MonoBehaviour.RemoveSelf
   - Prowl.Runtime.MonoBehaviour.GetComponent``1
   - Prowl.Runtime.MonoBehaviour.GetComponent(System.Type)
+  - Prowl.Runtime.MonoBehaviour.GetComponentByIdentifier(System.Guid)
   - Prowl.Runtime.MonoBehaviour.TryGetComponent``1({T}@)
   - Prowl.Runtime.MonoBehaviour.GetComponents``1
   - Prowl.Runtime.MonoBehaviour.GetComponents(System.Type)
@@ -82,214 +103,377 @@ items:
   - Prowl.Runtime.MonoBehaviour.GetComponentInChildren(System.Type,System.Boolean)
   - Prowl.Runtime.MonoBehaviour.GetComponentsInChildren``1(System.Boolean)
   - Prowl.Runtime.MonoBehaviour.GetComponentsInChildren(System.Type,System.Boolean)
-  - Prowl.Runtime.MonoBehaviour.Awake
+  - Prowl.Runtime.MonoBehaviour.GetSiblingIndex
+  - Prowl.Runtime.MonoBehaviour.SetSiblingIndex(System.Int32)
+  - Prowl.Runtime.MonoBehaviour.OnAddedToScene
+  - Prowl.Runtime.MonoBehaviour.OnRemovedFromScene
   - Prowl.Runtime.MonoBehaviour.OnEnable
   - Prowl.Runtime.MonoBehaviour.OnDisable
   - Prowl.Runtime.MonoBehaviour.Start
   - Prowl.Runtime.MonoBehaviour.FixedUpdate
+  - Prowl.Runtime.MonoBehaviour.Update
   - Prowl.Runtime.MonoBehaviour.LateUpdate
-  - Prowl.Runtime.MonoBehaviour.DrawGizmos
-  - Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
-  - Prowl.Runtime.MonoBehaviour.OnLevelWasLoaded
-  - Prowl.Runtime.MonoBehaviour.OnDestroy
-  - Prowl.Runtime.MonoBehaviour.ClearCache
-  - Prowl.Runtime.MonoBehaviour.StartCoroutine(System.String)
-  - Prowl.Runtime.MonoBehaviour.StopAllCoroutines
-  - Prowl.Runtime.MonoBehaviour.StopCoroutine(System.String)
-  - Prowl.Runtime.MonoBehaviour.BroadcastMessage(System.String,System.Object[])
-  - Prowl.Runtime.MonoBehaviour.SendMessage(System.String,System.Object[])
+  - Prowl.Runtime.MonoBehaviour.OnGui(Prowl.PaperUI.Paper)
+  - Prowl.Runtime.MonoBehaviour.OnCollisionBegin(Prowl.Runtime.Collision)
+  - Prowl.Runtime.MonoBehaviour.OnCollisionStay(Prowl.Runtime.Collision)
+  - Prowl.Runtime.MonoBehaviour.OnCollisionEnd(Prowl.Runtime.Collision)
+  - Prowl.Runtime.MonoBehaviour.OnTriggerEnter(Prowl.Runtime.Rigidbody3D)
+  - Prowl.Runtime.MonoBehaviour.OnTriggerStay(Prowl.Runtime.Rigidbody3D)
+  - Prowl.Runtime.MonoBehaviour.OnTriggerExit(Prowl.Runtime.Rigidbody3D)
+  - Prowl.Runtime.MonoBehaviour.OnCharacterEnter(Prowl.Runtime.CharacterController)
+  - Prowl.Runtime.MonoBehaviour.OnCharacterStay(Prowl.Runtime.CharacterController)
+  - Prowl.Runtime.MonoBehaviour.OnCharacterExit(Prowl.Runtime.CharacterController)
+  - Prowl.Runtime.MonoBehaviour.OnBeforeSerialize
+  - Prowl.Runtime.MonoBehaviour.OnAfterDeserialize
+  - Prowl.Runtime.MonoBehaviour.OnDispose
   - Prowl.Runtime.EngineObject._instanceID
   - Prowl.Runtime.EngineObject.InstanceID
-  - Prowl.Runtime.EngineObject.AssetID
-  - Prowl.Runtime.EngineObject.FileID
   - Prowl.Runtime.EngineObject.Name
-  - Prowl.Runtime.EngineObject.IsDestroyed
+  - Prowl.Runtime.EngineObject.IsDisposed
   - Prowl.Runtime.EngineObject.CreatedInstance
   - Prowl.Runtime.EngineObject.OnValidate
-  - Prowl.Runtime.EngineObject.FindObjectOfType``1
-  - Prowl.Runtime.EngineObject.FindObjectsOfType``1
-  - Prowl.Runtime.EngineObject.FindObjectByID``1(System.Int32)
-  - Prowl.Runtime.EngineObject.Foreach``1(System.Action{{T}})
-  - Prowl.Runtime.EngineObject.Destroy
-  - Prowl.Runtime.EngineObject.DestroyImmediate
-  - Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-  - Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-  - Prowl.Runtime.EngineObject.HandleDestroyed
-  - Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject,System.Boolean)
   - Prowl.Runtime.EngineObject.Dispose
-  - Prowl.Runtime.EngineObject.OnDispose
+  - Prowl.Runtime.EngineObject.Destroy
+  - Prowl.Runtime.EngineObject.IsDestroyQueued
+  - Prowl.Runtime.EngineObject.ProcessDestroyed
+  - Prowl.Runtime.EngineObject.Equals(System.Object)
+  - Prowl.Runtime.EngineObject.GetHashCode
+  - Prowl.Runtime.EngineObject.EnsureNotDisposed(System.String)
   - Prowl.Runtime.EngineObject.ToString
-  - Prowl.Runtime.EngineObject.SerializeHeader(Prowl.Runtime.SerializedProperty)
-  - Prowl.Runtime.EngineObject.DeserializeHeader(Prowl.Runtime.SerializedProperty)
-  - System.Object.Equals(System.Object)
+  - Prowl.Runtime.EngineObject.SerializeHeader(Prowl.Echo.EchoObject)
+  - Prowl.Runtime.EngineObject.DeserializeHeader(Prowl.Echo.EchoObject)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   extensionMethods:
-  - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.Null
+  - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsNotValid
+  - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsValid
   - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
   attributes:
   - type: Prowl.Runtime.AddComponentMenuAttribute
-    ctor: Prowl.Runtime.AddComponentMenuAttribute.#ctor(System.String)
+    ctor: Prowl.Runtime.AddComponentMenuAttribute.#ctor(System.String,System.String)
     arguments:
     - type: System.String
-      value:   Rendering/  Point Light
-- uid: Prowl.Runtime.PointLight.radius
-  commentId: F:Prowl.Runtime.PointLight.radius
-  id: radius
+      value: Light/Point Light
+    - type: System.String
+      value: ''
+  - type: Prowl.Runtime.ComponentIconAttribute
+    ctor: Prowl.Runtime.ComponentIconAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: 
+- uid: Prowl.Runtime.PointLight.ShadowResolution
+  commentId: F:Prowl.Runtime.PointLight.ShadowResolution
+  id: ShadowResolution
   parent: Prowl.Runtime.PointLight
   langs:
   - csharp
   - vb
-  name: radius
-  nameWithType: PointLight.radius
-  fullName: Prowl.Runtime.PointLight.radius
+  name: ShadowResolution
+  nameWithType: PointLight.ShadowResolution
+  fullName: Prowl.Runtime.PointLight.ShadowResolution
   type: Field
   source:
     remote:
       path: Prowl.Runtime/Components/Lights/PointLight.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: radius
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowResolution
     path: ../Prowl/Prowl.Runtime/Components/Lights/PointLight.cs
-    startLine: 10
+    startLine: 22
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public float radius
+    content: public PointLight.Resolution ShadowResolution
+    return:
+      type: Prowl.Runtime.PointLight.Resolution
+    content.vb: Public ShadowResolution As PointLight.Resolution
+- uid: Prowl.Runtime.PointLight.Range
+  commentId: F:Prowl.Runtime.PointLight.Range
+  id: Range
+  parent: Prowl.Runtime.PointLight
+  langs:
+  - csharp
+  - vb
+  name: Range
+  nameWithType: PointLight.Range
+  fullName: Prowl.Runtime.PointLight.Range
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Lights/PointLight.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Range
+    path: ../Prowl/Prowl.Runtime/Components/Lights/PointLight.cs
+    startLine: 23
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public float Range
     return:
       type: System.Single
-    content.vb: Public radius As Single
-- uid: Prowl.Runtime.PointLight.GetCullingData(System.Boolean@,System.Boolean@,Prowl.Runtime.Bounds@)
-  commentId: M:Prowl.Runtime.PointLight.GetCullingData(System.Boolean@,System.Boolean@,Prowl.Runtime.Bounds@)
-  id: GetCullingData(System.Boolean@,System.Boolean@,Prowl.Runtime.Bounds@)
+    content.vb: Public Range As Single
+- uid: Prowl.Runtime.PointLight.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
+  commentId: M:Prowl.Runtime.PointLight.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
+  id: OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
   parent: Prowl.Runtime.PointLight
   langs:
   - csharp
   - vb
-  name: GetCullingData(out bool, out bool, out Bounds)
-  nameWithType: PointLight.GetCullingData(out bool, out bool, out Bounds)
-  fullName: Prowl.Runtime.PointLight.GetCullingData(out bool, out bool, out Prowl.Runtime.Bounds)
+  name: OnRenderCollect(Camera, List<IRenderable>, List<IRenderableLight>)
+  nameWithType: PointLight.OnRenderCollect(Camera, List<IRenderable>, List<IRenderableLight>)
+  fullName: Prowl.Runtime.PointLight.OnRenderCollect(Prowl.Runtime.Camera, System.Collections.Generic.List<Prowl.Runtime.Rendering.IRenderable>, System.Collections.Generic.List<Prowl.Runtime.Rendering.IRenderableLight>)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/Components/Lights/PointLight.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: GetCullingData
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnRenderCollect
     path: ../Prowl/Prowl.Runtime/Components/Lights/PointLight.cs
-    startLine: 12
+    startLine: 30
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: >-
+    Called every frame per camera to collect render data.
+
+    Always called regardless of play mode.
+
+    Components add their renderables/lights to the provided lists.
+
+    Camera is provided for LOD and distance-based decisions.
   example: []
   syntax:
-    content: public override void GetCullingData(out bool isRenderable, out bool isCullable, out Bounds bounds)
+    content: public override void OnRenderCollect(Camera camera, List<IRenderable> renderables, List<IRenderableLight> lights)
     parameters:
-    - id: isRenderable
-      type: System.Boolean
-    - id: isCullable
-      type: System.Boolean
-    - id: bounds
-      type: Prowl.Runtime.Bounds
-    content.vb: Public Overrides Sub GetCullingData(isRenderable As Boolean, isCullable As Boolean, bounds As Bounds)
-  overridden: Prowl.Runtime.Light.GetCullingData(System.Boolean@,System.Boolean@,Prowl.Runtime.Bounds@)
-  overload: Prowl.Runtime.PointLight.GetCullingData*
-  nameWithType.vb: PointLight.GetCullingData(Boolean, Boolean, Bounds)
-  fullName.vb: Prowl.Runtime.PointLight.GetCullingData(Boolean, Boolean, Prowl.Runtime.Bounds)
-  name.vb: GetCullingData(Boolean, Boolean, Bounds)
-- uid: Prowl.Runtime.PointLight.GetMaterial
-  commentId: M:Prowl.Runtime.PointLight.GetMaterial
-  id: GetMaterial
+    - id: camera
+      type: Prowl.Runtime.Camera
+    - id: renderables
+      type: System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable}
+    - id: lights
+      type: System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight}
+    content.vb: Public Overrides Sub OnRenderCollect(camera As Camera, renderables As List(Of IRenderable), lights As List(Of IRenderableLight))
+  overridden: Prowl.Runtime.Light.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
+  overload: Prowl.Runtime.PointLight.OnRenderCollect*
+  nameWithType.vb: PointLight.OnRenderCollect(Camera, List(Of IRenderable), List(Of IRenderableLight))
+  fullName.vb: Prowl.Runtime.PointLight.OnRenderCollect(Prowl.Runtime.Camera, System.Collections.Generic.List(Of Prowl.Runtime.Rendering.IRenderable), System.Collections.Generic.List(Of Prowl.Runtime.Rendering.IRenderableLight))
+  name.vb: OnRenderCollect(Camera, List(Of IRenderable), List(Of IRenderableLight))
+- uid: Prowl.Runtime.PointLight.DrawGizmos
+  commentId: M:Prowl.Runtime.PointLight.DrawGizmos
+  id: DrawGizmos
   parent: Prowl.Runtime.PointLight
   langs:
   - csharp
   - vb
-  name: GetMaterial()
-  nameWithType: PointLight.GetMaterial()
-  fullName: Prowl.Runtime.PointLight.GetMaterial()
+  name: DrawGizmos()
+  nameWithType: PointLight.DrawGizmos()
+  fullName: Prowl.Runtime.PointLight.DrawGizmos()
   type: Method
   source:
     remote:
       path: Prowl.Runtime/Components/Lights/PointLight.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: GetMaterial
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DrawGizmos
     path: ../Prowl/Prowl.Runtime/Components/Lights/PointLight.cs
-    startLine: 20
+    startLine: 35
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Called for rendering and handling GUI gizmos.
+  example: []
+  syntax:
+    content: public override void DrawGizmos()
+    content.vb: Public Overrides Sub DrawGizmos()
+  overridden: Prowl.Runtime.MonoBehaviour.DrawGizmos
+  overload: Prowl.Runtime.PointLight.DrawGizmos*
+- uid: Prowl.Runtime.PointLight.DrawGizmosSelected
+  commentId: M:Prowl.Runtime.PointLight.DrawGizmosSelected
+  id: DrawGizmosSelected
+  parent: Prowl.Runtime.PointLight
+  langs:
+  - csharp
+  - vb
+  name: DrawGizmosSelected()
+  nameWithType: PointLight.DrawGizmosSelected()
+  fullName: Prowl.Runtime.PointLight.DrawGizmosSelected()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Lights/PointLight.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DrawGizmosSelected
+    path: ../Prowl/Prowl.Runtime/Components/Lights/PointLight.cs
+    startLine: 41
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Called for rendering and handling GUI gizmos.
+  example: []
+  syntax:
+    content: public override void DrawGizmosSelected()
+    content.vb: Public Overrides Sub DrawGizmosSelected()
+  overridden: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
+  overload: Prowl.Runtime.PointLight.DrawGizmosSelected*
+- uid: Prowl.Runtime.PointLight.GetLightType
+  commentId: M:Prowl.Runtime.PointLight.GetLightType
+  id: GetLightType
+  parent: Prowl.Runtime.PointLight
+  langs:
+  - csharp
+  - vb
+  name: GetLightType()
+  nameWithType: PointLight.GetLightType()
+  fullName: Prowl.Runtime.PointLight.GetLightType()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Lights/PointLight.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetLightType
+    path: ../Prowl/Prowl.Runtime/Components/Lights/PointLight.cs
+    startLine: 46
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   example: []
   syntax:
-    content: public override Material GetMaterial()
+    content: public override LightType GetLightType()
     return:
-      type: Prowl.Runtime.Material
-    content.vb: Public Overrides Function GetMaterial() As Material
-  overridden: Prowl.Runtime.Light.GetMaterial
-  overload: Prowl.Runtime.PointLight.GetMaterial*
-- uid: Prowl.Runtime.PointLight.GetRenderingData(Prowl.Runtime.LightType@,Prowl.Runtime.Vector3@)
-  commentId: M:Prowl.Runtime.PointLight.GetRenderingData(Prowl.Runtime.LightType@,Prowl.Runtime.Vector3@)
-  id: GetRenderingData(Prowl.Runtime.LightType@,Prowl.Runtime.Vector3@)
+      type: Prowl.Runtime.Rendering.LightType
+    content.vb: Public Overrides Function GetLightType() As LightType
+  overridden: Prowl.Runtime.Light.GetLightType
+  overload: Prowl.Runtime.PointLight.GetLightType*
+- uid: Prowl.Runtime.PointLight.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
+  commentId: M:Prowl.Runtime.PointLight.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
+  id: RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
   parent: Prowl.Runtime.PointLight
   langs:
   - csharp
   - vb
-  name: GetRenderingData(out LightType, out Vector3)
-  nameWithType: PointLight.GetRenderingData(out LightType, out Vector3)
-  fullName: Prowl.Runtime.PointLight.GetRenderingData(out Prowl.Runtime.LightType, out Prowl.Runtime.Vector3)
+  name: RenderShadows(RenderPipeline, Float3, IReadOnlyList<IRenderable>)
+  nameWithType: PointLight.RenderShadows(RenderPipeline, Float3, IReadOnlyList<IRenderable>)
+  fullName: Prowl.Runtime.PointLight.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline, Prowl.Vector.Float3, System.Collections.Generic.IReadOnlyList<Prowl.Runtime.Rendering.IRenderable>)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/Components/Lights/PointLight.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: GetRenderingData
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RenderShadows
     path: ../Prowl/Prowl.Runtime/Components/Lights/PointLight.cs
-    startLine: 26
+    startLine: 48
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: >-
+    Render this light's shadow map(s) into the shared shadow atlas.
+
+    Called by the render pipeline during the shadow pass.
+
+
+    <p>
+
+    Implementations rent and submit their own <xref href="Prowl.Runtime.CommandBuffer" data-throw-if-not-resolved="false"></xref> per face
+
+    (point lights), cascade (directional), or single tile (spot). They CANNOT share
+
+    a CB across multiple faces because each face calls <xref href="Prowl.Runtime.Rendering.RenderPipeline.AssignCameraMatrices(Prowl.Vector.Float4x4%2cProwl.Vector.Float4x4)" data-throw-if-not-resolved="false"></xref>
+
+    which uploads view/proj into the single GlobalUniforms UBO sharing a CB would
+
+    queue all the face draws to execute against whatever matrices the LAST face
+
+    uploaded.
+
+    </p>
+
+
+    <p>
+
+    The shadow atlas itself has already been bound + cleared by the caller in a
+
+    separate setup CB before this method runs.
+
+    </p>
   example: []
   syntax:
-    content: public override void GetRenderingData(out LightType type, out Vector3 facingDirection)
+    content: public override void RenderShadows(RenderPipeline pipeline, Float3 shadowFocusPosition, IReadOnlyList<IRenderable> renderables)
     parameters:
-    - id: type
-      type: Prowl.Runtime.LightType
-    - id: facingDirection
-      type: Prowl.Runtime.Vector3
-    content.vb: Public Overrides Sub GetRenderingData(type As LightType, facingDirection As Vector3)
-  overridden: Prowl.Runtime.Light.GetRenderingData(Prowl.Runtime.LightType@,Prowl.Runtime.Vector3@)
-  overload: Prowl.Runtime.PointLight.GetRenderingData*
-  nameWithType.vb: PointLight.GetRenderingData(LightType, Vector3)
-  fullName.vb: Prowl.Runtime.PointLight.GetRenderingData(Prowl.Runtime.LightType, Prowl.Runtime.Vector3)
-  name.vb: GetRenderingData(LightType, Vector3)
+    - id: pipeline
+      type: Prowl.Runtime.Rendering.RenderPipeline
+      description: The current render pipeline.
+    - id: shadowFocusPosition
+      type: Prowl.Vector.Float3
+      description: >-
+        World-space point shadows are prioritized around: the
+             rendering camera's position, or the camera's <xref href="Prowl.Runtime.Camera.ShadowFocus" data-throw-if-not-resolved="false"></xref> position when
+             set. Directional lights center their cascades on it; point and spot lights ignore it.
+    - id: renderables
+      type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable}
+      description: List of all renderables that could cast shadows.
+    content.vb: Public Overrides Sub RenderShadows(pipeline As RenderPipeline, shadowFocusPosition As Float3, renderables As IReadOnlyList(Of IRenderable))
+  overridden: Prowl.Runtime.Light.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
+  overload: Prowl.Runtime.PointLight.RenderShadows*
+  nameWithType.vb: PointLight.RenderShadows(RenderPipeline, Float3, IReadOnlyList(Of IRenderable))
+  fullName.vb: Prowl.Runtime.PointLight.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline, Prowl.Vector.Float3, System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.Rendering.IRenderable))
+  name.vb: RenderShadows(RenderPipeline, Float3, IReadOnlyList(Of IRenderable))
+- uid: Prowl.Runtime.PointLight.GetForwardLightData
+  commentId: M:Prowl.Runtime.PointLight.GetForwardLightData
+  id: GetForwardLightData
+  parent: Prowl.Runtime.PointLight
+  langs:
+  - csharp
+  - vb
+  name: GetForwardLightData()
+  nameWithType: PointLight.GetForwardLightData()
+  fullName: Prowl.Runtime.PointLight.GetForwardLightData()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Lights/PointLight.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetForwardLightData
+    path: ../Prowl/Prowl.Runtime/Components/Lights/PointLight.cs
+    startLine: 131
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Returns the light's data for forward rendering (position, color, shadow data, etc.)
+  example: []
+  syntax:
+    content: public override ForwardLightData GetForwardLightData()
+    return:
+      type: Prowl.Runtime.Rendering.ForwardLightData
+    content.vb: Public Overrides Function GetForwardLightData() As ForwardLightData
+  overridden: Prowl.Runtime.Light.GetForwardLightData
+  overload: Prowl.Runtime.PointLight.GetForwardLightData*
 references:
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
-  href: Prowl.html
   name: Prowl.Runtime
   nameWithType: Prowl.Runtime
   fullName: Prowl.Runtime
   spec.csharp:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
   spec.vb:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -330,67 +514,185 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
-- uid: Prowl.Runtime.IRenderableLight
-  commentId: T:Prowl.Runtime.IRenderableLight
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.IRenderableLight.html
+- uid: Prowl.Echo.ISerializationCallbackReceiver
+  commentId: T:Prowl.Echo.ISerializationCallbackReceiver
+  parent: Prowl.Echo
+  isExternal: true
+  name: ISerializationCallbackReceiver
+  nameWithType: ISerializationCallbackReceiver
+  fullName: Prowl.Echo.ISerializationCallbackReceiver
+- uid: Prowl.Runtime.Rendering.IRenderableLight
+  commentId: T:Prowl.Runtime.Rendering.IRenderableLight
+  parent: Prowl.Runtime.Rendering
+  href: Prowl.Runtime.Rendering.IRenderableLight.html
   name: IRenderableLight
   nameWithType: IRenderableLight
-  fullName: Prowl.Runtime.IRenderableLight
-- uid: Prowl.Runtime.Light.color
-  commentId: F:Prowl.Runtime.Light.color
+  fullName: Prowl.Runtime.Rendering.IRenderableLight
+- uid: Prowl.Runtime.Light.Color
+  commentId: F:Prowl.Runtime.Light.Color
   parent: Prowl.Runtime.Light
-  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_color
-  name: color
-  nameWithType: Light.color
-  fullName: Prowl.Runtime.Light.color
-- uid: Prowl.Runtime.Light.intensity
-  commentId: F:Prowl.Runtime.Light.intensity
+  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_Color
+  name: Color
+  nameWithType: Light.Color
+  fullName: Prowl.Runtime.Light.Color
+- uid: Prowl.Runtime.Light.Intensity
+  commentId: F:Prowl.Runtime.Light.Intensity
   parent: Prowl.Runtime.Light
-  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_intensity
-  name: intensity
-  nameWithType: Light.intensity
-  fullName: Prowl.Runtime.Light.intensity
-- uid: Prowl.Runtime.Light.shadowBias
-  commentId: F:Prowl.Runtime.Light.shadowBias
+  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_Intensity
+  name: Intensity
+  nameWithType: Light.Intensity
+  fullName: Prowl.Runtime.Light.Intensity
+- uid: Prowl.Runtime.Light.ShadowStrength
+  commentId: F:Prowl.Runtime.Light.ShadowStrength
   parent: Prowl.Runtime.Light
-  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_shadowBias
-  name: shadowBias
-  nameWithType: Light.shadowBias
-  fullName: Prowl.Runtime.Light.shadowBias
-- uid: Prowl.Runtime.Light.shadowNormalBias
-  commentId: F:Prowl.Runtime.Light.shadowNormalBias
+  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_ShadowStrength
+  name: ShadowStrength
+  nameWithType: Light.ShadowStrength
+  fullName: Prowl.Runtime.Light.ShadowStrength
+- uid: Prowl.Runtime.Light.ShadowBias
+  commentId: F:Prowl.Runtime.Light.ShadowBias
   parent: Prowl.Runtime.Light
-  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_shadowNormalBias
-  name: shadowNormalBias
-  nameWithType: Light.shadowNormalBias
-  fullName: Prowl.Runtime.Light.shadowNormalBias
-- uid: Prowl.Runtime.Light.castShadows
-  commentId: F:Prowl.Runtime.Light.castShadows
+  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_ShadowBias
+  name: ShadowBias
+  nameWithType: Light.ShadowBias
+  fullName: Prowl.Runtime.Light.ShadowBias
+- uid: Prowl.Runtime.Light.ShadowNormalBias
+  commentId: F:Prowl.Runtime.Light.ShadowNormalBias
   parent: Prowl.Runtime.Light
-  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_castShadows
-  name: castShadows
-  nameWithType: Light.castShadows
-  fullName: Prowl.Runtime.Light.castShadows
-- uid: Prowl.Runtime.Light.Update
-  commentId: M:Prowl.Runtime.Light.Update
+  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_ShadowNormalBias
+  name: ShadowNormalBias
+  nameWithType: Light.ShadowNormalBias
+  fullName: Prowl.Runtime.Light.ShadowNormalBias
+- uid: Prowl.Runtime.Light.CastShadows
+  commentId: F:Prowl.Runtime.Light.CastShadows
   parent: Prowl.Runtime.Light
-  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_Update
-  name: Update()
-  nameWithType: Light.Update()
-  fullName: Prowl.Runtime.Light.Update()
+  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_CastShadows
+  name: CastShadows
+  nameWithType: Light.CastShadows
+  fullName: Prowl.Runtime.Light.CastShadows
+- uid: Prowl.Runtime.Light.ShadowQuality
+  commentId: F:Prowl.Runtime.Light.ShadowQuality
+  parent: Prowl.Runtime.Light
+  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_ShadowQuality
+  name: ShadowQuality
+  nameWithType: Light.ShadowQuality
+  fullName: Prowl.Runtime.Light.ShadowQuality
+- uid: Prowl.Runtime.Light.BakeMode
+  commentId: F:Prowl.Runtime.Light.BakeMode
+  parent: Prowl.Runtime.Light
+  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_BakeMode
+  name: BakeMode
+  nameWithType: Light.BakeMode
+  fullName: Prowl.Runtime.Light.BakeMode
+- uid: Prowl.Runtime.Light.ShadowSlot
+  commentId: P:Prowl.Runtime.Light.ShadowSlot
+  parent: Prowl.Runtime.Light
+  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_ShadowSlot
+  name: ShadowSlot
+  nameWithType: Light.ShadowSlot
+  fullName: Prowl.Runtime.Light.ShadowSlot
+- uid: Prowl.Runtime.Light.GetLayer
+  commentId: M:Prowl.Runtime.Light.GetLayer
+  parent: Prowl.Runtime.Light
+  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetLayer
+  name: GetLayer()
+  nameWithType: Light.GetLayer()
+  fullName: Prowl.Runtime.Light.GetLayer()
   spec.csharp:
-  - uid: Prowl.Runtime.Light.Update
-    name: Update
-    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_Update
+  - uid: Prowl.Runtime.Light.GetLayer
+    name: GetLayer
+    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetLayer
   - name: (
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.Light.Update
-    name: Update
-    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_Update
+  - uid: Prowl.Runtime.Light.GetLayer
+    name: GetLayer
+    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetLayer
   - name: (
   - name: )
+- uid: Prowl.Runtime.Light.GetLightID
+  commentId: M:Prowl.Runtime.Light.GetLightID
+  parent: Prowl.Runtime.Light
+  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetLightID
+  name: GetLightID()
+  nameWithType: Light.GetLightID()
+  fullName: Prowl.Runtime.Light.GetLightID()
+  spec.csharp:
+  - uid: Prowl.Runtime.Light.GetLightID
+    name: GetLightID
+    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetLightID
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Light.GetLightID
+    name: GetLightID
+    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetLightID
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Light.GetLightPosition
+  commentId: M:Prowl.Runtime.Light.GetLightPosition
+  parent: Prowl.Runtime.Light
+  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetLightPosition
+  name: GetLightPosition()
+  nameWithType: Light.GetLightPosition()
+  fullName: Prowl.Runtime.Light.GetLightPosition()
+  spec.csharp:
+  - uid: Prowl.Runtime.Light.GetLightPosition
+    name: GetLightPosition
+    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetLightPosition
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Light.GetLightPosition
+    name: GetLightPosition
+    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetLightPosition
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Light.GetLightDirection
+  commentId: M:Prowl.Runtime.Light.GetLightDirection
+  parent: Prowl.Runtime.Light
+  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetLightDirection
+  name: GetLightDirection()
+  nameWithType: Light.GetLightDirection()
+  fullName: Prowl.Runtime.Light.GetLightDirection()
+  spec.csharp:
+  - uid: Prowl.Runtime.Light.GetLightDirection
+    name: GetLightDirection
+    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetLightDirection
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Light.GetLightDirection
+    name: GetLightDirection
+    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetLightDirection
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Light.DoCastShadows
+  commentId: M:Prowl.Runtime.Light.DoCastShadows
+  parent: Prowl.Runtime.Light
+  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_DoCastShadows
+  name: DoCastShadows()
+  nameWithType: Light.DoCastShadows()
+  fullName: Prowl.Runtime.Light.DoCastShadows()
+  spec.csharp:
+  - uid: Prowl.Runtime.Light.DoCastShadows
+    name: DoCastShadows
+    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_DoCastShadows
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Light.DoCastShadows
+    name: DoCastShadows
+    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_DoCastShadows
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.IsFromPrefab
+  commentId: P:Prowl.Runtime.MonoBehaviour.IsFromPrefab
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_IsFromPrefab
+  name: IsFromPrefab
+  nameWithType: MonoBehaviour.IsFromPrefab
+  fullName: Prowl.Runtime.MonoBehaviour.IsFromPrefab
 - uid: Prowl.Runtime.MonoBehaviour._enabled
   commentId: F:Prowl.Runtime.MonoBehaviour._enabled
   parent: Prowl.Runtime.MonoBehaviour
@@ -405,13 +707,34 @@ references:
   name: _enabledInHierarchy
   nameWithType: MonoBehaviour._enabledInHierarchy
   fullName: Prowl.Runtime.MonoBehaviour._enabledInHierarchy
-- uid: Prowl.Runtime.MonoBehaviour.hideFlags
-  commentId: F:Prowl.Runtime.MonoBehaviour.hideFlags
+- uid: Prowl.Runtime.MonoBehaviour.HideFlags
+  commentId: F:Prowl.Runtime.MonoBehaviour.HideFlags
   parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_hideFlags
-  name: hideFlags
-  nameWithType: MonoBehaviour.hideFlags
-  fullName: Prowl.Runtime.MonoBehaviour.hideFlags
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_HideFlags
+  name: HideFlags
+  nameWithType: MonoBehaviour.HideFlags
+  fullName: Prowl.Runtime.MonoBehaviour.HideFlags
+- uid: Prowl.Runtime.MonoBehaviour.DestroyCancellationToken
+  commentId: P:Prowl.Runtime.MonoBehaviour.DestroyCancellationToken
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DestroyCancellationToken
+  name: DestroyCancellationToken
+  nameWithType: MonoBehaviour.DestroyCancellationToken
+  fullName: Prowl.Runtime.MonoBehaviour.DestroyCancellationToken
+- uid: Prowl.Runtime.MonoBehaviour.Identifier
+  commentId: P:Prowl.Runtime.MonoBehaviour.Identifier
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Identifier
+  name: Identifier
+  nameWithType: MonoBehaviour.Identifier
+  fullName: Prowl.Runtime.MonoBehaviour.Identifier
+- uid: Prowl.Runtime.MonoBehaviour.SourceIdentifier
+  commentId: P:Prowl.Runtime.MonoBehaviour.SourceIdentifier
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_SourceIdentifier
+  name: SourceIdentifier
+  nameWithType: MonoBehaviour.SourceIdentifier
+  fullName: Prowl.Runtime.MonoBehaviour.SourceIdentifier
 - uid: Prowl.Runtime.MonoBehaviour.GameObject
   commentId: P:Prowl.Runtime.MonoBehaviour.GameObject
   parent: Prowl.Runtime.MonoBehaviour
@@ -426,20 +749,6 @@ references:
   name: Transform
   nameWithType: MonoBehaviour.Transform
   fullName: Prowl.Runtime.MonoBehaviour.Transform
-- uid: Prowl.Runtime.MonoBehaviour.ExecuteAlways
-  commentId: P:Prowl.Runtime.MonoBehaviour.ExecuteAlways
-  parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_ExecuteAlways
-  name: ExecuteAlways
-  nameWithType: MonoBehaviour.ExecuteAlways
-  fullName: Prowl.Runtime.MonoBehaviour.ExecuteAlways
-- uid: Prowl.Runtime.MonoBehaviour.HasAwoken
-  commentId: P:Prowl.Runtime.MonoBehaviour.HasAwoken
-  parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_HasAwoken
-  name: HasAwoken
-  nameWithType: MonoBehaviour.HasAwoken
-  fullName: Prowl.Runtime.MonoBehaviour.HasAwoken
 - uid: Prowl.Runtime.MonoBehaviour.HasStarted
   commentId: P:Prowl.Runtime.MonoBehaviour.HasStarted
   parent: Prowl.Runtime.MonoBehaviour
@@ -447,6 +756,13 @@ references:
   name: HasStarted
   nameWithType: MonoBehaviour.HasStarted
   fullName: Prowl.Runtime.MonoBehaviour.HasStarted
+- uid: Prowl.Runtime.MonoBehaviour.HasBeenEnabled
+  commentId: P:Prowl.Runtime.MonoBehaviour.HasBeenEnabled
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_HasBeenEnabled
+  name: HasBeenEnabled
+  nameWithType: MonoBehaviour.HasBeenEnabled
+  fullName: Prowl.Runtime.MonoBehaviour.HasBeenEnabled
 - uid: Prowl.Runtime.MonoBehaviour.Tag
   commentId: P:Prowl.Runtime.MonoBehaviour.Tag
   parent: Prowl.Runtime.MonoBehaviour
@@ -468,6 +784,13 @@ references:
   name: EnabledInHierarchy
   nameWithType: MonoBehaviour.EnabledInHierarchy
   fullName: Prowl.Runtime.MonoBehaviour.EnabledInHierarchy
+- uid: Prowl.Runtime.MonoBehaviour.Scene
+  commentId: P:Prowl.Runtime.MonoBehaviour.Scene
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Scene
+  name: Scene
+  nameWithType: MonoBehaviour.Scene
+  fullName: Prowl.Runtime.MonoBehaviour.Scene
 - uid: Prowl.Runtime.MonoBehaviour.CompareTag(System.String)
   commentId: M:Prowl.Runtime.MonoBehaviour.CompareTag(System.String)
   parent: Prowl.Runtime.MonoBehaviour
@@ -556,36 +879,6 @@ references:
     name: Type
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.type
-  - name: )
-- uid: Prowl.Runtime.MonoBehaviour.RemoveAll``1
-  commentId: M:Prowl.Runtime.MonoBehaviour.RemoveAll``1
-  parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_RemoveAll__1
-  name: RemoveAll<T>()
-  nameWithType: MonoBehaviour.RemoveAll<T>()
-  fullName: Prowl.Runtime.MonoBehaviour.RemoveAll<T>()
-  nameWithType.vb: MonoBehaviour.RemoveAll(Of T)()
-  fullName.vb: Prowl.Runtime.MonoBehaviour.RemoveAll(Of T)()
-  name.vb: RemoveAll(Of T)()
-  spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.RemoveAll``1
-    name: RemoveAll
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_RemoveAll__1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.RemoveAll``1
-    name: RemoveAll
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_RemoveAll__1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: (
   - name: )
 - uid: Prowl.Runtime.MonoBehaviour.RemoveComponent``1({T})
   commentId: M:Prowl.Runtime.MonoBehaviour.RemoveComponent``1(``0)
@@ -721,6 +1014,34 @@ references:
     name: Type
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.GetComponentByIdentifier(System.Guid)
+  commentId: M:Prowl.Runtime.MonoBehaviour.GetComponentByIdentifier(System.Guid)
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentByIdentifier_System_Guid_
+  name: GetComponentByIdentifier(Guid)
+  nameWithType: MonoBehaviour.GetComponentByIdentifier(Guid)
+  fullName: Prowl.Runtime.MonoBehaviour.GetComponentByIdentifier(System.Guid)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentByIdentifier(System.Guid)
+    name: GetComponentByIdentifier
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentByIdentifier_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentByIdentifier(System.Guid)
+    name: GetComponentByIdentifier
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentByIdentifier_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
   - name: )
 - uid: Prowl.Runtime.MonoBehaviour.TryGetComponent``1({T}@)
   commentId: M:Prowl.Runtime.MonoBehaviour.TryGetComponent``1(``0@)
@@ -1143,23 +1464,92 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
-- uid: Prowl.Runtime.MonoBehaviour.Awake
-  commentId: M:Prowl.Runtime.MonoBehaviour.Awake
+- uid: Prowl.Runtime.MonoBehaviour.GetSiblingIndex
+  commentId: M:Prowl.Runtime.MonoBehaviour.GetSiblingIndex
   parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Awake
-  name: Awake()
-  nameWithType: MonoBehaviour.Awake()
-  fullName: Prowl.Runtime.MonoBehaviour.Awake()
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetSiblingIndex
+  name: GetSiblingIndex()
+  nameWithType: MonoBehaviour.GetSiblingIndex()
+  fullName: Prowl.Runtime.MonoBehaviour.GetSiblingIndex()
   spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.Awake
-    name: Awake
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Awake
+  - uid: Prowl.Runtime.MonoBehaviour.GetSiblingIndex
+    name: GetSiblingIndex
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetSiblingIndex
   - name: (
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.Awake
-    name: Awake
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Awake
+  - uid: Prowl.Runtime.MonoBehaviour.GetSiblingIndex
+    name: GetSiblingIndex
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetSiblingIndex
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.SetSiblingIndex(System.Int32)
+  commentId: M:Prowl.Runtime.MonoBehaviour.SetSiblingIndex(System.Int32)
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_SetSiblingIndex_System_Int32_
+  name: SetSiblingIndex(int)
+  nameWithType: MonoBehaviour.SetSiblingIndex(int)
+  fullName: Prowl.Runtime.MonoBehaviour.SetSiblingIndex(int)
+  nameWithType.vb: MonoBehaviour.SetSiblingIndex(Integer)
+  fullName.vb: Prowl.Runtime.MonoBehaviour.SetSiblingIndex(Integer)
+  name.vb: SetSiblingIndex(Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.SetSiblingIndex(System.Int32)
+    name: SetSiblingIndex
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_SetSiblingIndex_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.SetSiblingIndex(System.Int32)
+    name: SetSiblingIndex
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_SetSiblingIndex_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnAddedToScene
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnAddedToScene
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnAddedToScene
+  name: OnAddedToScene()
+  nameWithType: MonoBehaviour.OnAddedToScene()
+  fullName: Prowl.Runtime.MonoBehaviour.OnAddedToScene()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnAddedToScene
+    name: OnAddedToScene
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnAddedToScene
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnAddedToScene
+    name: OnAddedToScene
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnAddedToScene
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnRemovedFromScene
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnRemovedFromScene
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnRemovedFromScene
+  name: OnRemovedFromScene()
+  nameWithType: MonoBehaviour.OnRemovedFromScene()
+  fullName: Prowl.Runtime.MonoBehaviour.OnRemovedFromScene()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnRemovedFromScene
+    name: OnRemovedFromScene
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnRemovedFromScene
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnRemovedFromScene
+    name: OnRemovedFromScene
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnRemovedFromScene
   - name: (
   - name: )
 - uid: Prowl.Runtime.MonoBehaviour.OnEnable
@@ -1238,6 +1628,25 @@ references:
     href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_FixedUpdate
   - name: (
   - name: )
+- uid: Prowl.Runtime.MonoBehaviour.Update
+  commentId: M:Prowl.Runtime.MonoBehaviour.Update
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Update
+  name: Update()
+  nameWithType: MonoBehaviour.Update()
+  fullName: Prowl.Runtime.MonoBehaviour.Update()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.Update
+    name: Update
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Update
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.Update
+    name: Update
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Update
+  - name: (
+  - name: )
 - uid: Prowl.Runtime.MonoBehaviour.LateUpdate
   commentId: M:Prowl.Runtime.MonoBehaviour.LateUpdate
   parent: Prowl.Runtime.MonoBehaviour
@@ -1257,283 +1666,313 @@ references:
     href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_LateUpdate
   - name: (
   - name: )
-- uid: Prowl.Runtime.MonoBehaviour.DrawGizmos
-  commentId: M:Prowl.Runtime.MonoBehaviour.DrawGizmos
-  parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmos
-  name: DrawGizmos()
-  nameWithType: MonoBehaviour.DrawGizmos()
-  fullName: Prowl.Runtime.MonoBehaviour.DrawGizmos()
-  spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.DrawGizmos
-    name: DrawGizmos
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmos
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.DrawGizmos
-    name: DrawGizmos
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmos
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
-  commentId: M:Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
-  parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmosSelected
-  name: DrawGizmosSelected()
-  nameWithType: MonoBehaviour.DrawGizmosSelected()
-  fullName: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected()
-  spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
-    name: DrawGizmosSelected
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmosSelected
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
-    name: DrawGizmosSelected
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmosSelected
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.MonoBehaviour.OnLevelWasLoaded
-  commentId: M:Prowl.Runtime.MonoBehaviour.OnLevelWasLoaded
-  parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnLevelWasLoaded
-  name: OnLevelWasLoaded()
-  nameWithType: MonoBehaviour.OnLevelWasLoaded()
-  fullName: Prowl.Runtime.MonoBehaviour.OnLevelWasLoaded()
-  spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.OnLevelWasLoaded
-    name: OnLevelWasLoaded
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnLevelWasLoaded
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.OnLevelWasLoaded
-    name: OnLevelWasLoaded
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnLevelWasLoaded
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.MonoBehaviour.OnDestroy
-  commentId: M:Prowl.Runtime.MonoBehaviour.OnDestroy
-  parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDestroy
-  name: OnDestroy()
-  nameWithType: MonoBehaviour.OnDestroy()
-  fullName: Prowl.Runtime.MonoBehaviour.OnDestroy()
-  spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.OnDestroy
-    name: OnDestroy
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDestroy
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.OnDestroy
-    name: OnDestroy
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDestroy
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.MonoBehaviour.ClearCache
-  commentId: M:Prowl.Runtime.MonoBehaviour.ClearCache
-  parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_ClearCache
-  name: ClearCache()
-  nameWithType: MonoBehaviour.ClearCache()
-  fullName: Prowl.Runtime.MonoBehaviour.ClearCache()
-  spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.ClearCache
-    name: ClearCache
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_ClearCache
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.ClearCache
-    name: ClearCache
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_ClearCache
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.MonoBehaviour.StartCoroutine(System.String)
-  commentId: M:Prowl.Runtime.MonoBehaviour.StartCoroutine(System.String)
+- uid: Prowl.Runtime.MonoBehaviour.OnGui(Prowl.PaperUI.Paper)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnGui(Prowl.PaperUI.Paper)
   parent: Prowl.Runtime.MonoBehaviour
   isExternal: true
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_StartCoroutine_System_String_
-  name: StartCoroutine(string)
-  nameWithType: MonoBehaviour.StartCoroutine(string)
-  fullName: Prowl.Runtime.MonoBehaviour.StartCoroutine(string)
-  nameWithType.vb: MonoBehaviour.StartCoroutine(String)
-  fullName.vb: Prowl.Runtime.MonoBehaviour.StartCoroutine(String)
-  name.vb: StartCoroutine(String)
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnGui_Prowl_PaperUI_Paper_
+  name: OnGui(Paper)
+  nameWithType: MonoBehaviour.OnGui(Paper)
+  fullName: Prowl.Runtime.MonoBehaviour.OnGui(Prowl.PaperUI.Paper)
   spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.StartCoroutine(System.String)
-    name: StartCoroutine
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_StartCoroutine_System_String_
+  - uid: Prowl.Runtime.MonoBehaviour.OnGui(Prowl.PaperUI.Paper)
+    name: OnGui
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnGui_Prowl_PaperUI_Paper_
   - name: (
-  - uid: System.String
-    name: string
+  - uid: Prowl.PaperUI.Paper
+    name: Paper
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.StartCoroutine(System.String)
-    name: StartCoroutine
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_StartCoroutine_System_String_
+  - uid: Prowl.Runtime.MonoBehaviour.OnGui(Prowl.PaperUI.Paper)
+    name: OnGui
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnGui_Prowl_PaperUI_Paper_
   - name: (
-  - uid: System.String
-    name: String
+  - uid: Prowl.PaperUI.Paper
+    name: Paper
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
-- uid: Prowl.Runtime.MonoBehaviour.StopAllCoroutines
-  commentId: M:Prowl.Runtime.MonoBehaviour.StopAllCoroutines
+- uid: Prowl.Runtime.MonoBehaviour.OnCollisionBegin(Prowl.Runtime.Collision)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnCollisionBegin(Prowl.Runtime.Collision)
   parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_StopAllCoroutines
-  name: StopAllCoroutines()
-  nameWithType: MonoBehaviour.StopAllCoroutines()
-  fullName: Prowl.Runtime.MonoBehaviour.StopAllCoroutines()
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionBegin_Prowl_Runtime_Collision_
+  name: OnCollisionBegin(Collision)
+  nameWithType: MonoBehaviour.OnCollisionBegin(Collision)
+  fullName: Prowl.Runtime.MonoBehaviour.OnCollisionBegin(Prowl.Runtime.Collision)
   spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.StopAllCoroutines
-    name: StopAllCoroutines
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_StopAllCoroutines
+  - uid: Prowl.Runtime.MonoBehaviour.OnCollisionBegin(Prowl.Runtime.Collision)
+    name: OnCollisionBegin
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionBegin_Prowl_Runtime_Collision_
   - name: (
+  - uid: Prowl.Runtime.Collision
+    name: Collision
+    href: Prowl.Runtime.Collision.html
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.StopAllCoroutines
-    name: StopAllCoroutines
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_StopAllCoroutines
+  - uid: Prowl.Runtime.MonoBehaviour.OnCollisionBegin(Prowl.Runtime.Collision)
+    name: OnCollisionBegin
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionBegin_Prowl_Runtime_Collision_
   - name: (
+  - uid: Prowl.Runtime.Collision
+    name: Collision
+    href: Prowl.Runtime.Collision.html
   - name: )
-- uid: Prowl.Runtime.MonoBehaviour.StopCoroutine(System.String)
-  commentId: M:Prowl.Runtime.MonoBehaviour.StopCoroutine(System.String)
+- uid: Prowl.Runtime.MonoBehaviour.OnCollisionStay(Prowl.Runtime.Collision)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnCollisionStay(Prowl.Runtime.Collision)
   parent: Prowl.Runtime.MonoBehaviour
-  isExternal: true
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_StopCoroutine_System_String_
-  name: StopCoroutine(string)
-  nameWithType: MonoBehaviour.StopCoroutine(string)
-  fullName: Prowl.Runtime.MonoBehaviour.StopCoroutine(string)
-  nameWithType.vb: MonoBehaviour.StopCoroutine(String)
-  fullName.vb: Prowl.Runtime.MonoBehaviour.StopCoroutine(String)
-  name.vb: StopCoroutine(String)
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionStay_Prowl_Runtime_Collision_
+  name: OnCollisionStay(Collision)
+  nameWithType: MonoBehaviour.OnCollisionStay(Collision)
+  fullName: Prowl.Runtime.MonoBehaviour.OnCollisionStay(Prowl.Runtime.Collision)
   spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.StopCoroutine(System.String)
-    name: StopCoroutine
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_StopCoroutine_System_String_
+  - uid: Prowl.Runtime.MonoBehaviour.OnCollisionStay(Prowl.Runtime.Collision)
+    name: OnCollisionStay
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionStay_Prowl_Runtime_Collision_
   - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
+  - uid: Prowl.Runtime.Collision
+    name: Collision
+    href: Prowl.Runtime.Collision.html
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.StopCoroutine(System.String)
-    name: StopCoroutine
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_StopCoroutine_System_String_
+  - uid: Prowl.Runtime.MonoBehaviour.OnCollisionStay(Prowl.Runtime.Collision)
+    name: OnCollisionStay
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionStay_Prowl_Runtime_Collision_
   - name: (
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
+  - uid: Prowl.Runtime.Collision
+    name: Collision
+    href: Prowl.Runtime.Collision.html
   - name: )
-- uid: Prowl.Runtime.MonoBehaviour.BroadcastMessage(System.String,System.Object[])
-  commentId: M:Prowl.Runtime.MonoBehaviour.BroadcastMessage(System.String,System.Object[])
+- uid: Prowl.Runtime.MonoBehaviour.OnCollisionEnd(Prowl.Runtime.Collision)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnCollisionEnd(Prowl.Runtime.Collision)
   parent: Prowl.Runtime.MonoBehaviour
-  isExternal: true
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_BroadcastMessage_System_String_System_Object___
-  name: BroadcastMessage(string, params object[])
-  nameWithType: MonoBehaviour.BroadcastMessage(string, params object[])
-  fullName: Prowl.Runtime.MonoBehaviour.BroadcastMessage(string, params object[])
-  nameWithType.vb: MonoBehaviour.BroadcastMessage(String, ParamArray Object())
-  fullName.vb: Prowl.Runtime.MonoBehaviour.BroadcastMessage(String, ParamArray Object())
-  name.vb: BroadcastMessage(String, ParamArray Object())
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionEnd_Prowl_Runtime_Collision_
+  name: OnCollisionEnd(Collision)
+  nameWithType: MonoBehaviour.OnCollisionEnd(Collision)
+  fullName: Prowl.Runtime.MonoBehaviour.OnCollisionEnd(Prowl.Runtime.Collision)
   spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.BroadcastMessage(System.String,System.Object[])
-    name: BroadcastMessage
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_BroadcastMessage_System_String_System_Object___
+  - uid: Prowl.Runtime.MonoBehaviour.OnCollisionEnd(Prowl.Runtime.Collision)
+    name: OnCollisionEnd
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionEnd_Prowl_Runtime_Collision_
   - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - name: params
-  - name: " "
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: '['
-  - name: ']'
+  - uid: Prowl.Runtime.Collision
+    name: Collision
+    href: Prowl.Runtime.Collision.html
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.BroadcastMessage(System.String,System.Object[])
-    name: BroadcastMessage
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_BroadcastMessage_System_String_System_Object___
+  - uid: Prowl.Runtime.MonoBehaviour.OnCollisionEnd(Prowl.Runtime.Collision)
+    name: OnCollisionEnd
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionEnd_Prowl_Runtime_Collision_
   - name: (
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - name: ParamArray
-  - name: " "
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: (
+  - uid: Prowl.Runtime.Collision
+    name: Collision
+    href: Prowl.Runtime.Collision.html
   - name: )
-  - name: )
-- uid: Prowl.Runtime.MonoBehaviour.SendMessage(System.String,System.Object[])
-  commentId: M:Prowl.Runtime.MonoBehaviour.SendMessage(System.String,System.Object[])
+- uid: Prowl.Runtime.MonoBehaviour.OnTriggerEnter(Prowl.Runtime.Rigidbody3D)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnTriggerEnter(Prowl.Runtime.Rigidbody3D)
   parent: Prowl.Runtime.MonoBehaviour
-  isExternal: true
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_SendMessage_System_String_System_Object___
-  name: SendMessage(string, params object[])
-  nameWithType: MonoBehaviour.SendMessage(string, params object[])
-  fullName: Prowl.Runtime.MonoBehaviour.SendMessage(string, params object[])
-  nameWithType.vb: MonoBehaviour.SendMessage(String, ParamArray Object())
-  fullName.vb: Prowl.Runtime.MonoBehaviour.SendMessage(String, ParamArray Object())
-  name.vb: SendMessage(String, ParamArray Object())
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerEnter_Prowl_Runtime_Rigidbody3D_
+  name: OnTriggerEnter(Rigidbody3D)
+  nameWithType: MonoBehaviour.OnTriggerEnter(Rigidbody3D)
+  fullName: Prowl.Runtime.MonoBehaviour.OnTriggerEnter(Prowl.Runtime.Rigidbody3D)
   spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.SendMessage(System.String,System.Object[])
-    name: SendMessage
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_SendMessage_System_String_System_Object___
+  - uid: Prowl.Runtime.MonoBehaviour.OnTriggerEnter(Prowl.Runtime.Rigidbody3D)
+    name: OnTriggerEnter
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerEnter_Prowl_Runtime_Rigidbody3D_
   - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - name: params
-  - name: " "
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: '['
-  - name: ']'
+  - uid: Prowl.Runtime.Rigidbody3D
+    name: Rigidbody3D
+    href: Prowl.Runtime.Rigidbody3D.html
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.SendMessage(System.String,System.Object[])
-    name: SendMessage
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_SendMessage_System_String_System_Object___
+  - uid: Prowl.Runtime.MonoBehaviour.OnTriggerEnter(Prowl.Runtime.Rigidbody3D)
+    name: OnTriggerEnter
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerEnter_Prowl_Runtime_Rigidbody3D_
   - name: (
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - name: ParamArray
-  - name: " "
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
+  - uid: Prowl.Runtime.Rigidbody3D
+    name: Rigidbody3D
+    href: Prowl.Runtime.Rigidbody3D.html
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnTriggerStay(Prowl.Runtime.Rigidbody3D)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnTriggerStay(Prowl.Runtime.Rigidbody3D)
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerStay_Prowl_Runtime_Rigidbody3D_
+  name: OnTriggerStay(Rigidbody3D)
+  nameWithType: MonoBehaviour.OnTriggerStay(Rigidbody3D)
+  fullName: Prowl.Runtime.MonoBehaviour.OnTriggerStay(Prowl.Runtime.Rigidbody3D)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnTriggerStay(Prowl.Runtime.Rigidbody3D)
+    name: OnTriggerStay
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerStay_Prowl_Runtime_Rigidbody3D_
+  - name: (
+  - uid: Prowl.Runtime.Rigidbody3D
+    name: Rigidbody3D
+    href: Prowl.Runtime.Rigidbody3D.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnTriggerStay(Prowl.Runtime.Rigidbody3D)
+    name: OnTriggerStay
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerStay_Prowl_Runtime_Rigidbody3D_
+  - name: (
+  - uid: Prowl.Runtime.Rigidbody3D
+    name: Rigidbody3D
+    href: Prowl.Runtime.Rigidbody3D.html
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnTriggerExit(Prowl.Runtime.Rigidbody3D)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnTriggerExit(Prowl.Runtime.Rigidbody3D)
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerExit_Prowl_Runtime_Rigidbody3D_
+  name: OnTriggerExit(Rigidbody3D)
+  nameWithType: MonoBehaviour.OnTriggerExit(Rigidbody3D)
+  fullName: Prowl.Runtime.MonoBehaviour.OnTriggerExit(Prowl.Runtime.Rigidbody3D)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnTriggerExit(Prowl.Runtime.Rigidbody3D)
+    name: OnTriggerExit
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerExit_Prowl_Runtime_Rigidbody3D_
+  - name: (
+  - uid: Prowl.Runtime.Rigidbody3D
+    name: Rigidbody3D
+    href: Prowl.Runtime.Rigidbody3D.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnTriggerExit(Prowl.Runtime.Rigidbody3D)
+    name: OnTriggerExit
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerExit_Prowl_Runtime_Rigidbody3D_
+  - name: (
+  - uid: Prowl.Runtime.Rigidbody3D
+    name: Rigidbody3D
+    href: Prowl.Runtime.Rigidbody3D.html
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnCharacterEnter(Prowl.Runtime.CharacterController)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnCharacterEnter(Prowl.Runtime.CharacterController)
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterEnter_Prowl_Runtime_CharacterController_
+  name: OnCharacterEnter(CharacterController)
+  nameWithType: MonoBehaviour.OnCharacterEnter(CharacterController)
+  fullName: Prowl.Runtime.MonoBehaviour.OnCharacterEnter(Prowl.Runtime.CharacterController)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCharacterEnter(Prowl.Runtime.CharacterController)
+    name: OnCharacterEnter
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterEnter_Prowl_Runtime_CharacterController_
+  - name: (
+  - uid: Prowl.Runtime.CharacterController
+    name: CharacterController
+    href: Prowl.Runtime.CharacterController.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCharacterEnter(Prowl.Runtime.CharacterController)
+    name: OnCharacterEnter
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterEnter_Prowl_Runtime_CharacterController_
+  - name: (
+  - uid: Prowl.Runtime.CharacterController
+    name: CharacterController
+    href: Prowl.Runtime.CharacterController.html
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnCharacterStay(Prowl.Runtime.CharacterController)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnCharacterStay(Prowl.Runtime.CharacterController)
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterStay_Prowl_Runtime_CharacterController_
+  name: OnCharacterStay(CharacterController)
+  nameWithType: MonoBehaviour.OnCharacterStay(CharacterController)
+  fullName: Prowl.Runtime.MonoBehaviour.OnCharacterStay(Prowl.Runtime.CharacterController)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCharacterStay(Prowl.Runtime.CharacterController)
+    name: OnCharacterStay
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterStay_Prowl_Runtime_CharacterController_
+  - name: (
+  - uid: Prowl.Runtime.CharacterController
+    name: CharacterController
+    href: Prowl.Runtime.CharacterController.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCharacterStay(Prowl.Runtime.CharacterController)
+    name: OnCharacterStay
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterStay_Prowl_Runtime_CharacterController_
+  - name: (
+  - uid: Prowl.Runtime.CharacterController
+    name: CharacterController
+    href: Prowl.Runtime.CharacterController.html
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnCharacterExit(Prowl.Runtime.CharacterController)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnCharacterExit(Prowl.Runtime.CharacterController)
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterExit_Prowl_Runtime_CharacterController_
+  name: OnCharacterExit(CharacterController)
+  nameWithType: MonoBehaviour.OnCharacterExit(CharacterController)
+  fullName: Prowl.Runtime.MonoBehaviour.OnCharacterExit(Prowl.Runtime.CharacterController)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCharacterExit(Prowl.Runtime.CharacterController)
+    name: OnCharacterExit
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterExit_Prowl_Runtime_CharacterController_
+  - name: (
+  - uid: Prowl.Runtime.CharacterController
+    name: CharacterController
+    href: Prowl.Runtime.CharacterController.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCharacterExit(Prowl.Runtime.CharacterController)
+    name: OnCharacterExit
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterExit_Prowl_Runtime_CharacterController_
+  - name: (
+  - uid: Prowl.Runtime.CharacterController
+    name: CharacterController
+    href: Prowl.Runtime.CharacterController.html
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnBeforeSerialize
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnBeforeSerialize
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnBeforeSerialize
+  name: OnBeforeSerialize()
+  nameWithType: MonoBehaviour.OnBeforeSerialize()
+  fullName: Prowl.Runtime.MonoBehaviour.OnBeforeSerialize()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnBeforeSerialize
+    name: OnBeforeSerialize
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnBeforeSerialize
   - name: (
   - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnBeforeSerialize
+    name: OnBeforeSerialize
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnBeforeSerialize
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnAfterDeserialize
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnAfterDeserialize
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnAfterDeserialize
+  name: OnAfterDeserialize()
+  nameWithType: MonoBehaviour.OnAfterDeserialize()
+  fullName: Prowl.Runtime.MonoBehaviour.OnAfterDeserialize()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnAfterDeserialize
+    name: OnAfterDeserialize
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnAfterDeserialize
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnAfterDeserialize
+    name: OnAfterDeserialize
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnAfterDeserialize
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnDispose
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnDispose
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDispose
+  name: OnDispose()
+  nameWithType: MonoBehaviour.OnDispose()
+  fullName: Prowl.Runtime.MonoBehaviour.OnDispose()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnDispose
+    name: OnDispose
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnDispose
+    name: OnDispose
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDispose
+  - name: (
   - name: )
 - uid: Prowl.Runtime.EngineObject._instanceID
   commentId: F:Prowl.Runtime.EngineObject._instanceID
@@ -1549,20 +1988,6 @@ references:
   name: InstanceID
   nameWithType: EngineObject.InstanceID
   fullName: Prowl.Runtime.EngineObject.InstanceID
-- uid: Prowl.Runtime.EngineObject.AssetID
-  commentId: F:Prowl.Runtime.EngineObject.AssetID
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_AssetID
-  name: AssetID
-  nameWithType: EngineObject.AssetID
-  fullName: Prowl.Runtime.EngineObject.AssetID
-- uid: Prowl.Runtime.EngineObject.FileID
-  commentId: F:Prowl.Runtime.EngineObject.FileID
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FileID
-  name: FileID
-  nameWithType: EngineObject.FileID
-  fullName: Prowl.Runtime.EngineObject.FileID
 - uid: Prowl.Runtime.EngineObject.Name
   commentId: F:Prowl.Runtime.EngineObject.Name
   parent: Prowl.Runtime.EngineObject
@@ -1570,13 +1995,13 @@ references:
   name: Name
   nameWithType: EngineObject.Name
   fullName: Prowl.Runtime.EngineObject.Name
-- uid: Prowl.Runtime.EngineObject.IsDestroyed
-  commentId: F:Prowl.Runtime.EngineObject.IsDestroyed
+- uid: Prowl.Runtime.EngineObject.IsDisposed
+  commentId: P:Prowl.Runtime.EngineObject.IsDisposed
   parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_IsDestroyed
-  name: IsDestroyed
-  nameWithType: EngineObject.IsDestroyed
-  fullName: Prowl.Runtime.EngineObject.IsDestroyed
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_IsDisposed
+  name: IsDisposed
+  nameWithType: EngineObject.IsDisposed
+  fullName: Prowl.Runtime.EngineObject.IsDisposed
 - uid: Prowl.Runtime.EngineObject.CreatedInstance
   commentId: M:Prowl.Runtime.EngineObject.CreatedInstance
   parent: Prowl.Runtime.EngineObject
@@ -1615,151 +2040,24 @@ references:
     href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnValidate
   - name: (
   - name: )
-- uid: Prowl.Runtime.EngineObject.FindObjectOfType``1
-  commentId: M:Prowl.Runtime.EngineObject.FindObjectOfType``1
+- uid: Prowl.Runtime.EngineObject.Dispose
+  commentId: M:Prowl.Runtime.EngineObject.Dispose
   parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectOfType__1
-  name: FindObjectOfType<T>()
-  nameWithType: EngineObject.FindObjectOfType<T>()
-  fullName: Prowl.Runtime.EngineObject.FindObjectOfType<T>()
-  nameWithType.vb: EngineObject.FindObjectOfType(Of T)()
-  fullName.vb: Prowl.Runtime.EngineObject.FindObjectOfType(Of T)()
-  name.vb: FindObjectOfType(Of T)()
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
+  name: Dispose()
+  nameWithType: EngineObject.Dispose()
+  fullName: Prowl.Runtime.EngineObject.Dispose()
   spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.FindObjectOfType``1
-    name: FindObjectOfType
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectOfType__1
-  - name: <
-  - name: T
-  - name: '>'
+  - uid: Prowl.Runtime.EngineObject.Dispose
+    name: Dispose
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
   - name: (
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.EngineObject.FindObjectOfType``1
-    name: FindObjectOfType
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectOfType__1
+  - uid: Prowl.Runtime.EngineObject.Dispose
+    name: Dispose
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
   - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.EngineObject.FindObjectsOfType``1
-  commentId: M:Prowl.Runtime.EngineObject.FindObjectsOfType``1
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectsOfType__1
-  name: FindObjectsOfType<T>()
-  nameWithType: EngineObject.FindObjectsOfType<T>()
-  fullName: Prowl.Runtime.EngineObject.FindObjectsOfType<T>()
-  nameWithType.vb: EngineObject.FindObjectsOfType(Of T)()
-  fullName.vb: Prowl.Runtime.EngineObject.FindObjectsOfType(Of T)()
-  name.vb: FindObjectsOfType(Of T)()
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.FindObjectsOfType``1
-    name: FindObjectsOfType
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectsOfType__1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.FindObjectsOfType``1
-    name: FindObjectsOfType
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectsOfType__1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.EngineObject.FindObjectByID``1(System.Int32)
-  commentId: M:Prowl.Runtime.EngineObject.FindObjectByID``1(System.Int32)
-  parent: Prowl.Runtime.EngineObject
-  isExternal: true
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectByID__1_System_Int32_
-  name: FindObjectByID<T>(int)
-  nameWithType: EngineObject.FindObjectByID<T>(int)
-  fullName: Prowl.Runtime.EngineObject.FindObjectByID<T>(int)
-  nameWithType.vb: EngineObject.FindObjectByID(Of T)(Integer)
-  fullName.vb: Prowl.Runtime.EngineObject.FindObjectByID(Of T)(Integer)
-  name.vb: FindObjectByID(Of T)(Integer)
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.FindObjectByID``1(System.Int32)
-    name: FindObjectByID
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectByID__1_System_Int32_
-  - name: <
-  - name: T
-  - name: '>'
-  - name: (
-  - uid: System.Int32
-    name: int
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.FindObjectByID``1(System.Int32)
-    name: FindObjectByID
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectByID__1_System_Int32_
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: (
-  - uid: System.Int32
-    name: Integer
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: )
-- uid: Prowl.Runtime.EngineObject.Foreach``1(System.Action{{T}})
-  commentId: M:Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-  parent: Prowl.Runtime.EngineObject
-  definition: Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Foreach__1_System_Action___0__
-  name: Foreach<T>(Action<T>)
-  nameWithType: EngineObject.Foreach<T>(Action<T>)
-  fullName: Prowl.Runtime.EngineObject.Foreach<T>(System.Action<T>)
-  nameWithType.vb: EngineObject.Foreach(Of T)(Action(Of T))
-  fullName.vb: Prowl.Runtime.EngineObject.Foreach(Of T)(System.Action(Of T))
-  name.vb: Foreach(Of T)(Action(Of T))
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-    name: Foreach
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Foreach__1_System_Action___0__
-  - name: <
-  - name: T
-  - name: '>'
-  - name: (
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-    name: Foreach
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Foreach__1_System_Action___0__
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: (
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
   - name: )
 - uid: Prowl.Runtime.EngineObject.Destroy
   commentId: M:Prowl.Runtime.EngineObject.Destroy
@@ -1780,172 +2078,112 @@ references:
     href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
   - name: (
   - name: )
-- uid: Prowl.Runtime.EngineObject.DestroyImmediate
-  commentId: M:Prowl.Runtime.EngineObject.DestroyImmediate
+- uid: Prowl.Runtime.EngineObject.IsDestroyQueued
+  commentId: P:Prowl.Runtime.EngineObject.IsDestroyQueued
   parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DestroyImmediate
-  name: DestroyImmediate()
-  nameWithType: EngineObject.DestroyImmediate()
-  fullName: Prowl.Runtime.EngineObject.DestroyImmediate()
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_IsDestroyQueued
+  name: IsDestroyQueued
+  nameWithType: EngineObject.IsDestroyQueued
+  fullName: Prowl.Runtime.EngineObject.IsDestroyQueued
+- uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+  commentId: M:Prowl.Runtime.EngineObject.ProcessDestroyed
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
+  name: ProcessDestroyed()
+  nameWithType: EngineObject.ProcessDestroyed()
+  fullName: Prowl.Runtime.EngineObject.ProcessDestroyed()
   spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.DestroyImmediate
-    name: DestroyImmediate
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DestroyImmediate
+  - uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+    name: ProcessDestroyed
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
   - name: (
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.EngineObject.DestroyImmediate
-    name: DestroyImmediate
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DestroyImmediate
+  - uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+    name: ProcessDestroyed
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
   - name: (
   - name: )
-- uid: Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-  commentId: M:Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy_Prowl_Runtime_EngineObject_
-  name: Destroy(EngineObject)
-  nameWithType: EngineObject.Destroy(EngineObject)
-  fullName: Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-    name: Destroy
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy_Prowl_Runtime_EngineObject_
-  - name: (
-  - uid: Prowl.Runtime.EngineObject
-    name: EngineObject
-    href: Prowl.Runtime.EngineObject.html
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-    name: Destroy
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy_Prowl_Runtime_EngineObject_
-  - name: (
-  - uid: Prowl.Runtime.EngineObject
-    name: EngineObject
-    href: Prowl.Runtime.EngineObject.html
-  - name: )
-- uid: Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-  commentId: M:Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DestroyImmediate_Prowl_Runtime_EngineObject_
-  name: DestroyImmediate(EngineObject)
-  nameWithType: EngineObject.DestroyImmediate(EngineObject)
-  fullName: Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-    name: DestroyImmediate
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DestroyImmediate_Prowl_Runtime_EngineObject_
-  - name: (
-  - uid: Prowl.Runtime.EngineObject
-    name: EngineObject
-    href: Prowl.Runtime.EngineObject.html
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-    name: DestroyImmediate
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DestroyImmediate_Prowl_Runtime_EngineObject_
-  - name: (
-  - uid: Prowl.Runtime.EngineObject
-    name: EngineObject
-    href: Prowl.Runtime.EngineObject.html
-  - name: )
-- uid: Prowl.Runtime.EngineObject.HandleDestroyed
-  commentId: M:Prowl.Runtime.EngineObject.HandleDestroyed
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_HandleDestroyed
-  name: HandleDestroyed()
-  nameWithType: EngineObject.HandleDestroyed()
-  fullName: Prowl.Runtime.EngineObject.HandleDestroyed()
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.HandleDestroyed
-    name: HandleDestroyed
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_HandleDestroyed
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.HandleDestroyed
-    name: HandleDestroyed
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_HandleDestroyed
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject,System.Boolean)
-  commentId: M:Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject,System.Boolean)
+- uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+  commentId: M:Prowl.Runtime.EngineObject.Equals(System.Object)
   parent: Prowl.Runtime.EngineObject
   isExternal: true
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Instantiate_Prowl_Runtime_EngineObject_System_Boolean_
-  name: Instantiate(EngineObject, bool)
-  nameWithType: EngineObject.Instantiate(EngineObject, bool)
-  fullName: Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject, bool)
-  nameWithType.vb: EngineObject.Instantiate(EngineObject, Boolean)
-  fullName.vb: Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject, Boolean)
-  name.vb: Instantiate(EngineObject, Boolean)
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
+  name: Equals(object)
+  nameWithType: EngineObject.Equals(object)
+  fullName: Prowl.Runtime.EngineObject.Equals(object)
+  nameWithType.vb: EngineObject.Equals(Object)
+  fullName.vb: Prowl.Runtime.EngineObject.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject,System.Boolean)
-    name: Instantiate
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Instantiate_Prowl_Runtime_EngineObject_System_Boolean_
+  - uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+    name: Equals
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
   - name: (
-  - uid: Prowl.Runtime.EngineObject
-    name: EngineObject
-    href: Prowl.Runtime.EngineObject.html
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: bool
+  - uid: System.Object
+    name: object
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject,System.Boolean)
-    name: Instantiate
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Instantiate_Prowl_Runtime_EngineObject_System_Boolean_
+  - uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+    name: Equals
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
   - name: (
-  - uid: Prowl.Runtime.EngineObject
-    name: EngineObject
-    href: Prowl.Runtime.EngineObject.html
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: Boolean
+  - uid: System.Object
+    name: Object
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-- uid: Prowl.Runtime.EngineObject.Dispose
-  commentId: M:Prowl.Runtime.EngineObject.Dispose
+- uid: Prowl.Runtime.EngineObject.GetHashCode
+  commentId: M:Prowl.Runtime.EngineObject.GetHashCode
   parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
-  name: Dispose()
-  nameWithType: EngineObject.Dispose()
-  fullName: Prowl.Runtime.EngineObject.Dispose()
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
+  name: GetHashCode()
+  nameWithType: EngineObject.GetHashCode()
+  fullName: Prowl.Runtime.EngineObject.GetHashCode()
   spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.Dispose
-    name: Dispose
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
+  - uid: Prowl.Runtime.EngineObject.GetHashCode
+    name: GetHashCode
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
   - name: (
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.EngineObject.Dispose
-    name: Dispose
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
+  - uid: Prowl.Runtime.EngineObject.GetHashCode
+    name: GetHashCode
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
   - name: (
   - name: )
-- uid: Prowl.Runtime.EngineObject.OnDispose
-  commentId: M:Prowl.Runtime.EngineObject.OnDispose
+- uid: Prowl.Runtime.EngineObject.EnsureNotDisposed(System.String)
+  commentId: M:Prowl.Runtime.EngineObject.EnsureNotDisposed(System.String)
   parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnDispose
-  name: OnDispose()
-  nameWithType: EngineObject.OnDispose()
-  fullName: Prowl.Runtime.EngineObject.OnDispose()
+  isExternal: true
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_EnsureNotDisposed_System_String_
+  name: EnsureNotDisposed(string)
+  nameWithType: EngineObject.EnsureNotDisposed(string)
+  fullName: Prowl.Runtime.EngineObject.EnsureNotDisposed(string)
+  nameWithType.vb: EngineObject.EnsureNotDisposed(String)
+  fullName.vb: Prowl.Runtime.EngineObject.EnsureNotDisposed(String)
+  name.vb: EnsureNotDisposed(String)
   spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.OnDispose
-    name: OnDispose
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnDispose
+  - uid: Prowl.Runtime.EngineObject.EnsureNotDisposed(System.String)
+    name: EnsureNotDisposed
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_EnsureNotDisposed_System_String_
   - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.EngineObject.OnDispose
-    name: OnDispose
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnDispose
+  - uid: Prowl.Runtime.EngineObject.EnsureNotDisposed(System.String)
+    name: EnsureNotDisposed
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_EnsureNotDisposed_System_String_
   - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
 - uid: Prowl.Runtime.EngineObject.ToString
   commentId: M:Prowl.Runtime.EngineObject.ToString
@@ -1966,88 +2204,57 @@ references:
     href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ToString
   - name: (
   - name: )
-- uid: Prowl.Runtime.EngineObject.SerializeHeader(Prowl.Runtime.SerializedProperty)
-  commentId: M:Prowl.Runtime.EngineObject.SerializeHeader(Prowl.Runtime.SerializedProperty)
+- uid: Prowl.Runtime.EngineObject.SerializeHeader(Prowl.Echo.EchoObject)
+  commentId: M:Prowl.Runtime.EngineObject.SerializeHeader(Prowl.Echo.EchoObject)
   parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_SerializeHeader_Prowl_Runtime_SerializedProperty_
-  name: SerializeHeader(SerializedProperty)
-  nameWithType: EngineObject.SerializeHeader(SerializedProperty)
-  fullName: Prowl.Runtime.EngineObject.SerializeHeader(Prowl.Runtime.SerializedProperty)
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.SerializeHeader(Prowl.Runtime.SerializedProperty)
-    name: SerializeHeader
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_SerializeHeader_Prowl_Runtime_SerializedProperty_
-  - name: (
-  - uid: Prowl.Runtime.SerializedProperty
-    name: SerializedProperty
-    href: Prowl.Runtime.SerializedProperty.html
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.SerializeHeader(Prowl.Runtime.SerializedProperty)
-    name: SerializeHeader
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_SerializeHeader_Prowl_Runtime_SerializedProperty_
-  - name: (
-  - uid: Prowl.Runtime.SerializedProperty
-    name: SerializedProperty
-    href: Prowl.Runtime.SerializedProperty.html
-  - name: )
-- uid: Prowl.Runtime.EngineObject.DeserializeHeader(Prowl.Runtime.SerializedProperty)
-  commentId: M:Prowl.Runtime.EngineObject.DeserializeHeader(Prowl.Runtime.SerializedProperty)
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DeserializeHeader_Prowl_Runtime_SerializedProperty_
-  name: DeserializeHeader(SerializedProperty)
-  nameWithType: EngineObject.DeserializeHeader(SerializedProperty)
-  fullName: Prowl.Runtime.EngineObject.DeserializeHeader(Prowl.Runtime.SerializedProperty)
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.DeserializeHeader(Prowl.Runtime.SerializedProperty)
-    name: DeserializeHeader
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DeserializeHeader_Prowl_Runtime_SerializedProperty_
-  - name: (
-  - uid: Prowl.Runtime.SerializedProperty
-    name: SerializedProperty
-    href: Prowl.Runtime.SerializedProperty.html
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.DeserializeHeader(Prowl.Runtime.SerializedProperty)
-    name: DeserializeHeader
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DeserializeHeader_Prowl_Runtime_SerializedProperty_
-  - name: (
-  - uid: Prowl.Runtime.SerializedProperty
-    name: SerializedProperty
-    href: Prowl.Runtime.SerializedProperty.html
-  - name: )
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
-  name: Equals(object)
-  nameWithType: object.Equals(object)
-  fullName: object.Equals(object)
-  nameWithType.vb: Object.Equals(Object)
-  fullName.vb: Object.Equals(Object)
-  name.vb: Equals(Object)
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_SerializeHeader_Prowl_Echo_EchoObject_
+  name: SerializeHeader(EchoObject)
+  nameWithType: EngineObject.SerializeHeader(EchoObject)
+  fullName: Prowl.Runtime.EngineObject.SerializeHeader(Prowl.Echo.EchoObject)
   spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - uid: Prowl.Runtime.EngineObject.SerializeHeader(Prowl.Echo.EchoObject)
+    name: SerializeHeader
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_SerializeHeader_Prowl_Echo_EchoObject_
   - name: (
-  - uid: System.Object
-    name: object
+  - uid: Prowl.Echo.EchoObject
+    name: EchoObject
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
   spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - uid: Prowl.Runtime.EngineObject.SerializeHeader(Prowl.Echo.EchoObject)
+    name: SerializeHeader
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_SerializeHeader_Prowl_Echo_EchoObject_
   - name: (
-  - uid: System.Object
-    name: Object
+  - uid: Prowl.Echo.EchoObject
+    name: EchoObject
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.EngineObject.DeserializeHeader(Prowl.Echo.EchoObject)
+  commentId: M:Prowl.Runtime.EngineObject.DeserializeHeader(Prowl.Echo.EchoObject)
+  parent: Prowl.Runtime.EngineObject
+  isExternal: true
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DeserializeHeader_Prowl_Echo_EchoObject_
+  name: DeserializeHeader(EchoObject)
+  nameWithType: EngineObject.DeserializeHeader(EchoObject)
+  fullName: Prowl.Runtime.EngineObject.DeserializeHeader(Prowl.Echo.EchoObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.DeserializeHeader(Prowl.Echo.EchoObject)
+    name: DeserializeHeader
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DeserializeHeader_Prowl_Echo_EchoObject_
+  - name: (
+  - uid: Prowl.Echo.EchoObject
+    name: EchoObject
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.DeserializeHeader(Prowl.Echo.EchoObject)
+    name: DeserializeHeader
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DeserializeHeader_Prowl_Echo_EchoObject_
+  - name: (
+  - uid: Prowl.Echo.EchoObject
+    name: EchoObject
+    isExternal: true
   - name: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
@@ -2093,30 +2300,6 @@ references:
     name: Object
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
-  name: GetHashCode()
-  nameWithType: object.GetHashCode()
-  fullName: object.GetHashCode()
-  nameWithType.vb: Object.GetHashCode()
-  fullName.vb: Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
-  - name: (
   - name: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
@@ -2211,27 +2394,53 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-- uid: Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.Null
-  commentId: M:Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
+- uid: Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsNotValid
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
   parent: Prowl.Runtime.EngineObjectExtensions
-  definition: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
-  name: Null(EngineObject)
-  nameWithType: EngineObjectExtensions.Null(EngineObject)
-  fullName: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
+  definition: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  name: IsNotValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsNotValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
   spec.csharp:
-  - uid: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-    name: "Null"
-    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
   - name: (
   - uid: Prowl.Runtime.EngineObject
     name: EngineObject
     href: Prowl.Runtime.EngineObject.html
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-    name: "Null"
-    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsValid
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  parent: Prowl.Runtime.EngineObjectExtensions
+  definition: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  name: IsValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
   - name: (
   - uid: Prowl.Runtime.EngineObject
     name: EngineObject
@@ -2275,6 +2484,46 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: Prowl.Echo
+  commentId: N:Prowl.Echo
+  name: Prowl.Echo
+  nameWithType: Prowl.Echo
+  fullName: Prowl.Echo
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
+- uid: Prowl.Runtime.Rendering
+  commentId: N:Prowl.Runtime.Rendering
+  name: Prowl.Runtime.Rendering
+  nameWithType: Prowl.Runtime.Rendering
+  fullName: Prowl.Runtime.Rendering
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Rendering
+    name: Rendering
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Rendering
+    name: Rendering
 - uid: Prowl.Runtime.MonoBehaviour.RemoveComponent``1(``0)
   commentId: M:Prowl.Runtime.MonoBehaviour.RemoveComponent``1(``0)
   href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_RemoveComponent__1___0_
@@ -2339,71 +2588,25 @@ references:
   - name: (
   - name: T
   - name: )
-- uid: Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-  commentId: M:Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-  isExternal: true
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Foreach__1_System_Action___0__
-  name: Foreach<T>(Action<T>)
-  nameWithType: EngineObject.Foreach<T>(Action<T>)
-  fullName: Prowl.Runtime.EngineObject.Foreach<T>(System.Action<T>)
-  nameWithType.vb: EngineObject.Foreach(Of T)(Action(Of T))
-  fullName.vb: Prowl.Runtime.EngineObject.Foreach(Of T)(System.Action(Of T))
-  name.vb: Foreach(Of T)(Action(Of T))
+- uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  name: IsNotValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsNotValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
   spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-    name: Foreach
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Foreach__1_System_Action___0__
-  - name: <
-  - name: T
-  - name: '>'
-  - name: (
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-    name: Foreach
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Foreach__1_System_Action___0__
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: (
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: )
-- uid: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-  commentId: M:Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
-  name: Null(EngineObject)
-  nameWithType: EngineObjectExtensions.Null(EngineObject)
-  fullName: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-    name: "Null"
-    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
   - name: (
   - uid: Prowl.Runtime.EngineObject
     name: EngineObject
     href: Prowl.Runtime.EngineObject.html
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-    name: "Null"
-    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
   - name: (
   - uid: Prowl.Runtime.EngineObject
     name: EngineObject
@@ -2416,6 +2619,30 @@ references:
   name: EngineObjectExtensions
   nameWithType: EngineObjectExtensions
   fullName: Prowl.Runtime.EngineObjectExtensions
+- uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  name: IsValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
 - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
   commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
   isExternal: true
@@ -2453,6 +2680,29 @@ references:
   name: RuntimeUtils
   nameWithType: RuntimeUtils
   fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime.PointLight.Resolution
+  commentId: T:Prowl.Runtime.PointLight.Resolution
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.PointLight.html
+  name: PointLight.Resolution
+  nameWithType: PointLight.Resolution
+  fullName: Prowl.Runtime.PointLight.Resolution
+  spec.csharp:
+  - uid: Prowl.Runtime.PointLight
+    name: PointLight
+    href: Prowl.Runtime.PointLight.html
+  - name: .
+  - uid: Prowl.Runtime.PointLight.Resolution
+    name: Resolution
+    href: Prowl.Runtime.PointLight.Resolution.html
+  spec.vb:
+  - uid: Prowl.Runtime.PointLight
+    name: PointLight
+    href: Prowl.Runtime.PointLight.html
+  - name: .
+  - uid: Prowl.Runtime.PointLight.Resolution
+    name: Resolution
+    href: Prowl.Runtime.PointLight.Resolution.html
 - uid: System.Single
   commentId: T:System.Single
   parent: System
@@ -2464,180 +2714,548 @@ references:
   nameWithType.vb: Single
   fullName.vb: Single
   name.vb: Single
-- uid: Prowl.Runtime.Light.GetCullingData(System.Boolean@,System.Boolean@,Prowl.Runtime.Bounds@)
-  commentId: M:Prowl.Runtime.Light.GetCullingData(System.Boolean@,System.Boolean@,Prowl.Runtime.Bounds@)
+- uid: Prowl.Runtime.Light.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
+  commentId: M:Prowl.Runtime.Light.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
   parent: Prowl.Runtime.Light
   isExternal: true
-  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetCullingData_System_Boolean__System_Boolean__Prowl_Runtime_Bounds__
-  name: GetCullingData(out bool, out bool, out Bounds)
-  nameWithType: Light.GetCullingData(out bool, out bool, out Bounds)
-  fullName: Prowl.Runtime.Light.GetCullingData(out bool, out bool, out Prowl.Runtime.Bounds)
-  nameWithType.vb: Light.GetCullingData(Boolean, Boolean, Bounds)
-  fullName.vb: Prowl.Runtime.Light.GetCullingData(Boolean, Boolean, Prowl.Runtime.Bounds)
-  name.vb: GetCullingData(Boolean, Boolean, Bounds)
+  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_OnRenderCollect_Prowl_Runtime_Camera_System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderable__System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderableLight__
+  name: OnRenderCollect(Camera, List<IRenderable>, List<IRenderableLight>)
+  nameWithType: Light.OnRenderCollect(Camera, List<IRenderable>, List<IRenderableLight>)
+  fullName: Prowl.Runtime.Light.OnRenderCollect(Prowl.Runtime.Camera, System.Collections.Generic.List<Prowl.Runtime.Rendering.IRenderable>, System.Collections.Generic.List<Prowl.Runtime.Rendering.IRenderableLight>)
+  nameWithType.vb: Light.OnRenderCollect(Camera, List(Of IRenderable), List(Of IRenderableLight))
+  fullName.vb: Prowl.Runtime.Light.OnRenderCollect(Prowl.Runtime.Camera, System.Collections.Generic.List(Of Prowl.Runtime.Rendering.IRenderable), System.Collections.Generic.List(Of Prowl.Runtime.Rendering.IRenderableLight))
+  name.vb: OnRenderCollect(Camera, List(Of IRenderable), List(Of IRenderableLight))
   spec.csharp:
-  - uid: Prowl.Runtime.Light.GetCullingData(System.Boolean@,System.Boolean@,Prowl.Runtime.Bounds@)
-    name: GetCullingData
-    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetCullingData_System_Boolean__System_Boolean__Prowl_Runtime_Bounds__
+  - uid: Prowl.Runtime.Light.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
+    name: OnRenderCollect
+    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_OnRenderCollect_Prowl_Runtime_Camera_System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderable__System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderableLight__
   - name: (
-  - name: out
-  - name: " "
-  - uid: System.Boolean
-    name: bool
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - uid: Prowl.Runtime.Camera
+    name: Camera
+    href: Prowl.Runtime.Camera.html
   - name: ','
   - name: " "
-  - name: out
-  - name: " "
-  - uid: System.Boolean
-    name: bool
+  - uid: System.Collections.Generic.List`1
+    name: List
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Prowl.Runtime.Rendering.IRenderable
+    name: IRenderable
+    href: Prowl.Runtime.Rendering.IRenderable.html
+  - name: '>'
   - name: ','
   - name: " "
-  - name: out
-  - name: " "
-  - uid: Prowl.Runtime.Bounds
-    name: Bounds
-    href: Prowl.Runtime.Bounds.html
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Prowl.Runtime.Rendering.IRenderableLight
+    name: IRenderableLight
+    href: Prowl.Runtime.Rendering.IRenderableLight.html
+  - name: '>'
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.Light.GetCullingData(System.Boolean@,System.Boolean@,Prowl.Runtime.Bounds@)
-    name: GetCullingData
-    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetCullingData_System_Boolean__System_Boolean__Prowl_Runtime_Bounds__
+  - uid: Prowl.Runtime.Light.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
+    name: OnRenderCollect
+    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_OnRenderCollect_Prowl_Runtime_Camera_System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderable__System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderableLight__
   - name: (
-  - uid: System.Boolean
-    name: Boolean
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - uid: Prowl.Runtime.Camera
+    name: Camera
+    href: Prowl.Runtime.Camera.html
   - name: ','
   - name: " "
-  - uid: System.Boolean
-    name: Boolean
+  - uid: System.Collections.Generic.List`1
+    name: List
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: ','
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
   - name: " "
-  - uid: Prowl.Runtime.Bounds
-    name: Bounds
-    href: Prowl.Runtime.Bounds.html
+  - uid: Prowl.Runtime.Rendering.IRenderable
+    name: IRenderable
+    href: Prowl.Runtime.Rendering.IRenderable.html
   - name: )
-- uid: Prowl.Runtime.PointLight.GetCullingData*
-  commentId: Overload:Prowl.Runtime.PointLight.GetCullingData
-  href: Prowl.Runtime.PointLight.html#Prowl_Runtime_PointLight_GetCullingData_System_Boolean__System_Boolean__Prowl_Runtime_Bounds__
-  name: GetCullingData
-  nameWithType: PointLight.GetCullingData
-  fullName: Prowl.Runtime.PointLight.GetCullingData
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Rendering.IRenderableLight
+    name: IRenderableLight
+    href: Prowl.Runtime.Rendering.IRenderableLight.html
+  - name: )
+  - name: )
+- uid: Prowl.Runtime.PointLight.OnRenderCollect*
+  commentId: Overload:Prowl.Runtime.PointLight.OnRenderCollect
+  href: Prowl.Runtime.PointLight.html#Prowl_Runtime_PointLight_OnRenderCollect_Prowl_Runtime_Camera_System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderable__System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderableLight__
+  name: OnRenderCollect
+  nameWithType: PointLight.OnRenderCollect
+  fullName: Prowl.Runtime.PointLight.OnRenderCollect
+- uid: Prowl.Runtime.Camera
+  commentId: T:Prowl.Runtime.Camera
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.Camera.html
+  name: Camera
+  nameWithType: Camera
+  fullName: Prowl.Runtime.Camera
+- uid: System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable}
+  commentId: T:System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<IRenderable>
+  nameWithType: List<IRenderable>
+  fullName: System.Collections.Generic.List<Prowl.Runtime.Rendering.IRenderable>
+  nameWithType.vb: List(Of IRenderable)
+  fullName.vb: System.Collections.Generic.List(Of Prowl.Runtime.Rendering.IRenderable)
+  name.vb: List(Of IRenderable)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Prowl.Runtime.Rendering.IRenderable
+    name: IRenderable
+    href: Prowl.Runtime.Rendering.IRenderable.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Rendering.IRenderable
+    name: IRenderable
+    href: Prowl.Runtime.Rendering.IRenderable.html
+  - name: )
+- uid: System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight}
+  commentId: T:System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<IRenderableLight>
+  nameWithType: List<IRenderableLight>
+  fullName: System.Collections.Generic.List<Prowl.Runtime.Rendering.IRenderableLight>
+  nameWithType.vb: List(Of IRenderableLight)
+  fullName.vb: System.Collections.Generic.List(Of Prowl.Runtime.Rendering.IRenderableLight)
+  name.vb: List(Of IRenderableLight)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Prowl.Runtime.Rendering.IRenderableLight
+    name: IRenderableLight
+    href: Prowl.Runtime.Rendering.IRenderableLight.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Rendering.IRenderableLight
+    name: IRenderableLight
+    href: Prowl.Runtime.Rendering.IRenderableLight.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
-- uid: Prowl.Runtime.Bounds
-  commentId: T:Prowl.Runtime.Bounds
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.Bounds.html
-  name: Bounds
-  nameWithType: Bounds
-  fullName: Prowl.Runtime.Bounds
-- uid: Prowl.Runtime.Light.GetMaterial
-  commentId: M:Prowl.Runtime.Light.GetMaterial
-  parent: Prowl.Runtime.Light
-  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetMaterial
-  name: GetMaterial()
-  nameWithType: Light.GetMaterial()
-  fullName: Prowl.Runtime.Light.GetMaterial()
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
   spec.csharp:
-  - uid: Prowl.Runtime.Light.GetMaterial
-    name: GetMaterial
-    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetMaterial
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Prowl.Runtime.MonoBehaviour.DrawGizmos
+  commentId: M:Prowl.Runtime.MonoBehaviour.DrawGizmos
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmos
+  name: DrawGizmos()
+  nameWithType: MonoBehaviour.DrawGizmos()
+  fullName: Prowl.Runtime.MonoBehaviour.DrawGizmos()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.DrawGizmos
+    name: DrawGizmos
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmos
   - name: (
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.Light.GetMaterial
-    name: GetMaterial
-    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetMaterial
+  - uid: Prowl.Runtime.MonoBehaviour.DrawGizmos
+    name: DrawGizmos
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmos
   - name: (
   - name: )
-- uid: Prowl.Runtime.PointLight.GetMaterial*
-  commentId: Overload:Prowl.Runtime.PointLight.GetMaterial
-  href: Prowl.Runtime.PointLight.html#Prowl_Runtime_PointLight_GetMaterial
-  name: GetMaterial
-  nameWithType: PointLight.GetMaterial
-  fullName: Prowl.Runtime.PointLight.GetMaterial
-- uid: Prowl.Runtime.Material
-  commentId: T:Prowl.Runtime.Material
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.Material.html
-  name: Material
-  nameWithType: Material
-  fullName: Prowl.Runtime.Material
-- uid: Prowl.Runtime.Light.GetRenderingData(Prowl.Runtime.LightType@,Prowl.Runtime.Vector3@)
-  commentId: M:Prowl.Runtime.Light.GetRenderingData(Prowl.Runtime.LightType@,Prowl.Runtime.Vector3@)
-  parent: Prowl.Runtime.Light
-  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetRenderingData_Prowl_Runtime_LightType__Prowl_Runtime_Vector3__
-  name: GetRenderingData(out LightType, out Vector3)
-  nameWithType: Light.GetRenderingData(out LightType, out Vector3)
-  fullName: Prowl.Runtime.Light.GetRenderingData(out Prowl.Runtime.LightType, out Prowl.Runtime.Vector3)
-  nameWithType.vb: Light.GetRenderingData(LightType, Vector3)
-  fullName.vb: Prowl.Runtime.Light.GetRenderingData(Prowl.Runtime.LightType, Prowl.Runtime.Vector3)
-  name.vb: GetRenderingData(LightType, Vector3)
+- uid: Prowl.Runtime.PointLight.DrawGizmos*
+  commentId: Overload:Prowl.Runtime.PointLight.DrawGizmos
+  href: Prowl.Runtime.PointLight.html#Prowl_Runtime_PointLight_DrawGizmos
+  name: DrawGizmos
+  nameWithType: PointLight.DrawGizmos
+  fullName: Prowl.Runtime.PointLight.DrawGizmos
+- uid: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
+  commentId: M:Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmosSelected
+  name: DrawGizmosSelected()
+  nameWithType: MonoBehaviour.DrawGizmosSelected()
+  fullName: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected()
   spec.csharp:
-  - uid: Prowl.Runtime.Light.GetRenderingData(Prowl.Runtime.LightType@,Prowl.Runtime.Vector3@)
-    name: GetRenderingData
-    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetRenderingData_Prowl_Runtime_LightType__Prowl_Runtime_Vector3__
+  - uid: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
+    name: DrawGizmosSelected
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmosSelected
   - name: (
-  - name: out
-  - name: " "
-  - uid: Prowl.Runtime.LightType
-    name: LightType
-    href: Prowl.Runtime.LightType.html
-  - name: ','
-  - name: " "
-  - name: out
-  - name: " "
-  - uid: Prowl.Runtime.Vector3
-    name: Vector3
-    href: Prowl.Runtime.Vector3.html
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.Light.GetRenderingData(Prowl.Runtime.LightType@,Prowl.Runtime.Vector3@)
-    name: GetRenderingData
-    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetRenderingData_Prowl_Runtime_LightType__Prowl_Runtime_Vector3__
+  - uid: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
+    name: DrawGizmosSelected
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmosSelected
   - name: (
-  - uid: Prowl.Runtime.LightType
-    name: LightType
-    href: Prowl.Runtime.LightType.html
-  - name: ','
-  - name: " "
-  - uid: Prowl.Runtime.Vector3
-    name: Vector3
-    href: Prowl.Runtime.Vector3.html
   - name: )
-- uid: Prowl.Runtime.PointLight.GetRenderingData*
-  commentId: Overload:Prowl.Runtime.PointLight.GetRenderingData
-  href: Prowl.Runtime.PointLight.html#Prowl_Runtime_PointLight_GetRenderingData_Prowl_Runtime_LightType__Prowl_Runtime_Vector3__
-  name: GetRenderingData
-  nameWithType: PointLight.GetRenderingData
-  fullName: Prowl.Runtime.PointLight.GetRenderingData
-- uid: Prowl.Runtime.LightType
-  commentId: T:Prowl.Runtime.LightType
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.LightType.html
+- uid: Prowl.Runtime.PointLight.DrawGizmosSelected*
+  commentId: Overload:Prowl.Runtime.PointLight.DrawGizmosSelected
+  href: Prowl.Runtime.PointLight.html#Prowl_Runtime_PointLight_DrawGizmosSelected
+  name: DrawGizmosSelected
+  nameWithType: PointLight.DrawGizmosSelected
+  fullName: Prowl.Runtime.PointLight.DrawGizmosSelected
+- uid: Prowl.Runtime.Light.GetLightType
+  commentId: M:Prowl.Runtime.Light.GetLightType
+  parent: Prowl.Runtime.Light
+  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetLightType
+  name: GetLightType()
+  nameWithType: Light.GetLightType()
+  fullName: Prowl.Runtime.Light.GetLightType()
+  spec.csharp:
+  - uid: Prowl.Runtime.Light.GetLightType
+    name: GetLightType
+    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetLightType
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Light.GetLightType
+    name: GetLightType
+    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetLightType
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.PointLight.GetLightType*
+  commentId: Overload:Prowl.Runtime.PointLight.GetLightType
+  href: Prowl.Runtime.PointLight.html#Prowl_Runtime_PointLight_GetLightType
+  name: GetLightType
+  nameWithType: PointLight.GetLightType
+  fullName: Prowl.Runtime.PointLight.GetLightType
+- uid: Prowl.Runtime.Rendering.LightType
+  commentId: T:Prowl.Runtime.Rendering.LightType
+  parent: Prowl.Runtime.Rendering
+  href: Prowl.Runtime.Rendering.LightType.html
   name: LightType
   nameWithType: LightType
-  fullName: Prowl.Runtime.LightType
-- uid: Prowl.Runtime.Vector3
-  commentId: T:Prowl.Runtime.Vector3
+  fullName: Prowl.Runtime.Rendering.LightType
+- uid: Prowl.Runtime.CommandBuffer
+  commentId: T:Prowl.Runtime.CommandBuffer
   parent: Prowl.Runtime
-  href: Prowl.Runtime.Vector3.html
-  name: Vector3
-  nameWithType: Vector3
-  fullName: Prowl.Runtime.Vector3
+  href: Prowl.Runtime.CommandBuffer.html
+  name: CommandBuffer
+  nameWithType: CommandBuffer
+  fullName: Prowl.Runtime.CommandBuffer
+- uid: Prowl.Runtime.Rendering.RenderPipeline.AssignCameraMatrices(Prowl.Vector.Float4x4,Prowl.Vector.Float4x4)
+  commentId: M:Prowl.Runtime.Rendering.RenderPipeline.AssignCameraMatrices(Prowl.Vector.Float4x4,Prowl.Vector.Float4x4)
+  parent: Prowl.Runtime.Rendering.RenderPipeline
+  isExternal: true
+  href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_AssignCameraMatrices_Prowl_Vector_Float4x4_Prowl_Vector_Float4x4_
+  name: AssignCameraMatrices(Float4x4, Float4x4)
+  nameWithType: RenderPipeline.AssignCameraMatrices(Float4x4, Float4x4)
+  fullName: Prowl.Runtime.Rendering.RenderPipeline.AssignCameraMatrices(Prowl.Vector.Float4x4, Prowl.Vector.Float4x4)
+  spec.csharp:
+  - uid: Prowl.Runtime.Rendering.RenderPipeline.AssignCameraMatrices(Prowl.Vector.Float4x4,Prowl.Vector.Float4x4)
+    name: AssignCameraMatrices
+    href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_AssignCameraMatrices_Prowl_Vector_Float4x4_Prowl_Vector_Float4x4_
+  - name: (
+  - uid: Prowl.Vector.Float4x4
+    name: Float4x4
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Prowl.Vector.Float4x4
+    name: Float4x4
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Rendering.RenderPipeline.AssignCameraMatrices(Prowl.Vector.Float4x4,Prowl.Vector.Float4x4)
+    name: AssignCameraMatrices
+    href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_AssignCameraMatrices_Prowl_Vector_Float4x4_Prowl_Vector_Float4x4_
+  - name: (
+  - uid: Prowl.Vector.Float4x4
+    name: Float4x4
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Prowl.Vector.Float4x4
+    name: Float4x4
+    isExternal: true
+  - name: )
+- uid: Prowl.Runtime.Camera.ShadowFocus
+  commentId: F:Prowl.Runtime.Camera.ShadowFocus
+  href: Prowl.Runtime.Camera.html#Prowl_Runtime_Camera_ShadowFocus
+  name: ShadowFocus
+  nameWithType: Camera.ShadowFocus
+  fullName: Prowl.Runtime.Camera.ShadowFocus
+- uid: Prowl.Runtime.Light.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
+  commentId: M:Prowl.Runtime.Light.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
+  parent: Prowl.Runtime.Light
+  isExternal: true
+  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_RenderShadows_Prowl_Runtime_Rendering_RenderPipeline_Prowl_Vector_Float3_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderable__
+  name: RenderShadows(RenderPipeline, Float3, IReadOnlyList<IRenderable>)
+  nameWithType: Light.RenderShadows(RenderPipeline, Float3, IReadOnlyList<IRenderable>)
+  fullName: Prowl.Runtime.Light.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline, Prowl.Vector.Float3, System.Collections.Generic.IReadOnlyList<Prowl.Runtime.Rendering.IRenderable>)
+  nameWithType.vb: Light.RenderShadows(RenderPipeline, Float3, IReadOnlyList(Of IRenderable))
+  fullName.vb: Prowl.Runtime.Light.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline, Prowl.Vector.Float3, System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.Rendering.IRenderable))
+  name.vb: RenderShadows(RenderPipeline, Float3, IReadOnlyList(Of IRenderable))
+  spec.csharp:
+  - uid: Prowl.Runtime.Light.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
+    name: RenderShadows
+    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_RenderShadows_Prowl_Runtime_Rendering_RenderPipeline_Prowl_Vector_Float3_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderable__
+  - name: (
+  - uid: Prowl.Runtime.Rendering.RenderPipeline
+    name: RenderPipeline
+    href: Prowl.Runtime.Rendering.RenderPipeline.html
+  - name: ','
+  - name: " "
+  - uid: Prowl.Vector.Float3
+    name: Float3
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Runtime.Rendering.IRenderable
+    name: IRenderable
+    href: Prowl.Runtime.Rendering.IRenderable.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Light.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
+    name: RenderShadows
+    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_RenderShadows_Prowl_Runtime_Rendering_RenderPipeline_Prowl_Vector_Float3_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderable__
+  - name: (
+  - uid: Prowl.Runtime.Rendering.RenderPipeline
+    name: RenderPipeline
+    href: Prowl.Runtime.Rendering.RenderPipeline.html
+  - name: ','
+  - name: " "
+  - uid: Prowl.Vector.Float3
+    name: Float3
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Rendering.IRenderable
+    name: IRenderable
+    href: Prowl.Runtime.Rendering.IRenderable.html
+  - name: )
+  - name: )
+- uid: Prowl.Runtime.PointLight.RenderShadows*
+  commentId: Overload:Prowl.Runtime.PointLight.RenderShadows
+  href: Prowl.Runtime.PointLight.html#Prowl_Runtime_PointLight_RenderShadows_Prowl_Runtime_Rendering_RenderPipeline_Prowl_Vector_Float3_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderable__
+  name: RenderShadows
+  nameWithType: PointLight.RenderShadows
+  fullName: Prowl.Runtime.PointLight.RenderShadows
+- uid: Prowl.Runtime.Rendering.RenderPipeline
+  commentId: T:Prowl.Runtime.Rendering.RenderPipeline
+  parent: Prowl.Runtime.Rendering
+  href: Prowl.Runtime.Rendering.RenderPipeline.html
+  name: RenderPipeline
+  nameWithType: RenderPipeline
+  fullName: Prowl.Runtime.Rendering.RenderPipeline
+- uid: Prowl.Vector.Float3
+  commentId: T:Prowl.Vector.Float3
+  parent: Prowl.Vector
+  isExternal: true
+  name: Float3
+  nameWithType: Float3
+  fullName: Prowl.Vector.Float3
+- uid: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable}
+  commentId: T:System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<IRenderable>
+  nameWithType: IReadOnlyList<IRenderable>
+  fullName: System.Collections.Generic.IReadOnlyList<Prowl.Runtime.Rendering.IRenderable>
+  nameWithType.vb: IReadOnlyList(Of IRenderable)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.Rendering.IRenderable)
+  name.vb: IReadOnlyList(Of IRenderable)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Runtime.Rendering.IRenderable
+    name: IRenderable
+    href: Prowl.Runtime.Rendering.IRenderable.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Rendering.IRenderable
+    name: IRenderable
+    href: Prowl.Runtime.Rendering.IRenderable.html
+  - name: )
+- uid: Prowl.Vector
+  commentId: N:Prowl.Vector
+  name: Prowl.Vector
+  nameWithType: Prowl.Vector
+  fullName: Prowl.Vector
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Runtime.Light.GetForwardLightData
+  commentId: M:Prowl.Runtime.Light.GetForwardLightData
+  parent: Prowl.Runtime.Light
+  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetForwardLightData
+  name: GetForwardLightData()
+  nameWithType: Light.GetForwardLightData()
+  fullName: Prowl.Runtime.Light.GetForwardLightData()
+  spec.csharp:
+  - uid: Prowl.Runtime.Light.GetForwardLightData
+    name: GetForwardLightData
+    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetForwardLightData
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Light.GetForwardLightData
+    name: GetForwardLightData
+    href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetForwardLightData
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.PointLight.GetForwardLightData*
+  commentId: Overload:Prowl.Runtime.PointLight.GetForwardLightData
+  href: Prowl.Runtime.PointLight.html#Prowl_Runtime_PointLight_GetForwardLightData
+  name: GetForwardLightData
+  nameWithType: PointLight.GetForwardLightData
+  fullName: Prowl.Runtime.PointLight.GetForwardLightData
+- uid: Prowl.Runtime.Rendering.ForwardLightData
+  commentId: T:Prowl.Runtime.Rendering.ForwardLightData
+  parent: Prowl.Runtime.Rendering
+  href: Prowl.Runtime.Rendering.ForwardLightData.html
+  name: ForwardLightData
+  nameWithType: ForwardLightData
+  fullName: Prowl.Runtime.Rendering.ForwardLightData

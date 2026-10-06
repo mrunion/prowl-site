@@ -6,18 +6,23 @@ items:
   parent: Prowl.Runtime
   children:
   - Prowl.Runtime.LayerMask.Clear
+  - Prowl.Runtime.LayerMask.Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
   - Prowl.Runtime.LayerMask.Equals(System.Object)
   - Prowl.Runtime.LayerMask.Everything
+  - Prowl.Runtime.LayerMask.FromMask(System.UInt32)
   - Prowl.Runtime.LayerMask.GetHashCode
-  - Prowl.Runtime.LayerMask.HasLayer(System.Byte)
-  - Prowl.Runtime.LayerMask.LayerToName(System.Byte)
+  - Prowl.Runtime.LayerMask.HasLayer(System.Int32)
+  - Prowl.Runtime.LayerMask.LayerToName(System.Int32)
   - Prowl.Runtime.LayerMask.Mask
   - Prowl.Runtime.LayerMask.NameToLayer(System.String)
   - Prowl.Runtime.LayerMask.Nothing
-  - Prowl.Runtime.LayerMask.RemoveLayer(System.Byte)
-  - Prowl.Runtime.LayerMask.SetLayer(System.Byte)
+  - Prowl.Runtime.LayerMask.RemoveLayer(System.Int32)
+  - Prowl.Runtime.LayerMask.Serialize(Prowl.Echo.EchoObject@,Prowl.Echo.SerializationContext)
+  - Prowl.Runtime.LayerMask.SetLayer(System.Int32)
   - Prowl.Runtime.LayerMask.op_BitwiseAnd(Prowl.Runtime.LayerMask,Prowl.Runtime.LayerMask)
   - Prowl.Runtime.LayerMask.op_BitwiseOr(Prowl.Runtime.LayerMask,Prowl.Runtime.LayerMask)
+  - Prowl.Runtime.LayerMask.op_Equality(Prowl.Runtime.LayerMask,Prowl.Runtime.LayerMask)
+  - Prowl.Runtime.LayerMask.op_Inequality(Prowl.Runtime.LayerMask,Prowl.Runtime.LayerMask)
   langs:
   - csharp
   - vb
@@ -28,17 +33,34 @@ items:
   source:
     remote:
       path: Prowl.Runtime/GameObject/LayerMask.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: LayerMask
     path: ../Prowl/Prowl.Runtime/GameObject/LayerMask.cs
-    startLine: 5
+    startLine: 15
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: >-
+    A struct that represents a layer mask.
+
+
+    <p></p>
+
+
+    A default-constructed mask matches <b>every</b> layer. That is why the bits stored are exclusions
+
+    rather than inclusions: a serialized field nobody has touched, or a mask left at <code>default</code>,
+
+    should let everything through rather than silently matching nothing. The serialized form is still
+
+    the inclusion mask, so masks saved before this are read back unchanged.
+  example: []
   syntax:
-    content: public struct LayerMask
-    content.vb: Public Structure LayerMask
+    content: 'public struct LayerMask : ISerializable'
+    content.vb: Public Structure LayerMask Implements ISerializable
+  implements:
+  - Prowl.Echo.ISerializable
   inheritedMembers:
   - System.ValueType.ToString
   - System.Object.Equals(System.Object,System.Object)
@@ -60,11 +82,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/GameObject/LayerMask.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: Everything
     path: ../Prowl/Prowl.Runtime/GameObject/LayerMask.cs
-    startLine: 7
+    startLine: 17
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -87,11 +109,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/GameObject/LayerMask.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: Nothing
     path: ../Prowl/Prowl.Runtime/GameObject/LayerMask.cs
-    startLine: 8
+    startLine: 18
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -114,14 +136,16 @@ items:
   source:
     remote:
       path: Prowl.Runtime/GameObject/LayerMask.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: Mask
     path: ../Prowl/Prowl.Runtime/GameObject/LayerMask.cs
-    startLine: 13
+    startLine: 24
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: The layers this mask matches, one bit per layer.
+  example: []
   syntax:
     content: public uint Mask { get; }
     parameters: []
@@ -129,6 +153,42 @@ items:
       type: System.UInt32
     content.vb: Public ReadOnly Property Mask As UInteger
   overload: Prowl.Runtime.LayerMask.Mask*
+- uid: Prowl.Runtime.LayerMask.FromMask(System.UInt32)
+  commentId: M:Prowl.Runtime.LayerMask.FromMask(System.UInt32)
+  id: FromMask(System.UInt32)
+  parent: Prowl.Runtime.LayerMask
+  langs:
+  - csharp
+  - vb
+  name: FromMask(uint)
+  nameWithType: LayerMask.FromMask(uint)
+  fullName: Prowl.Runtime.LayerMask.FromMask(uint)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/GameObject/LayerMask.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FromMask
+    path: ../Prowl/Prowl.Runtime/GameObject/LayerMask.cs
+    startLine: 27
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Builds a mask from inclusion bits, one per layer.
+  example: []
+  syntax:
+    content: public static LayerMask FromMask(uint mask)
+    parameters:
+    - id: mask
+      type: System.UInt32
+    return:
+      type: Prowl.Runtime.LayerMask
+    content.vb: Public Shared Function FromMask(mask As UInteger) As LayerMask
+  overload: Prowl.Runtime.LayerMask.FromMask*
+  nameWithType.vb: LayerMask.FromMask(UInteger)
+  fullName.vb: Prowl.Runtime.LayerMask.FromMask(UInteger)
+  name.vb: FromMask(UInteger)
 - uid: Prowl.Runtime.LayerMask.Clear
   commentId: M:Prowl.Runtime.LayerMask.Clear
   id: Clear
@@ -143,11 +203,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/GameObject/LayerMask.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: Clear
     path: ../Prowl/Prowl.Runtime/GameObject/LayerMask.cs
-    startLine: 15
+    startLine: 29
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -155,104 +215,104 @@ items:
     content: public void Clear()
     content.vb: Public Sub Clear()
   overload: Prowl.Runtime.LayerMask.Clear*
-- uid: Prowl.Runtime.LayerMask.HasLayer(System.Byte)
-  commentId: M:Prowl.Runtime.LayerMask.HasLayer(System.Byte)
-  id: HasLayer(System.Byte)
+- uid: Prowl.Runtime.LayerMask.HasLayer(System.Int32)
+  commentId: M:Prowl.Runtime.LayerMask.HasLayer(System.Int32)
+  id: HasLayer(System.Int32)
   parent: Prowl.Runtime.LayerMask
   langs:
   - csharp
   - vb
-  name: HasLayer(byte)
-  nameWithType: LayerMask.HasLayer(byte)
-  fullName: Prowl.Runtime.LayerMask.HasLayer(byte)
+  name: HasLayer(int)
+  nameWithType: LayerMask.HasLayer(int)
+  fullName: Prowl.Runtime.LayerMask.HasLayer(int)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/GameObject/LayerMask.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: HasLayer
     path: ../Prowl/Prowl.Runtime/GameObject/LayerMask.cs
-    startLine: 17
+    startLine: 33
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public bool HasLayer(byte index)
+    content: public bool HasLayer(int index)
     parameters:
     - id: index
-      type: System.Byte
+      type: System.Int32
     return:
       type: System.Boolean
-    content.vb: Public Function HasLayer(index As Byte) As Boolean
+    content.vb: Public Function HasLayer(index As Integer) As Boolean
   overload: Prowl.Runtime.LayerMask.HasLayer*
-  nameWithType.vb: LayerMask.HasLayer(Byte)
-  fullName.vb: Prowl.Runtime.LayerMask.HasLayer(Byte)
-  name.vb: HasLayer(Byte)
-- uid: Prowl.Runtime.LayerMask.SetLayer(System.Byte)
-  commentId: M:Prowl.Runtime.LayerMask.SetLayer(System.Byte)
-  id: SetLayer(System.Byte)
+  nameWithType.vb: LayerMask.HasLayer(Integer)
+  fullName.vb: Prowl.Runtime.LayerMask.HasLayer(Integer)
+  name.vb: HasLayer(Integer)
+- uid: Prowl.Runtime.LayerMask.SetLayer(System.Int32)
+  commentId: M:Prowl.Runtime.LayerMask.SetLayer(System.Int32)
+  id: SetLayer(System.Int32)
   parent: Prowl.Runtime.LayerMask
   langs:
   - csharp
   - vb
-  name: SetLayer(byte)
-  nameWithType: LayerMask.SetLayer(byte)
-  fullName: Prowl.Runtime.LayerMask.SetLayer(byte)
+  name: SetLayer(int)
+  nameWithType: LayerMask.SetLayer(int)
+  fullName: Prowl.Runtime.LayerMask.SetLayer(int)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/GameObject/LayerMask.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: SetLayer
     path: ../Prowl/Prowl.Runtime/GameObject/LayerMask.cs
-    startLine: 18
+    startLine: 34
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public void SetLayer(byte index)
+    content: public void SetLayer(int index)
     parameters:
     - id: index
-      type: System.Byte
-    content.vb: Public Sub SetLayer(index As Byte)
+      type: System.Int32
+    content.vb: Public Sub SetLayer(index As Integer)
   overload: Prowl.Runtime.LayerMask.SetLayer*
-  nameWithType.vb: LayerMask.SetLayer(Byte)
-  fullName.vb: Prowl.Runtime.LayerMask.SetLayer(Byte)
-  name.vb: SetLayer(Byte)
-- uid: Prowl.Runtime.LayerMask.RemoveLayer(System.Byte)
-  commentId: M:Prowl.Runtime.LayerMask.RemoveLayer(System.Byte)
-  id: RemoveLayer(System.Byte)
+  nameWithType.vb: LayerMask.SetLayer(Integer)
+  fullName.vb: Prowl.Runtime.LayerMask.SetLayer(Integer)
+  name.vb: SetLayer(Integer)
+- uid: Prowl.Runtime.LayerMask.RemoveLayer(System.Int32)
+  commentId: M:Prowl.Runtime.LayerMask.RemoveLayer(System.Int32)
+  id: RemoveLayer(System.Int32)
   parent: Prowl.Runtime.LayerMask
   langs:
   - csharp
   - vb
-  name: RemoveLayer(byte)
-  nameWithType: LayerMask.RemoveLayer(byte)
-  fullName: Prowl.Runtime.LayerMask.RemoveLayer(byte)
+  name: RemoveLayer(int)
+  nameWithType: LayerMask.RemoveLayer(int)
+  fullName: Prowl.Runtime.LayerMask.RemoveLayer(int)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/GameObject/LayerMask.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: RemoveLayer
     path: ../Prowl/Prowl.Runtime/GameObject/LayerMask.cs
-    startLine: 19
+    startLine: 35
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public void RemoveLayer(byte index)
+    content: public void RemoveLayer(int index)
     parameters:
     - id: index
-      type: System.Byte
-    content.vb: Public Sub RemoveLayer(index As Byte)
+      type: System.Int32
+    content.vb: Public Sub RemoveLayer(index As Integer)
   overload: Prowl.Runtime.LayerMask.RemoveLayer*
-  nameWithType.vb: LayerMask.RemoveLayer(Byte)
-  fullName.vb: Prowl.Runtime.LayerMask.RemoveLayer(Byte)
-  name.vb: RemoveLayer(Byte)
+  nameWithType.vb: LayerMask.RemoveLayer(Integer)
+  fullName.vb: Prowl.Runtime.LayerMask.RemoveLayer(Integer)
+  name.vb: RemoveLayer(Integer)
 - uid: Prowl.Runtime.LayerMask.op_BitwiseOr(Prowl.Runtime.LayerMask,Prowl.Runtime.LayerMask)
   commentId: M:Prowl.Runtime.LayerMask.op_BitwiseOr(Prowl.Runtime.LayerMask,Prowl.Runtime.LayerMask)
   id: op_BitwiseOr(Prowl.Runtime.LayerMask,Prowl.Runtime.LayerMask)
@@ -267,11 +327,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/GameObject/LayerMask.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: op_BitwiseOr
     path: ../Prowl/Prowl.Runtime/GameObject/LayerMask.cs
-    startLine: 20
+    startLine: 37
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -303,11 +363,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/GameObject/LayerMask.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: op_BitwiseAnd
     path: ../Prowl/Prowl.Runtime/GameObject/LayerMask.cs
-    startLine: 21
+    startLine: 38
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -339,11 +399,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/GameObject/LayerMask.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: Equals
     path: ../Prowl/Prowl.Runtime/GameObject/LayerMask.cs
-    startLine: 22
+    startLine: 40
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -378,11 +438,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/GameObject/LayerMask.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: GetHashCode
     path: ../Prowl/Prowl.Runtime/GameObject/LayerMask.cs
-    startLine: 28
+    startLine: 46
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -396,40 +456,183 @@ items:
     content.vb: Public Overrides Function GetHashCode() As Integer
   overridden: System.ValueType.GetHashCode
   overload: Prowl.Runtime.LayerMask.GetHashCode*
-- uid: Prowl.Runtime.LayerMask.LayerToName(System.Byte)
-  commentId: M:Prowl.Runtime.LayerMask.LayerToName(System.Byte)
-  id: LayerToName(System.Byte)
+- uid: Prowl.Runtime.LayerMask.op_Equality(Prowl.Runtime.LayerMask,Prowl.Runtime.LayerMask)
+  commentId: M:Prowl.Runtime.LayerMask.op_Equality(Prowl.Runtime.LayerMask,Prowl.Runtime.LayerMask)
+  id: op_Equality(Prowl.Runtime.LayerMask,Prowl.Runtime.LayerMask)
   parent: Prowl.Runtime.LayerMask
   langs:
   - csharp
   - vb
-  name: LayerToName(byte)
-  nameWithType: LayerMask.LayerToName(byte)
-  fullName: Prowl.Runtime.LayerMask.LayerToName(byte)
-  type: Method
+  name: operator ==(LayerMask, LayerMask)
+  nameWithType: LayerMask.operator ==(LayerMask, LayerMask)
+  fullName: Prowl.Runtime.LayerMask.operator ==(Prowl.Runtime.LayerMask, Prowl.Runtime.LayerMask)
+  type: Operator
   source:
     remote:
       path: Prowl.Runtime/GameObject/LayerMask.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: LayerToName
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: op_Equality
     path: ../Prowl/Prowl.Runtime/GameObject/LayerMask.cs
-    startLine: 30
+    startLine: 48
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static string LayerToName(byte index)
+    content: public static bool operator ==(LayerMask left, LayerMask right)
+    parameters:
+    - id: left
+      type: Prowl.Runtime.LayerMask
+    - id: right
+      type: Prowl.Runtime.LayerMask
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator =(left As LayerMask, right As LayerMask) As Boolean
+  overload: Prowl.Runtime.LayerMask.op_Equality*
+  nameWithType.vb: LayerMask.=(LayerMask, LayerMask)
+  fullName.vb: Prowl.Runtime.LayerMask.=(Prowl.Runtime.LayerMask, Prowl.Runtime.LayerMask)
+  name.vb: =(LayerMask, LayerMask)
+- uid: Prowl.Runtime.LayerMask.op_Inequality(Prowl.Runtime.LayerMask,Prowl.Runtime.LayerMask)
+  commentId: M:Prowl.Runtime.LayerMask.op_Inequality(Prowl.Runtime.LayerMask,Prowl.Runtime.LayerMask)
+  id: op_Inequality(Prowl.Runtime.LayerMask,Prowl.Runtime.LayerMask)
+  parent: Prowl.Runtime.LayerMask
+  langs:
+  - csharp
+  - vb
+  name: operator !=(LayerMask, LayerMask)
+  nameWithType: LayerMask.operator !=(LayerMask, LayerMask)
+  fullName: Prowl.Runtime.LayerMask.operator !=(Prowl.Runtime.LayerMask, Prowl.Runtime.LayerMask)
+  type: Operator
+  source:
+    remote:
+      path: Prowl.Runtime/GameObject/LayerMask.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: op_Inequality
+    path: ../Prowl/Prowl.Runtime/GameObject/LayerMask.cs
+    startLine: 49
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static bool operator !=(LayerMask left, LayerMask right)
+    parameters:
+    - id: left
+      type: Prowl.Runtime.LayerMask
+    - id: right
+      type: Prowl.Runtime.LayerMask
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator <>(left As LayerMask, right As LayerMask) As Boolean
+  overload: Prowl.Runtime.LayerMask.op_Inequality*
+  nameWithType.vb: LayerMask.<>(LayerMask, LayerMask)
+  fullName.vb: Prowl.Runtime.LayerMask.<>(Prowl.Runtime.LayerMask, Prowl.Runtime.LayerMask)
+  name.vb: <>(LayerMask, LayerMask)
+- uid: Prowl.Runtime.LayerMask.Serialize(Prowl.Echo.EchoObject@,Prowl.Echo.SerializationContext)
+  commentId: M:Prowl.Runtime.LayerMask.Serialize(Prowl.Echo.EchoObject@,Prowl.Echo.SerializationContext)
+  id: Serialize(Prowl.Echo.EchoObject@,Prowl.Echo.SerializationContext)
+  parent: Prowl.Runtime.LayerMask
+  langs:
+  - csharp
+  - vb
+  name: Serialize(ref EchoObject, SerializationContext)
+  nameWithType: LayerMask.Serialize(ref EchoObject, SerializationContext)
+  fullName: Prowl.Runtime.LayerMask.Serialize(ref Prowl.Echo.EchoObject, Prowl.Echo.SerializationContext)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/GameObject/LayerMask.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Serialize
+    path: ../Prowl/Prowl.Runtime/GameObject/LayerMask.cs
+    startLine: 53
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  example: []
+  syntax:
+    content: public void Serialize(ref EchoObject value, SerializationContext ctx)
+    parameters:
+    - id: value
+      type: Prowl.Echo.EchoObject
+    - id: ctx
+      type: Prowl.Echo.SerializationContext
+    content.vb: Public Sub Serialize(value As EchoObject, ctx As SerializationContext)
+  overload: Prowl.Runtime.LayerMask.Serialize*
+  implements:
+  - Prowl.Echo.ISerializable.Serialize(Prowl.Echo.EchoObject@,Prowl.Echo.SerializationContext)
+  nameWithType.vb: LayerMask.Serialize(EchoObject, SerializationContext)
+  fullName.vb: Prowl.Runtime.LayerMask.Serialize(Prowl.Echo.EchoObject, Prowl.Echo.SerializationContext)
+  name.vb: Serialize(EchoObject, SerializationContext)
+- uid: Prowl.Runtime.LayerMask.Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
+  commentId: M:Prowl.Runtime.LayerMask.Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
+  id: Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
+  parent: Prowl.Runtime.LayerMask
+  langs:
+  - csharp
+  - vb
+  name: Deserialize(EchoObject, SerializationContext)
+  nameWithType: LayerMask.Deserialize(EchoObject, SerializationContext)
+  fullName: Prowl.Runtime.LayerMask.Deserialize(Prowl.Echo.EchoObject, Prowl.Echo.SerializationContext)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/GameObject/LayerMask.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Deserialize
+    path: ../Prowl/Prowl.Runtime/GameObject/LayerMask.cs
+    startLine: 55
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  example: []
+  syntax:
+    content: public void Deserialize(EchoObject value, SerializationContext ctx)
+    parameters:
+    - id: value
+      type: Prowl.Echo.EchoObject
+    - id: ctx
+      type: Prowl.Echo.SerializationContext
+    content.vb: Public Sub Deserialize(value As EchoObject, ctx As SerializationContext)
+  overload: Prowl.Runtime.LayerMask.Deserialize*
+  implements:
+  - Prowl.Echo.ISerializable.Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
+- uid: Prowl.Runtime.LayerMask.LayerToName(System.Int32)
+  commentId: M:Prowl.Runtime.LayerMask.LayerToName(System.Int32)
+  id: LayerToName(System.Int32)
+  parent: Prowl.Runtime.LayerMask
+  langs:
+  - csharp
+  - vb
+  name: LayerToName(int)
+  nameWithType: LayerMask.LayerToName(int)
+  fullName: Prowl.Runtime.LayerMask.LayerToName(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/GameObject/LayerMask.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LayerToName
+    path: ../Prowl/Prowl.Runtime/GameObject/LayerMask.cs
+    startLine: 58
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static string LayerToName(int index)
     parameters:
     - id: index
-      type: System.Byte
+      type: System.Int32
     return:
       type: System.String
-    content.vb: Public Shared Function LayerToName(index As Byte) As String
+    content.vb: Public Shared Function LayerToName(index As Integer) As String
   overload: Prowl.Runtime.LayerMask.LayerToName*
-  nameWithType.vb: LayerMask.LayerToName(Byte)
-  fullName.vb: Prowl.Runtime.LayerMask.LayerToName(Byte)
-  name.vb: LayerToName(Byte)
+  nameWithType.vb: LayerMask.LayerToName(Integer)
+  fullName.vb: Prowl.Runtime.LayerMask.LayerToName(Integer)
+  name.vb: LayerToName(Integer)
 - uid: Prowl.Runtime.LayerMask.NameToLayer(System.String)
   commentId: M:Prowl.Runtime.LayerMask.NameToLayer(System.String)
   id: NameToLayer(System.String)
@@ -444,22 +647,22 @@ items:
   source:
     remote:
       path: Prowl.Runtime/GameObject/LayerMask.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: NameToLayer
     path: ../Prowl/Prowl.Runtime/GameObject/LayerMask.cs
-    startLine: 31
+    startLine: 59
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static byte NameToLayer(string name)
+    content: public static int NameToLayer(string name)
     parameters:
     - id: name
       type: System.String
     return:
-      type: System.Byte
-    content.vb: Public Shared Function NameToLayer(name As String) As Byte
+      type: System.Int32
+    content.vb: Public Shared Function NameToLayer(name As String) As Integer
   overload: Prowl.Runtime.LayerMask.NameToLayer*
   nameWithType.vb: LayerMask.NameToLayer(String)
   fullName.vb: Prowl.Runtime.LayerMask.NameToLayer(String)
@@ -467,26 +670,28 @@ items:
 references:
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
-  href: Prowl.html
   name: Prowl.Runtime
   nameWithType: Prowl.Runtime
   fullName: Prowl.Runtime
   spec.csharp:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
   spec.vb:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
+- uid: Prowl.Echo.ISerializable
+  commentId: T:Prowl.Echo.ISerializable
+  parent: Prowl.Echo
+  isExternal: true
+  name: ISerializable
+  nameWithType: ISerializable
+  fullName: Prowl.Echo.ISerializable
 - uid: System.ValueType.ToString
   commentId: M:System.ValueType.ToString
   parent: System.ValueType
@@ -654,6 +859,23 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
+- uid: Prowl.Echo
+  commentId: N:Prowl.Echo
+  name: Prowl.Echo
+  nameWithType: Prowl.Echo
+  fullName: Prowl.Echo
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
 - uid: System.ValueType
   commentId: T:System.ValueType
   parent: System
@@ -741,6 +963,12 @@ references:
   nameWithType.vb: UInteger
   fullName.vb: UInteger
   name.vb: UInteger
+- uid: Prowl.Runtime.LayerMask.FromMask*
+  commentId: Overload:Prowl.Runtime.LayerMask.FromMask
+  href: Prowl.Runtime.LayerMask.html#Prowl_Runtime_LayerMask_FromMask_System_UInt32_
+  name: FromMask
+  nameWithType: LayerMask.FromMask
+  fullName: Prowl.Runtime.LayerMask.FromMask
 - uid: Prowl.Runtime.LayerMask.Clear*
   commentId: Overload:Prowl.Runtime.LayerMask.Clear
   href: Prowl.Runtime.LayerMask.html#Prowl_Runtime_LayerMask_Clear
@@ -749,21 +977,21 @@ references:
   fullName: Prowl.Runtime.LayerMask.Clear
 - uid: Prowl.Runtime.LayerMask.HasLayer*
   commentId: Overload:Prowl.Runtime.LayerMask.HasLayer
-  href: Prowl.Runtime.LayerMask.html#Prowl_Runtime_LayerMask_HasLayer_System_Byte_
+  href: Prowl.Runtime.LayerMask.html#Prowl_Runtime_LayerMask_HasLayer_System_Int32_
   name: HasLayer
   nameWithType: LayerMask.HasLayer
   fullName: Prowl.Runtime.LayerMask.HasLayer
-- uid: System.Byte
-  commentId: T:System.Byte
+- uid: System.Int32
+  commentId: T:System.Int32
   parent: System
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.byte
-  name: byte
-  nameWithType: byte
-  fullName: byte
-  nameWithType.vb: Byte
-  fullName.vb: Byte
-  name.vb: Byte
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -777,13 +1005,13 @@ references:
   name.vb: Boolean
 - uid: Prowl.Runtime.LayerMask.SetLayer*
   commentId: Overload:Prowl.Runtime.LayerMask.SetLayer
-  href: Prowl.Runtime.LayerMask.html#Prowl_Runtime_LayerMask_SetLayer_System_Byte_
+  href: Prowl.Runtime.LayerMask.html#Prowl_Runtime_LayerMask_SetLayer_System_Int32_
   name: SetLayer
   nameWithType: LayerMask.SetLayer
   fullName: Prowl.Runtime.LayerMask.SetLayer
 - uid: Prowl.Runtime.LayerMask.RemoveLayer*
   commentId: Overload:Prowl.Runtime.LayerMask.RemoveLayer
-  href: Prowl.Runtime.LayerMask.html#Prowl_Runtime_LayerMask_RemoveLayer_System_Byte_
+  href: Prowl.Runtime.LayerMask.html#Prowl_Runtime_LayerMask_RemoveLayer_System_Int32_
   name: RemoveLayer
   nameWithType: LayerMask.RemoveLayer
   fullName: Prowl.Runtime.LayerMask.RemoveLayer
@@ -884,20 +1112,140 @@ references:
   name: GetHashCode
   nameWithType: LayerMask.GetHashCode
   fullName: Prowl.Runtime.LayerMask.GetHashCode
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
+- uid: Prowl.Runtime.LayerMask.op_Equality*
+  commentId: Overload:Prowl.Runtime.LayerMask.op_Equality
+  href: Prowl.Runtime.LayerMask.html#Prowl_Runtime_LayerMask_op_Equality_Prowl_Runtime_LayerMask_Prowl_Runtime_LayerMask_
+  name: operator ==
+  nameWithType: LayerMask.operator ==
+  fullName: Prowl.Runtime.LayerMask.operator ==
+  nameWithType.vb: LayerMask.=
+  fullName.vb: Prowl.Runtime.LayerMask.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: Prowl.Runtime.LayerMask.op_Equality*
+    name: ==
+    href: Prowl.Runtime.LayerMask.html#Prowl_Runtime_LayerMask_op_Equality_Prowl_Runtime_LayerMask_Prowl_Runtime_LayerMask_
+- uid: Prowl.Runtime.LayerMask.op_Inequality*
+  commentId: Overload:Prowl.Runtime.LayerMask.op_Inequality
+  href: Prowl.Runtime.LayerMask.html#Prowl_Runtime_LayerMask_op_Inequality_Prowl_Runtime_LayerMask_Prowl_Runtime_LayerMask_
+  name: operator !=
+  nameWithType: LayerMask.operator !=
+  fullName: Prowl.Runtime.LayerMask.operator !=
+  nameWithType.vb: LayerMask.<>
+  fullName.vb: Prowl.Runtime.LayerMask.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: Prowl.Runtime.LayerMask.op_Inequality*
+    name: '!='
+    href: Prowl.Runtime.LayerMask.html#Prowl_Runtime_LayerMask_op_Inequality_Prowl_Runtime_LayerMask_Prowl_Runtime_LayerMask_
+- uid: Prowl.Runtime.LayerMask.Serialize*
+  commentId: Overload:Prowl.Runtime.LayerMask.Serialize
+  href: Prowl.Runtime.LayerMask.html#Prowl_Runtime_LayerMask_Serialize_Prowl_Echo_EchoObject__Prowl_Echo_SerializationContext_
+  name: Serialize
+  nameWithType: LayerMask.Serialize
+  fullName: Prowl.Runtime.LayerMask.Serialize
+- uid: Prowl.Echo.ISerializable.Serialize(Prowl.Echo.EchoObject@,Prowl.Echo.SerializationContext)
+  commentId: M:Prowl.Echo.ISerializable.Serialize(Prowl.Echo.EchoObject@,Prowl.Echo.SerializationContext)
+  parent: Prowl.Echo.ISerializable
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
-  name: int
-  nameWithType: int
-  fullName: int
-  nameWithType.vb: Integer
-  fullName.vb: Integer
-  name.vb: Integer
+  name: Serialize(ref EchoObject, SerializationContext)
+  nameWithType: ISerializable.Serialize(ref EchoObject, SerializationContext)
+  fullName: Prowl.Echo.ISerializable.Serialize(ref Prowl.Echo.EchoObject, Prowl.Echo.SerializationContext)
+  nameWithType.vb: ISerializable.Serialize(EchoObject, SerializationContext)
+  fullName.vb: Prowl.Echo.ISerializable.Serialize(Prowl.Echo.EchoObject, Prowl.Echo.SerializationContext)
+  name.vb: Serialize(EchoObject, SerializationContext)
+  spec.csharp:
+  - uid: Prowl.Echo.ISerializable.Serialize(Prowl.Echo.EchoObject@,Prowl.Echo.SerializationContext)
+    name: Serialize
+    isExternal: true
+  - name: (
+  - name: ref
+  - name: " "
+  - uid: Prowl.Echo.EchoObject
+    name: EchoObject
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Prowl.Echo.SerializationContext
+    name: SerializationContext
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Prowl.Echo.ISerializable.Serialize(Prowl.Echo.EchoObject@,Prowl.Echo.SerializationContext)
+    name: Serialize
+    isExternal: true
+  - name: (
+  - uid: Prowl.Echo.EchoObject
+    name: EchoObject
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Prowl.Echo.SerializationContext
+    name: SerializationContext
+    isExternal: true
+  - name: )
+- uid: Prowl.Echo.EchoObject
+  commentId: T:Prowl.Echo.EchoObject
+  parent: Prowl.Echo
+  isExternal: true
+  name: EchoObject
+  nameWithType: EchoObject
+  fullName: Prowl.Echo.EchoObject
+- uid: Prowl.Echo.SerializationContext
+  commentId: T:Prowl.Echo.SerializationContext
+  parent: Prowl.Echo
+  isExternal: true
+  name: SerializationContext
+  nameWithType: SerializationContext
+  fullName: Prowl.Echo.SerializationContext
+- uid: Prowl.Runtime.LayerMask.Deserialize*
+  commentId: Overload:Prowl.Runtime.LayerMask.Deserialize
+  href: Prowl.Runtime.LayerMask.html#Prowl_Runtime_LayerMask_Deserialize_Prowl_Echo_EchoObject_Prowl_Echo_SerializationContext_
+  name: Deserialize
+  nameWithType: LayerMask.Deserialize
+  fullName: Prowl.Runtime.LayerMask.Deserialize
+- uid: Prowl.Echo.ISerializable.Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
+  commentId: M:Prowl.Echo.ISerializable.Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
+  parent: Prowl.Echo.ISerializable
+  isExternal: true
+  name: Deserialize(EchoObject, SerializationContext)
+  nameWithType: ISerializable.Deserialize(EchoObject, SerializationContext)
+  fullName: Prowl.Echo.ISerializable.Deserialize(Prowl.Echo.EchoObject, Prowl.Echo.SerializationContext)
+  spec.csharp:
+  - uid: Prowl.Echo.ISerializable.Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
+    name: Deserialize
+    isExternal: true
+  - name: (
+  - uid: Prowl.Echo.EchoObject
+    name: EchoObject
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Prowl.Echo.SerializationContext
+    name: SerializationContext
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Prowl.Echo.ISerializable.Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
+    name: Deserialize
+    isExternal: true
+  - name: (
+  - uid: Prowl.Echo.EchoObject
+    name: EchoObject
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Prowl.Echo.SerializationContext
+    name: SerializationContext
+    isExternal: true
+  - name: )
 - uid: Prowl.Runtime.LayerMask.LayerToName*
   commentId: Overload:Prowl.Runtime.LayerMask.LayerToName
-  href: Prowl.Runtime.LayerMask.html#Prowl_Runtime_LayerMask_LayerToName_System_Byte_
+  href: Prowl.Runtime.LayerMask.html#Prowl_Runtime_LayerMask_LayerToName_System_Int32_
   name: LayerToName
   nameWithType: LayerMask.LayerToName
   fullName: Prowl.Runtime.LayerMask.LayerToName

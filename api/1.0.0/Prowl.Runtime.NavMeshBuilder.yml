@@ -1,0 +1,857 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.NavMeshBuilder
+  commentId: T:Prowl.Runtime.NavMeshBuilder
+  id: NavMeshBuilder
+  parent: Prowl.Runtime
+  children:
+  - Prowl.Runtime.NavMeshBuilder.Build(Prowl.Runtime.NavMeshBuildSettings,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshGeometrySource},System.Int32,System.Int32,System.Threading.CancellationToken,System.Nullable{Prowl.Vector.AABB},System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshAreaVolume},System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshLinkSource})
+  - Prowl.Runtime.NavMeshBuilder.BuildTilesInBounds(Prowl.Runtime.NavMeshData,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshGeometrySource},Prowl.Vector.Float3,Prowl.Vector.Float3,System.Int32,System.Threading.CancellationToken,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshAreaVolume})
+  langs:
+  - csharp
+  - vb
+  name: NavMeshBuilder
+  nameWithType: NavMeshBuilder
+  fullName: Prowl.Runtime.NavMeshBuilder
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshBuilder.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NavMeshBuilder
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshBuilder.cs
+    startLine: 23
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Builds a <xref href="Prowl.Runtime.NavMeshData" data-throw-if-not-resolved="false"></xref> from collected geometry. Pure CPU work over an
+
+    already-flattened triangle soup — no Transform or GameObject access — so it is safe to run
+
+    on a background thread once the sources have been collected on the main thread.
+
+    Navmeshes are always built tiled so they can be partially rebuilt later
+
+    (see <code>NavMeshSurface.RebuildTiles</code>).
+  example: []
+  syntax:
+    content: public static class NavMeshBuilder
+    content.vb: Public Module NavMeshBuilder
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Prowl.Runtime.NavMeshBuilder.Build(Prowl.Runtime.NavMeshBuildSettings,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshGeometrySource},System.Int32,System.Int32,System.Threading.CancellationToken,System.Nullable{Prowl.Vector.AABB},System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshAreaVolume},System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshLinkSource})
+  commentId: M:Prowl.Runtime.NavMeshBuilder.Build(Prowl.Runtime.NavMeshBuildSettings,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshGeometrySource},System.Int32,System.Int32,System.Threading.CancellationToken,System.Nullable{Prowl.Vector.AABB},System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshAreaVolume},System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshLinkSource})
+  id: Build(Prowl.Runtime.NavMeshBuildSettings,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshGeometrySource},System.Int32,System.Int32,System.Threading.CancellationToken,System.Nullable{Prowl.Vector.AABB},System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshAreaVolume},System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshLinkSource})
+  parent: Prowl.Runtime.NavMeshBuilder
+  langs:
+  - csharp
+  - vb
+  name: Build(NavMeshBuildSettings, IReadOnlyList<NavMeshGeometrySource>, int, int, CancellationToken, AABB?, IReadOnlyList<NavMeshAreaVolume>?, IReadOnlyList<NavMeshLinkSource>?)
+  nameWithType: NavMeshBuilder.Build(NavMeshBuildSettings, IReadOnlyList<NavMeshGeometrySource>, int, int, CancellationToken, AABB?, IReadOnlyList<NavMeshAreaVolume>?, IReadOnlyList<NavMeshLinkSource>?)
+  fullName: Prowl.Runtime.NavMeshBuilder.Build(Prowl.Runtime.NavMeshBuildSettings, System.Collections.Generic.IReadOnlyList<Prowl.Runtime.NavMeshGeometrySource>, int, int, System.Threading.CancellationToken, Prowl.Vector.AABB?, System.Collections.Generic.IReadOnlyList<Prowl.Runtime.NavMeshAreaVolume>?, System.Collections.Generic.IReadOnlyList<Prowl.Runtime.NavMeshLinkSource>?)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshBuilder.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Build
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshBuilder.cs
+    startLine: 41
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Build a complete navmesh from geometry sources. Returns null when nothing walkable was
+
+    produced (no geometry, all down-facing, cancelled) — never an empty NavMeshData.
+  example: []
+  syntax:
+    content: public static NavMeshData? Build(NavMeshBuildSettings settings, IReadOnlyList<NavMeshGeometrySource> sources, int defaultArea = 0, int threads = 0, CancellationToken cancellation = default, AABB? worldBounds = null, IReadOnlyList<NavMeshAreaVolume>? volumes = null, IReadOnlyList<NavMeshLinkSource>? links = null)
+    parameters:
+    - id: settings
+      type: Prowl.Runtime.NavMeshBuildSettings
+      description: Agent envelope + voxelization parameters. Snapshotted into the result.
+    - id: sources
+      type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshGeometrySource}
+      description: Collected geometry. Vertices are transformed by each source's matrix during flattening.
+    - id: defaultArea
+      type: System.Int32
+      description: Area for sources that don't specify one (see <xref href="Prowl.Runtime.NavMeshAreas" data-throw-if-not-resolved="false"></xref>).
+    - id: threads
+      type: System.Int32
+      description: Worker threads for tile building. 0 or 1 builds single-threaded (deterministic tile order).
+    - id: cancellation
+      type: System.Threading.CancellationToken
+      description: Cancels between tiles; a cancelled build returns null.
+    - id: worldBounds
+      type: System.Nullable{Prowl.Vector.AABB}
+      description: >-
+        Explicit XZ extent for the tile grid. Size the grid from this rather
+            than from the geometry so <code>RebuildTiles</code> can add tiles anywhere inside it later. The
+            vertical range still unions with the geometry.
+    - id: volumes
+      type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshAreaVolume}
+      description: >-
+        Convex area volumes stamped over the rasterized geometry. They never
+            create walkable surface; a Not Walkable volume erases it.
+    - id: links
+      type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshLinkSource}
+      description: >-
+        Off-mesh connections, placed in the tile containing their start point and
+            re-injected as each tile is contoured — runtime tiles rebuild from geometry-only layers.
+    return:
+      type: Prowl.Runtime.NavMeshData
+    content.vb: Public Shared Function Build(settings As NavMeshBuildSettings, sources As IReadOnlyList(Of NavMeshGeometrySource), defaultArea As Integer = 0, threads As Integer = 0, cancellation As CancellationToken = Nothing, worldBounds As AABB? = Nothing, volumes As IReadOnlyList(Of NavMeshAreaVolume) = Nothing, links As IReadOnlyList(Of NavMeshLinkSource) = Nothing) As NavMeshData
+  overload: Prowl.Runtime.NavMeshBuilder.Build*
+  nameWithType.vb: NavMeshBuilder.Build(NavMeshBuildSettings, IReadOnlyList(Of NavMeshGeometrySource), Integer, Integer, CancellationToken, AABB?, IReadOnlyList(Of NavMeshAreaVolume), IReadOnlyList(Of NavMeshLinkSource))
+  fullName.vb: Prowl.Runtime.NavMeshBuilder.Build(Prowl.Runtime.NavMeshBuildSettings, System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.NavMeshGeometrySource), Integer, Integer, System.Threading.CancellationToken, Prowl.Vector.AABB?, System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.NavMeshAreaVolume), System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.NavMeshLinkSource))
+  name.vb: Build(NavMeshBuildSettings, IReadOnlyList(Of NavMeshGeometrySource), Integer, Integer, CancellationToken, AABB?, IReadOnlyList(Of NavMeshAreaVolume), IReadOnlyList(Of NavMeshLinkSource))
+- uid: Prowl.Runtime.NavMeshBuilder.BuildTilesInBounds(Prowl.Runtime.NavMeshData,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshGeometrySource},Prowl.Vector.Float3,Prowl.Vector.Float3,System.Int32,System.Threading.CancellationToken,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshAreaVolume})
+  commentId: M:Prowl.Runtime.NavMeshBuilder.BuildTilesInBounds(Prowl.Runtime.NavMeshData,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshGeometrySource},Prowl.Vector.Float3,Prowl.Vector.Float3,System.Int32,System.Threading.CancellationToken,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshAreaVolume})
+  id: BuildTilesInBounds(Prowl.Runtime.NavMeshData,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshGeometrySource},Prowl.Vector.Float3,Prowl.Vector.Float3,System.Int32,System.Threading.CancellationToken,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshAreaVolume})
+  parent: Prowl.Runtime.NavMeshBuilder
+  langs:
+  - csharp
+  - vb
+  name: BuildTilesInBounds(NavMeshData, IReadOnlyList<NavMeshGeometrySource>, Float3, Float3, int, CancellationToken, IReadOnlyList<NavMeshAreaVolume>?)
+  nameWithType: NavMeshBuilder.BuildTilesInBounds(NavMeshData, IReadOnlyList<NavMeshGeometrySource>, Float3, Float3, int, CancellationToken, IReadOnlyList<NavMeshAreaVolume>?)
+  fullName: Prowl.Runtime.NavMeshBuilder.BuildTilesInBounds(Prowl.Runtime.NavMeshData, System.Collections.Generic.IReadOnlyList<Prowl.Runtime.NavMeshGeometrySource>, Prowl.Vector.Float3, Prowl.Vector.Float3, int, System.Threading.CancellationToken, System.Collections.Generic.IReadOnlyList<Prowl.Runtime.NavMeshAreaVolume>?)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshBuilder.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: BuildTilesInBounds
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshBuilder.cs
+    startLine: 161
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Rebuild the compressed layers of the tiles intersecting
+
+    <code class="paramref">worldMin</code>..<code class="paramref">worldMax</code> against fresh geometry, keeping
+
+    the original bake's tile grid. A region entirely outside the baked bounds is a no-op, since
+
+    growing the bounds needs a full rebuild. Returns one entry per affected tile; an empty
+
+    layer list means the tile is now empty. Apply with <xref href="Prowl.Runtime.NavMeshSurface.ApplyRebuiltTiles(System.Collections.Generic.IReadOnlyList%7bProwl.Runtime.NavMeshTileRebuild%7d)" data-throw-if-not-resolved="false"></xref>,
+
+    which refreshes obstacle state so existing carves re-apply to the regenerated tiles.
+
+
+    <p></p>
+
+
+    XZ anchors to the ORIGINAL bake bounds, never the current geometry, or tile (0,0) shifts and
+
+    every tile misaligns against the live navmesh. Y follows the current geometry because Recast
+
+    clips spans to the heightfield's vertical range.
+  example: []
+  syntax:
+    content: public static List<NavMeshTileRebuild> BuildTilesInBounds(NavMeshData data, IReadOnlyList<NavMeshGeometrySource> sources, Float3 worldMin, Float3 worldMax, int defaultArea = 0, CancellationToken cancellation = default, IReadOnlyList<NavMeshAreaVolume>? volumes = null)
+    parameters:
+    - id: data
+      type: Prowl.Runtime.NavMeshData
+    - id: sources
+      type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshGeometrySource}
+    - id: worldMin
+      type: Prowl.Vector.Float3
+    - id: worldMax
+      type: Prowl.Vector.Float3
+    - id: defaultArea
+      type: System.Int32
+    - id: cancellation
+      type: System.Threading.CancellationToken
+    - id: volumes
+      type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshAreaVolume}
+    return:
+      type: System.Collections.Generic.List{Prowl.Runtime.NavMeshTileRebuild}
+    content.vb: Public Shared Function BuildTilesInBounds(data As NavMeshData, sources As IReadOnlyList(Of NavMeshGeometrySource), worldMin As Float3, worldMax As Float3, defaultArea As Integer = 0, cancellation As CancellationToken = Nothing, volumes As IReadOnlyList(Of NavMeshAreaVolume) = Nothing) As List(Of NavMeshTileRebuild)
+  overload: Prowl.Runtime.NavMeshBuilder.BuildTilesInBounds*
+  nameWithType.vb: NavMeshBuilder.BuildTilesInBounds(NavMeshData, IReadOnlyList(Of NavMeshGeometrySource), Float3, Float3, Integer, CancellationToken, IReadOnlyList(Of NavMeshAreaVolume))
+  fullName.vb: Prowl.Runtime.NavMeshBuilder.BuildTilesInBounds(Prowl.Runtime.NavMeshData, System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.NavMeshGeometrySource), Prowl.Vector.Float3, Prowl.Vector.Float3, Integer, System.Threading.CancellationToken, System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.NavMeshAreaVolume))
+  name.vb: BuildTilesInBounds(NavMeshData, IReadOnlyList(Of NavMeshGeometrySource), Float3, Float3, Integer, CancellationToken, IReadOnlyList(Of NavMeshAreaVolume))
+references:
+- uid: Prowl.Runtime.NavMeshData
+  commentId: T:Prowl.Runtime.NavMeshData
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.NavMeshData.html
+  name: NavMeshData
+  nameWithType: NavMeshData
+  fullName: Prowl.Runtime.NavMeshData
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.NavMeshAreas
+  commentId: T:Prowl.Runtime.NavMeshAreas
+  href: Prowl.Runtime.NavMeshAreas.html
+  name: NavMeshAreas
+  nameWithType: NavMeshAreas
+  fullName: Prowl.Runtime.NavMeshAreas
+- uid: Prowl.Runtime.NavMeshBuilder.Build*
+  commentId: Overload:Prowl.Runtime.NavMeshBuilder.Build
+  href: Prowl.Runtime.NavMeshBuilder.html#Prowl_Runtime_NavMeshBuilder_Build_Prowl_Runtime_NavMeshBuildSettings_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_NavMeshGeometrySource__System_Int32_System_Int32_System_Threading_CancellationToken_System_Nullable_Prowl_Vector_AABB__System_Collections_Generic_IReadOnlyList_Prowl_Runtime_NavMeshAreaVolume__System_Collections_Generic_IReadOnlyList_Prowl_Runtime_NavMeshLinkSource__
+  name: Build
+  nameWithType: NavMeshBuilder.Build
+  fullName: Prowl.Runtime.NavMeshBuilder.Build
+- uid: Prowl.Runtime.NavMeshBuildSettings
+  commentId: T:Prowl.Runtime.NavMeshBuildSettings
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.NavMeshBuildSettings.html
+  name: NavMeshBuildSettings
+  nameWithType: NavMeshBuildSettings
+  fullName: Prowl.Runtime.NavMeshBuildSettings
+- uid: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshGeometrySource}
+  commentId: T:System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshGeometrySource}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<NavMeshGeometrySource>
+  nameWithType: IReadOnlyList<NavMeshGeometrySource>
+  fullName: System.Collections.Generic.IReadOnlyList<Prowl.Runtime.NavMeshGeometrySource>
+  nameWithType.vb: IReadOnlyList(Of NavMeshGeometrySource)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.NavMeshGeometrySource)
+  name.vb: IReadOnlyList(Of NavMeshGeometrySource)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Runtime.NavMeshGeometrySource
+    name: NavMeshGeometrySource
+    href: Prowl.Runtime.NavMeshGeometrySource.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.NavMeshGeometrySource
+    name: NavMeshGeometrySource
+    href: Prowl.Runtime.NavMeshGeometrySource.html
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Nullable{Prowl.Vector.AABB}
+  commentId: T:System.Nullable{Prowl.Vector.AABB}
+  parent: System
+  definition: System.Nullable`1
+  name: AABB?
+  nameWithType: AABB?
+  fullName: Prowl.Vector.AABB?
+  spec.csharp:
+  - uid: Prowl.Vector.AABB
+    name: AABB
+    isExternal: true
+  - name: '?'
+  spec.vb:
+  - uid: Prowl.Vector.AABB
+    name: AABB
+    isExternal: true
+  - name: '?'
+- uid: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshAreaVolume}
+  commentId: T:System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshAreaVolume}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<NavMeshAreaVolume>
+  nameWithType: IReadOnlyList<NavMeshAreaVolume>
+  fullName: System.Collections.Generic.IReadOnlyList<Prowl.Runtime.NavMeshAreaVolume>
+  nameWithType.vb: IReadOnlyList(Of NavMeshAreaVolume)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.NavMeshAreaVolume)
+  name.vb: IReadOnlyList(Of NavMeshAreaVolume)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Runtime.NavMeshAreaVolume
+    name: NavMeshAreaVolume
+    href: Prowl.Runtime.NavMeshAreaVolume.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.NavMeshAreaVolume
+    name: NavMeshAreaVolume
+    href: Prowl.Runtime.NavMeshAreaVolume.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshLinkSource}
+  commentId: T:System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshLinkSource}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<NavMeshLinkSource>
+  nameWithType: IReadOnlyList<NavMeshLinkSource>
+  fullName: System.Collections.Generic.IReadOnlyList<Prowl.Runtime.NavMeshLinkSource>
+  nameWithType.vb: IReadOnlyList(Of NavMeshLinkSource)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.NavMeshLinkSource)
+  name.vb: IReadOnlyList(Of NavMeshLinkSource)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Runtime.NavMeshLinkSource
+    name: NavMeshLinkSource
+    href: Prowl.Runtime.NavMeshLinkSource.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.NavMeshLinkSource
+    name: NavMeshLinkSource
+    href: Prowl.Runtime.NavMeshLinkSource.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Runtime.NavMeshSurface.ApplyRebuiltTiles(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshTileRebuild})
+  commentId: M:Prowl.Runtime.NavMeshSurface.ApplyRebuiltTiles(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshTileRebuild})
+  isExternal: true
+  href: Prowl.Runtime.NavMeshSurface.html#Prowl_Runtime_NavMeshSurface_ApplyRebuiltTiles_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_NavMeshTileRebuild__
+  name: ApplyRebuiltTiles(IReadOnlyList<NavMeshTileRebuild>)
+  nameWithType: NavMeshSurface.ApplyRebuiltTiles(IReadOnlyList<NavMeshTileRebuild>)
+  fullName: Prowl.Runtime.NavMeshSurface.ApplyRebuiltTiles(System.Collections.Generic.IReadOnlyList<Prowl.Runtime.NavMeshTileRebuild>)
+  nameWithType.vb: NavMeshSurface.ApplyRebuiltTiles(IReadOnlyList(Of NavMeshTileRebuild))
+  fullName.vb: Prowl.Runtime.NavMeshSurface.ApplyRebuiltTiles(System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.NavMeshTileRebuild))
+  name.vb: ApplyRebuiltTiles(IReadOnlyList(Of NavMeshTileRebuild))
+  spec.csharp:
+  - uid: Prowl.Runtime.NavMeshSurface.ApplyRebuiltTiles(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshTileRebuild})
+    name: ApplyRebuiltTiles
+    href: Prowl.Runtime.NavMeshSurface.html#Prowl_Runtime_NavMeshSurface_ApplyRebuiltTiles_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_NavMeshTileRebuild__
+  - name: (
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Runtime.NavMeshTileRebuild
+    name: NavMeshTileRebuild
+    href: Prowl.Runtime.NavMeshTileRebuild.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.NavMeshSurface.ApplyRebuiltTiles(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.NavMeshTileRebuild})
+    name: ApplyRebuiltTiles
+    href: Prowl.Runtime.NavMeshSurface.html#Prowl_Runtime_NavMeshSurface_ApplyRebuiltTiles_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_NavMeshTileRebuild__
+  - name: (
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.NavMeshTileRebuild
+    name: NavMeshTileRebuild
+    href: Prowl.Runtime.NavMeshTileRebuild.html
+  - name: )
+  - name: )
+- uid: Prowl.Runtime.NavMeshBuilder.BuildTilesInBounds*
+  commentId: Overload:Prowl.Runtime.NavMeshBuilder.BuildTilesInBounds
+  href: Prowl.Runtime.NavMeshBuilder.html#Prowl_Runtime_NavMeshBuilder_BuildTilesInBounds_Prowl_Runtime_NavMeshData_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_NavMeshGeometrySource__Prowl_Vector_Float3_Prowl_Vector_Float3_System_Int32_System_Threading_CancellationToken_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_NavMeshAreaVolume__
+  name: BuildTilesInBounds
+  nameWithType: NavMeshBuilder.BuildTilesInBounds
+  fullName: Prowl.Runtime.NavMeshBuilder.BuildTilesInBounds
+- uid: Prowl.Vector.Float3
+  commentId: T:Prowl.Vector.Float3
+  parent: Prowl.Vector
+  isExternal: true
+  name: Float3
+  nameWithType: Float3
+  fullName: Prowl.Vector.Float3
+- uid: System.Collections.Generic.List{Prowl.Runtime.NavMeshTileRebuild}
+  commentId: T:System.Collections.Generic.List{Prowl.Runtime.NavMeshTileRebuild}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<NavMeshTileRebuild>
+  nameWithType: List<NavMeshTileRebuild>
+  fullName: System.Collections.Generic.List<Prowl.Runtime.NavMeshTileRebuild>
+  nameWithType.vb: List(Of NavMeshTileRebuild)
+  fullName.vb: System.Collections.Generic.List(Of Prowl.Runtime.NavMeshTileRebuild)
+  name.vb: List(Of NavMeshTileRebuild)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Prowl.Runtime.NavMeshTileRebuild
+    name: NavMeshTileRebuild
+    href: Prowl.Runtime.NavMeshTileRebuild.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.NavMeshTileRebuild
+    name: NavMeshTileRebuild
+    href: Prowl.Runtime.NavMeshTileRebuild.html
+  - name: )
+- uid: Prowl.Vector
+  commentId: N:Prowl.Vector
+  name: Prowl.Vector
+  nameWithType: Prowl.Vector
+  fullName: Prowl.Vector
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

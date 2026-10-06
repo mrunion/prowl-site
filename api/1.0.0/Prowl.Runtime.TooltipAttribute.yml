@@ -6,8 +6,7 @@ items:
   parent: Prowl.Runtime
   children:
   - Prowl.Runtime.TooltipAttribute.#ctor(System.String)
-  - Prowl.Runtime.TooltipAttribute.AttribType
-  - Prowl.Runtime.TooltipAttribute.tooltip
+  - Prowl.Runtime.TooltipAttribute.Text
   langs:
   - csharp
   - vb
@@ -17,29 +16,29 @@ items:
   type: Class
   source:
     remote:
-      path: Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      path: Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: TooltipAttribute
-    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-    startLine: 35
+    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+    startLine: 34
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: Shows a tooltip when hovering the field label.
+  example: []
   syntax:
     content: >-
-      [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
+      [AttributeUsage(AttributeTargets.Field)]
 
-      public class TooltipAttribute : Attribute, InspectorUIAttribute
+      public class TooltipAttribute : Attribute
     content.vb: >-
-      <AttributeUsage(AttributeTargets.Field, AllowMultiple:=False)>
+      <AttributeUsage(AttributeTargets.Field)>
 
-      Public Class TooltipAttribute Inherits Attribute Implements InspectorUIAttribute
+      Public Class TooltipAttribute Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
-  implements:
-  - Prowl.Runtime.InspectorUIAttribute
   inheritedMembers:
   - System.Attribute.Equals(System.Object)
   - System.Attribute.GetCustomAttribute(System.Reflection.Assembly,System.Type)
@@ -91,10 +90,35 @@ items:
     arguments:
     - type: System.AttributeTargets
       value: 256
-    namedArguments:
-    - name: AllowMultiple
-      type: System.Boolean
-      value: false
+- uid: Prowl.Runtime.TooltipAttribute.Text
+  commentId: P:Prowl.Runtime.TooltipAttribute.Text
+  id: Text
+  parent: Prowl.Runtime.TooltipAttribute
+  langs:
+  - csharp
+  - vb
+  name: Text
+  nameWithType: TooltipAttribute.Text
+  fullName: Prowl.Runtime.TooltipAttribute.Text
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Text
+    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+    startLine: 37
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public string Text { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Text As String
+  overload: Prowl.Runtime.TooltipAttribute.Text*
 - uid: Prowl.Runtime.TooltipAttribute.#ctor(System.String)
   commentId: M:Prowl.Runtime.TooltipAttribute.#ctor(System.String)
   id: '#ctor(System.String)'
@@ -108,12 +132,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      path: Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: .ctor
-    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-    startLine: 35
+    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorAttributes.cs
+    startLine: 38
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -127,87 +151,24 @@ items:
   nameWithType.vb: TooltipAttribute.New(String)
   fullName.vb: Prowl.Runtime.TooltipAttribute.New(String)
   name.vb: New(String)
-- uid: Prowl.Runtime.TooltipAttribute.tooltip
-  commentId: F:Prowl.Runtime.TooltipAttribute.tooltip
-  id: tooltip
-  parent: Prowl.Runtime.TooltipAttribute
-  langs:
-  - csharp
-  - vb
-  name: tooltip
-  nameWithType: TooltipAttribute.tooltip
-  fullName: Prowl.Runtime.TooltipAttribute.tooltip
-  type: Field
-  source:
-    remote:
-      path: Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: tooltip
-    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-    startLine: 38
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public string tooltip
-    return:
-      type: System.String
-    content.vb: Public tooltip As String
-- uid: Prowl.Runtime.TooltipAttribute.AttribType
-  commentId: M:Prowl.Runtime.TooltipAttribute.AttribType
-  id: AttribType
-  parent: Prowl.Runtime.TooltipAttribute
-  langs:
-  - csharp
-  - vb
-  name: AttribType()
-  nameWithType: TooltipAttribute.AttribType()
-  fullName: Prowl.Runtime.TooltipAttribute.AttribType()
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: AttribType
-    path: ../Prowl/Prowl.Runtime/GameObject/Attributes/InspectorUIAttribute.cs
-    startLine: 39
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  example: []
-  syntax:
-    content: public GuiAttribType AttribType()
-    return:
-      type: Prowl.Runtime.GuiAttribType
-    content.vb: Public Function AttribType() As GuiAttribType
-  overload: Prowl.Runtime.TooltipAttribute.AttribType*
-  implements:
-  - Prowl.Runtime.InspectorUIAttribute.AttribType
 references:
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
-  href: Prowl.html
   name: Prowl.Runtime
   nameWithType: Prowl.Runtime
   fullName: Prowl.Runtime
   spec.csharp:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
   spec.vb:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -227,13 +188,6 @@ references:
   name: Attribute
   nameWithType: Attribute
   fullName: System.Attribute
-- uid: Prowl.Runtime.InspectorUIAttribute
-  commentId: T:Prowl.Runtime.InspectorUIAttribute
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.InspectorUIAttribute.html
-  name: InspectorUIAttribute
-  nameWithType: InspectorUIAttribute
-  fullName: Prowl.Runtime.InspectorUIAttribute
 - uid: System.Attribute.Equals(System.Object)
   commentId: M:System.Attribute.Equals(System.Object)
   parent: System.Attribute
@@ -2077,15 +2031,12 @@ references:
   name: RuntimeUtils
   nameWithType: RuntimeUtils
   fullName: Prowl.Runtime.RuntimeUtils
-- uid: Prowl.Runtime.TooltipAttribute.#ctor*
-  commentId: Overload:Prowl.Runtime.TooltipAttribute.#ctor
-  href: Prowl.Runtime.TooltipAttribute.html#Prowl_Runtime_TooltipAttribute__ctor_System_String_
-  name: TooltipAttribute
-  nameWithType: TooltipAttribute.TooltipAttribute
-  fullName: Prowl.Runtime.TooltipAttribute.TooltipAttribute
-  nameWithType.vb: TooltipAttribute.New
-  fullName.vb: Prowl.Runtime.TooltipAttribute.New
-  name.vb: New
+- uid: Prowl.Runtime.TooltipAttribute.Text*
+  commentId: Overload:Prowl.Runtime.TooltipAttribute.Text
+  href: Prowl.Runtime.TooltipAttribute.html#Prowl_Runtime_TooltipAttribute_Text
+  name: Text
+  nameWithType: TooltipAttribute.Text
+  fullName: Prowl.Runtime.TooltipAttribute.Text
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -2097,35 +2048,12 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: Prowl.Runtime.TooltipAttribute.AttribType*
-  commentId: Overload:Prowl.Runtime.TooltipAttribute.AttribType
-  href: Prowl.Runtime.TooltipAttribute.html#Prowl_Runtime_TooltipAttribute_AttribType
-  name: AttribType
-  nameWithType: TooltipAttribute.AttribType
-  fullName: Prowl.Runtime.TooltipAttribute.AttribType
-- uid: Prowl.Runtime.InspectorUIAttribute.AttribType
-  commentId: M:Prowl.Runtime.InspectorUIAttribute.AttribType
-  parent: Prowl.Runtime.InspectorUIAttribute
-  href: Prowl.Runtime.InspectorUIAttribute.html#Prowl_Runtime_InspectorUIAttribute_AttribType
-  name: AttribType()
-  nameWithType: InspectorUIAttribute.AttribType()
-  fullName: Prowl.Runtime.InspectorUIAttribute.AttribType()
-  spec.csharp:
-  - uid: Prowl.Runtime.InspectorUIAttribute.AttribType
-    name: AttribType
-    href: Prowl.Runtime.InspectorUIAttribute.html#Prowl_Runtime_InspectorUIAttribute_AttribType
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.InspectorUIAttribute.AttribType
-    name: AttribType
-    href: Prowl.Runtime.InspectorUIAttribute.html#Prowl_Runtime_InspectorUIAttribute_AttribType
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.GuiAttribType
-  commentId: T:Prowl.Runtime.GuiAttribType
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.GuiAttribType.html
-  name: GuiAttribType
-  nameWithType: GuiAttribType
-  fullName: Prowl.Runtime.GuiAttribType
+- uid: Prowl.Runtime.TooltipAttribute.#ctor*
+  commentId: Overload:Prowl.Runtime.TooltipAttribute.#ctor
+  href: Prowl.Runtime.TooltipAttribute.html#Prowl_Runtime_TooltipAttribute__ctor_System_String_
+  name: TooltipAttribute
+  nameWithType: TooltipAttribute.TooltipAttribute
+  fullName: Prowl.Runtime.TooltipAttribute.TooltipAttribute
+  nameWithType.vb: TooltipAttribute.New
+  fullName.vb: Prowl.Runtime.TooltipAttribute.New
+  name.vb: New

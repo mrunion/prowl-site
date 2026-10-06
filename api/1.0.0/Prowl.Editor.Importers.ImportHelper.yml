@@ -1,0 +1,835 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.Importers.ImportHelper
+  commentId: T:Prowl.Editor.Importers.ImportHelper
+  id: ImportHelper
+  parent: Prowl.Editor.Importers
+  children:
+  - Prowl.Editor.Importers.ImportHelper.CollectAssetDependencies(Prowl.Echo.EchoObject,Prowl.Editor.Importers.ImportContext)
+  - Prowl.Editor.Importers.ImportHelper.CollectAssetDependencies(Prowl.Echo.EchoObject,System.Collections.Generic.HashSet{System.Guid},System.Collections.Generic.HashSet{System.Guid},System.Collections.Generic.HashSet{System.Guid})
+  - Prowl.Editor.Importers.ImportHelper.CreateTrackingContext(System.Collections.Generic.HashSet{System.Guid}@)
+  - Prowl.Editor.Importers.ImportHelper.FlattenNestedPrefabLinks(Prowl.Echo.EchoObject,System.Boolean)
+  - Prowl.Editor.Importers.ImportHelper.ImportEchoBinary``1(Prowl.Editor.Importers.ImportContext,System.String)
+  - Prowl.Editor.Importers.ImportHelper.ImportEchoObject(Prowl.Editor.Importers.ImportContext,System.String)
+  - Prowl.Editor.Importers.ImportHelper.ImportEcho``1(Prowl.Editor.Importers.ImportContext,System.String)
+  langs:
+  - csharp
+  - vb
+  name: ImportHelper
+  nameWithType: ImportHelper
+  fullName: Prowl.Editor.Importers.ImportHelper
+  type: Class
+  source:
+    remote:
+      path: Prowl.Editor/AssetsDatabase/Importers/ImportHelper.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ImportHelper
+    path: ../Prowl/Prowl.Editor/AssetsDatabase/Importers/ImportHelper.cs
+    startLine: 10
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Importers
+  summary: Provides common import operations for Echo-serialized assets, including deserialization with dependency tracking, dependency collection, and prefab link flattening.
+  example: []
+  syntax:
+    content: public static class ImportHelper
+    content.vb: Public Module ImportHelper
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Prowl.Editor.Importers.ImportHelper.CreateTrackingContext(System.Collections.Generic.HashSet{System.Guid}@)
+  commentId: M:Prowl.Editor.Importers.ImportHelper.CreateTrackingContext(System.Collections.Generic.HashSet{System.Guid}@)
+  id: CreateTrackingContext(System.Collections.Generic.HashSet{System.Guid}@)
+  parent: Prowl.Editor.Importers.ImportHelper
+  langs:
+  - csharp
+  - vb
+  name: CreateTrackingContext(out HashSet<Guid>)
+  nameWithType: ImportHelper.CreateTrackingContext(out HashSet<Guid>)
+  fullName: Prowl.Editor.Importers.ImportHelper.CreateTrackingContext(out System.Collections.Generic.HashSet<System.Guid>)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/AssetsDatabase/Importers/ImportHelper.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CreateTrackingContext
+    path: ../Prowl/Prowl.Editor/AssetsDatabase/Importers/ImportHelper.cs
+    startLine: 16
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Importers
+  summary: >-
+    Creates a SerializationContext that records every asset a read or write reaches. Afterwards
+
+    discoveredDependencies holds the GUIDs of the assets referenced by a plain field.
+  example: []
+  syntax:
+    content: public static SerializationContext CreateTrackingContext(out HashSet<Guid> discoveredDependencies)
+    parameters:
+    - id: discoveredDependencies
+      type: System.Collections.Generic.HashSet{System.Guid}
+    return:
+      type: Prowl.Echo.SerializationContext
+    content.vb: Public Shared Function CreateTrackingContext(discoveredDependencies As HashSet(Of Guid)) As SerializationContext
+  overload: Prowl.Editor.Importers.ImportHelper.CreateTrackingContext*
+  nameWithType.vb: ImportHelper.CreateTrackingContext(HashSet(Of Guid))
+  fullName.vb: Prowl.Editor.Importers.ImportHelper.CreateTrackingContext(System.Collections.Generic.HashSet(Of System.Guid))
+  name.vb: CreateTrackingContext(HashSet(Of Guid))
+- uid: Prowl.Editor.Importers.ImportHelper.ImportEchoObject(Prowl.Editor.Importers.ImportContext,System.String)
+  commentId: M:Prowl.Editor.Importers.ImportHelper.ImportEchoObject(Prowl.Editor.Importers.ImportContext,System.String)
+  id: ImportEchoObject(Prowl.Editor.Importers.ImportContext,System.String)
+  parent: Prowl.Editor.Importers.ImportHelper
+  langs:
+  - csharp
+  - vb
+  name: ImportEchoObject(ImportContext, string)
+  nameWithType: ImportHelper.ImportEchoObject(ImportContext, string)
+  fullName: Prowl.Editor.Importers.ImportHelper.ImportEchoObject(Prowl.Editor.Importers.ImportContext, string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/AssetsDatabase/Importers/ImportHelper.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ImportEchoObject
+    path: ../Prowl/Prowl.Editor/AssetsDatabase/Importers/ImportHelper.cs
+    startLine: 24
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Importers
+  summary: Import an Echo file whose concrete type is written in the file itself, for assets the editor has no specific importer for. Same as ImportEcho&lt;T&gt; without naming the type up front.
+  example: []
+  syntax:
+    content: public static bool ImportEchoObject(ImportContext ctx, string errorLabel)
+    parameters:
+    - id: ctx
+      type: Prowl.Editor.Importers.ImportContext
+    - id: errorLabel
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function ImportEchoObject(ctx As ImportContext, errorLabel As String) As Boolean
+  overload: Prowl.Editor.Importers.ImportHelper.ImportEchoObject*
+  nameWithType.vb: ImportHelper.ImportEchoObject(ImportContext, String)
+  fullName.vb: Prowl.Editor.Importers.ImportHelper.ImportEchoObject(Prowl.Editor.Importers.ImportContext, String)
+  name.vb: ImportEchoObject(ImportContext, String)
+- uid: Prowl.Editor.Importers.ImportHelper.ImportEcho``1(Prowl.Editor.Importers.ImportContext,System.String)
+  commentId: M:Prowl.Editor.Importers.ImportHelper.ImportEcho``1(Prowl.Editor.Importers.ImportContext,System.String)
+  id: ImportEcho``1(Prowl.Editor.Importers.ImportContext,System.String)
+  parent: Prowl.Editor.Importers.ImportHelper
+  langs:
+  - csharp
+  - vb
+  name: ImportEcho<T>(ImportContext, string)
+  nameWithType: ImportHelper.ImportEcho<T>(ImportContext, string)
+  fullName: Prowl.Editor.Importers.ImportHelper.ImportEcho<T>(Prowl.Editor.Importers.ImportContext, string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/AssetsDatabase/Importers/ImportHelper.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ImportEcho
+    path: ../Prowl/Prowl.Editor/AssetsDatabase/Importers/ImportHelper.cs
+    startLine: 28
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Importers
+  summary: Reads an Echo-serialized file, deserializes it as T with dependency tracking, sets the result as the main asset on ctx, and forwards all discovered dependencies. Returns false and logs on any error.
+  example: []
+  syntax:
+    content: 'public static bool ImportEcho<T>(ImportContext ctx, string errorLabel) where T : Asset'
+    parameters:
+    - id: ctx
+      type: Prowl.Editor.Importers.ImportContext
+    - id: errorLabel
+      type: System.String
+    typeParameters:
+    - id: T
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function ImportEcho(Of T As Asset)(ctx As ImportContext, errorLabel As String) As Boolean
+  overload: Prowl.Editor.Importers.ImportHelper.ImportEcho*
+  nameWithType.vb: ImportHelper.ImportEcho(Of T)(ImportContext, String)
+  fullName.vb: Prowl.Editor.Importers.ImportHelper.ImportEcho(Of T)(Prowl.Editor.Importers.ImportContext, String)
+  name.vb: ImportEcho(Of T)(ImportContext, String)
+- uid: Prowl.Editor.Importers.ImportHelper.ImportEchoBinary``1(Prowl.Editor.Importers.ImportContext,System.String)
+  commentId: M:Prowl.Editor.Importers.ImportHelper.ImportEchoBinary``1(Prowl.Editor.Importers.ImportContext,System.String)
+  id: ImportEchoBinary``1(Prowl.Editor.Importers.ImportContext,System.String)
+  parent: Prowl.Editor.Importers.ImportHelper
+  langs:
+  - csharp
+  - vb
+  name: ImportEchoBinary<T>(ImportContext, string)
+  nameWithType: ImportHelper.ImportEchoBinary<T>(ImportContext, string)
+  fullName: Prowl.Editor.Importers.ImportHelper.ImportEchoBinary<T>(Prowl.Editor.Importers.ImportContext, string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/AssetsDatabase/Importers/ImportHelper.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ImportEchoBinary
+    path: ../Prowl/Prowl.Editor/AssetsDatabase/Importers/ImportHelper.cs
+    startLine: 36
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Importers
+  summary: >-
+    As <xref href="Prowl.Editor.Importers.ImportHelper.ImportEcho%60%601(Prowl.Editor.Importers.ImportContext%2cSystem.String)" data-throw-if-not-resolved="false"></xref>, for assets written with Echo's
+
+    binary format — the one to use when the payload is bulk bytes rather than something a
+
+    human reads or diffs.
+  example: []
+  syntax:
+    content: 'public static bool ImportEchoBinary<T>(ImportContext ctx, string errorLabel) where T : Asset'
+    parameters:
+    - id: ctx
+      type: Prowl.Editor.Importers.ImportContext
+    - id: errorLabel
+      type: System.String
+    typeParameters:
+    - id: T
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function ImportEchoBinary(Of T As Asset)(ctx As ImportContext, errorLabel As String) As Boolean
+  overload: Prowl.Editor.Importers.ImportHelper.ImportEchoBinary*
+  nameWithType.vb: ImportHelper.ImportEchoBinary(Of T)(ImportContext, String)
+  fullName.vb: Prowl.Editor.Importers.ImportHelper.ImportEchoBinary(Of T)(Prowl.Editor.Importers.ImportContext, String)
+  name.vb: ImportEchoBinary(Of T)(ImportContext, String)
+- uid: Prowl.Editor.Importers.ImportHelper.CollectAssetDependencies(Prowl.Echo.EchoObject,Prowl.Editor.Importers.ImportContext)
+  commentId: M:Prowl.Editor.Importers.ImportHelper.CollectAssetDependencies(Prowl.Echo.EchoObject,Prowl.Editor.Importers.ImportContext)
+  id: CollectAssetDependencies(Prowl.Echo.EchoObject,Prowl.Editor.Importers.ImportContext)
+  parent: Prowl.Editor.Importers.ImportHelper
+  langs:
+  - csharp
+  - vb
+  name: CollectAssetDependencies(EchoObject, ImportContext)
+  nameWithType: ImportHelper.CollectAssetDependencies(EchoObject, ImportContext)
+  fullName: Prowl.Editor.Importers.ImportHelper.CollectAssetDependencies(Prowl.Echo.EchoObject, Prowl.Editor.Importers.ImportContext)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/AssetsDatabase/Importers/ImportHelper.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CollectAssetDependencies
+    path: ../Prowl/Prowl.Editor/AssetsDatabase/Importers/ImportHelper.cs
+    startLine: 73
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Importers
+  summary: >-
+    Walks a stored tree for the assets it names without building anything: <code>$asset</code> stubs are hard edges,
+
+    <code>$assetRef</code> soft ones, and prefab links editor ones. The walk is needed even when a tracking context
+
+    was used, because prefab override blobs are serialized ahead of time without one (see
+
+    PrefabUtility.CompareField), so what is inside them never reached it.
+  example: []
+  syntax:
+    content: public static void CollectAssetDependencies(EchoObject echo, ImportContext ctx)
+    parameters:
+    - id: echo
+      type: Prowl.Echo.EchoObject
+    - id: ctx
+      type: Prowl.Editor.Importers.ImportContext
+    content.vb: Public Shared Sub CollectAssetDependencies(echo As EchoObject, ctx As ImportContext)
+  overload: Prowl.Editor.Importers.ImportHelper.CollectAssetDependencies*
+- uid: Prowl.Editor.Importers.ImportHelper.CollectAssetDependencies(Prowl.Echo.EchoObject,System.Collections.Generic.HashSet{System.Guid},System.Collections.Generic.HashSet{System.Guid},System.Collections.Generic.HashSet{System.Guid})
+  commentId: M:Prowl.Editor.Importers.ImportHelper.CollectAssetDependencies(Prowl.Echo.EchoObject,System.Collections.Generic.HashSet{System.Guid},System.Collections.Generic.HashSet{System.Guid},System.Collections.Generic.HashSet{System.Guid})
+  id: CollectAssetDependencies(Prowl.Echo.EchoObject,System.Collections.Generic.HashSet{System.Guid},System.Collections.Generic.HashSet{System.Guid},System.Collections.Generic.HashSet{System.Guid})
+  parent: Prowl.Editor.Importers.ImportHelper
+  langs:
+  - csharp
+  - vb
+  name: CollectAssetDependencies(EchoObject, HashSet<Guid>, HashSet<Guid>?, HashSet<Guid>?)
+  nameWithType: ImportHelper.CollectAssetDependencies(EchoObject, HashSet<Guid>, HashSet<Guid>?, HashSet<Guid>?)
+  fullName: Prowl.Editor.Importers.ImportHelper.CollectAssetDependencies(Prowl.Echo.EchoObject, System.Collections.Generic.HashSet<System.Guid>, System.Collections.Generic.HashSet<System.Guid>?, System.Collections.Generic.HashSet<System.Guid>?)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/AssetsDatabase/Importers/ImportHelper.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CollectAssetDependencies
+    path: ../Prowl/Prowl.Editor/AssetsDatabase/Importers/ImportHelper.cs
+    startLine: 76
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Importers
+  syntax:
+    content: public static void CollectAssetDependencies(EchoObject echo, HashSet<Guid> hard, HashSet<Guid>? soft = null, HashSet<Guid>? editor = null)
+    parameters:
+    - id: echo
+      type: Prowl.Echo.EchoObject
+    - id: hard
+      type: System.Collections.Generic.HashSet{System.Guid}
+    - id: soft
+      type: System.Collections.Generic.HashSet{System.Guid}
+    - id: editor
+      type: System.Collections.Generic.HashSet{System.Guid}
+    content.vb: Public Shared Sub CollectAssetDependencies(echo As EchoObject, hard As HashSet(Of Guid), soft As HashSet(Of Guid) = Nothing, editor As HashSet(Of Guid) = Nothing)
+  overload: Prowl.Editor.Importers.ImportHelper.CollectAssetDependencies*
+  nameWithType.vb: ImportHelper.CollectAssetDependencies(EchoObject, HashSet(Of Guid), HashSet(Of Guid), HashSet(Of Guid))
+  fullName.vb: Prowl.Editor.Importers.ImportHelper.CollectAssetDependencies(Prowl.Echo.EchoObject, System.Collections.Generic.HashSet(Of System.Guid), System.Collections.Generic.HashSet(Of System.Guid), System.Collections.Generic.HashSet(Of System.Guid))
+  name.vb: CollectAssetDependencies(EchoObject, HashSet(Of Guid), HashSet(Of Guid), HashSet(Of Guid))
+- uid: Prowl.Editor.Importers.ImportHelper.FlattenNestedPrefabLinks(Prowl.Echo.EchoObject,System.Boolean)
+  commentId: M:Prowl.Editor.Importers.ImportHelper.FlattenNestedPrefabLinks(Prowl.Echo.EchoObject,System.Boolean)
+  id: FlattenNestedPrefabLinks(Prowl.Echo.EchoObject,System.Boolean)
+  parent: Prowl.Editor.Importers.ImportHelper
+  langs:
+  - csharp
+  - vb
+  name: FlattenNestedPrefabLinks(EchoObject, bool)
+  nameWithType: ImportHelper.FlattenNestedPrefabLinks(EchoObject, bool)
+  fullName: Prowl.Editor.Importers.ImportHelper.FlattenNestedPrefabLinks(Prowl.Echo.EchoObject, bool)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/AssetsDatabase/Importers/ImportHelper.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FlattenNestedPrefabLinks
+    path: ../Prowl/Prowl.Editor/AssetsDatabase/Importers/ImportHelper.cs
+    startLine: 109
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Importers
+  summary: >-
+    Removes the prefab link from any GameObject sitting inside another prefab instance. Prefabs do
+
+    not nest, so such a link is left over from an asset written before that was enforced, and
+
+    keeping it would have a player disagree with the editor about what is an instance.
+  example: []
+  syntax:
+    content: public static bool FlattenNestedPrefabLinks(EchoObject echo, bool insideInstance = false)
+    parameters:
+    - id: echo
+      type: Prowl.Echo.EchoObject
+    - id: insideInstance
+      type: System.Boolean
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function FlattenNestedPrefabLinks(echo As EchoObject, insideInstance As Boolean = False) As Boolean
+  overload: Prowl.Editor.Importers.ImportHelper.FlattenNestedPrefabLinks*
+  nameWithType.vb: ImportHelper.FlattenNestedPrefabLinks(EchoObject, Boolean)
+  fullName.vb: Prowl.Editor.Importers.ImportHelper.FlattenNestedPrefabLinks(Prowl.Echo.EchoObject, Boolean)
+  name.vb: FlattenNestedPrefabLinks(EchoObject, Boolean)
+references:
+- uid: Prowl.Editor.Importers
+  commentId: N:Prowl.Editor.Importers
+  name: Prowl.Editor.Importers
+  nameWithType: Prowl.Editor.Importers
+  fullName: Prowl.Editor.Importers
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Importers
+    name: Importers
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Importers
+    name: Importers
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Editor.Importers.ImportHelper.CreateTrackingContext*
+  commentId: Overload:Prowl.Editor.Importers.ImportHelper.CreateTrackingContext
+  href: Prowl.Editor.Importers.ImportHelper.html#Prowl_Editor_Importers_ImportHelper_CreateTrackingContext_System_Collections_Generic_HashSet_System_Guid___
+  name: CreateTrackingContext
+  nameWithType: ImportHelper.CreateTrackingContext
+  fullName: Prowl.Editor.Importers.ImportHelper.CreateTrackingContext
+- uid: System.Collections.Generic.HashSet{System.Guid}
+  commentId: T:System.Collections.Generic.HashSet{System.Guid}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.HashSet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<Guid>
+  nameWithType: HashSet<Guid>
+  fullName: System.Collections.Generic.HashSet<System.Guid>
+  nameWithType.vb: HashSet(Of Guid)
+  fullName.vb: System.Collections.Generic.HashSet(Of System.Guid)
+  name.vb: HashSet(Of Guid)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+- uid: Prowl.Echo.SerializationContext
+  commentId: T:Prowl.Echo.SerializationContext
+  parent: Prowl.Echo
+  isExternal: true
+  name: SerializationContext
+  nameWithType: SerializationContext
+  fullName: Prowl.Echo.SerializationContext
+- uid: System.Collections.Generic.HashSet`1
+  commentId: T:System.Collections.Generic.HashSet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<T>
+  nameWithType: HashSet<T>
+  fullName: System.Collections.Generic.HashSet<T>
+  nameWithType.vb: HashSet(Of T)
+  fullName.vb: System.Collections.Generic.HashSet(Of T)
+  name.vb: HashSet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Prowl.Echo
+  commentId: N:Prowl.Echo
+  name: Prowl.Echo
+  nameWithType: Prowl.Echo
+  fullName: Prowl.Echo
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
+- uid: Prowl.Editor.Importers.ImportHelper.ImportEchoObject*
+  commentId: Overload:Prowl.Editor.Importers.ImportHelper.ImportEchoObject
+  href: Prowl.Editor.Importers.ImportHelper.html#Prowl_Editor_Importers_ImportHelper_ImportEchoObject_Prowl_Editor_Importers_ImportContext_System_String_
+  name: ImportEchoObject
+  nameWithType: ImportHelper.ImportEchoObject
+  fullName: Prowl.Editor.Importers.ImportHelper.ImportEchoObject
+- uid: Prowl.Editor.Importers.ImportContext
+  commentId: T:Prowl.Editor.Importers.ImportContext
+  parent: Prowl.Editor.Importers
+  href: Prowl.Editor.Importers.ImportContext.html
+  name: ImportContext
+  nameWithType: ImportContext
+  fullName: Prowl.Editor.Importers.ImportContext
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Editor.Importers.ImportHelper.ImportEcho*
+  commentId: Overload:Prowl.Editor.Importers.ImportHelper.ImportEcho
+  href: Prowl.Editor.Importers.ImportHelper.html#Prowl_Editor_Importers_ImportHelper_ImportEcho__1_Prowl_Editor_Importers_ImportContext_System_String_
+  name: ImportEcho
+  nameWithType: ImportHelper.ImportEcho
+  fullName: Prowl.Editor.Importers.ImportHelper.ImportEcho
+- uid: Prowl.Editor.Importers.ImportHelper.ImportEcho``1(Prowl.Editor.Importers.ImportContext,System.String)
+  commentId: M:Prowl.Editor.Importers.ImportHelper.ImportEcho``1(Prowl.Editor.Importers.ImportContext,System.String)
+  isExternal: true
+  href: Prowl.Editor.Importers.ImportHelper.html#Prowl_Editor_Importers_ImportHelper_ImportEcho__1_Prowl_Editor_Importers_ImportContext_System_String_
+  name: ImportEcho<T>(ImportContext, string)
+  nameWithType: ImportHelper.ImportEcho<T>(ImportContext, string)
+  fullName: Prowl.Editor.Importers.ImportHelper.ImportEcho<T>(Prowl.Editor.Importers.ImportContext, string)
+  nameWithType.vb: ImportHelper.ImportEcho(Of T)(ImportContext, String)
+  fullName.vb: Prowl.Editor.Importers.ImportHelper.ImportEcho(Of T)(Prowl.Editor.Importers.ImportContext, String)
+  name.vb: ImportEcho(Of T)(ImportContext, String)
+  spec.csharp:
+  - uid: Prowl.Editor.Importers.ImportHelper.ImportEcho``1(Prowl.Editor.Importers.ImportContext,System.String)
+    name: ImportEcho
+    href: Prowl.Editor.Importers.ImportHelper.html#Prowl_Editor_Importers_ImportHelper_ImportEcho__1_Prowl_Editor_Importers_ImportContext_System_String_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: Prowl.Editor.Importers.ImportContext
+    name: ImportContext
+    href: Prowl.Editor.Importers.ImportContext.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Importers.ImportHelper.ImportEcho``1(Prowl.Editor.Importers.ImportContext,System.String)
+    name: ImportEcho
+    href: Prowl.Editor.Importers.ImportHelper.html#Prowl_Editor_Importers_ImportHelper_ImportEcho__1_Prowl_Editor_Importers_ImportContext_System_String_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: Prowl.Editor.Importers.ImportContext
+    name: ImportContext
+    href: Prowl.Editor.Importers.ImportContext.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Editor.Importers.ImportHelper.ImportEchoBinary*
+  commentId: Overload:Prowl.Editor.Importers.ImportHelper.ImportEchoBinary
+  href: Prowl.Editor.Importers.ImportHelper.html#Prowl_Editor_Importers_ImportHelper_ImportEchoBinary__1_Prowl_Editor_Importers_ImportContext_System_String_
+  name: ImportEchoBinary
+  nameWithType: ImportHelper.ImportEchoBinary
+  fullName: Prowl.Editor.Importers.ImportHelper.ImportEchoBinary
+- uid: Prowl.Editor.Importers.ImportHelper.CollectAssetDependencies*
+  commentId: Overload:Prowl.Editor.Importers.ImportHelper.CollectAssetDependencies
+  href: Prowl.Editor.Importers.ImportHelper.html#Prowl_Editor_Importers_ImportHelper_CollectAssetDependencies_Prowl_Echo_EchoObject_Prowl_Editor_Importers_ImportContext_
+  name: CollectAssetDependencies
+  nameWithType: ImportHelper.CollectAssetDependencies
+  fullName: Prowl.Editor.Importers.ImportHelper.CollectAssetDependencies
+- uid: Prowl.Echo.EchoObject
+  commentId: T:Prowl.Echo.EchoObject
+  parent: Prowl.Echo
+  isExternal: true
+  name: EchoObject
+  nameWithType: EchoObject
+  fullName: Prowl.Echo.EchoObject
+- uid: Prowl.Editor.Importers.ImportHelper.FlattenNestedPrefabLinks*
+  commentId: Overload:Prowl.Editor.Importers.ImportHelper.FlattenNestedPrefabLinks
+  href: Prowl.Editor.Importers.ImportHelper.html#Prowl_Editor_Importers_ImportHelper_FlattenNestedPrefabLinks_Prowl_Echo_EchoObject_System_Boolean_
+  name: FlattenNestedPrefabLinks
+  nameWithType: ImportHelper.FlattenNestedPrefabLinks
+  fullName: Prowl.Editor.Importers.ImportHelper.FlattenNestedPrefabLinks

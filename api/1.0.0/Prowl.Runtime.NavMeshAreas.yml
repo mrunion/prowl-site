@@ -1,0 +1,1127 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.NavMeshAreas
+  commentId: T:Prowl.Runtime.NavMeshAreas
+  id: NavMeshAreas
+  parent: Prowl.Runtime
+  children:
+  - Prowl.Runtime.NavMeshAreas.ApplyTable(System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.Single})
+  - Prowl.Runtime.NavMeshAreas.FromDetourArea(System.Int32)
+  - Prowl.Runtime.NavMeshAreas.GetAreaCost(System.Int32)
+  - Prowl.Runtime.NavMeshAreas.GetAreaName(System.Int32)
+  - Prowl.Runtime.NavMeshAreas.GetDefaultAreaCost(System.Int32)
+  - Prowl.Runtime.NavMeshAreas.GetDefinedAreas
+  - Prowl.Runtime.NavMeshAreas.Jump
+  - Prowl.Runtime.NavMeshAreas.MaxAreas
+  - Prowl.Runtime.NavMeshAreas.NotWalkable
+  - Prowl.Runtime.NavMeshAreas.SetAreaCost(System.Int32,System.Single)
+  - Prowl.Runtime.NavMeshAreas.SetAreaName(System.Int32,System.String)
+  - Prowl.Runtime.NavMeshAreas.ToDetourArea(System.Int32)
+  - Prowl.Runtime.NavMeshAreas.Walkable
+  langs:
+  - csharp
+  - vb
+  name: NavMeshAreas
+  nameWithType: NavMeshAreas
+  fullName: Prowl.Runtime.NavMeshAreas
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshAreas.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NavMeshAreas
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshAreas.cs
+    startLine: 21
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    The project-wide navigation area table: up to 32 named areas with per-area path costs, addressed
+
+    by index and combined into 32-bit masks. Area 0 is Walkable, 1 is Not Walkable,
+
+    2 is Jump; 3..31 are user-defined.
+
+
+    <p></p>
+
+
+    Detour stores area <code>i</code> as <code>i + 1</code>, because its 0 is the null area meaning "not part of
+
+    the navmesh". <xref href="Prowl.Runtime.NavMeshAreas.ToDetourArea(System.Int32)" data-throw-if-not-resolved="false"></xref> / <xref href="Prowl.Runtime.NavMeshAreas.FromDetourArea(System.Int32)" data-throw-if-not-resolved="false"></xref> are the only places that
+
+    offset is applied — never hand-roll it. Bake-side conversions go through
+
+    <code>ProwlInputGeomProvider.DetourAreaFor</code>, which additionally maps <xref href="Prowl.Runtime.NavMeshAreas.NotWalkable" data-throw-if-not-resolved="false"></xref> to
+
+    the null area; calling <xref href="Prowl.Runtime.NavMeshAreas.ToDetourArea(System.Int32)" data-throw-if-not-resolved="false"></xref> on a source area instead silently resurrects
+
+    traversable "Not Walkable" polys.
+  example: []
+  syntax:
+    content: public static class NavMeshAreas
+    content.vb: Public Module NavMeshAreas
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Prowl.Runtime.NavMeshAreas.MaxAreas
+  commentId: F:Prowl.Runtime.NavMeshAreas.MaxAreas
+  id: MaxAreas
+  parent: Prowl.Runtime.NavMeshAreas
+  langs:
+  - csharp
+  - vb
+  name: MaxAreas
+  nameWithType: NavMeshAreas.MaxAreas
+  fullName: Prowl.Runtime.NavMeshAreas.MaxAreas
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshAreas.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MaxAreas
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshAreas.cs
+    startLine: 24
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Maximum number of areas (indices 0..31), the width of an area mask.
+  example: []
+  syntax:
+    content: public const int MaxAreas = 32
+    return:
+      type: System.Int32
+    content.vb: Public Const MaxAreas As Integer = 32
+- uid: Prowl.Runtime.NavMeshAreas.Walkable
+  commentId: F:Prowl.Runtime.NavMeshAreas.Walkable
+  id: Walkable
+  parent: Prowl.Runtime.NavMeshAreas
+  langs:
+  - csharp
+  - vb
+  name: Walkable
+  nameWithType: NavMeshAreas.Walkable
+  fullName: Prowl.Runtime.NavMeshAreas.Walkable
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshAreas.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Walkable
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshAreas.cs
+    startLine: 27
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The built-in default walkable area index.
+  example: []
+  syntax:
+    content: public const int Walkable = 0
+    return:
+      type: System.Int32
+    content.vb: Public Const Walkable As Integer = 0
+- uid: Prowl.Runtime.NavMeshAreas.NotWalkable
+  commentId: F:Prowl.Runtime.NavMeshAreas.NotWalkable
+  id: NotWalkable
+  parent: Prowl.Runtime.NavMeshAreas
+  langs:
+  - csharp
+  - vb
+  name: NotWalkable
+  nameWithType: NavMeshAreas.NotWalkable
+  fullName: Prowl.Runtime.NavMeshAreas.NotWalkable
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshAreas.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NotWalkable
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshAreas.cs
+    startLine: 31
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    The built-in not-walkable area index. Geometry marked with this area is
+        excluded from the navmesh entirely.
+  example: []
+  syntax:
+    content: public const int NotWalkable = 1
+    return:
+      type: System.Int32
+    content.vb: Public Const NotWalkable As Integer = 1
+- uid: Prowl.Runtime.NavMeshAreas.Jump
+  commentId: F:Prowl.Runtime.NavMeshAreas.Jump
+  id: Jump
+  parent: Prowl.Runtime.NavMeshAreas
+  langs:
+  - csharp
+  - vb
+  name: Jump
+  nameWithType: NavMeshAreas.Jump
+  fullName: Prowl.Runtime.NavMeshAreas.Jump
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshAreas.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Jump
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshAreas.cs
+    startLine: 34
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The built-in area index used for jump/off-mesh connections.
+  example: []
+  syntax:
+    content: public const int Jump = 2
+    return:
+      type: System.Int32
+    content.vb: Public Const Jump As Integer = 2
+- uid: Prowl.Runtime.NavMeshAreas.GetDefaultAreaCost(System.Int32)
+  commentId: M:Prowl.Runtime.NavMeshAreas.GetDefaultAreaCost(System.Int32)
+  id: GetDefaultAreaCost(System.Int32)
+  parent: Prowl.Runtime.NavMeshAreas
+  langs:
+  - csharp
+  - vb
+  name: GetDefaultAreaCost(int)
+  nameWithType: NavMeshAreas.GetDefaultAreaCost(int)
+  fullName: Prowl.Runtime.NavMeshAreas.GetDefaultAreaCost(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshAreas.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetDefaultAreaCost
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshAreas.cs
+    startLine: 63
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    The cost an area starts with before any project settings apply. The navigation
+        settings page seeds a new project from this too, so the two cannot disagree.
+  example: []
+  syntax:
+    content: public static float GetDefaultAreaCost(int areaIndex)
+    parameters:
+    - id: areaIndex
+      type: System.Int32
+    return:
+      type: System.Single
+    content.vb: Public Shared Function GetDefaultAreaCost(areaIndex As Integer) As Single
+  overload: Prowl.Runtime.NavMeshAreas.GetDefaultAreaCost*
+  nameWithType.vb: NavMeshAreas.GetDefaultAreaCost(Integer)
+  fullName.vb: Prowl.Runtime.NavMeshAreas.GetDefaultAreaCost(Integer)
+  name.vb: GetDefaultAreaCost(Integer)
+- uid: Prowl.Runtime.NavMeshAreas.GetAreaName(System.Int32)
+  commentId: M:Prowl.Runtime.NavMeshAreas.GetAreaName(System.Int32)
+  id: GetAreaName(System.Int32)
+  parent: Prowl.Runtime.NavMeshAreas
+  langs:
+  - csharp
+  - vb
+  name: GetAreaName(int)
+  nameWithType: NavMeshAreas.GetAreaName(int)
+  fullName: Prowl.Runtime.NavMeshAreas.GetAreaName(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshAreas.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetAreaName
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshAreas.cs
+    startLine: 66
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Get the name of an area, or an empty string for unnamed user areas.
+  example: []
+  syntax:
+    content: public static string GetAreaName(int areaIndex)
+    parameters:
+    - id: areaIndex
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetAreaName(areaIndex As Integer) As String
+  overload: Prowl.Runtime.NavMeshAreas.GetAreaName*
+  nameWithType.vb: NavMeshAreas.GetAreaName(Integer)
+  fullName.vb: Prowl.Runtime.NavMeshAreas.GetAreaName(Integer)
+  name.vb: GetAreaName(Integer)
+- uid: Prowl.Runtime.NavMeshAreas.SetAreaName(System.Int32,System.String)
+  commentId: M:Prowl.Runtime.NavMeshAreas.SetAreaName(System.Int32,System.String)
+  id: SetAreaName(System.Int32,System.String)
+  parent: Prowl.Runtime.NavMeshAreas
+  langs:
+  - csharp
+  - vb
+  name: SetAreaName(int, string)
+  nameWithType: NavMeshAreas.SetAreaName(int, string)
+  fullName: Prowl.Runtime.NavMeshAreas.SetAreaName(int, string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshAreas.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetAreaName
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshAreas.cs
+    startLine: 73
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Rename an area. Built-in areas (0-2) cannot be renamed.
+  example: []
+  syntax:
+    content: public static void SetAreaName(int areaIndex, string name)
+    parameters:
+    - id: areaIndex
+      type: System.Int32
+    - id: name
+      type: System.String
+    content.vb: Public Shared Sub SetAreaName(areaIndex As Integer, name As String)
+  overload: Prowl.Runtime.NavMeshAreas.SetAreaName*
+  nameWithType.vb: NavMeshAreas.SetAreaName(Integer, String)
+  fullName.vb: Prowl.Runtime.NavMeshAreas.SetAreaName(Integer, String)
+  name.vb: SetAreaName(Integer, String)
+- uid: Prowl.Runtime.NavMeshAreas.GetAreaCost(System.Int32)
+  commentId: M:Prowl.Runtime.NavMeshAreas.GetAreaCost(System.Int32)
+  id: GetAreaCost(System.Int32)
+  parent: Prowl.Runtime.NavMeshAreas
+  langs:
+  - csharp
+  - vb
+  name: GetAreaCost(int)
+  nameWithType: NavMeshAreas.GetAreaCost(int)
+  fullName: Prowl.Runtime.NavMeshAreas.GetAreaCost(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshAreas.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetAreaCost
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshAreas.cs
+    startLine: 85
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The default path cost multiplier for an area (used when a query filter does not override it).
+  example: []
+  syntax:
+    content: public static float GetAreaCost(int areaIndex)
+    parameters:
+    - id: areaIndex
+      type: System.Int32
+    return:
+      type: System.Single
+    content.vb: Public Shared Function GetAreaCost(areaIndex As Integer) As Single
+  overload: Prowl.Runtime.NavMeshAreas.GetAreaCost*
+  nameWithType.vb: NavMeshAreas.GetAreaCost(Integer)
+  fullName.vb: Prowl.Runtime.NavMeshAreas.GetAreaCost(Integer)
+  name.vb: GetAreaCost(Integer)
+- uid: Prowl.Runtime.NavMeshAreas.SetAreaCost(System.Int32,System.Single)
+  commentId: M:Prowl.Runtime.NavMeshAreas.SetAreaCost(System.Int32,System.Single)
+  id: SetAreaCost(System.Int32,System.Single)
+  parent: Prowl.Runtime.NavMeshAreas
+  langs:
+  - csharp
+  - vb
+  name: SetAreaCost(int, float)
+  nameWithType: NavMeshAreas.SetAreaCost(int, float)
+  fullName: Prowl.Runtime.NavMeshAreas.SetAreaCost(int, float)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshAreas.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetAreaCost
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshAreas.cs
+    startLine: 95
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Set the default path cost multiplier for an area. Clamped to &gt;= 1: Detour's
+        A* heuristic (straight-line distance) is only admissible when no traversal is cheaper
+        than distance itself, so costs below 1 would silently produce suboptimal paths. To
+        express "agents prefer this area", raise every OTHER area's cost above 1 instead.
+  example: []
+  syntax:
+    content: public static void SetAreaCost(int areaIndex, float cost)
+    parameters:
+    - id: areaIndex
+      type: System.Int32
+    - id: cost
+      type: System.Single
+    content.vb: Public Shared Sub SetAreaCost(areaIndex As Integer, cost As Single)
+  overload: Prowl.Runtime.NavMeshAreas.SetAreaCost*
+  nameWithType.vb: NavMeshAreas.SetAreaCost(Integer, Single)
+  fullName.vb: Prowl.Runtime.NavMeshAreas.SetAreaCost(Integer, Single)
+  name.vb: SetAreaCost(Integer, Single)
+- uid: Prowl.Runtime.NavMeshAreas.ApplyTable(System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.Single})
+  commentId: M:Prowl.Runtime.NavMeshAreas.ApplyTable(System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.Single})
+  id: ApplyTable(System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{System.Single})
+  parent: Prowl.Runtime.NavMeshAreas
+  langs:
+  - csharp
+  - vb
+  name: ApplyTable(IReadOnlyList<string>, IReadOnlyList<float>)
+  nameWithType: NavMeshAreas.ApplyTable(IReadOnlyList<string>, IReadOnlyList<float>)
+  fullName: Prowl.Runtime.NavMeshAreas.ApplyTable(System.Collections.Generic.IReadOnlyList<string>, System.Collections.Generic.IReadOnlyList<float>)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshAreas.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ApplyTable
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshAreas.cs
+    startLine: 107
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Replace the whole area table (names + costs). Called by project-settings loading.
+  example: []
+  syntax:
+    content: public static void ApplyTable(IReadOnlyList<string> names, IReadOnlyList<float> costs)
+    parameters:
+    - id: names
+      type: System.Collections.Generic.IReadOnlyList{System.String}
+    - id: costs
+      type: System.Collections.Generic.IReadOnlyList{System.Single}
+    content.vb: Public Shared Sub ApplyTable(names As IReadOnlyList(Of String), costs As IReadOnlyList(Of Single))
+  overload: Prowl.Runtime.NavMeshAreas.ApplyTable*
+  nameWithType.vb: NavMeshAreas.ApplyTable(IReadOnlyList(Of String), IReadOnlyList(Of Single))
+  fullName.vb: Prowl.Runtime.NavMeshAreas.ApplyTable(System.Collections.Generic.IReadOnlyList(Of String), System.Collections.Generic.IReadOnlyList(Of Single))
+  name.vb: ApplyTable(IReadOnlyList(Of String), IReadOnlyList(Of Single))
+- uid: Prowl.Runtime.NavMeshAreas.GetDefinedAreas
+  commentId: M:Prowl.Runtime.NavMeshAreas.GetDefinedAreas
+  id: GetDefinedAreas
+  parent: Prowl.Runtime.NavMeshAreas
+  langs:
+  - csharp
+  - vb
+  name: GetDefinedAreas()
+  nameWithType: NavMeshAreas.GetDefinedAreas()
+  fullName: Prowl.Runtime.NavMeshAreas.GetDefinedAreas()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshAreas.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetDefinedAreas
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshAreas.cs
+    startLine: 125
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Indices of all defined areas (the built-ins plus every user area with a
+        non-empty name), in index order. What area dropdowns enumerate.
+  example: []
+  syntax:
+    content: public static List<int> GetDefinedAreas()
+    return:
+      type: System.Collections.Generic.List{System.Int32}
+    content.vb: Public Shared Function GetDefinedAreas() As List(Of Integer)
+  overload: Prowl.Runtime.NavMeshAreas.GetDefinedAreas*
+- uid: Prowl.Runtime.NavMeshAreas.ToDetourArea(System.Int32)
+  commentId: M:Prowl.Runtime.NavMeshAreas.ToDetourArea(System.Int32)
+  id: ToDetourArea(System.Int32)
+  parent: Prowl.Runtime.NavMeshAreas
+  langs:
+  - csharp
+  - vb
+  name: ToDetourArea(int)
+  nameWithType: NavMeshAreas.ToDetourArea(int)
+  fullName: Prowl.Runtime.NavMeshAreas.ToDetourArea(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshAreas.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ToDetourArea
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshAreas.cs
+    startLine: 136
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Convert a Prowl area index (0..31) to the Detour polygon area value (1..32).
+  example: []
+  syntax:
+    content: public static int ToDetourArea(int areaIndex)
+    parameters:
+    - id: areaIndex
+      type: System.Int32
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function ToDetourArea(areaIndex As Integer) As Integer
+  overload: Prowl.Runtime.NavMeshAreas.ToDetourArea*
+  nameWithType.vb: NavMeshAreas.ToDetourArea(Integer)
+  fullName.vb: Prowl.Runtime.NavMeshAreas.ToDetourArea(Integer)
+  name.vb: ToDetourArea(Integer)
+- uid: Prowl.Runtime.NavMeshAreas.FromDetourArea(System.Int32)
+  commentId: M:Prowl.Runtime.NavMeshAreas.FromDetourArea(System.Int32)
+  id: FromDetourArea(System.Int32)
+  parent: Prowl.Runtime.NavMeshAreas
+  langs:
+  - csharp
+  - vb
+  name: FromDetourArea(int)
+  nameWithType: NavMeshAreas.FromDetourArea(int)
+  fullName: Prowl.Runtime.NavMeshAreas.FromDetourArea(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Navigation/NavMeshAreas.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FromDetourArea
+    path: ../Prowl/Prowl.Runtime/Navigation/NavMeshAreas.cs
+    startLine: 141
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Convert a Detour polygon area value back to a Prowl area index. Returns
+        <xref href="Prowl.Runtime.NavMeshAreas.NotWalkable" data-throw-if-not-resolved="false"></xref> for the reserved null area (0), which should not appear on
+        polygons that made it into a navmesh.
+  example: []
+  syntax:
+    content: public static int FromDetourArea(int detourArea)
+    parameters:
+    - id: detourArea
+      type: System.Int32
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function FromDetourArea(detourArea As Integer) As Integer
+  overload: Prowl.Runtime.NavMeshAreas.FromDetourArea*
+  nameWithType.vb: NavMeshAreas.FromDetourArea(Integer)
+  fullName.vb: Prowl.Runtime.NavMeshAreas.FromDetourArea(Integer)
+  name.vb: FromDetourArea(Integer)
+references:
+- uid: Prowl.Runtime.NavMeshAreas.ToDetourArea(System.Int32)
+  commentId: M:Prowl.Runtime.NavMeshAreas.ToDetourArea(System.Int32)
+  isExternal: true
+  href: Prowl.Runtime.NavMeshAreas.html#Prowl_Runtime_NavMeshAreas_ToDetourArea_System_Int32_
+  name: ToDetourArea(int)
+  nameWithType: NavMeshAreas.ToDetourArea(int)
+  fullName: Prowl.Runtime.NavMeshAreas.ToDetourArea(int)
+  nameWithType.vb: NavMeshAreas.ToDetourArea(Integer)
+  fullName.vb: Prowl.Runtime.NavMeshAreas.ToDetourArea(Integer)
+  name.vb: ToDetourArea(Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.NavMeshAreas.ToDetourArea(System.Int32)
+    name: ToDetourArea
+    href: Prowl.Runtime.NavMeshAreas.html#Prowl_Runtime_NavMeshAreas_ToDetourArea_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.NavMeshAreas.ToDetourArea(System.Int32)
+    name: ToDetourArea
+    href: Prowl.Runtime.NavMeshAreas.html#Prowl_Runtime_NavMeshAreas_ToDetourArea_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.NavMeshAreas.FromDetourArea(System.Int32)
+  commentId: M:Prowl.Runtime.NavMeshAreas.FromDetourArea(System.Int32)
+  isExternal: true
+  href: Prowl.Runtime.NavMeshAreas.html#Prowl_Runtime_NavMeshAreas_FromDetourArea_System_Int32_
+  name: FromDetourArea(int)
+  nameWithType: NavMeshAreas.FromDetourArea(int)
+  fullName: Prowl.Runtime.NavMeshAreas.FromDetourArea(int)
+  nameWithType.vb: NavMeshAreas.FromDetourArea(Integer)
+  fullName.vb: Prowl.Runtime.NavMeshAreas.FromDetourArea(Integer)
+  name.vb: FromDetourArea(Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.NavMeshAreas.FromDetourArea(System.Int32)
+    name: FromDetourArea
+    href: Prowl.Runtime.NavMeshAreas.html#Prowl_Runtime_NavMeshAreas_FromDetourArea_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.NavMeshAreas.FromDetourArea(System.Int32)
+    name: FromDetourArea
+    href: Prowl.Runtime.NavMeshAreas.html#Prowl_Runtime_NavMeshAreas_FromDetourArea_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.NavMeshAreas.NotWalkable
+  commentId: F:Prowl.Runtime.NavMeshAreas.NotWalkable
+  href: Prowl.Runtime.NavMeshAreas.html#Prowl_Runtime_NavMeshAreas_NotWalkable
+  name: NotWalkable
+  nameWithType: NavMeshAreas.NotWalkable
+  fullName: Prowl.Runtime.NavMeshAreas.NotWalkable
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Runtime.NavMeshAreas.GetDefaultAreaCost*
+  commentId: Overload:Prowl.Runtime.NavMeshAreas.GetDefaultAreaCost
+  href: Prowl.Runtime.NavMeshAreas.html#Prowl_Runtime_NavMeshAreas_GetDefaultAreaCost_System_Int32_
+  name: GetDefaultAreaCost
+  nameWithType: NavMeshAreas.GetDefaultAreaCost
+  fullName: Prowl.Runtime.NavMeshAreas.GetDefaultAreaCost
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: Prowl.Runtime.NavMeshAreas.GetAreaName*
+  commentId: Overload:Prowl.Runtime.NavMeshAreas.GetAreaName
+  href: Prowl.Runtime.NavMeshAreas.html#Prowl_Runtime_NavMeshAreas_GetAreaName_System_Int32_
+  name: GetAreaName
+  nameWithType: NavMeshAreas.GetAreaName
+  fullName: Prowl.Runtime.NavMeshAreas.GetAreaName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Prowl.Runtime.NavMeshAreas.SetAreaName*
+  commentId: Overload:Prowl.Runtime.NavMeshAreas.SetAreaName
+  href: Prowl.Runtime.NavMeshAreas.html#Prowl_Runtime_NavMeshAreas_SetAreaName_System_Int32_System_String_
+  name: SetAreaName
+  nameWithType: NavMeshAreas.SetAreaName
+  fullName: Prowl.Runtime.NavMeshAreas.SetAreaName
+- uid: Prowl.Runtime.NavMeshAreas.GetAreaCost*
+  commentId: Overload:Prowl.Runtime.NavMeshAreas.GetAreaCost
+  href: Prowl.Runtime.NavMeshAreas.html#Prowl_Runtime_NavMeshAreas_GetAreaCost_System_Int32_
+  name: GetAreaCost
+  nameWithType: NavMeshAreas.GetAreaCost
+  fullName: Prowl.Runtime.NavMeshAreas.GetAreaCost
+- uid: Prowl.Runtime.NavMeshAreas.SetAreaCost*
+  commentId: Overload:Prowl.Runtime.NavMeshAreas.SetAreaCost
+  href: Prowl.Runtime.NavMeshAreas.html#Prowl_Runtime_NavMeshAreas_SetAreaCost_System_Int32_System_Single_
+  name: SetAreaCost
+  nameWithType: NavMeshAreas.SetAreaCost
+  fullName: Prowl.Runtime.NavMeshAreas.SetAreaCost
+- uid: Prowl.Runtime.NavMeshAreas.ApplyTable*
+  commentId: Overload:Prowl.Runtime.NavMeshAreas.ApplyTable
+  href: Prowl.Runtime.NavMeshAreas.html#Prowl_Runtime_NavMeshAreas_ApplyTable_System_Collections_Generic_IReadOnlyList_System_String__System_Collections_Generic_IReadOnlyList_System_Single__
+  name: ApplyTable
+  nameWithType: NavMeshAreas.ApplyTable
+  fullName: Prowl.Runtime.NavMeshAreas.ApplyTable
+- uid: System.Collections.Generic.IReadOnlyList{System.String}
+  commentId: T:System.Collections.Generic.IReadOnlyList{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<string>
+  nameWithType: IReadOnlyList<string>
+  fullName: System.Collections.Generic.IReadOnlyList<string>
+  nameWithType.vb: IReadOnlyList(Of String)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of String)
+  name.vb: IReadOnlyList(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList{System.Single}
+  commentId: T:System.Collections.Generic.IReadOnlyList{System.Single}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<float>
+  nameWithType: IReadOnlyList<float>
+  fullName: System.Collections.Generic.IReadOnlyList<float>
+  nameWithType.vb: IReadOnlyList(Of Single)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Single)
+  name.vb: IReadOnlyList(Of Single)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Prowl.Runtime.NavMeshAreas.GetDefinedAreas*
+  commentId: Overload:Prowl.Runtime.NavMeshAreas.GetDefinedAreas
+  href: Prowl.Runtime.NavMeshAreas.html#Prowl_Runtime_NavMeshAreas_GetDefinedAreas
+  name: GetDefinedAreas
+  nameWithType: NavMeshAreas.GetDefinedAreas
+  fullName: Prowl.Runtime.NavMeshAreas.GetDefinedAreas
+- uid: System.Collections.Generic.List{System.Int32}
+  commentId: T:System.Collections.Generic.List{System.Int32}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<int>
+  nameWithType: List<int>
+  fullName: System.Collections.Generic.List<int>
+  nameWithType.vb: List(Of Integer)
+  fullName.vb: System.Collections.Generic.List(Of Integer)
+  name.vb: List(Of Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Runtime.NavMeshAreas.ToDetourArea*
+  commentId: Overload:Prowl.Runtime.NavMeshAreas.ToDetourArea
+  href: Prowl.Runtime.NavMeshAreas.html#Prowl_Runtime_NavMeshAreas_ToDetourArea_System_Int32_
+  name: ToDetourArea
+  nameWithType: NavMeshAreas.ToDetourArea
+  fullName: Prowl.Runtime.NavMeshAreas.ToDetourArea
+- uid: Prowl.Runtime.NavMeshAreas.FromDetourArea*
+  commentId: Overload:Prowl.Runtime.NavMeshAreas.FromDetourArea
+  href: Prowl.Runtime.NavMeshAreas.html#Prowl_Runtime_NavMeshAreas_FromDetourArea_System_Int32_
+  name: FromDetourArea
+  nameWithType: NavMeshAreas.FromDetourArea
+  fullName: Prowl.Runtime.NavMeshAreas.FromDetourArea

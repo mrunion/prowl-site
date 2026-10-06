@@ -7,29 +7,25 @@ items:
   children:
   - Prowl.Runtime.EngineObject.#ctor
   - Prowl.Runtime.EngineObject.#ctor(System.String)
-  - Prowl.Runtime.EngineObject.AssetID
   - Prowl.Runtime.EngineObject.CreatedInstance
-  - Prowl.Runtime.EngineObject.DeserializeHeader(Prowl.Runtime.SerializedProperty)
+  - Prowl.Runtime.EngineObject.DeserializeHeader(Prowl.Echo.EchoObject)
   - Prowl.Runtime.EngineObject.Destroy
-  - Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-  - Prowl.Runtime.EngineObject.DestroyImmediate
-  - Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
   - Prowl.Runtime.EngineObject.Dispose
-  - Prowl.Runtime.EngineObject.FileID
-  - Prowl.Runtime.EngineObject.FindObjectByID``1(System.Int32)
-  - Prowl.Runtime.EngineObject.FindObjectOfType``1
-  - Prowl.Runtime.EngineObject.FindObjectsOfType``1
-  - Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-  - Prowl.Runtime.EngineObject.HandleDestroyed
+  - Prowl.Runtime.EngineObject.EnsureNotDisposed(System.String)
+  - Prowl.Runtime.EngineObject.Equals(System.Object)
+  - Prowl.Runtime.EngineObject.GetHashCode
   - Prowl.Runtime.EngineObject.InstanceID
-  - Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject,System.Boolean)
-  - Prowl.Runtime.EngineObject.IsDestroyed
+  - Prowl.Runtime.EngineObject.IsDestroyQueued
+  - Prowl.Runtime.EngineObject.IsDisposed
   - Prowl.Runtime.EngineObject.Name
   - Prowl.Runtime.EngineObject.OnDispose
   - Prowl.Runtime.EngineObject.OnValidate
-  - Prowl.Runtime.EngineObject.SerializeHeader(Prowl.Runtime.SerializedProperty)
+  - Prowl.Runtime.EngineObject.ProcessDestroyed
+  - Prowl.Runtime.EngineObject.SerializeHeader(Prowl.Echo.EchoObject)
   - Prowl.Runtime.EngineObject.ToString
   - Prowl.Runtime.EngineObject._instanceID
+  - Prowl.Runtime.EngineObject.op_Equality(Prowl.Runtime.EngineObject,Prowl.Runtime.EngineObject)
+  - Prowl.Runtime.EngineObject.op_Inequality(Prowl.Runtime.EngineObject,Prowl.Runtime.EngineObject)
   langs:
   - csharp
   - vb
@@ -40,48 +36,40 @@ items:
   source:
     remote:
       path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: EngineObject
     path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 9
+    startLine: 17
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: >-
+    Engine objects are shared rather than duplicated when a copy reaches one through a field. An asset referenced
+
+    by two components stays one asset. Copying an engine object directly still copies it, see <xref href="Prowl.Runtime.ObjectCopy" data-throw-if-not-resolved="false"></xref>.
+  example: []
   syntax:
-    content: 'public class EngineObject : IDisposable'
-    content.vb: Public Class EngineObject Implements IDisposable
+    content: 'public abstract class EngineObject : IDisposable'
+    content.vb: Public MustInherit Class EngineObject Implements IDisposable
   inheritance:
   - System.Object
   derivedClasses:
-  - Prowl.Runtime.AnimationClip
-  - Prowl.Runtime.AudioClip
-  - Prowl.Runtime.Font
+  - Prowl.Runtime.Asset
   - Prowl.Runtime.GameObject
-  - Prowl.Runtime.Material
-  - Prowl.Runtime.Mesh
   - Prowl.Runtime.MonoBehaviour
-  - Prowl.Runtime.MonoScript
-  - Prowl.Runtime.Prefab
-  - Prowl.Runtime.RenderPipelines.RenderPipeline
-  - Prowl.Runtime.RenderTexture
-  - Prowl.Runtime.Scene
-  - Prowl.Runtime.ScriptableObject
-  - Prowl.Runtime.Shader
-  - Prowl.Runtime.TextAsset
-  - Prowl.Runtime.Texture
-  - Prowl.Runtime.TextureSampler
+  - Prowl.Runtime.Rendering.RenderPipeline
+  - Prowl.Runtime.Resources.Scene
   implements:
   - System.IDisposable
   inheritedMembers:
-  - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   extensionMethods:
-  - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.Null
+  - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsNotValid
+  - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsValid
   - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
 - uid: Prowl.Runtime.EngineObject._instanceID
   commentId: F:Prowl.Runtime.EngineObject._instanceID
@@ -97,11 +85,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: _instanceID
     path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 17
+    startLine: 21
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -124,11 +112,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: InstanceID
     path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 18
+    startLine: 22
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -139,60 +127,6 @@ items:
       type: System.Int32
     content.vb: Public ReadOnly Property InstanceID As Integer
   overload: Prowl.Runtime.EngineObject.InstanceID*
-- uid: Prowl.Runtime.EngineObject.AssetID
-  commentId: F:Prowl.Runtime.EngineObject.AssetID
-  id: AssetID
-  parent: Prowl.Runtime.EngineObject
-  langs:
-  - csharp
-  - vb
-  name: AssetID
-  nameWithType: EngineObject.AssetID
-  fullName: Prowl.Runtime.EngineObject.AssetID
-  type: Field
-  source:
-    remote:
-      path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: AssetID
-    path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 22
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public Guid AssetID
-    return:
-      type: System.Guid
-    content.vb: Public AssetID As Guid
-- uid: Prowl.Runtime.EngineObject.FileID
-  commentId: F:Prowl.Runtime.EngineObject.FileID
-  id: FileID
-  parent: Prowl.Runtime.EngineObject
-  langs:
-  - csharp
-  - vb
-  name: FileID
-  nameWithType: EngineObject.FileID
-  fullName: Prowl.Runtime.EngineObject.FileID
-  type: Field
-  source:
-    remote:
-      path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: FileID
-    path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 26
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public ushort FileID
-    return:
-      type: System.UInt16
-    content.vb: Public FileID As UShort
 - uid: Prowl.Runtime.EngineObject.Name
   commentId: F:Prowl.Runtime.EngineObject.Name
   id: Name
@@ -207,11 +141,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: Name
     path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 29
+    startLine: 24
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -220,33 +154,35 @@ items:
     return:
       type: System.String
     content.vb: Public Name As String
-- uid: Prowl.Runtime.EngineObject.IsDestroyed
-  commentId: F:Prowl.Runtime.EngineObject.IsDestroyed
-  id: IsDestroyed
+- uid: Prowl.Runtime.EngineObject.IsDisposed
+  commentId: P:Prowl.Runtime.EngineObject.IsDisposed
+  id: IsDisposed
   parent: Prowl.Runtime.EngineObject
   langs:
   - csharp
   - vb
-  name: IsDestroyed
-  nameWithType: EngineObject.IsDestroyed
-  fullName: Prowl.Runtime.EngineObject.IsDestroyed
-  type: Field
+  name: IsDisposed
+  nameWithType: EngineObject.IsDisposed
+  fullName: Prowl.Runtime.EngineObject.IsDisposed
+  type: Property
   source:
     remote:
       path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: IsDestroyed
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsDisposed
     path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 32
+    startLine: 30
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public bool IsDestroyed
+    content: public bool IsDisposed { get; }
+    parameters: []
     return:
       type: System.Boolean
-    content.vb: Public IsDestroyed As Boolean
+    content.vb: Public ReadOnly Property IsDisposed As Boolean
+  overload: Prowl.Runtime.EngineObject.IsDisposed*
 - uid: Prowl.Runtime.EngineObject.#ctor
   commentId: M:Prowl.Runtime.EngineObject.#ctor
   id: '#ctor'
@@ -261,11 +197,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: .ctor
     path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 34
+    startLine: 32
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -290,11 +226,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: .ctor
     path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 36
+    startLine: 34
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -322,11 +258,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: CreatedInstance
     path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 45
+    startLine: 42
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -348,11 +284,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: OnValidate
     path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 49
+    startLine: 44
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -360,314 +296,6 @@ items:
     content: public virtual void OnValidate()
     content.vb: Public Overridable Sub OnValidate()
   overload: Prowl.Runtime.EngineObject.OnValidate*
-- uid: Prowl.Runtime.EngineObject.FindObjectOfType``1
-  commentId: M:Prowl.Runtime.EngineObject.FindObjectOfType``1
-  id: FindObjectOfType``1
-  parent: Prowl.Runtime.EngineObject
-  langs:
-  - csharp
-  - vb
-  name: FindObjectOfType<T>()
-  nameWithType: EngineObject.FindObjectOfType<T>()
-  fullName: Prowl.Runtime.EngineObject.FindObjectOfType<T>()
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: FindObjectOfType
-    path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 51
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: 'public static T? FindObjectOfType<T>() where T : EngineObject'
-    typeParameters:
-    - id: T
-    return:
-      type: '{T}'
-    content.vb: Public Shared Function FindObjectOfType(Of T As EngineObject)() As T
-  overload: Prowl.Runtime.EngineObject.FindObjectOfType*
-  nameWithType.vb: EngineObject.FindObjectOfType(Of T)()
-  fullName.vb: Prowl.Runtime.EngineObject.FindObjectOfType(Of T)()
-  name.vb: FindObjectOfType(Of T)()
-- uid: Prowl.Runtime.EngineObject.FindObjectsOfType``1
-  commentId: M:Prowl.Runtime.EngineObject.FindObjectsOfType``1
-  id: FindObjectsOfType``1
-  parent: Prowl.Runtime.EngineObject
-  langs:
-  - csharp
-  - vb
-  name: FindObjectsOfType<T>()
-  nameWithType: EngineObject.FindObjectsOfType<T>()
-  fullName: Prowl.Runtime.EngineObject.FindObjectsOfType<T>()
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: FindObjectsOfType
-    path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 59
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: 'public static T?[] FindObjectsOfType<T>() where T : EngineObject'
-    typeParameters:
-    - id: T
-    return:
-      type: '{T}[]'
-    content.vb: Public Shared Function FindObjectsOfType(Of T As EngineObject)() As T()
-  overload: Prowl.Runtime.EngineObject.FindObjectsOfType*
-  nameWithType.vb: EngineObject.FindObjectsOfType(Of T)()
-  fullName.vb: Prowl.Runtime.EngineObject.FindObjectsOfType(Of T)()
-  name.vb: FindObjectsOfType(Of T)()
-- uid: Prowl.Runtime.EngineObject.FindObjectByID``1(System.Int32)
-  commentId: M:Prowl.Runtime.EngineObject.FindObjectByID``1(System.Int32)
-  id: FindObjectByID``1(System.Int32)
-  parent: Prowl.Runtime.EngineObject
-  langs:
-  - csharp
-  - vb
-  name: FindObjectByID<T>(int)
-  nameWithType: EngineObject.FindObjectByID<T>(int)
-  fullName: Prowl.Runtime.EngineObject.FindObjectByID<T>(int)
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: FindObjectByID
-    path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 67
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: 'public static T? FindObjectByID<T>(int id) where T : EngineObject'
-    parameters:
-    - id: id
-      type: System.Int32
-    typeParameters:
-    - id: T
-    return:
-      type: '{T}'
-    content.vb: Public Shared Function FindObjectByID(Of T As EngineObject)(id As Integer) As T
-  overload: Prowl.Runtime.EngineObject.FindObjectByID*
-  nameWithType.vb: EngineObject.FindObjectByID(Of T)(Integer)
-  fullName.vb: Prowl.Runtime.EngineObject.FindObjectByID(Of T)(Integer)
-  name.vb: FindObjectByID(Of T)(Integer)
-- uid: Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-  commentId: M:Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-  id: Foreach``1(System.Action{``0})
-  parent: Prowl.Runtime.EngineObject
-  langs:
-  - csharp
-  - vb
-  name: Foreach<T>(Action<T>)
-  nameWithType: EngineObject.Foreach<T>(Action<T>)
-  fullName: Prowl.Runtime.EngineObject.Foreach<T>(System.Action<T>)
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Foreach
-    path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 75
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: 'public static void Foreach<T>(Action<T> action) where T : EngineObject'
-    parameters:
-    - id: action
-      type: System.Action{{T}}
-    typeParameters:
-    - id: T
-    content.vb: Public Shared Sub Foreach(Of T As EngineObject)(action As Action(Of T))
-  overload: Prowl.Runtime.EngineObject.Foreach*
-  nameWithType.vb: EngineObject.Foreach(Of T)(Action(Of T))
-  fullName.vb: Prowl.Runtime.EngineObject.Foreach(Of T)(System.Action(Of T))
-  name.vb: Foreach(Of T)(Action(Of T))
-- uid: Prowl.Runtime.EngineObject.Destroy
-  commentId: M:Prowl.Runtime.EngineObject.Destroy
-  id: Destroy
-  parent: Prowl.Runtime.EngineObject
-  langs:
-  - csharp
-  - vb
-  name: Destroy()
-  nameWithType: EngineObject.Destroy()
-  fullName: Prowl.Runtime.EngineObject.Destroy()
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Destroy
-    path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 86
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public void Destroy()
-    content.vb: Public Sub Destroy()
-  overload: Prowl.Runtime.EngineObject.Destroy*
-- uid: Prowl.Runtime.EngineObject.DestroyImmediate
-  commentId: M:Prowl.Runtime.EngineObject.DestroyImmediate
-  id: DestroyImmediate
-  parent: Prowl.Runtime.EngineObject
-  langs:
-  - csharp
-  - vb
-  name: DestroyImmediate()
-  nameWithType: EngineObject.DestroyImmediate()
-  fullName: Prowl.Runtime.EngineObject.DestroyImmediate()
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: DestroyImmediate
-    path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 87
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public void DestroyImmediate()
-    content.vb: Public Sub DestroyImmediate()
-  overload: Prowl.Runtime.EngineObject.DestroyImmediate*
-- uid: Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-  commentId: M:Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-  id: Destroy(Prowl.Runtime.EngineObject)
-  parent: Prowl.Runtime.EngineObject
-  langs:
-  - csharp
-  - vb
-  name: Destroy(EngineObject)
-  nameWithType: EngineObject.Destroy(EngineObject)
-  fullName: Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Destroy
-    path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 89
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static void Destroy(EngineObject obj)
-    parameters:
-    - id: obj
-      type: Prowl.Runtime.EngineObject
-    content.vb: Public Shared Sub Destroy(obj As EngineObject)
-  overload: Prowl.Runtime.EngineObject.Destroy*
-- uid: Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-  commentId: M:Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-  id: DestroyImmediate(Prowl.Runtime.EngineObject)
-  parent: Prowl.Runtime.EngineObject
-  langs:
-  - csharp
-  - vb
-  name: DestroyImmediate(EngineObject)
-  nameWithType: EngineObject.DestroyImmediate(EngineObject)
-  fullName: Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: DestroyImmediate
-    path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 96
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static void DestroyImmediate(EngineObject obj)
-    parameters:
-    - id: obj
-      type: Prowl.Runtime.EngineObject
-    content.vb: Public Shared Sub DestroyImmediate(obj As EngineObject)
-  overload: Prowl.Runtime.EngineObject.DestroyImmediate*
-- uid: Prowl.Runtime.EngineObject.HandleDestroyed
-  commentId: M:Prowl.Runtime.EngineObject.HandleDestroyed
-  id: HandleDestroyed
-  parent: Prowl.Runtime.EngineObject
-  langs:
-  - csharp
-  - vb
-  name: HandleDestroyed()
-  nameWithType: EngineObject.HandleDestroyed()
-  fullName: Prowl.Runtime.EngineObject.HandleDestroyed()
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: HandleDestroyed
-    path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 103
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static void HandleDestroyed()
-    content.vb: Public Shared Sub HandleDestroyed()
-  overload: Prowl.Runtime.EngineObject.HandleDestroyed*
-- uid: Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject,System.Boolean)
-  commentId: M:Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject,System.Boolean)
-  id: Instantiate(Prowl.Runtime.EngineObject,System.Boolean)
-  parent: Prowl.Runtime.EngineObject
-  langs:
-  - csharp
-  - vb
-  name: Instantiate(EngineObject, bool)
-  nameWithType: EngineObject.Instantiate(EngineObject, bool)
-  fullName: Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject, bool)
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Instantiate
-    path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 114
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public static EngineObject Instantiate(EngineObject obj, bool keepAssetID = false)
-    parameters:
-    - id: obj
-      type: Prowl.Runtime.EngineObject
-    - id: keepAssetID
-      type: System.Boolean
-    return:
-      type: Prowl.Runtime.EngineObject
-    content.vb: Public Shared Function Instantiate(obj As EngineObject, keepAssetID As Boolean = False) As EngineObject
-  overload: Prowl.Runtime.EngineObject.Instantiate*
-  nameWithType.vb: EngineObject.Instantiate(EngineObject, Boolean)
-  fullName.vb: Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject, Boolean)
-  name.vb: Instantiate(EngineObject, Boolean)
 - uid: Prowl.Runtime.EngineObject.Dispose
   commentId: M:Prowl.Runtime.EngineObject.Dispose
   id: Dispose
@@ -682,37 +310,275 @@ items:
   source:
     remote:
       path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: Dispose
+    path: ../Prowl/Prowl.Runtime/EngineObject.cs
+    startLine: 46
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+  example: []
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose()
+  overload: Prowl.Runtime.EngineObject.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+- uid: Prowl.Runtime.EngineObject.Destroy
+  commentId: M:Prowl.Runtime.EngineObject.Destroy
+  id: Destroy
+  parent: Prowl.Runtime.EngineObject
+  langs:
+  - csharp
+  - vb
+  name: Destroy()
+  nameWithType: EngineObject.Destroy()
+  fullName: Prowl.Runtime.EngineObject.Destroy()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/EngineObject.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Destroy
+    path: ../Prowl/Prowl.Runtime/EngineObject.cs
+    startLine: 80
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Queues this object to be disposed at the end of the frame, once every callback has finished.
+
+    It stays fully usable until then, so anything still holding it this frame keeps working, and
+
+    teardown never lands in the middle of an Update, a render or a physics callback.
+
+
+    <p></p>
+
+
+    A destroyed GameObject still ticks and still collides for the rest of the frame. Set
+
+    <code>Enabled = false</code> alongside this if that matters, or call <xref href="Prowl.Runtime.EngineObject.Dispose" data-throw-if-not-resolved="false"></xref> to tear
+
+    down right now and deal with the consequences.
+  example: []
+  syntax:
+    content: public void Destroy()
+    content.vb: Public Sub Destroy()
+  overload: Prowl.Runtime.EngineObject.Destroy*
+- uid: Prowl.Runtime.EngineObject.IsDestroyQueued
+  commentId: P:Prowl.Runtime.EngineObject.IsDestroyQueued
+  id: IsDestroyQueued
+  parent: Prowl.Runtime.EngineObject
+  langs:
+  - csharp
+  - vb
+  name: IsDestroyQueued
+  nameWithType: EngineObject.IsDestroyQueued
+  fullName: Prowl.Runtime.EngineObject.IsDestroyQueued
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/EngineObject.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsDestroyQueued
+    path: ../Prowl/Prowl.Runtime/EngineObject.cs
+    startLine: 97
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    True from <xref href="Prowl.Runtime.EngineObject.Destroy" data-throw-if-not-resolved="false"></xref> until the object is disposed at the end of the frame, including when it
+
+    will be torn down because an owner was destroyed (a child under a destroyed GameObject, a component on one).
+
+    The object is still valid while this is true, so check this to treat it as already gone.
+  example: []
+  syntax:
+    content: public bool IsDestroyQueued { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsDestroyQueued As Boolean
+  overload: Prowl.Runtime.EngineObject.IsDestroyQueued*
+- uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+  commentId: M:Prowl.Runtime.EngineObject.ProcessDestroyed
+  id: ProcessDestroyed
+  parent: Prowl.Runtime.EngineObject
+  langs:
+  - csharp
+  - vb
+  name: ProcessDestroyed()
+  nameWithType: EngineObject.ProcessDestroyed()
+  fullName: Prowl.Runtime.EngineObject.ProcessDestroyed()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/EngineObject.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ProcessDestroyed
+    path: ../Prowl/Prowl.Runtime/EngineObject.cs
+    startLine: 106
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Disposes everything <xref href="Prowl.Runtime.EngineObject.Destroy" data-throw-if-not-resolved="false"></xref> queued. Driven once per frame by the game loop,
+
+    after rendering. Anything queued while this runs waits for the next frame.
+  example: []
+  syntax:
+    content: public static void ProcessDestroyed()
+    content.vb: Public Shared Sub ProcessDestroyed()
+  overload: Prowl.Runtime.EngineObject.ProcessDestroyed*
+- uid: Prowl.Runtime.EngineObject.op_Equality(Prowl.Runtime.EngineObject,Prowl.Runtime.EngineObject)
+  commentId: M:Prowl.Runtime.EngineObject.op_Equality(Prowl.Runtime.EngineObject,Prowl.Runtime.EngineObject)
+  id: op_Equality(Prowl.Runtime.EngineObject,Prowl.Runtime.EngineObject)
+  parent: Prowl.Runtime.EngineObject
+  langs:
+  - csharp
+  - vb
+  name: operator ==(EngineObject, EngineObject)
+  nameWithType: EngineObject.operator ==(EngineObject, EngineObject)
+  fullName: Prowl.Runtime.EngineObject.operator ==(Prowl.Runtime.EngineObject, Prowl.Runtime.EngineObject)
+  type: Operator
+  source:
+    remote:
+      path: Prowl.Runtime/EngineObject.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: op_Equality
+    path: ../Prowl/Prowl.Runtime/EngineObject.cs
+    startLine: 126
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static bool operator ==(EngineObject left, EngineObject right)
+    parameters:
+    - id: left
+      type: Prowl.Runtime.EngineObject
+    - id: right
+      type: Prowl.Runtime.EngineObject
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator =(left As EngineObject, right As EngineObject) As Boolean
+  overload: Prowl.Runtime.EngineObject.op_Equality*
+  nameWithType.vb: EngineObject.=(EngineObject, EngineObject)
+  fullName.vb: Prowl.Runtime.EngineObject.=(Prowl.Runtime.EngineObject, Prowl.Runtime.EngineObject)
+  name.vb: =(EngineObject, EngineObject)
+- uid: Prowl.Runtime.EngineObject.op_Inequality(Prowl.Runtime.EngineObject,Prowl.Runtime.EngineObject)
+  commentId: M:Prowl.Runtime.EngineObject.op_Inequality(Prowl.Runtime.EngineObject,Prowl.Runtime.EngineObject)
+  id: op_Inequality(Prowl.Runtime.EngineObject,Prowl.Runtime.EngineObject)
+  parent: Prowl.Runtime.EngineObject
+  langs:
+  - csharp
+  - vb
+  name: operator !=(EngineObject, EngineObject)
+  nameWithType: EngineObject.operator !=(EngineObject, EngineObject)
+  fullName: Prowl.Runtime.EngineObject.operator !=(Prowl.Runtime.EngineObject, Prowl.Runtime.EngineObject)
+  type: Operator
+  source:
+    remote:
+      path: Prowl.Runtime/EngineObject.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: op_Inequality
+    path: ../Prowl/Prowl.Runtime/EngineObject.cs
+    startLine: 130
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static bool operator !=(EngineObject left, EngineObject right)
+    parameters:
+    - id: left
+      type: Prowl.Runtime.EngineObject
+    - id: right
+      type: Prowl.Runtime.EngineObject
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator <>(left As EngineObject, right As EngineObject) As Boolean
+  overload: Prowl.Runtime.EngineObject.op_Inequality*
+  nameWithType.vb: EngineObject.<>(EngineObject, EngineObject)
+  fullName.vb: Prowl.Runtime.EngineObject.<>(Prowl.Runtime.EngineObject, Prowl.Runtime.EngineObject)
+  name.vb: <>(EngineObject, EngineObject)
+- uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+  commentId: M:Prowl.Runtime.EngineObject.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: Prowl.Runtime.EngineObject
+  langs:
+  - csharp
+  - vb
+  name: Equals(object?)
+  nameWithType: EngineObject.Equals(object?)
+  fullName: Prowl.Runtime.EngineObject.Equals(object?)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/EngineObject.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Equals
+    path: ../Prowl/Prowl.Runtime/EngineObject.cs
+    startLine: 131
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Determines whether the specified object is equal to the current object.
+  example: []
+  syntax:
+    content: public override bool Equals(object? obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object to compare with the current object.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the specified object  is equal to the current object; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.Object.Equals(System.Object)
+  overload: Prowl.Runtime.EngineObject.Equals*
+  nameWithType.vb: EngineObject.Equals(Object)
+  fullName.vb: Prowl.Runtime.EngineObject.Equals(Object)
+  name.vb: Equals(Object)
+- uid: Prowl.Runtime.EngineObject.GetHashCode
+  commentId: M:Prowl.Runtime.EngineObject.GetHashCode
+  id: GetHashCode
+  parent: Prowl.Runtime.EngineObject
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: EngineObject.GetHashCode()
+  fullName: Prowl.Runtime.EngineObject.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/EngineObject.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetHashCode
     path: ../Prowl/Prowl.Runtime/EngineObject.cs
     startLine: 132
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
-  summary: >-
-    Force the object to dispose immediately
-
-    You are advised to not use this! Use Destroy() Instead.
+  summary: Serves as the default hash function.
   example: []
   syntax:
-    content: >-
-      [Obsolete("You are advised to not use this! Use Destroy() Instead.")]
-
-      public void Dispose()
-    content.vb: >-
-      <Obsolete("You are advised to not use this! Use Destroy() Instead.")>
-
-      Public Sub Dispose()
-  overload: Prowl.Runtime.EngineObject.Dispose*
-  implements:
-  - System.IDisposable.Dispose
-  attributes:
-  - type: System.ObsoleteAttribute
-    ctor: System.ObsoleteAttribute.#ctor(System.String)
-    arguments:
-    - type: System.String
-      value: You are advised to not use this! Use Destroy() Instead.
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: A hash code for the current object.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.Object.GetHashCode
+  overload: Prowl.Runtime.EngineObject.GetHashCode*
 - uid: Prowl.Runtime.EngineObject.OnDispose
   commentId: M:Prowl.Runtime.EngineObject.OnDispose
   id: OnDispose
@@ -727,18 +593,52 @@ items:
   source:
     remote:
       path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: OnDispose
     path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 151
+    startLine: 134
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public virtual void OnDispose()
-    content.vb: Public Overridable Sub OnDispose()
+    content: protected virtual void OnDispose()
+    content.vb: Protected Overridable Sub OnDispose()
   overload: Prowl.Runtime.EngineObject.OnDispose*
+- uid: Prowl.Runtime.EngineObject.EnsureNotDisposed(System.String)
+  commentId: M:Prowl.Runtime.EngineObject.EnsureNotDisposed(System.String)
+  id: EnsureNotDisposed(System.String)
+  parent: Prowl.Runtime.EngineObject
+  langs:
+  - csharp
+  - vb
+  name: EnsureNotDisposed(string?)
+  nameWithType: EngineObject.EnsureNotDisposed(string?)
+  fullName: Prowl.Runtime.EngineObject.EnsureNotDisposed(string?)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/EngineObject.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EnsureNotDisposed
+    path: ../Prowl/Prowl.Runtime/EngineObject.cs
+    startLine: 137
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Call at the top of any accessor that must not run on a disposed object.
+  example: []
+  syntax:
+    content: protected void EnsureNotDisposed(string? member = null)
+    parameters:
+    - id: member
+      type: System.String
+    content.vb: Protected Sub EnsureNotDisposed(member As String = Nothing)
+  overload: Prowl.Runtime.EngineObject.EnsureNotDisposed*
+  nameWithType.vb: EngineObject.EnsureNotDisposed(String)
+  fullName.vb: Prowl.Runtime.EngineObject.EnsureNotDisposed(String)
+  name.vb: EnsureNotDisposed(String)
 - uid: Prowl.Runtime.EngineObject.ToString
   commentId: M:Prowl.Runtime.EngineObject.ToString
   id: ToString
@@ -753,11 +653,11 @@ items:
   source:
     remote:
       path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: ToString
     path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 153
+    startLine: 148
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -771,87 +671,88 @@ items:
     content.vb: Public Overrides Function ToString() As String
   overridden: System.Object.ToString
   overload: Prowl.Runtime.EngineObject.ToString*
-- uid: Prowl.Runtime.EngineObject.SerializeHeader(Prowl.Runtime.SerializedProperty)
-  commentId: M:Prowl.Runtime.EngineObject.SerializeHeader(Prowl.Runtime.SerializedProperty)
-  id: SerializeHeader(Prowl.Runtime.SerializedProperty)
+- uid: Prowl.Runtime.EngineObject.SerializeHeader(Prowl.Echo.EchoObject)
+  commentId: M:Prowl.Runtime.EngineObject.SerializeHeader(Prowl.Echo.EchoObject)
+  id: SerializeHeader(Prowl.Echo.EchoObject)
   parent: Prowl.Runtime.EngineObject
   langs:
   - csharp
   - vb
-  name: SerializeHeader(SerializedProperty)
-  nameWithType: EngineObject.SerializeHeader(SerializedProperty)
-  fullName: Prowl.Runtime.EngineObject.SerializeHeader(Prowl.Runtime.SerializedProperty)
+  name: SerializeHeader(EchoObject)
+  nameWithType: EngineObject.SerializeHeader(EchoObject)
+  fullName: Prowl.Runtime.EngineObject.SerializeHeader(Prowl.Echo.EchoObject)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: SerializeHeader
     path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 155
+    startLine: 150
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: protected void SerializeHeader(SerializedProperty compound)
+    content: protected void SerializeHeader(EchoObject compound)
     parameters:
     - id: compound
-      type: Prowl.Runtime.SerializedProperty
-    content.vb: Protected Sub SerializeHeader(compound As SerializedProperty)
+      type: Prowl.Echo.EchoObject
+    content.vb: Protected Sub SerializeHeader(compound As EchoObject)
   overload: Prowl.Runtime.EngineObject.SerializeHeader*
-- uid: Prowl.Runtime.EngineObject.DeserializeHeader(Prowl.Runtime.SerializedProperty)
-  commentId: M:Prowl.Runtime.EngineObject.DeserializeHeader(Prowl.Runtime.SerializedProperty)
-  id: DeserializeHeader(Prowl.Runtime.SerializedProperty)
+- uid: Prowl.Runtime.EngineObject.DeserializeHeader(Prowl.Echo.EchoObject)
+  commentId: M:Prowl.Runtime.EngineObject.DeserializeHeader(Prowl.Echo.EchoObject)
+  id: DeserializeHeader(Prowl.Echo.EchoObject)
   parent: Prowl.Runtime.EngineObject
   langs:
   - csharp
   - vb
-  name: DeserializeHeader(SerializedProperty)
-  nameWithType: EngineObject.DeserializeHeader(SerializedProperty)
-  fullName: Prowl.Runtime.EngineObject.DeserializeHeader(Prowl.Runtime.SerializedProperty)
+  name: DeserializeHeader(EchoObject)
+  nameWithType: EngineObject.DeserializeHeader(EchoObject)
+  fullName: Prowl.Runtime.EngineObject.DeserializeHeader(Prowl.Echo.EchoObject)
   type: Method
   source:
     remote:
       path: Prowl.Runtime/EngineObject.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: DeserializeHeader
     path: ../Prowl/Prowl.Runtime/EngineObject.cs
-    startLine: 167
+    startLine: 152
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: protected void DeserializeHeader(SerializedProperty value)
+    content: protected void DeserializeHeader(EchoObject value)
     parameters:
     - id: value
-      type: Prowl.Runtime.SerializedProperty
-    content.vb: Protected Sub DeserializeHeader(value As SerializedProperty)
+      type: Prowl.Echo.EchoObject
+    content.vb: Protected Sub DeserializeHeader(value As EchoObject)
   overload: Prowl.Runtime.EngineObject.DeserializeHeader*
 references:
+- uid: Prowl.Runtime.ObjectCopy
+  commentId: T:Prowl.Runtime.ObjectCopy
+  href: Prowl.Runtime.ObjectCopy.html
+  name: ObjectCopy
+  nameWithType: ObjectCopy
+  fullName: Prowl.Runtime.ObjectCopy
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
-  href: Prowl.html
   name: Prowl.Runtime
   nameWithType: Prowl.Runtime
   fullName: Prowl.Runtime
   spec.csharp:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
   spec.vb:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -871,39 +772,6 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
-  name: Equals(object)
-  nameWithType: object.Equals(object)
-  fullName: object.Equals(object)
-  nameWithType.vb: Object.Equals(Object)
-  fullName.vb: Object.Equals(Object)
-  name.vb: Equals(Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
-  - name: (
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
-  - name: (
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
@@ -948,30 +816,6 @@ references:
     name: Object
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
-  name: GetHashCode()
-  nameWithType: object.GetHashCode()
-  fullName: object.GetHashCode()
-  nameWithType.vb: Object.GetHashCode()
-  fullName.vb: Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
-  - name: (
   - name: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
@@ -1066,27 +910,53 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-- uid: Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.Null
-  commentId: M:Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
+- uid: Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsNotValid
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
   parent: Prowl.Runtime.EngineObjectExtensions
-  definition: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
-  name: Null(EngineObject)
-  nameWithType: EngineObjectExtensions.Null(EngineObject)
-  fullName: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
+  definition: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  name: IsNotValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsNotValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
   spec.csharp:
-  - uid: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-    name: "Null"
-    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
   - name: (
   - uid: Prowl.Runtime.EngineObject
     name: EngineObject
     href: Prowl.Runtime.EngineObject.html
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-    name: "Null"
-    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsValid
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  parent: Prowl.Runtime.EngineObjectExtensions
+  definition: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  name: IsValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
   - name: (
   - uid: Prowl.Runtime.EngineObject
     name: EngineObject
@@ -1130,25 +1000,25 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-  commentId: M:Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
-  name: Null(EngineObject)
-  nameWithType: EngineObjectExtensions.Null(EngineObject)
-  fullName: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
+- uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  name: IsNotValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsNotValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
   spec.csharp:
-  - uid: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-    name: "Null"
-    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
   - name: (
   - uid: Prowl.Runtime.EngineObject
     name: EngineObject
     href: Prowl.Runtime.EngineObject.html
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-    name: "Null"
-    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
   - name: (
   - uid: Prowl.Runtime.EngineObject
     name: EngineObject
@@ -1161,6 +1031,30 @@ references:
   name: EngineObjectExtensions
   nameWithType: EngineObjectExtensions
   fullName: Prowl.Runtime.EngineObjectExtensions
+- uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  name: IsValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
 - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
   commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
   isExternal: true
@@ -1215,25 +1109,6 @@ references:
   name: InstanceID
   nameWithType: EngineObject.InstanceID
   fullName: Prowl.Runtime.EngineObject.InstanceID
-- uid: System.Guid
-  commentId: T:System.Guid
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.guid
-  name: Guid
-  nameWithType: Guid
-  fullName: System.Guid
-- uid: System.UInt16
-  commentId: T:System.UInt16
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.uint16
-  name: ushort
-  nameWithType: ushort
-  fullName: ushort
-  nameWithType.vb: UShort
-  fullName.vb: UShort
-  name.vb: UShort
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -1245,6 +1120,12 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: Prowl.Runtime.EngineObject.IsDisposed*
+  commentId: Overload:Prowl.Runtime.EngineObject.IsDisposed
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_IsDisposed
+  name: IsDisposed
+  nameWithType: EngineObject.IsDisposed
+  fullName: Prowl.Runtime.EngineObject.IsDisposed
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -1277,144 +1158,6 @@ references:
   name: OnValidate
   nameWithType: EngineObject.OnValidate
   fullName: Prowl.Runtime.EngineObject.OnValidate
-- uid: Prowl.Runtime.EngineObject.FindObjectOfType*
-  commentId: Overload:Prowl.Runtime.EngineObject.FindObjectOfType
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectOfType__1
-  name: FindObjectOfType
-  nameWithType: EngineObject.FindObjectOfType
-  fullName: Prowl.Runtime.EngineObject.FindObjectOfType
-- uid: '{T}'
-  commentId: '!:T'
-  definition: T
-  name: T
-  nameWithType: T
-  fullName: T
-- uid: T
-  name: T
-  nameWithType: T
-  fullName: T
-- uid: Prowl.Runtime.EngineObject.FindObjectsOfType*
-  commentId: Overload:Prowl.Runtime.EngineObject.FindObjectsOfType
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectsOfType__1
-  name: FindObjectsOfType
-  nameWithType: EngineObject.FindObjectsOfType
-  fullName: Prowl.Runtime.EngineObject.FindObjectsOfType
-- uid: '{T}[]'
-  isExternal: true
-  name: T[]
-  nameWithType: T[]
-  fullName: T[]
-  nameWithType.vb: T()
-  fullName.vb: T()
-  name.vb: T()
-  spec.csharp:
-  - name: T
-  - name: '['
-  - name: ']'
-  spec.vb:
-  - name: T
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.EngineObject.FindObjectByID*
-  commentId: Overload:Prowl.Runtime.EngineObject.FindObjectByID
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectByID__1_System_Int32_
-  name: FindObjectByID
-  nameWithType: EngineObject.FindObjectByID
-  fullName: Prowl.Runtime.EngineObject.FindObjectByID
-- uid: Prowl.Runtime.EngineObject.Foreach*
-  commentId: Overload:Prowl.Runtime.EngineObject.Foreach
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Foreach__1_System_Action___0__
-  name: Foreach
-  nameWithType: EngineObject.Foreach
-  fullName: Prowl.Runtime.EngineObject.Foreach
-- uid: System.Action{{T}}
-  commentId: T:System.Action{`0}
-  parent: System
-  definition: System.Action`1
-  href: https://learn.microsoft.com/dotnet/api/system.action-1
-  name: Action<T>
-  nameWithType: Action<T>
-  fullName: System.Action<T>
-  nameWithType.vb: Action(Of T)
-  fullName.vb: System.Action(Of T)
-  name.vb: Action(Of T)
-  spec.csharp:
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: System.Action`1
-  commentId: T:System.Action`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.action-1
-  name: Action<T>
-  nameWithType: Action<T>
-  fullName: System.Action<T>
-  nameWithType.vb: Action(Of T)
-  fullName.vb: System.Action(Of T)
-  name.vb: Action(Of T)
-  spec.csharp:
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: Prowl.Runtime.EngineObject.Destroy*
-  commentId: Overload:Prowl.Runtime.EngineObject.Destroy
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
-  name: Destroy
-  nameWithType: EngineObject.Destroy
-  fullName: Prowl.Runtime.EngineObject.Destroy
-- uid: Prowl.Runtime.EngineObject.DestroyImmediate*
-  commentId: Overload:Prowl.Runtime.EngineObject.DestroyImmediate
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DestroyImmediate
-  name: DestroyImmediate
-  nameWithType: EngineObject.DestroyImmediate
-  fullName: Prowl.Runtime.EngineObject.DestroyImmediate
-- uid: Prowl.Runtime.EngineObject
-  commentId: T:Prowl.Runtime.EngineObject
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.EngineObject.html
-  name: EngineObject
-  nameWithType: EngineObject
-  fullName: Prowl.Runtime.EngineObject
-- uid: Prowl.Runtime.EngineObject.HandleDestroyed*
-  commentId: Overload:Prowl.Runtime.EngineObject.HandleDestroyed
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_HandleDestroyed
-  name: HandleDestroyed
-  nameWithType: EngineObject.HandleDestroyed
-  fullName: Prowl.Runtime.EngineObject.HandleDestroyed
-- uid: Prowl.Runtime.EngineObject.Instantiate*
-  commentId: Overload:Prowl.Runtime.EngineObject.Instantiate
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Instantiate_Prowl_Runtime_EngineObject_System_Boolean_
-  name: Instantiate
-  nameWithType: EngineObject.Instantiate
-  fullName: Prowl.Runtime.EngineObject.Instantiate
 - uid: Prowl.Runtime.EngineObject.Dispose*
   commentId: Overload:Prowl.Runtime.EngineObject.Dispose
   href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
@@ -1443,12 +1186,180 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
   - name: (
   - name: )
+- uid: Prowl.Runtime.EngineObject.Dispose
+  commentId: M:Prowl.Runtime.EngineObject.Dispose
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
+  name: Dispose()
+  nameWithType: EngineObject.Dispose()
+  fullName: Prowl.Runtime.EngineObject.Dispose()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.Dispose
+    name: Dispose
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.Dispose
+    name: Dispose
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Destroy*
+  commentId: Overload:Prowl.Runtime.EngineObject.Destroy
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
+  name: Destroy
+  nameWithType: EngineObject.Destroy
+  fullName: Prowl.Runtime.EngineObject.Destroy
+- uid: Prowl.Runtime.EngineObject
+  commentId: T:Prowl.Runtime.EngineObject
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.EngineObject.html
+  name: EngineObject
+  nameWithType: EngineObject
+  fullName: Prowl.Runtime.EngineObject
+- uid: Prowl.Runtime.EngineObject.Destroy
+  commentId: M:Prowl.Runtime.EngineObject.Destroy
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
+  name: Destroy()
+  nameWithType: EngineObject.Destroy()
+  fullName: Prowl.Runtime.EngineObject.Destroy()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.Destroy
+    name: Destroy
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.Destroy
+    name: Destroy
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.IsDestroyQueued*
+  commentId: Overload:Prowl.Runtime.EngineObject.IsDestroyQueued
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_IsDestroyQueued
+  name: IsDestroyQueued
+  nameWithType: EngineObject.IsDestroyQueued
+  fullName: Prowl.Runtime.EngineObject.IsDestroyQueued
+- uid: Prowl.Runtime.EngineObject.ProcessDestroyed*
+  commentId: Overload:Prowl.Runtime.EngineObject.ProcessDestroyed
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
+  name: ProcessDestroyed
+  nameWithType: EngineObject.ProcessDestroyed
+  fullName: Prowl.Runtime.EngineObject.ProcessDestroyed
+- uid: Prowl.Runtime.EngineObject.op_Equality*
+  commentId: Overload:Prowl.Runtime.EngineObject.op_Equality
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_op_Equality_Prowl_Runtime_EngineObject_Prowl_Runtime_EngineObject_
+  name: operator ==
+  nameWithType: EngineObject.operator ==
+  fullName: Prowl.Runtime.EngineObject.operator ==
+  nameWithType.vb: EngineObject.=
+  fullName.vb: Prowl.Runtime.EngineObject.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: Prowl.Runtime.EngineObject.op_Equality*
+    name: ==
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_op_Equality_Prowl_Runtime_EngineObject_Prowl_Runtime_EngineObject_
+- uid: Prowl.Runtime.EngineObject.op_Inequality*
+  commentId: Overload:Prowl.Runtime.EngineObject.op_Inequality
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_op_Inequality_Prowl_Runtime_EngineObject_Prowl_Runtime_EngineObject_
+  name: operator !=
+  nameWithType: EngineObject.operator !=
+  fullName: Prowl.Runtime.EngineObject.operator !=
+  nameWithType.vb: EngineObject.<>
+  fullName.vb: Prowl.Runtime.EngineObject.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: Prowl.Runtime.EngineObject.op_Inequality*
+    name: '!='
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_op_Inequality_Prowl_Runtime_EngineObject_Prowl_Runtime_EngineObject_
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Equals*
+  commentId: Overload:Prowl.Runtime.EngineObject.Equals
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
+  name: Equals
+  nameWithType: EngineObject.Equals
+  fullName: Prowl.Runtime.EngineObject.Equals
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.GetHashCode*
+  commentId: Overload:Prowl.Runtime.EngineObject.GetHashCode
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
+  name: GetHashCode
+  nameWithType: EngineObject.GetHashCode
+  fullName: Prowl.Runtime.EngineObject.GetHashCode
 - uid: Prowl.Runtime.EngineObject.OnDispose*
   commentId: Overload:Prowl.Runtime.EngineObject.OnDispose
   href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnDispose
   name: OnDispose
   nameWithType: EngineObject.OnDispose
   fullName: Prowl.Runtime.EngineObject.OnDispose
+- uid: Prowl.Runtime.EngineObject.EnsureNotDisposed*
+  commentId: Overload:Prowl.Runtime.EngineObject.EnsureNotDisposed
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_EnsureNotDisposed_System_String_
+  name: EnsureNotDisposed
+  nameWithType: EngineObject.EnsureNotDisposed
+  fullName: Prowl.Runtime.EngineObject.EnsureNotDisposed
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
@@ -1481,20 +1392,37 @@ references:
   fullName: Prowl.Runtime.EngineObject.ToString
 - uid: Prowl.Runtime.EngineObject.SerializeHeader*
   commentId: Overload:Prowl.Runtime.EngineObject.SerializeHeader
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_SerializeHeader_Prowl_Runtime_SerializedProperty_
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_SerializeHeader_Prowl_Echo_EchoObject_
   name: SerializeHeader
   nameWithType: EngineObject.SerializeHeader
   fullName: Prowl.Runtime.EngineObject.SerializeHeader
-- uid: Prowl.Runtime.SerializedProperty
-  commentId: T:Prowl.Runtime.SerializedProperty
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.SerializedProperty.html
-  name: SerializedProperty
-  nameWithType: SerializedProperty
-  fullName: Prowl.Runtime.SerializedProperty
+- uid: Prowl.Echo.EchoObject
+  commentId: T:Prowl.Echo.EchoObject
+  parent: Prowl.Echo
+  isExternal: true
+  name: EchoObject
+  nameWithType: EchoObject
+  fullName: Prowl.Echo.EchoObject
+- uid: Prowl.Echo
+  commentId: N:Prowl.Echo
+  name: Prowl.Echo
+  nameWithType: Prowl.Echo
+  fullName: Prowl.Echo
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
 - uid: Prowl.Runtime.EngineObject.DeserializeHeader*
   commentId: Overload:Prowl.Runtime.EngineObject.DeserializeHeader
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DeserializeHeader_Prowl_Runtime_SerializedProperty_
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DeserializeHeader_Prowl_Echo_EchoObject_
   name: DeserializeHeader
   nameWithType: EngineObject.DeserializeHeader
   fullName: Prowl.Runtime.EngineObject.DeserializeHeader

@@ -1,0 +1,752 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.Build.AssetCollector
+  commentId: T:Prowl.Editor.Build.AssetCollector
+  id: AssetCollector
+  parent: Prowl.Editor.Build
+  children:
+  - Prowl.Editor.Build.AssetCollector.Collect(Prowl.Editor.EditorAssetBackend,System.Collections.Generic.List{System.Guid},System.Boolean)
+  - Prowl.Editor.Build.AssetCollector.IsEditorOnly(Prowl.Editor.AssetEntry,System.Collections.Generic.Dictionary{System.String,System.Boolean})
+  langs:
+  - csharp
+  - vb
+  name: AssetCollector
+  nameWithType: AssetCollector
+  fullName: Prowl.Editor.Build.AssetCollector
+  type: Class
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/AssetCollector.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AssetCollector
+    path: ../Prowl/Prowl.Editor/Projects/Build/AssetCollector.cs
+    startLine: 11
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Collects all assets needed for a build based on scene dependencies and Resources/ folders.
+  example: []
+  syntax:
+    content: public static class AssetCollector
+    content.vb: Public Module AssetCollector
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Prowl.Editor.Build.AssetCollector.Collect(Prowl.Editor.EditorAssetBackend,System.Collections.Generic.List{System.Guid},System.Boolean)
+  commentId: M:Prowl.Editor.Build.AssetCollector.Collect(Prowl.Editor.EditorAssetBackend,System.Collections.Generic.List{System.Guid},System.Boolean)
+  id: Collect(Prowl.Editor.EditorAssetBackend,System.Collections.Generic.List{System.Guid},System.Boolean)
+  parent: Prowl.Editor.Build.AssetCollector
+  langs:
+  - csharp
+  - vb
+  name: Collect(EditorAssetBackend, List<Guid>, bool)
+  nameWithType: AssetCollector.Collect(EditorAssetBackend, List<Guid>, bool)
+  fullName: Prowl.Editor.Build.AssetCollector.Collect(Prowl.Editor.EditorAssetBackend, System.Collections.Generic.List<System.Guid>, bool)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/AssetCollector.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Collect
+    path: ../Prowl/Prowl.Editor/Projects/Build/AssetCollector.cs
+    startLine: 26
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: >-
+    Collect all assets needed for a set of scenes.
+
+    Walks dependencies transitively and includes all Resources/ folder assets.
+  example: []
+  syntax:
+    content: public static AssetCollector.CollectionResult Collect(EditorAssetBackend db, List<Guid> sceneGuids, bool dependenciesOnly)
+    parameters:
+    - id: db
+      type: Prowl.Editor.EditorAssetBackend
+    - id: sceneGuids
+      type: System.Collections.Generic.List{System.Guid}
+    - id: dependenciesOnly
+      type: System.Boolean
+    return:
+      type: Prowl.Editor.Build.AssetCollector.CollectionResult
+    content.vb: Public Shared Function Collect(db As EditorAssetBackend, sceneGuids As List(Of Guid), dependenciesOnly As Boolean) As AssetCollector.CollectionResult
+  overload: Prowl.Editor.Build.AssetCollector.Collect*
+  nameWithType.vb: AssetCollector.Collect(EditorAssetBackend, List(Of Guid), Boolean)
+  fullName.vb: Prowl.Editor.Build.AssetCollector.Collect(Prowl.Editor.EditorAssetBackend, System.Collections.Generic.List(Of System.Guid), Boolean)
+  name.vb: Collect(EditorAssetBackend, List(Of Guid), Boolean)
+- uid: Prowl.Editor.Build.AssetCollector.IsEditorOnly(Prowl.Editor.AssetEntry,System.Collections.Generic.Dictionary{System.String,System.Boolean})
+  commentId: M:Prowl.Editor.Build.AssetCollector.IsEditorOnly(Prowl.Editor.AssetEntry,System.Collections.Generic.Dictionary{System.String,System.Boolean})
+  id: IsEditorOnly(Prowl.Editor.AssetEntry,System.Collections.Generic.Dictionary{System.String,System.Boolean})
+  parent: Prowl.Editor.Build.AssetCollector
+  langs:
+  - csharp
+  - vb
+  name: IsEditorOnly(AssetEntry, Dictionary<string, bool>)
+  nameWithType: AssetCollector.IsEditorOnly(AssetEntry, Dictionary<string, bool>)
+  fullName: Prowl.Editor.Build.AssetCollector.IsEditorOnly(Prowl.Editor.AssetEntry, System.Collections.Generic.Dictionary<string, bool>)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/AssetCollector.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsEditorOnly
+    path: ../Prowl/Prowl.Editor/Projects/Build/AssetCollector.cs
+    startLine: 142
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: >-
+    An asset is editor-only (excluded from build packaging by default - see <xref href="Prowl.Editor.Build.AssetCollector.Collect(Prowl.Editor.EditorAssetBackend%2cSystem.Collections.Generic.List%7bSystem.Guid%7d%2cSystem.Boolean)" data-throw-if-not-resolved="false"></xref>'s
+
+    "still needed" check for the dependency override) when it lives under an Editor/ folder, or when
+
+    its importer declares <xref href="Prowl.Editor.Importers.AssetImporter.IsEditorOnlyAsset" data-throw-if-not-resolved="false"></xref> (scripts, plugins,
+
+    assembly definitions - things that aren't real runtime data assets).
+  example: []
+  syntax:
+    content: public static bool IsEditorOnly(AssetEntry entry, Dictionary<string, bool> importerCache)
+    parameters:
+    - id: entry
+      type: Prowl.Editor.AssetEntry
+    - id: importerCache
+      type: System.Collections.Generic.Dictionary{System.String,System.Boolean}
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsEditorOnly(entry As AssetEntry, importerCache As Dictionary(Of String, Boolean)) As Boolean
+  overload: Prowl.Editor.Build.AssetCollector.IsEditorOnly*
+  nameWithType.vb: AssetCollector.IsEditorOnly(AssetEntry, Dictionary(Of String, Boolean))
+  fullName.vb: Prowl.Editor.Build.AssetCollector.IsEditorOnly(Prowl.Editor.AssetEntry, System.Collections.Generic.Dictionary(Of String, Boolean))
+  name.vb: IsEditorOnly(AssetEntry, Dictionary(Of String, Boolean))
+references:
+- uid: Prowl.Editor.Build
+  commentId: N:Prowl.Editor.Build
+  name: Prowl.Editor.Build
+  nameWithType: Prowl.Editor.Build
+  fullName: Prowl.Editor.Build
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Build
+    name: Build
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Build
+    name: Build
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Editor.Build.AssetCollector.Collect*
+  commentId: Overload:Prowl.Editor.Build.AssetCollector.Collect
+  href: Prowl.Editor.Build.AssetCollector.html#Prowl_Editor_Build_AssetCollector_Collect_Prowl_Editor_EditorAssetBackend_System_Collections_Generic_List_System_Guid__System_Boolean_
+  name: Collect
+  nameWithType: AssetCollector.Collect
+  fullName: Prowl.Editor.Build.AssetCollector.Collect
+- uid: Prowl.Editor.EditorAssetBackend
+  commentId: T:Prowl.Editor.EditorAssetBackend
+  parent: Prowl.Editor
+  href: Prowl.Editor.EditorAssetBackend.html
+  name: EditorAssetBackend
+  nameWithType: EditorAssetBackend
+  fullName: Prowl.Editor.EditorAssetBackend
+- uid: System.Collections.Generic.List{System.Guid}
+  commentId: T:System.Collections.Generic.List{System.Guid}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<Guid>
+  nameWithType: List<Guid>
+  fullName: System.Collections.Generic.List<System.Guid>
+  nameWithType.vb: List(Of Guid)
+  fullName.vb: System.Collections.Generic.List(Of System.Guid)
+  name.vb: List(Of Guid)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Editor.Build.AssetCollector.CollectionResult
+  commentId: T:Prowl.Editor.Build.AssetCollector.CollectionResult
+  parent: Prowl.Editor.Build
+  href: Prowl.Editor.Build.AssetCollector.html
+  name: AssetCollector.CollectionResult
+  nameWithType: AssetCollector.CollectionResult
+  fullName: Prowl.Editor.Build.AssetCollector.CollectionResult
+  spec.csharp:
+  - uid: Prowl.Editor.Build.AssetCollector
+    name: AssetCollector
+    href: Prowl.Editor.Build.AssetCollector.html
+  - name: .
+  - uid: Prowl.Editor.Build.AssetCollector.CollectionResult
+    name: CollectionResult
+    href: Prowl.Editor.Build.AssetCollector.CollectionResult.html
+  spec.vb:
+  - uid: Prowl.Editor.Build.AssetCollector
+    name: AssetCollector
+    href: Prowl.Editor.Build.AssetCollector.html
+  - name: .
+  - uid: Prowl.Editor.Build.AssetCollector.CollectionResult
+    name: CollectionResult
+    href: Prowl.Editor.Build.AssetCollector.CollectionResult.html
+- uid: Prowl.Editor
+  commentId: N:Prowl.Editor
+  name: Prowl.Editor
+  nameWithType: Prowl.Editor
+  fullName: Prowl.Editor
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Prowl.Editor.Build.AssetCollector.Collect(Prowl.Editor.EditorAssetBackend,System.Collections.Generic.List{System.Guid},System.Boolean)
+  commentId: M:Prowl.Editor.Build.AssetCollector.Collect(Prowl.Editor.EditorAssetBackend,System.Collections.Generic.List{System.Guid},System.Boolean)
+  isExternal: true
+  href: Prowl.Editor.Build.AssetCollector.html#Prowl_Editor_Build_AssetCollector_Collect_Prowl_Editor_EditorAssetBackend_System_Collections_Generic_List_System_Guid__System_Boolean_
+  name: Collect(EditorAssetBackend, List<Guid>, bool)
+  nameWithType: AssetCollector.Collect(EditorAssetBackend, List<Guid>, bool)
+  fullName: Prowl.Editor.Build.AssetCollector.Collect(Prowl.Editor.EditorAssetBackend, System.Collections.Generic.List<System.Guid>, bool)
+  nameWithType.vb: AssetCollector.Collect(EditorAssetBackend, List(Of Guid), Boolean)
+  fullName.vb: Prowl.Editor.Build.AssetCollector.Collect(Prowl.Editor.EditorAssetBackend, System.Collections.Generic.List(Of System.Guid), Boolean)
+  name.vb: Collect(EditorAssetBackend, List(Of Guid), Boolean)
+  spec.csharp:
+  - uid: Prowl.Editor.Build.AssetCollector.Collect(Prowl.Editor.EditorAssetBackend,System.Collections.Generic.List{System.Guid},System.Boolean)
+    name: Collect
+    href: Prowl.Editor.Build.AssetCollector.html#Prowl_Editor_Build_AssetCollector_Collect_Prowl_Editor_EditorAssetBackend_System_Collections_Generic_List_System_Guid__System_Boolean_
+  - name: (
+  - uid: Prowl.Editor.EditorAssetBackend
+    name: EditorAssetBackend
+    href: Prowl.Editor.EditorAssetBackend.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.Build.AssetCollector.Collect(Prowl.Editor.EditorAssetBackend,System.Collections.Generic.List{System.Guid},System.Boolean)
+    name: Collect
+    href: Prowl.Editor.Build.AssetCollector.html#Prowl_Editor_Build_AssetCollector_Collect_Prowl_Editor_EditorAssetBackend_System_Collections_Generic_List_System_Guid__System_Boolean_
+  - name: (
+  - uid: Prowl.Editor.EditorAssetBackend
+    name: EditorAssetBackend
+    href: Prowl.Editor.EditorAssetBackend.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Editor.Importers.AssetImporter.IsEditorOnlyAsset
+  commentId: P:Prowl.Editor.Importers.AssetImporter.IsEditorOnlyAsset
+  parent: Prowl.Editor.Importers.AssetImporter
+  href: Prowl.Editor.Importers.AssetImporter.html#Prowl_Editor_Importers_AssetImporter_IsEditorOnlyAsset
+  name: IsEditorOnlyAsset
+  nameWithType: AssetImporter.IsEditorOnlyAsset
+  fullName: Prowl.Editor.Importers.AssetImporter.IsEditorOnlyAsset
+- uid: Prowl.Editor.Build.AssetCollector.IsEditorOnly*
+  commentId: Overload:Prowl.Editor.Build.AssetCollector.IsEditorOnly
+  href: Prowl.Editor.Build.AssetCollector.html#Prowl_Editor_Build_AssetCollector_IsEditorOnly_Prowl_Editor_AssetEntry_System_Collections_Generic_Dictionary_System_String_System_Boolean__
+  name: IsEditorOnly
+  nameWithType: AssetCollector.IsEditorOnly
+  fullName: Prowl.Editor.Build.AssetCollector.IsEditorOnly
+- uid: Prowl.Editor.AssetEntry
+  commentId: T:Prowl.Editor.AssetEntry
+  parent: Prowl.Editor
+  href: Prowl.Editor.AssetEntry.html
+  name: AssetEntry
+  nameWithType: AssetEntry
+  fullName: Prowl.Editor.AssetEntry
+- uid: System.Collections.Generic.Dictionary{System.String,System.Boolean}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,System.Boolean}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<string, bool>
+  nameWithType: Dictionary<string, bool>
+  fullName: System.Collections.Generic.Dictionary<string, bool>
+  nameWithType.vb: Dictionary(Of String, Boolean)
+  fullName.vb: System.Collections.Generic.Dictionary(Of String, Boolean)
+  name.vb: Dictionary(Of String, Boolean)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Editor.Importers.AssetImporter
+  commentId: T:Prowl.Editor.Importers.AssetImporter
+  parent: Prowl.Editor.Importers
+  href: Prowl.Editor.Importers.AssetImporter.html
+  name: AssetImporter
+  nameWithType: AssetImporter
+  fullName: Prowl.Editor.Importers.AssetImporter
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: Prowl.Editor.Importers
+  commentId: N:Prowl.Editor.Importers
+  name: Prowl.Editor.Importers
+  nameWithType: Prowl.Editor.Importers
+  fullName: Prowl.Editor.Importers
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Importers
+    name: Importers
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Importers
+    name: Importers

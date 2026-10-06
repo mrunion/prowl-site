@@ -1,0 +1,456 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.Build.IBuildContext
+  commentId: T:Prowl.Editor.Build.IBuildContext
+  id: IBuildContext
+  parent: Prowl.Editor.Build
+  children:
+  - Prowl.Editor.Build.IBuildContext.GetOutput``1
+  - Prowl.Editor.Build.IBuildContext.Log(System.String,Prowl.Editor.Build.BuildSeverity)
+  - Prowl.Editor.Build.IBuildContext.Report(Prowl.Editor.Build.BuildIssue)
+  - Prowl.Editor.Build.IBuildContext.Request
+  - Prowl.Editor.Build.IBuildContext.SetOutput``1(``0)
+  - Prowl.Editor.Build.IBuildContext.TryGetOutput``1(``0@)
+  langs:
+  - csharp
+  - vb
+  name: IBuildContext
+  nameWithType: IBuildContext
+  fullName: Prowl.Editor.Build.IBuildContext
+  type: Interface
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Execution/IBuildContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IBuildContext
+    path: ../Prowl/Prowl.Editor/Projects/Build/Execution/IBuildContext.cs
+    startLine: 17
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: What one stage hands to the stages that depend on it, plus the issue sink.
+  remarks: >-
+    Deliberately typed rather than a string keyed bag. A stage asking for the output it needs, and
+
+    failing loudly when the producing stage did not run, keeps the dependency visible in code instead of
+
+    hidden in a convention nobody checks.
+  example: []
+  syntax:
+    content: public interface IBuildContext
+    content.vb: Public Interface IBuildContext
+  derivedClasses:
+  - Prowl.Editor.Build.BuildContext
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Editor.Build.IBuildContext.Request
+  commentId: P:Prowl.Editor.Build.IBuildContext.Request
+  id: Request
+  parent: Prowl.Editor.Build.IBuildContext
+  langs:
+  - csharp
+  - vb
+  name: Request
+  nameWithType: IBuildContext.Request
+  fullName: Prowl.Editor.Build.IBuildContext.Request
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Execution/IBuildContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Request
+    path: ../Prowl/Prowl.Editor/Projects/Build/Execution/IBuildContext.cs
+    startLine: 19
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  syntax:
+    content: BuildRequest Request { get; }
+    parameters: []
+    return:
+      type: Prowl.Editor.Build.BuildRequest
+    content.vb: ReadOnly Property Request As BuildRequest
+  overload: Prowl.Editor.Build.IBuildContext.Request*
+- uid: Prowl.Editor.Build.IBuildContext.GetOutput``1
+  commentId: M:Prowl.Editor.Build.IBuildContext.GetOutput``1
+  id: GetOutput``1
+  parent: Prowl.Editor.Build.IBuildContext
+  langs:
+  - csharp
+  - vb
+  name: GetOutput<T>()
+  nameWithType: IBuildContext.GetOutput<T>()
+  fullName: Prowl.Editor.Build.IBuildContext.GetOutput<T>()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Execution/IBuildContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetOutput
+    path: ../Prowl/Prowl.Editor/Projects/Build/Execution/IBuildContext.cs
+    startLine: 22
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: The output published by an earlier stage. Throws when nothing published it.
+  example: []
+  syntax:
+    content: 'T GetOutput<T>() where T : class'
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Function GetOutput(Of T As Class)() As T
+  overload: Prowl.Editor.Build.IBuildContext.GetOutput*
+  nameWithType.vb: IBuildContext.GetOutput(Of T)()
+  fullName.vb: Prowl.Editor.Build.IBuildContext.GetOutput(Of T)()
+  name.vb: GetOutput(Of T)()
+- uid: Prowl.Editor.Build.IBuildContext.TryGetOutput``1(``0@)
+  commentId: M:Prowl.Editor.Build.IBuildContext.TryGetOutput``1(``0@)
+  id: TryGetOutput``1(``0@)
+  parent: Prowl.Editor.Build.IBuildContext
+  langs:
+  - csharp
+  - vb
+  name: TryGetOutput<T>(out T?)
+  nameWithType: IBuildContext.TryGetOutput<T>(out T?)
+  fullName: Prowl.Editor.Build.IBuildContext.TryGetOutput<T>(out T?)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Execution/IBuildContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TryGetOutput
+    path: ../Prowl/Prowl.Editor/Projects/Build/Execution/IBuildContext.cs
+    startLine: 25
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Attempts to retrieve the output published by an earlier stage, returning false when nothing published it.
+  example: []
+  syntax:
+    content: 'bool TryGetOutput<T>(out T? value) where T : class'
+    parameters:
+    - id: value
+      type: '{T}'
+    typeParameters:
+    - id: T
+    return:
+      type: System.Boolean
+    content.vb: Function TryGetOutput(Of T As Class)(value As T) As Boolean
+  overload: Prowl.Editor.Build.IBuildContext.TryGetOutput*
+  nameWithType.vb: IBuildContext.TryGetOutput(Of T)(T)
+  fullName.vb: Prowl.Editor.Build.IBuildContext.TryGetOutput(Of T)(T)
+  name.vb: TryGetOutput(Of T)(T)
+- uid: Prowl.Editor.Build.IBuildContext.SetOutput``1(``0)
+  commentId: M:Prowl.Editor.Build.IBuildContext.SetOutput``1(``0)
+  id: SetOutput``1(``0)
+  parent: Prowl.Editor.Build.IBuildContext
+  langs:
+  - csharp
+  - vb
+  name: SetOutput<T>(T)
+  nameWithType: IBuildContext.SetOutput<T>(T)
+  fullName: Prowl.Editor.Build.IBuildContext.SetOutput<T>(T)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Execution/IBuildContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetOutput
+    path: ../Prowl/Prowl.Editor/Projects/Build/Execution/IBuildContext.cs
+    startLine: 28
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Publishes a typed output value that later stages can retrieve.
+  example: []
+  syntax:
+    content: 'void SetOutput<T>(T value) where T : class'
+    parameters:
+    - id: value
+      type: '{T}'
+    typeParameters:
+    - id: T
+    content.vb: Sub SetOutput(Of T As Class)(value As T)
+  overload: Prowl.Editor.Build.IBuildContext.SetOutput*
+  nameWithType.vb: IBuildContext.SetOutput(Of T)(T)
+  fullName.vb: Prowl.Editor.Build.IBuildContext.SetOutput(Of T)(T)
+  name.vb: SetOutput(Of T)(T)
+- uid: Prowl.Editor.Build.IBuildContext.Report(Prowl.Editor.Build.BuildIssue)
+  commentId: M:Prowl.Editor.Build.IBuildContext.Report(Prowl.Editor.Build.BuildIssue)
+  id: Report(Prowl.Editor.Build.BuildIssue)
+  parent: Prowl.Editor.Build.IBuildContext
+  langs:
+  - csharp
+  - vb
+  name: Report(BuildIssue)
+  nameWithType: IBuildContext.Report(BuildIssue)
+  fullName: Prowl.Editor.Build.IBuildContext.Report(Prowl.Editor.Build.BuildIssue)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Execution/IBuildContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Report
+    path: ../Prowl/Prowl.Editor/Projects/Build/Execution/IBuildContext.cs
+    startLine: 31
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Reports a build issue, such as an error or warning.
+  example: []
+  syntax:
+    content: void Report(BuildIssue issue)
+    parameters:
+    - id: issue
+      type: Prowl.Editor.Build.BuildIssue
+    content.vb: Sub Report(issue As BuildIssue)
+  overload: Prowl.Editor.Build.IBuildContext.Report*
+- uid: Prowl.Editor.Build.IBuildContext.Log(System.String,Prowl.Editor.Build.BuildSeverity)
+  commentId: M:Prowl.Editor.Build.IBuildContext.Log(System.String,Prowl.Editor.Build.BuildSeverity)
+  id: Log(System.String,Prowl.Editor.Build.BuildSeverity)
+  parent: Prowl.Editor.Build.IBuildContext
+  langs:
+  - csharp
+  - vb
+  name: Log(string, BuildSeverity)
+  nameWithType: IBuildContext.Log(string, BuildSeverity)
+  fullName: Prowl.Editor.Build.IBuildContext.Log(string, Prowl.Editor.Build.BuildSeverity)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Execution/IBuildContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Log
+    path: ../Prowl/Prowl.Editor/Projects/Build/Execution/IBuildContext.cs
+    startLine: 34
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Progress and log text for a human watching the build.
+  example: []
+  syntax:
+    content: void Log(string message, BuildSeverity severity = BuildSeverity.Info)
+    parameters:
+    - id: message
+      type: System.String
+    - id: severity
+      type: Prowl.Editor.Build.BuildSeverity
+    content.vb: Sub Log(message As String, severity As BuildSeverity = BuildSeverity.Info)
+  overload: Prowl.Editor.Build.IBuildContext.Log*
+  nameWithType.vb: IBuildContext.Log(String, BuildSeverity)
+  fullName.vb: Prowl.Editor.Build.IBuildContext.Log(String, Prowl.Editor.Build.BuildSeverity)
+  name.vb: Log(String, BuildSeverity)
+references:
+- uid: Prowl.Editor.Build
+  commentId: N:Prowl.Editor.Build
+  name: Prowl.Editor.Build
+  nameWithType: Prowl.Editor.Build
+  fullName: Prowl.Editor.Build
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Build
+    name: Build
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Build
+    name: Build
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Editor.Build.IBuildContext.Request*
+  commentId: Overload:Prowl.Editor.Build.IBuildContext.Request
+  href: Prowl.Editor.Build.IBuildContext.html#Prowl_Editor_Build_IBuildContext_Request
+  name: Request
+  nameWithType: IBuildContext.Request
+  fullName: Prowl.Editor.Build.IBuildContext.Request
+- uid: Prowl.Editor.Build.BuildRequest
+  commentId: T:Prowl.Editor.Build.BuildRequest
+  parent: Prowl.Editor.Build
+  href: Prowl.Editor.Build.BuildRequest.html
+  name: BuildRequest
+  nameWithType: BuildRequest
+  fullName: Prowl.Editor.Build.BuildRequest
+- uid: Prowl.Editor.Build.IBuildContext.GetOutput*
+  commentId: Overload:Prowl.Editor.Build.IBuildContext.GetOutput
+  href: Prowl.Editor.Build.IBuildContext.html#Prowl_Editor_Build_IBuildContext_GetOutput__1
+  name: GetOutput
+  nameWithType: IBuildContext.GetOutput
+  fullName: Prowl.Editor.Build.IBuildContext.GetOutput
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: Prowl.Editor.Build.IBuildContext.TryGetOutput*
+  commentId: Overload:Prowl.Editor.Build.IBuildContext.TryGetOutput
+  href: Prowl.Editor.Build.IBuildContext.html#Prowl_Editor_Build_IBuildContext_TryGetOutput__1___0__
+  name: TryGetOutput
+  nameWithType: IBuildContext.TryGetOutput
+  fullName: Prowl.Editor.Build.IBuildContext.TryGetOutput
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Editor.Build.IBuildContext.SetOutput*
+  commentId: Overload:Prowl.Editor.Build.IBuildContext.SetOutput
+  href: Prowl.Editor.Build.IBuildContext.html#Prowl_Editor_Build_IBuildContext_SetOutput__1___0_
+  name: SetOutput
+  nameWithType: IBuildContext.SetOutput
+  fullName: Prowl.Editor.Build.IBuildContext.SetOutput
+- uid: Prowl.Editor.Build.IBuildContext.Report*
+  commentId: Overload:Prowl.Editor.Build.IBuildContext.Report
+  href: Prowl.Editor.Build.IBuildContext.html#Prowl_Editor_Build_IBuildContext_Report_Prowl_Editor_Build_BuildIssue_
+  name: Report
+  nameWithType: IBuildContext.Report
+  fullName: Prowl.Editor.Build.IBuildContext.Report
+- uid: Prowl.Editor.Build.BuildIssue
+  commentId: T:Prowl.Editor.Build.BuildIssue
+  parent: Prowl.Editor.Build
+  href: Prowl.Editor.Build.BuildIssue.html
+  name: BuildIssue
+  nameWithType: BuildIssue
+  fullName: Prowl.Editor.Build.BuildIssue
+- uid: Prowl.Editor.Build.IBuildContext.Log*
+  commentId: Overload:Prowl.Editor.Build.IBuildContext.Log
+  href: Prowl.Editor.Build.IBuildContext.html#Prowl_Editor_Build_IBuildContext_Log_System_String_Prowl_Editor_Build_BuildSeverity_
+  name: Log
+  nameWithType: IBuildContext.Log
+  fullName: Prowl.Editor.Build.IBuildContext.Log
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Prowl.Editor.Build.BuildSeverity
+  commentId: T:Prowl.Editor.Build.BuildSeverity
+  parent: Prowl.Editor.Build
+  href: Prowl.Editor.Build.BuildSeverity.html
+  name: BuildSeverity
+  nameWithType: BuildSeverity
+  fullName: Prowl.Editor.Build.BuildSeverity

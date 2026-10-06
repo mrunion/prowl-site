@@ -1,0 +1,1351 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests
+  commentId: T:Prowl.Runtime.Test.SceneCameraGatherTests
+  id: SceneCameraGatherTests
+  parent: Prowl.Runtime.Test
+  children:
+  - Prowl.Runtime.Test.SceneCameraGatherTests.CameraUnderDisabledParent_IsSkipped
+  - Prowl.Runtime.Test.SceneCameraGatherTests.CamerasAreSortedByDepth
+  - Prowl.Runtime.Test.SceneCameraGatherTests.DisabledCameraComponent_IsStillReturned
+  - Prowl.Runtime.Test.SceneCameraGatherTests.DisabledGameObject_IsSkipped
+  - Prowl.Runtime.Test.SceneCameraGatherTests.EmptyScene_ReturnsNoCameras
+  - Prowl.Runtime.Test.SceneCameraGatherTests.FindMainCamera_PicksHighestDepth
+  - Prowl.Runtime.Test.SceneCameraGatherTests.FindMainCamera_SkipsDisabledCamerasAndEditorHelpers
+  - Prowl.Runtime.Test.SceneCameraGatherTests.GatherCost_DoesNotScaleWithSceneSize
+  - Prowl.Runtime.Test.SceneCameraGatherTests.Main_ReadsTheCurrentScene_AndForgetsADestroyedCamera
+  - Prowl.Runtime.Test.SceneCameraGatherTests.MixedHierarchy_MatchesLegacyExactly
+  - Prowl.Runtime.Test.SceneCameraGatherTests.MultipleCamerasOnOneGameObject_AreAllReturned
+  - Prowl.Runtime.Test.SceneCameraGatherTests.NestedCamera_IsCountedExactlyOnce
+  - Prowl.Runtime.Test.SceneCameraGatherTests.RootCamera_IsFound
+  langs:
+  - csharp
+  - vb
+  name: SceneCameraGatherTests
+  nameWithType: SceneCameraGatherTests
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneCameraGatherTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SceneCameraGatherTests
+    path: ../Prowl/Prowl.Runtime.Test/SceneCameraGatherTests.cs
+    startLine: 14
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Guards <xref href="Prowl.Runtime.Resources.Scene.GatherActiveCameras" data-throw-if-not-resolved="false"></xref>, which replaced a per-object
+
+    <code>GetComponentsInChildren</code> recursion in Scene.Render. The flat scan must return exactly what
+
+    the old recursive-plus-Distinct expression returned, for every hierarchy shape.
+  example: []
+  syntax:
+    content: 'public class SceneCameraGatherTests : RuntimeTestBase, IDisposable'
+    content.vb: Public Class SceneCameraGatherTests Inherits RuntimeTestBase Implements IDisposable
+  inheritance:
+  - System.Object
+  - Prowl.Runtime.Test.RuntimeTestBase
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  - Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  - Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  - Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.EmptyScene_ReturnsNoCameras
+  commentId: M:Prowl.Runtime.Test.SceneCameraGatherTests.EmptyScene_ReturnsNoCameras
+  id: EmptyScene_ReturnsNoCameras
+  parent: Prowl.Runtime.Test.SceneCameraGatherTests
+  langs:
+  - csharp
+  - vb
+  name: EmptyScene_ReturnsNoCameras()
+  nameWithType: SceneCameraGatherTests.EmptyScene_ReturnsNoCameras()
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.EmptyScene_ReturnsNoCameras()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneCameraGatherTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EmptyScene_ReturnsNoCameras
+    path: ../Prowl/Prowl.Runtime.Test/SceneCameraGatherTests.cs
+    startLine: 38
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void EmptyScene_ReturnsNoCameras()
+    content.vb: >-
+      <Fact>
+
+      Public Sub EmptyScene_ReturnsNoCameras()
+  overload: Prowl.Runtime.Test.SceneCameraGatherTests.EmptyScene_ReturnsNoCameras*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.RootCamera_IsFound
+  commentId: M:Prowl.Runtime.Test.SceneCameraGatherTests.RootCamera_IsFound
+  id: RootCamera_IsFound
+  parent: Prowl.Runtime.Test.SceneCameraGatherTests
+  langs:
+  - csharp
+  - vb
+  name: RootCamera_IsFound()
+  nameWithType: SceneCameraGatherTests.RootCamera_IsFound()
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.RootCamera_IsFound()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneCameraGatherTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RootCamera_IsFound
+    path: ../Prowl/Prowl.Runtime.Test/SceneCameraGatherTests.cs
+    startLine: 46
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RootCamera_IsFound()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RootCamera_IsFound()
+  overload: Prowl.Runtime.Test.SceneCameraGatherTests.RootCamera_IsFound*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.NestedCamera_IsCountedExactlyOnce
+  commentId: M:Prowl.Runtime.Test.SceneCameraGatherTests.NestedCamera_IsCountedExactlyOnce
+  id: NestedCamera_IsCountedExactlyOnce
+  parent: Prowl.Runtime.Test.SceneCameraGatherTests
+  langs:
+  - csharp
+  - vb
+  name: NestedCamera_IsCountedExactlyOnce()
+  nameWithType: SceneCameraGatherTests.NestedCamera_IsCountedExactlyOnce()
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.NestedCamera_IsCountedExactlyOnce()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneCameraGatherTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NestedCamera_IsCountedExactlyOnce
+    path: ../Prowl/Prowl.Runtime.Test/SceneCameraGatherTests.cs
+    startLine: 58
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void NestedCamera_IsCountedExactlyOnce()
+    content.vb: >-
+      <Fact>
+
+      Public Sub NestedCamera_IsCountedExactlyOnce()
+  overload: Prowl.Runtime.Test.SceneCameraGatherTests.NestedCamera_IsCountedExactlyOnce*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.DisabledGameObject_IsSkipped
+  commentId: M:Prowl.Runtime.Test.SceneCameraGatherTests.DisabledGameObject_IsSkipped
+  id: DisabledGameObject_IsSkipped
+  parent: Prowl.Runtime.Test.SceneCameraGatherTests
+  langs:
+  - csharp
+  - vb
+  name: DisabledGameObject_IsSkipped()
+  nameWithType: SceneCameraGatherTests.DisabledGameObject_IsSkipped()
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.DisabledGameObject_IsSkipped()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneCameraGatherTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DisabledGameObject_IsSkipped
+    path: ../Prowl/Prowl.Runtime.Test/SceneCameraGatherTests.cs
+    startLine: 77
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DisabledGameObject_IsSkipped()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DisabledGameObject_IsSkipped()
+  overload: Prowl.Runtime.Test.SceneCameraGatherTests.DisabledGameObject_IsSkipped*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.CameraUnderDisabledParent_IsSkipped
+  commentId: M:Prowl.Runtime.Test.SceneCameraGatherTests.CameraUnderDisabledParent_IsSkipped
+  id: CameraUnderDisabledParent_IsSkipped
+  parent: Prowl.Runtime.Test.SceneCameraGatherTests
+  langs:
+  - csharp
+  - vb
+  name: CameraUnderDisabledParent_IsSkipped()
+  nameWithType: SceneCameraGatherTests.CameraUnderDisabledParent_IsSkipped()
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.CameraUnderDisabledParent_IsSkipped()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneCameraGatherTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CameraUnderDisabledParent_IsSkipped
+    path: ../Prowl/Prowl.Runtime.Test/SceneCameraGatherTests.cs
+    startLine: 90
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void CameraUnderDisabledParent_IsSkipped()
+    content.vb: >-
+      <Fact>
+
+      Public Sub CameraUnderDisabledParent_IsSkipped()
+  overload: Prowl.Runtime.Test.SceneCameraGatherTests.CameraUnderDisabledParent_IsSkipped*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.MultipleCamerasOnOneGameObject_AreAllReturned
+  commentId: M:Prowl.Runtime.Test.SceneCameraGatherTests.MultipleCamerasOnOneGameObject_AreAllReturned
+  id: MultipleCamerasOnOneGameObject_AreAllReturned
+  parent: Prowl.Runtime.Test.SceneCameraGatherTests
+  langs:
+  - csharp
+  - vb
+  name: MultipleCamerasOnOneGameObject_AreAllReturned()
+  nameWithType: SceneCameraGatherTests.MultipleCamerasOnOneGameObject_AreAllReturned()
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.MultipleCamerasOnOneGameObject_AreAllReturned()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneCameraGatherTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MultipleCamerasOnOneGameObject_AreAllReturned
+    path: ../Prowl/Prowl.Runtime.Test/SceneCameraGatherTests.cs
+    startLine: 106
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void MultipleCamerasOnOneGameObject_AreAllReturned()
+    content.vb: >-
+      <Fact>
+
+      Public Sub MultipleCamerasOnOneGameObject_AreAllReturned()
+  overload: Prowl.Runtime.Test.SceneCameraGatherTests.MultipleCamerasOnOneGameObject_AreAllReturned*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.CamerasAreSortedByDepth
+  commentId: M:Prowl.Runtime.Test.SceneCameraGatherTests.CamerasAreSortedByDepth
+  id: CamerasAreSortedByDepth
+  parent: Prowl.Runtime.Test.SceneCameraGatherTests
+  langs:
+  - csharp
+  - vb
+  name: CamerasAreSortedByDepth()
+  nameWithType: SceneCameraGatherTests.CamerasAreSortedByDepth()
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.CamerasAreSortedByDepth()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneCameraGatherTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CamerasAreSortedByDepth
+    path: ../Prowl/Prowl.Runtime.Test/SceneCameraGatherTests.cs
+    startLine: 119
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void CamerasAreSortedByDepth()
+    content.vb: >-
+      <Fact>
+
+      Public Sub CamerasAreSortedByDepth()
+  overload: Prowl.Runtime.Test.SceneCameraGatherTests.CamerasAreSortedByDepth*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.DisabledCameraComponent_IsStillReturned
+  commentId: M:Prowl.Runtime.Test.SceneCameraGatherTests.DisabledCameraComponent_IsStillReturned
+  id: DisabledCameraComponent_IsStillReturned
+  parent: Prowl.Runtime.Test.SceneCameraGatherTests
+  langs:
+  - csharp
+  - vb
+  name: DisabledCameraComponent_IsStillReturned()
+  nameWithType: SceneCameraGatherTests.DisabledCameraComponent_IsStillReturned()
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.DisabledCameraComponent_IsStillReturned()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneCameraGatherTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DisabledCameraComponent_IsStillReturned
+    path: ../Prowl/Prowl.Runtime.Test/SceneCameraGatherTests.cs
+    startLine: 140
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DisabledCameraComponent_IsStillReturned()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DisabledCameraComponent_IsStillReturned()
+  overload: Prowl.Runtime.Test.SceneCameraGatherTests.DisabledCameraComponent_IsStillReturned*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.GatherCost_DoesNotScaleWithSceneSize
+  commentId: M:Prowl.Runtime.Test.SceneCameraGatherTests.GatherCost_DoesNotScaleWithSceneSize
+  id: GatherCost_DoesNotScaleWithSceneSize
+  parent: Prowl.Runtime.Test.SceneCameraGatherTests
+  langs:
+  - csharp
+  - vb
+  name: GatherCost_DoesNotScaleWithSceneSize()
+  nameWithType: SceneCameraGatherTests.GatherCost_DoesNotScaleWithSceneSize()
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.GatherCost_DoesNotScaleWithSceneSize()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneCameraGatherTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GatherCost_DoesNotScaleWithSceneSize
+    path: ../Prowl/Prowl.Runtime.Test/SceneCameraGatherTests.cs
+    startLine: 156
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void GatherCost_DoesNotScaleWithSceneSize()
+    content.vb: >-
+      <Fact>
+
+      Public Sub GatherCost_DoesNotScaleWithSceneSize()
+  overload: Prowl.Runtime.Test.SceneCameraGatherTests.GatherCost_DoesNotScaleWithSceneSize*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.FindMainCamera_PicksHighestDepth
+  commentId: M:Prowl.Runtime.Test.SceneCameraGatherTests.FindMainCamera_PicksHighestDepth
+  id: FindMainCamera_PicksHighestDepth
+  parent: Prowl.Runtime.Test.SceneCameraGatherTests
+  langs:
+  - csharp
+  - vb
+  name: FindMainCamera_PicksHighestDepth()
+  nameWithType: SceneCameraGatherTests.FindMainCamera_PicksHighestDepth()
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.FindMainCamera_PicksHighestDepth()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneCameraGatherTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FindMainCamera_PicksHighestDepth
+    path: ../Prowl/Prowl.Runtime.Test/SceneCameraGatherTests.cs
+    startLine: 205
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void FindMainCamera_PicksHighestDepth()
+    content.vb: >-
+      <Fact>
+
+      Public Sub FindMainCamera_PicksHighestDepth()
+  overload: Prowl.Runtime.Test.SceneCameraGatherTests.FindMainCamera_PicksHighestDepth*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.FindMainCamera_SkipsDisabledCamerasAndEditorHelpers
+  commentId: M:Prowl.Runtime.Test.SceneCameraGatherTests.FindMainCamera_SkipsDisabledCamerasAndEditorHelpers
+  id: FindMainCamera_SkipsDisabledCamerasAndEditorHelpers
+  parent: Prowl.Runtime.Test.SceneCameraGatherTests
+  langs:
+  - csharp
+  - vb
+  name: FindMainCamera_SkipsDisabledCamerasAndEditorHelpers()
+  nameWithType: SceneCameraGatherTests.FindMainCamera_SkipsDisabledCamerasAndEditorHelpers()
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.FindMainCamera_SkipsDisabledCamerasAndEditorHelpers()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneCameraGatherTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FindMainCamera_SkipsDisabledCamerasAndEditorHelpers
+    path: ../Prowl/Prowl.Runtime.Test/SceneCameraGatherTests.cs
+    startLine: 220
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void FindMainCamera_SkipsDisabledCamerasAndEditorHelpers()
+    content.vb: >-
+      <Fact>
+
+      Public Sub FindMainCamera_SkipsDisabledCamerasAndEditorHelpers()
+  overload: Prowl.Runtime.Test.SceneCameraGatherTests.FindMainCamera_SkipsDisabledCamerasAndEditorHelpers*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.Main_ReadsTheCurrentScene_AndForgetsADestroyedCamera
+  commentId: M:Prowl.Runtime.Test.SceneCameraGatherTests.Main_ReadsTheCurrentScene_AndForgetsADestroyedCamera
+  id: Main_ReadsTheCurrentScene_AndForgetsADestroyedCamera
+  parent: Prowl.Runtime.Test.SceneCameraGatherTests
+  langs:
+  - csharp
+  - vb
+  name: Main_ReadsTheCurrentScene_AndForgetsADestroyedCamera()
+  nameWithType: SceneCameraGatherTests.Main_ReadsTheCurrentScene_AndForgetsADestroyedCamera()
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.Main_ReadsTheCurrentScene_AndForgetsADestroyedCamera()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneCameraGatherTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Main_ReadsTheCurrentScene_AndForgetsADestroyedCamera
+    path: ../Prowl/Prowl.Runtime.Test/SceneCameraGatherTests.cs
+    startLine: 243
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Main_ReadsTheCurrentScene_AndForgetsADestroyedCamera()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Main_ReadsTheCurrentScene_AndForgetsADestroyedCamera()
+  overload: Prowl.Runtime.Test.SceneCameraGatherTests.Main_ReadsTheCurrentScene_AndForgetsADestroyedCamera*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.MixedHierarchy_MatchesLegacyExactly
+  commentId: M:Prowl.Runtime.Test.SceneCameraGatherTests.MixedHierarchy_MatchesLegacyExactly
+  id: MixedHierarchy_MatchesLegacyExactly
+  parent: Prowl.Runtime.Test.SceneCameraGatherTests
+  langs:
+  - csharp
+  - vb
+  name: MixedHierarchy_MatchesLegacyExactly()
+  nameWithType: SceneCameraGatherTests.MixedHierarchy_MatchesLegacyExactly()
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.MixedHierarchy_MatchesLegacyExactly()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/SceneCameraGatherTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MixedHierarchy_MatchesLegacyExactly
+    path: ../Prowl/Prowl.Runtime.Test/SceneCameraGatherTests.cs
+    startLine: 265
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void MixedHierarchy_MatchesLegacyExactly()
+    content.vb: >-
+      <Fact>
+
+      Public Sub MixedHierarchy_MatchesLegacyExactly()
+  overload: Prowl.Runtime.Test.SceneCameraGatherTests.MixedHierarchy_MatchesLegacyExactly*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+references:
+- uid: Prowl.Runtime.Resources.Scene.GatherActiveCameras
+  commentId: M:Prowl.Runtime.Resources.Scene.GatherActiveCameras
+  name: GatherActiveCameras()
+  nameWithType: Scene.GatherActiveCameras()
+  fullName: Prowl.Runtime.Resources.Scene.GatherActiveCameras()
+  spec.csharp:
+  - uid: Prowl.Runtime.Resources.Scene.GatherActiveCameras
+    name: GatherActiveCameras
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Resources.Scene.GatherActiveCameras
+    name: GatherActiveCameras
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Test
+  commentId: N:Prowl.Runtime.Test
+  name: Prowl.Runtime.Test
+  nameWithType: Prowl.Runtime.Test
+  fullName: Prowl.Runtime.Test
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.Runtime.Test.RuntimeTestBase
+  commentId: T:Prowl.Runtime.Test.RuntimeTestBase
+  parent: Prowl.Runtime.Test
+  href: Prowl.Runtime.Test.RuntimeTestBase.html
+  name: RuntimeTestBase
+  nameWithType: RuntimeTestBase
+  fullName: Prowl.Runtime.Test.RuntimeTestBase
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  commentId: P:Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_FixedDeltaTime
+  name: FixedDeltaTime
+  nameWithType: RuntimeTestBase.FixedDeltaTime
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+- uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  name: EditMode()
+  nameWithType: RuntimeTestBase.EditMode()
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.EditMode()
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+    name: EditMode
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+    name: EditMode
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  name: CreateScene(bool)
+  nameWithType: RuntimeTestBase.CreateScene(bool)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(bool)
+  nameWithType.vb: RuntimeTestBase.CreateScene(Boolean)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(Boolean)
+  name.vb: CreateScene(Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+    name: CreateScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+    name: CreateScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  name: CreateGameObject(string)
+  nameWithType: RuntimeTestBase.CreateGameObject(string)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(string)
+  nameWithType.vb: RuntimeTestBase.CreateGameObject(String)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(String)
+  name.vb: CreateGameObject(String)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+    name: CreateGameObject
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+    name: CreateGameObject
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Tick(Scene, int)
+  nameWithType: RuntimeTestBase.Tick(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.Tick(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Tick(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Update(Scene, int)
+  nameWithType: RuntimeTestBase.Update(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.Update(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Update(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Update
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Update
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: StepPhysics(Scene, int)
+  nameWithType: RuntimeTestBase.StepPhysics(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.StepPhysics(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: StepPhysics(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: StepPhysics
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: StepPhysics
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  name: ApplyFastBakeSettings(NavMeshSurface)
+  nameWithType: RuntimeTestBase.ApplyFastBakeSettings(NavMeshSurface)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+    name: ApplyFastBakeSettings
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  - name: (
+  - uid: Prowl.Runtime.NavMeshSurface
+    name: NavMeshSurface
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+    name: ApplyFastBakeSettings
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  - name: (
+  - uid: Prowl.Runtime.NavMeshSurface
+    name: NavMeshSurface
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  name: CreateFloorScene(float, bool)
+  nameWithType: RuntimeTestBase.CreateFloorScene(float, bool)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(float, bool)
+  nameWithType.vb: RuntimeTestBase.CreateFloorScene(Single, Boolean)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(Single, Boolean)
+  name.vb: CreateFloorScene(Single, Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+    name: CreateFloorScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  - name: (
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+    name: CreateFloorScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  - name: (
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  name: TickUntil(Scene, Func<bool>, int)
+  nameWithType: RuntimeTestBase.TickUntil(Scene, Func<bool>, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene, System.Func<bool>, int)
+  nameWithType.vb: RuntimeTestBase.TickUntil(Scene, Func(Of Boolean), Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene, System.Func(Of Boolean), Integer)
+  name.vb: TickUntil(Scene, Func(Of Boolean), Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+    name: TickUntil
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+    name: TickUntil
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  name: Dispose()
+  nameWithType: RuntimeTestBase.Dispose()
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Dispose()
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+    name: Dispose
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+    name: Dispose
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.EmptyScene_ReturnsNoCameras*
+  commentId: Overload:Prowl.Runtime.Test.SceneCameraGatherTests.EmptyScene_ReturnsNoCameras
+  href: Prowl.Runtime.Test.SceneCameraGatherTests.html#Prowl_Runtime_Test_SceneCameraGatherTests_EmptyScene_ReturnsNoCameras
+  name: EmptyScene_ReturnsNoCameras
+  nameWithType: SceneCameraGatherTests.EmptyScene_ReturnsNoCameras
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.EmptyScene_ReturnsNoCameras
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.RootCamera_IsFound*
+  commentId: Overload:Prowl.Runtime.Test.SceneCameraGatherTests.RootCamera_IsFound
+  href: Prowl.Runtime.Test.SceneCameraGatherTests.html#Prowl_Runtime_Test_SceneCameraGatherTests_RootCamera_IsFound
+  name: RootCamera_IsFound
+  nameWithType: SceneCameraGatherTests.RootCamera_IsFound
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.RootCamera_IsFound
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.NestedCamera_IsCountedExactlyOnce*
+  commentId: Overload:Prowl.Runtime.Test.SceneCameraGatherTests.NestedCamera_IsCountedExactlyOnce
+  href: Prowl.Runtime.Test.SceneCameraGatherTests.html#Prowl_Runtime_Test_SceneCameraGatherTests_NestedCamera_IsCountedExactlyOnce
+  name: NestedCamera_IsCountedExactlyOnce
+  nameWithType: SceneCameraGatherTests.NestedCamera_IsCountedExactlyOnce
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.NestedCamera_IsCountedExactlyOnce
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.DisabledGameObject_IsSkipped*
+  commentId: Overload:Prowl.Runtime.Test.SceneCameraGatherTests.DisabledGameObject_IsSkipped
+  href: Prowl.Runtime.Test.SceneCameraGatherTests.html#Prowl_Runtime_Test_SceneCameraGatherTests_DisabledGameObject_IsSkipped
+  name: DisabledGameObject_IsSkipped
+  nameWithType: SceneCameraGatherTests.DisabledGameObject_IsSkipped
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.DisabledGameObject_IsSkipped
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.CameraUnderDisabledParent_IsSkipped*
+  commentId: Overload:Prowl.Runtime.Test.SceneCameraGatherTests.CameraUnderDisabledParent_IsSkipped
+  href: Prowl.Runtime.Test.SceneCameraGatherTests.html#Prowl_Runtime_Test_SceneCameraGatherTests_CameraUnderDisabledParent_IsSkipped
+  name: CameraUnderDisabledParent_IsSkipped
+  nameWithType: SceneCameraGatherTests.CameraUnderDisabledParent_IsSkipped
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.CameraUnderDisabledParent_IsSkipped
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.MultipleCamerasOnOneGameObject_AreAllReturned*
+  commentId: Overload:Prowl.Runtime.Test.SceneCameraGatherTests.MultipleCamerasOnOneGameObject_AreAllReturned
+  href: Prowl.Runtime.Test.SceneCameraGatherTests.html#Prowl_Runtime_Test_SceneCameraGatherTests_MultipleCamerasOnOneGameObject_AreAllReturned
+  name: MultipleCamerasOnOneGameObject_AreAllReturned
+  nameWithType: SceneCameraGatherTests.MultipleCamerasOnOneGameObject_AreAllReturned
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.MultipleCamerasOnOneGameObject_AreAllReturned
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.CamerasAreSortedByDepth*
+  commentId: Overload:Prowl.Runtime.Test.SceneCameraGatherTests.CamerasAreSortedByDepth
+  href: Prowl.Runtime.Test.SceneCameraGatherTests.html#Prowl_Runtime_Test_SceneCameraGatherTests_CamerasAreSortedByDepth
+  name: CamerasAreSortedByDepth
+  nameWithType: SceneCameraGatherTests.CamerasAreSortedByDepth
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.CamerasAreSortedByDepth
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.DisabledCameraComponent_IsStillReturned*
+  commentId: Overload:Prowl.Runtime.Test.SceneCameraGatherTests.DisabledCameraComponent_IsStillReturned
+  href: Prowl.Runtime.Test.SceneCameraGatherTests.html#Prowl_Runtime_Test_SceneCameraGatherTests_DisabledCameraComponent_IsStillReturned
+  name: DisabledCameraComponent_IsStillReturned
+  nameWithType: SceneCameraGatherTests.DisabledCameraComponent_IsStillReturned
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.DisabledCameraComponent_IsStillReturned
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.GatherCost_DoesNotScaleWithSceneSize*
+  commentId: Overload:Prowl.Runtime.Test.SceneCameraGatherTests.GatherCost_DoesNotScaleWithSceneSize
+  href: Prowl.Runtime.Test.SceneCameraGatherTests.html#Prowl_Runtime_Test_SceneCameraGatherTests_GatherCost_DoesNotScaleWithSceneSize
+  name: GatherCost_DoesNotScaleWithSceneSize
+  nameWithType: SceneCameraGatherTests.GatherCost_DoesNotScaleWithSceneSize
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.GatherCost_DoesNotScaleWithSceneSize
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.FindMainCamera_PicksHighestDepth*
+  commentId: Overload:Prowl.Runtime.Test.SceneCameraGatherTests.FindMainCamera_PicksHighestDepth
+  href: Prowl.Runtime.Test.SceneCameraGatherTests.html#Prowl_Runtime_Test_SceneCameraGatherTests_FindMainCamera_PicksHighestDepth
+  name: FindMainCamera_PicksHighestDepth
+  nameWithType: SceneCameraGatherTests.FindMainCamera_PicksHighestDepth
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.FindMainCamera_PicksHighestDepth
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.FindMainCamera_SkipsDisabledCamerasAndEditorHelpers*
+  commentId: Overload:Prowl.Runtime.Test.SceneCameraGatherTests.FindMainCamera_SkipsDisabledCamerasAndEditorHelpers
+  href: Prowl.Runtime.Test.SceneCameraGatherTests.html#Prowl_Runtime_Test_SceneCameraGatherTests_FindMainCamera_SkipsDisabledCamerasAndEditorHelpers
+  name: FindMainCamera_SkipsDisabledCamerasAndEditorHelpers
+  nameWithType: SceneCameraGatherTests.FindMainCamera_SkipsDisabledCamerasAndEditorHelpers
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.FindMainCamera_SkipsDisabledCamerasAndEditorHelpers
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.Main_ReadsTheCurrentScene_AndForgetsADestroyedCamera*
+  commentId: Overload:Prowl.Runtime.Test.SceneCameraGatherTests.Main_ReadsTheCurrentScene_AndForgetsADestroyedCamera
+  href: Prowl.Runtime.Test.SceneCameraGatherTests.html#Prowl_Runtime_Test_SceneCameraGatherTests_Main_ReadsTheCurrentScene_AndForgetsADestroyedCamera
+  name: Main_ReadsTheCurrentScene_AndForgetsADestroyedCamera
+  nameWithType: SceneCameraGatherTests.Main_ReadsTheCurrentScene_AndForgetsADestroyedCamera
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.Main_ReadsTheCurrentScene_AndForgetsADestroyedCamera
+- uid: Prowl.Runtime.Test.SceneCameraGatherTests.MixedHierarchy_MatchesLegacyExactly*
+  commentId: Overload:Prowl.Runtime.Test.SceneCameraGatherTests.MixedHierarchy_MatchesLegacyExactly
+  href: Prowl.Runtime.Test.SceneCameraGatherTests.html#Prowl_Runtime_Test_SceneCameraGatherTests_MixedHierarchy_MatchesLegacyExactly
+  name: MixedHierarchy_MatchesLegacyExactly
+  nameWithType: SceneCameraGatherTests.MixedHierarchy_MatchesLegacyExactly
+  fullName: Prowl.Runtime.Test.SceneCameraGatherTests.MixedHierarchy_MatchesLegacyExactly

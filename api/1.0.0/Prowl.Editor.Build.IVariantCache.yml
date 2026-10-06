@@ -1,0 +1,581 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.Build.IVariantCache
+  commentId: T:Prowl.Editor.Build.IVariantCache
+  id: IVariantCache
+  parent: Prowl.Editor.Build
+  children:
+  - Prowl.Editor.Build.IVariantCache.ExistsAsync(Prowl.Editor.Build.VariantKey,System.Threading.CancellationToken)
+  - Prowl.Editor.Build.IVariantCache.OpenAsync(Prowl.Editor.Build.VariantKey,System.Threading.CancellationToken)
+  - Prowl.Editor.Build.IVariantCache.PruneAsync(System.Threading.CancellationToken)
+  - Prowl.Editor.Build.IVariantCache.WriteAsync(Prowl.Editor.Build.VariantKey,System.IO.Stream,System.Threading.CancellationToken)
+  langs:
+  - csharp
+  - vb
+  name: IVariantCache
+  nameWithType: IVariantCache
+  fullName: Prowl.Editor.Build.IVariantCache
+  type: Interface
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Assets/IVariantCache.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IVariantCache
+    path: ../Prowl/Prowl.Editor/Projects/Build/Assets/IVariantCache.cs
+    startLine: 34
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Stores processed assets by content.
+  remarks: >-
+    An interface rather than a folder because a studio shares this across a team and a build farm, and
+
+    retrofitting that later would mean touching every call site. Only the local implementation ships now.
+  example: []
+  syntax:
+    content: public interface IVariantCache
+    content.vb: Public Interface IVariantCache
+  derivedClasses:
+  - Prowl.Editor.Build.LocalVariantCache
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Editor.Build.IVariantCache.ExistsAsync(Prowl.Editor.Build.VariantKey,System.Threading.CancellationToken)
+  commentId: M:Prowl.Editor.Build.IVariantCache.ExistsAsync(Prowl.Editor.Build.VariantKey,System.Threading.CancellationToken)
+  id: ExistsAsync(Prowl.Editor.Build.VariantKey,System.Threading.CancellationToken)
+  parent: Prowl.Editor.Build.IVariantCache
+  langs:
+  - csharp
+  - vb
+  name: ExistsAsync(VariantKey, CancellationToken)
+  nameWithType: IVariantCache.ExistsAsync(VariantKey, CancellationToken)
+  fullName: Prowl.Editor.Build.IVariantCache.ExistsAsync(Prowl.Editor.Build.VariantKey, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Assets/IVariantCache.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ExistsAsync
+    path: ../Prowl/Prowl.Editor/Projects/Build/Assets/IVariantCache.cs
+    startLine: 37
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Returns true if a variant for the given key is present in the cache.
+  example: []
+  syntax:
+    content: ValueTask<bool> ExistsAsync(VariantKey key, CancellationToken ct = default)
+    parameters:
+    - id: key
+      type: Prowl.Editor.Build.VariantKey
+    - id: ct
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.ValueTask{System.Boolean}
+    content.vb: Function ExistsAsync(key As VariantKey, ct As CancellationToken = Nothing) As ValueTask(Of Boolean)
+  overload: Prowl.Editor.Build.IVariantCache.ExistsAsync*
+- uid: Prowl.Editor.Build.IVariantCache.OpenAsync(Prowl.Editor.Build.VariantKey,System.Threading.CancellationToken)
+  commentId: M:Prowl.Editor.Build.IVariantCache.OpenAsync(Prowl.Editor.Build.VariantKey,System.Threading.CancellationToken)
+  id: OpenAsync(Prowl.Editor.Build.VariantKey,System.Threading.CancellationToken)
+  parent: Prowl.Editor.Build.IVariantCache
+  langs:
+  - csharp
+  - vb
+  name: OpenAsync(VariantKey, CancellationToken)
+  nameWithType: IVariantCache.OpenAsync(VariantKey, CancellationToken)
+  fullName: Prowl.Editor.Build.IVariantCache.OpenAsync(Prowl.Editor.Build.VariantKey, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Assets/IVariantCache.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OpenAsync
+    path: ../Prowl/Prowl.Editor/Projects/Build/Assets/IVariantCache.cs
+    startLine: 40
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: The stored bytes, or null on a miss. The caller owns the stream.
+  example: []
+  syntax:
+    content: ValueTask<Stream?> OpenAsync(VariantKey key, CancellationToken ct = default)
+    parameters:
+    - id: key
+      type: Prowl.Editor.Build.VariantKey
+    - id: ct
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.ValueTask{System.IO.Stream}
+    content.vb: Function OpenAsync(key As VariantKey, ct As CancellationToken = Nothing) As ValueTask(Of Stream)
+  overload: Prowl.Editor.Build.IVariantCache.OpenAsync*
+- uid: Prowl.Editor.Build.IVariantCache.WriteAsync(Prowl.Editor.Build.VariantKey,System.IO.Stream,System.Threading.CancellationToken)
+  commentId: M:Prowl.Editor.Build.IVariantCache.WriteAsync(Prowl.Editor.Build.VariantKey,System.IO.Stream,System.Threading.CancellationToken)
+  id: WriteAsync(Prowl.Editor.Build.VariantKey,System.IO.Stream,System.Threading.CancellationToken)
+  parent: Prowl.Editor.Build.IVariantCache
+  langs:
+  - csharp
+  - vb
+  name: WriteAsync(VariantKey, Stream, CancellationToken)
+  nameWithType: IVariantCache.WriteAsync(VariantKey, Stream, CancellationToken)
+  fullName: Prowl.Editor.Build.IVariantCache.WriteAsync(Prowl.Editor.Build.VariantKey, System.IO.Stream, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Assets/IVariantCache.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WriteAsync
+    path: ../Prowl/Prowl.Editor/Projects/Build/Assets/IVariantCache.cs
+    startLine: 43
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: Writes the given data into the cache under the specified key.
+  example: []
+  syntax:
+    content: ValueTask WriteAsync(VariantKey key, Stream data, CancellationToken ct = default)
+    parameters:
+    - id: key
+      type: Prowl.Editor.Build.VariantKey
+    - id: data
+      type: System.IO.Stream
+    - id: ct
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.ValueTask
+    content.vb: Function WriteAsync(key As VariantKey, data As Stream, ct As CancellationToken = Nothing) As ValueTask
+  overload: Prowl.Editor.Build.IVariantCache.WriteAsync*
+- uid: Prowl.Editor.Build.IVariantCache.PruneAsync(System.Threading.CancellationToken)
+  commentId: M:Prowl.Editor.Build.IVariantCache.PruneAsync(System.Threading.CancellationToken)
+  id: PruneAsync(System.Threading.CancellationToken)
+  parent: Prowl.Editor.Build.IVariantCache
+  langs:
+  - csharp
+  - vb
+  name: PruneAsync(CancellationToken)
+  nameWithType: IVariantCache.PruneAsync(CancellationToken)
+  fullName: Prowl.Editor.Build.IVariantCache.PruneAsync(System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Build/Assets/IVariantCache.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PruneAsync
+    path: ../Prowl/Prowl.Editor/Projects/Build/Assets/IVariantCache.cs
+    startLine: 55
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Build
+  summary: >-
+    Discards whatever the cache no longer wants to keep, by its own policy. Returns how many entries
+
+    went.
+  remarks: >-
+    A cache keyed by content grows without bound otherwise. Every edit of an asset produces a new key
+
+    and leaves the previous variant behind, and nothing will ever ask for it again. On the interface
+
+    rather than only on the local implementation, because a shared cache has the same problem and the
+
+    caller should not have to know which kind it is holding.
+  example: []
+  syntax:
+    content: ValueTask<int> PruneAsync(CancellationToken ct = default)
+    parameters:
+    - id: ct
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.ValueTask{System.Int32}
+    content.vb: Function PruneAsync(ct As CancellationToken = Nothing) As ValueTask(Of Integer)
+  overload: Prowl.Editor.Build.IVariantCache.PruneAsync*
+references:
+- uid: Prowl.Editor.Build
+  commentId: N:Prowl.Editor.Build
+  name: Prowl.Editor.Build
+  nameWithType: Prowl.Editor.Build
+  fullName: Prowl.Editor.Build
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Build
+    name: Build
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.Build
+    name: Build
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Editor.Build.IVariantCache.ExistsAsync*
+  commentId: Overload:Prowl.Editor.Build.IVariantCache.ExistsAsync
+  href: Prowl.Editor.Build.IVariantCache.html#Prowl_Editor_Build_IVariantCache_ExistsAsync_Prowl_Editor_Build_VariantKey_System_Threading_CancellationToken_
+  name: ExistsAsync
+  nameWithType: IVariantCache.ExistsAsync
+  fullName: Prowl.Editor.Build.IVariantCache.ExistsAsync
+- uid: Prowl.Editor.Build.VariantKey
+  commentId: T:Prowl.Editor.Build.VariantKey
+  parent: Prowl.Editor.Build
+  href: Prowl.Editor.Build.VariantKey.html
+  name: VariantKey
+  nameWithType: VariantKey
+  fullName: Prowl.Editor.Build.VariantKey
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.ValueTask{System.Boolean}
+  commentId: T:System.Threading.Tasks.ValueTask{System.Boolean}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.ValueTask`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  name: ValueTask<bool>
+  nameWithType: ValueTask<bool>
+  fullName: System.Threading.Tasks.ValueTask<bool>
+  nameWithType.vb: ValueTask(Of Boolean)
+  fullName.vb: System.Threading.Tasks.ValueTask(Of Boolean)
+  name.vb: ValueTask(Of Boolean)
+  spec.csharp:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks.ValueTask`1
+  commentId: T:System.Threading.Tasks.ValueTask`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  name: ValueTask<TResult>
+  nameWithType: ValueTask<TResult>
+  fullName: System.Threading.Tasks.ValueTask<TResult>
+  nameWithType.vb: ValueTask(Of TResult)
+  fullName.vb: System.Threading.Tasks.ValueTask(Of TResult)
+  name.vb: ValueTask(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Prowl.Editor.Build.IVariantCache.OpenAsync*
+  commentId: Overload:Prowl.Editor.Build.IVariantCache.OpenAsync
+  href: Prowl.Editor.Build.IVariantCache.html#Prowl_Editor_Build_IVariantCache_OpenAsync_Prowl_Editor_Build_VariantKey_System_Threading_CancellationToken_
+  name: OpenAsync
+  nameWithType: IVariantCache.OpenAsync
+  fullName: Prowl.Editor.Build.IVariantCache.OpenAsync
+- uid: System.Threading.Tasks.ValueTask{System.IO.Stream}
+  commentId: T:System.Threading.Tasks.ValueTask{System.IO.Stream}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.ValueTask`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  name: ValueTask<Stream>
+  nameWithType: ValueTask<Stream>
+  fullName: System.Threading.Tasks.ValueTask<System.IO.Stream>
+  nameWithType.vb: ValueTask(Of Stream)
+  fullName.vb: System.Threading.Tasks.ValueTask(Of System.IO.Stream)
+  name.vb: ValueTask(Of Stream)
+  spec.csharp:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  - name: <
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+- uid: Prowl.Editor.Build.IVariantCache.WriteAsync*
+  commentId: Overload:Prowl.Editor.Build.IVariantCache.WriteAsync
+  href: Prowl.Editor.Build.IVariantCache.html#Prowl_Editor_Build_IVariantCache_WriteAsync_Prowl_Editor_Build_VariantKey_System_IO_Stream_System_Threading_CancellationToken_
+  name: WriteAsync
+  nameWithType: IVariantCache.WriteAsync
+  fullName: Prowl.Editor.Build.IVariantCache.WriteAsync
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: System.Threading.Tasks.ValueTask
+  commentId: T:System.Threading.Tasks.ValueTask
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask
+  name: ValueTask
+  nameWithType: ValueTask
+  fullName: System.Threading.Tasks.ValueTask
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: Prowl.Editor.Build.IVariantCache.PruneAsync*
+  commentId: Overload:Prowl.Editor.Build.IVariantCache.PruneAsync
+  href: Prowl.Editor.Build.IVariantCache.html#Prowl_Editor_Build_IVariantCache_PruneAsync_System_Threading_CancellationToken_
+  name: PruneAsync
+  nameWithType: IVariantCache.PruneAsync
+  fullName: Prowl.Editor.Build.IVariantCache.PruneAsync
+- uid: System.Threading.Tasks.ValueTask{System.Int32}
+  commentId: T:System.Threading.Tasks.ValueTask{System.Int32}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.ValueTask`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  name: ValueTask<int>
+  nameWithType: ValueTask<int>
+  fullName: System.Threading.Tasks.ValueTask<int>
+  nameWithType.vb: ValueTask(Of Integer)
+  fullName.vb: System.Threading.Tasks.ValueTask(Of Integer)
+  name.vb: ValueTask(Of Integer)
+  spec.csharp:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )

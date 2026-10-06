@@ -1,0 +1,1070 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext
+  commentId: T:Prowl.Editor.GUI.SceneView.SceneToolContext
+  id: SceneToolContext
+  parent: Prowl.Editor.GUI.SceneView
+  children:
+  - Prowl.Editor.GUI.SceneView.SceneToolContext.ActiveObject
+  - Prowl.Editor.GUI.SceneView.SceneToolContext.Camera
+  - Prowl.Editor.GUI.SceneView.SceneToolContext.ClearState(Prowl.Editor.GUI.SceneView.SceneTool)
+  - Prowl.Editor.GUI.SceneView.SceneToolContext.Draw
+  - Prowl.Editor.GUI.SceneView.SceneToolContext.Handles
+  - Prowl.Editor.GUI.SceneView.SceneToolContext.MarkDirty
+  - Prowl.Editor.GUI.SceneView.SceneToolContext.Scene
+  - Prowl.Editor.GUI.SceneView.SceneToolContext.SelectedObjects
+  - Prowl.Editor.GUI.SceneView.SceneToolContext.State``1
+  - Prowl.Editor.GUI.SceneView.SceneToolContext.UndoScope(System.String,Prowl.Runtime.GameObject[])
+  - Prowl.Editor.GUI.SceneView.SceneToolContext.View
+  langs:
+  - csharp
+  - vb
+  name: SceneToolContext
+  nameWithType: SceneToolContext
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext
+  type: Class
+  source:
+    remote:
+      path: Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SceneToolContext
+    path: ../Prowl/Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+    startLine: 21
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI.SceneView
+  summary: >-
+    Everything a <xref href="Prowl.Editor.GUI.SceneView.SceneTool" data-throw-if-not-resolved="false"></xref> needs for one viewport for one frame: the arbitration
+
+    context, the scene, the selection, and per-viewport storage.
+
+
+    <p>One context exists per scene viewport and is reused across frames, so
+
+    <xref href="Prowl.Editor.GUI.SceneView.SceneToolContext.State%60%601" data-throw-if-not-resolved="false"></xref> is stable for as long as the viewport lives. That is what lets a single
+
+    tool instance serve two scene views without their drags interfering.</p>
+  example: []
+  syntax:
+    content: public sealed class SceneToolContext
+    content.vb: Public NotInheritable Class SceneToolContext
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.Handles
+  commentId: P:Prowl.Editor.GUI.SceneView.SceneToolContext.Handles
+  id: Handles
+  parent: Prowl.Editor.GUI.SceneView.SceneToolContext
+  langs:
+  - csharp
+  - vb
+  name: Handles
+  nameWithType: SceneToolContext.Handles
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.Handles
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Handles
+    path: ../Prowl/Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+    startLine: 28
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI.SceneView
+  summary: Handle arbitration, cursor, ray, camera and keyboard-safe key queries.
+  example: []
+  syntax:
+    content: public HandleContext Handles { get; }
+    parameters: []
+    return:
+      type: Prowl.Editor.GUI.SceneView.HandleContext
+    content.vb: Public ReadOnly Property [Handles] As HandleContext
+  overload: Prowl.Editor.GUI.SceneView.SceneToolContext.Handles*
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.Draw
+  commentId: P:Prowl.Editor.GUI.SceneView.SceneToolContext.Draw
+  id: Draw
+  parent: Prowl.Editor.GUI.SceneView.SceneToolContext
+  langs:
+  - csharp
+  - vb
+  name: Draw
+  nameWithType: SceneToolContext.Draw
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.Draw
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Draw
+    path: ../Prowl/Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+    startLine: 31
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI.SceneView
+  summary: Deferred 3D drawing onto the viewport overlay.
+  example: []
+  syntax:
+    content: public SceneDrawList Draw { get; }
+    parameters: []
+    return:
+      type: Prowl.Editor.GUI.SceneView.SceneDrawList
+    content.vb: Public ReadOnly Property Draw As SceneDrawList
+  overload: Prowl.Editor.GUI.SceneView.SceneToolContext.Draw*
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.Scene
+  commentId: P:Prowl.Editor.GUI.SceneView.SceneToolContext.Scene
+  id: Scene
+  parent: Prowl.Editor.GUI.SceneView.SceneToolContext
+  langs:
+  - csharp
+  - vb
+  name: Scene
+  nameWithType: SceneToolContext.Scene
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.Scene
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Scene
+    path: ../Prowl/Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+    startLine: 34
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI.SceneView
+  summary: The scene being edited in this viewport.
+  example: []
+  syntax:
+    content: public Scene Scene { get; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.Resources.Scene
+    content.vb: Public Property Scene As Scene
+  overload: Prowl.Editor.GUI.SceneView.SceneToolContext.Scene*
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.Camera
+  commentId: P:Prowl.Editor.GUI.SceneView.SceneToolContext.Camera
+  id: Camera
+  parent: Prowl.Editor.GUI.SceneView.SceneToolContext
+  langs:
+  - csharp
+  - vb
+  name: Camera
+  nameWithType: SceneToolContext.Camera
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.Camera
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Camera
+    path: ../Prowl/Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+    startLine: 37
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI.SceneView
+  summary: The camera used to render the viewport.
+  example: []
+  syntax:
+    content: public Camera Camera { get; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.Camera
+    content.vb: Public ReadOnly Property Camera As Camera
+  overload: Prowl.Editor.GUI.SceneView.SceneToolContext.Camera*
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.View
+  commentId: P:Prowl.Editor.GUI.SceneView.SceneToolContext.View
+  id: View
+  parent: Prowl.Editor.GUI.SceneView.SceneToolContext
+  langs:
+  - csharp
+  - vb
+  name: View
+  nameWithType: SceneToolContext.View
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.View
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: View
+    path: ../Prowl/Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+    startLine: 40
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI.SceneView
+  summary: The viewport this context belongs to.
+  example: []
+  syntax:
+    content: public object View { get; }
+    parameters: []
+    return:
+      type: System.Object
+    content.vb: Public Property View As Object
+  overload: Prowl.Editor.GUI.SceneView.SceneToolContext.View*
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.ActiveObject
+  commentId: P:Prowl.Editor.GUI.SceneView.SceneToolContext.ActiveObject
+  id: ActiveObject
+  parent: Prowl.Editor.GUI.SceneView.SceneToolContext
+  langs:
+  - csharp
+  - vb
+  name: ActiveObject
+  nameWithType: SceneToolContext.ActiveObject
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.ActiveObject
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ActiveObject
+    path: ../Prowl/Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+    startLine: 61
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI.SceneView
+  summary: The first selected GameObject, or null if nothing is selected.
+  example: []
+  syntax:
+    content: public GameObject? ActiveObject { get; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.GameObject
+    content.vb: Public ReadOnly Property ActiveObject As GameObject
+  overload: Prowl.Editor.GUI.SceneView.SceneToolContext.ActiveObject*
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.SelectedObjects
+  commentId: P:Prowl.Editor.GUI.SceneView.SceneToolContext.SelectedObjects
+  id: SelectedObjects
+  parent: Prowl.Editor.GUI.SceneView.SceneToolContext
+  langs:
+  - csharp
+  - vb
+  name: SelectedObjects
+  nameWithType: SceneToolContext.SelectedObjects
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.SelectedObjects
+  type: Property
+  source:
+    remote:
+      path: Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SelectedObjects
+    path: ../Prowl/Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+    startLine: 64
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI.SceneView
+  summary: All currently selected GameObjects.
+  example: []
+  syntax:
+    content: public IReadOnlyList<GameObject> SelectedObjects { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.GameObject}
+    content.vb: Public ReadOnly Property SelectedObjects As IReadOnlyList(Of GameObject)
+  overload: Prowl.Editor.GUI.SceneView.SceneToolContext.SelectedObjects*
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.State``1
+  commentId: M:Prowl.Editor.GUI.SceneView.SceneToolContext.State``1
+  id: State``1
+  parent: Prowl.Editor.GUI.SceneView.SceneToolContext
+  langs:
+  - csharp
+  - vb
+  name: State<T>()
+  nameWithType: SceneToolContext.State<T>()
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.State<T>()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: State
+    path: ../Prowl/Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+    startLine: 76
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI.SceneView
+  summary: >-
+    Per-tool, per-viewport state. Keyed by both the tool type and the state type, so a tool
+
+    instance shared across viewports still gets independent drag state in each one.
+  example: []
+  syntax:
+    content: 'public T State<T>() where T : class, new()'
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Public Function State(Of T As {Class, New})() As T
+  overload: Prowl.Editor.GUI.SceneView.SceneToolContext.State*
+  nameWithType.vb: SceneToolContext.State(Of T)()
+  fullName.vb: Prowl.Editor.GUI.SceneView.SceneToolContext.State(Of T)()
+  name.vb: State(Of T)()
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.ClearState(Prowl.Editor.GUI.SceneView.SceneTool)
+  commentId: M:Prowl.Editor.GUI.SceneView.SceneToolContext.ClearState(Prowl.Editor.GUI.SceneView.SceneTool)
+  id: ClearState(Prowl.Editor.GUI.SceneView.SceneTool)
+  parent: Prowl.Editor.GUI.SceneView.SceneToolContext
+  langs:
+  - csharp
+  - vb
+  name: ClearState(SceneTool)
+  nameWithType: SceneToolContext.ClearState(SceneTool)
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.ClearState(Prowl.Editor.GUI.SceneView.SceneTool)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ClearState
+    path: ../Prowl/Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+    startLine: 88
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI.SceneView
+  summary: Forget a tool's stored state, e.g. on deactivation.
+  example: []
+  syntax:
+    content: public void ClearState(SceneTool tool)
+    parameters:
+    - id: tool
+      type: Prowl.Editor.GUI.SceneView.SceneTool
+    content.vb: Public Sub ClearState(tool As SceneTool)
+  overload: Prowl.Editor.GUI.SceneView.SceneToolContext.ClearState*
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.MarkDirty
+  commentId: M:Prowl.Editor.GUI.SceneView.SceneToolContext.MarkDirty
+  id: MarkDirty
+  parent: Prowl.Editor.GUI.SceneView.SceneToolContext
+  langs:
+  - csharp
+  - vb
+  name: MarkDirty()
+  nameWithType: SceneToolContext.MarkDirty()
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.MarkDirty()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MarkDirty
+    path: ../Prowl/Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+    startLine: 95
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI.SceneView
+  summary: Mark the scene dirty so the change is saved.
+  example: []
+  syntax:
+    content: public void MarkDirty()
+    content.vb: Public Sub MarkDirty()
+  overload: Prowl.Editor.GUI.SceneView.SceneToolContext.MarkDirty*
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.UndoScope(System.String,Prowl.Runtime.GameObject[])
+  commentId: M:Prowl.Editor.GUI.SceneView.SceneToolContext.UndoScope(System.String,Prowl.Runtime.GameObject[])
+  id: UndoScope(System.String,Prowl.Runtime.GameObject[])
+  parent: Prowl.Editor.GUI.SceneView.SceneToolContext
+  langs:
+  - csharp
+  - vb
+  name: UndoScope(string, params GameObject[])
+  nameWithType: SceneToolContext.UndoScope(string, params GameObject[])
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.UndoScope(string, params Prowl.Runtime.GameObject[])
+  type: Method
+  source:
+    remote:
+      path: Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: UndoScope
+    path: ../Prowl/Prowl.Editor/GUI/SceneView/SceneToolContext.cs
+    startLine: 101
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.GUI.SceneView
+  summary: >-
+    Scope a multi-frame interactive edit into one undo step. Dispose commits; call
+
+    <xref href="Prowl.Editor.GUI.SceneView.ToolUndoScope.Cancel" data-throw-if-not-resolved="false"></xref> to revert everything done inside it.
+  example: []
+  syntax:
+    content: public ToolUndoScope UndoScope(string description, params GameObject[] targets)
+    parameters:
+    - id: description
+      type: System.String
+    - id: targets
+      type: Prowl.Runtime.GameObject[]
+    return:
+      type: Prowl.Editor.GUI.SceneView.ToolUndoScope
+    content.vb: Public Function UndoScope(description As String, ParamArray targets As GameObject()) As ToolUndoScope
+  overload: Prowl.Editor.GUI.SceneView.SceneToolContext.UndoScope*
+  nameWithType.vb: SceneToolContext.UndoScope(String, ParamArray GameObject())
+  fullName.vb: Prowl.Editor.GUI.SceneView.SceneToolContext.UndoScope(String, ParamArray Prowl.Runtime.GameObject())
+  name.vb: UndoScope(String, ParamArray GameObject())
+references:
+- uid: Prowl.Editor.GUI.SceneView.SceneTool
+  commentId: T:Prowl.Editor.GUI.SceneView.SceneTool
+  parent: Prowl.Editor.GUI.SceneView
+  href: Prowl.Editor.GUI.SceneView.SceneTool.html
+  name: SceneTool
+  nameWithType: SceneTool
+  fullName: Prowl.Editor.GUI.SceneView.SceneTool
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.State``1
+  commentId: M:Prowl.Editor.GUI.SceneView.SceneToolContext.State``1
+  href: Prowl.Editor.GUI.SceneView.SceneToolContext.html#Prowl_Editor_GUI_SceneView_SceneToolContext_State__1
+  name: State<T>()
+  nameWithType: SceneToolContext.State<T>()
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.State<T>()
+  nameWithType.vb: SceneToolContext.State(Of T)()
+  fullName.vb: Prowl.Editor.GUI.SceneView.SceneToolContext.State(Of T)()
+  name.vb: State(Of T)()
+  spec.csharp:
+  - uid: Prowl.Editor.GUI.SceneView.SceneToolContext.State``1
+    name: State
+    href: Prowl.Editor.GUI.SceneView.SceneToolContext.html#Prowl_Editor_GUI_SceneView_SceneToolContext_State__1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.GUI.SceneView.SceneToolContext.State``1
+    name: State
+    href: Prowl.Editor.GUI.SceneView.SceneToolContext.html#Prowl_Editor_GUI_SceneView_SceneToolContext_State__1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: )
+- uid: Prowl.Editor.GUI.SceneView
+  commentId: N:Prowl.Editor.GUI.SceneView
+  name: Prowl.Editor.GUI.SceneView
+  nameWithType: Prowl.Editor.GUI.SceneView
+  fullName: Prowl.Editor.GUI.SceneView
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.GUI
+    name: GUI
+  - name: .
+  - uid: Prowl.Editor.GUI.SceneView
+    name: SceneView
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Editor
+    name: Editor
+  - name: .
+  - uid: Prowl.Editor.GUI
+    name: GUI
+  - name: .
+  - uid: Prowl.Editor.GUI.SceneView
+    name: SceneView
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.Handles*
+  commentId: Overload:Prowl.Editor.GUI.SceneView.SceneToolContext.Handles
+  href: Prowl.Editor.GUI.SceneView.SceneToolContext.html#Prowl_Editor_GUI_SceneView_SceneToolContext_Handles
+  name: Handles
+  nameWithType: SceneToolContext.Handles
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.Handles
+- uid: Prowl.Editor.GUI.SceneView.HandleContext
+  commentId: T:Prowl.Editor.GUI.SceneView.HandleContext
+  parent: Prowl.Editor.GUI.SceneView
+  href: Prowl.Editor.GUI.SceneView.HandleContext.html
+  name: HandleContext
+  nameWithType: HandleContext
+  fullName: Prowl.Editor.GUI.SceneView.HandleContext
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.Draw*
+  commentId: Overload:Prowl.Editor.GUI.SceneView.SceneToolContext.Draw
+  href: Prowl.Editor.GUI.SceneView.SceneToolContext.html#Prowl_Editor_GUI_SceneView_SceneToolContext_Draw
+  name: Draw
+  nameWithType: SceneToolContext.Draw
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.Draw
+- uid: Prowl.Editor.GUI.SceneView.SceneDrawList
+  commentId: T:Prowl.Editor.GUI.SceneView.SceneDrawList
+  parent: Prowl.Editor.GUI.SceneView
+  href: Prowl.Editor.GUI.SceneView.SceneDrawList.html
+  name: SceneDrawList
+  nameWithType: SceneDrawList
+  fullName: Prowl.Editor.GUI.SceneView.SceneDrawList
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.Scene*
+  commentId: Overload:Prowl.Editor.GUI.SceneView.SceneToolContext.Scene
+  href: Prowl.Editor.GUI.SceneView.SceneToolContext.html#Prowl_Editor_GUI_SceneView_SceneToolContext_Scene
+  name: Scene
+  nameWithType: SceneToolContext.Scene
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.Scene
+- uid: Prowl.Runtime.Resources.Scene
+  commentId: T:Prowl.Runtime.Resources.Scene
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.Scene.html
+  name: Scene
+  nameWithType: Scene
+  fullName: Prowl.Runtime.Resources.Scene
+- uid: Prowl.Runtime.Resources
+  commentId: N:Prowl.Runtime.Resources
+  name: Prowl.Runtime.Resources
+  nameWithType: Prowl.Runtime.Resources
+  fullName: Prowl.Runtime.Resources
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.Camera*
+  commentId: Overload:Prowl.Editor.GUI.SceneView.SceneToolContext.Camera
+  href: Prowl.Editor.GUI.SceneView.SceneToolContext.html#Prowl_Editor_GUI_SceneView_SceneToolContext_Camera
+  name: Camera
+  nameWithType: SceneToolContext.Camera
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.Camera
+- uid: Prowl.Runtime.Camera
+  commentId: T:Prowl.Runtime.Camera
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.Camera.html
+  name: Camera
+  nameWithType: Camera
+  fullName: Prowl.Runtime.Camera
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.View*
+  commentId: Overload:Prowl.Editor.GUI.SceneView.SceneToolContext.View
+  href: Prowl.Editor.GUI.SceneView.SceneToolContext.html#Prowl_Editor_GUI_SceneView_SceneToolContext_View
+  name: View
+  nameWithType: SceneToolContext.View
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.View
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.ActiveObject*
+  commentId: Overload:Prowl.Editor.GUI.SceneView.SceneToolContext.ActiveObject
+  href: Prowl.Editor.GUI.SceneView.SceneToolContext.html#Prowl_Editor_GUI_SceneView_SceneToolContext_ActiveObject
+  name: ActiveObject
+  nameWithType: SceneToolContext.ActiveObject
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.ActiveObject
+- uid: Prowl.Runtime.GameObject
+  commentId: T:Prowl.Runtime.GameObject
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.GameObject.html
+  name: GameObject
+  nameWithType: GameObject
+  fullName: Prowl.Runtime.GameObject
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.SelectedObjects*
+  commentId: Overload:Prowl.Editor.GUI.SceneView.SceneToolContext.SelectedObjects
+  href: Prowl.Editor.GUI.SceneView.SceneToolContext.html#Prowl_Editor_GUI_SceneView_SceneToolContext_SelectedObjects
+  name: SelectedObjects
+  nameWithType: SceneToolContext.SelectedObjects
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.SelectedObjects
+- uid: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.GameObject}
+  commentId: T:System.Collections.Generic.IReadOnlyList{Prowl.Runtime.GameObject}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<GameObject>
+  nameWithType: IReadOnlyList<GameObject>
+  fullName: System.Collections.Generic.IReadOnlyList<Prowl.Runtime.GameObject>
+  nameWithType.vb: IReadOnlyList(Of GameObject)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.GameObject)
+  name.vb: IReadOnlyList(Of GameObject)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.State*
+  commentId: Overload:Prowl.Editor.GUI.SceneView.SceneToolContext.State
+  href: Prowl.Editor.GUI.SceneView.SceneToolContext.html#Prowl_Editor_GUI_SceneView_SceneToolContext_State__1
+  name: State
+  nameWithType: SceneToolContext.State
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.State
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.ClearState*
+  commentId: Overload:Prowl.Editor.GUI.SceneView.SceneToolContext.ClearState
+  href: Prowl.Editor.GUI.SceneView.SceneToolContext.html#Prowl_Editor_GUI_SceneView_SceneToolContext_ClearState_Prowl_Editor_GUI_SceneView_SceneTool_
+  name: ClearState
+  nameWithType: SceneToolContext.ClearState
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.ClearState
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.MarkDirty*
+  commentId: Overload:Prowl.Editor.GUI.SceneView.SceneToolContext.MarkDirty
+  href: Prowl.Editor.GUI.SceneView.SceneToolContext.html#Prowl_Editor_GUI_SceneView_SceneToolContext_MarkDirty
+  name: MarkDirty
+  nameWithType: SceneToolContext.MarkDirty
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.MarkDirty
+- uid: Prowl.Editor.GUI.SceneView.ToolUndoScope.Cancel
+  commentId: M:Prowl.Editor.GUI.SceneView.ToolUndoScope.Cancel
+  href: Prowl.Editor.GUI.SceneView.ToolUndoScope.html#Prowl_Editor_GUI_SceneView_ToolUndoScope_Cancel
+  name: Cancel()
+  nameWithType: ToolUndoScope.Cancel()
+  fullName: Prowl.Editor.GUI.SceneView.ToolUndoScope.Cancel()
+  spec.csharp:
+  - uid: Prowl.Editor.GUI.SceneView.ToolUndoScope.Cancel
+    name: Cancel
+    href: Prowl.Editor.GUI.SceneView.ToolUndoScope.html#Prowl_Editor_GUI_SceneView_ToolUndoScope_Cancel
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Editor.GUI.SceneView.ToolUndoScope.Cancel
+    name: Cancel
+    href: Prowl.Editor.GUI.SceneView.ToolUndoScope.html#Prowl_Editor_GUI_SceneView_ToolUndoScope_Cancel
+  - name: (
+  - name: )
+- uid: Prowl.Editor.GUI.SceneView.SceneToolContext.UndoScope*
+  commentId: Overload:Prowl.Editor.GUI.SceneView.SceneToolContext.UndoScope
+  href: Prowl.Editor.GUI.SceneView.SceneToolContext.html#Prowl_Editor_GUI_SceneView_SceneToolContext_UndoScope_System_String_Prowl_Runtime_GameObject___
+  name: UndoScope
+  nameWithType: SceneToolContext.UndoScope
+  fullName: Prowl.Editor.GUI.SceneView.SceneToolContext.UndoScope
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Prowl.Runtime.GameObject[]
+  isExternal: true
+  href: Prowl.Runtime.GameObject.html
+  name: GameObject[]
+  nameWithType: GameObject[]
+  fullName: Prowl.Runtime.GameObject[]
+  nameWithType.vb: GameObject()
+  fullName.vb: Prowl.Runtime.GameObject()
+  name.vb: GameObject()
+  spec.csharp:
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Prowl.Runtime.GameObject
+    name: GameObject
+    href: Prowl.Runtime.GameObject.html
+  - name: (
+  - name: )
+- uid: Prowl.Editor.GUI.SceneView.ToolUndoScope
+  commentId: T:Prowl.Editor.GUI.SceneView.ToolUndoScope
+  parent: Prowl.Editor.GUI.SceneView
+  href: Prowl.Editor.GUI.SceneView.ToolUndoScope.html
+  name: ToolUndoScope
+  nameWithType: ToolUndoScope
+  fullName: Prowl.Editor.GUI.SceneView.ToolUndoScope

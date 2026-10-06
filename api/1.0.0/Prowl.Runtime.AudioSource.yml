@@ -5,15 +5,54 @@ items:
   id: AudioSource
   parent: Prowl.Runtime
   children:
-  - Prowl.Runtime.AudioSource.Awake
+  - Prowl.Runtime.AudioSource.ActiveOneShotCount
+  - Prowl.Runtime.AudioSource.AddEffect(Prowl.Runtime.Audio.Effects.AudioEffect)
+  - Prowl.Runtime.AudioSource.AttenuationModel
+  - Prowl.Runtime.AudioSource.ClearEffects
   - Prowl.Runtime.AudioSource.Clip
-  - Prowl.Runtime.AudioSource.Looping
+  - Prowl.Runtime.AudioSource.Cursor
+  - Prowl.Runtime.AudioSource.DopplerFactor
+  - Prowl.Runtime.AudioSource.DrawGizmosSelected
+  - Prowl.Runtime.AudioSource.Duration
+  - Prowl.Runtime.AudioSource.EffectCount
+  - Prowl.Runtime.AudioSource.Effects
+  - Prowl.Runtime.AudioSource.End
+  - Prowl.Runtime.AudioSource.GetCalculatedVelocity
+  - Prowl.Runtime.AudioSource.GetOutputBuffer(System.Single[]@,System.Int32@)
+  - Prowl.Runtime.AudioSource.IsPaused
+  - Prowl.Runtime.AudioSource.IsPlaying
+  - Prowl.Runtime.AudioSource.Length
+  - Prowl.Runtime.AudioSource.Loop
   - Prowl.Runtime.AudioSource.MaxDistance
-  - Prowl.Runtime.AudioSource.OnDestroy
+  - Prowl.Runtime.AudioSource.MaxOneShotVoices
+  - Prowl.Runtime.AudioSource.MinDistance
+  - Prowl.Runtime.AudioSource.MinPitch
+  - Prowl.Runtime.AudioSource.NormalizedTime
+  - Prowl.Runtime.AudioSource.OnAfterDeserialize
   - Prowl.Runtime.AudioSource.OnDisable
+  - Prowl.Runtime.AudioSource.OnDispose
+  - Prowl.Runtime.AudioSource.OnEnable
+  - Prowl.Runtime.AudioSource.OnValidate
+  - Prowl.Runtime.AudioSource.OutputGroup
+  - Prowl.Runtime.AudioSource.Pan
+  - Prowl.Runtime.AudioSource.PanMode
+  - Prowl.Runtime.AudioSource.Pause
+  - Prowl.Runtime.AudioSource.Pitch
   - Prowl.Runtime.AudioSource.Play
-  - Prowl.Runtime.AudioSource.PlayOnAwake
+  - Prowl.Runtime.AudioSource.PlayClipAtPoint(Prowl.Runtime.Resources.AudioClip,Prowl.Vector.Float3,System.Single)
+  - Prowl.Runtime.AudioSource.PlayOnStart
+  - Prowl.Runtime.AudioSource.PlayOneShot(Prowl.Runtime.Resources.AudioClip,System.Single)
+  - Prowl.Runtime.AudioSource.PlayProcedural
+  - Prowl.Runtime.AudioSource.PlaybackTime
+  - Prowl.Runtime.AudioSource.Process
+  - Prowl.Runtime.AudioSource.Read
+  - Prowl.Runtime.AudioSource.RefreshEffects
+  - Prowl.Runtime.AudioSource.RemoveEffect(Prowl.Runtime.Audio.Effects.AudioEffect)
+  - Prowl.Runtime.AudioSource.RemoveEffect(System.Int32)
+  - Prowl.Runtime.AudioSource.Resume
+  - Prowl.Runtime.AudioSource.Spatial
   - Prowl.Runtime.AudioSource.Stop
+  - Prowl.Runtime.AudioSource.StopOneShots
   - Prowl.Runtime.AudioSource.Update
   - Prowl.Runtime.AudioSource.Volume
   langs:
@@ -26,48 +65,62 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Components/Audio/AudioSource.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: AudioSource
     path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
-    startLine: 10
+    startLine: 23
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: >-
+    AudioSource component for playing audio in the scene.
+
+    Supports spatial audio, effects, procedural generation, and serialization.
+  example: []
   syntax:
     content: >-
-      [AddComponentMenu("  Audio/  Audio Source")]
+      [AddComponentMenu("Audio/Audio Source", "")]
 
-      public sealed class AudioSource : MonoBehaviour, IDisposable
+      [ComponentIcon("")]
+
+      public sealed class AudioSource : MonoBehaviour, IDisposable, ISerializationCallbackReceiver
     content.vb: >-
-      <AddComponentMenu("  Audio/  Audio Source")>
+      <AddComponentMenu("Audio/Audio Source", "")>
 
-      Public NotInheritable Class AudioSource Inherits MonoBehaviour Implements IDisposable
+      <ComponentIcon("")>
+
+      Public NotInheritable Class AudioSource Inherits MonoBehaviour Implements IDisposable, ISerializationCallbackReceiver
   inheritance:
   - System.Object
   - Prowl.Runtime.EngineObject
   - Prowl.Runtime.MonoBehaviour
   implements:
   - System.IDisposable
+  - Prowl.Echo.ISerializationCallbackReceiver
   inheritedMembers:
-  - Prowl.Runtime.MonoBehaviour.hideFlags
+  - Prowl.Runtime.MonoBehaviour.IsFromPrefab
+  - Prowl.Runtime.MonoBehaviour.HideFlags
+  - Prowl.Runtime.MonoBehaviour.DestroyCancellationToken
+  - Prowl.Runtime.MonoBehaviour.Identifier
+  - Prowl.Runtime.MonoBehaviour.SourceIdentifier
   - Prowl.Runtime.MonoBehaviour.GameObject
   - Prowl.Runtime.MonoBehaviour.Transform
-  - Prowl.Runtime.MonoBehaviour.ExecuteAlways
-  - Prowl.Runtime.MonoBehaviour.HasAwoken
   - Prowl.Runtime.MonoBehaviour.HasStarted
+  - Prowl.Runtime.MonoBehaviour.HasBeenEnabled
   - Prowl.Runtime.MonoBehaviour.Tag
   - Prowl.Runtime.MonoBehaviour.Enabled
   - Prowl.Runtime.MonoBehaviour.EnabledInHierarchy
+  - Prowl.Runtime.MonoBehaviour.Scene
   - Prowl.Runtime.MonoBehaviour.CompareTag(System.String)
   - Prowl.Runtime.MonoBehaviour.AddComponent``1
   - Prowl.Runtime.MonoBehaviour.AddComponent(System.Type)
-  - Prowl.Runtime.MonoBehaviour.RemoveAll``1
   - Prowl.Runtime.MonoBehaviour.RemoveComponent``1({T})
   - Prowl.Runtime.MonoBehaviour.RemoveComponent(Prowl.Runtime.MonoBehaviour)
   - Prowl.Runtime.MonoBehaviour.RemoveSelf
   - Prowl.Runtime.MonoBehaviour.GetComponent``1
   - Prowl.Runtime.MonoBehaviour.GetComponent(System.Type)
+  - Prowl.Runtime.MonoBehaviour.GetComponentByIdentifier(System.Guid)
   - Prowl.Runtime.MonoBehaviour.TryGetComponent``1({T}@)
   - Prowl.Runtime.MonoBehaviour.GetComponents``1
   - Prowl.Runtime.MonoBehaviour.GetComponents(System.Type)
@@ -79,55 +132,219 @@ items:
   - Prowl.Runtime.MonoBehaviour.GetComponentInChildren(System.Type,System.Boolean)
   - Prowl.Runtime.MonoBehaviour.GetComponentsInChildren``1(System.Boolean)
   - Prowl.Runtime.MonoBehaviour.GetComponentsInChildren(System.Type,System.Boolean)
-  - Prowl.Runtime.MonoBehaviour.OnEnable
+  - Prowl.Runtime.MonoBehaviour.GetSiblingIndex
+  - Prowl.Runtime.MonoBehaviour.SetSiblingIndex(System.Int32)
+  - Prowl.Runtime.MonoBehaviour.OnAddedToScene
+  - Prowl.Runtime.MonoBehaviour.OnRemovedFromScene
   - Prowl.Runtime.MonoBehaviour.Start
   - Prowl.Runtime.MonoBehaviour.FixedUpdate
   - Prowl.Runtime.MonoBehaviour.LateUpdate
+  - Prowl.Runtime.MonoBehaviour.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
   - Prowl.Runtime.MonoBehaviour.DrawGizmos
-  - Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
-  - Prowl.Runtime.MonoBehaviour.OnLevelWasLoaded
-  - Prowl.Runtime.MonoBehaviour.ClearCache
-  - Prowl.Runtime.MonoBehaviour.StartCoroutine(System.String)
-  - Prowl.Runtime.MonoBehaviour.StopAllCoroutines
-  - Prowl.Runtime.MonoBehaviour.StopCoroutine(System.String)
-  - Prowl.Runtime.MonoBehaviour.BroadcastMessage(System.String,System.Object[])
-  - Prowl.Runtime.MonoBehaviour.SendMessage(System.String,System.Object[])
+  - Prowl.Runtime.MonoBehaviour.OnGui(Prowl.PaperUI.Paper)
+  - Prowl.Runtime.MonoBehaviour.OnCollisionBegin(Prowl.Runtime.Collision)
+  - Prowl.Runtime.MonoBehaviour.OnCollisionStay(Prowl.Runtime.Collision)
+  - Prowl.Runtime.MonoBehaviour.OnCollisionEnd(Prowl.Runtime.Collision)
+  - Prowl.Runtime.MonoBehaviour.OnTriggerEnter(Prowl.Runtime.Rigidbody3D)
+  - Prowl.Runtime.MonoBehaviour.OnTriggerStay(Prowl.Runtime.Rigidbody3D)
+  - Prowl.Runtime.MonoBehaviour.OnTriggerExit(Prowl.Runtime.Rigidbody3D)
+  - Prowl.Runtime.MonoBehaviour.OnCharacterEnter(Prowl.Runtime.CharacterController)
+  - Prowl.Runtime.MonoBehaviour.OnCharacterStay(Prowl.Runtime.CharacterController)
+  - Prowl.Runtime.MonoBehaviour.OnCharacterExit(Prowl.Runtime.CharacterController)
+  - Prowl.Runtime.MonoBehaviour.OnBeforeSerialize
   - Prowl.Runtime.EngineObject.InstanceID
-  - Prowl.Runtime.EngineObject.AssetID
-  - Prowl.Runtime.EngineObject.FileID
   - Prowl.Runtime.EngineObject.Name
-  - Prowl.Runtime.EngineObject.IsDestroyed
+  - Prowl.Runtime.EngineObject.IsDisposed
   - Prowl.Runtime.EngineObject.CreatedInstance
-  - Prowl.Runtime.EngineObject.OnValidate
-  - Prowl.Runtime.EngineObject.FindObjectOfType``1
-  - Prowl.Runtime.EngineObject.FindObjectsOfType``1
-  - Prowl.Runtime.EngineObject.FindObjectByID``1(System.Int32)
-  - Prowl.Runtime.EngineObject.Foreach``1(System.Action{{T}})
-  - Prowl.Runtime.EngineObject.Destroy
-  - Prowl.Runtime.EngineObject.DestroyImmediate
-  - Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-  - Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-  - Prowl.Runtime.EngineObject.HandleDestroyed
-  - Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject,System.Boolean)
   - Prowl.Runtime.EngineObject.Dispose
-  - Prowl.Runtime.EngineObject.OnDispose
+  - Prowl.Runtime.EngineObject.Destroy
+  - Prowl.Runtime.EngineObject.IsDestroyQueued
+  - Prowl.Runtime.EngineObject.ProcessDestroyed
+  - Prowl.Runtime.EngineObject.Equals(System.Object)
+  - Prowl.Runtime.EngineObject.GetHashCode
   - Prowl.Runtime.EngineObject.ToString
-  - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   extensionMethods:
-  - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.Null
+  - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsNotValid
+  - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsValid
   - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
   attributes:
   - type: Prowl.Runtime.AddComponentMenuAttribute
-    ctor: Prowl.Runtime.AddComponentMenuAttribute.#ctor(System.String)
+    ctor: Prowl.Runtime.AddComponentMenuAttribute.#ctor(System.String,System.String)
     arguments:
     - type: System.String
-      value:   Audio/  Audio Source
+      value: Audio/Audio Source
+    - type: System.String
+      value: ''
+  - type: Prowl.Runtime.ComponentIconAttribute
+    ctor: Prowl.Runtime.ComponentIconAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: 
+- uid: Prowl.Runtime.AudioSource.OutputGroup
+  commentId: P:Prowl.Runtime.AudioSource.OutputGroup
+  id: OutputGroup
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: OutputGroup
+  nameWithType: AudioSource.OutputGroup
+  fullName: Prowl.Runtime.AudioSource.OutputGroup
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OutputGroup
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 78
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    The mixer group this source feeds into, or null to go straight to the master output. Setting it
+
+    re-routes immediately, so a running source moves buses without restarting.
+  example: []
+  syntax:
+    content: public AudioMixerGroup OutputGroup { get; set; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.Audio.AudioMixerGroup
+    content.vb: Public Property OutputGroup As AudioMixerGroup
+  overload: Prowl.Runtime.AudioSource.OutputGroup*
+- uid: Prowl.Runtime.AudioSource.MaxOneShotVoices
+  commentId: P:Prowl.Runtime.AudioSource.MaxOneShotVoices
+  id: MaxOneShotVoices
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: MaxOneShotVoices
+  nameWithType: AudioSource.MaxOneShotVoices
+  fullName: Prowl.Runtime.AudioSource.MaxOneShotVoices
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MaxOneShotVoices
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 96
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    How many one shot voices this source can sound at once before stealing the oldest. Lowering it
+
+    takes voices away immediately rather than waiting for them to finish.
+  example: []
+  syntax:
+    content: public int MaxOneShotVoices { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property MaxOneShotVoices As Integer
+  overload: Prowl.Runtime.AudioSource.MaxOneShotVoices*
+- uid: Prowl.Runtime.AudioSource.End
+  commentId: E:Prowl.Runtime.AudioSource.End
+  id: End
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: End
+  nameWithType: AudioSource.End
+  fullName: Prowl.Runtime.AudioSource.End
+  type: Event
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: End
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 157
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public event AudioEndEvent End
+    return:
+      type: Prowl.Runtime.AudioEndEvent
+    content.vb: Public Event [End] As AudioEndEvent
+- uid: Prowl.Runtime.AudioSource.Read
+  commentId: E:Prowl.Runtime.AudioSource.Read
+  id: Read
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: Read
+  nameWithType: AudioSource.Read
+  fullName: Prowl.Runtime.AudioSource.Read
+  type: Event
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Read
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 158
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public event AudioReadEvent Read
+    return:
+      type: Prowl.Runtime.AudioReadEvent
+    content.vb: Public Event Read As AudioReadEvent
+- uid: Prowl.Runtime.AudioSource.Process
+  commentId: E:Prowl.Runtime.AudioSource.Process
+  id: Process
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: Process
+  nameWithType: AudioSource.Process
+  fullName: Prowl.Runtime.AudioSource.Process
+  type: Event
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Process
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 171
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Raised for every block this source produces, after its effects have run, on the audio thread.
+
+    A handler must not allocate, block or touch the scene: it is running against the mix, where a
+
+    collection or a contended lock is an audible dropout.
+  remarks: >-
+    Subscribing builds the node that runs the chain if this source did not already have one, so a
+
+    source nobody is listening to and that has no effects does not pay for either.
+  example: []
+  syntax:
+    content: public event AudioProcessEvent Process
+    return:
+      type: Prowl.Runtime.AudioProcessEvent
+    content.vb: Public Event Process As AudioProcessEvent
 - uid: Prowl.Runtime.AudioSource.Clip
-  commentId: F:Prowl.Runtime.AudioSource.Clip
+  commentId: P:Prowl.Runtime.AudioSource.Clip
   id: Clip
   parent: Prowl.Runtime.AudioSource
   langs:
@@ -136,79 +353,126 @@ items:
   name: Clip
   nameWithType: AudioSource.Clip
   fullName: Prowl.Runtime.AudioSource.Clip
-  type: Field
+  type: Property
   source:
     remote:
       path: Prowl.Runtime/Components/Audio/AudioSource.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: Clip
     path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
-    startLine: 13
+    startLine: 187
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: >-
+    The clip this source plays. Assigning a different one stops playback, since what was playing
+
+    was the previous clip. Starting the new one is <xref href="Prowl.Runtime.AudioSource.Play" data-throw-if-not-resolved="false"></xref>'s job.
+  example: []
   syntax:
-    content: public AssetRef<AudioClip> Clip
+    content: public AudioClip? Clip { get; set; }
+    parameters: []
     return:
-      type: Prowl.Runtime.AssetRef{Prowl.Runtime.AudioClip}
-    content.vb: Public Clip As AssetRef(Of AudioClip)
-- uid: Prowl.Runtime.AudioSource.PlayOnAwake
-  commentId: F:Prowl.Runtime.AudioSource.PlayOnAwake
-  id: PlayOnAwake
+      type: Prowl.Runtime.Resources.AudioClip
+    content.vb: Public Property Clip As AudioClip
+  overload: Prowl.Runtime.AudioSource.Clip*
+- uid: Prowl.Runtime.AudioSource.PlayOnStart
+  commentId: P:Prowl.Runtime.AudioSource.PlayOnStart
+  id: PlayOnStart
   parent: Prowl.Runtime.AudioSource
   langs:
   - csharp
   - vb
-  name: PlayOnAwake
-  nameWithType: AudioSource.PlayOnAwake
-  fullName: Prowl.Runtime.AudioSource.PlayOnAwake
-  type: Field
+  name: PlayOnStart
+  nameWithType: AudioSource.PlayOnStart
+  fullName: Prowl.Runtime.AudioSource.PlayOnStart
+  type: Property
   source:
     remote:
       path: Prowl.Runtime/Components/Audio/AudioSource.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: PlayOnAwake
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PlayOnStart
     path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
-    startLine: 14
+    startLine: 205
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: If true, the audio will start playing automatically when OnEnable is called.
+  example: []
   syntax:
-    content: public bool PlayOnAwake
+    content: public bool PlayOnStart { get; set; }
+    parameters: []
     return:
       type: System.Boolean
-    content.vb: Public PlayOnAwake As Boolean
-- uid: Prowl.Runtime.AudioSource.Looping
-  commentId: F:Prowl.Runtime.AudioSource.Looping
-  id: Looping
+    content.vb: Public Property PlayOnStart As Boolean
+  overload: Prowl.Runtime.AudioSource.PlayOnStart*
+- uid: Prowl.Runtime.AudioSource.Loop
+  commentId: P:Prowl.Runtime.AudioSource.Loop
+  id: Loop
   parent: Prowl.Runtime.AudioSource
   langs:
   - csharp
   - vb
-  name: Looping
-  nameWithType: AudioSource.Looping
-  fullName: Prowl.Runtime.AudioSource.Looping
+  name: Loop
+  nameWithType: AudioSource.Loop
+  fullName: Prowl.Runtime.AudioSource.Loop
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Loop
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 214
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: If true, the audio will loop continuously.
+  example: []
+  syntax:
+    content: public bool Loop { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property [Loop] As Boolean
+  overload: Prowl.Runtime.AudioSource.Loop*
+- uid: Prowl.Runtime.AudioSource.MinPitch
+  commentId: F:Prowl.Runtime.AudioSource.MinPitch
+  id: MinPitch
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: MinPitch
+  nameWithType: AudioSource.MinPitch
+  fullName: Prowl.Runtime.AudioSource.MinPitch
   type: Field
   source:
     remote:
       path: Prowl.Runtime/Components/Audio/AudioSource.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Looping
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MinPitch
     path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
-    startLine: 15
+    startLine: 229
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: >-
+    The slowest playback speed a source can be set to. Zero stalls the resampler and a negative
+
+    rate is not something the native layer defines, so the range stops short of both.
+  example: []
   syntax:
-    content: public bool Looping
+    content: public const float MinPitch = 0.01
     return:
-      type: System.Boolean
-    content.vb: Public Looping As Boolean
+      type: System.Single
+    content.vb: Public Const MinPitch As Single = 0.01
 - uid: Prowl.Runtime.AudioSource.Volume
-  commentId: F:Prowl.Runtime.AudioSource.Volume
+  commentId: P:Prowl.Runtime.AudioSource.Volume
   id: Volume
   parent: Prowl.Runtime.AudioSource
   langs:
@@ -217,25 +481,229 @@ items:
   name: Volume
   nameWithType: AudioSource.Volume
   fullName: Prowl.Runtime.AudioSource.Volume
-  type: Field
+  type: Property
   source:
     remote:
       path: Prowl.Runtime/Components/Audio/AudioSource.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: Volume
     path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
-    startLine: 16
+    startLine: 250
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: >-
+    Level of the audio source. 1 is the clip as it was authored, 0 is silence, and above 1
+
+    amplifies. Negative is not a quieter sound, it is the same sound with its phase inverted, so
+
+    the range stops at 0.
+  example: []
   syntax:
-    content: public float Volume
+    content: public float Volume { get; set; }
+    parameters: []
     return:
       type: System.Single
-    content.vb: Public Volume As Single
+    content.vb: Public Property Volume As Single
+  overload: Prowl.Runtime.AudioSource.Volume*
+- uid: Prowl.Runtime.AudioSource.Pitch
+  commentId: P:Prowl.Runtime.AudioSource.Pitch
+  id: Pitch
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: Pitch
+  nameWithType: AudioSource.Pitch
+  fullName: Prowl.Runtime.AudioSource.Pitch
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Pitch
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 265
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Playback speed of the audio source, which carries the pitch with it. 1 is the clip's own rate.
+
+    Never below <xref href="Prowl.Runtime.AudioSource.MinPitch" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public float Pitch { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property Pitch As Single
+  overload: Prowl.Runtime.AudioSource.Pitch*
+- uid: Prowl.Runtime.AudioSource.Pan
+  commentId: P:Prowl.Runtime.AudioSource.Pan
+  id: Pan
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: Pan
+  nameWithType: AudioSource.Pan
+  fullName: Prowl.Runtime.AudioSource.Pan
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Pan
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 279
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Stereo pan of the audio source (-1.0 left, 0.0 center, 1.0 right).
+  example: []
+  syntax:
+    content: public float Pan { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property Pan As Single
+  overload: Prowl.Runtime.AudioSource.Pan*
+- uid: Prowl.Runtime.AudioSource.PanMode
+  commentId: P:Prowl.Runtime.AudioSource.PanMode
+  id: PanMode
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: PanMode
+  nameWithType: AudioSource.PanMode
+  fullName: Prowl.Runtime.AudioSource.PanMode
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PanMode
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 293
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Pan mode (Balance or Pan).
+  example: []
+  syntax:
+    content: public PanMode PanMode { get; set; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.Audio.PanMode
+    content.vb: Public Property PanMode As PanMode
+  overload: Prowl.Runtime.AudioSource.PanMode*
+- uid: Prowl.Runtime.AudioSource.Spatial
+  commentId: P:Prowl.Runtime.AudioSource.Spatial
+  id: Spatial
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: Spatial
+  nameWithType: AudioSource.Spatial
+  fullName: Prowl.Runtime.AudioSource.Spatial
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Spatial
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 307
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: If true, spatial audio (3D positioning) is enabled.
+  example: []
+  syntax:
+    content: public bool Spatial { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property Spatial As Boolean
+  overload: Prowl.Runtime.AudioSource.Spatial*
+- uid: Prowl.Runtime.AudioSource.DopplerFactor
+  commentId: P:Prowl.Runtime.AudioSource.DopplerFactor
+  id: DopplerFactor
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: DopplerFactor
+  nameWithType: AudioSource.DopplerFactor
+  fullName: Prowl.Runtime.AudioSource.DopplerFactor
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DopplerFactor
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 322
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Strength of the pitch shift from relative motion. 0 disables doppler, 1 is the real world
+
+    amount, and above that exaggerates it. Never negative, which would shift the wrong way.
+  example: []
+  syntax:
+    content: public float DopplerFactor { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property DopplerFactor As Single
+  overload: Prowl.Runtime.AudioSource.DopplerFactor*
+- uid: Prowl.Runtime.AudioSource.MinDistance
+  commentId: P:Prowl.Runtime.AudioSource.MinDistance
+  id: MinDistance
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: MinDistance
+  nameWithType: AudioSource.MinDistance
+  fullName: Prowl.Runtime.AudioSource.MinDistance
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MinDistance
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 337
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Distance below which the source plays at full volume. Never negative, and never past
+
+    <xref href="Prowl.Runtime.AudioSource.MaxDistance" data-throw-if-not-resolved="false"></xref>, which is carried up with it if need be.
+  example: []
+  syntax:
+    content: public float MinDistance { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property MinDistance As Single
+  overload: Prowl.Runtime.AudioSource.MinDistance*
 - uid: Prowl.Runtime.AudioSource.MaxDistance
-  commentId: F:Prowl.Runtime.AudioSource.MaxDistance
+  commentId: P:Prowl.Runtime.AudioSource.MaxDistance
   id: MaxDistance
   parent: Prowl.Runtime.AudioSource
   langs:
@@ -244,103 +712,304 @@ items:
   name: MaxDistance
   nameWithType: AudioSource.MaxDistance
   fullName: Prowl.Runtime.AudioSource.MaxDistance
-  type: Field
+  type: Property
   source:
     remote:
       path: Prowl.Runtime/Components/Audio/AudioSource.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: MaxDistance
     path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
-    startLine: 17
+    startLine: 350
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
-  syntax:
-    content: public float MaxDistance
-    return:
-      type: System.Single
-    content.vb: Public MaxDistance As Single
-- uid: Prowl.Runtime.AudioSource.Play
-  commentId: M:Prowl.Runtime.AudioSource.Play
-  id: Play
-  parent: Prowl.Runtime.AudioSource
-  langs:
-  - csharp
-  - vb
-  name: Play()
-  nameWithType: AudioSource.Play()
-  fullName: Prowl.Runtime.AudioSource.Play()
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/Components/Audio/AudioSource.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Play
-    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
-    startLine: 26
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public void Play()
-    content.vb: Public Sub Play()
-  overload: Prowl.Runtime.AudioSource.Play*
-- uid: Prowl.Runtime.AudioSource.Stop
-  commentId: M:Prowl.Runtime.AudioSource.Stop
-  id: Stop
-  parent: Prowl.Runtime.AudioSource
-  langs:
-  - csharp
-  - vb
-  name: Stop()
-  nameWithType: AudioSource.Stop()
-  fullName: Prowl.Runtime.AudioSource.Stop()
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/Components/Audio/AudioSource.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Stop
-    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
-    startLine: 32
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  syntax:
-    content: public void Stop()
-    content.vb: Public Sub [Stop]()
-  overload: Prowl.Runtime.AudioSource.Stop*
-- uid: Prowl.Runtime.AudioSource.Awake
-  commentId: M:Prowl.Runtime.AudioSource.Awake
-  id: Awake
-  parent: Prowl.Runtime.AudioSource
-  langs:
-  - csharp
-  - vb
-  name: Awake()
-  nameWithType: AudioSource.Awake()
-  fullName: Prowl.Runtime.AudioSource.Awake()
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/Components/Audio/AudioSource.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: Awake
-    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
-    startLine: 38
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
+  summary: Distance at which the source reaches its quietest. Never below <xref href="Prowl.Runtime.AudioSource.MinDistance" data-throw-if-not-resolved="false"></xref>.
   example: []
   syntax:
-    content: public override void Awake()
-    content.vb: Public Overrides Sub Awake()
-  overridden: Prowl.Runtime.MonoBehaviour.Awake
-  overload: Prowl.Runtime.AudioSource.Awake*
+    content: public float MaxDistance { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property MaxDistance As Single
+  overload: Prowl.Runtime.AudioSource.MaxDistance*
+- uid: Prowl.Runtime.AudioSource.AttenuationModel
+  commentId: P:Prowl.Runtime.AudioSource.AttenuationModel
+  id: AttenuationModel
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: AttenuationModel
+  nameWithType: AudioSource.AttenuationModel
+  fullName: Prowl.Runtime.AudioSource.AttenuationModel
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AttenuationModel
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 383
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Attenuation model for spatial audio distance falloff.
+  example: []
+  syntax:
+    content: public AttenuationModel AttenuationModel { get; set; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.Audio.AttenuationModel
+    content.vb: Public Property AttenuationModel As AttenuationModel
+  overload: Prowl.Runtime.AudioSource.AttenuationModel*
+- uid: Prowl.Runtime.AudioSource.IsPlaying
+  commentId: P:Prowl.Runtime.AudioSource.IsPlaying
+  id: IsPlaying
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: IsPlaying
+  nameWithType: AudioSource.IsPlaying
+  fullName: Prowl.Runtime.AudioSource.IsPlaying
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsPlaying
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 397
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Returns true if the audio source is currently playing.
+  example: []
+  syntax:
+    content: public bool IsPlaying { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsPlaying As Boolean
+  overload: Prowl.Runtime.AudioSource.IsPlaying*
+- uid: Prowl.Runtime.AudioSource.Cursor
+  commentId: P:Prowl.Runtime.AudioSource.Cursor
+  id: Cursor
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: Cursor
+  nameWithType: AudioSource.Cursor
+  fullName: Prowl.Runtime.AudioSource.Cursor
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Cursor
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 419
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Playback position, counted in the frames the device runs at.
+  remarks: >-
+    This is the engine's own read position, so it advances at the rate the device was opened at
+
+    whatever rate the clip was authored at. That is not the unit <xref href="Prowl.Runtime.AudioSource.Length" data-throw-if-not-resolved="false"></xref> is in, so
+
+    the two do not belong in one expression. <xref href="Prowl.Runtime.AudioSource.NormalizedTime" data-throw-if-not-resolved="false"></xref> is what compares them.
+
+
+    It also keeps counting across a loop rather than starting over, so on a looping source it is
+
+    how long the source has been sounding for. <xref href="Prowl.Runtime.AudioSource.PlaybackTime" data-throw-if-not-resolved="false"></xref> is where in the clip it
+
+    currently is.
+  example: []
+  syntax:
+    content: public ulong Cursor { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: Public Property Cursor As ULong
+  overload: Prowl.Runtime.AudioSource.Cursor*
+- uid: Prowl.Runtime.AudioSource.Length
+  commentId: P:Prowl.Runtime.AudioSource.Length
+  id: Length
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: Length
+  nameWithType: AudioSource.Length
+  fullName: Prowl.Runtime.AudioSource.Length
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Length
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 442
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Length of the playing clip, counted in the frames it was authored at.
+  remarks: >-
+    This comes from the decoder rather than from the mix, so it is in the clip's own rate. Only a
+
+    clip that happens to have been authored at the rate the device was opened at counts the same
+
+    way <xref href="Prowl.Runtime.AudioSource.Cursor" data-throw-if-not-resolved="false"></xref> does.
+  example: []
+  syntax:
+    content: public ulong Length { get; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: Public ReadOnly Property Length As ULong
+  overload: Prowl.Runtime.AudioSource.Length*
+- uid: Prowl.Runtime.AudioSource.PlaybackTime
+  commentId: P:Prowl.Runtime.AudioSource.PlaybackTime
+  id: PlaybackTime
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: PlaybackTime
+  nameWithType: AudioSource.PlaybackTime
+  fullName: Prowl.Runtime.AudioSource.PlaybackTime
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PlaybackTime
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 474
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Where in the clip playback currently is, in seconds. Named to stay clear of the engine's
+
+    <xref href="Prowl.Runtime.Time" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: public float PlaybackTime { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property PlaybackTime As Single
+  overload: Prowl.Runtime.AudioSource.PlaybackTime*
+- uid: Prowl.Runtime.AudioSource.Duration
+  commentId: P:Prowl.Runtime.AudioSource.Duration
+  id: Duration
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: Duration
+  nameWithType: AudioSource.Duration
+  fullName: Prowl.Runtime.AudioSource.Duration
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Duration
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 487
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Length of the playing clip in seconds, 0 when nothing is loaded.
+  example: []
+  syntax:
+    content: public float Duration { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public ReadOnly Property Duration As Single
+  overload: Prowl.Runtime.AudioSource.Duration*
+- uid: Prowl.Runtime.AudioSource.NormalizedTime
+  commentId: P:Prowl.Runtime.AudioSource.NormalizedTime
+  id: NormalizedTime
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: NormalizedTime
+  nameWithType: AudioSource.NormalizedTime
+  fullName: Prowl.Runtime.AudioSource.NormalizedTime
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: NormalizedTime
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 504
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Playback position as a fraction of the clip, 0 at the start and 1 at the end.
+  remarks: >-
+    Compared as seconds, because the two frame counts are not counted at the same rate. Dividing
+
+    one by the other answers the ratio between those rates as much as it answers the position: a
+
+    clip authored at half the rate the device runs at reached 1 barely half way through.
+  example: []
+  syntax:
+    content: public float NormalizedTime { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property NormalizedTime As Single
+  overload: Prowl.Runtime.AudioSource.NormalizedTime*
+- uid: Prowl.Runtime.AudioSource.OnEnable
+  commentId: M:Prowl.Runtime.AudioSource.OnEnable
+  id: OnEnable
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: OnEnable()
+  nameWithType: AudioSource.OnEnable()
+  fullName: Prowl.Runtime.AudioSource.OnEnable()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnEnable
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 524
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Called when the object becomes enabled and active.
+
+    Only called when the GameObject is in a Scene and enabled.
+  example: []
+  syntax:
+    content: public override void OnEnable()
+    content.vb: Public Overrides Sub OnEnable()
+  overridden: Prowl.Runtime.MonoBehaviour.OnEnable
+  overload: Prowl.Runtime.AudioSource.OnEnable*
 - uid: Prowl.Runtime.AudioSource.Update
   commentId: M:Prowl.Runtime.AudioSource.Update
   id: Update
@@ -355,20 +1024,86 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Components/Audio/AudioSource.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: Update
     path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
-    startLine: 56
+    startLine: 685
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: Called every frame.
   example: []
   syntax:
     content: public override void Update()
     content.vb: Public Overrides Sub Update()
   overridden: Prowl.Runtime.MonoBehaviour.Update
   overload: Prowl.Runtime.AudioSource.Update*
+- uid: Prowl.Runtime.AudioSource.DrawGizmosSelected
+  commentId: M:Prowl.Runtime.AudioSource.DrawGizmosSelected
+  id: DrawGizmosSelected
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: DrawGizmosSelected()
+  nameWithType: AudioSource.DrawGizmosSelected()
+  fullName: Prowl.Runtime.AudioSource.DrawGizmosSelected()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DrawGizmosSelected
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 771
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    The attenuation range, so the falloff can be placed against the scene rather than guessed at
+
+    from two numbers in the inspector. Only while selected: a scene full of emitters would be
+
+    unreadable otherwise.
+  example: []
+  syntax:
+    content: public override void DrawGizmosSelected()
+    content.vb: Public Overrides Sub DrawGizmosSelected()
+  overridden: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
+  overload: Prowl.Runtime.AudioSource.DrawGizmosSelected*
+- uid: Prowl.Runtime.AudioSource.OnValidate
+  commentId: M:Prowl.Runtime.AudioSource.OnValidate
+  id: OnValidate
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: OnValidate()
+  nameWithType: AudioSource.OnValidate()
+  fullName: Prowl.Runtime.AudioSource.OnValidate()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnValidate
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 807
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    The inspector writes the backing fields directly, so the native side has to be
+        re-synced from them rather than from the property setters.
+  example: []
+  syntax:
+    content: public override void OnValidate()
+    content.vb: Public Overrides Sub OnValidate()
+  overridden: Prowl.Runtime.EngineObject.OnValidate
+  overload: Prowl.Runtime.AudioSource.OnValidate*
 - uid: Prowl.Runtime.AudioSource.OnDisable
   commentId: M:Prowl.Runtime.AudioSource.OnDisable
   id: OnDisable
@@ -383,71 +1118,731 @@ items:
   source:
     remote:
       path: Prowl.Runtime/Components/Audio/AudioSource.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
     id: OnDisable
     path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
-    startLine: 89
+    startLine: 814
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: >-
+    Called when the object becomes disabled or inactive.
+
+    Only called when the GameObject was in a Scene and becomes disabled.
   example: []
   syntax:
     content: public override void OnDisable()
     content.vb: Public Overrides Sub OnDisable()
   overridden: Prowl.Runtime.MonoBehaviour.OnDisable
   overload: Prowl.Runtime.AudioSource.OnDisable*
-- uid: Prowl.Runtime.AudioSource.OnDestroy
-  commentId: M:Prowl.Runtime.AudioSource.OnDestroy
-  id: OnDestroy
+- uid: Prowl.Runtime.AudioSource.OnDispose
+  commentId: M:Prowl.Runtime.AudioSource.OnDispose
+  id: OnDispose
   parent: Prowl.Runtime.AudioSource
   langs:
   - csharp
   - vb
-  name: OnDestroy()
-  nameWithType: AudioSource.OnDestroy()
-  fullName: Prowl.Runtime.AudioSource.OnDestroy()
+  name: OnDispose()
+  nameWithType: AudioSource.OnDispose()
+  fullName: Prowl.Runtime.AudioSource.OnDispose()
   type: Method
   source:
     remote:
       path: Prowl.Runtime/Components/Audio/AudioSource.cs
-      branch: development
-      repo: git@github.com:brmassa/Prowl.git
-    id: OnDestroy
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnDispose
     path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
-    startLine: 91
+    startLine: 873
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: >-
+    Called when the MonoBehaviour will be destroyed.
+
+    This is an override of EngineObject.OnDispose() and is also exposed as a virtual lifecycle method.
   example: []
   syntax:
-    content: public override void OnDestroy()
-    content.vb: Public Overrides Sub OnDestroy()
-  overridden: Prowl.Runtime.MonoBehaviour.OnDestroy
-  overload: Prowl.Runtime.AudioSource.OnDestroy*
+    content: protected override void OnDispose()
+    content.vb: Protected Overrides Sub OnDispose()
+  overridden: Prowl.Runtime.MonoBehaviour.OnDispose
+  overload: Prowl.Runtime.AudioSource.OnDispose*
+- uid: Prowl.Runtime.AudioSource.Play
+  commentId: M:Prowl.Runtime.AudioSource.Play
+  id: Play
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: Play()
+  nameWithType: AudioSource.Play()
+  fullName: Prowl.Runtime.AudioSource.Play()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Play
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 886
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Plays the assigned AudioClip.
+  example: []
+  syntax:
+    content: public void Play()
+    content.vb: Public Sub Play()
+  overload: Prowl.Runtime.AudioSource.Play*
+- uid: Prowl.Runtime.AudioSource.PlayProcedural
+  commentId: M:Prowl.Runtime.AudioSource.PlayProcedural
+  id: PlayProcedural
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: PlayProcedural()
+  nameWithType: AudioSource.PlayProcedural()
+  fullName: Prowl.Runtime.AudioSource.PlayProcedural()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PlayProcedural
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 953
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Plays procedurally generated audio using the Read event callback.
+  example: []
+  syntax:
+    content: public void PlayProcedural()
+    content.vb: Public Sub PlayProcedural()
+  overload: Prowl.Runtime.AudioSource.PlayProcedural*
+- uid: Prowl.Runtime.AudioSource.Stop
+  commentId: M:Prowl.Runtime.AudioSource.Stop
+  id: Stop
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: Stop()
+  nameWithType: AudioSource.Stop()
+  fullName: Prowl.Runtime.AudioSource.Stop()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Stop
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 970
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Stops playback and rewinds to the start. Use <xref href="Prowl.Runtime.AudioSource.Pause" data-throw-if-not-resolved="false"></xref> to stop without losing the
+
+    position.
+  example: []
+  syntax:
+    content: public void Stop()
+    content.vb: Public Sub [Stop]()
+  overload: Prowl.Runtime.AudioSource.Stop*
+- uid: Prowl.Runtime.AudioSource.Pause
+  commentId: M:Prowl.Runtime.AudioSource.Pause
+  id: Pause
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: Pause()
+  nameWithType: AudioSource.Pause()
+  fullName: Prowl.Runtime.AudioSource.Pause()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Pause
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 986
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Stops playback while remembering the position, so <xref href="Prowl.Runtime.AudioSource.Resume" data-throw-if-not-resolved="false"></xref> picks up where it left
+
+    off. Does nothing if the source is not playing.
+  example: []
+  syntax:
+    content: public void Pause()
+    content.vb: Public Sub Pause()
+  overload: Prowl.Runtime.AudioSource.Pause*
+- uid: Prowl.Runtime.AudioSource.Resume
+  commentId: M:Prowl.Runtime.AudioSource.Resume
+  id: Resume
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: Resume()
+  nameWithType: AudioSource.Resume()
+  fullName: Prowl.Runtime.AudioSource.Resume()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Resume
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 1004
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Continues from where <xref href="Prowl.Runtime.AudioSource.Pause" data-throw-if-not-resolved="false"></xref> stopped. Does nothing if the source is not paused.
+  remarks: >-
+    The position is restored explicitly after starting rather than relying on the stopped source
+
+    having kept it, so this behaves the same whether the native layer rewinds on stop or not.
+  example: []
+  syntax:
+    content: public void Resume()
+    content.vb: Public Sub [Resume]()
+  overload: Prowl.Runtime.AudioSource.Resume*
+- uid: Prowl.Runtime.AudioSource.IsPaused
+  commentId: P:Prowl.Runtime.AudioSource.IsPaused
+  id: IsPaused
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: IsPaused
+  nameWithType: AudioSource.IsPaused
+  fullName: Prowl.Runtime.AudioSource.IsPaused
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsPaused
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 1018
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: True while <xref href="Prowl.Runtime.AudioSource.Pause" data-throw-if-not-resolved="false"></xref> is holding the position for a later <xref href="Prowl.Runtime.AudioSource.Resume" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public bool IsPaused { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsPaused As Boolean
+  overload: Prowl.Runtime.AudioSource.IsPaused*
+- uid: Prowl.Runtime.AudioSource.PlayOneShot(Prowl.Runtime.Resources.AudioClip,System.Single)
+  commentId: M:Prowl.Runtime.AudioSource.PlayOneShot(Prowl.Runtime.Resources.AudioClip,System.Single)
+  id: PlayOneShot(Prowl.Runtime.Resources.AudioClip,System.Single)
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: PlayOneShot(AudioClip, float)
+  nameWithType: AudioSource.PlayOneShot(AudioClip, float)
+  fullName: Prowl.Runtime.AudioSource.PlayOneShot(Prowl.Runtime.Resources.AudioClip, float)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PlayOneShot
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 1031
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Plays a clip on its own voice, without disturbing whatever this source is already playing.
+
+    Overlapping calls layer instead of cutting each other off, which is what a one shot is for.
+  remarks: >-
+    Voices are pooled and share the source's sound group, so they inherit its volume, pitch and
+
+    spatial settings and follow the object as it moves. Once <xref href="Prowl.Runtime.AudioSource.MaxOneShotVoices" data-throw-if-not-resolved="false"></xref> are
+
+    sounding at once the longest running one is taken over.
+  example: []
+  syntax:
+    content: public void PlayOneShot(AudioClip clip, float volumeScale = 1)
+    parameters:
+    - id: clip
+      type: Prowl.Runtime.Resources.AudioClip
+      description: The clip to play.
+    - id: volumeScale
+      type: System.Single
+      description: Level for this voice alone, on top of the source's own volume.
+    content.vb: Public Sub PlayOneShot(clip As AudioClip, volumeScale As Single = 1)
+  overload: Prowl.Runtime.AudioSource.PlayOneShot*
+  nameWithType.vb: AudioSource.PlayOneShot(AudioClip, Single)
+  fullName.vb: Prowl.Runtime.AudioSource.PlayOneShot(Prowl.Runtime.Resources.AudioClip, Single)
+  name.vb: PlayOneShot(AudioClip, Single)
+- uid: Prowl.Runtime.AudioSource.StopOneShots
+  commentId: M:Prowl.Runtime.AudioSource.StopOneShots
+  id: StopOneShots
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: StopOneShots()
+  nameWithType: AudioSource.StopOneShots()
+  fullName: Prowl.Runtime.AudioSource.StopOneShots()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: StopOneShots
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 1050
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Stops every one shot voice this source is sounding. Leaves the main playback alone.
+  example: []
+  syntax:
+    content: public void StopOneShots()
+    content.vb: Public Sub StopOneShots()
+  overload: Prowl.Runtime.AudioSource.StopOneShots*
+- uid: Prowl.Runtime.AudioSource.ActiveOneShotCount
+  commentId: P:Prowl.Runtime.AudioSource.ActiveOneShotCount
+  id: ActiveOneShotCount
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: ActiveOneShotCount
+  nameWithType: AudioSource.ActiveOneShotCount
+  fullName: Prowl.Runtime.AudioSource.ActiveOneShotCount
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ActiveOneShotCount
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 1061
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: How many one shot voices are sounding right now.
+  example: []
+  syntax:
+    content: public int ActiveOneShotCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property ActiveOneShotCount As Integer
+  overload: Prowl.Runtime.AudioSource.ActiveOneShotCount*
+- uid: Prowl.Runtime.AudioSource.PlayClipAtPoint(Prowl.Runtime.Resources.AudioClip,Prowl.Vector.Float3,System.Single)
+  commentId: M:Prowl.Runtime.AudioSource.PlayClipAtPoint(Prowl.Runtime.Resources.AudioClip,Prowl.Vector.Float3,System.Single)
+  id: PlayClipAtPoint(Prowl.Runtime.Resources.AudioClip,Prowl.Vector.Float3,System.Single)
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: PlayClipAtPoint(AudioClip, Float3, float)
+  nameWithType: AudioSource.PlayClipAtPoint(AudioClip, Float3, float)
+  fullName: Prowl.Runtime.AudioSource.PlayClipAtPoint(Prowl.Runtime.Resources.AudioClip, Prowl.Vector.Float3, float)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PlayClipAtPoint
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 1183
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Plays a clip at a world position with no emitter of its own, for sounds whose source is gone by
+
+    the time they finish, like an impact or a pickup. Returns null if there is no scene to put it in.
+  example: []
+  syntax:
+    content: public static AudioSource PlayClipAtPoint(AudioClip clip, Float3 position, float volume = 1)
+    parameters:
+    - id: clip
+      type: Prowl.Runtime.Resources.AudioClip
+    - id: position
+      type: Prowl.Vector.Float3
+    - id: volume
+      type: System.Single
+    return:
+      type: Prowl.Runtime.AudioSource
+    content.vb: Public Shared Function PlayClipAtPoint(clip As AudioClip, position As Float3, volume As Single = 1) As AudioSource
+  overload: Prowl.Runtime.AudioSource.PlayClipAtPoint*
+  nameWithType.vb: AudioSource.PlayClipAtPoint(AudioClip, Float3, Single)
+  fullName.vb: Prowl.Runtime.AudioSource.PlayClipAtPoint(Prowl.Runtime.Resources.AudioClip, Prowl.Vector.Float3, Single)
+  name.vb: PlayClipAtPoint(AudioClip, Float3, Single)
+- uid: Prowl.Runtime.AudioSource.Effects
+  commentId: P:Prowl.Runtime.AudioSource.Effects
+  id: Effects
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: Effects
+  nameWithType: AudioSource.Effects
+  fullName: Prowl.Runtime.AudioSource.Effects
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Effects
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 1229
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The effect chain, in processing order.
+  example: []
+  syntax:
+    content: public IReadOnlyList<AudioEffect> Effects { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Audio.Effects.AudioEffect}
+    content.vb: Public ReadOnly Property Effects As IReadOnlyList(Of AudioEffect)
+  overload: Prowl.Runtime.AudioSource.Effects*
+- uid: Prowl.Runtime.AudioSource.AddEffect(Prowl.Runtime.Audio.Effects.AudioEffect)
+  commentId: M:Prowl.Runtime.AudioSource.AddEffect(Prowl.Runtime.Audio.Effects.AudioEffect)
+  id: AddEffect(Prowl.Runtime.Audio.Effects.AudioEffect)
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: AddEffect(AudioEffect)
+  nameWithType: AudioSource.AddEffect(AudioEffect)
+  fullName: Prowl.Runtime.AudioSource.AddEffect(Prowl.Runtime.Audio.Effects.AudioEffect)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddEffect
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 1236
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Adds an audio effect to the processing chain. The source takes ownership: the effect is
+
+    destroyed when it is removed from the chain or when the source itself is destroyed. Disabling
+
+    and re-enabling the source keeps the chain intact.
+  example: []
+  syntax:
+    content: public void AddEffect(AudioEffect effect)
+    parameters:
+    - id: effect
+      type: Prowl.Runtime.Audio.Effects.AudioEffect
+    content.vb: Public Sub AddEffect(effect As AudioEffect)
+  overload: Prowl.Runtime.AudioSource.AddEffect*
+- uid: Prowl.Runtime.AudioSource.RemoveEffect(Prowl.Runtime.Audio.Effects.AudioEffect)
+  commentId: M:Prowl.Runtime.AudioSource.RemoveEffect(Prowl.Runtime.Audio.Effects.AudioEffect)
+  id: RemoveEffect(Prowl.Runtime.Audio.Effects.AudioEffect)
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: RemoveEffect(AudioEffect)
+  nameWithType: AudioSource.RemoveEffect(AudioEffect)
+  fullName: Prowl.Runtime.AudioSource.RemoveEffect(Prowl.Runtime.Audio.Effects.AudioEffect)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RemoveEffect
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 1257
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Removes an audio effect from the processing chain and destroys it.
+  example: []
+  syntax:
+    content: public void RemoveEffect(AudioEffect effect)
+    parameters:
+    - id: effect
+      type: Prowl.Runtime.Audio.Effects.AudioEffect
+    content.vb: Public Sub RemoveEffect(effect As AudioEffect)
+  overload: Prowl.Runtime.AudioSource.RemoveEffect*
+- uid: Prowl.Runtime.AudioSource.RemoveEffect(System.Int32)
+  commentId: M:Prowl.Runtime.AudioSource.RemoveEffect(System.Int32)
+  id: RemoveEffect(System.Int32)
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: RemoveEffect(int)
+  nameWithType: AudioSource.RemoveEffect(int)
+  fullName: Prowl.Runtime.AudioSource.RemoveEffect(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RemoveEffect
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 1278
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Removes an audio effect by index and destroys it.
+  example: []
+  syntax:
+    content: public void RemoveEffect(int index)
+    parameters:
+    - id: index
+      type: System.Int32
+    content.vb: Public Sub RemoveEffect(index As Integer)
+  overload: Prowl.Runtime.AudioSource.RemoveEffect*
+  nameWithType.vb: AudioSource.RemoveEffect(Integer)
+  fullName.vb: Prowl.Runtime.AudioSource.RemoveEffect(Integer)
+  name.vb: RemoveEffect(Integer)
+- uid: Prowl.Runtime.AudioSource.ClearEffects
+  commentId: M:Prowl.Runtime.AudioSource.ClearEffects
+  id: ClearEffects
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: ClearEffects()
+  nameWithType: AudioSource.ClearEffects()
+  fullName: Prowl.Runtime.AudioSource.ClearEffects()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ClearEffects
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 1289
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Removes and destroys every audio effect in the chain.
+  example: []
+  syntax:
+    content: public void ClearEffects()
+    content.vb: Public Sub ClearEffects()
+  overload: Prowl.Runtime.AudioSource.ClearEffects*
+- uid: Prowl.Runtime.AudioSource.RefreshEffects
+  commentId: M:Prowl.Runtime.AudioSource.RefreshEffects
+  id: RefreshEffects
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: RefreshEffects()
+  nameWithType: AudioSource.RefreshEffects()
+  fullName: Prowl.Runtime.AudioSource.RefreshEffects()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RefreshEffects
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 1307
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Binds every effect to the current audio format and republishes the chain the audio thread
+
+    reads. Call after editing <xref href="Prowl.Runtime.AudioSource.Effects" data-throw-if-not-resolved="false"></xref> in place.
+  example: []
+  syntax:
+    content: public void RefreshEffects()
+    content.vb: Public Sub RefreshEffects()
+  overload: Prowl.Runtime.AudioSource.RefreshEffects*
+- uid: Prowl.Runtime.AudioSource.EffectCount
+  commentId: P:Prowl.Runtime.AudioSource.EffectCount
+  id: EffectCount
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: EffectCount
+  nameWithType: AudioSource.EffectCount
+  fullName: Prowl.Runtime.AudioSource.EffectCount
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EffectCount
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 1360
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Gets the number of active effects.
+  example: []
+  syntax:
+    content: public int EffectCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property EffectCount As Integer
+  overload: Prowl.Runtime.AudioSource.EffectCount*
+- uid: Prowl.Runtime.AudioSource.GetCalculatedVelocity
+  commentId: M:Prowl.Runtime.AudioSource.GetCalculatedVelocity
+  id: GetCalculatedVelocity
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: GetCalculatedVelocity()
+  nameWithType: AudioSource.GetCalculatedVelocity()
+  fullName: Prowl.Runtime.AudioSource.GetCalculatedVelocity()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetCalculatedVelocity
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 1374
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The world space velocity the doppler shift is being driven from, in units per real second.
+  remarks: >-
+    This used to difference the sound group's position against the previous position that Update
+
+    had already overwritten with it, so it always answered roughly zero, and divided by a delta it
+
+    never checked. It now reports the value Update actually handed the audio engine.
+  example: []
+  syntax:
+    content: public Float3 GetCalculatedVelocity()
+    return:
+      type: Prowl.Vector.Float3
+    content.vb: Public Function GetCalculatedVelocity() As Float3
+  overload: Prowl.Runtime.AudioSource.GetCalculatedVelocity*
+- uid: Prowl.Runtime.AudioSource.GetOutputBuffer(System.Single[]@,System.Int32@)
+  commentId: M:Prowl.Runtime.AudioSource.GetOutputBuffer(System.Single[]@,System.Int32@)
+  id: GetOutputBuffer(System.Single[]@,System.Int32@)
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: GetOutputBuffer(ref float[], out int)
+  nameWithType: AudioSource.GetOutputBuffer(ref float[], out int)
+  fullName: Prowl.Runtime.AudioSource.GetOutputBuffer(ref float[], out int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetOutputBuffer
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 1382
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Gets the output buffer after effect processing (useful for FFT analysis).
+  example: []
+  syntax:
+    content: public bool GetOutputBuffer(ref float[] buffer, out int length)
+    parameters:
+    - id: buffer
+      type: System.Single[]
+    - id: length
+      type: System.Int32
+    return:
+      type: System.Boolean
+    content.vb: Public Function GetOutputBuffer(buffer As Single(), length As Integer) As Boolean
+  overload: Prowl.Runtime.AudioSource.GetOutputBuffer*
+  nameWithType.vb: AudioSource.GetOutputBuffer(Single(), Integer)
+  fullName.vb: Prowl.Runtime.AudioSource.GetOutputBuffer(Single(), Integer)
+  name.vb: GetOutputBuffer(Single(), Integer)
+- uid: Prowl.Runtime.AudioSource.OnAfterDeserialize
+  commentId: M:Prowl.Runtime.AudioSource.OnAfterDeserialize
+  id: OnAfterDeserialize
+  parent: Prowl.Runtime.AudioSource
+  langs:
+  - csharp
+  - vb
+  name: OnAfterDeserialize()
+  nameWithType: AudioSource.OnAfterDeserialize()
+  fullName: Prowl.Runtime.AudioSource.OnAfterDeserialize()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Audio/AudioSource.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnAfterDeserialize
+    path: ../Prowl/Prowl.Runtime/Components/Audio/AudioSource.cs
+    startLine: 1617
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Called right after this component is deserialized, before any lifecycle callback.
+        Override to react to freshly loaded values.
+  example: []
+  syntax:
+    content: public override void OnAfterDeserialize()
+    content.vb: Public Overrides Sub OnAfterDeserialize()
+  overridden: Prowl.Runtime.MonoBehaviour.OnAfterDeserialize
+  overload: Prowl.Runtime.AudioSource.OnAfterDeserialize*
 references:
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
-  href: Prowl.html
   name: Prowl.Runtime
   nameWithType: Prowl.Runtime
   fullName: Prowl.Runtime
   spec.csharp:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
   spec.vb:
   - uid: Prowl
     name: Prowl
-    href: Prowl.html
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-    href: Prowl.Runtime.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -481,13 +1876,48 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
-- uid: Prowl.Runtime.MonoBehaviour.hideFlags
-  commentId: F:Prowl.Runtime.MonoBehaviour.hideFlags
+- uid: Prowl.Echo.ISerializationCallbackReceiver
+  commentId: T:Prowl.Echo.ISerializationCallbackReceiver
+  parent: Prowl.Echo
+  isExternal: true
+  name: ISerializationCallbackReceiver
+  nameWithType: ISerializationCallbackReceiver
+  fullName: Prowl.Echo.ISerializationCallbackReceiver
+- uid: Prowl.Runtime.MonoBehaviour.IsFromPrefab
+  commentId: P:Prowl.Runtime.MonoBehaviour.IsFromPrefab
   parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_hideFlags
-  name: hideFlags
-  nameWithType: MonoBehaviour.hideFlags
-  fullName: Prowl.Runtime.MonoBehaviour.hideFlags
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_IsFromPrefab
+  name: IsFromPrefab
+  nameWithType: MonoBehaviour.IsFromPrefab
+  fullName: Prowl.Runtime.MonoBehaviour.IsFromPrefab
+- uid: Prowl.Runtime.MonoBehaviour.HideFlags
+  commentId: F:Prowl.Runtime.MonoBehaviour.HideFlags
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_HideFlags
+  name: HideFlags
+  nameWithType: MonoBehaviour.HideFlags
+  fullName: Prowl.Runtime.MonoBehaviour.HideFlags
+- uid: Prowl.Runtime.MonoBehaviour.DestroyCancellationToken
+  commentId: P:Prowl.Runtime.MonoBehaviour.DestroyCancellationToken
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DestroyCancellationToken
+  name: DestroyCancellationToken
+  nameWithType: MonoBehaviour.DestroyCancellationToken
+  fullName: Prowl.Runtime.MonoBehaviour.DestroyCancellationToken
+- uid: Prowl.Runtime.MonoBehaviour.Identifier
+  commentId: P:Prowl.Runtime.MonoBehaviour.Identifier
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Identifier
+  name: Identifier
+  nameWithType: MonoBehaviour.Identifier
+  fullName: Prowl.Runtime.MonoBehaviour.Identifier
+- uid: Prowl.Runtime.MonoBehaviour.SourceIdentifier
+  commentId: P:Prowl.Runtime.MonoBehaviour.SourceIdentifier
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_SourceIdentifier
+  name: SourceIdentifier
+  nameWithType: MonoBehaviour.SourceIdentifier
+  fullName: Prowl.Runtime.MonoBehaviour.SourceIdentifier
 - uid: Prowl.Runtime.MonoBehaviour.GameObject
   commentId: P:Prowl.Runtime.MonoBehaviour.GameObject
   parent: Prowl.Runtime.MonoBehaviour
@@ -502,20 +1932,6 @@ references:
   name: Transform
   nameWithType: MonoBehaviour.Transform
   fullName: Prowl.Runtime.MonoBehaviour.Transform
-- uid: Prowl.Runtime.MonoBehaviour.ExecuteAlways
-  commentId: P:Prowl.Runtime.MonoBehaviour.ExecuteAlways
-  parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_ExecuteAlways
-  name: ExecuteAlways
-  nameWithType: MonoBehaviour.ExecuteAlways
-  fullName: Prowl.Runtime.MonoBehaviour.ExecuteAlways
-- uid: Prowl.Runtime.MonoBehaviour.HasAwoken
-  commentId: P:Prowl.Runtime.MonoBehaviour.HasAwoken
-  parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_HasAwoken
-  name: HasAwoken
-  nameWithType: MonoBehaviour.HasAwoken
-  fullName: Prowl.Runtime.MonoBehaviour.HasAwoken
 - uid: Prowl.Runtime.MonoBehaviour.HasStarted
   commentId: P:Prowl.Runtime.MonoBehaviour.HasStarted
   parent: Prowl.Runtime.MonoBehaviour
@@ -523,6 +1939,13 @@ references:
   name: HasStarted
   nameWithType: MonoBehaviour.HasStarted
   fullName: Prowl.Runtime.MonoBehaviour.HasStarted
+- uid: Prowl.Runtime.MonoBehaviour.HasBeenEnabled
+  commentId: P:Prowl.Runtime.MonoBehaviour.HasBeenEnabled
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_HasBeenEnabled
+  name: HasBeenEnabled
+  nameWithType: MonoBehaviour.HasBeenEnabled
+  fullName: Prowl.Runtime.MonoBehaviour.HasBeenEnabled
 - uid: Prowl.Runtime.MonoBehaviour.Tag
   commentId: P:Prowl.Runtime.MonoBehaviour.Tag
   parent: Prowl.Runtime.MonoBehaviour
@@ -544,6 +1967,13 @@ references:
   name: EnabledInHierarchy
   nameWithType: MonoBehaviour.EnabledInHierarchy
   fullName: Prowl.Runtime.MonoBehaviour.EnabledInHierarchy
+- uid: Prowl.Runtime.MonoBehaviour.Scene
+  commentId: P:Prowl.Runtime.MonoBehaviour.Scene
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Scene
+  name: Scene
+  nameWithType: MonoBehaviour.Scene
+  fullName: Prowl.Runtime.MonoBehaviour.Scene
 - uid: Prowl.Runtime.MonoBehaviour.CompareTag(System.String)
   commentId: M:Prowl.Runtime.MonoBehaviour.CompareTag(System.String)
   parent: Prowl.Runtime.MonoBehaviour
@@ -632,36 +2062,6 @@ references:
     name: Type
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.type
-  - name: )
-- uid: Prowl.Runtime.MonoBehaviour.RemoveAll``1
-  commentId: M:Prowl.Runtime.MonoBehaviour.RemoveAll``1
-  parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_RemoveAll__1
-  name: RemoveAll<T>()
-  nameWithType: MonoBehaviour.RemoveAll<T>()
-  fullName: Prowl.Runtime.MonoBehaviour.RemoveAll<T>()
-  nameWithType.vb: MonoBehaviour.RemoveAll(Of T)()
-  fullName.vb: Prowl.Runtime.MonoBehaviour.RemoveAll(Of T)()
-  name.vb: RemoveAll(Of T)()
-  spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.RemoveAll``1
-    name: RemoveAll
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_RemoveAll__1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.RemoveAll``1
-    name: RemoveAll
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_RemoveAll__1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: (
   - name: )
 - uid: Prowl.Runtime.MonoBehaviour.RemoveComponent``1({T})
   commentId: M:Prowl.Runtime.MonoBehaviour.RemoveComponent``1(``0)
@@ -797,6 +2197,34 @@ references:
     name: Type
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.GetComponentByIdentifier(System.Guid)
+  commentId: M:Prowl.Runtime.MonoBehaviour.GetComponentByIdentifier(System.Guid)
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentByIdentifier_System_Guid_
+  name: GetComponentByIdentifier(Guid)
+  nameWithType: MonoBehaviour.GetComponentByIdentifier(Guid)
+  fullName: Prowl.Runtime.MonoBehaviour.GetComponentByIdentifier(System.Guid)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentByIdentifier(System.Guid)
+    name: GetComponentByIdentifier
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentByIdentifier_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentByIdentifier(System.Guid)
+    name: GetComponentByIdentifier
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentByIdentifier_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
   - name: )
 - uid: Prowl.Runtime.MonoBehaviour.TryGetComponent``1({T}@)
   commentId: M:Prowl.Runtime.MonoBehaviour.TryGetComponent``1(``0@)
@@ -1219,23 +2647,92 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
-- uid: Prowl.Runtime.MonoBehaviour.OnEnable
-  commentId: M:Prowl.Runtime.MonoBehaviour.OnEnable
+- uid: Prowl.Runtime.MonoBehaviour.GetSiblingIndex
+  commentId: M:Prowl.Runtime.MonoBehaviour.GetSiblingIndex
   parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnEnable
-  name: OnEnable()
-  nameWithType: MonoBehaviour.OnEnable()
-  fullName: Prowl.Runtime.MonoBehaviour.OnEnable()
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetSiblingIndex
+  name: GetSiblingIndex()
+  nameWithType: MonoBehaviour.GetSiblingIndex()
+  fullName: Prowl.Runtime.MonoBehaviour.GetSiblingIndex()
   spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.OnEnable
-    name: OnEnable
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnEnable
+  - uid: Prowl.Runtime.MonoBehaviour.GetSiblingIndex
+    name: GetSiblingIndex
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetSiblingIndex
   - name: (
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.OnEnable
-    name: OnEnable
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnEnable
+  - uid: Prowl.Runtime.MonoBehaviour.GetSiblingIndex
+    name: GetSiblingIndex
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetSiblingIndex
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.SetSiblingIndex(System.Int32)
+  commentId: M:Prowl.Runtime.MonoBehaviour.SetSiblingIndex(System.Int32)
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_SetSiblingIndex_System_Int32_
+  name: SetSiblingIndex(int)
+  nameWithType: MonoBehaviour.SetSiblingIndex(int)
+  fullName: Prowl.Runtime.MonoBehaviour.SetSiblingIndex(int)
+  nameWithType.vb: MonoBehaviour.SetSiblingIndex(Integer)
+  fullName.vb: Prowl.Runtime.MonoBehaviour.SetSiblingIndex(Integer)
+  name.vb: SetSiblingIndex(Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.SetSiblingIndex(System.Int32)
+    name: SetSiblingIndex
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_SetSiblingIndex_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.SetSiblingIndex(System.Int32)
+    name: SetSiblingIndex
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_SetSiblingIndex_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnAddedToScene
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnAddedToScene
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnAddedToScene
+  name: OnAddedToScene()
+  nameWithType: MonoBehaviour.OnAddedToScene()
+  fullName: Prowl.Runtime.MonoBehaviour.OnAddedToScene()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnAddedToScene
+    name: OnAddedToScene
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnAddedToScene
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnAddedToScene
+    name: OnAddedToScene
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnAddedToScene
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnRemovedFromScene
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnRemovedFromScene
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnRemovedFromScene
+  name: OnRemovedFromScene()
+  nameWithType: MonoBehaviour.OnRemovedFromScene()
+  fullName: Prowl.Runtime.MonoBehaviour.OnRemovedFromScene()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnRemovedFromScene
+    name: OnRemovedFromScene
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnRemovedFromScene
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnRemovedFromScene
+    name: OnRemovedFromScene
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnRemovedFromScene
   - name: (
   - name: )
 - uid: Prowl.Runtime.MonoBehaviour.Start
@@ -1295,6 +2792,83 @@ references:
     href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_LateUpdate
   - name: (
   - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnRenderCollect_Prowl_Runtime_Camera_System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderable__System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderableLight__
+  name: OnRenderCollect(Camera, List<IRenderable>, List<IRenderableLight>)
+  nameWithType: MonoBehaviour.OnRenderCollect(Camera, List<IRenderable>, List<IRenderableLight>)
+  fullName: Prowl.Runtime.MonoBehaviour.OnRenderCollect(Prowl.Runtime.Camera, System.Collections.Generic.List<Prowl.Runtime.Rendering.IRenderable>, System.Collections.Generic.List<Prowl.Runtime.Rendering.IRenderableLight>)
+  nameWithType.vb: MonoBehaviour.OnRenderCollect(Camera, List(Of IRenderable), List(Of IRenderableLight))
+  fullName.vb: Prowl.Runtime.MonoBehaviour.OnRenderCollect(Prowl.Runtime.Camera, System.Collections.Generic.List(Of Prowl.Runtime.Rendering.IRenderable), System.Collections.Generic.List(Of Prowl.Runtime.Rendering.IRenderableLight))
+  name.vb: OnRenderCollect(Camera, List(Of IRenderable), List(Of IRenderableLight))
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
+    name: OnRenderCollect
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnRenderCollect_Prowl_Runtime_Camera_System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderable__System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderableLight__
+  - name: (
+  - uid: Prowl.Runtime.Camera
+    name: Camera
+    href: Prowl.Runtime.Camera.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Prowl.Runtime.Rendering.IRenderable
+    name: IRenderable
+    href: Prowl.Runtime.Rendering.IRenderable.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Prowl.Runtime.Rendering.IRenderableLight
+    name: IRenderableLight
+    href: Prowl.Runtime.Rendering.IRenderableLight.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
+    name: OnRenderCollect
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnRenderCollect_Prowl_Runtime_Camera_System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderable__System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderableLight__
+  - name: (
+  - uid: Prowl.Runtime.Camera
+    name: Camera
+    href: Prowl.Runtime.Camera.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Rendering.IRenderable
+    name: IRenderable
+    href: Prowl.Runtime.Rendering.IRenderable.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Rendering.IRenderableLight
+    name: IRenderableLight
+    href: Prowl.Runtime.Rendering.IRenderableLight.html
+  - name: )
+  - name: )
 - uid: Prowl.Runtime.MonoBehaviour.DrawGizmos
   commentId: M:Prowl.Runtime.MonoBehaviour.DrawGizmos
   parent: Prowl.Runtime.MonoBehaviour
@@ -1314,245 +2888,275 @@ references:
     href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmos
   - name: (
   - name: )
-- uid: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
-  commentId: M:Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
-  parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmosSelected
-  name: DrawGizmosSelected()
-  nameWithType: MonoBehaviour.DrawGizmosSelected()
-  fullName: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected()
-  spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
-    name: DrawGizmosSelected
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmosSelected
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
-    name: DrawGizmosSelected
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmosSelected
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.MonoBehaviour.OnLevelWasLoaded
-  commentId: M:Prowl.Runtime.MonoBehaviour.OnLevelWasLoaded
-  parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnLevelWasLoaded
-  name: OnLevelWasLoaded()
-  nameWithType: MonoBehaviour.OnLevelWasLoaded()
-  fullName: Prowl.Runtime.MonoBehaviour.OnLevelWasLoaded()
-  spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.OnLevelWasLoaded
-    name: OnLevelWasLoaded
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnLevelWasLoaded
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.OnLevelWasLoaded
-    name: OnLevelWasLoaded
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnLevelWasLoaded
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.MonoBehaviour.ClearCache
-  commentId: M:Prowl.Runtime.MonoBehaviour.ClearCache
-  parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_ClearCache
-  name: ClearCache()
-  nameWithType: MonoBehaviour.ClearCache()
-  fullName: Prowl.Runtime.MonoBehaviour.ClearCache()
-  spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.ClearCache
-    name: ClearCache
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_ClearCache
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.ClearCache
-    name: ClearCache
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_ClearCache
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.MonoBehaviour.StartCoroutine(System.String)
-  commentId: M:Prowl.Runtime.MonoBehaviour.StartCoroutine(System.String)
+- uid: Prowl.Runtime.MonoBehaviour.OnGui(Prowl.PaperUI.Paper)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnGui(Prowl.PaperUI.Paper)
   parent: Prowl.Runtime.MonoBehaviour
   isExternal: true
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_StartCoroutine_System_String_
-  name: StartCoroutine(string)
-  nameWithType: MonoBehaviour.StartCoroutine(string)
-  fullName: Prowl.Runtime.MonoBehaviour.StartCoroutine(string)
-  nameWithType.vb: MonoBehaviour.StartCoroutine(String)
-  fullName.vb: Prowl.Runtime.MonoBehaviour.StartCoroutine(String)
-  name.vb: StartCoroutine(String)
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnGui_Prowl_PaperUI_Paper_
+  name: OnGui(Paper)
+  nameWithType: MonoBehaviour.OnGui(Paper)
+  fullName: Prowl.Runtime.MonoBehaviour.OnGui(Prowl.PaperUI.Paper)
   spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.StartCoroutine(System.String)
-    name: StartCoroutine
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_StartCoroutine_System_String_
+  - uid: Prowl.Runtime.MonoBehaviour.OnGui(Prowl.PaperUI.Paper)
+    name: OnGui
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnGui_Prowl_PaperUI_Paper_
   - name: (
-  - uid: System.String
-    name: string
+  - uid: Prowl.PaperUI.Paper
+    name: Paper
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.StartCoroutine(System.String)
-    name: StartCoroutine
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_StartCoroutine_System_String_
+  - uid: Prowl.Runtime.MonoBehaviour.OnGui(Prowl.PaperUI.Paper)
+    name: OnGui
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnGui_Prowl_PaperUI_Paper_
   - name: (
-  - uid: System.String
-    name: String
+  - uid: Prowl.PaperUI.Paper
+    name: Paper
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
-- uid: Prowl.Runtime.MonoBehaviour.StopAllCoroutines
-  commentId: M:Prowl.Runtime.MonoBehaviour.StopAllCoroutines
+- uid: Prowl.Runtime.MonoBehaviour.OnCollisionBegin(Prowl.Runtime.Collision)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnCollisionBegin(Prowl.Runtime.Collision)
   parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_StopAllCoroutines
-  name: StopAllCoroutines()
-  nameWithType: MonoBehaviour.StopAllCoroutines()
-  fullName: Prowl.Runtime.MonoBehaviour.StopAllCoroutines()
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionBegin_Prowl_Runtime_Collision_
+  name: OnCollisionBegin(Collision)
+  nameWithType: MonoBehaviour.OnCollisionBegin(Collision)
+  fullName: Prowl.Runtime.MonoBehaviour.OnCollisionBegin(Prowl.Runtime.Collision)
   spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.StopAllCoroutines
-    name: StopAllCoroutines
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_StopAllCoroutines
+  - uid: Prowl.Runtime.MonoBehaviour.OnCollisionBegin(Prowl.Runtime.Collision)
+    name: OnCollisionBegin
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionBegin_Prowl_Runtime_Collision_
   - name: (
+  - uid: Prowl.Runtime.Collision
+    name: Collision
+    href: Prowl.Runtime.Collision.html
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.StopAllCoroutines
-    name: StopAllCoroutines
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_StopAllCoroutines
+  - uid: Prowl.Runtime.MonoBehaviour.OnCollisionBegin(Prowl.Runtime.Collision)
+    name: OnCollisionBegin
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionBegin_Prowl_Runtime_Collision_
   - name: (
+  - uid: Prowl.Runtime.Collision
+    name: Collision
+    href: Prowl.Runtime.Collision.html
   - name: )
-- uid: Prowl.Runtime.MonoBehaviour.StopCoroutine(System.String)
-  commentId: M:Prowl.Runtime.MonoBehaviour.StopCoroutine(System.String)
+- uid: Prowl.Runtime.MonoBehaviour.OnCollisionStay(Prowl.Runtime.Collision)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnCollisionStay(Prowl.Runtime.Collision)
   parent: Prowl.Runtime.MonoBehaviour
-  isExternal: true
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_StopCoroutine_System_String_
-  name: StopCoroutine(string)
-  nameWithType: MonoBehaviour.StopCoroutine(string)
-  fullName: Prowl.Runtime.MonoBehaviour.StopCoroutine(string)
-  nameWithType.vb: MonoBehaviour.StopCoroutine(String)
-  fullName.vb: Prowl.Runtime.MonoBehaviour.StopCoroutine(String)
-  name.vb: StopCoroutine(String)
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionStay_Prowl_Runtime_Collision_
+  name: OnCollisionStay(Collision)
+  nameWithType: MonoBehaviour.OnCollisionStay(Collision)
+  fullName: Prowl.Runtime.MonoBehaviour.OnCollisionStay(Prowl.Runtime.Collision)
   spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.StopCoroutine(System.String)
-    name: StopCoroutine
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_StopCoroutine_System_String_
+  - uid: Prowl.Runtime.MonoBehaviour.OnCollisionStay(Prowl.Runtime.Collision)
+    name: OnCollisionStay
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionStay_Prowl_Runtime_Collision_
   - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
+  - uid: Prowl.Runtime.Collision
+    name: Collision
+    href: Prowl.Runtime.Collision.html
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.StopCoroutine(System.String)
-    name: StopCoroutine
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_StopCoroutine_System_String_
+  - uid: Prowl.Runtime.MonoBehaviour.OnCollisionStay(Prowl.Runtime.Collision)
+    name: OnCollisionStay
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionStay_Prowl_Runtime_Collision_
   - name: (
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
+  - uid: Prowl.Runtime.Collision
+    name: Collision
+    href: Prowl.Runtime.Collision.html
   - name: )
-- uid: Prowl.Runtime.MonoBehaviour.BroadcastMessage(System.String,System.Object[])
-  commentId: M:Prowl.Runtime.MonoBehaviour.BroadcastMessage(System.String,System.Object[])
+- uid: Prowl.Runtime.MonoBehaviour.OnCollisionEnd(Prowl.Runtime.Collision)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnCollisionEnd(Prowl.Runtime.Collision)
   parent: Prowl.Runtime.MonoBehaviour
-  isExternal: true
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_BroadcastMessage_System_String_System_Object___
-  name: BroadcastMessage(string, params object[])
-  nameWithType: MonoBehaviour.BroadcastMessage(string, params object[])
-  fullName: Prowl.Runtime.MonoBehaviour.BroadcastMessage(string, params object[])
-  nameWithType.vb: MonoBehaviour.BroadcastMessage(String, ParamArray Object())
-  fullName.vb: Prowl.Runtime.MonoBehaviour.BroadcastMessage(String, ParamArray Object())
-  name.vb: BroadcastMessage(String, ParamArray Object())
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionEnd_Prowl_Runtime_Collision_
+  name: OnCollisionEnd(Collision)
+  nameWithType: MonoBehaviour.OnCollisionEnd(Collision)
+  fullName: Prowl.Runtime.MonoBehaviour.OnCollisionEnd(Prowl.Runtime.Collision)
   spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.BroadcastMessage(System.String,System.Object[])
-    name: BroadcastMessage
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_BroadcastMessage_System_String_System_Object___
+  - uid: Prowl.Runtime.MonoBehaviour.OnCollisionEnd(Prowl.Runtime.Collision)
+    name: OnCollisionEnd
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionEnd_Prowl_Runtime_Collision_
   - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - name: params
-  - name: " "
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: '['
-  - name: ']'
+  - uid: Prowl.Runtime.Collision
+    name: Collision
+    href: Prowl.Runtime.Collision.html
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.BroadcastMessage(System.String,System.Object[])
-    name: BroadcastMessage
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_BroadcastMessage_System_String_System_Object___
+  - uid: Prowl.Runtime.MonoBehaviour.OnCollisionEnd(Prowl.Runtime.Collision)
+    name: OnCollisionEnd
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionEnd_Prowl_Runtime_Collision_
   - name: (
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - name: ParamArray
-  - name: " "
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: (
+  - uid: Prowl.Runtime.Collision
+    name: Collision
+    href: Prowl.Runtime.Collision.html
   - name: )
-  - name: )
-- uid: Prowl.Runtime.MonoBehaviour.SendMessage(System.String,System.Object[])
-  commentId: M:Prowl.Runtime.MonoBehaviour.SendMessage(System.String,System.Object[])
+- uid: Prowl.Runtime.MonoBehaviour.OnTriggerEnter(Prowl.Runtime.Rigidbody3D)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnTriggerEnter(Prowl.Runtime.Rigidbody3D)
   parent: Prowl.Runtime.MonoBehaviour
-  isExternal: true
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_SendMessage_System_String_System_Object___
-  name: SendMessage(string, params object[])
-  nameWithType: MonoBehaviour.SendMessage(string, params object[])
-  fullName: Prowl.Runtime.MonoBehaviour.SendMessage(string, params object[])
-  nameWithType.vb: MonoBehaviour.SendMessage(String, ParamArray Object())
-  fullName.vb: Prowl.Runtime.MonoBehaviour.SendMessage(String, ParamArray Object())
-  name.vb: SendMessage(String, ParamArray Object())
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerEnter_Prowl_Runtime_Rigidbody3D_
+  name: OnTriggerEnter(Rigidbody3D)
+  nameWithType: MonoBehaviour.OnTriggerEnter(Rigidbody3D)
+  fullName: Prowl.Runtime.MonoBehaviour.OnTriggerEnter(Prowl.Runtime.Rigidbody3D)
   spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.SendMessage(System.String,System.Object[])
-    name: SendMessage
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_SendMessage_System_String_System_Object___
+  - uid: Prowl.Runtime.MonoBehaviour.OnTriggerEnter(Prowl.Runtime.Rigidbody3D)
+    name: OnTriggerEnter
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerEnter_Prowl_Runtime_Rigidbody3D_
   - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - name: params
-  - name: " "
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: '['
-  - name: ']'
+  - uid: Prowl.Runtime.Rigidbody3D
+    name: Rigidbody3D
+    href: Prowl.Runtime.Rigidbody3D.html
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.SendMessage(System.String,System.Object[])
-    name: SendMessage
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_SendMessage_System_String_System_Object___
+  - uid: Prowl.Runtime.MonoBehaviour.OnTriggerEnter(Prowl.Runtime.Rigidbody3D)
+    name: OnTriggerEnter
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerEnter_Prowl_Runtime_Rigidbody3D_
   - name: (
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - name: ParamArray
-  - name: " "
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
+  - uid: Prowl.Runtime.Rigidbody3D
+    name: Rigidbody3D
+    href: Prowl.Runtime.Rigidbody3D.html
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnTriggerStay(Prowl.Runtime.Rigidbody3D)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnTriggerStay(Prowl.Runtime.Rigidbody3D)
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerStay_Prowl_Runtime_Rigidbody3D_
+  name: OnTriggerStay(Rigidbody3D)
+  nameWithType: MonoBehaviour.OnTriggerStay(Rigidbody3D)
+  fullName: Prowl.Runtime.MonoBehaviour.OnTriggerStay(Prowl.Runtime.Rigidbody3D)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnTriggerStay(Prowl.Runtime.Rigidbody3D)
+    name: OnTriggerStay
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerStay_Prowl_Runtime_Rigidbody3D_
+  - name: (
+  - uid: Prowl.Runtime.Rigidbody3D
+    name: Rigidbody3D
+    href: Prowl.Runtime.Rigidbody3D.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnTriggerStay(Prowl.Runtime.Rigidbody3D)
+    name: OnTriggerStay
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerStay_Prowl_Runtime_Rigidbody3D_
+  - name: (
+  - uid: Prowl.Runtime.Rigidbody3D
+    name: Rigidbody3D
+    href: Prowl.Runtime.Rigidbody3D.html
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnTriggerExit(Prowl.Runtime.Rigidbody3D)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnTriggerExit(Prowl.Runtime.Rigidbody3D)
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerExit_Prowl_Runtime_Rigidbody3D_
+  name: OnTriggerExit(Rigidbody3D)
+  nameWithType: MonoBehaviour.OnTriggerExit(Rigidbody3D)
+  fullName: Prowl.Runtime.MonoBehaviour.OnTriggerExit(Prowl.Runtime.Rigidbody3D)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnTriggerExit(Prowl.Runtime.Rigidbody3D)
+    name: OnTriggerExit
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerExit_Prowl_Runtime_Rigidbody3D_
+  - name: (
+  - uid: Prowl.Runtime.Rigidbody3D
+    name: Rigidbody3D
+    href: Prowl.Runtime.Rigidbody3D.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnTriggerExit(Prowl.Runtime.Rigidbody3D)
+    name: OnTriggerExit
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerExit_Prowl_Runtime_Rigidbody3D_
+  - name: (
+  - uid: Prowl.Runtime.Rigidbody3D
+    name: Rigidbody3D
+    href: Prowl.Runtime.Rigidbody3D.html
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnCharacterEnter(Prowl.Runtime.CharacterController)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnCharacterEnter(Prowl.Runtime.CharacterController)
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterEnter_Prowl_Runtime_CharacterController_
+  name: OnCharacterEnter(CharacterController)
+  nameWithType: MonoBehaviour.OnCharacterEnter(CharacterController)
+  fullName: Prowl.Runtime.MonoBehaviour.OnCharacterEnter(Prowl.Runtime.CharacterController)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCharacterEnter(Prowl.Runtime.CharacterController)
+    name: OnCharacterEnter
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterEnter_Prowl_Runtime_CharacterController_
+  - name: (
+  - uid: Prowl.Runtime.CharacterController
+    name: CharacterController
+    href: Prowl.Runtime.CharacterController.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCharacterEnter(Prowl.Runtime.CharacterController)
+    name: OnCharacterEnter
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterEnter_Prowl_Runtime_CharacterController_
+  - name: (
+  - uid: Prowl.Runtime.CharacterController
+    name: CharacterController
+    href: Prowl.Runtime.CharacterController.html
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnCharacterStay(Prowl.Runtime.CharacterController)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnCharacterStay(Prowl.Runtime.CharacterController)
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterStay_Prowl_Runtime_CharacterController_
+  name: OnCharacterStay(CharacterController)
+  nameWithType: MonoBehaviour.OnCharacterStay(CharacterController)
+  fullName: Prowl.Runtime.MonoBehaviour.OnCharacterStay(Prowl.Runtime.CharacterController)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCharacterStay(Prowl.Runtime.CharacterController)
+    name: OnCharacterStay
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterStay_Prowl_Runtime_CharacterController_
+  - name: (
+  - uid: Prowl.Runtime.CharacterController
+    name: CharacterController
+    href: Prowl.Runtime.CharacterController.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCharacterStay(Prowl.Runtime.CharacterController)
+    name: OnCharacterStay
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterStay_Prowl_Runtime_CharacterController_
+  - name: (
+  - uid: Prowl.Runtime.CharacterController
+    name: CharacterController
+    href: Prowl.Runtime.CharacterController.html
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnCharacterExit(Prowl.Runtime.CharacterController)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnCharacterExit(Prowl.Runtime.CharacterController)
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterExit_Prowl_Runtime_CharacterController_
+  name: OnCharacterExit(CharacterController)
+  nameWithType: MonoBehaviour.OnCharacterExit(CharacterController)
+  fullName: Prowl.Runtime.MonoBehaviour.OnCharacterExit(Prowl.Runtime.CharacterController)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCharacterExit(Prowl.Runtime.CharacterController)
+    name: OnCharacterExit
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterExit_Prowl_Runtime_CharacterController_
+  - name: (
+  - uid: Prowl.Runtime.CharacterController
+    name: CharacterController
+    href: Prowl.Runtime.CharacterController.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCharacterExit(Prowl.Runtime.CharacterController)
+    name: OnCharacterExit
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterExit_Prowl_Runtime_CharacterController_
+  - name: (
+  - uid: Prowl.Runtime.CharacterController
+    name: CharacterController
+    href: Prowl.Runtime.CharacterController.html
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnBeforeSerialize
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnBeforeSerialize
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnBeforeSerialize
+  name: OnBeforeSerialize()
+  nameWithType: MonoBehaviour.OnBeforeSerialize()
+  fullName: Prowl.Runtime.MonoBehaviour.OnBeforeSerialize()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnBeforeSerialize
+    name: OnBeforeSerialize
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnBeforeSerialize
   - name: (
   - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnBeforeSerialize
+    name: OnBeforeSerialize
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnBeforeSerialize
+  - name: (
   - name: )
 - uid: Prowl.Runtime.EngineObject.InstanceID
   commentId: P:Prowl.Runtime.EngineObject.InstanceID
@@ -1561,20 +3165,6 @@ references:
   name: InstanceID
   nameWithType: EngineObject.InstanceID
   fullName: Prowl.Runtime.EngineObject.InstanceID
-- uid: Prowl.Runtime.EngineObject.AssetID
-  commentId: F:Prowl.Runtime.EngineObject.AssetID
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_AssetID
-  name: AssetID
-  nameWithType: EngineObject.AssetID
-  fullName: Prowl.Runtime.EngineObject.AssetID
-- uid: Prowl.Runtime.EngineObject.FileID
-  commentId: F:Prowl.Runtime.EngineObject.FileID
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FileID
-  name: FileID
-  nameWithType: EngineObject.FileID
-  fullName: Prowl.Runtime.EngineObject.FileID
 - uid: Prowl.Runtime.EngineObject.Name
   commentId: F:Prowl.Runtime.EngineObject.Name
   parent: Prowl.Runtime.EngineObject
@@ -1582,13 +3172,13 @@ references:
   name: Name
   nameWithType: EngineObject.Name
   fullName: Prowl.Runtime.EngineObject.Name
-- uid: Prowl.Runtime.EngineObject.IsDestroyed
-  commentId: F:Prowl.Runtime.EngineObject.IsDestroyed
+- uid: Prowl.Runtime.EngineObject.IsDisposed
+  commentId: P:Prowl.Runtime.EngineObject.IsDisposed
   parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_IsDestroyed
-  name: IsDestroyed
-  nameWithType: EngineObject.IsDestroyed
-  fullName: Prowl.Runtime.EngineObject.IsDestroyed
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_IsDisposed
+  name: IsDisposed
+  nameWithType: EngineObject.IsDisposed
+  fullName: Prowl.Runtime.EngineObject.IsDisposed
 - uid: Prowl.Runtime.EngineObject.CreatedInstance
   commentId: M:Prowl.Runtime.EngineObject.CreatedInstance
   parent: Prowl.Runtime.EngineObject
@@ -1607,319 +3197,6 @@ references:
     name: CreatedInstance
     href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_CreatedInstance
   - name: (
-  - name: )
-- uid: Prowl.Runtime.EngineObject.OnValidate
-  commentId: M:Prowl.Runtime.EngineObject.OnValidate
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnValidate
-  name: OnValidate()
-  nameWithType: EngineObject.OnValidate()
-  fullName: Prowl.Runtime.EngineObject.OnValidate()
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.OnValidate
-    name: OnValidate
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnValidate
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.OnValidate
-    name: OnValidate
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnValidate
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.EngineObject.FindObjectOfType``1
-  commentId: M:Prowl.Runtime.EngineObject.FindObjectOfType``1
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectOfType__1
-  name: FindObjectOfType<T>()
-  nameWithType: EngineObject.FindObjectOfType<T>()
-  fullName: Prowl.Runtime.EngineObject.FindObjectOfType<T>()
-  nameWithType.vb: EngineObject.FindObjectOfType(Of T)()
-  fullName.vb: Prowl.Runtime.EngineObject.FindObjectOfType(Of T)()
-  name.vb: FindObjectOfType(Of T)()
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.FindObjectOfType``1
-    name: FindObjectOfType
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectOfType__1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.FindObjectOfType``1
-    name: FindObjectOfType
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectOfType__1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.EngineObject.FindObjectsOfType``1
-  commentId: M:Prowl.Runtime.EngineObject.FindObjectsOfType``1
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectsOfType__1
-  name: FindObjectsOfType<T>()
-  nameWithType: EngineObject.FindObjectsOfType<T>()
-  fullName: Prowl.Runtime.EngineObject.FindObjectsOfType<T>()
-  nameWithType.vb: EngineObject.FindObjectsOfType(Of T)()
-  fullName.vb: Prowl.Runtime.EngineObject.FindObjectsOfType(Of T)()
-  name.vb: FindObjectsOfType(Of T)()
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.FindObjectsOfType``1
-    name: FindObjectsOfType
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectsOfType__1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.FindObjectsOfType``1
-    name: FindObjectsOfType
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectsOfType__1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.EngineObject.FindObjectByID``1(System.Int32)
-  commentId: M:Prowl.Runtime.EngineObject.FindObjectByID``1(System.Int32)
-  parent: Prowl.Runtime.EngineObject
-  isExternal: true
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectByID__1_System_Int32_
-  name: FindObjectByID<T>(int)
-  nameWithType: EngineObject.FindObjectByID<T>(int)
-  fullName: Prowl.Runtime.EngineObject.FindObjectByID<T>(int)
-  nameWithType.vb: EngineObject.FindObjectByID(Of T)(Integer)
-  fullName.vb: Prowl.Runtime.EngineObject.FindObjectByID(Of T)(Integer)
-  name.vb: FindObjectByID(Of T)(Integer)
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.FindObjectByID``1(System.Int32)
-    name: FindObjectByID
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectByID__1_System_Int32_
-  - name: <
-  - name: T
-  - name: '>'
-  - name: (
-  - uid: System.Int32
-    name: int
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.FindObjectByID``1(System.Int32)
-    name: FindObjectByID
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_FindObjectByID__1_System_Int32_
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: (
-  - uid: System.Int32
-    name: Integer
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: )
-- uid: Prowl.Runtime.EngineObject.Foreach``1(System.Action{{T}})
-  commentId: M:Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-  parent: Prowl.Runtime.EngineObject
-  definition: Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Foreach__1_System_Action___0__
-  name: Foreach<T>(Action<T>)
-  nameWithType: EngineObject.Foreach<T>(Action<T>)
-  fullName: Prowl.Runtime.EngineObject.Foreach<T>(System.Action<T>)
-  nameWithType.vb: EngineObject.Foreach(Of T)(Action(Of T))
-  fullName.vb: Prowl.Runtime.EngineObject.Foreach(Of T)(System.Action(Of T))
-  name.vb: Foreach(Of T)(Action(Of T))
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-    name: Foreach
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Foreach__1_System_Action___0__
-  - name: <
-  - name: T
-  - name: '>'
-  - name: (
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-    name: Foreach
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Foreach__1_System_Action___0__
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: (
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: )
-- uid: Prowl.Runtime.EngineObject.Destroy
-  commentId: M:Prowl.Runtime.EngineObject.Destroy
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
-  name: Destroy()
-  nameWithType: EngineObject.Destroy()
-  fullName: Prowl.Runtime.EngineObject.Destroy()
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.Destroy
-    name: Destroy
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.Destroy
-    name: Destroy
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.EngineObject.DestroyImmediate
-  commentId: M:Prowl.Runtime.EngineObject.DestroyImmediate
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DestroyImmediate
-  name: DestroyImmediate()
-  nameWithType: EngineObject.DestroyImmediate()
-  fullName: Prowl.Runtime.EngineObject.DestroyImmediate()
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.DestroyImmediate
-    name: DestroyImmediate
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DestroyImmediate
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.DestroyImmediate
-    name: DestroyImmediate
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DestroyImmediate
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-  commentId: M:Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy_Prowl_Runtime_EngineObject_
-  name: Destroy(EngineObject)
-  nameWithType: EngineObject.Destroy(EngineObject)
-  fullName: Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-    name: Destroy
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy_Prowl_Runtime_EngineObject_
-  - name: (
-  - uid: Prowl.Runtime.EngineObject
-    name: EngineObject
-    href: Prowl.Runtime.EngineObject.html
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.Destroy(Prowl.Runtime.EngineObject)
-    name: Destroy
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy_Prowl_Runtime_EngineObject_
-  - name: (
-  - uid: Prowl.Runtime.EngineObject
-    name: EngineObject
-    href: Prowl.Runtime.EngineObject.html
-  - name: )
-- uid: Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-  commentId: M:Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DestroyImmediate_Prowl_Runtime_EngineObject_
-  name: DestroyImmediate(EngineObject)
-  nameWithType: EngineObject.DestroyImmediate(EngineObject)
-  fullName: Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-    name: DestroyImmediate
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DestroyImmediate_Prowl_Runtime_EngineObject_
-  - name: (
-  - uid: Prowl.Runtime.EngineObject
-    name: EngineObject
-    href: Prowl.Runtime.EngineObject.html
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.DestroyImmediate(Prowl.Runtime.EngineObject)
-    name: DestroyImmediate
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_DestroyImmediate_Prowl_Runtime_EngineObject_
-  - name: (
-  - uid: Prowl.Runtime.EngineObject
-    name: EngineObject
-    href: Prowl.Runtime.EngineObject.html
-  - name: )
-- uid: Prowl.Runtime.EngineObject.HandleDestroyed
-  commentId: M:Prowl.Runtime.EngineObject.HandleDestroyed
-  parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_HandleDestroyed
-  name: HandleDestroyed()
-  nameWithType: EngineObject.HandleDestroyed()
-  fullName: Prowl.Runtime.EngineObject.HandleDestroyed()
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.HandleDestroyed
-    name: HandleDestroyed
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_HandleDestroyed
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.HandleDestroyed
-    name: HandleDestroyed
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_HandleDestroyed
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject,System.Boolean)
-  commentId: M:Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject,System.Boolean)
-  parent: Prowl.Runtime.EngineObject
-  isExternal: true
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Instantiate_Prowl_Runtime_EngineObject_System_Boolean_
-  name: Instantiate(EngineObject, bool)
-  nameWithType: EngineObject.Instantiate(EngineObject, bool)
-  fullName: Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject, bool)
-  nameWithType.vb: EngineObject.Instantiate(EngineObject, Boolean)
-  fullName.vb: Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject, Boolean)
-  name.vb: Instantiate(EngineObject, Boolean)
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject,System.Boolean)
-    name: Instantiate
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Instantiate_Prowl_Runtime_EngineObject_System_Boolean_
-  - name: (
-  - uid: Prowl.Runtime.EngineObject
-    name: EngineObject
-    href: Prowl.Runtime.EngineObject.html
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: bool
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.Instantiate(Prowl.Runtime.EngineObject,System.Boolean)
-    name: Instantiate
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Instantiate_Prowl_Runtime_EngineObject_System_Boolean_
-  - name: (
-  - uid: Prowl.Runtime.EngineObject
-    name: EngineObject
-    href: Prowl.Runtime.EngineObject.html
-  - name: ','
-  - name: " "
-  - uid: System.Boolean
-    name: Boolean
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
 - uid: Prowl.Runtime.EngineObject.Dispose
   commentId: M:Prowl.Runtime.EngineObject.Dispose
@@ -1940,23 +3217,99 @@ references:
     href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
   - name: (
   - name: )
-- uid: Prowl.Runtime.EngineObject.OnDispose
-  commentId: M:Prowl.Runtime.EngineObject.OnDispose
+- uid: Prowl.Runtime.EngineObject.Destroy
+  commentId: M:Prowl.Runtime.EngineObject.Destroy
   parent: Prowl.Runtime.EngineObject
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnDispose
-  name: OnDispose()
-  nameWithType: EngineObject.OnDispose()
-  fullName: Prowl.Runtime.EngineObject.OnDispose()
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
+  name: Destroy()
+  nameWithType: EngineObject.Destroy()
+  fullName: Prowl.Runtime.EngineObject.Destroy()
   spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.OnDispose
-    name: OnDispose
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnDispose
+  - uid: Prowl.Runtime.EngineObject.Destroy
+    name: Destroy
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
   - name: (
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.EngineObject.OnDispose
-    name: OnDispose
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnDispose
+  - uid: Prowl.Runtime.EngineObject.Destroy
+    name: Destroy
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.IsDestroyQueued
+  commentId: P:Prowl.Runtime.EngineObject.IsDestroyQueued
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_IsDestroyQueued
+  name: IsDestroyQueued
+  nameWithType: EngineObject.IsDestroyQueued
+  fullName: Prowl.Runtime.EngineObject.IsDestroyQueued
+- uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+  commentId: M:Prowl.Runtime.EngineObject.ProcessDestroyed
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
+  name: ProcessDestroyed()
+  nameWithType: EngineObject.ProcessDestroyed()
+  fullName: Prowl.Runtime.EngineObject.ProcessDestroyed()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+    name: ProcessDestroyed
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+    name: ProcessDestroyed
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+  commentId: M:Prowl.Runtime.EngineObject.Equals(System.Object)
+  parent: Prowl.Runtime.EngineObject
+  isExternal: true
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
+  name: Equals(object)
+  nameWithType: EngineObject.Equals(object)
+  fullName: Prowl.Runtime.EngineObject.Equals(object)
+  nameWithType.vb: EngineObject.Equals(Object)
+  fullName.vb: Prowl.Runtime.EngineObject.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+    name: Equals
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+    name: Equals
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.EngineObject.GetHashCode
+  commentId: M:Prowl.Runtime.EngineObject.GetHashCode
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
+  name: GetHashCode()
+  nameWithType: EngineObject.GetHashCode()
+  fullName: Prowl.Runtime.EngineObject.GetHashCode()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.GetHashCode
+    name: GetHashCode
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.GetHashCode
+    name: GetHashCode
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
   - name: (
   - name: )
 - uid: Prowl.Runtime.EngineObject.ToString
@@ -1977,39 +3330,6 @@ references:
     name: ToString
     href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ToString
   - name: (
-  - name: )
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
-  name: Equals(object)
-  nameWithType: object.Equals(object)
-  fullName: object.Equals(object)
-  nameWithType.vb: Object.Equals(Object)
-  fullName.vb: Object.Equals(Object)
-  name.vb: Equals(Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
-  - name: (
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
-  - name: (
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
@@ -2055,30 +3375,6 @@ references:
     name: Object
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
-  name: GetHashCode()
-  nameWithType: object.GetHashCode()
-  fullName: object.GetHashCode()
-  nameWithType.vb: Object.GetHashCode()
-  fullName.vb: Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
-  - name: (
   - name: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
@@ -2149,27 +3445,53 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-- uid: Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.Null
-  commentId: M:Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
+- uid: Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsNotValid
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
   parent: Prowl.Runtime.EngineObjectExtensions
-  definition: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
-  name: Null(EngineObject)
-  nameWithType: EngineObjectExtensions.Null(EngineObject)
-  fullName: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
+  definition: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  name: IsNotValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsNotValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
   spec.csharp:
-  - uid: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-    name: "Null"
-    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
   - name: (
   - uid: Prowl.Runtime.EngineObject
     name: EngineObject
     href: Prowl.Runtime.EngineObject.html
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-    name: "Null"
-    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsValid
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  parent: Prowl.Runtime.EngineObjectExtensions
+  definition: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  name: IsValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
   - name: (
   - uid: Prowl.Runtime.EngineObject
     name: EngineObject
@@ -2213,6 +3535,23 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: Prowl.Echo
+  commentId: N:Prowl.Echo
+  name: Prowl.Echo
+  nameWithType: Prowl.Echo
+  fullName: Prowl.Echo
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
 - uid: Prowl.Runtime.MonoBehaviour.RemoveComponent``1(``0)
   commentId: M:Prowl.Runtime.MonoBehaviour.RemoveComponent``1(``0)
   href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_RemoveComponent__1___0_
@@ -2277,71 +3616,25 @@ references:
   - name: (
   - name: T
   - name: )
-- uid: Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-  commentId: M:Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-  isExternal: true
-  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Foreach__1_System_Action___0__
-  name: Foreach<T>(Action<T>)
-  nameWithType: EngineObject.Foreach<T>(Action<T>)
-  fullName: Prowl.Runtime.EngineObject.Foreach<T>(System.Action<T>)
-  nameWithType.vb: EngineObject.Foreach(Of T)(Action(Of T))
-  fullName.vb: Prowl.Runtime.EngineObject.Foreach(Of T)(System.Action(Of T))
-  name.vb: Foreach(Of T)(Action(Of T))
+- uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  name: IsNotValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsNotValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
   spec.csharp:
-  - uid: Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-    name: Foreach
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Foreach__1_System_Action___0__
-  - name: <
-  - name: T
-  - name: '>'
-  - name: (
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: <
-  - name: T
-  - name: '>'
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.EngineObject.Foreach``1(System.Action{``0})
-    name: Foreach
-    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Foreach__1_System_Action___0__
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: (
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: )
-- uid: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-  commentId: M:Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
-  name: Null(EngineObject)
-  nameWithType: EngineObjectExtensions.Null(EngineObject)
-  fullName: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-  spec.csharp:
-  - uid: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-    name: "Null"
-    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
   - name: (
   - uid: Prowl.Runtime.EngineObject
     name: EngineObject
     href: Prowl.Runtime.EngineObject.html
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.EngineObjectExtensions.Null(Prowl.Runtime.EngineObject)
-    name: "Null"
-    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_Null_Prowl_Runtime_EngineObject_
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
   - name: (
   - uid: Prowl.Runtime.EngineObject
     name: EngineObject
@@ -2354,6 +3647,30 @@ references:
   name: EngineObjectExtensions
   nameWithType: EngineObjectExtensions
   fullName: Prowl.Runtime.EngineObjectExtensions
+- uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  name: IsValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
 - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
   commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
   isExternal: true
@@ -2391,63 +3708,140 @@ references:
   name: RuntimeUtils
   nameWithType: RuntimeUtils
   fullName: Prowl.Runtime.RuntimeUtils
-- uid: Prowl.Runtime.AssetRef{Prowl.Runtime.AudioClip}
-  commentId: T:Prowl.Runtime.AssetRef{Prowl.Runtime.AudioClip}
-  parent: Prowl.Runtime
-  definition: Prowl.Runtime.AssetRef`1
-  href: Prowl.Runtime.AssetRef-1.html
-  name: AssetRef<AudioClip>
-  nameWithType: AssetRef<AudioClip>
-  fullName: Prowl.Runtime.AssetRef<Prowl.Runtime.AudioClip>
-  nameWithType.vb: AssetRef(Of AudioClip)
-  fullName.vb: Prowl.Runtime.AssetRef(Of Prowl.Runtime.AudioClip)
-  name.vb: AssetRef(Of AudioClip)
+- uid: Prowl.Runtime.AudioSource.OutputGroup*
+  commentId: Overload:Prowl.Runtime.AudioSource.OutputGroup
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_OutputGroup
+  name: OutputGroup
+  nameWithType: AudioSource.OutputGroup
+  fullName: Prowl.Runtime.AudioSource.OutputGroup
+- uid: Prowl.Runtime.Audio.AudioMixerGroup
+  commentId: T:Prowl.Runtime.Audio.AudioMixerGroup
+  parent: Prowl.Runtime.Audio
+  href: Prowl.Runtime.Audio.AudioMixerGroup.html
+  name: AudioMixerGroup
+  nameWithType: AudioMixerGroup
+  fullName: Prowl.Runtime.Audio.AudioMixerGroup
+- uid: Prowl.Runtime.Audio
+  commentId: N:Prowl.Runtime.Audio
+  name: Prowl.Runtime.Audio
+  nameWithType: Prowl.Runtime.Audio
+  fullName: Prowl.Runtime.Audio
   spec.csharp:
-  - uid: Prowl.Runtime.AssetRef`1
-    name: AssetRef
-    href: Prowl.Runtime.AssetRef-1.html
-  - name: <
-  - uid: Prowl.Runtime.AudioClip
-    name: AudioClip
-    href: Prowl.Runtime.AudioClip.html
-  - name: '>'
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Audio
+    name: Audio
   spec.vb:
-  - uid: Prowl.Runtime.AssetRef`1
-    name: AssetRef
-    href: Prowl.Runtime.AssetRef-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: Prowl.Runtime.AudioClip
-    name: AudioClip
-    href: Prowl.Runtime.AudioClip.html
-  - name: )
-- uid: Prowl.Runtime.AssetRef`1
-  commentId: T:Prowl.Runtime.AssetRef`1
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Audio
+    name: Audio
+- uid: Prowl.Runtime.AudioSource.MaxOneShotVoices*
+  commentId: Overload:Prowl.Runtime.AudioSource.MaxOneShotVoices
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_MaxOneShotVoices
+  name: MaxOneShotVoices
+  nameWithType: AudioSource.MaxOneShotVoices
+  fullName: Prowl.Runtime.AudioSource.MaxOneShotVoices
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Runtime.AudioEndEvent
+  commentId: T:Prowl.Runtime.AudioEndEvent
   parent: Prowl.Runtime
-  href: Prowl.Runtime.AssetRef-1.html
-  name: AssetRef<T>
-  nameWithType: AssetRef<T>
-  fullName: Prowl.Runtime.AssetRef<T>
-  nameWithType.vb: AssetRef(Of T)
-  fullName.vb: Prowl.Runtime.AssetRef(Of T)
-  name.vb: AssetRef(Of T)
+  href: Prowl.Runtime.AudioEndEvent.html
+  name: AudioEndEvent
+  nameWithType: AudioEndEvent
+  fullName: Prowl.Runtime.AudioEndEvent
+- uid: Prowl.Runtime.AudioReadEvent
+  commentId: T:Prowl.Runtime.AudioReadEvent
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.AudioReadEvent.html
+  name: AudioReadEvent
+  nameWithType: AudioReadEvent
+  fullName: Prowl.Runtime.AudioReadEvent
+- uid: Prowl.Runtime.AudioProcessEvent
+  commentId: T:Prowl.Runtime.AudioProcessEvent
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.AudioProcessEvent.html
+  name: AudioProcessEvent
+  nameWithType: AudioProcessEvent
+  fullName: Prowl.Runtime.AudioProcessEvent
+- uid: Prowl.Runtime.AudioSource.Play
+  commentId: M:Prowl.Runtime.AudioSource.Play
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Play
+  name: Play()
+  nameWithType: AudioSource.Play()
+  fullName: Prowl.Runtime.AudioSource.Play()
   spec.csharp:
-  - uid: Prowl.Runtime.AssetRef`1
-    name: AssetRef
-    href: Prowl.Runtime.AssetRef-1.html
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: Prowl.Runtime.AssetRef`1
-    name: AssetRef
-    href: Prowl.Runtime.AssetRef-1.html
+  - uid: Prowl.Runtime.AudioSource.Play
+    name: Play
+    href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Play
   - name: (
-  - name: Of
-  - name: " "
-  - name: T
   - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.AudioSource.Play
+    name: Play
+    href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Play
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.AudioSource.Clip*
+  commentId: Overload:Prowl.Runtime.AudioSource.Clip
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Clip
+  name: Clip
+  nameWithType: AudioSource.Clip
+  fullName: Prowl.Runtime.AudioSource.Clip
+- uid: Prowl.Runtime.Resources.AudioClip
+  commentId: T:Prowl.Runtime.Resources.AudioClip
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.AudioClip.html
+  name: AudioClip
+  nameWithType: AudioClip
+  fullName: Prowl.Runtime.Resources.AudioClip
+- uid: Prowl.Runtime.Resources
+  commentId: N:Prowl.Runtime.Resources
+  name: Prowl.Runtime.Resources
+  nameWithType: Prowl.Runtime.Resources
+  fullName: Prowl.Runtime.Resources
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+- uid: Prowl.Runtime.AudioSource.PlayOnStart*
+  commentId: Overload:Prowl.Runtime.AudioSource.PlayOnStart
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_PlayOnStart
+  name: PlayOnStart
+  nameWithType: AudioSource.PlayOnStart
+  fullName: Prowl.Runtime.AudioSource.PlayOnStart
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -2459,6 +3853,12 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
+- uid: Prowl.Runtime.AudioSource.Loop*
+  commentId: Overload:Prowl.Runtime.AudioSource.Loop
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Loop
+  name: Loop
+  nameWithType: AudioSource.Loop
+  fullName: Prowl.Runtime.AudioSource.Loop
 - uid: System.Single
   commentId: T:System.Single
   parent: System
@@ -2470,43 +3870,194 @@ references:
   nameWithType.vb: Single
   fullName.vb: Single
   name.vb: Single
-- uid: Prowl.Runtime.AudioSource.Play*
-  commentId: Overload:Prowl.Runtime.AudioSource.Play
-  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Play
-  name: Play
-  nameWithType: AudioSource.Play
-  fullName: Prowl.Runtime.AudioSource.Play
-- uid: Prowl.Runtime.AudioSource.Stop*
-  commentId: Overload:Prowl.Runtime.AudioSource.Stop
-  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Stop
-  name: Stop
-  nameWithType: AudioSource.Stop
-  fullName: Prowl.Runtime.AudioSource.Stop
-- uid: Prowl.Runtime.MonoBehaviour.Awake
-  commentId: M:Prowl.Runtime.MonoBehaviour.Awake
+- uid: Prowl.Runtime.AudioSource.Volume*
+  commentId: Overload:Prowl.Runtime.AudioSource.Volume
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Volume
+  name: Volume
+  nameWithType: AudioSource.Volume
+  fullName: Prowl.Runtime.AudioSource.Volume
+- uid: Prowl.Runtime.AudioSource.MinPitch
+  commentId: F:Prowl.Runtime.AudioSource.MinPitch
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_MinPitch
+  name: MinPitch
+  nameWithType: AudioSource.MinPitch
+  fullName: Prowl.Runtime.AudioSource.MinPitch
+- uid: Prowl.Runtime.AudioSource.Pitch*
+  commentId: Overload:Prowl.Runtime.AudioSource.Pitch
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Pitch
+  name: Pitch
+  nameWithType: AudioSource.Pitch
+  fullName: Prowl.Runtime.AudioSource.Pitch
+- uid: Prowl.Runtime.AudioSource.Pan*
+  commentId: Overload:Prowl.Runtime.AudioSource.Pan
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Pan
+  name: Pan
+  nameWithType: AudioSource.Pan
+  fullName: Prowl.Runtime.AudioSource.Pan
+- uid: Prowl.Runtime.AudioSource.PanMode*
+  commentId: Overload:Prowl.Runtime.AudioSource.PanMode
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_PanMode
+  name: PanMode
+  nameWithType: AudioSource.PanMode
+  fullName: Prowl.Runtime.AudioSource.PanMode
+- uid: Prowl.Runtime.Audio.PanMode
+  commentId: T:Prowl.Runtime.Audio.PanMode
+  parent: Prowl.Runtime.Audio
+  href: Prowl.Runtime.Audio.PanMode.html
+  name: PanMode
+  nameWithType: PanMode
+  fullName: Prowl.Runtime.Audio.PanMode
+- uid: Prowl.Runtime.AudioSource.Spatial*
+  commentId: Overload:Prowl.Runtime.AudioSource.Spatial
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Spatial
+  name: Spatial
+  nameWithType: AudioSource.Spatial
+  fullName: Prowl.Runtime.AudioSource.Spatial
+- uid: Prowl.Runtime.AudioSource.DopplerFactor*
+  commentId: Overload:Prowl.Runtime.AudioSource.DopplerFactor
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_DopplerFactor
+  name: DopplerFactor
+  nameWithType: AudioSource.DopplerFactor
+  fullName: Prowl.Runtime.AudioSource.DopplerFactor
+- uid: Prowl.Runtime.AudioSource.MaxDistance
+  commentId: P:Prowl.Runtime.AudioSource.MaxDistance
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_MaxDistance
+  name: MaxDistance
+  nameWithType: AudioSource.MaxDistance
+  fullName: Prowl.Runtime.AudioSource.MaxDistance
+- uid: Prowl.Runtime.AudioSource.MinDistance*
+  commentId: Overload:Prowl.Runtime.AudioSource.MinDistance
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_MinDistance
+  name: MinDistance
+  nameWithType: AudioSource.MinDistance
+  fullName: Prowl.Runtime.AudioSource.MinDistance
+- uid: Prowl.Runtime.AudioSource.MinDistance
+  commentId: P:Prowl.Runtime.AudioSource.MinDistance
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_MinDistance
+  name: MinDistance
+  nameWithType: AudioSource.MinDistance
+  fullName: Prowl.Runtime.AudioSource.MinDistance
+- uid: Prowl.Runtime.AudioSource.MaxDistance*
+  commentId: Overload:Prowl.Runtime.AudioSource.MaxDistance
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_MaxDistance
+  name: MaxDistance
+  nameWithType: AudioSource.MaxDistance
+  fullName: Prowl.Runtime.AudioSource.MaxDistance
+- uid: Prowl.Runtime.AudioSource.AttenuationModel*
+  commentId: Overload:Prowl.Runtime.AudioSource.AttenuationModel
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_AttenuationModel
+  name: AttenuationModel
+  nameWithType: AudioSource.AttenuationModel
+  fullName: Prowl.Runtime.AudioSource.AttenuationModel
+- uid: Prowl.Runtime.Audio.AttenuationModel
+  commentId: T:Prowl.Runtime.Audio.AttenuationModel
+  parent: Prowl.Runtime.Audio
+  href: Prowl.Runtime.Audio.AttenuationModel.html
+  name: AttenuationModel
+  nameWithType: AttenuationModel
+  fullName: Prowl.Runtime.Audio.AttenuationModel
+- uid: Prowl.Runtime.AudioSource.IsPlaying*
+  commentId: Overload:Prowl.Runtime.AudioSource.IsPlaying
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_IsPlaying
+  name: IsPlaying
+  nameWithType: AudioSource.IsPlaying
+  fullName: Prowl.Runtime.AudioSource.IsPlaying
+- uid: Prowl.Runtime.AudioSource.Length
+  commentId: P:Prowl.Runtime.AudioSource.Length
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Length
+  name: Length
+  nameWithType: AudioSource.Length
+  fullName: Prowl.Runtime.AudioSource.Length
+- uid: Prowl.Runtime.AudioSource.NormalizedTime
+  commentId: P:Prowl.Runtime.AudioSource.NormalizedTime
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_NormalizedTime
+  name: NormalizedTime
+  nameWithType: AudioSource.NormalizedTime
+  fullName: Prowl.Runtime.AudioSource.NormalizedTime
+- uid: Prowl.Runtime.AudioSource.PlaybackTime
+  commentId: P:Prowl.Runtime.AudioSource.PlaybackTime
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_PlaybackTime
+  name: PlaybackTime
+  nameWithType: AudioSource.PlaybackTime
+  fullName: Prowl.Runtime.AudioSource.PlaybackTime
+- uid: Prowl.Runtime.AudioSource.Cursor*
+  commentId: Overload:Prowl.Runtime.AudioSource.Cursor
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Cursor
+  name: Cursor
+  nameWithType: AudioSource.Cursor
+  fullName: Prowl.Runtime.AudioSource.Cursor
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: Prowl.Runtime.AudioSource.Cursor
+  commentId: P:Prowl.Runtime.AudioSource.Cursor
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Cursor
+  name: Cursor
+  nameWithType: AudioSource.Cursor
+  fullName: Prowl.Runtime.AudioSource.Cursor
+- uid: Prowl.Runtime.AudioSource.Length*
+  commentId: Overload:Prowl.Runtime.AudioSource.Length
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Length
+  name: Length
+  nameWithType: AudioSource.Length
+  fullName: Prowl.Runtime.AudioSource.Length
+- uid: Prowl.Runtime.Time
+  commentId: T:Prowl.Runtime.Time
+  href: Prowl.Runtime.Time.html
+  name: Time
+  nameWithType: Time
+  fullName: Prowl.Runtime.Time
+- uid: Prowl.Runtime.AudioSource.PlaybackTime*
+  commentId: Overload:Prowl.Runtime.AudioSource.PlaybackTime
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_PlaybackTime
+  name: PlaybackTime
+  nameWithType: AudioSource.PlaybackTime
+  fullName: Prowl.Runtime.AudioSource.PlaybackTime
+- uid: Prowl.Runtime.AudioSource.Duration*
+  commentId: Overload:Prowl.Runtime.AudioSource.Duration
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Duration
+  name: Duration
+  nameWithType: AudioSource.Duration
+  fullName: Prowl.Runtime.AudioSource.Duration
+- uid: Prowl.Runtime.AudioSource.NormalizedTime*
+  commentId: Overload:Prowl.Runtime.AudioSource.NormalizedTime
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_NormalizedTime
+  name: NormalizedTime
+  nameWithType: AudioSource.NormalizedTime
+  fullName: Prowl.Runtime.AudioSource.NormalizedTime
+- uid: Prowl.Runtime.MonoBehaviour.OnEnable
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnEnable
   parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Awake
-  name: Awake()
-  nameWithType: MonoBehaviour.Awake()
-  fullName: Prowl.Runtime.MonoBehaviour.Awake()
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnEnable
+  name: OnEnable()
+  nameWithType: MonoBehaviour.OnEnable()
+  fullName: Prowl.Runtime.MonoBehaviour.OnEnable()
   spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.Awake
-    name: Awake
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Awake
+  - uid: Prowl.Runtime.MonoBehaviour.OnEnable
+    name: OnEnable
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnEnable
   - name: (
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.Awake
-    name: Awake
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Awake
+  - uid: Prowl.Runtime.MonoBehaviour.OnEnable
+    name: OnEnable
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnEnable
   - name: (
   - name: )
-- uid: Prowl.Runtime.AudioSource.Awake*
-  commentId: Overload:Prowl.Runtime.AudioSource.Awake
-  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Awake
-  name: Awake
-  nameWithType: AudioSource.Awake
-  fullName: Prowl.Runtime.AudioSource.Awake
+- uid: Prowl.Runtime.AudioSource.OnEnable*
+  commentId: Overload:Prowl.Runtime.AudioSource.OnEnable
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_OnEnable
+  name: OnEnable
+  nameWithType: AudioSource.OnEnable
+  fullName: Prowl.Runtime.AudioSource.OnEnable
 - uid: Prowl.Runtime.MonoBehaviour.Update
   commentId: M:Prowl.Runtime.MonoBehaviour.Update
   parent: Prowl.Runtime.MonoBehaviour
@@ -2532,6 +4083,56 @@ references:
   name: Update
   nameWithType: AudioSource.Update
   fullName: Prowl.Runtime.AudioSource.Update
+- uid: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
+  commentId: M:Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmosSelected
+  name: DrawGizmosSelected()
+  nameWithType: MonoBehaviour.DrawGizmosSelected()
+  fullName: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
+    name: DrawGizmosSelected
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmosSelected
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
+    name: DrawGizmosSelected
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmosSelected
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.AudioSource.DrawGizmosSelected*
+  commentId: Overload:Prowl.Runtime.AudioSource.DrawGizmosSelected
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_DrawGizmosSelected
+  name: DrawGizmosSelected
+  nameWithType: AudioSource.DrawGizmosSelected
+  fullName: Prowl.Runtime.AudioSource.DrawGizmosSelected
+- uid: Prowl.Runtime.EngineObject.OnValidate
+  commentId: M:Prowl.Runtime.EngineObject.OnValidate
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnValidate
+  name: OnValidate()
+  nameWithType: EngineObject.OnValidate()
+  fullName: Prowl.Runtime.EngineObject.OnValidate()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.OnValidate
+    name: OnValidate
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnValidate
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.OnValidate
+    name: OnValidate
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnValidate
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.AudioSource.OnValidate*
+  commentId: Overload:Prowl.Runtime.AudioSource.OnValidate
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_OnValidate
+  name: OnValidate
+  nameWithType: AudioSource.OnValidate
+  fullName: Prowl.Runtime.AudioSource.OnValidate
 - uid: Prowl.Runtime.MonoBehaviour.OnDisable
   commentId: M:Prowl.Runtime.MonoBehaviour.OnDisable
   parent: Prowl.Runtime.MonoBehaviour
@@ -2557,28 +4158,397 @@ references:
   name: OnDisable
   nameWithType: AudioSource.OnDisable
   fullName: Prowl.Runtime.AudioSource.OnDisable
-- uid: Prowl.Runtime.MonoBehaviour.OnDestroy
-  commentId: M:Prowl.Runtime.MonoBehaviour.OnDestroy
+- uid: Prowl.Runtime.MonoBehaviour.OnDispose
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnDispose
   parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDestroy
-  name: OnDestroy()
-  nameWithType: MonoBehaviour.OnDestroy()
-  fullName: Prowl.Runtime.MonoBehaviour.OnDestroy()
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDispose
+  name: OnDispose()
+  nameWithType: MonoBehaviour.OnDispose()
+  fullName: Prowl.Runtime.MonoBehaviour.OnDispose()
   spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.OnDestroy
-    name: OnDestroy
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDestroy
+  - uid: Prowl.Runtime.MonoBehaviour.OnDispose
+    name: OnDispose
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDispose
   - name: (
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.OnDestroy
-    name: OnDestroy
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDestroy
+  - uid: Prowl.Runtime.MonoBehaviour.OnDispose
+    name: OnDispose
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDispose
   - name: (
   - name: )
-- uid: Prowl.Runtime.AudioSource.OnDestroy*
-  commentId: Overload:Prowl.Runtime.AudioSource.OnDestroy
-  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_OnDestroy
-  name: OnDestroy
-  nameWithType: AudioSource.OnDestroy
-  fullName: Prowl.Runtime.AudioSource.OnDestroy
+- uid: Prowl.Runtime.AudioSource.OnDispose*
+  commentId: Overload:Prowl.Runtime.AudioSource.OnDispose
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_OnDispose
+  name: OnDispose
+  nameWithType: AudioSource.OnDispose
+  fullName: Prowl.Runtime.AudioSource.OnDispose
+- uid: Prowl.Runtime.AudioSource.Play*
+  commentId: Overload:Prowl.Runtime.AudioSource.Play
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Play
+  name: Play
+  nameWithType: AudioSource.Play
+  fullName: Prowl.Runtime.AudioSource.Play
+- uid: Prowl.Runtime.AudioSource.PlayProcedural*
+  commentId: Overload:Prowl.Runtime.AudioSource.PlayProcedural
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_PlayProcedural
+  name: PlayProcedural
+  nameWithType: AudioSource.PlayProcedural
+  fullName: Prowl.Runtime.AudioSource.PlayProcedural
+- uid: Prowl.Runtime.AudioSource.Pause
+  commentId: M:Prowl.Runtime.AudioSource.Pause
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Pause
+  name: Pause()
+  nameWithType: AudioSource.Pause()
+  fullName: Prowl.Runtime.AudioSource.Pause()
+  spec.csharp:
+  - uid: Prowl.Runtime.AudioSource.Pause
+    name: Pause
+    href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Pause
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.AudioSource.Pause
+    name: Pause
+    href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Pause
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.AudioSource.Stop*
+  commentId: Overload:Prowl.Runtime.AudioSource.Stop
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Stop
+  name: Stop
+  nameWithType: AudioSource.Stop
+  fullName: Prowl.Runtime.AudioSource.Stop
+- uid: Prowl.Runtime.AudioSource.Resume
+  commentId: M:Prowl.Runtime.AudioSource.Resume
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Resume
+  name: Resume()
+  nameWithType: AudioSource.Resume()
+  fullName: Prowl.Runtime.AudioSource.Resume()
+  spec.csharp:
+  - uid: Prowl.Runtime.AudioSource.Resume
+    name: Resume
+    href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Resume
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.AudioSource.Resume
+    name: Resume
+    href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Resume
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.AudioSource.Pause*
+  commentId: Overload:Prowl.Runtime.AudioSource.Pause
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Pause
+  name: Pause
+  nameWithType: AudioSource.Pause
+  fullName: Prowl.Runtime.AudioSource.Pause
+- uid: Prowl.Runtime.AudioSource.Resume*
+  commentId: Overload:Prowl.Runtime.AudioSource.Resume
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Resume
+  name: Resume
+  nameWithType: AudioSource.Resume
+  fullName: Prowl.Runtime.AudioSource.Resume
+- uid: Prowl.Runtime.AudioSource.IsPaused*
+  commentId: Overload:Prowl.Runtime.AudioSource.IsPaused
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_IsPaused
+  name: IsPaused
+  nameWithType: AudioSource.IsPaused
+  fullName: Prowl.Runtime.AudioSource.IsPaused
+- uid: Prowl.Runtime.AudioSource.MaxOneShotVoices
+  commentId: P:Prowl.Runtime.AudioSource.MaxOneShotVoices
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_MaxOneShotVoices
+  name: MaxOneShotVoices
+  nameWithType: AudioSource.MaxOneShotVoices
+  fullName: Prowl.Runtime.AudioSource.MaxOneShotVoices
+- uid: Prowl.Runtime.AudioSource.PlayOneShot*
+  commentId: Overload:Prowl.Runtime.AudioSource.PlayOneShot
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_PlayOneShot_Prowl_Runtime_Resources_AudioClip_System_Single_
+  name: PlayOneShot
+  nameWithType: AudioSource.PlayOneShot
+  fullName: Prowl.Runtime.AudioSource.PlayOneShot
+- uid: Prowl.Runtime.AudioSource.StopOneShots*
+  commentId: Overload:Prowl.Runtime.AudioSource.StopOneShots
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_StopOneShots
+  name: StopOneShots
+  nameWithType: AudioSource.StopOneShots
+  fullName: Prowl.Runtime.AudioSource.StopOneShots
+- uid: Prowl.Runtime.AudioSource.ActiveOneShotCount*
+  commentId: Overload:Prowl.Runtime.AudioSource.ActiveOneShotCount
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_ActiveOneShotCount
+  name: ActiveOneShotCount
+  nameWithType: AudioSource.ActiveOneShotCount
+  fullName: Prowl.Runtime.AudioSource.ActiveOneShotCount
+- uid: Prowl.Runtime.AudioSource.PlayClipAtPoint*
+  commentId: Overload:Prowl.Runtime.AudioSource.PlayClipAtPoint
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_PlayClipAtPoint_Prowl_Runtime_Resources_AudioClip_Prowl_Vector_Float3_System_Single_
+  name: PlayClipAtPoint
+  nameWithType: AudioSource.PlayClipAtPoint
+  fullName: Prowl.Runtime.AudioSource.PlayClipAtPoint
+- uid: Prowl.Vector.Float3
+  commentId: T:Prowl.Vector.Float3
+  parent: Prowl.Vector
+  isExternal: true
+  name: Float3
+  nameWithType: Float3
+  fullName: Prowl.Vector.Float3
+- uid: Prowl.Runtime.AudioSource
+  commentId: T:Prowl.Runtime.AudioSource
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.AudioSource.html
+  name: AudioSource
+  nameWithType: AudioSource
+  fullName: Prowl.Runtime.AudioSource
+- uid: Prowl.Vector
+  commentId: N:Prowl.Vector
+  name: Prowl.Vector
+  nameWithType: Prowl.Vector
+  fullName: Prowl.Vector
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+- uid: Prowl.Runtime.AudioSource.Effects*
+  commentId: Overload:Prowl.Runtime.AudioSource.Effects
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Effects
+  name: Effects
+  nameWithType: AudioSource.Effects
+  fullName: Prowl.Runtime.AudioSource.Effects
+- uid: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Audio.Effects.AudioEffect}
+  commentId: T:System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Audio.Effects.AudioEffect}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<AudioEffect>
+  nameWithType: IReadOnlyList<AudioEffect>
+  fullName: System.Collections.Generic.IReadOnlyList<Prowl.Runtime.Audio.Effects.AudioEffect>
+  nameWithType.vb: IReadOnlyList(Of AudioEffect)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.Audio.Effects.AudioEffect)
+  name.vb: IReadOnlyList(Of AudioEffect)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Runtime.Audio.Effects.AudioEffect
+    name: AudioEffect
+    href: Prowl.Runtime.Audio.Effects.AudioEffect.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Audio.Effects.AudioEffect
+    name: AudioEffect
+    href: Prowl.Runtime.Audio.Effects.AudioEffect.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Prowl.Runtime.AudioSource.AddEffect*
+  commentId: Overload:Prowl.Runtime.AudioSource.AddEffect
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_AddEffect_Prowl_Runtime_Audio_Effects_AudioEffect_
+  name: AddEffect
+  nameWithType: AudioSource.AddEffect
+  fullName: Prowl.Runtime.AudioSource.AddEffect
+- uid: Prowl.Runtime.Audio.Effects.AudioEffect
+  commentId: T:Prowl.Runtime.Audio.Effects.AudioEffect
+  parent: Prowl.Runtime.Audio.Effects
+  href: Prowl.Runtime.Audio.Effects.AudioEffect.html
+  name: AudioEffect
+  nameWithType: AudioEffect
+  fullName: Prowl.Runtime.Audio.Effects.AudioEffect
+- uid: Prowl.Runtime.Audio.Effects
+  commentId: N:Prowl.Runtime.Audio.Effects
+  name: Prowl.Runtime.Audio.Effects
+  nameWithType: Prowl.Runtime.Audio.Effects
+  fullName: Prowl.Runtime.Audio.Effects
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Audio
+    name: Audio
+  - name: .
+  - uid: Prowl.Runtime.Audio.Effects
+    name: Effects
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Audio
+    name: Audio
+  - name: .
+  - uid: Prowl.Runtime.Audio.Effects
+    name: Effects
+- uid: Prowl.Runtime.AudioSource.RemoveEffect*
+  commentId: Overload:Prowl.Runtime.AudioSource.RemoveEffect
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_RemoveEffect_Prowl_Runtime_Audio_Effects_AudioEffect_
+  name: RemoveEffect
+  nameWithType: AudioSource.RemoveEffect
+  fullName: Prowl.Runtime.AudioSource.RemoveEffect
+- uid: Prowl.Runtime.AudioSource.ClearEffects*
+  commentId: Overload:Prowl.Runtime.AudioSource.ClearEffects
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_ClearEffects
+  name: ClearEffects
+  nameWithType: AudioSource.ClearEffects
+  fullName: Prowl.Runtime.AudioSource.ClearEffects
+- uid: Prowl.Runtime.AudioSource.Effects
+  commentId: P:Prowl.Runtime.AudioSource.Effects
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_Effects
+  name: Effects
+  nameWithType: AudioSource.Effects
+  fullName: Prowl.Runtime.AudioSource.Effects
+- uid: Prowl.Runtime.AudioSource.RefreshEffects*
+  commentId: Overload:Prowl.Runtime.AudioSource.RefreshEffects
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_RefreshEffects
+  name: RefreshEffects
+  nameWithType: AudioSource.RefreshEffects
+  fullName: Prowl.Runtime.AudioSource.RefreshEffects
+- uid: Prowl.Runtime.AudioSource.EffectCount*
+  commentId: Overload:Prowl.Runtime.AudioSource.EffectCount
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_EffectCount
+  name: EffectCount
+  nameWithType: AudioSource.EffectCount
+  fullName: Prowl.Runtime.AudioSource.EffectCount
+- uid: Prowl.Runtime.AudioSource.GetCalculatedVelocity*
+  commentId: Overload:Prowl.Runtime.AudioSource.GetCalculatedVelocity
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_GetCalculatedVelocity
+  name: GetCalculatedVelocity
+  nameWithType: AudioSource.GetCalculatedVelocity
+  fullName: Prowl.Runtime.AudioSource.GetCalculatedVelocity
+- uid: Prowl.Runtime.AudioSource.GetOutputBuffer*
+  commentId: Overload:Prowl.Runtime.AudioSource.GetOutputBuffer
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_GetOutputBuffer_System_Single____System_Int32__
+  name: GetOutputBuffer
+  nameWithType: AudioSource.GetOutputBuffer
+  fullName: Prowl.Runtime.AudioSource.GetOutputBuffer
+- uid: System.Single[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float[]
+  nameWithType: float[]
+  fullName: float[]
+  nameWithType.vb: Single()
+  fullName.vb: Single()
+  name.vb: Single()
+  spec.csharp:
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnAfterDeserialize
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnAfterDeserialize
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnAfterDeserialize
+  name: OnAfterDeserialize()
+  nameWithType: MonoBehaviour.OnAfterDeserialize()
+  fullName: Prowl.Runtime.MonoBehaviour.OnAfterDeserialize()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnAfterDeserialize
+    name: OnAfterDeserialize
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnAfterDeserialize
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnAfterDeserialize
+    name: OnAfterDeserialize
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnAfterDeserialize
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.AudioSource.OnAfterDeserialize*
+  commentId: Overload:Prowl.Runtime.AudioSource.OnAfterDeserialize
+  href: Prowl.Runtime.AudioSource.html#Prowl_Runtime_AudioSource_OnAfterDeserialize
+  name: OnAfterDeserialize
+  nameWithType: AudioSource.OnAfterDeserialize
+  fullName: Prowl.Runtime.AudioSource.OnAfterDeserialize

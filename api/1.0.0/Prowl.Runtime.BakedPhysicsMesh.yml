@@ -1,0 +1,738 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.BakedPhysicsMesh
+  commentId: T:Prowl.Runtime.BakedPhysicsMesh
+  id: BakedPhysicsMesh
+  parent: Prowl.Runtime
+  children:
+  - Prowl.Runtime.BakedPhysicsMesh.Build(Prowl.Runtime.Resources.Mesh)
+  - Prowl.Runtime.BakedPhysicsMesh.TriangleMesh
+  - Prowl.Runtime.BakedPhysicsMesh.Triangles
+  - Prowl.Runtime.BakedPhysicsMesh.Version
+  langs:
+  - csharp
+  - vb
+  name: BakedPhysicsMesh
+  nameWithType: BakedPhysicsMesh
+  fullName: Prowl.Runtime.BakedPhysicsMesh
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime/Physics/BakedPhysicsMesh.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: BakedPhysicsMesh
+    path: ../Prowl/Prowl.Runtime/Physics/BakedPhysicsMesh.cs
+    startLine: 21
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    The CPU-baked physics representation of a <xref href="Prowl.Runtime.Resources.Mesh" data-throw-if-not-resolved="false"></xref>: the triangle soup (mesh-local space)
+
+    plus a Jitter <xref href="Jitter2.Collision.Shapes.TriangleMesh" data-throw-if-not-resolved="false"></xref> (the concave acceleration
+
+    structure). Built once per mesh via <xref href="Prowl.Runtime.PhysicsWorld.BakeMesh(Prowl.Runtime.Resources.Mesh)" data-throw-if-not-resolved="false"></xref> and shared by every collider
+
+    that uses the mesh, so the (potentially expensive) bake happens a single time instead of per
+
+    MeshCollider instance.
+  example: []
+  syntax:
+    content: public sealed class BakedPhysicsMesh
+    content.vb: Public NotInheritable Class BakedPhysicsMesh
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.BakedPhysicsMesh.Triangles
+  commentId: P:Prowl.Runtime.BakedPhysicsMesh.Triangles
+  id: Triangles
+  parent: Prowl.Runtime.BakedPhysicsMesh
+  langs:
+  - csharp
+  - vb
+  name: Triangles
+  nameWithType: BakedPhysicsMesh.Triangles
+  fullName: Prowl.Runtime.BakedPhysicsMesh.Triangles
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Physics/BakedPhysicsMesh.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Triangles
+    path: ../Prowl/Prowl.Runtime/Physics/BakedPhysicsMesh.cs
+    startLine: 24
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The triangle soup in mesh-local space. Used to build convex hulls.
+  example: []
+  syntax:
+    content: public IReadOnlyList<JTriangle> Triangles { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{Jitter2.LinearMath.JTriangle}
+    content.vb: Public ReadOnly Property Triangles As IReadOnlyList(Of JTriangle)
+  overload: Prowl.Runtime.BakedPhysicsMesh.Triangles*
+- uid: Prowl.Runtime.BakedPhysicsMesh.TriangleMesh
+  commentId: P:Prowl.Runtime.BakedPhysicsMesh.TriangleMesh
+  id: TriangleMesh
+  parent: Prowl.Runtime.BakedPhysicsMesh
+  langs:
+  - csharp
+  - vb
+  name: TriangleMesh
+  nameWithType: BakedPhysicsMesh.TriangleMesh
+  fullName: Prowl.Runtime.BakedPhysicsMesh.TriangleMesh
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Physics/BakedPhysicsMesh.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TriangleMesh
+    path: ../Prowl/Prowl.Runtime/Physics/BakedPhysicsMesh.cs
+    startLine: 31
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    The concave triangle mesh, shareable across many <xref href="Jitter2.Collision.Shapes.TriangleShape" data-throw-if-not-resolved="false"></xref>s. It holds only the
+
+    non-degenerate triangles, so it can contain fewer than <xref href="Prowl.Runtime.BakedPhysicsMesh.Triangles" data-throw-if-not-resolved="false"></xref>; index into it by
+
+    its own <code>Indices.Length</code>, never by the soup count.
+  example: []
+  syntax:
+    content: public TriangleMesh TriangleMesh { get; }
+    parameters: []
+    return:
+      type: Jitter2.Collision.Shapes.TriangleMesh
+    content.vb: Public ReadOnly Property TriangleMesh As TriangleMesh
+  overload: Prowl.Runtime.BakedPhysicsMesh.TriangleMesh*
+- uid: Prowl.Runtime.BakedPhysicsMesh.Version
+  commentId: P:Prowl.Runtime.BakedPhysicsMesh.Version
+  id: Version
+  parent: Prowl.Runtime.BakedPhysicsMesh
+  langs:
+  - csharp
+  - vb
+  name: Version
+  nameWithType: BakedPhysicsMesh.Version
+  fullName: Prowl.Runtime.BakedPhysicsMesh.Version
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Physics/BakedPhysicsMesh.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Version
+    path: ../Prowl/Prowl.Runtime/Physics/BakedPhysicsMesh.cs
+    startLine: 34
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The <xref href="Prowl.Runtime.Resources.Mesh.Version" data-throw-if-not-resolved="false"></xref> this was baked from, used to detect staleness.
+  example: []
+  syntax:
+    content: public uint Version { get; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public ReadOnly Property Version As UInteger
+  overload: Prowl.Runtime.BakedPhysicsMesh.Version*
+- uid: Prowl.Runtime.BakedPhysicsMesh.Build(Prowl.Runtime.Resources.Mesh)
+  commentId: M:Prowl.Runtime.BakedPhysicsMesh.Build(Prowl.Runtime.Resources.Mesh)
+  id: Build(Prowl.Runtime.Resources.Mesh)
+  parent: Prowl.Runtime.BakedPhysicsMesh
+  langs:
+  - csharp
+  - vb
+  name: Build(Mesh)
+  nameWithType: BakedPhysicsMesh.Build(Mesh)
+  fullName: Prowl.Runtime.BakedPhysicsMesh.Build(Prowl.Runtime.Resources.Mesh)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Physics/BakedPhysicsMesh.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Build
+    path: ../Prowl/Prowl.Runtime/Physics/BakedPhysicsMesh.cs
+    startLine: 48
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Bake a mesh into its physics representation. This is pure CPU work (it touches no GPU or
+
+    main-thread-only state), so it is safe to call from any thread. Prefer
+
+    <xref href="Prowl.Runtime.PhysicsWorld.BakeMesh(Prowl.Runtime.Resources.Mesh)" data-throw-if-not-resolved="false"></xref>, which caches and shares the result per mesh.
+  example: []
+  syntax:
+    content: public static BakedPhysicsMesh Build(Mesh mesh)
+    parameters:
+    - id: mesh
+      type: Prowl.Runtime.Resources.Mesh
+    return:
+      type: Prowl.Runtime.BakedPhysicsMesh
+    content.vb: Public Shared Function Build(mesh As Mesh) As BakedPhysicsMesh
+  overload: Prowl.Runtime.BakedPhysicsMesh.Build*
+references:
+- uid: Prowl.Runtime.Resources.Mesh
+  commentId: T:Prowl.Runtime.Resources.Mesh
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.Mesh.html
+  name: Mesh
+  nameWithType: Mesh
+  fullName: Prowl.Runtime.Resources.Mesh
+- uid: Jitter2.Collision.Shapes.TriangleMesh
+  commentId: T:Jitter2.Collision.Shapes.TriangleMesh
+  parent: Jitter2.Collision.Shapes
+  isExternal: true
+  name: TriangleMesh
+  nameWithType: TriangleMesh
+  fullName: Jitter2.Collision.Shapes.TriangleMesh
+- uid: Prowl.Runtime.PhysicsWorld.BakeMesh(Prowl.Runtime.Resources.Mesh)
+  commentId: M:Prowl.Runtime.PhysicsWorld.BakeMesh(Prowl.Runtime.Resources.Mesh)
+  href: Prowl.Runtime.PhysicsWorld.html#Prowl_Runtime_PhysicsWorld_BakeMesh_Prowl_Runtime_Resources_Mesh_
+  name: BakeMesh(Mesh)
+  nameWithType: PhysicsWorld.BakeMesh(Mesh)
+  fullName: Prowl.Runtime.PhysicsWorld.BakeMesh(Prowl.Runtime.Resources.Mesh)
+  spec.csharp:
+  - uid: Prowl.Runtime.PhysicsWorld.BakeMesh(Prowl.Runtime.Resources.Mesh)
+    name: BakeMesh
+    href: Prowl.Runtime.PhysicsWorld.html#Prowl_Runtime_PhysicsWorld_BakeMesh_Prowl_Runtime_Resources_Mesh_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Mesh
+    name: Mesh
+    href: Prowl.Runtime.Resources.Mesh.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.PhysicsWorld.BakeMesh(Prowl.Runtime.Resources.Mesh)
+    name: BakeMesh
+    href: Prowl.Runtime.PhysicsWorld.html#Prowl_Runtime_PhysicsWorld_BakeMesh_Prowl_Runtime_Resources_Mesh_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Mesh
+    name: Mesh
+    href: Prowl.Runtime.Resources.Mesh.html
+  - name: )
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.Resources
+  commentId: N:Prowl.Runtime.Resources
+  name: Prowl.Runtime.Resources
+  nameWithType: Prowl.Runtime.Resources
+  fullName: Prowl.Runtime.Resources
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+- uid: Jitter2.Collision.Shapes
+  commentId: N:Jitter2.Collision.Shapes
+  isExternal: true
+  name: Jitter2.Collision.Shapes
+  nameWithType: Jitter2.Collision.Shapes
+  fullName: Jitter2.Collision.Shapes
+  spec.csharp:
+  - uid: Jitter2
+    name: Jitter2
+    isExternal: true
+  - name: .
+  - uid: Jitter2.Collision
+    name: Collision
+    isExternal: true
+  - name: .
+  - uid: Jitter2.Collision.Shapes
+    name: Shapes
+    isExternal: true
+  spec.vb:
+  - uid: Jitter2
+    name: Jitter2
+    isExternal: true
+  - name: .
+  - uid: Jitter2.Collision
+    name: Collision
+    isExternal: true
+  - name: .
+  - uid: Jitter2.Collision.Shapes
+    name: Shapes
+    isExternal: true
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime.BakedPhysicsMesh.Triangles*
+  commentId: Overload:Prowl.Runtime.BakedPhysicsMesh.Triangles
+  href: Prowl.Runtime.BakedPhysicsMesh.html#Prowl_Runtime_BakedPhysicsMesh_Triangles
+  name: Triangles
+  nameWithType: BakedPhysicsMesh.Triangles
+  fullName: Prowl.Runtime.BakedPhysicsMesh.Triangles
+- uid: System.Collections.Generic.IReadOnlyList{Jitter2.LinearMath.JTriangle}
+  commentId: T:System.Collections.Generic.IReadOnlyList{Jitter2.LinearMath.JTriangle}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<JTriangle>
+  nameWithType: IReadOnlyList<JTriangle>
+  fullName: System.Collections.Generic.IReadOnlyList<Jitter2.LinearMath.JTriangle>
+  nameWithType.vb: IReadOnlyList(Of JTriangle)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Jitter2.LinearMath.JTriangle)
+  name.vb: IReadOnlyList(Of JTriangle)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Jitter2.LinearMath.JTriangle
+    name: JTriangle
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Jitter2.LinearMath.JTriangle
+    name: JTriangle
+    isExternal: true
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Jitter2.Collision.Shapes.TriangleShape
+  commentId: T:Jitter2.Collision.Shapes.TriangleShape
+  isExternal: true
+  name: TriangleShape
+  nameWithType: TriangleShape
+  fullName: Jitter2.Collision.Shapes.TriangleShape
+- uid: Prowl.Runtime.BakedPhysicsMesh.Triangles
+  commentId: P:Prowl.Runtime.BakedPhysicsMesh.Triangles
+  href: Prowl.Runtime.BakedPhysicsMesh.html#Prowl_Runtime_BakedPhysicsMesh_Triangles
+  name: Triangles
+  nameWithType: BakedPhysicsMesh.Triangles
+  fullName: Prowl.Runtime.BakedPhysicsMesh.Triangles
+- uid: Prowl.Runtime.BakedPhysicsMesh.TriangleMesh*
+  commentId: Overload:Prowl.Runtime.BakedPhysicsMesh.TriangleMesh
+  href: Prowl.Runtime.BakedPhysicsMesh.html#Prowl_Runtime_BakedPhysicsMesh_TriangleMesh
+  name: TriangleMesh
+  nameWithType: BakedPhysicsMesh.TriangleMesh
+  fullName: Prowl.Runtime.BakedPhysicsMesh.TriangleMesh
+- uid: Prowl.Runtime.Resources.Mesh.Version
+  commentId: P:Prowl.Runtime.Resources.Mesh.Version
+  href: Prowl.Runtime.Resources.Mesh.html#Prowl_Runtime_Resources_Mesh_Version
+  name: Version
+  nameWithType: Mesh.Version
+  fullName: Prowl.Runtime.Resources.Mesh.Version
+- uid: Prowl.Runtime.BakedPhysicsMesh.Version*
+  commentId: Overload:Prowl.Runtime.BakedPhysicsMesh.Version
+  href: Prowl.Runtime.BakedPhysicsMesh.html#Prowl_Runtime_BakedPhysicsMesh_Version
+  name: Version
+  nameWithType: BakedPhysicsMesh.Version
+  fullName: Prowl.Runtime.BakedPhysicsMesh.Version
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: Prowl.Runtime.BakedPhysicsMesh.Build*
+  commentId: Overload:Prowl.Runtime.BakedPhysicsMesh.Build
+  href: Prowl.Runtime.BakedPhysicsMesh.html#Prowl_Runtime_BakedPhysicsMesh_Build_Prowl_Runtime_Resources_Mesh_
+  name: Build
+  nameWithType: BakedPhysicsMesh.Build
+  fullName: Prowl.Runtime.BakedPhysicsMesh.Build
+- uid: Prowl.Runtime.BakedPhysicsMesh
+  commentId: T:Prowl.Runtime.BakedPhysicsMesh
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.BakedPhysicsMesh.html
+  name: BakedPhysicsMesh
+  nameWithType: BakedPhysicsMesh
+  fullName: Prowl.Runtime.BakedPhysicsMesh
