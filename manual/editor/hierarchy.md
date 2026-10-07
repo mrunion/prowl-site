@@ -44,6 +44,10 @@ Use the disclosure arrow beside a parent to show or hide its children. Parent-ch
 
 Right-click a GameObject row to open actions for the selection. If you right-click without holding **Ctrl** or **Shift**, that row becomes selected first; with either modifier held, the existing multi-selection is kept. Depending on the selection and object type, the menu can include Create, Duplicate, Rename, Delete, Enable/Disable, camera alignment actions, Create Prefab, and prefab instance commands. Right-clicking empty space opens the Create menu.
 
+![Hierarchy context menu for a selected GameObject](../../media/screenshots/hierachy_rightclick_object.png)
+
+For a single selected object, **Move to View** places it at the center of the Scene view without changing its rotation. **Align With View** places and rotates it to match the Scene camera. **Move View To** moves and points the Scene camera toward the object. **Create Prefab** makes a prefab asset from the selection. The red **Delete** item removes the object from the scene.
+
 With the Hierarchy focused, the common shortcuts are:
 
 | Action | Shortcut |
