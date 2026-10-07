@@ -15,6 +15,8 @@ The Prowl editor is made of dockable panels. You can resize panels by dragging t
 | **Project** | Files and assets in the project. Drag assets into the Scene view or onto compatible asset fields in the Inspector. Right-click empty space to create assets. |
 | **Console** | Editor and runtime log messages, including warnings and errors. Use it to diagnose script compilation and playtest issues. |
 
+Read more about each [main editor panel](../editor/scene.md): [Scene](../editor/scene.md), [Game](../editor/game.md), [Hierarchy](../editor/hierarchy.md), [Inspector](../editor/inspector.md), [Project](../editor/project.md), and [Console](../editor/console.md).
+
 Open panels from the **Window** menu if one is closed. Panels can be docked, resized, or floated to suit your workspace.
 
 ## Scene view navigation and tools
