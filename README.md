@@ -4,7 +4,7 @@ This repository contains the [DocFX](https://dotnet.github.io/docfx/) project fo
 
 ## Prerequisites
 
-- [.NET SDK](https://dotnet.microsoft.com/download) with the same version as Prowl. Currently at **.NET 8**.
+- [.NET SDK](https://dotnet.microsoft.com/download) with the same version as Prowl. Currently at **.NET 10**.
 - [DocFX](https://dotnet.github.io/docfx/)
 
 ## Installation
