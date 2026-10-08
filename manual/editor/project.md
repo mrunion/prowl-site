@@ -2,6 +2,8 @@
 
 The Project panel browses the files and folders in the current project's `Assets` directory. Use it to find assets, create and organize project content, and open assets in their editor or preview.
 
+To configure project-wide metadata and runtime settings, open [Project Settings](projectsettings.md) from **Edit > Project Settings**.
+
 ![Project panel showing the Assets folder and an empty content area](../../media/screenshots/project_default.png)
 
 The panel has a folder tree on the left and the contents of the current folder on the right. Select a folder in the tree or use the breadcrumb path above the contents to navigate. The back and forward arrows revisit folders you have browsed. The refresh icon in the panel tab header rebuilds the asset database.
