@@ -5,10 +5,12 @@ These tutorials guide you through practical tasks in Prowl, starting with editor
 ## Beginner
 
 - [Paint: Create and Apply a Material](material-tutorial.md) — create a material, choose the Standard shader, set its Tint color, and assign it to an object.
+- [Shader Basics: Make a Solid Color Shader](shader-tutorial.md) — create a minimal forward shader, expose a color property, then use it from a material.
 
 ## More tutorials
 
-The tutorials below are planned and will be added as they are written:
+More tutorials can expand these topics with additional rendering workflows:
 
-- **Shaders** — build on materials by creating a simple color-based shader and learning how shader properties appear in a material.
+- **Textured shaders** — add UVs and texture sampling to a shader.
+- **Lit shaders** — use engine lighting helpers and add the passes needed for shadows and screen-space effects.
 - **Terrain** — create a Terrain Data asset, sculpt the landscape, paint surface layers, and add details.

@@ -279,7 +279,26 @@ Use `Cull Back` for ordinary one-sided meshes. Double-sided rendering can use `C
 
 ## Includes
 
-Use `#include "File.glsl"` to share functions or declarations. Prowl resolves include paths relative to the shader file first, then the project `Assets` folder, then built-in engine shader includes. Keep project include files alongside the shader or under `Assets` so they can be resolved during import.
+Use `#include "FileName"` to import shared GLSL code. The include name omits the `.glsl` extension. Prowl expands includes when it imports the `.shader` file, searching the shader's folder first, then the project's `Assets` folder, and finally the built-in engine includes. Keep project include files alongside the shader or under `Assets` so they can be found during import.
+
+### Prowl shader imports
+
+Custom shaders that use Prowl's mesh and rendering data should include the relevant built-in imports in each stage that needs them. The imports are expanded into GLSL before compilation; they are not GLSL `import` statements.
+
+- **`ProwlCG`** includes `ShaderVariables` and provides Prowl's shared matrices, camera values, and common shader helpers. Include it before using engine matrices or helpers.
+- **`VertexAttributes`** declares the standard mesh inputs, such as `vertexPosition`, UVs, normals, tangents, and colors, and provides transforms such as `TransformClip`, `TransformPosition`, and `GetInstanceColor`. It relies on definitions from `ProwlCG`, so include `ProwlCG` first.
+- **`Lighting`** provides lighting helpers such as `CalculateForwardLighting`, `CalculateAmbient`, and `ApplyFog`. Use it in a fragment stage that needs Prowl's scene lighting.
+
+For example, a forward vertex stage commonly begins:
+
+```glsl
+#include "ProwlCG"
+#include "VertexAttributes"
+```
+
+Then `TransformClip(vertexPosition)` transforms the mesh position using Prowl's camera and object matrices, including the supported instancing and skinning paths. A lighting fragment stage commonly includes `ProwlCG` and `Lighting`, and receives the world-space position and normal needed by the lighting helpers. Follow the built-in Standard or Unlit shaders for complete examples of varyings, material uniforms, and pass setup.
+
+Prowl prepends the GLSL version and platform feature defines to each compiled stage. Do not put a `#version` directive inside a `Vertex` or `Fragment` block; it will appear after the generated prelude and fail compilation.
 
 ## Troubleshooting
 
