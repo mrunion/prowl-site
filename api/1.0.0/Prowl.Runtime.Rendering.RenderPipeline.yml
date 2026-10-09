@@ -12,11 +12,15 @@ items:
   - Prowl.Runtime.Rendering.RenderPipeline.CullRenderable(Prowl.Runtime.Rendering.IRenderable,Prowl.Vector.Frustum)
   - Prowl.Runtime.Rendering.RenderPipeline.CullRenderables(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable},System.Nullable{Prowl.Vector.Frustum},Prowl.Runtime.LayerMask,System.Boolean[])
   - Prowl.Runtime.Rendering.RenderPipeline.DrawRenderables(Prowl.Runtime.CommandBuffer,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable},System.String,System.String,Prowl.Runtime.Rendering.ViewerData,System.Boolean[],System.Boolean,Prowl.Runtime.Resources.RenderTexture,System.Boolean)
+  - Prowl.Runtime.Rendering.RenderPipeline.EndMotionTracking
   - Prowl.Runtime.Rendering.RenderPipeline.EnsureWorldBounds(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
   - Prowl.Runtime.Rendering.RenderPipeline.GetBlitMaterial
   - Prowl.Runtime.Rendering.RenderPipeline.Render(Prowl.Runtime.Camera,Prowl.Runtime.Rendering.RenderingData@)
+  - Prowl.Runtime.Rendering.RenderPipeline.ReturnCullResult(System.Boolean[])
+  - Prowl.Runtime.Rendering.RenderPipeline.ReturnLights(System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
   - Prowl.Runtime.Rendering.RenderPipeline.SetupGlobalUniforms(Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot)
   - Prowl.Runtime.Rendering.RenderPipeline.SortRenderables(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable},System.Boolean[],Prowl.Vector.Float3,Prowl.Runtime.Rendering.RenderPipeline.SortMode)
+  - Prowl.Runtime.Rendering.RenderPipeline.ToGLClipDepth(Prowl.Vector.Float4x4)
   langs:
   - csharp
   - vb
@@ -31,7 +35,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: RenderPipeline
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 146
+    startLine: 280
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -89,7 +93,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetBlitMaterial
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 153
+    startLine: 287
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -121,14 +125,14 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: BeginMotionTracking
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 205
+    startLine: 337
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
   summary: >-
-    Starts motion vector tracking for <code class="paramref">camera</code>. Call at the start of a render;
+    Starts motion vector tracking for <code class="paramref">camera</code> and its active eye. Call at the start of a
 
-    <xref href="Prowl.Runtime.Rendering.RenderPipeline.Render(Prowl.Runtime.Camera%2cProwl.Runtime.Rendering.RenderingData%40)" data-throw-if-not-resolved="false"></xref> ends it.
+    render; <xref href="Prowl.Runtime.Rendering.RenderPipeline.EndMotionTracking" data-throw-if-not-resolved="false"></xref> ends it.
   example: []
   syntax:
     content: protected void BeginMotionTracking(Camera camera)
@@ -137,6 +141,32 @@ items:
       type: Prowl.Runtime.Camera
     content.vb: Protected Sub BeginMotionTracking(camera As Camera)
   overload: Prowl.Runtime.Rendering.RenderPipeline.BeginMotionTracking*
+- uid: Prowl.Runtime.Rendering.RenderPipeline.EndMotionTracking
+  commentId: M:Prowl.Runtime.Rendering.RenderPipeline.EndMotionTracking
+  id: EndMotionTracking
+  parent: Prowl.Runtime.Rendering.RenderPipeline
+  langs:
+  - csharp
+  - vb
+  name: EndMotionTracking()
+  nameWithType: RenderPipeline.EndMotionTracking()
+  fullName: Prowl.Runtime.Rendering.RenderPipeline.EndMotionTracking()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderPipeline.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EndMotionTracking
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
+    startLine: 343
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  syntax:
+    content: protected void EndMotionTracking()
+    content.vb: Protected Sub EndMotionTracking()
+  overload: Prowl.Runtime.Rendering.RenderPipeline.EndMotionTracking*
 - uid: Prowl.Runtime.Rendering.RenderPipeline.CollectRenderables(Prowl.Runtime.Resources.Scene,Prowl.Runtime.Camera)
   commentId: M:Prowl.Runtime.Rendering.RenderPipeline.CollectRenderables(Prowl.Runtime.Resources.Scene,Prowl.Runtime.Camera)
   id: CollectRenderables(Prowl.Runtime.Resources.Scene,Prowl.Runtime.Camera)
@@ -155,7 +185,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CollectRenderables
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 226
+    startLine: 371
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -175,6 +205,40 @@ items:
       type: System.ValueTuple{System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight}}
     content.vb: Public Shared Function CollectRenderables(scene As Scene, camera As Camera) As (renderables As List(Of IRenderable), lights As List(Of IRenderableLight))
   overload: Prowl.Runtime.Rendering.RenderPipeline.CollectRenderables*
+- uid: Prowl.Runtime.Rendering.RenderPipeline.ReturnLights(System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
+  commentId: M:Prowl.Runtime.Rendering.RenderPipeline.ReturnLights(System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
+  id: ReturnLights(System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
+  parent: Prowl.Runtime.Rendering.RenderPipeline
+  langs:
+  - csharp
+  - vb
+  name: ReturnLights(List<IRenderableLight>)
+  nameWithType: RenderPipeline.ReturnLights(List<IRenderableLight>)
+  fullName: Prowl.Runtime.Rendering.RenderPipeline.ReturnLights(System.Collections.Generic.List<Prowl.Runtime.Rendering.IRenderableLight>)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderPipeline.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ReturnLights
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
+    startLine: 384
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Hands a light list from <xref href="Prowl.Runtime.Rendering.RenderPipeline.CollectRenderables(Prowl.Runtime.Resources.Scene%2cProwl.Runtime.Camera)" data-throw-if-not-resolved="false"></xref> back once the render is done with it.
+  example: []
+  syntax:
+    content: public static void ReturnLights(List<IRenderableLight> lights)
+    parameters:
+    - id: lights
+      type: System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight}
+    content.vb: Public Shared Sub ReturnLights(lights As List(Of IRenderableLight))
+  overload: Prowl.Runtime.Rendering.RenderPipeline.ReturnLights*
+  nameWithType.vb: RenderPipeline.ReturnLights(List(Of IRenderableLight))
+  fullName.vb: Prowl.Runtime.Rendering.RenderPipeline.ReturnLights(System.Collections.Generic.List(Of Prowl.Runtime.Rendering.IRenderableLight))
+  name.vb: ReturnLights(List(Of IRenderableLight))
 - uid: Prowl.Runtime.Rendering.RenderPipeline.Render(Prowl.Runtime.Camera,Prowl.Runtime.Rendering.RenderingData@)
   commentId: M:Prowl.Runtime.Rendering.RenderPipeline.Render(Prowl.Runtime.Camera,Prowl.Runtime.Rendering.RenderingData@)
   id: Render(Prowl.Runtime.Camera,Prowl.Runtime.Rendering.RenderingData@)
@@ -193,7 +257,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Render
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 236
+    startLine: 390
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -227,18 +291,18 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CullRenderables
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 252
+    startLine: 399
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
   summary: >-
     Returns a per-index "culled" mask (true == culled, skip this renderable) aligned to
 
-    <code class="paramref">renderables</code>. A bool[] keyed by index is cheaper to allocate than a
+    <code class="paramref">renderables</code>. A bool[] keyed by index turns the per-object membership test
 
-    HashSet and turns the per-object membership test in every pass into an O(1) array read
+    in every pass into an O(1) array read. The array is pooled and may be longer than
 
-    instead of a hash lookup.
+    <code class="paramref">renderables</code>, hand it back with <xref href="Prowl.Runtime.Rendering.RenderPipeline.ReturnCullResult(System.Boolean%5b%5d)" data-throw-if-not-resolved="false"></xref> once done.
   example: []
   syntax:
     content: public bool[] CullRenderables(IReadOnlyList<IRenderable> renderables, Frustum? worldFrustum, LayerMask cullingMask, bool[]? alreadyCulled = null)
@@ -277,7 +341,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CullOutsideSphere
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 306
+    startLine: 445
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -285,6 +349,8 @@ items:
     Culls every renderable whose bounds miss the sphere, as a cheap first pass for views that all sit inside
 
     it, such as the faces of a point light. Not counted in the render stats, the views that use it are.
+
+    Pooled like <xref href="Prowl.Runtime.Rendering.RenderPipeline.CullRenderables(System.Collections.Generic.IReadOnlyList%7bProwl.Runtime.Rendering.IRenderable%7d%2cSystem.Nullable%7bProwl.Vector.Frustum%7d%2cProwl.Runtime.LayerMask%2cSystem.Boolean%5b%5d)" data-throw-if-not-resolved="false"></xref>.
   example: []
   syntax:
     content: public bool[] CullOutsideSphere(IReadOnlyList<IRenderable> renderables, Float3 center, float radius)
@@ -302,6 +368,40 @@ items:
   nameWithType.vb: RenderPipeline.CullOutsideSphere(IReadOnlyList(Of IRenderable), Float3, Single)
   fullName.vb: Prowl.Runtime.Rendering.RenderPipeline.CullOutsideSphere(System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.Rendering.IRenderable), Prowl.Vector.Float3, Single)
   name.vb: CullOutsideSphere(IReadOnlyList(Of IRenderable), Float3, Single)
+- uid: Prowl.Runtime.Rendering.RenderPipeline.ReturnCullResult(System.Boolean[])
+  commentId: M:Prowl.Runtime.Rendering.RenderPipeline.ReturnCullResult(System.Boolean[])
+  id: ReturnCullResult(System.Boolean[])
+  parent: Prowl.Runtime.Rendering.RenderPipeline
+  langs:
+  - csharp
+  - vb
+  name: ReturnCullResult(bool[])
+  nameWithType: RenderPipeline.ReturnCullResult(bool[])
+  fullName: Prowl.Runtime.Rendering.RenderPipeline.ReturnCullResult(bool[])
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderPipeline.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ReturnCullResult
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
+    startLine: 461
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Hands a mask from <xref href="Prowl.Runtime.Rendering.RenderPipeline.CullRenderables(System.Collections.Generic.IReadOnlyList%7bProwl.Runtime.Rendering.IRenderable%7d%2cSystem.Nullable%7bProwl.Vector.Frustum%7d%2cProwl.Runtime.LayerMask%2cSystem.Boolean%5b%5d)" data-throw-if-not-resolved="false"></xref> or <xref href="Prowl.Runtime.Rendering.RenderPipeline.CullOutsideSphere(System.Collections.Generic.IReadOnlyList%7bProwl.Runtime.Rendering.IRenderable%7d%2cProwl.Vector.Float3%2cSystem.Single)" data-throw-if-not-resolved="false"></xref> back to the pool.
+  example: []
+  syntax:
+    content: public void ReturnCullResult(bool[] culled)
+    parameters:
+    - id: culled
+      type: System.Boolean[]
+    content.vb: Public Sub ReturnCullResult(culled As Boolean())
+  overload: Prowl.Runtime.Rendering.RenderPipeline.ReturnCullResult*
+  nameWithType.vb: RenderPipeline.ReturnCullResult(Boolean())
+  fullName.vb: Prowl.Runtime.Rendering.RenderPipeline.ReturnCullResult(Boolean())
+  name.vb: ReturnCullResult(Boolean())
 - uid: Prowl.Runtime.Rendering.RenderPipeline.CullRenderable(Prowl.Runtime.Rendering.IRenderable,Prowl.Vector.Frustum)
   commentId: M:Prowl.Runtime.Rendering.RenderPipeline.CullRenderable(Prowl.Runtime.Rendering.IRenderable,Prowl.Vector.Frustum)
   id: CullRenderable(Prowl.Runtime.Rendering.IRenderable,Prowl.Vector.Frustum)
@@ -320,7 +420,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CullRenderable
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 321
+    startLine: 463
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -353,17 +453,10 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: EnsureWorldBounds
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 369
+    startLine: 517
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
-  summary: >-
-    Computes (or returns the cached) per-renderable world-space bounds for this frame's list. Keyed
-
-    on list identity + count: the first cull of the frame builds it, later culls reuse it. Renderables
-
-    don't move between collection and drawing, so caching for the frame is safe.
-  example: []
   syntax:
     content: public void EnsureWorldBounds(IReadOnlyList<IRenderable> renderables)
     parameters:
@@ -392,7 +485,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SortRenderables
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 409
+    startLine: 557
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -432,7 +525,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetupGlobalUniforms
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 438
+    startLine: 586
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -443,6 +536,44 @@ items:
       type: Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot
     content.vb: Public Sub SetupGlobalUniforms(css As RenderPipeline.CameraSnapshot)
   overload: Prowl.Runtime.Rendering.RenderPipeline.SetupGlobalUniforms*
+- uid: Prowl.Runtime.Rendering.RenderPipeline.ToGLClipDepth(Prowl.Vector.Float4x4)
+  commentId: M:Prowl.Runtime.Rendering.RenderPipeline.ToGLClipDepth(Prowl.Vector.Float4x4)
+  id: ToGLClipDepth(Prowl.Vector.Float4x4)
+  parent: Prowl.Runtime.Rendering.RenderPipeline
+  langs:
+  - csharp
+  - vb
+  name: ToGLClipDepth(Float4x4)
+  nameWithType: RenderPipeline.ToGLClipDepth(Float4x4)
+  fullName: Prowl.Runtime.Rendering.RenderPipeline.ToGLClipDepth(Prowl.Vector.Float4x4)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderPipeline.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ToGLClipDepth
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
+    startLine: 623
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: >-
+    Remaps clip depth from the 0 to w range Prowl's projections produce to the -w to w range OpenGL
+
+    clips and maps onto the depth buffer, so depth fills the whole buffer instead of its far half.
+
+    Every projection or view projection handed to the GPU goes through this, CPU side math stays as is.
+  example: []
+  syntax:
+    content: public static Float4x4 ToGLClipDepth(Float4x4 clip)
+    parameters:
+    - id: clip
+      type: Prowl.Vector.Float4x4
+    return:
+      type: Prowl.Vector.Float4x4
+    content.vb: Public Shared Function ToGLClipDepth(clip As Float4x4) As Float4x4
+  overload: Prowl.Runtime.Rendering.RenderPipeline.ToGLClipDepth*
 - uid: Prowl.Runtime.Rendering.RenderPipeline.AssignCameraMatrices(Prowl.Vector.Float4x4,Prowl.Vector.Float4x4)
   commentId: M:Prowl.Runtime.Rendering.RenderPipeline.AssignCameraMatrices(Prowl.Vector.Float4x4,Prowl.Vector.Float4x4)
   id: AssignCameraMatrices(Prowl.Vector.Float4x4,Prowl.Vector.Float4x4)
@@ -461,7 +592,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: AssignCameraMatrices
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 470
+    startLine: 632
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -492,7 +623,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: DrawRenderables
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 533
+    startLine: 709
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -1273,45 +1404,24 @@ references:
   - name: .
   - uid: Prowl.Runtime.Resources
     name: Resources
-- uid: Prowl.Runtime.Rendering.RenderPipeline.Render(Prowl.Runtime.Camera,Prowl.Runtime.Rendering.RenderingData@)
-  commentId: M:Prowl.Runtime.Rendering.RenderPipeline.Render(Prowl.Runtime.Camera,Prowl.Runtime.Rendering.RenderingData@)
+- uid: Prowl.Runtime.Rendering.RenderPipeline.EndMotionTracking
+  commentId: M:Prowl.Runtime.Rendering.RenderPipeline.EndMotionTracking
   parent: Prowl.Runtime.Rendering.RenderPipeline
-  href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_Render_Prowl_Runtime_Camera_Prowl_Runtime_Rendering_RenderingData__
-  name: Render(Camera, in RenderingData)
-  nameWithType: RenderPipeline.Render(Camera, in RenderingData)
-  fullName: Prowl.Runtime.Rendering.RenderPipeline.Render(Prowl.Runtime.Camera, in Prowl.Runtime.Rendering.RenderingData)
-  nameWithType.vb: RenderPipeline.Render(Camera, RenderingData)
-  fullName.vb: Prowl.Runtime.Rendering.RenderPipeline.Render(Prowl.Runtime.Camera, Prowl.Runtime.Rendering.RenderingData)
-  name.vb: Render(Camera, RenderingData)
+  href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_EndMotionTracking
+  name: EndMotionTracking()
+  nameWithType: RenderPipeline.EndMotionTracking()
+  fullName: Prowl.Runtime.Rendering.RenderPipeline.EndMotionTracking()
   spec.csharp:
-  - uid: Prowl.Runtime.Rendering.RenderPipeline.Render(Prowl.Runtime.Camera,Prowl.Runtime.Rendering.RenderingData@)
-    name: Render
-    href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_Render_Prowl_Runtime_Camera_Prowl_Runtime_Rendering_RenderingData__
+  - uid: Prowl.Runtime.Rendering.RenderPipeline.EndMotionTracking
+    name: EndMotionTracking
+    href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_EndMotionTracking
   - name: (
-  - uid: Prowl.Runtime.Camera
-    name: Camera
-    href: Prowl.Runtime.Camera.html
-  - name: ','
-  - name: " "
-  - name: in
-  - name: " "
-  - uid: Prowl.Runtime.Rendering.RenderingData
-    name: RenderingData
-    href: Prowl.Runtime.Rendering.RenderingData.html
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.Rendering.RenderPipeline.Render(Prowl.Runtime.Camera,Prowl.Runtime.Rendering.RenderingData@)
-    name: Render
-    href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_Render_Prowl_Runtime_Camera_Prowl_Runtime_Rendering_RenderingData__
+  - uid: Prowl.Runtime.Rendering.RenderPipeline.EndMotionTracking
+    name: EndMotionTracking
+    href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_EndMotionTracking
   - name: (
-  - uid: Prowl.Runtime.Camera
-    name: Camera
-    href: Prowl.Runtime.Camera.html
-  - name: ','
-  - name: " "
-  - uid: Prowl.Runtime.Rendering.RenderingData
-    name: RenderingData
-    href: Prowl.Runtime.Rendering.RenderingData.html
   - name: )
 - uid: Prowl.Runtime.Rendering.RenderPipeline.BeginMotionTracking*
   commentId: Overload:Prowl.Runtime.Rendering.RenderPipeline.BeginMotionTracking
@@ -1333,6 +1443,12 @@ references:
   name: RenderPipeline
   nameWithType: RenderPipeline
   fullName: Prowl.Runtime.Rendering.RenderPipeline
+- uid: Prowl.Runtime.Rendering.RenderPipeline.EndMotionTracking*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderPipeline.EndMotionTracking
+  href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_EndMotionTracking
+  name: EndMotionTracking
+  nameWithType: RenderPipeline.EndMotionTracking
+  fullName: Prowl.Runtime.Rendering.RenderPipeline.EndMotionTracking
 - uid: Prowl.Runtime.Rendering.RenderPipeline.CollectRenderables*
   commentId: Overload:Prowl.Runtime.Rendering.RenderPipeline.CollectRenderables
   href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_CollectRenderables_Prowl_Runtime_Resources_Scene_Prowl_Runtime_Camera_
@@ -1446,6 +1562,145 @@ references:
   - name: " "
   - name: T2
   - name: )
+- uid: Prowl.Runtime.Rendering.RenderPipeline.CollectRenderables(Prowl.Runtime.Resources.Scene,Prowl.Runtime.Camera)
+  commentId: M:Prowl.Runtime.Rendering.RenderPipeline.CollectRenderables(Prowl.Runtime.Resources.Scene,Prowl.Runtime.Camera)
+  parent: Prowl.Runtime.Rendering.RenderPipeline
+  href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_CollectRenderables_Prowl_Runtime_Resources_Scene_Prowl_Runtime_Camera_
+  name: CollectRenderables(Scene, Camera)
+  nameWithType: RenderPipeline.CollectRenderables(Scene, Camera)
+  fullName: Prowl.Runtime.Rendering.RenderPipeline.CollectRenderables(Prowl.Runtime.Resources.Scene, Prowl.Runtime.Camera)
+  spec.csharp:
+  - uid: Prowl.Runtime.Rendering.RenderPipeline.CollectRenderables(Prowl.Runtime.Resources.Scene,Prowl.Runtime.Camera)
+    name: CollectRenderables
+    href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_CollectRenderables_Prowl_Runtime_Resources_Scene_Prowl_Runtime_Camera_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+    href: Prowl.Runtime.Resources.Scene.html
+  - name: ','
+  - name: " "
+  - uid: Prowl.Runtime.Camera
+    name: Camera
+    href: Prowl.Runtime.Camera.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Rendering.RenderPipeline.CollectRenderables(Prowl.Runtime.Resources.Scene,Prowl.Runtime.Camera)
+    name: CollectRenderables
+    href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_CollectRenderables_Prowl_Runtime_Resources_Scene_Prowl_Runtime_Camera_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+    href: Prowl.Runtime.Resources.Scene.html
+  - name: ','
+  - name: " "
+  - uid: Prowl.Runtime.Camera
+    name: Camera
+    href: Prowl.Runtime.Camera.html
+  - name: )
+- uid: Prowl.Runtime.Rendering.RenderPipeline.ReturnLights*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderPipeline.ReturnLights
+  href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_ReturnLights_System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderableLight__
+  name: ReturnLights
+  nameWithType: RenderPipeline.ReturnLights
+  fullName: Prowl.Runtime.Rendering.RenderPipeline.ReturnLights
+- uid: System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight}
+  commentId: T:System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<IRenderableLight>
+  nameWithType: List<IRenderableLight>
+  fullName: System.Collections.Generic.List<Prowl.Runtime.Rendering.IRenderableLight>
+  nameWithType.vb: List(Of IRenderableLight)
+  fullName.vb: System.Collections.Generic.List(Of Prowl.Runtime.Rendering.IRenderableLight)
+  name.vb: List(Of IRenderableLight)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Prowl.Runtime.Rendering.IRenderableLight
+    name: IRenderableLight
+    href: Prowl.Runtime.Rendering.IRenderableLight.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Rendering.IRenderableLight
+    name: IRenderableLight
+    href: Prowl.Runtime.Rendering.IRenderableLight.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: Prowl.Runtime.Rendering.RenderPipeline.Render*
   commentId: Overload:Prowl.Runtime.Rendering.RenderPipeline.Render
   href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_Render_Prowl_Runtime_Camera_Prowl_Runtime_Rendering_RenderingData__
@@ -1459,6 +1714,41 @@ references:
   name: RenderingData
   nameWithType: RenderingData
   fullName: Prowl.Runtime.Rendering.RenderingData
+- uid: Prowl.Runtime.Rendering.RenderPipeline.ReturnCullResult(System.Boolean[])
+  commentId: M:Prowl.Runtime.Rendering.RenderPipeline.ReturnCullResult(System.Boolean[])
+  parent: Prowl.Runtime.Rendering.RenderPipeline
+  isExternal: true
+  href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_ReturnCullResult_System_Boolean___
+  name: ReturnCullResult(bool[])
+  nameWithType: RenderPipeline.ReturnCullResult(bool[])
+  fullName: Prowl.Runtime.Rendering.RenderPipeline.ReturnCullResult(bool[])
+  nameWithType.vb: RenderPipeline.ReturnCullResult(Boolean())
+  fullName.vb: Prowl.Runtime.Rendering.RenderPipeline.ReturnCullResult(Boolean())
+  name.vb: ReturnCullResult(Boolean())
+  spec.csharp:
+  - uid: Prowl.Runtime.Rendering.RenderPipeline.ReturnCullResult(System.Boolean[])
+    name: ReturnCullResult
+    href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_ReturnCullResult_System_Boolean___
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Rendering.RenderPipeline.ReturnCullResult(System.Boolean[])
+    name: ReturnCullResult
+    href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_ReturnCullResult_System_Boolean___
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: (
+  - name: )
+  - name: )
 - uid: Prowl.Runtime.Rendering.RenderPipeline.CullRenderables*
   commentId: Overload:Prowl.Runtime.Rendering.RenderPipeline.CullRenderables
   href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_CullRenderables_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderable__System_Nullable_Prowl_Vector_Frustum__Prowl_Runtime_LayerMask_System_Boolean___
@@ -1573,43 +1863,6 @@ references:
   - name: " "
   - name: T
   - name: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Collections
-    name: Collections
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections
-  - name: .
-  - uid: System.Collections.Generic
-    name: Generic
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Collections
-    name: Collections
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections
-  - name: .
-  - uid: System.Collections.Generic
-    name: Generic
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: System.Nullable`1
   commentId: T:System.Nullable`1
   isExternal: true
@@ -1637,6 +1890,87 @@ references:
   - name: Of
   - name: " "
   - name: T
+  - name: )
+- uid: Prowl.Runtime.Rendering.RenderPipeline.CullRenderables(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable},System.Nullable{Prowl.Vector.Frustum},Prowl.Runtime.LayerMask,System.Boolean[])
+  commentId: M:Prowl.Runtime.Rendering.RenderPipeline.CullRenderables(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable},System.Nullable{Prowl.Vector.Frustum},Prowl.Runtime.LayerMask,System.Boolean[])
+  parent: Prowl.Runtime.Rendering.RenderPipeline
+  isExternal: true
+  href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_CullRenderables_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderable__System_Nullable_Prowl_Vector_Frustum__Prowl_Runtime_LayerMask_System_Boolean___
+  name: CullRenderables(IReadOnlyList<IRenderable>, Frustum?, LayerMask, bool[])
+  nameWithType: RenderPipeline.CullRenderables(IReadOnlyList<IRenderable>, Frustum?, LayerMask, bool[])
+  fullName: Prowl.Runtime.Rendering.RenderPipeline.CullRenderables(System.Collections.Generic.IReadOnlyList<Prowl.Runtime.Rendering.IRenderable>, Prowl.Vector.Frustum?, Prowl.Runtime.LayerMask, bool[])
+  nameWithType.vb: RenderPipeline.CullRenderables(IReadOnlyList(Of IRenderable), Frustum?, LayerMask, Boolean())
+  fullName.vb: Prowl.Runtime.Rendering.RenderPipeline.CullRenderables(System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.Rendering.IRenderable), Prowl.Vector.Frustum?, Prowl.Runtime.LayerMask, Boolean())
+  name.vb: CullRenderables(IReadOnlyList(Of IRenderable), Frustum?, LayerMask, Boolean())
+  spec.csharp:
+  - uid: Prowl.Runtime.Rendering.RenderPipeline.CullRenderables(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable},System.Nullable{Prowl.Vector.Frustum},Prowl.Runtime.LayerMask,System.Boolean[])
+    name: CullRenderables
+    href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_CullRenderables_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderable__System_Nullable_Prowl_Vector_Frustum__Prowl_Runtime_LayerMask_System_Boolean___
+  - name: (
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Runtime.Rendering.IRenderable
+    name: IRenderable
+    href: Prowl.Runtime.Rendering.IRenderable.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: Prowl.Vector.Frustum
+    name: Frustum
+    isExternal: true
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: Prowl.Runtime.LayerMask
+    name: LayerMask
+    href: Prowl.Runtime.LayerMask.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Rendering.RenderPipeline.CullRenderables(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable},System.Nullable{Prowl.Vector.Frustum},Prowl.Runtime.LayerMask,System.Boolean[])
+    name: CullRenderables
+    href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_CullRenderables_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderable__System_Nullable_Prowl_Vector_Frustum__Prowl_Runtime_LayerMask_System_Boolean___
+  - name: (
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Rendering.IRenderable
+    name: IRenderable
+    href: Prowl.Runtime.Rendering.IRenderable.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: Prowl.Vector.Frustum
+    name: Frustum
+    isExternal: true
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: Prowl.Runtime.LayerMask
+    name: LayerMask
+    href: Prowl.Runtime.LayerMask.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: (
+  - name: )
   - name: )
 - uid: Prowl.Runtime.Rendering.RenderPipeline.CullOutsideSphere*
   commentId: Overload:Prowl.Runtime.Rendering.RenderPipeline.CullOutsideSphere
@@ -1679,6 +2013,77 @@ references:
   - name: .
   - uid: Prowl.Vector
     name: Vector
+- uid: Prowl.Runtime.Rendering.RenderPipeline.CullOutsideSphere(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable},Prowl.Vector.Float3,System.Single)
+  commentId: M:Prowl.Runtime.Rendering.RenderPipeline.CullOutsideSphere(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable},Prowl.Vector.Float3,System.Single)
+  parent: Prowl.Runtime.Rendering.RenderPipeline
+  isExternal: true
+  href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_CullOutsideSphere_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderable__Prowl_Vector_Float3_System_Single_
+  name: CullOutsideSphere(IReadOnlyList<IRenderable>, Float3, float)
+  nameWithType: RenderPipeline.CullOutsideSphere(IReadOnlyList<IRenderable>, Float3, float)
+  fullName: Prowl.Runtime.Rendering.RenderPipeline.CullOutsideSphere(System.Collections.Generic.IReadOnlyList<Prowl.Runtime.Rendering.IRenderable>, Prowl.Vector.Float3, float)
+  nameWithType.vb: RenderPipeline.CullOutsideSphere(IReadOnlyList(Of IRenderable), Float3, Single)
+  fullName.vb: Prowl.Runtime.Rendering.RenderPipeline.CullOutsideSphere(System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.Rendering.IRenderable), Prowl.Vector.Float3, Single)
+  name.vb: CullOutsideSphere(IReadOnlyList(Of IRenderable), Float3, Single)
+  spec.csharp:
+  - uid: Prowl.Runtime.Rendering.RenderPipeline.CullOutsideSphere(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable},Prowl.Vector.Float3,System.Single)
+    name: CullOutsideSphere
+    href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_CullOutsideSphere_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderable__Prowl_Vector_Float3_System_Single_
+  - name: (
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Runtime.Rendering.IRenderable
+    name: IRenderable
+    href: Prowl.Runtime.Rendering.IRenderable.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: Prowl.Vector.Float3
+    name: Float3
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Rendering.RenderPipeline.CullOutsideSphere(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable},Prowl.Vector.Float3,System.Single)
+    name: CullOutsideSphere
+    href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_CullOutsideSphere_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderable__Prowl_Vector_Float3_System_Single_
+  - name: (
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Rendering.IRenderable
+    name: IRenderable
+    href: Prowl.Runtime.Rendering.IRenderable.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: Prowl.Vector.Float3
+    name: Float3
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+- uid: Prowl.Runtime.Rendering.RenderPipeline.ReturnCullResult*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderPipeline.ReturnCullResult
+  href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_ReturnCullResult_System_Boolean___
+  name: ReturnCullResult
+  nameWithType: RenderPipeline.ReturnCullResult
+  fullName: Prowl.Runtime.Rendering.RenderPipeline.ReturnCullResult
 - uid: Prowl.Runtime.Rendering.RenderPipeline.CullRenderable*
   commentId: Overload:Prowl.Runtime.Rendering.RenderPipeline.CullRenderable
   href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_CullRenderable_Prowl_Runtime_Rendering_IRenderable_Prowl_Vector_Frustum_
@@ -1778,34 +2183,6 @@ references:
     name: IRenderable
     href: Prowl.Runtime.Rendering.IRenderable.html
   - name: )
-- uid: System.Collections.Generic.List`1
-  commentId: T:System.Collections.Generic.List`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  name: List<T>
-  nameWithType: List<T>
-  fullName: System.Collections.Generic.List<T>
-  nameWithType.vb: List(Of T)
-  fullName.vb: System.Collections.Generic.List(Of T)
-  name.vb: List(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
 - uid: Prowl.Runtime.Rendering.RenderPipeline.SetupGlobalUniforms*
   commentId: Overload:Prowl.Runtime.Rendering.RenderPipeline.SetupGlobalUniforms
   href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_SetupGlobalUniforms_Prowl_Runtime_Rendering_RenderPipeline_CameraSnapshot_
@@ -1835,12 +2212,12 @@ references:
   - uid: Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot
     name: CameraSnapshot
     href: Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.html
-- uid: Prowl.Runtime.Rendering.RenderPipeline.AssignCameraMatrices*
-  commentId: Overload:Prowl.Runtime.Rendering.RenderPipeline.AssignCameraMatrices
-  href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_AssignCameraMatrices_Prowl_Vector_Float4x4_Prowl_Vector_Float4x4_
-  name: AssignCameraMatrices
-  nameWithType: RenderPipeline.AssignCameraMatrices
-  fullName: Prowl.Runtime.Rendering.RenderPipeline.AssignCameraMatrices
+- uid: Prowl.Runtime.Rendering.RenderPipeline.ToGLClipDepth*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderPipeline.ToGLClipDepth
+  href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_ToGLClipDepth_Prowl_Vector_Float4x4_
+  name: ToGLClipDepth
+  nameWithType: RenderPipeline.ToGLClipDepth
+  fullName: Prowl.Runtime.Rendering.RenderPipeline.ToGLClipDepth
 - uid: Prowl.Vector.Float4x4
   commentId: T:Prowl.Vector.Float4x4
   parent: Prowl.Vector
@@ -1848,6 +2225,12 @@ references:
   name: Float4x4
   nameWithType: Float4x4
   fullName: Prowl.Vector.Float4x4
+- uid: Prowl.Runtime.Rendering.RenderPipeline.AssignCameraMatrices*
+  commentId: Overload:Prowl.Runtime.Rendering.RenderPipeline.AssignCameraMatrices
+  href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_AssignCameraMatrices_Prowl_Vector_Float4x4_Prowl_Vector_Float4x4_
+  name: AssignCameraMatrices
+  nameWithType: RenderPipeline.AssignCameraMatrices
+  fullName: Prowl.Runtime.Rendering.RenderPipeline.AssignCameraMatrices
 - uid: Prowl.Runtime.Rendering.RenderPipeline.DrawRenderables*
   commentId: Overload:Prowl.Runtime.Rendering.RenderPipeline.DrawRenderables
   href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_DrawRenderables_Prowl_Runtime_CommandBuffer_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderable__System_String_System_String_Prowl_Runtime_Rendering_ViewerData_System_Boolean___System_Boolean_Prowl_Runtime_Resources_RenderTexture_System_Boolean_

@@ -5,19 +5,13 @@ items:
   id: SceneLightSystem
   parent: Prowl.Runtime.Rendering
   children:
+  - Prowl.Runtime.Rendering.SceneLightSystem.#ctor
   - Prowl.Runtime.Rendering.SceneLightSystem.Directional
   - Prowl.Runtime.Rendering.SceneLightSystem.Dispose
-  - Prowl.Runtime.Rendering.SceneLightSystem.DynamicBVH
-  - Prowl.Runtime.Rendering.SceneLightSystem.DynamicTextures
   - Prowl.Runtime.Rendering.SceneLightSystem.ExtraDirectionals
   - Prowl.Runtime.Rendering.SceneLightSystem.MaxExtraDirectionalLights
-  - Prowl.Runtime.Rendering.SceneLightSystem.MaxShadowCasters
-  - Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderableLight},Prowl.Vector.Float3,Prowl.Runtime.LayerMask)
-  - Prowl.Runtime.Rendering.SceneLightSystem.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
-  - Prowl.Runtime.Rendering.SceneLightSystem.ShadowCasters
-  - Prowl.Runtime.Rendering.SceneLightSystem.StaticBVH
-  - Prowl.Runtime.Rendering.SceneLightSystem.StaticTextures
-  - Prowl.Runtime.Rendering.SceneLightSystem.UploadGlobalUniforms(Prowl.Vector.Float3)
+  - Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderableLight},Prowl.Vector.Float3,Prowl.Runtime.LayerMask,System.Nullable{Prowl.Vector.Frustum})
+  - Prowl.Runtime.Rendering.SceneLightSystem.ShadowLights
   langs:
   - csharp
   - vb
@@ -32,23 +26,21 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SceneLightSystem
     path: ../Prowl/Prowl.Runtime/Rendering/SceneLightSystem.cs
-    startLine: 28
+    startLine: 27
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
   summary: >-
-    Per-scene owner of the static and dynamic light BVHs and their GPU-side mirrors. The render
+    Per-scene owner of the light trees forward shading walks. The render pipeline calls
 
-    pipeline calls <xref href="Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList%7bProwl.Runtime.Rendering.IRenderableLight%7d%2cProwl.Vector.Float3%2cProwl.Runtime.LayerMask)" data-throw-if-not-resolved="false"></xref> once per frame with the lights collected from the
+    <xref href="Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList%7bProwl.Runtime.Rendering.IRenderableLight%7d%2cProwl.Vector.Float3%2cProwl.Runtime.LayerMask%2cSystem.Nullable%7bProwl.Vector.Frustum%7d)" data-throw-if-not-resolved="false"></xref> once per frame with the lights collected from the scene, and only what
 
-    scene; this class adds / removes / refits as needed and uploads only the dirty rows of each
-
-    texture.
+    changed is rebuilt and uploaded.
 
 
     <p>
 
-    Directional lights never enter either BVH. The brightest is uploaded via the cascade-shadow
+    Directional lights never enter either tree. The brightest is uploaded via the cascade-shadow
 
     uniform path; up to <xref href="Prowl.Runtime.Rendering.SceneLightSystem.MaxExtraDirectionalLights" data-throw-if-not-resolved="false"></xref> others light the scene unshadowed.
 
@@ -57,13 +49,9 @@ items:
 
     <p>
 
-    A bounded number of point + spot lights win shadow atlas slots each frame, picked by distance
+    Every point and spot light that casts shadows gets them while it is in view, sized and cached by each
 
-    to the frame's shadow focus point (the camera position, or the camera's
-
-    <xref href="Prowl.Runtime.Camera.ShadowFocus" data-throw-if-not-resolved="false"></xref> position when one is set). Lights that miss the cut still light
-
-    surfaces; they just sample as unshadowed.
+    camera's own <xref href="Prowl.Runtime.Rendering.ShadowRenderer" data-throw-if-not-resolved="false"></xref>. Its shadow data lives in a table, so there is no cap on how many.
 
     </p>
   example: []
@@ -83,38 +71,6 @@ items:
   - System.Object.ToString
   extensionMethods:
   - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
-- uid: Prowl.Runtime.Rendering.SceneLightSystem.MaxShadowCasters
-  commentId: F:Prowl.Runtime.Rendering.SceneLightSystem.MaxShadowCasters
-  id: MaxShadowCasters
-  parent: Prowl.Runtime.Rendering.SceneLightSystem
-  langs:
-  - csharp
-  - vb
-  name: MaxShadowCasters
-  nameWithType: SceneLightSystem.MaxShadowCasters
-  fullName: Prowl.Runtime.Rendering.SceneLightSystem.MaxShadowCasters
-  type: Field
-  source:
-    remote:
-      path: Prowl.Runtime/Rendering/SceneLightSystem.cs
-      branch: main
-      repo: https://github.com/ProwlEngine/Prowl.git
-    id: MaxShadowCasters
-    path: ../Prowl/Prowl.Runtime/Rendering/SceneLightSystem.cs
-    startLine: 33
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime.Rendering
-  summary: >-
-    How many local lights (point + spot combined) can have shadow atlas slots in a
-        single frame. The atlas budget makes this small in practice; bump alongside the matching
-        uniform-array sizes in <code>Lighting.glsl</code> if you raise it.
-  example: []
-  syntax:
-    content: public const int MaxShadowCasters = 4
-    return:
-      type: System.Int32
-    content.vb: Public Const MaxShadowCasters As Integer = 4
 - uid: Prowl.Runtime.Rendering.SceneLightSystem.MaxExtraDirectionalLights
   commentId: F:Prowl.Runtime.Rendering.SceneLightSystem.MaxExtraDirectionalLights
   id: MaxExtraDirectionalLights
@@ -133,7 +89,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: MaxExtraDirectionalLights
     path: ../Prowl/Prowl.Runtime/Rendering/SceneLightSystem.cs
-    startLine: 37
+    startLine: 31
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -146,122 +102,6 @@ items:
     return:
       type: System.Int32
     content.vb: Public Const MaxExtraDirectionalLights As Integer = 4
-- uid: Prowl.Runtime.Rendering.SceneLightSystem.StaticBVH
-  commentId: P:Prowl.Runtime.Rendering.SceneLightSystem.StaticBVH
-  id: StaticBVH
-  parent: Prowl.Runtime.Rendering.SceneLightSystem
-  langs:
-  - csharp
-  - vb
-  name: StaticBVH
-  nameWithType: SceneLightSystem.StaticBVH
-  fullName: Prowl.Runtime.Rendering.SceneLightSystem.StaticBVH
-  type: Property
-  source:
-    remote:
-      path: Prowl.Runtime/Rendering/SceneLightSystem.cs
-      branch: main
-      repo: https://github.com/ProwlEngine/Prowl.git
-    id: StaticBVH
-    path: ../Prowl/Prowl.Runtime/Rendering/SceneLightSystem.cs
-    startLine: 55
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime.Rendering
-  syntax:
-    content: public LightBVH StaticBVH { get; }
-    parameters: []
-    return:
-      type: Prowl.Runtime.Rendering.LightBVH
-    content.vb: Public ReadOnly Property StaticBVH As LightBVH
-  overload: Prowl.Runtime.Rendering.SceneLightSystem.StaticBVH*
-- uid: Prowl.Runtime.Rendering.SceneLightSystem.DynamicBVH
-  commentId: P:Prowl.Runtime.Rendering.SceneLightSystem.DynamicBVH
-  id: DynamicBVH
-  parent: Prowl.Runtime.Rendering.SceneLightSystem
-  langs:
-  - csharp
-  - vb
-  name: DynamicBVH
-  nameWithType: SceneLightSystem.DynamicBVH
-  fullName: Prowl.Runtime.Rendering.SceneLightSystem.DynamicBVH
-  type: Property
-  source:
-    remote:
-      path: Prowl.Runtime/Rendering/SceneLightSystem.cs
-      branch: main
-      repo: https://github.com/ProwlEngine/Prowl.git
-    id: DynamicBVH
-    path: ../Prowl/Prowl.Runtime/Rendering/SceneLightSystem.cs
-    startLine: 56
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime.Rendering
-  syntax:
-    content: public LightBVH DynamicBVH { get; }
-    parameters: []
-    return:
-      type: Prowl.Runtime.Rendering.LightBVH
-    content.vb: Public ReadOnly Property DynamicBVH As LightBVH
-  overload: Prowl.Runtime.Rendering.SceneLightSystem.DynamicBVH*
-- uid: Prowl.Runtime.Rendering.SceneLightSystem.StaticTextures
-  commentId: P:Prowl.Runtime.Rendering.SceneLightSystem.StaticTextures
-  id: StaticTextures
-  parent: Prowl.Runtime.Rendering.SceneLightSystem
-  langs:
-  - csharp
-  - vb
-  name: StaticTextures
-  nameWithType: SceneLightSystem.StaticTextures
-  fullName: Prowl.Runtime.Rendering.SceneLightSystem.StaticTextures
-  type: Property
-  source:
-    remote:
-      path: Prowl.Runtime/Rendering/SceneLightSystem.cs
-      branch: main
-      repo: https://github.com/ProwlEngine/Prowl.git
-    id: StaticTextures
-    path: ../Prowl/Prowl.Runtime/Rendering/SceneLightSystem.cs
-    startLine: 57
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime.Rendering
-  syntax:
-    content: public LightBVHTextures StaticTextures { get; }
-    parameters: []
-    return:
-      type: Prowl.Runtime.Rendering.LightBVHTextures
-    content.vb: Public ReadOnly Property StaticTextures As LightBVHTextures
-  overload: Prowl.Runtime.Rendering.SceneLightSystem.StaticTextures*
-- uid: Prowl.Runtime.Rendering.SceneLightSystem.DynamicTextures
-  commentId: P:Prowl.Runtime.Rendering.SceneLightSystem.DynamicTextures
-  id: DynamicTextures
-  parent: Prowl.Runtime.Rendering.SceneLightSystem
-  langs:
-  - csharp
-  - vb
-  name: DynamicTextures
-  nameWithType: SceneLightSystem.DynamicTextures
-  fullName: Prowl.Runtime.Rendering.SceneLightSystem.DynamicTextures
-  type: Property
-  source:
-    remote:
-      path: Prowl.Runtime/Rendering/SceneLightSystem.cs
-      branch: main
-      repo: https://github.com/ProwlEngine/Prowl.git
-    id: DynamicTextures
-    path: ../Prowl/Prowl.Runtime/Rendering/SceneLightSystem.cs
-    startLine: 58
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime.Rendering
-  syntax:
-    content: public LightBVHTextures DynamicTextures { get; }
-    parameters: []
-    return:
-      type: Prowl.Runtime.Rendering.LightBVHTextures
-    content.vb: Public ReadOnly Property DynamicTextures As LightBVHTextures
-  overload: Prowl.Runtime.Rendering.SceneLightSystem.DynamicTextures*
 - uid: Prowl.Runtime.Rendering.SceneLightSystem.Directional
   commentId: P:Prowl.Runtime.Rendering.SceneLightSystem.Directional
   id: Directional
@@ -280,7 +120,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Directional
     path: ../Prowl/Prowl.Runtime/Rendering/SceneLightSystem.cs
-    startLine: 62
+    startLine: 55
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -313,7 +153,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: ExtraDirectionals
     path: ../Prowl/Prowl.Runtime/Rendering/SceneLightSystem.cs
-    startLine: 65
+    startLine: 58
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -326,49 +166,78 @@ items:
       type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderableLight}
     content.vb: Public ReadOnly Property ExtraDirectionals As IReadOnlyList(Of IRenderableLight)
   overload: Prowl.Runtime.Rendering.SceneLightSystem.ExtraDirectionals*
-- uid: Prowl.Runtime.Rendering.SceneLightSystem.ShadowCasters
-  commentId: P:Prowl.Runtime.Rendering.SceneLightSystem.ShadowCasters
-  id: ShadowCasters
+- uid: Prowl.Runtime.Rendering.SceneLightSystem.ShadowLights
+  commentId: P:Prowl.Runtime.Rendering.SceneLightSystem.ShadowLights
+  id: ShadowLights
   parent: Prowl.Runtime.Rendering.SceneLightSystem
   langs:
   - csharp
   - vb
-  name: ShadowCasters
-  nameWithType: SceneLightSystem.ShadowCasters
-  fullName: Prowl.Runtime.Rendering.SceneLightSystem.ShadowCasters
+  name: ShadowLights
+  nameWithType: SceneLightSystem.ShadowLights
+  fullName: Prowl.Runtime.Rendering.SceneLightSystem.ShadowLights
   type: Property
   source:
     remote:
       path: Prowl.Runtime/Rendering/SceneLightSystem.cs
       branch: main
       repo: https://github.com/ProwlEngine/Prowl.git
-    id: ShadowCasters
+    id: ShadowLights
     path: ../Prowl/Prowl.Runtime/Rendering/SceneLightSystem.cs
-    startLine: 69
+    startLine: 61
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
-  summary: >-
-    Lights that won shadow atlas slots this frame, in order. The pipeline calls
-        <code>RenderShadows</code> on each.
+  summary: Point and spot lights that cast shadows this frame, in view or not.
   example: []
   syntax:
-    content: public IReadOnlyList<IRenderableLight> ShadowCasters { get; }
+    content: public IReadOnlyList<Light> ShadowLights { get; }
     parameters: []
     return:
-      type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderableLight}
-    content.vb: Public ReadOnly Property ShadowCasters As IReadOnlyList(Of IRenderableLight)
-  overload: Prowl.Runtime.Rendering.SceneLightSystem.ShadowCasters*
-- uid: Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderableLight},Prowl.Vector.Float3,Prowl.Runtime.LayerMask)
-  commentId: M:Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderableLight},Prowl.Vector.Float3,Prowl.Runtime.LayerMask)
-  id: Reconcile(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderableLight},Prowl.Vector.Float3,Prowl.Runtime.LayerMask)
+      type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Light}
+    content.vb: Public ReadOnly Property ShadowLights As IReadOnlyList(Of Light)
+  overload: Prowl.Runtime.Rendering.SceneLightSystem.ShadowLights*
+- uid: Prowl.Runtime.Rendering.SceneLightSystem.#ctor
+  commentId: M:Prowl.Runtime.Rendering.SceneLightSystem.#ctor
+  id: '#ctor'
   parent: Prowl.Runtime.Rendering.SceneLightSystem
   langs:
   - csharp
   - vb
-  name: Reconcile(IReadOnlyList<IRenderableLight>, Float3, LayerMask)
-  nameWithType: SceneLightSystem.Reconcile(IReadOnlyList<IRenderableLight>, Float3, LayerMask)
-  fullName: Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList<Prowl.Runtime.Rendering.IRenderableLight>, Prowl.Vector.Float3, Prowl.Runtime.LayerMask)
+  name: SceneLightSystem()
+  nameWithType: SceneLightSystem.SceneLightSystem()
+  fullName: Prowl.Runtime.Rendering.SceneLightSystem.SceneLightSystem()
+  type: Constructor
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/SceneLightSystem.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: .ctor
+    path: ../Prowl/Prowl.Runtime/Rendering/SceneLightSystem.cs
+    startLine: 64
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: Makes and caches every shadow map of this scene.
+  example: []
+  syntax:
+    content: public SceneLightSystem()
+    content.vb: Public Sub New()
+  overload: Prowl.Runtime.Rendering.SceneLightSystem.#ctor*
+  nameWithType.vb: SceneLightSystem.New()
+  fullName.vb: Prowl.Runtime.Rendering.SceneLightSystem.New()
+  name.vb: New()
+- uid: Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderableLight},Prowl.Vector.Float3,Prowl.Runtime.LayerMask,System.Nullable{Prowl.Vector.Frustum})
+  commentId: M:Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderableLight},Prowl.Vector.Float3,Prowl.Runtime.LayerMask,System.Nullable{Prowl.Vector.Frustum})
+  id: Reconcile(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderableLight},Prowl.Vector.Float3,Prowl.Runtime.LayerMask,System.Nullable{Prowl.Vector.Frustum})
+  parent: Prowl.Runtime.Rendering.SceneLightSystem
+  langs:
+  - csharp
+  - vb
+  name: Reconcile(IReadOnlyList<IRenderableLight>, Float3, LayerMask, Frustum?)
+  nameWithType: SceneLightSystem.Reconcile(IReadOnlyList<IRenderableLight>, Float3, LayerMask, Frustum?)
+  fullName: Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList<Prowl.Runtime.Rendering.IRenderableLight>, Prowl.Vector.Float3, Prowl.Runtime.LayerMask, Prowl.Vector.Frustum?)
   type: Method
   source:
     remote:
@@ -377,141 +246,45 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Reconcile
     path: ../Prowl/Prowl.Runtime/Rendering/SceneLightSystem.cs
-    startLine: 88
+    startLine: 81
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
   summary: >-
-    Walk this frame's lights, register / unregister with the appropriate BVH, refit dynamics,
+    Walk this frame's lights, track them in the static or dynamic tree, and pick the directional
 
-    pick the directional + closest-N shadow casters, and upload only the dirty rows of each
+    and the point and spot lights that cast shadows. Cheap when nothing changed.
 
-    texture. Cheap when nothing changed. Shadow casters are picked by distance to
-
-    <code class="paramref">shadowFocusPos</code>, the frame's shadow focus point (the camera position, or
-
-    the camera's <xref href="Prowl.Runtime.Camera.ShadowFocus" data-throw-if-not-resolved="false"></xref> position when one is set).
+    <code class="paramref">cameraPosition</code> is kept for callers, shadows are sized later.
 
 
     <p>
 
     Note on <code class="paramref">cullingMask</code>: per-camera light filtering by layer is not
 
-    applied here. The BVH is a per-scene structure, shared between cameras; per-camera
+    applied here. The trees are per scene and shared between cameras, so every light in the
 
-    layer filtering would require either a separate BVH per camera (expensive) or per-leaf
-
-    layer bits checked in the shader (not yet implemented). For now every light in the scene
-
-    affects every camera. The argument is kept for forward compatibility.
+    scene affects every camera. The argument is kept for forward compatibility.
 
     </p>
   example: []
   syntax:
-    content: public void Reconcile(IReadOnlyList<IRenderableLight> lights, Float3 shadowFocusPos, LayerMask cullingMask)
+    content: public void Reconcile(IReadOnlyList<IRenderableLight> lights, Float3 cameraPosition, LayerMask cullingMask, Frustum? view = null)
     parameters:
     - id: lights
       type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderableLight}
-    - id: shadowFocusPos
+    - id: cameraPosition
       type: Prowl.Vector.Float3
     - id: cullingMask
       type: Prowl.Runtime.LayerMask
-    content.vb: Public Sub Reconcile(lights As IReadOnlyList(Of IRenderableLight), shadowFocusPos As Float3, cullingMask As LayerMask)
+    - id: view
+      type: System.Nullable{Prowl.Vector.Frustum}
+      description: The view moving lights are culled to, or null to keep them all, as both eyes of a headset need.
+    content.vb: Public Sub Reconcile(lights As IReadOnlyList(Of IRenderableLight), cameraPosition As Float3, cullingMask As LayerMask, view As Frustum? = Nothing)
   overload: Prowl.Runtime.Rendering.SceneLightSystem.Reconcile*
-  nameWithType.vb: SceneLightSystem.Reconcile(IReadOnlyList(Of IRenderableLight), Float3, LayerMask)
-  fullName.vb: Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.Rendering.IRenderableLight), Prowl.Vector.Float3, Prowl.Runtime.LayerMask)
-  name.vb: Reconcile(IReadOnlyList(Of IRenderableLight), Float3, LayerMask)
-- uid: Prowl.Runtime.Rendering.SceneLightSystem.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
-  commentId: M:Prowl.Runtime.Rendering.SceneLightSystem.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
-  id: RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
-  parent: Prowl.Runtime.Rendering.SceneLightSystem
-  langs:
-  - csharp
-  - vb
-  name: RenderShadows(RenderPipeline, Float3, IReadOnlyList<IRenderable>)
-  nameWithType: SceneLightSystem.RenderShadows(RenderPipeline, Float3, IReadOnlyList<IRenderable>)
-  fullName: Prowl.Runtime.Rendering.SceneLightSystem.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline, Prowl.Vector.Float3, System.Collections.Generic.IReadOnlyList<Prowl.Runtime.Rendering.IRenderable>)
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/Rendering/SceneLightSystem.cs
-      branch: main
-      repo: https://github.com/ProwlEngine/Prowl.git
-    id: RenderShadows
-    path: ../Prowl/Prowl.Runtime/Rendering/SceneLightSystem.cs
-    startLine: 271
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime.Rendering
-  summary: >-
-    Render shadow maps for the directional light and the selected closest-N point / spot
-
-    shadow casters into the shared shadow atlas. The pipeline calls this after binding the
-
-    shadow framebuffer.
-  example: []
-  syntax:
-    content: public void RenderShadows(RenderPipeline pipeline, Float3 shadowFocusPosition, IReadOnlyList<IRenderable> renderables)
-    parameters:
-    - id: pipeline
-      type: Prowl.Runtime.Rendering.RenderPipeline
-      description: The current render pipeline.
-    - id: shadowFocusPosition
-      type: Prowl.Vector.Float3
-      description: >-
-        World-space point the directional light centers its
-            cascades on: the rendering camera's position, or its <xref href="Prowl.Runtime.Camera.ShadowFocus" data-throw-if-not-resolved="false"></xref>
-            position when one is set.
-    - id: renderables
-      type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable}
-      description: Everything that could cast a shadow this frame.
-    content.vb: Public Sub RenderShadows(pipeline As RenderPipeline, shadowFocusPosition As Float3, renderables As IReadOnlyList(Of IRenderable))
-  overload: Prowl.Runtime.Rendering.SceneLightSystem.RenderShadows*
-  nameWithType.vb: SceneLightSystem.RenderShadows(RenderPipeline, Float3, IReadOnlyList(Of IRenderable))
-  fullName.vb: Prowl.Runtime.Rendering.SceneLightSystem.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline, Prowl.Vector.Float3, System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.Rendering.IRenderable))
-  name.vb: RenderShadows(RenderPipeline, Float3, IReadOnlyList(Of IRenderable))
-- uid: Prowl.Runtime.Rendering.SceneLightSystem.UploadGlobalUniforms(Prowl.Vector.Float3)
-  commentId: M:Prowl.Runtime.Rendering.SceneLightSystem.UploadGlobalUniforms(Prowl.Vector.Float3)
-  id: UploadGlobalUniforms(Prowl.Vector.Float3)
-  parent: Prowl.Runtime.Rendering.SceneLightSystem
-  langs:
-  - csharp
-  - vb
-  name: UploadGlobalUniforms(Float3)
-  nameWithType: SceneLightSystem.UploadGlobalUniforms(Float3)
-  fullName: Prowl.Runtime.Rendering.SceneLightSystem.UploadGlobalUniforms(Prowl.Vector.Float3)
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/Rendering/SceneLightSystem.cs
-      branch: main
-      repo: https://github.com/ProwlEngine/Prowl.git
-    id: UploadGlobalUniforms
-    path: ../Prowl/Prowl.Runtime/Rendering/SceneLightSystem.cs
-    startLine: 296
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime.Rendering
-  summary: >-
-    Upload all uniforms touched by <code>Lighting.glsl</code> and <code>LightBVH.glsl</code>: the four
-
-    BVH textures, the directional light slot, the cascade shadow data, and the shadow atlas
-
-    arrays for the selected closest-N point + spot lights. Call after <xref href="Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList%7bProwl.Runtime.Rendering.IRenderableLight%7d%2cProwl.Vector.Float3%2cProwl.Runtime.LayerMask)" data-throw-if-not-resolved="false"></xref>
-
-    and <xref href="Prowl.Runtime.Rendering.SceneLightSystem.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline%2cProwl.Vector.Float3%2cSystem.Collections.Generic.IReadOnlyList%7bProwl.Runtime.Rendering.IRenderable%7d)" data-throw-if-not-resolved="false"></xref>, before any forward draws.
-  example: []
-  syntax:
-    content: public void UploadGlobalUniforms(Float3 shadowFocusPosition)
-    parameters:
-    - id: shadowFocusPosition
-      type: Prowl.Vector.Float3
-      description: >-
-        The point this frame's cascades were centered on. Uploaded
-            as <code>_ShadowFocusPos</code> so shader-side cascade selection measures distance from the same
-            point the cascades were built around.
-    content.vb: Public Sub UploadGlobalUniforms(shadowFocusPosition As Float3)
-  overload: Prowl.Runtime.Rendering.SceneLightSystem.UploadGlobalUniforms*
+  nameWithType.vb: SceneLightSystem.Reconcile(IReadOnlyList(Of IRenderableLight), Float3, LayerMask, Frustum?)
+  fullName.vb: Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.Rendering.IRenderableLight), Prowl.Vector.Float3, Prowl.Runtime.LayerMask, Prowl.Vector.Frustum?)
+  name.vb: Reconcile(IReadOnlyList(Of IRenderableLight), Float3, LayerMask, Frustum?)
 - uid: Prowl.Runtime.Rendering.SceneLightSystem.Dispose
   commentId: M:Prowl.Runtime.Rendering.SceneLightSystem.Dispose
   id: Dispose
@@ -530,7 +303,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Dispose
     path: ../Prowl/Prowl.Runtime/Rendering/SceneLightSystem.cs
-    startLine: 460
+    startLine: 283
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -543,20 +316,20 @@ items:
   implements:
   - System.IDisposable.Dispose
 references:
-- uid: Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderableLight},Prowl.Vector.Float3,Prowl.Runtime.LayerMask)
-  commentId: M:Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderableLight},Prowl.Vector.Float3,Prowl.Runtime.LayerMask)
+- uid: Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderableLight},Prowl.Vector.Float3,Prowl.Runtime.LayerMask,System.Nullable{Prowl.Vector.Frustum})
+  commentId: M:Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderableLight},Prowl.Vector.Float3,Prowl.Runtime.LayerMask,System.Nullable{Prowl.Vector.Frustum})
   isExternal: true
-  href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_Reconcile_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderableLight__Prowl_Vector_Float3_Prowl_Runtime_LayerMask_
-  name: Reconcile(IReadOnlyList<IRenderableLight>, Float3, LayerMask)
-  nameWithType: SceneLightSystem.Reconcile(IReadOnlyList<IRenderableLight>, Float3, LayerMask)
-  fullName: Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList<Prowl.Runtime.Rendering.IRenderableLight>, Prowl.Vector.Float3, Prowl.Runtime.LayerMask)
-  nameWithType.vb: SceneLightSystem.Reconcile(IReadOnlyList(Of IRenderableLight), Float3, LayerMask)
-  fullName.vb: Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.Rendering.IRenderableLight), Prowl.Vector.Float3, Prowl.Runtime.LayerMask)
-  name.vb: Reconcile(IReadOnlyList(Of IRenderableLight), Float3, LayerMask)
+  href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_Reconcile_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderableLight__Prowl_Vector_Float3_Prowl_Runtime_LayerMask_System_Nullable_Prowl_Vector_Frustum__
+  name: Reconcile(IReadOnlyList<IRenderableLight>, Float3, LayerMask, Frustum?)
+  nameWithType: SceneLightSystem.Reconcile(IReadOnlyList<IRenderableLight>, Float3, LayerMask, Frustum?)
+  fullName: Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList<Prowl.Runtime.Rendering.IRenderableLight>, Prowl.Vector.Float3, Prowl.Runtime.LayerMask, Prowl.Vector.Frustum?)
+  nameWithType.vb: SceneLightSystem.Reconcile(IReadOnlyList(Of IRenderableLight), Float3, LayerMask, Frustum?)
+  fullName.vb: Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.Rendering.IRenderableLight), Prowl.Vector.Float3, Prowl.Runtime.LayerMask, Prowl.Vector.Frustum?)
+  name.vb: Reconcile(IReadOnlyList(Of IRenderableLight), Float3, LayerMask, Frustum?)
   spec.csharp:
-  - uid: Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderableLight},Prowl.Vector.Float3,Prowl.Runtime.LayerMask)
+  - uid: Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderableLight},Prowl.Vector.Float3,Prowl.Runtime.LayerMask,System.Nullable{Prowl.Vector.Frustum})
     name: Reconcile
-    href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_Reconcile_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderableLight__Prowl_Vector_Float3_Prowl_Runtime_LayerMask_
+    href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_Reconcile_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderableLight__Prowl_Vector_Float3_Prowl_Runtime_LayerMask_System_Nullable_Prowl_Vector_Frustum__
   - name: (
   - uid: System.Collections.Generic.IReadOnlyList`1
     name: IReadOnlyList
@@ -577,11 +350,17 @@ references:
   - uid: Prowl.Runtime.LayerMask
     name: LayerMask
     href: Prowl.Runtime.LayerMask.html
+  - name: ','
+  - name: " "
+  - uid: Prowl.Vector.Frustum
+    name: Frustum
+    isExternal: true
+  - name: '?'
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderableLight},Prowl.Vector.Float3,Prowl.Runtime.LayerMask)
+  - uid: Prowl.Runtime.Rendering.SceneLightSystem.Reconcile(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderableLight},Prowl.Vector.Float3,Prowl.Runtime.LayerMask,System.Nullable{Prowl.Vector.Frustum})
     name: Reconcile
-    href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_Reconcile_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderableLight__Prowl_Vector_Float3_Prowl_Runtime_LayerMask_
+    href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_Reconcile_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderableLight__Prowl_Vector_Float3_Prowl_Runtime_LayerMask_System_Nullable_Prowl_Vector_Frustum__
   - name: (
   - uid: System.Collections.Generic.IReadOnlyList`1
     name: IReadOnlyList
@@ -604,6 +383,12 @@ references:
   - uid: Prowl.Runtime.LayerMask
     name: LayerMask
     href: Prowl.Runtime.LayerMask.html
+  - name: ','
+  - name: " "
+  - uid: Prowl.Vector.Frustum
+    name: Frustum
+    isExternal: true
+  - name: '?'
   - name: )
 - uid: Prowl.Runtime.Rendering.SceneLightSystem.MaxExtraDirectionalLights
   commentId: F:Prowl.Runtime.Rendering.SceneLightSystem.MaxExtraDirectionalLights
@@ -611,12 +396,11 @@ references:
   name: MaxExtraDirectionalLights
   nameWithType: SceneLightSystem.MaxExtraDirectionalLights
   fullName: Prowl.Runtime.Rendering.SceneLightSystem.MaxExtraDirectionalLights
-- uid: Prowl.Runtime.Camera.ShadowFocus
-  commentId: F:Prowl.Runtime.Camera.ShadowFocus
-  href: Prowl.Runtime.Camera.html#Prowl_Runtime_Camera_ShadowFocus
-  name: ShadowFocus
-  nameWithType: Camera.ShadowFocus
-  fullName: Prowl.Runtime.Camera.ShadowFocus
+- uid: Prowl.Runtime.Rendering.ShadowRenderer
+  commentId: T:Prowl.Runtime.Rendering.ShadowRenderer
+  name: ShadowRenderer
+  nameWithType: ShadowRenderer
+  fullName: Prowl.Runtime.Rendering.ShadowRenderer
 - uid: Prowl.Runtime.Rendering
   commentId: N:Prowl.Runtime.Rendering
   name: Prowl.Runtime.Rendering
@@ -957,44 +741,6 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
-- uid: Prowl.Runtime.Rendering.SceneLightSystem.StaticBVH*
-  commentId: Overload:Prowl.Runtime.Rendering.SceneLightSystem.StaticBVH
-  href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_StaticBVH
-  name: StaticBVH
-  nameWithType: SceneLightSystem.StaticBVH
-  fullName: Prowl.Runtime.Rendering.SceneLightSystem.StaticBVH
-- uid: Prowl.Runtime.Rendering.LightBVH
-  commentId: T:Prowl.Runtime.Rendering.LightBVH
-  parent: Prowl.Runtime.Rendering
-  href: Prowl.Runtime.Rendering.LightBVH.html
-  name: LightBVH
-  nameWithType: LightBVH
-  fullName: Prowl.Runtime.Rendering.LightBVH
-- uid: Prowl.Runtime.Rendering.SceneLightSystem.DynamicBVH*
-  commentId: Overload:Prowl.Runtime.Rendering.SceneLightSystem.DynamicBVH
-  href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_DynamicBVH
-  name: DynamicBVH
-  nameWithType: SceneLightSystem.DynamicBVH
-  fullName: Prowl.Runtime.Rendering.SceneLightSystem.DynamicBVH
-- uid: Prowl.Runtime.Rendering.SceneLightSystem.StaticTextures*
-  commentId: Overload:Prowl.Runtime.Rendering.SceneLightSystem.StaticTextures
-  href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_StaticTextures
-  name: StaticTextures
-  nameWithType: SceneLightSystem.StaticTextures
-  fullName: Prowl.Runtime.Rendering.SceneLightSystem.StaticTextures
-- uid: Prowl.Runtime.Rendering.LightBVHTextures
-  commentId: T:Prowl.Runtime.Rendering.LightBVHTextures
-  parent: Prowl.Runtime.Rendering
-  href: Prowl.Runtime.Rendering.LightBVHTextures.html
-  name: LightBVHTextures
-  nameWithType: LightBVHTextures
-  fullName: Prowl.Runtime.Rendering.LightBVHTextures
-- uid: Prowl.Runtime.Rendering.SceneLightSystem.DynamicTextures*
-  commentId: Overload:Prowl.Runtime.Rendering.SceneLightSystem.DynamicTextures
-  href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_DynamicTextures
-  name: DynamicTextures
-  nameWithType: SceneLightSystem.DynamicTextures
-  fullName: Prowl.Runtime.Rendering.SceneLightSystem.DynamicTextures
 - uid: Prowl.Runtime.Rendering.SceneLightSystem.Directional*
   commentId: Overload:Prowl.Runtime.Rendering.SceneLightSystem.Directional
   href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_Directional
@@ -1112,15 +858,57 @@ references:
     name: Generic
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic
-- uid: Prowl.Runtime.Rendering.SceneLightSystem.ShadowCasters*
-  commentId: Overload:Prowl.Runtime.Rendering.SceneLightSystem.ShadowCasters
-  href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_ShadowCasters
-  name: ShadowCasters
-  nameWithType: SceneLightSystem.ShadowCasters
-  fullName: Prowl.Runtime.Rendering.SceneLightSystem.ShadowCasters
+- uid: Prowl.Runtime.Rendering.SceneLightSystem.ShadowLights*
+  commentId: Overload:Prowl.Runtime.Rendering.SceneLightSystem.ShadowLights
+  href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_ShadowLights
+  name: ShadowLights
+  nameWithType: SceneLightSystem.ShadowLights
+  fullName: Prowl.Runtime.Rendering.SceneLightSystem.ShadowLights
+- uid: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Light}
+  commentId: T:System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Light}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<Light>
+  nameWithType: IReadOnlyList<Light>
+  fullName: System.Collections.Generic.IReadOnlyList<Prowl.Runtime.Light>
+  nameWithType.vb: IReadOnlyList(Of Light)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.Light)
+  name.vb: IReadOnlyList(Of Light)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Runtime.Light
+    name: Light
+    href: Prowl.Runtime.Light.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Light
+    name: Light
+    href: Prowl.Runtime.Light.html
+  - name: )
+- uid: Prowl.Runtime.Rendering.SceneLightSystem.#ctor*
+  commentId: Overload:Prowl.Runtime.Rendering.SceneLightSystem.#ctor
+  href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem__ctor
+  name: SceneLightSystem
+  nameWithType: SceneLightSystem.SceneLightSystem
+  fullName: Prowl.Runtime.Rendering.SceneLightSystem.SceneLightSystem
+  nameWithType.vb: SceneLightSystem.New
+  fullName.vb: Prowl.Runtime.Rendering.SceneLightSystem.New
+  name.vb: New
 - uid: Prowl.Runtime.Rendering.SceneLightSystem.Reconcile*
   commentId: Overload:Prowl.Runtime.Rendering.SceneLightSystem.Reconcile
-  href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_Reconcile_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderableLight__Prowl_Vector_Float3_Prowl_Runtime_LayerMask_
+  href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_Reconcile_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderableLight__Prowl_Vector_Float3_Prowl_Runtime_LayerMask_System_Nullable_Prowl_Vector_Frustum__
   name: Reconcile
   nameWithType: SceneLightSystem.Reconcile
   fullName: Prowl.Runtime.Rendering.SceneLightSystem.Reconcile
@@ -1138,6 +926,23 @@ references:
   name: LayerMask
   nameWithType: LayerMask
   fullName: Prowl.Runtime.LayerMask
+- uid: System.Nullable{Prowl.Vector.Frustum}
+  commentId: T:System.Nullable{Prowl.Vector.Frustum}
+  parent: System
+  definition: System.Nullable`1
+  name: Frustum?
+  nameWithType: Frustum?
+  fullName: Prowl.Vector.Frustum?
+  spec.csharp:
+  - uid: Prowl.Vector.Frustum
+    name: Frustum
+    isExternal: true
+  - name: '?'
+  spec.vb:
+  - uid: Prowl.Vector.Frustum
+    name: Frustum
+    isExternal: true
+  - name: '?'
 - uid: Prowl.Vector
   commentId: N:Prowl.Vector
   name: Prowl.Vector
@@ -1155,120 +960,34 @@ references:
   - name: .
   - uid: Prowl.Vector
     name: Vector
-- uid: Prowl.Runtime.Rendering.SceneLightSystem.RenderShadows*
-  commentId: Overload:Prowl.Runtime.Rendering.SceneLightSystem.RenderShadows
-  href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_RenderShadows_Prowl_Runtime_Rendering_RenderPipeline_Prowl_Vector_Float3_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderable__
-  name: RenderShadows
-  nameWithType: SceneLightSystem.RenderShadows
-  fullName: Prowl.Runtime.Rendering.SceneLightSystem.RenderShadows
-- uid: Prowl.Runtime.Rendering.RenderPipeline
-  commentId: T:Prowl.Runtime.Rendering.RenderPipeline
-  parent: Prowl.Runtime.Rendering
-  href: Prowl.Runtime.Rendering.RenderPipeline.html
-  name: RenderPipeline
-  nameWithType: RenderPipeline
-  fullName: Prowl.Runtime.Rendering.RenderPipeline
-- uid: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable}
-  commentId: T:System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.IReadOnlyList`1
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
-  name: IReadOnlyList<IRenderable>
-  nameWithType: IReadOnlyList<IRenderable>
-  fullName: System.Collections.Generic.IReadOnlyList<Prowl.Runtime.Rendering.IRenderable>
-  nameWithType.vb: IReadOnlyList(Of IRenderable)
-  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.Rendering.IRenderable)
-  name.vb: IReadOnlyList(Of IRenderable)
-  spec.csharp:
-  - uid: System.Collections.Generic.IReadOnlyList`1
-    name: IReadOnlyList
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
-  - name: <
-  - uid: Prowl.Runtime.Rendering.IRenderable
-    name: IRenderable
-    href: Prowl.Runtime.Rendering.IRenderable.html
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IReadOnlyList`1
-    name: IReadOnlyList
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: Prowl.Runtime.Rendering.IRenderable
-    name: IRenderable
-    href: Prowl.Runtime.Rendering.IRenderable.html
-  - name: )
-- uid: Prowl.Runtime.Rendering.SceneLightSystem.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
-  commentId: M:Prowl.Runtime.Rendering.SceneLightSystem.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
   isExternal: true
-  href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_RenderShadows_Prowl_Runtime_Rendering_RenderPipeline_Prowl_Vector_Float3_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderable__
-  name: RenderShadows(RenderPipeline, Float3, IReadOnlyList<IRenderable>)
-  nameWithType: SceneLightSystem.RenderShadows(RenderPipeline, Float3, IReadOnlyList<IRenderable>)
-  fullName: Prowl.Runtime.Rendering.SceneLightSystem.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline, Prowl.Vector.Float3, System.Collections.Generic.IReadOnlyList<Prowl.Runtime.Rendering.IRenderable>)
-  nameWithType.vb: SceneLightSystem.RenderShadows(RenderPipeline, Float3, IReadOnlyList(Of IRenderable))
-  fullName.vb: Prowl.Runtime.Rendering.SceneLightSystem.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline, Prowl.Vector.Float3, System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.Rendering.IRenderable))
-  name.vb: RenderShadows(RenderPipeline, Float3, IReadOnlyList(Of IRenderable))
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
   spec.csharp:
-  - uid: Prowl.Runtime.Rendering.SceneLightSystem.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
-    name: RenderShadows
-    href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_RenderShadows_Prowl_Runtime_Rendering_RenderPipeline_Prowl_Vector_Float3_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderable__
-  - name: (
-  - uid: Prowl.Runtime.Rendering.RenderPipeline
-    name: RenderPipeline
-    href: Prowl.Runtime.Rendering.RenderPipeline.html
-  - name: ','
-  - name: " "
-  - uid: Prowl.Vector.Float3
-    name: Float3
+  - uid: System.Nullable`1
+    name: Nullable
     isExternal: true
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.IReadOnlyList`1
-    name: IReadOnlyList
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
   - name: <
-  - uid: Prowl.Runtime.Rendering.IRenderable
-    name: IRenderable
-    href: Prowl.Runtime.Rendering.IRenderable.html
+  - name: T
   - name: '>'
-  - name: )
   spec.vb:
-  - uid: Prowl.Runtime.Rendering.SceneLightSystem.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
-    name: RenderShadows
-    href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_RenderShadows_Prowl_Runtime_Rendering_RenderPipeline_Prowl_Vector_Float3_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderable__
-  - name: (
-  - uid: Prowl.Runtime.Rendering.RenderPipeline
-    name: RenderPipeline
-    href: Prowl.Runtime.Rendering.RenderPipeline.html
-  - name: ','
-  - name: " "
-  - uid: Prowl.Vector.Float3
-    name: Float3
+  - uid: System.Nullable`1
+    name: Nullable
     isExternal: true
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.IReadOnlyList`1
-    name: IReadOnlyList
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
   - name: (
   - name: Of
   - name: " "
-  - uid: Prowl.Runtime.Rendering.IRenderable
-    name: IRenderable
-    href: Prowl.Runtime.Rendering.IRenderable.html
+  - name: T
   - name: )
-  - name: )
-- uid: Prowl.Runtime.Rendering.SceneLightSystem.UploadGlobalUniforms*
-  commentId: Overload:Prowl.Runtime.Rendering.SceneLightSystem.UploadGlobalUniforms
-  href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_UploadGlobalUniforms_Prowl_Vector_Float3_
-  name: UploadGlobalUniforms
-  nameWithType: SceneLightSystem.UploadGlobalUniforms
-  fullName: Prowl.Runtime.Rendering.SceneLightSystem.UploadGlobalUniforms
 - uid: Prowl.Runtime.Rendering.SceneLightSystem.Dispose*
   commentId: Overload:Prowl.Runtime.Rendering.SceneLightSystem.Dispose
   href: Prowl.Runtime.Rendering.SceneLightSystem.html#Prowl_Runtime_Rendering_SceneLightSystem_Dispose

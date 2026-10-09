@@ -6,8 +6,6 @@ items:
   parent: Prowl.Runtime
   children:
   - Prowl.Runtime.PlayerSettingsLoader.Apply(System.String)
-  - Prowl.Runtime.PlayerSettingsLoader.ApplyAssetConfig(System.String)
-  - Prowl.Runtime.PlayerSettingsLoader.ApplyNavigation(System.String)
   langs:
   - csharp
   - vb
@@ -62,11 +60,16 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Apply
     path: ../Prowl/Prowl.Runtime/PlayerSettingsLoader.cs
-    startLine: 18
+    startLine: 22
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
-  summary: Apply all project settings and register for scene load events.
+  summary: >-
+    Applies every project setting and starts XR if the project asks for it. Runs before the first scene loads, so the
+
+    scene wakes up with them: assets resolved in OnEnable see the budget, navmesh worlds read their settings as their
+
+    surfaces register, and components can see XR running. Physics settings reach each scene as it loads.
   example: []
   syntax:
     content: public static void Apply(string settingsDir)
@@ -78,84 +81,6 @@ items:
   nameWithType.vb: PlayerSettingsLoader.Apply(String)
   fullName.vb: Prowl.Runtime.PlayerSettingsLoader.Apply(String)
   name.vb: Apply(String)
-- uid: Prowl.Runtime.PlayerSettingsLoader.ApplyAssetConfig(System.String)
-  commentId: M:Prowl.Runtime.PlayerSettingsLoader.ApplyAssetConfig(System.String)
-  id: ApplyAssetConfig(System.String)
-  parent: Prowl.Runtime.PlayerSettingsLoader
-  langs:
-  - csharp
-  - vb
-  name: ApplyAssetConfig(string)
-  nameWithType: PlayerSettingsLoader.ApplyAssetConfig(string)
-  fullName: Prowl.Runtime.PlayerSettingsLoader.ApplyAssetConfig(string)
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/PlayerSettingsLoader.cs
-      branch: main
-      repo: https://github.com/ProwlEngine/Prowl.git
-    id: ApplyAssetConfig
-    path: ../Prowl/Prowl.Runtime/PlayerSettingsLoader.cs
-    startLine: 49
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  summary: >-
-    Apply the async-asset-loading toggle. Exposed separately so the player can set it
-
-    BEFORE the default scene loads (component OnEnable may resolve AssetRefs), not just
-
-    during the bulk <xref href="Prowl.Runtime.PlayerSettingsLoader.Apply(System.String)" data-throw-if-not-resolved="false"></xref> that runs after scene load.
-  example: []
-  syntax:
-    content: public static void ApplyAssetConfig(string dir)
-    parameters:
-    - id: dir
-      type: System.String
-    content.vb: Public Shared Sub ApplyAssetConfig(dir As String)
-  overload: Prowl.Runtime.PlayerSettingsLoader.ApplyAssetConfig*
-  nameWithType.vb: PlayerSettingsLoader.ApplyAssetConfig(String)
-  fullName.vb: Prowl.Runtime.PlayerSettingsLoader.ApplyAssetConfig(String)
-  name.vb: ApplyAssetConfig(String)
-- uid: Prowl.Runtime.PlayerSettingsLoader.ApplyNavigation(System.String)
-  commentId: M:Prowl.Runtime.PlayerSettingsLoader.ApplyNavigation(System.String)
-  id: ApplyNavigation(System.String)
-  parent: Prowl.Runtime.PlayerSettingsLoader
-  langs:
-  - csharp
-  - vb
-  name: ApplyNavigation(string)
-  nameWithType: PlayerSettingsLoader.ApplyNavigation(string)
-  fullName: Prowl.Runtime.PlayerSettingsLoader.ApplyNavigation(string)
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/PlayerSettingsLoader.cs
-      branch: main
-      repo: https://github.com/ProwlEngine/Prowl.git
-    id: ApplyNavigation
-    path: ../Prowl/Prowl.Runtime/PlayerSettingsLoader.cs
-    startLine: 192
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  summary: >-
-    Apply the navigation tables and world settings. Exposed separately so the player can run it
-
-    BEFORE the default scene loads: a navmesh world reads its obstacle capacity and crowd radius
-
-    when its surfaces and agents register, which happens during the load.
-  example: []
-  syntax:
-    content: public static void ApplyNavigation(string dir)
-    parameters:
-    - id: dir
-      type: System.String
-    content.vb: Public Shared Sub ApplyNavigation(dir As String)
-  overload: Prowl.Runtime.PlayerSettingsLoader.ApplyNavigation*
-  nameWithType.vb: PlayerSettingsLoader.ApplyNavigation(String)
-  fullName.vb: Prowl.Runtime.PlayerSettingsLoader.ApplyNavigation(String)
-  name.vb: ApplyNavigation(String)
 references:
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
@@ -428,45 +353,3 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: Prowl.Runtime.PlayerSettingsLoader.Apply(System.String)
-  commentId: M:Prowl.Runtime.PlayerSettingsLoader.Apply(System.String)
-  isExternal: true
-  href: Prowl.Runtime.PlayerSettingsLoader.html#Prowl_Runtime_PlayerSettingsLoader_Apply_System_String_
-  name: Apply(string)
-  nameWithType: PlayerSettingsLoader.Apply(string)
-  fullName: Prowl.Runtime.PlayerSettingsLoader.Apply(string)
-  nameWithType.vb: PlayerSettingsLoader.Apply(String)
-  fullName.vb: Prowl.Runtime.PlayerSettingsLoader.Apply(String)
-  name.vb: Apply(String)
-  spec.csharp:
-  - uid: Prowl.Runtime.PlayerSettingsLoader.Apply(System.String)
-    name: Apply
-    href: Prowl.Runtime.PlayerSettingsLoader.html#Prowl_Runtime_PlayerSettingsLoader_Apply_System_String_
-  - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.PlayerSettingsLoader.Apply(System.String)
-    name: Apply
-    href: Prowl.Runtime.PlayerSettingsLoader.html#Prowl_Runtime_PlayerSettingsLoader_Apply_System_String_
-  - name: (
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-- uid: Prowl.Runtime.PlayerSettingsLoader.ApplyAssetConfig*
-  commentId: Overload:Prowl.Runtime.PlayerSettingsLoader.ApplyAssetConfig
-  href: Prowl.Runtime.PlayerSettingsLoader.html#Prowl_Runtime_PlayerSettingsLoader_ApplyAssetConfig_System_String_
-  name: ApplyAssetConfig
-  nameWithType: PlayerSettingsLoader.ApplyAssetConfig
-  fullName: Prowl.Runtime.PlayerSettingsLoader.ApplyAssetConfig
-- uid: Prowl.Runtime.PlayerSettingsLoader.ApplyNavigation*
-  commentId: Overload:Prowl.Runtime.PlayerSettingsLoader.ApplyNavigation
-  href: Prowl.Runtime.PlayerSettingsLoader.html#Prowl_Runtime_PlayerSettingsLoader_ApplyNavigation_System_String_
-  name: ApplyNavigation
-  nameWithType: PlayerSettingsLoader.ApplyNavigation
-  fullName: Prowl.Runtime.PlayerSettingsLoader.ApplyNavigation

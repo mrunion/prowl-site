@@ -19,11 +19,8 @@ items:
   - Prowl.Runtime.Rendering.GlobalUniformsData
   - Prowl.Runtime.Rendering.IRenderable
   - Prowl.Runtime.Rendering.IRenderableLight
+  - Prowl.Runtime.Rendering.IndexRange
   - Prowl.Runtime.Rendering.InstanceData
-  - Prowl.Runtime.Rendering.LightBVH
-  - Prowl.Runtime.Rendering.LightBVH.Node
-  - Prowl.Runtime.Rendering.LightBVH.SlotInfo
-  - Prowl.Runtime.Rendering.LightBVHTextures
   - Prowl.Runtime.Rendering.LightProbeVolume
   - Prowl.Runtime.Rendering.LightType
   - Prowl.Runtime.Rendering.LightmapBinding
@@ -45,8 +42,14 @@ items:
   - Prowl.Runtime.Rendering.SceneLightSystem
   - Prowl.Runtime.Rendering.ScreenSpaceReflectionEffect
   - Prowl.Runtime.Rendering.ShadowAtlas
+  - Prowl.Runtime.Rendering.ShadowCamera
+  - Prowl.Runtime.Rendering.ShadowDepthPrecision
+  - Prowl.Runtime.Rendering.ShadowFitView
+  - Prowl.Runtime.Rendering.ShadowTile
+  - Prowl.Runtime.Rendering.ShadowTileAllocator
   - Prowl.Runtime.Rendering.SphericalHarmonicsL2
   - Prowl.Runtime.Rendering.SphericalHarmonicsL2.Packed
+  - Prowl.Runtime.Rendering.StaticGeometry
   - Prowl.Runtime.Rendering.TAAEffect
   - Prowl.Runtime.Rendering.TonemapperEffect
   - Prowl.Runtime.Rendering.TonemapperType
@@ -228,64 +231,6 @@ references:
   name: InstanceData
   nameWithType: InstanceData
   fullName: Prowl.Runtime.Rendering.InstanceData
-- uid: Prowl.Runtime.Rendering.LightBVH
-  commentId: T:Prowl.Runtime.Rendering.LightBVH
-  parent: Prowl.Runtime.Rendering
-  href: Prowl.Runtime.Rendering.LightBVH.html
-  name: LightBVH
-  nameWithType: LightBVH
-  fullName: Prowl.Runtime.Rendering.LightBVH
-- uid: Prowl.Runtime.Rendering.LightBVH.SlotInfo
-  commentId: T:Prowl.Runtime.Rendering.LightBVH.SlotInfo
-  href: Prowl.Runtime.Rendering.LightBVH.html
-  name: LightBVH.SlotInfo
-  nameWithType: LightBVH.SlotInfo
-  fullName: Prowl.Runtime.Rendering.LightBVH.SlotInfo
-  spec.csharp:
-  - uid: Prowl.Runtime.Rendering.LightBVH
-    name: LightBVH
-    href: Prowl.Runtime.Rendering.LightBVH.html
-  - name: .
-  - uid: Prowl.Runtime.Rendering.LightBVH.SlotInfo
-    name: SlotInfo
-    href: Prowl.Runtime.Rendering.LightBVH.SlotInfo.html
-  spec.vb:
-  - uid: Prowl.Runtime.Rendering.LightBVH
-    name: LightBVH
-    href: Prowl.Runtime.Rendering.LightBVH.html
-  - name: .
-  - uid: Prowl.Runtime.Rendering.LightBVH.SlotInfo
-    name: SlotInfo
-    href: Prowl.Runtime.Rendering.LightBVH.SlotInfo.html
-- uid: Prowl.Runtime.Rendering.LightBVH.Node
-  commentId: T:Prowl.Runtime.Rendering.LightBVH.Node
-  href: Prowl.Runtime.Rendering.LightBVH.html
-  name: LightBVH.Node
-  nameWithType: LightBVH.Node
-  fullName: Prowl.Runtime.Rendering.LightBVH.Node
-  spec.csharp:
-  - uid: Prowl.Runtime.Rendering.LightBVH
-    name: LightBVH
-    href: Prowl.Runtime.Rendering.LightBVH.html
-  - name: .
-  - uid: Prowl.Runtime.Rendering.LightBVH.Node
-    name: Node
-    href: Prowl.Runtime.Rendering.LightBVH.Node.html
-  spec.vb:
-  - uid: Prowl.Runtime.Rendering.LightBVH
-    name: LightBVH
-    href: Prowl.Runtime.Rendering.LightBVH.html
-  - name: .
-  - uid: Prowl.Runtime.Rendering.LightBVH.Node
-    name: Node
-    href: Prowl.Runtime.Rendering.LightBVH.Node.html
-- uid: Prowl.Runtime.Rendering.LightBVHTextures
-  commentId: T:Prowl.Runtime.Rendering.LightBVHTextures
-  parent: Prowl.Runtime.Rendering
-  href: Prowl.Runtime.Rendering.LightBVHTextures.html
-  name: LightBVHTextures
-  nameWithType: LightBVHTextures
-  fullName: Prowl.Runtime.Rendering.LightBVHTextures
 - uid: Prowl.Runtime.Rendering.LightmapBinding
   commentId: T:Prowl.Runtime.Rendering.LightmapBinding
   href: Prowl.Runtime.Rendering.LightmapBinding.html
@@ -347,6 +292,12 @@ references:
   name: IRenderable
   nameWithType: IRenderable
   fullName: Prowl.Runtime.Rendering.IRenderable
+- uid: Prowl.Runtime.Rendering.IndexRange
+  commentId: T:Prowl.Runtime.Rendering.IndexRange
+  href: Prowl.Runtime.Rendering.IndexRange.html
+  name: IndexRange
+  nameWithType: IndexRange
+  fullName: Prowl.Runtime.Rendering.IndexRange
 - uid: Prowl.Runtime.Rendering.LightType
   commentId: T:Prowl.Runtime.Rendering.LightType
   parent: Prowl.Runtime.Rendering
@@ -368,6 +319,13 @@ references:
   name: IRenderableLight
   nameWithType: IRenderableLight
   fullName: Prowl.Runtime.Rendering.IRenderableLight
+- uid: Prowl.Runtime.Rendering.ShadowFitView
+  commentId: T:Prowl.Runtime.Rendering.ShadowFitView
+  parent: Prowl.Runtime.Rendering
+  href: Prowl.Runtime.Rendering.ShadowFitView.html
+  name: ShadowFitView
+  nameWithType: ShadowFitView
+  fullName: Prowl.Runtime.Rendering.ShadowFitView
 - uid: Prowl.Runtime.Rendering.RenderPipeline
   commentId: T:Prowl.Runtime.Rendering.RenderPipeline
   parent: Prowl.Runtime.Rendering
@@ -470,6 +428,32 @@ references:
   name: ShadowAtlas
   nameWithType: ShadowAtlas
   fullName: Prowl.Runtime.Rendering.ShadowAtlas
+- uid: Prowl.Runtime.Rendering.ShadowDepthPrecision
+  commentId: T:Prowl.Runtime.Rendering.ShadowDepthPrecision
+  parent: Prowl.Runtime.Rendering
+  href: Prowl.Runtime.Rendering.ShadowDepthPrecision.html
+  name: ShadowDepthPrecision
+  nameWithType: ShadowDepthPrecision
+  fullName: Prowl.Runtime.Rendering.ShadowDepthPrecision
+- uid: Prowl.Runtime.Rendering.ShadowTile
+  commentId: T:Prowl.Runtime.Rendering.ShadowTile
+  parent: Prowl.Runtime.Rendering
+  href: Prowl.Runtime.Rendering.ShadowTile.html
+  name: ShadowTile
+  nameWithType: ShadowTile
+  fullName: Prowl.Runtime.Rendering.ShadowTile
+- uid: Prowl.Runtime.Rendering.ShadowTileAllocator
+  commentId: T:Prowl.Runtime.Rendering.ShadowTileAllocator
+  href: Prowl.Runtime.Rendering.ShadowTileAllocator.html
+  name: ShadowTileAllocator
+  nameWithType: ShadowTileAllocator
+  fullName: Prowl.Runtime.Rendering.ShadowTileAllocator
+- uid: Prowl.Runtime.Rendering.ShadowCamera
+  commentId: T:Prowl.Runtime.Rendering.ShadowCamera
+  href: Prowl.Runtime.Rendering.ShadowCamera.html
+  name: ShadowCamera
+  nameWithType: ShadowCamera
+  fullName: Prowl.Runtime.Rendering.ShadowCamera
 - uid: Prowl.Runtime.Rendering.SMAALookupTextures
   commentId: T:Prowl.Runtime.Rendering.SMAALookupTextures
   href: Prowl.Runtime.Rendering.SMAALookupTextures.html
@@ -506,6 +490,13 @@ references:
   - uid: Prowl.Runtime.Rendering.SphericalHarmonicsL2.Packed
     name: Packed
     href: Prowl.Runtime.Rendering.SphericalHarmonicsL2.Packed.html
+- uid: Prowl.Runtime.Rendering.StaticGeometry
+  commentId: T:Prowl.Runtime.Rendering.StaticGeometry
+  parent: Prowl.Runtime.Rendering
+  href: Prowl.Runtime.Rendering.StaticGeometry.html
+  name: StaticGeometry
+  nameWithType: StaticGeometry
+  fullName: Prowl.Runtime.Rendering.StaticGeometry
 - uid: Prowl.Runtime.Rendering
   commentId: N:Prowl.Runtime.Rendering
   name: Prowl.Runtime.Rendering

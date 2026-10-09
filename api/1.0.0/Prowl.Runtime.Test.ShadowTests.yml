@@ -1,0 +1,2282 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.Test.ShadowTests
+  commentId: T:Prowl.Runtime.Test.ShadowTests
+  id: ShadowTests
+  parent: Prowl.Runtime.Test
+  children:
+  - Prowl.Runtime.Test.ShadowTests.DirectionalLight_CascadeSplits_EndAtShadowDistanceAndFavourTheNearSlice
+  - Prowl.Runtime.Test.ShadowTests.DirectionalLight_CasterFrustum_KeepsCastersFarTowardLight
+  - Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_CentersOrthoOnFocusWithinTexel
+  - Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_CoversWholeRadius
+  - Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_SubTexelMovement_ProducesIdenticalView
+  - Prowl.Runtime.Test.ShadowTests.PointLight_CastShadows_ReportsShadowedBeforeFirstShadowRender
+  - Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMaterialChange_Redraws
+  - Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMovingInsideTheLight_Redraws
+  - Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMovingOutsideTheLight_DoesNotRedraw
+  - Prowl.Runtime.Test.ShadowTests.ShadowCache_CrowdedAtlas_ShrinksEveryLightBeforeDroppingAny
+  - Prowl.Runtime.Test.ShadowTests.ShadowCache_CutoutCasters_DrawWithTheirOwnMaterial
+  - Prowl.Runtime.Test.ShadowTests.ShadowCache_DeformingCaster_RedrawsEveryFrame
+  - Prowl.Runtime.Test.ShadowTests.ShadowCache_DepthPrecisionChange_RebuildsEveryShadow
+  - Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_CameraMoving_RedrawsTheNearCascade
+  - Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_CascadeRefreshesEveryCPlusOneFrames
+  - Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_ProbeCaptures_RefitEveryCascadeEveryRender
+  - Prowl.Runtime.Test.ShadowTests.ShadowCache_LightLeavingTheView_KeepsItsTilesForWhenItReturns
+  - Prowl.Runtime.Test.ShadowTests.ShadowCache_LightMoving_Redraws
+  - Prowl.Runtime.Test.ShadowTests.ShadowCache_MovingCasterBesideStaticOnes_KeepsTheStaticLayer
+  - Prowl.Runtime.Test.ShadowTests.ShadowCache_OnlyStaticCasters_KeepsOneLayer
+  - Prowl.Runtime.Test.ShadowTests.ShadowCache_OpaqueCastersOfOneMesh_DrawAsOneBatch
+  - Prowl.Runtime.Test.ShadowTests.ShadowCache_ResolutionChanges_ArePacedPerFrame
+  - Prowl.Runtime.Test.ShadowTests.ShadowCache_SpotLight_DrawsOnceThenReuses
+  - Prowl.Runtime.Test.ShadowTests.ShadowCache_StaticScene_DrawsOnceThenReuses
+  - Prowl.Runtime.Test.ShadowTests.ShadowCache_TileSize_FollowsScreenSizeAndIgnoresSmallMoves
+  - Prowl.Runtime.Test.ShadowTests.ShadowCache_VisualVersionChange_Redraws
+  - Prowl.Runtime.Test.ShadowTests.ShadowFitView_Orthographic_SphereHoldsWholeSlice
+  - Prowl.Runtime.Test.ShadowTests.ShadowFitView_Perspective_SphereHoldsWholeSlice
+  - Prowl.Runtime.Test.ShadowTests.ShadowFitView_SphereRadius_DoesNotChangeAsTheCameraTurns
+  - Prowl.Runtime.Test.ShadowTests.ShadowFitView_Stereo_SphereHoldsBothEyes
+  - Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_Churn_NeverHandsOutOverlappingTiles
+  - Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_FreedTiles_MergeBackIntoTheWholeAtlas
+  - Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_LargestFirst_FillsTheAtlasExactly
+  - Prowl.Runtime.Test.ShadowTests.SpotLight_CastShadows_ReportsShadowedBeforeFirstShadowRender
+  - Prowl.Runtime.Test.ShadowTests.SpotLight_WideAngle_BuildsShadowProjection
+  langs:
+  - csharp
+  - vb
+  name: ShadowTests
+  nameWithType: ShadowTests
+  fullName: Prowl.Runtime.Test.ShadowTests
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowTests
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 21
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  summary: >-
+    Tests (no GPU) for the light shadow setup: directional cascade placement, coverage and texel snapping, the
+
+    caster culling volume, spot projections, the shadow flags lights report, the atlas allocator and the shadow
+
+    cache that decides what is redrawn and at what size.
+  example: []
+  syntax:
+    content: 'public class ShadowTests : RuntimeTestBase, IDisposable'
+    content.vb: Public Class ShadowTests Inherits RuntimeTestBase Implements IDisposable
+  inheritance:
+  - System.Object
+  - Prowl.Runtime.Test.RuntimeTestBase
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  - Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  - Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  - Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  - Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  - Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_CentersOrthoOnFocusWithinTexel
+  commentId: M:Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_CentersOrthoOnFocusWithinTexel
+  id: DirectionalLight_GetShadowMatrix_CentersOrthoOnFocusWithinTexel
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: DirectionalLight_GetShadowMatrix_CentersOrthoOnFocusWithinTexel()
+  nameWithType: ShadowTests.DirectionalLight_GetShadowMatrix_CentersOrthoOnFocusWithinTexel()
+  fullName: Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_CentersOrthoOnFocusWithinTexel()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DirectionalLight_GetShadowMatrix_CentersOrthoOnFocusWithinTexel
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 53
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DirectionalLight_GetShadowMatrix_CentersOrthoOnFocusWithinTexel()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DirectionalLight_GetShadowMatrix_CentersOrthoOnFocusWithinTexel()
+  overload: Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_CentersOrthoOnFocusWithinTexel*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_SubTexelMovement_ProducesIdenticalView
+  commentId: M:Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_SubTexelMovement_ProducesIdenticalView
+  id: DirectionalLight_GetShadowMatrix_SubTexelMovement_ProducesIdenticalView
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: DirectionalLight_GetShadowMatrix_SubTexelMovement_ProducesIdenticalView()
+  nameWithType: ShadowTests.DirectionalLight_GetShadowMatrix_SubTexelMovement_ProducesIdenticalView()
+  fullName: Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_SubTexelMovement_ProducesIdenticalView()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DirectionalLight_GetShadowMatrix_SubTexelMovement_ProducesIdenticalView
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 73
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DirectionalLight_GetShadowMatrix_SubTexelMovement_ProducesIdenticalView()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DirectionalLight_GetShadowMatrix_SubTexelMovement_ProducesIdenticalView()
+  overload: Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_SubTexelMovement_ProducesIdenticalView*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_CoversWholeRadius
+  commentId: M:Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_CoversWholeRadius
+  id: DirectionalLight_GetShadowMatrix_CoversWholeRadius
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: DirectionalLight_GetShadowMatrix_CoversWholeRadius()
+  nameWithType: ShadowTests.DirectionalLight_GetShadowMatrix_CoversWholeRadius()
+  fullName: Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_CoversWholeRadius()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DirectionalLight_GetShadowMatrix_CoversWholeRadius
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 92
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DirectionalLight_GetShadowMatrix_CoversWholeRadius()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DirectionalLight_GetShadowMatrix_CoversWholeRadius()
+  overload: Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_CoversWholeRadius*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.DirectionalLight_CasterFrustum_KeepsCastersFarTowardLight
+  commentId: M:Prowl.Runtime.Test.ShadowTests.DirectionalLight_CasterFrustum_KeepsCastersFarTowardLight
+  id: DirectionalLight_CasterFrustum_KeepsCastersFarTowardLight
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: DirectionalLight_CasterFrustum_KeepsCastersFarTowardLight()
+  nameWithType: ShadowTests.DirectionalLight_CasterFrustum_KeepsCastersFarTowardLight()
+  fullName: Prowl.Runtime.Test.ShadowTests.DirectionalLight_CasterFrustum_KeepsCastersFarTowardLight()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DirectionalLight_CasterFrustum_KeepsCastersFarTowardLight
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 111
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DirectionalLight_CasterFrustum_KeepsCastersFarTowardLight()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DirectionalLight_CasterFrustum_KeepsCastersFarTowardLight()
+  overload: Prowl.Runtime.Test.ShadowTests.DirectionalLight_CasterFrustum_KeepsCastersFarTowardLight*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.SpotLight_WideAngle_BuildsShadowProjection
+  commentId: M:Prowl.Runtime.Test.ShadowTests.SpotLight_WideAngle_BuildsShadowProjection
+  id: SpotLight_WideAngle_BuildsShadowProjection
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: SpotLight_WideAngle_BuildsShadowProjection()
+  nameWithType: ShadowTests.SpotLight_WideAngle_BuildsShadowProjection()
+  fullName: Prowl.Runtime.Test.ShadowTests.SpotLight_WideAngle_BuildsShadowProjection()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SpotLight_WideAngle_BuildsShadowProjection
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 131
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void SpotLight_WideAngle_BuildsShadowProjection()
+    content.vb: >-
+      <Fact>
+
+      Public Sub SpotLight_WideAngle_BuildsShadowProjection()
+  overload: Prowl.Runtime.Test.ShadowTests.SpotLight_WideAngle_BuildsShadowProjection*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.PointLight_CastShadows_ReportsShadowedBeforeFirstShadowRender
+  commentId: M:Prowl.Runtime.Test.ShadowTests.PointLight_CastShadows_ReportsShadowedBeforeFirstShadowRender
+  id: PointLight_CastShadows_ReportsShadowedBeforeFirstShadowRender
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: PointLight_CastShadows_ReportsShadowedBeforeFirstShadowRender()
+  nameWithType: ShadowTests.PointLight_CastShadows_ReportsShadowedBeforeFirstShadowRender()
+  fullName: Prowl.Runtime.Test.ShadowTests.PointLight_CastShadows_ReportsShadowedBeforeFirstShadowRender()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PointLight_CastShadows_ReportsShadowedBeforeFirstShadowRender
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 144
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void PointLight_CastShadows_ReportsShadowedBeforeFirstShadowRender()
+    content.vb: >-
+      <Fact>
+
+      Public Sub PointLight_CastShadows_ReportsShadowedBeforeFirstShadowRender()
+  overload: Prowl.Runtime.Test.ShadowTests.PointLight_CastShadows_ReportsShadowedBeforeFirstShadowRender*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.SpotLight_CastShadows_ReportsShadowedBeforeFirstShadowRender
+  commentId: M:Prowl.Runtime.Test.ShadowTests.SpotLight_CastShadows_ReportsShadowedBeforeFirstShadowRender
+  id: SpotLight_CastShadows_ReportsShadowedBeforeFirstShadowRender
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: SpotLight_CastShadows_ReportsShadowedBeforeFirstShadowRender()
+  nameWithType: ShadowTests.SpotLight_CastShadows_ReportsShadowedBeforeFirstShadowRender()
+  fullName: Prowl.Runtime.Test.ShadowTests.SpotLight_CastShadows_ReportsShadowedBeforeFirstShadowRender()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SpotLight_CastShadows_ReportsShadowedBeforeFirstShadowRender
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 158
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void SpotLight_CastShadows_ReportsShadowedBeforeFirstShadowRender()
+    content.vb: >-
+      <Fact>
+
+      Public Sub SpotLight_CastShadows_ReportsShadowedBeforeFirstShadowRender()
+  overload: Prowl.Runtime.Test.ShadowTests.SpotLight_CastShadows_ReportsShadowedBeforeFirstShadowRender*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowFitView_Perspective_SphereHoldsWholeSlice
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowFitView_Perspective_SphereHoldsWholeSlice
+  id: ShadowFitView_Perspective_SphereHoldsWholeSlice
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowFitView_Perspective_SphereHoldsWholeSlice()
+  nameWithType: ShadowTests.ShadowFitView_Perspective_SphereHoldsWholeSlice()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowFitView_Perspective_SphereHoldsWholeSlice()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowFitView_Perspective_SphereHoldsWholeSlice
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 191
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowFitView_Perspective_SphereHoldsWholeSlice()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowFitView_Perspective_SphereHoldsWholeSlice()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowFitView_Perspective_SphereHoldsWholeSlice*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowFitView_Orthographic_SphereHoldsWholeSlice
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowFitView_Orthographic_SphereHoldsWholeSlice
+  id: ShadowFitView_Orthographic_SphereHoldsWholeSlice
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowFitView_Orthographic_SphereHoldsWholeSlice()
+  nameWithType: ShadowTests.ShadowFitView_Orthographic_SphereHoldsWholeSlice()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowFitView_Orthographic_SphereHoldsWholeSlice()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowFitView_Orthographic_SphereHoldsWholeSlice
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 207
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowFitView_Orthographic_SphereHoldsWholeSlice()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowFitView_Orthographic_SphereHoldsWholeSlice()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowFitView_Orthographic_SphereHoldsWholeSlice*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowFitView_SphereRadius_DoesNotChangeAsTheCameraTurns
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowFitView_SphereRadius_DoesNotChangeAsTheCameraTurns
+  id: ShadowFitView_SphereRadius_DoesNotChangeAsTheCameraTurns
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowFitView_SphereRadius_DoesNotChangeAsTheCameraTurns()
+  nameWithType: ShadowTests.ShadowFitView_SphereRadius_DoesNotChangeAsTheCameraTurns()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowFitView_SphereRadius_DoesNotChangeAsTheCameraTurns()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowFitView_SphereRadius_DoesNotChangeAsTheCameraTurns
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 224
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowFitView_SphereRadius_DoesNotChangeAsTheCameraTurns()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowFitView_SphereRadius_DoesNotChangeAsTheCameraTurns()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowFitView_SphereRadius_DoesNotChangeAsTheCameraTurns*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowFitView_Stereo_SphereHoldsBothEyes
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowFitView_Stereo_SphereHoldsBothEyes
+  id: ShadowFitView_Stereo_SphereHoldsBothEyes
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowFitView_Stereo_SphereHoldsBothEyes()
+  nameWithType: ShadowTests.ShadowFitView_Stereo_SphereHoldsBothEyes()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowFitView_Stereo_SphereHoldsBothEyes()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowFitView_Stereo_SphereHoldsBothEyes
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 237
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowFitView_Stereo_SphereHoldsBothEyes()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowFitView_Stereo_SphereHoldsBothEyes()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowFitView_Stereo_SphereHoldsBothEyes*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.DirectionalLight_CascadeSplits_EndAtShadowDistanceAndFavourTheNearSlice
+  commentId: M:Prowl.Runtime.Test.ShadowTests.DirectionalLight_CascadeSplits_EndAtShadowDistanceAndFavourTheNearSlice
+  id: DirectionalLight_CascadeSplits_EndAtShadowDistanceAndFavourTheNearSlice
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: DirectionalLight_CascadeSplits_EndAtShadowDistanceAndFavourTheNearSlice()
+  nameWithType: ShadowTests.DirectionalLight_CascadeSplits_EndAtShadowDistanceAndFavourTheNearSlice()
+  fullName: Prowl.Runtime.Test.ShadowTests.DirectionalLight_CascadeSplits_EndAtShadowDistanceAndFavourTheNearSlice()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DirectionalLight_CascadeSplits_EndAtShadowDistanceAndFavourTheNearSlice
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 270
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void DirectionalLight_CascadeSplits_EndAtShadowDistanceAndFavourTheNearSlice()
+    content.vb: >-
+      <Fact>
+
+      Public Sub DirectionalLight_CascadeSplits_EndAtShadowDistanceAndFavourTheNearSlice()
+  overload: Prowl.Runtime.Test.ShadowTests.DirectionalLight_CascadeSplits_EndAtShadowDistanceAndFavourTheNearSlice*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_LargestFirst_FillsTheAtlasExactly
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_LargestFirst_FillsTheAtlasExactly
+  id: ShadowTileAllocator_LargestFirst_FillsTheAtlasExactly
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowTileAllocator_LargestFirst_FillsTheAtlasExactly()
+  nameWithType: ShadowTests.ShadowTileAllocator_LargestFirst_FillsTheAtlasExactly()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_LargestFirst_FillsTheAtlasExactly()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowTileAllocator_LargestFirst_FillsTheAtlasExactly
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 301
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowTileAllocator_LargestFirst_FillsTheAtlasExactly()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowTileAllocator_LargestFirst_FillsTheAtlasExactly()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_LargestFirst_FillsTheAtlasExactly*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_FreedTiles_MergeBackIntoTheWholeAtlas
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_FreedTiles_MergeBackIntoTheWholeAtlas
+  id: ShadowTileAllocator_FreedTiles_MergeBackIntoTheWholeAtlas
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowTileAllocator_FreedTiles_MergeBackIntoTheWholeAtlas()
+  nameWithType: ShadowTests.ShadowTileAllocator_FreedTiles_MergeBackIntoTheWholeAtlas()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_FreedTiles_MergeBackIntoTheWholeAtlas()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowTileAllocator_FreedTiles_MergeBackIntoTheWholeAtlas
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 319
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowTileAllocator_FreedTiles_MergeBackIntoTheWholeAtlas()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowTileAllocator_FreedTiles_MergeBackIntoTheWholeAtlas()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_FreedTiles_MergeBackIntoTheWholeAtlas*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_Churn_NeverHandsOutOverlappingTiles
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_Churn_NeverHandsOutOverlappingTiles
+  id: ShadowTileAllocator_Churn_NeverHandsOutOverlappingTiles
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowTileAllocator_Churn_NeverHandsOutOverlappingTiles()
+  nameWithType: ShadowTests.ShadowTileAllocator_Churn_NeverHandsOutOverlappingTiles()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_Churn_NeverHandsOutOverlappingTiles()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowTileAllocator_Churn_NeverHandsOutOverlappingTiles
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 335
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowTileAllocator_Churn_NeverHandsOutOverlappingTiles()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowTileAllocator_Churn_NeverHandsOutOverlappingTiles()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_Churn_NeverHandsOutOverlappingTiles*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_StaticScene_DrawsOnceThenReuses
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowCache_StaticScene_DrawsOnceThenReuses
+  id: ShadowCache_StaticScene_DrawsOnceThenReuses
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowCache_StaticScene_DrawsOnceThenReuses()
+  nameWithType: ShadowTests.ShadowCache_StaticScene_DrawsOnceThenReuses()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_StaticScene_DrawsOnceThenReuses()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowCache_StaticScene_DrawsOnceThenReuses
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 424
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowCache_StaticScene_DrawsOnceThenReuses()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowCache_StaticScene_DrawsOnceThenReuses()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowCache_StaticScene_DrawsOnceThenReuses*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMovingInsideTheLight_Redraws
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMovingInsideTheLight_Redraws
+  id: ShadowCache_CasterMovingInsideTheLight_Redraws
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowCache_CasterMovingInsideTheLight_Redraws()
+  nameWithType: ShadowTests.ShadowCache_CasterMovingInsideTheLight_Redraws()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMovingInsideTheLight_Redraws()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowCache_CasterMovingInsideTheLight_Redraws
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 440
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowCache_CasterMovingInsideTheLight_Redraws()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowCache_CasterMovingInsideTheLight_Redraws()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMovingInsideTheLight_Redraws*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMovingOutsideTheLight_DoesNotRedraw
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMovingOutsideTheLight_DoesNotRedraw
+  id: ShadowCache_CasterMovingOutsideTheLight_DoesNotRedraw
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowCache_CasterMovingOutsideTheLight_DoesNotRedraw()
+  nameWithType: ShadowTests.ShadowCache_CasterMovingOutsideTheLight_DoesNotRedraw()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMovingOutsideTheLight_DoesNotRedraw()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowCache_CasterMovingOutsideTheLight_DoesNotRedraw
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 454
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowCache_CasterMovingOutsideTheLight_DoesNotRedraw()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowCache_CasterMovingOutsideTheLight_DoesNotRedraw()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMovingOutsideTheLight_DoesNotRedraw*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMaterialChange_Redraws
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMaterialChange_Redraws
+  id: ShadowCache_CasterMaterialChange_Redraws
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowCache_CasterMaterialChange_Redraws()
+  nameWithType: ShadowTests.ShadowCache_CasterMaterialChange_Redraws()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMaterialChange_Redraws()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowCache_CasterMaterialChange_Redraws
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 469
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowCache_CasterMaterialChange_Redraws()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowCache_CasterMaterialChange_Redraws()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMaterialChange_Redraws*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_LightMoving_Redraws
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowCache_LightMoving_Redraws
+  id: ShadowCache_LightMoving_Redraws
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowCache_LightMoving_Redraws()
+  nameWithType: ShadowTests.ShadowCache_LightMoving_Redraws()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_LightMoving_Redraws()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowCache_LightMoving_Redraws
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 483
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowCache_LightMoving_Redraws()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowCache_LightMoving_Redraws()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowCache_LightMoving_Redraws*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_DeformingCaster_RedrawsEveryFrame
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowCache_DeformingCaster_RedrawsEveryFrame
+  id: ShadowCache_DeformingCaster_RedrawsEveryFrame
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowCache_DeformingCaster_RedrawsEveryFrame()
+  nameWithType: ShadowTests.ShadowCache_DeformingCaster_RedrawsEveryFrame()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_DeformingCaster_RedrawsEveryFrame()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowCache_DeformingCaster_RedrawsEveryFrame
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 497
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowCache_DeformingCaster_RedrawsEveryFrame()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowCache_DeformingCaster_RedrawsEveryFrame()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowCache_DeformingCaster_RedrawsEveryFrame*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_LightLeavingTheView_KeepsItsTilesForWhenItReturns
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowCache_LightLeavingTheView_KeepsItsTilesForWhenItReturns
+  id: ShadowCache_LightLeavingTheView_KeepsItsTilesForWhenItReturns
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowCache_LightLeavingTheView_KeepsItsTilesForWhenItReturns()
+  nameWithType: ShadowTests.ShadowCache_LightLeavingTheView_KeepsItsTilesForWhenItReturns()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_LightLeavingTheView_KeepsItsTilesForWhenItReturns()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowCache_LightLeavingTheView_KeepsItsTilesForWhenItReturns
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 511
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowCache_LightLeavingTheView_KeepsItsTilesForWhenItReturns()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowCache_LightLeavingTheView_KeepsItsTilesForWhenItReturns()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowCache_LightLeavingTheView_KeepsItsTilesForWhenItReturns*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_TileSize_FollowsScreenSizeAndIgnoresSmallMoves
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowCache_TileSize_FollowsScreenSizeAndIgnoresSmallMoves
+  id: ShadowCache_TileSize_FollowsScreenSizeAndIgnoresSmallMoves
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowCache_TileSize_FollowsScreenSizeAndIgnoresSmallMoves()
+  nameWithType: ShadowTests.ShadowCache_TileSize_FollowsScreenSizeAndIgnoresSmallMoves()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_TileSize_FollowsScreenSizeAndIgnoresSmallMoves()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowCache_TileSize_FollowsScreenSizeAndIgnoresSmallMoves
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 530
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowCache_TileSize_FollowsScreenSizeAndIgnoresSmallMoves()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowCache_TileSize_FollowsScreenSizeAndIgnoresSmallMoves()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowCache_TileSize_FollowsScreenSizeAndIgnoresSmallMoves*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_ResolutionChanges_ArePacedPerFrame
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowCache_ResolutionChanges_ArePacedPerFrame
+  id: ShadowCache_ResolutionChanges_ArePacedPerFrame
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowCache_ResolutionChanges_ArePacedPerFrame()
+  nameWithType: ShadowTests.ShadowCache_ResolutionChanges_ArePacedPerFrame()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_ResolutionChanges_ArePacedPerFrame()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowCache_ResolutionChanges_ArePacedPerFrame
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 551
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowCache_ResolutionChanges_ArePacedPerFrame()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowCache_ResolutionChanges_ArePacedPerFrame()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowCache_ResolutionChanges_ArePacedPerFrame*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_CrowdedAtlas_ShrinksEveryLightBeforeDroppingAny
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowCache_CrowdedAtlas_ShrinksEveryLightBeforeDroppingAny
+  id: ShadowCache_CrowdedAtlas_ShrinksEveryLightBeforeDroppingAny
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowCache_CrowdedAtlas_ShrinksEveryLightBeforeDroppingAny()
+  nameWithType: ShadowTests.ShadowCache_CrowdedAtlas_ShrinksEveryLightBeforeDroppingAny()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_CrowdedAtlas_ShrinksEveryLightBeforeDroppingAny()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowCache_CrowdedAtlas_ShrinksEveryLightBeforeDroppingAny
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 582
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowCache_CrowdedAtlas_ShrinksEveryLightBeforeDroppingAny()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowCache_CrowdedAtlas_ShrinksEveryLightBeforeDroppingAny()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowCache_CrowdedAtlas_ShrinksEveryLightBeforeDroppingAny*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_SpotLight_DrawsOnceThenReuses
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowCache_SpotLight_DrawsOnceThenReuses
+  id: ShadowCache_SpotLight_DrawsOnceThenReuses
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowCache_SpotLight_DrawsOnceThenReuses()
+  nameWithType: ShadowTests.ShadowCache_SpotLight_DrawsOnceThenReuses()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_SpotLight_DrawsOnceThenReuses()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowCache_SpotLight_DrawsOnceThenReuses
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 608
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowCache_SpotLight_DrawsOnceThenReuses()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowCache_SpotLight_DrawsOnceThenReuses()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowCache_SpotLight_DrawsOnceThenReuses*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_CascadeRefreshesEveryCPlusOneFrames
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_CascadeRefreshesEveryCPlusOneFrames
+  id: ShadowCache_Directional_CascadeRefreshesEveryCPlusOneFrames
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowCache_Directional_CascadeRefreshesEveryCPlusOneFrames()
+  nameWithType: ShadowTests.ShadowCache_Directional_CascadeRefreshesEveryCPlusOneFrames()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_CascadeRefreshesEveryCPlusOneFrames()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowCache_Directional_CascadeRefreshesEveryCPlusOneFrames
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 636
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowCache_Directional_CascadeRefreshesEveryCPlusOneFrames()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowCache_Directional_CascadeRefreshesEveryCPlusOneFrames()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_CascadeRefreshesEveryCPlusOneFrames*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_ProbeCaptures_RefitEveryCascadeEveryRender
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_ProbeCaptures_RefitEveryCascadeEveryRender
+  id: ShadowCache_Directional_ProbeCaptures_RefitEveryCascadeEveryRender
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowCache_Directional_ProbeCaptures_RefitEveryCascadeEveryRender()
+  nameWithType: ShadowTests.ShadowCache_Directional_ProbeCaptures_RefitEveryCascadeEveryRender()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_ProbeCaptures_RefitEveryCascadeEveryRender()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowCache_Directional_ProbeCaptures_RefitEveryCascadeEveryRender
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 657
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowCache_Directional_ProbeCaptures_RefitEveryCascadeEveryRender()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowCache_Directional_ProbeCaptures_RefitEveryCascadeEveryRender()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_ProbeCaptures_RefitEveryCascadeEveryRender*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_CameraMoving_RedrawsTheNearCascade
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_CameraMoving_RedrawsTheNearCascade
+  id: ShadowCache_Directional_CameraMoving_RedrawsTheNearCascade
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowCache_Directional_CameraMoving_RedrawsTheNearCascade()
+  nameWithType: ShadowTests.ShadowCache_Directional_CameraMoving_RedrawsTheNearCascade()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_CameraMoving_RedrawsTheNearCascade()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowCache_Directional_CameraMoving_RedrawsTheNearCascade
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 673
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowCache_Directional_CameraMoving_RedrawsTheNearCascade()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowCache_Directional_CameraMoving_RedrawsTheNearCascade()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_CameraMoving_RedrawsTheNearCascade*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_MovingCasterBesideStaticOnes_KeepsTheStaticLayer
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowCache_MovingCasterBesideStaticOnes_KeepsTheStaticLayer
+  id: ShadowCache_MovingCasterBesideStaticOnes_KeepsTheStaticLayer
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowCache_MovingCasterBesideStaticOnes_KeepsTheStaticLayer()
+  nameWithType: ShadowTests.ShadowCache_MovingCasterBesideStaticOnes_KeepsTheStaticLayer()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_MovingCasterBesideStaticOnes_KeepsTheStaticLayer()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowCache_MovingCasterBesideStaticOnes_KeepsTheStaticLayer
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 687
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowCache_MovingCasterBesideStaticOnes_KeepsTheStaticLayer()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowCache_MovingCasterBesideStaticOnes_KeepsTheStaticLayer()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowCache_MovingCasterBesideStaticOnes_KeepsTheStaticLayer*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_OnlyStaticCasters_KeepsOneLayer
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowCache_OnlyStaticCasters_KeepsOneLayer
+  id: ShadowCache_OnlyStaticCasters_KeepsOneLayer
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowCache_OnlyStaticCasters_KeepsOneLayer()
+  nameWithType: ShadowTests.ShadowCache_OnlyStaticCasters_KeepsOneLayer()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_OnlyStaticCasters_KeepsOneLayer()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowCache_OnlyStaticCasters_KeepsOneLayer
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 715
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowCache_OnlyStaticCasters_KeepsOneLayer()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowCache_OnlyStaticCasters_KeepsOneLayer()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowCache_OnlyStaticCasters_KeepsOneLayer*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_VisualVersionChange_Redraws
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowCache_VisualVersionChange_Redraws
+  id: ShadowCache_VisualVersionChange_Redraws
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowCache_VisualVersionChange_Redraws()
+  nameWithType: ShadowTests.ShadowCache_VisualVersionChange_Redraws()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_VisualVersionChange_Redraws()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowCache_VisualVersionChange_Redraws
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 728
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowCache_VisualVersionChange_Redraws()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowCache_VisualVersionChange_Redraws()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowCache_VisualVersionChange_Redraws*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_OpaqueCastersOfOneMesh_DrawAsOneBatch
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowCache_OpaqueCastersOfOneMesh_DrawAsOneBatch
+  id: ShadowCache_OpaqueCastersOfOneMesh_DrawAsOneBatch
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowCache_OpaqueCastersOfOneMesh_DrawAsOneBatch()
+  nameWithType: ShadowTests.ShadowCache_OpaqueCastersOfOneMesh_DrawAsOneBatch()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_OpaqueCastersOfOneMesh_DrawAsOneBatch()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowCache_OpaqueCastersOfOneMesh_DrawAsOneBatch
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 755
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowCache_OpaqueCastersOfOneMesh_DrawAsOneBatch()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowCache_OpaqueCastersOfOneMesh_DrawAsOneBatch()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowCache_OpaqueCastersOfOneMesh_DrawAsOneBatch*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_CutoutCasters_DrawWithTheirOwnMaterial
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowCache_CutoutCasters_DrawWithTheirOwnMaterial
+  id: ShadowCache_CutoutCasters_DrawWithTheirOwnMaterial
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowCache_CutoutCasters_DrawWithTheirOwnMaterial()
+  nameWithType: ShadowTests.ShadowCache_CutoutCasters_DrawWithTheirOwnMaterial()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_CutoutCasters_DrawWithTheirOwnMaterial()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowCache_CutoutCasters_DrawWithTheirOwnMaterial
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 774
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowCache_CutoutCasters_DrawWithTheirOwnMaterial()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowCache_CutoutCasters_DrawWithTheirOwnMaterial()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowCache_CutoutCasters_DrawWithTheirOwnMaterial*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_DepthPrecisionChange_RebuildsEveryShadow
+  commentId: M:Prowl.Runtime.Test.ShadowTests.ShadowCache_DepthPrecisionChange_RebuildsEveryShadow
+  id: ShadowCache_DepthPrecisionChange_RebuildsEveryShadow
+  parent: Prowl.Runtime.Test.ShadowTests
+  langs:
+  - csharp
+  - vb
+  name: ShadowCache_DepthPrecisionChange_RebuildsEveryShadow()
+  nameWithType: ShadowTests.ShadowCache_DepthPrecisionChange_RebuildsEveryShadow()
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_DepthPrecisionChange_RebuildsEveryShadow()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/ShadowTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShadowCache_DepthPrecisionChange_RebuildsEveryShadow
+    path: ../Prowl/Prowl.Runtime.Test/ShadowTests.cs
+    startLine: 788
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ShadowCache_DepthPrecisionChange_RebuildsEveryShadow()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ShadowCache_DepthPrecisionChange_RebuildsEveryShadow()
+  overload: Prowl.Runtime.Test.ShadowTests.ShadowCache_DepthPrecisionChange_RebuildsEveryShadow*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+references:
+- uid: Prowl.Runtime.Test
+  commentId: N:Prowl.Runtime.Test
+  name: Prowl.Runtime.Test
+  nameWithType: Prowl.Runtime.Test
+  fullName: Prowl.Runtime.Test
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Test
+    name: Test
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.Runtime.Test.RuntimeTestBase
+  commentId: T:Prowl.Runtime.Test.RuntimeTestBase
+  parent: Prowl.Runtime.Test
+  href: Prowl.Runtime.Test.RuntimeTestBase.html
+  name: RuntimeTestBase
+  nameWithType: RuntimeTestBase
+  fullName: Prowl.Runtime.Test.RuntimeTestBase
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  commentId: P:Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_FixedDeltaTime
+  name: FixedDeltaTime
+  nameWithType: RuntimeTestBase.FixedDeltaTime
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.FixedDeltaTime
+- uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.EditMode
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  name: EditMode()
+  nameWithType: RuntimeTestBase.EditMode()
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.EditMode()
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+    name: EditMode
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.EditMode
+    name: EditMode
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_EditMode
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  name: CreateScene(bool)
+  nameWithType: RuntimeTestBase.CreateScene(bool)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(bool)
+  nameWithType.vb: RuntimeTestBase.CreateScene(Boolean)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(Boolean)
+  name.vb: CreateScene(Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+    name: CreateScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateScene(System.Boolean)
+    name: CreateScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateScene_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  name: CreateGameObject(string)
+  nameWithType: RuntimeTestBase.CreateGameObject(string)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(string)
+  nameWithType.vb: RuntimeTestBase.CreateGameObject(String)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(String)
+  name.vb: CreateGameObject(String)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+    name: CreateGameObject
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateGameObject(System.String)
+    name: CreateGameObject
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateGameObject_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Tick(Scene, int)
+  nameWithType: RuntimeTestBase.Tick(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.Tick(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Tick(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Tick(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Tick
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Tick_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: Update(Scene, int)
+  nameWithType: RuntimeTestBase.Update(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.Update(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: Update(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Update
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Update(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: Update
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Update_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  name: StepPhysics(Scene, int)
+  nameWithType: RuntimeTestBase.StepPhysics(Scene, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene, int)
+  nameWithType.vb: RuntimeTestBase.StepPhysics(Scene, Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene, Integer)
+  name.vb: StepPhysics(Scene, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: StepPhysics
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.StepPhysics(Prowl.Runtime.Resources.Scene,System.Int32)
+    name: StepPhysics
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_StepPhysics_Prowl_Runtime_Resources_Scene_System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  name: ApplyFastBakeSettings(NavMeshSurface)
+  nameWithType: RuntimeTestBase.ApplyFastBakeSettings(NavMeshSurface)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+    name: ApplyFastBakeSettings
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  - name: (
+  - uid: Prowl.Runtime.NavMeshSurface
+    name: NavMeshSurface
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.ApplyFastBakeSettings(Prowl.Runtime.NavMeshSurface)
+    name: ApplyFastBakeSettings
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_ApplyFastBakeSettings_Prowl_Runtime_NavMeshSurface_
+  - name: (
+  - uid: Prowl.Runtime.NavMeshSurface
+    name: NavMeshSurface
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  name: CreateFloorScene(float, bool)
+  nameWithType: RuntimeTestBase.CreateFloorScene(float, bool)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(float, bool)
+  nameWithType.vb: RuntimeTestBase.CreateFloorScene(Single, Boolean)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(Single, Boolean)
+  name.vb: CreateFloorScene(Single, Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+    name: CreateFloorScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  - name: (
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.CreateFloorScene(System.Single,System.Boolean)
+    name: CreateFloorScene
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_CreateFloorScene_System_Single_System_Boolean_
+  - name: (
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  isExternal: true
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  name: TickUntil(Scene, Func<bool>, int)
+  nameWithType: RuntimeTestBase.TickUntil(Scene, Func<bool>, int)
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene, System.Func<bool>, int)
+  nameWithType.vb: RuntimeTestBase.TickUntil(Scene, Func(Of Boolean), Integer)
+  fullName.vb: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene, System.Func(Of Boolean), Integer)
+  name.vb: TickUntil(Scene, Func(Of Boolean), Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+    name: TickUntil
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.TickUntil(Prowl.Runtime.Resources.Scene,System.Func{System.Boolean},System.Int32)
+    name: TickUntil
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_TickUntil_Prowl_Runtime_Resources_Scene_System_Func_System_Boolean__System_Int32_
+  - name: (
+  - uid: Prowl.Runtime.Resources.Scene
+    name: Scene
+  - name: ','
+  - name: " "
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  commentId: M:Prowl.Runtime.Test.RuntimeTestBase.Dispose
+  parent: Prowl.Runtime.Test.RuntimeTestBase
+  href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  name: Dispose()
+  nameWithType: RuntimeTestBase.Dispose()
+  fullName: Prowl.Runtime.Test.RuntimeTestBase.Dispose()
+  spec.csharp:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+    name: Dispose
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Test.RuntimeTestBase.Dispose
+    name: Dispose
+    href: Prowl.Runtime.Test.RuntimeTestBase.html#Prowl_Runtime_Test_RuntimeTestBase_Dispose
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_CentersOrthoOnFocusWithinTexel*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_CentersOrthoOnFocusWithinTexel
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_DirectionalLight_GetShadowMatrix_CentersOrthoOnFocusWithinTexel
+  name: DirectionalLight_GetShadowMatrix_CentersOrthoOnFocusWithinTexel
+  nameWithType: ShadowTests.DirectionalLight_GetShadowMatrix_CentersOrthoOnFocusWithinTexel
+  fullName: Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_CentersOrthoOnFocusWithinTexel
+- uid: Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_SubTexelMovement_ProducesIdenticalView*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_SubTexelMovement_ProducesIdenticalView
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_DirectionalLight_GetShadowMatrix_SubTexelMovement_ProducesIdenticalView
+  name: DirectionalLight_GetShadowMatrix_SubTexelMovement_ProducesIdenticalView
+  nameWithType: ShadowTests.DirectionalLight_GetShadowMatrix_SubTexelMovement_ProducesIdenticalView
+  fullName: Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_SubTexelMovement_ProducesIdenticalView
+- uid: Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_CoversWholeRadius*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_CoversWholeRadius
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_DirectionalLight_GetShadowMatrix_CoversWholeRadius
+  name: DirectionalLight_GetShadowMatrix_CoversWholeRadius
+  nameWithType: ShadowTests.DirectionalLight_GetShadowMatrix_CoversWholeRadius
+  fullName: Prowl.Runtime.Test.ShadowTests.DirectionalLight_GetShadowMatrix_CoversWholeRadius
+- uid: Prowl.Runtime.Test.ShadowTests.DirectionalLight_CasterFrustum_KeepsCastersFarTowardLight*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.DirectionalLight_CasterFrustum_KeepsCastersFarTowardLight
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_DirectionalLight_CasterFrustum_KeepsCastersFarTowardLight
+  name: DirectionalLight_CasterFrustum_KeepsCastersFarTowardLight
+  nameWithType: ShadowTests.DirectionalLight_CasterFrustum_KeepsCastersFarTowardLight
+  fullName: Prowl.Runtime.Test.ShadowTests.DirectionalLight_CasterFrustum_KeepsCastersFarTowardLight
+- uid: Prowl.Runtime.Test.ShadowTests.SpotLight_WideAngle_BuildsShadowProjection*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.SpotLight_WideAngle_BuildsShadowProjection
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_SpotLight_WideAngle_BuildsShadowProjection
+  name: SpotLight_WideAngle_BuildsShadowProjection
+  nameWithType: ShadowTests.SpotLight_WideAngle_BuildsShadowProjection
+  fullName: Prowl.Runtime.Test.ShadowTests.SpotLight_WideAngle_BuildsShadowProjection
+- uid: Prowl.Runtime.Test.ShadowTests.PointLight_CastShadows_ReportsShadowedBeforeFirstShadowRender*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.PointLight_CastShadows_ReportsShadowedBeforeFirstShadowRender
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_PointLight_CastShadows_ReportsShadowedBeforeFirstShadowRender
+  name: PointLight_CastShadows_ReportsShadowedBeforeFirstShadowRender
+  nameWithType: ShadowTests.PointLight_CastShadows_ReportsShadowedBeforeFirstShadowRender
+  fullName: Prowl.Runtime.Test.ShadowTests.PointLight_CastShadows_ReportsShadowedBeforeFirstShadowRender
+- uid: Prowl.Runtime.Test.ShadowTests.SpotLight_CastShadows_ReportsShadowedBeforeFirstShadowRender*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.SpotLight_CastShadows_ReportsShadowedBeforeFirstShadowRender
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_SpotLight_CastShadows_ReportsShadowedBeforeFirstShadowRender
+  name: SpotLight_CastShadows_ReportsShadowedBeforeFirstShadowRender
+  nameWithType: ShadowTests.SpotLight_CastShadows_ReportsShadowedBeforeFirstShadowRender
+  fullName: Prowl.Runtime.Test.ShadowTests.SpotLight_CastShadows_ReportsShadowedBeforeFirstShadowRender
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowFitView_Perspective_SphereHoldsWholeSlice*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowFitView_Perspective_SphereHoldsWholeSlice
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowFitView_Perspective_SphereHoldsWholeSlice
+  name: ShadowFitView_Perspective_SphereHoldsWholeSlice
+  nameWithType: ShadowTests.ShadowFitView_Perspective_SphereHoldsWholeSlice
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowFitView_Perspective_SphereHoldsWholeSlice
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowFitView_Orthographic_SphereHoldsWholeSlice*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowFitView_Orthographic_SphereHoldsWholeSlice
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowFitView_Orthographic_SphereHoldsWholeSlice
+  name: ShadowFitView_Orthographic_SphereHoldsWholeSlice
+  nameWithType: ShadowTests.ShadowFitView_Orthographic_SphereHoldsWholeSlice
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowFitView_Orthographic_SphereHoldsWholeSlice
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowFitView_SphereRadius_DoesNotChangeAsTheCameraTurns*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowFitView_SphereRadius_DoesNotChangeAsTheCameraTurns
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowFitView_SphereRadius_DoesNotChangeAsTheCameraTurns
+  name: ShadowFitView_SphereRadius_DoesNotChangeAsTheCameraTurns
+  nameWithType: ShadowTests.ShadowFitView_SphereRadius_DoesNotChangeAsTheCameraTurns
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowFitView_SphereRadius_DoesNotChangeAsTheCameraTurns
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowFitView_Stereo_SphereHoldsBothEyes*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowFitView_Stereo_SphereHoldsBothEyes
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowFitView_Stereo_SphereHoldsBothEyes
+  name: ShadowFitView_Stereo_SphereHoldsBothEyes
+  nameWithType: ShadowTests.ShadowFitView_Stereo_SphereHoldsBothEyes
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowFitView_Stereo_SphereHoldsBothEyes
+- uid: Prowl.Runtime.Test.ShadowTests.DirectionalLight_CascadeSplits_EndAtShadowDistanceAndFavourTheNearSlice*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.DirectionalLight_CascadeSplits_EndAtShadowDistanceAndFavourTheNearSlice
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_DirectionalLight_CascadeSplits_EndAtShadowDistanceAndFavourTheNearSlice
+  name: DirectionalLight_CascadeSplits_EndAtShadowDistanceAndFavourTheNearSlice
+  nameWithType: ShadowTests.DirectionalLight_CascadeSplits_EndAtShadowDistanceAndFavourTheNearSlice
+  fullName: Prowl.Runtime.Test.ShadowTests.DirectionalLight_CascadeSplits_EndAtShadowDistanceAndFavourTheNearSlice
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_LargestFirst_FillsTheAtlasExactly*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_LargestFirst_FillsTheAtlasExactly
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowTileAllocator_LargestFirst_FillsTheAtlasExactly
+  name: ShadowTileAllocator_LargestFirst_FillsTheAtlasExactly
+  nameWithType: ShadowTests.ShadowTileAllocator_LargestFirst_FillsTheAtlasExactly
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_LargestFirst_FillsTheAtlasExactly
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_FreedTiles_MergeBackIntoTheWholeAtlas*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_FreedTiles_MergeBackIntoTheWholeAtlas
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowTileAllocator_FreedTiles_MergeBackIntoTheWholeAtlas
+  name: ShadowTileAllocator_FreedTiles_MergeBackIntoTheWholeAtlas
+  nameWithType: ShadowTests.ShadowTileAllocator_FreedTiles_MergeBackIntoTheWholeAtlas
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_FreedTiles_MergeBackIntoTheWholeAtlas
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_Churn_NeverHandsOutOverlappingTiles*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_Churn_NeverHandsOutOverlappingTiles
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowTileAllocator_Churn_NeverHandsOutOverlappingTiles
+  name: ShadowTileAllocator_Churn_NeverHandsOutOverlappingTiles
+  nameWithType: ShadowTests.ShadowTileAllocator_Churn_NeverHandsOutOverlappingTiles
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowTileAllocator_Churn_NeverHandsOutOverlappingTiles
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_StaticScene_DrawsOnceThenReuses*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowCache_StaticScene_DrawsOnceThenReuses
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowCache_StaticScene_DrawsOnceThenReuses
+  name: ShadowCache_StaticScene_DrawsOnceThenReuses
+  nameWithType: ShadowTests.ShadowCache_StaticScene_DrawsOnceThenReuses
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_StaticScene_DrawsOnceThenReuses
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMovingInsideTheLight_Redraws*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMovingInsideTheLight_Redraws
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowCache_CasterMovingInsideTheLight_Redraws
+  name: ShadowCache_CasterMovingInsideTheLight_Redraws
+  nameWithType: ShadowTests.ShadowCache_CasterMovingInsideTheLight_Redraws
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMovingInsideTheLight_Redraws
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMovingOutsideTheLight_DoesNotRedraw*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMovingOutsideTheLight_DoesNotRedraw
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowCache_CasterMovingOutsideTheLight_DoesNotRedraw
+  name: ShadowCache_CasterMovingOutsideTheLight_DoesNotRedraw
+  nameWithType: ShadowTests.ShadowCache_CasterMovingOutsideTheLight_DoesNotRedraw
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMovingOutsideTheLight_DoesNotRedraw
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMaterialChange_Redraws*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMaterialChange_Redraws
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowCache_CasterMaterialChange_Redraws
+  name: ShadowCache_CasterMaterialChange_Redraws
+  nameWithType: ShadowTests.ShadowCache_CasterMaterialChange_Redraws
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_CasterMaterialChange_Redraws
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_LightMoving_Redraws*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowCache_LightMoving_Redraws
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowCache_LightMoving_Redraws
+  name: ShadowCache_LightMoving_Redraws
+  nameWithType: ShadowTests.ShadowCache_LightMoving_Redraws
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_LightMoving_Redraws
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_DeformingCaster_RedrawsEveryFrame*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowCache_DeformingCaster_RedrawsEveryFrame
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowCache_DeformingCaster_RedrawsEveryFrame
+  name: ShadowCache_DeformingCaster_RedrawsEveryFrame
+  nameWithType: ShadowTests.ShadowCache_DeformingCaster_RedrawsEveryFrame
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_DeformingCaster_RedrawsEveryFrame
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_LightLeavingTheView_KeepsItsTilesForWhenItReturns*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowCache_LightLeavingTheView_KeepsItsTilesForWhenItReturns
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowCache_LightLeavingTheView_KeepsItsTilesForWhenItReturns
+  name: ShadowCache_LightLeavingTheView_KeepsItsTilesForWhenItReturns
+  nameWithType: ShadowTests.ShadowCache_LightLeavingTheView_KeepsItsTilesForWhenItReturns
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_LightLeavingTheView_KeepsItsTilesForWhenItReturns
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_TileSize_FollowsScreenSizeAndIgnoresSmallMoves*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowCache_TileSize_FollowsScreenSizeAndIgnoresSmallMoves
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowCache_TileSize_FollowsScreenSizeAndIgnoresSmallMoves
+  name: ShadowCache_TileSize_FollowsScreenSizeAndIgnoresSmallMoves
+  nameWithType: ShadowTests.ShadowCache_TileSize_FollowsScreenSizeAndIgnoresSmallMoves
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_TileSize_FollowsScreenSizeAndIgnoresSmallMoves
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_ResolutionChanges_ArePacedPerFrame*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowCache_ResolutionChanges_ArePacedPerFrame
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowCache_ResolutionChanges_ArePacedPerFrame
+  name: ShadowCache_ResolutionChanges_ArePacedPerFrame
+  nameWithType: ShadowTests.ShadowCache_ResolutionChanges_ArePacedPerFrame
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_ResolutionChanges_ArePacedPerFrame
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_CrowdedAtlas_ShrinksEveryLightBeforeDroppingAny*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowCache_CrowdedAtlas_ShrinksEveryLightBeforeDroppingAny
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowCache_CrowdedAtlas_ShrinksEveryLightBeforeDroppingAny
+  name: ShadowCache_CrowdedAtlas_ShrinksEveryLightBeforeDroppingAny
+  nameWithType: ShadowTests.ShadowCache_CrowdedAtlas_ShrinksEveryLightBeforeDroppingAny
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_CrowdedAtlas_ShrinksEveryLightBeforeDroppingAny
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_SpotLight_DrawsOnceThenReuses*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowCache_SpotLight_DrawsOnceThenReuses
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowCache_SpotLight_DrawsOnceThenReuses
+  name: ShadowCache_SpotLight_DrawsOnceThenReuses
+  nameWithType: ShadowTests.ShadowCache_SpotLight_DrawsOnceThenReuses
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_SpotLight_DrawsOnceThenReuses
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_CascadeRefreshesEveryCPlusOneFrames*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_CascadeRefreshesEveryCPlusOneFrames
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowCache_Directional_CascadeRefreshesEveryCPlusOneFrames
+  name: ShadowCache_Directional_CascadeRefreshesEveryCPlusOneFrames
+  nameWithType: ShadowTests.ShadowCache_Directional_CascadeRefreshesEveryCPlusOneFrames
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_CascadeRefreshesEveryCPlusOneFrames
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_ProbeCaptures_RefitEveryCascadeEveryRender*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_ProbeCaptures_RefitEveryCascadeEveryRender
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowCache_Directional_ProbeCaptures_RefitEveryCascadeEveryRender
+  name: ShadowCache_Directional_ProbeCaptures_RefitEveryCascadeEveryRender
+  nameWithType: ShadowTests.ShadowCache_Directional_ProbeCaptures_RefitEveryCascadeEveryRender
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_ProbeCaptures_RefitEveryCascadeEveryRender
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_CameraMoving_RedrawsTheNearCascade*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_CameraMoving_RedrawsTheNearCascade
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowCache_Directional_CameraMoving_RedrawsTheNearCascade
+  name: ShadowCache_Directional_CameraMoving_RedrawsTheNearCascade
+  nameWithType: ShadowTests.ShadowCache_Directional_CameraMoving_RedrawsTheNearCascade
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_Directional_CameraMoving_RedrawsTheNearCascade
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_MovingCasterBesideStaticOnes_KeepsTheStaticLayer*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowCache_MovingCasterBesideStaticOnes_KeepsTheStaticLayer
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowCache_MovingCasterBesideStaticOnes_KeepsTheStaticLayer
+  name: ShadowCache_MovingCasterBesideStaticOnes_KeepsTheStaticLayer
+  nameWithType: ShadowTests.ShadowCache_MovingCasterBesideStaticOnes_KeepsTheStaticLayer
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_MovingCasterBesideStaticOnes_KeepsTheStaticLayer
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_OnlyStaticCasters_KeepsOneLayer*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowCache_OnlyStaticCasters_KeepsOneLayer
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowCache_OnlyStaticCasters_KeepsOneLayer
+  name: ShadowCache_OnlyStaticCasters_KeepsOneLayer
+  nameWithType: ShadowTests.ShadowCache_OnlyStaticCasters_KeepsOneLayer
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_OnlyStaticCasters_KeepsOneLayer
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_VisualVersionChange_Redraws*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowCache_VisualVersionChange_Redraws
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowCache_VisualVersionChange_Redraws
+  name: ShadowCache_VisualVersionChange_Redraws
+  nameWithType: ShadowTests.ShadowCache_VisualVersionChange_Redraws
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_VisualVersionChange_Redraws
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_OpaqueCastersOfOneMesh_DrawAsOneBatch*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowCache_OpaqueCastersOfOneMesh_DrawAsOneBatch
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowCache_OpaqueCastersOfOneMesh_DrawAsOneBatch
+  name: ShadowCache_OpaqueCastersOfOneMesh_DrawAsOneBatch
+  nameWithType: ShadowTests.ShadowCache_OpaqueCastersOfOneMesh_DrawAsOneBatch
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_OpaqueCastersOfOneMesh_DrawAsOneBatch
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_CutoutCasters_DrawWithTheirOwnMaterial*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowCache_CutoutCasters_DrawWithTheirOwnMaterial
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowCache_CutoutCasters_DrawWithTheirOwnMaterial
+  name: ShadowCache_CutoutCasters_DrawWithTheirOwnMaterial
+  nameWithType: ShadowTests.ShadowCache_CutoutCasters_DrawWithTheirOwnMaterial
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_CutoutCasters_DrawWithTheirOwnMaterial
+- uid: Prowl.Runtime.Test.ShadowTests.ShadowCache_DepthPrecisionChange_RebuildsEveryShadow*
+  commentId: Overload:Prowl.Runtime.Test.ShadowTests.ShadowCache_DepthPrecisionChange_RebuildsEveryShadow
+  href: Prowl.Runtime.Test.ShadowTests.html#Prowl_Runtime_Test_ShadowTests_ShadowCache_DepthPrecisionChange_RebuildsEveryShadow
+  name: ShadowCache_DepthPrecisionChange_RebuildsEveryShadow
+  nameWithType: ShadowTests.ShadowCache_DepthPrecisionChange_RebuildsEveryShadow
+  fullName: Prowl.Runtime.Test.ShadowTests.ShadowCache_DepthPrecisionChange_RebuildsEveryShadow

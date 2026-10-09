@@ -5,7 +5,7 @@ items:
   id: GraphicsTexture
   parent: Prowl.Runtime
   children:
-  - Prowl.Runtime.GraphicsTexture.#ctor(Prowl.Runtime.TextureType,Prowl.Runtime.TextureImageFormat)
+  - Prowl.Runtime.GraphicsTexture.#ctor(Prowl.Runtime.TextureType,Prowl.Runtime.TextureImageFormat,System.Boolean,System.Int32)
   - Prowl.Runtime.GraphicsTexture.Bind(System.Boolean)
   - Prowl.Runtime.GraphicsTexture.Dispose
   - Prowl.Runtime.GraphicsTexture.GenerateMipmap
@@ -17,7 +17,9 @@ items:
   - Prowl.Runtime.GraphicsTexture.PixelFormat
   - Prowl.Runtime.GraphicsTexture.PixelInternalFormat
   - Prowl.Runtime.GraphicsTexture.PixelType
+  - Prowl.Runtime.GraphicsTexture.RandomWrite
   - Prowl.Runtime.GraphicsTexture.SetCompareMode(System.Boolean)
+  - Prowl.Runtime.GraphicsTexture.SetMaxLevel(System.Int32)
   - Prowl.Runtime.GraphicsTexture.SetTextureFilters(Prowl.Runtime.TextureMin,Prowl.Runtime.TextureMag)
   - Prowl.Runtime.GraphicsTexture.SetWrapR(Prowl.Runtime.TextureWrap)
   - Prowl.Runtime.GraphicsTexture.SetWrapS(Prowl.Runtime.TextureWrap)
@@ -41,7 +43,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GraphicsTexture
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 9
+    startLine: 10
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -79,7 +81,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Handle
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 13
+    startLine: 14
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -108,7 +110,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Type
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 14
+    startLine: 15
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -137,7 +139,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Target
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 16
+    startLine: 17
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -164,7 +166,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: PixelInternalFormat
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 19
+    startLine: 20
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -193,7 +195,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: PixelType
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 22
+    startLine: 23
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -222,7 +224,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: PixelFormat
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 25
+    startLine: 26
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -233,16 +235,50 @@ items:
     return:
       type: Silk.NET.OpenGL.PixelFormat
     content.vb: Public ReadOnly PixelFormat As PixelFormat
-- uid: Prowl.Runtime.GraphicsTexture.#ctor(Prowl.Runtime.TextureType,Prowl.Runtime.TextureImageFormat)
-  commentId: M:Prowl.Runtime.GraphicsTexture.#ctor(Prowl.Runtime.TextureType,Prowl.Runtime.TextureImageFormat)
-  id: '#ctor(Prowl.Runtime.TextureType,Prowl.Runtime.TextureImageFormat)'
+- uid: Prowl.Runtime.GraphicsTexture.RandomWrite
+  commentId: P:Prowl.Runtime.GraphicsTexture.RandomWrite
+  id: RandomWrite
   parent: Prowl.Runtime.GraphicsTexture
   langs:
   - csharp
   - vb
-  name: GraphicsTexture(TextureType, TextureImageFormat)
-  nameWithType: GraphicsTexture.GraphicsTexture(TextureType, TextureImageFormat)
-  fullName: Prowl.Runtime.GraphicsTexture.GraphicsTexture(Prowl.Runtime.TextureType, Prowl.Runtime.TextureImageFormat)
+  name: RandomWrite
+  nameWithType: GraphicsTexture.RandomWrite
+  fullName: Prowl.Runtime.GraphicsTexture.RandomWrite
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Graphics/GraphicsTexture.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RandomWrite
+    path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
+    startLine: 32
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Whether compute kernels and shaders may write the texture through an image. Such a texture is allocated once with
+
+    immutable storage, which ES requires of an image, and keeps its size.
+  example: []
+  syntax:
+    content: public bool RandomWrite { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property RandomWrite As Boolean
+  overload: Prowl.Runtime.GraphicsTexture.RandomWrite*
+- uid: Prowl.Runtime.GraphicsTexture.#ctor(Prowl.Runtime.TextureType,Prowl.Runtime.TextureImageFormat,System.Boolean,System.Int32)
+  commentId: M:Prowl.Runtime.GraphicsTexture.#ctor(Prowl.Runtime.TextureType,Prowl.Runtime.TextureImageFormat,System.Boolean,System.Int32)
+  id: '#ctor(Prowl.Runtime.TextureType,Prowl.Runtime.TextureImageFormat,System.Boolean,System.Int32)'
+  parent: Prowl.Runtime.GraphicsTexture
+  langs:
+  - csharp
+  - vb
+  name: GraphicsTexture(TextureType, TextureImageFormat, bool, int)
+  nameWithType: GraphicsTexture.GraphicsTexture(TextureType, TextureImageFormat, bool, int)
+  fullName: Prowl.Runtime.GraphicsTexture.GraphicsTexture(Prowl.Runtime.TextureType, Prowl.Runtime.TextureImageFormat, bool, int)
   type: Constructor
   source:
     remote:
@@ -251,22 +287,26 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: .ctor
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 27
+    startLine: 37
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public GraphicsTexture(TextureType type, TextureImageFormat format)
+    content: public GraphicsTexture(TextureType type, TextureImageFormat format, bool randomWrite = false, int levels = 1)
     parameters:
     - id: type
       type: Prowl.Runtime.TextureType
     - id: format
       type: Prowl.Runtime.TextureImageFormat
-    content.vb: Public Sub New(type As TextureType, format As TextureImageFormat)
+    - id: randomWrite
+      type: System.Boolean
+    - id: levels
+      type: System.Int32
+    content.vb: Public Sub New(type As TextureType, format As TextureImageFormat, randomWrite As Boolean = False, levels As Integer = 1)
   overload: Prowl.Runtime.GraphicsTexture.#ctor*
-  nameWithType.vb: GraphicsTexture.New(TextureType, TextureImageFormat)
-  fullName.vb: Prowl.Runtime.GraphicsTexture.New(Prowl.Runtime.TextureType, Prowl.Runtime.TextureImageFormat)
-  name.vb: New(TextureType, TextureImageFormat)
+  nameWithType.vb: GraphicsTexture.New(TextureType, TextureImageFormat, Boolean, Integer)
+  fullName.vb: Prowl.Runtime.GraphicsTexture.New(Prowl.Runtime.TextureType, Prowl.Runtime.TextureImageFormat, Boolean, Integer)
+  name.vb: New(TextureType, TextureImageFormat, Boolean, Integer)
 - uid: Prowl.Runtime.GraphicsTexture.Bind(System.Boolean)
   commentId: M:Prowl.Runtime.GraphicsTexture.Bind(System.Boolean)
   id: Bind(System.Boolean)
@@ -285,7 +325,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Bind
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 48
+    startLine: 62
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -322,7 +362,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GenerateMipmap
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 54
+    startLine: 68
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -348,7 +388,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetWrapS
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 60
+    startLine: 74
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -377,7 +417,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetWrapT
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 74
+    startLine: 88
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -406,7 +446,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetWrapR
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 88
+    startLine: 102
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -417,6 +457,40 @@ items:
       type: Prowl.Runtime.TextureWrap
     content.vb: Public Sub SetWrapR(wrap As TextureWrap)
   overload: Prowl.Runtime.GraphicsTexture.SetWrapR*
+- uid: Prowl.Runtime.GraphicsTexture.SetMaxLevel(System.Int32)
+  commentId: M:Prowl.Runtime.GraphicsTexture.SetMaxLevel(System.Int32)
+  id: SetMaxLevel(System.Int32)
+  parent: Prowl.Runtime.GraphicsTexture
+  langs:
+  - csharp
+  - vb
+  name: SetMaxLevel(int)
+  nameWithType: GraphicsTexture.SetMaxLevel(int)
+  fullName: Prowl.Runtime.GraphicsTexture.SetMaxLevel(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Graphics/GraphicsTexture.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetMaxLevel
+    path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
+    startLine: 117
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The last mip level sampling may reach, so a chain that stops before 1x1 is still complete.
+  example: []
+  syntax:
+    content: public void SetMaxLevel(int level)
+    parameters:
+    - id: level
+      type: System.Int32
+    content.vb: Public Sub SetMaxLevel(level As Integer)
+  overload: Prowl.Runtime.GraphicsTexture.SetMaxLevel*
+  nameWithType.vb: GraphicsTexture.SetMaxLevel(Integer)
+  fullName.vb: Prowl.Runtime.GraphicsTexture.SetMaxLevel(Integer)
+  name.vb: SetMaxLevel(Integer)
 - uid: Prowl.Runtime.GraphicsTexture.SetTextureFilters(Prowl.Runtime.TextureMin,Prowl.Runtime.TextureMag)
   commentId: M:Prowl.Runtime.GraphicsTexture.SetTextureFilters(Prowl.Runtime.TextureMin,Prowl.Runtime.TextureMag)
   id: SetTextureFilters(Prowl.Runtime.TextureMin,Prowl.Runtime.TextureMag)
@@ -435,7 +509,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetTextureFilters
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 102
+    startLine: 123
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -466,7 +540,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetCompareMode
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 130
+    startLine: 159
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -505,7 +579,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetTexImage
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 144
+    startLine: 173
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -539,7 +613,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetTexImageFace
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 152
+    startLine: 184
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -579,7 +653,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: IsDisposed
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 158
+    startLine: 343
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -608,7 +682,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Dispose
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 160
+    startLine: 345
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -638,7 +712,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: ToString
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 171
+    startLine: 356
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -670,7 +744,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: TexImage2D
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 176
+    startLine: 361
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -712,7 +786,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: TexImage3D
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 182
+    startLine: 376
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -754,7 +828,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetTextureFormatEnums
     path: ../Prowl/Prowl.Runtime/Graphics/GraphicsTexture.cs
-    startLine: 208
+    startLine: 411
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1184,9 +1258,26 @@ references:
   name: PixelFormat
   nameWithType: PixelFormat
   fullName: Silk.NET.OpenGL.PixelFormat
+- uid: Prowl.Runtime.GraphicsTexture.RandomWrite*
+  commentId: Overload:Prowl.Runtime.GraphicsTexture.RandomWrite
+  href: Prowl.Runtime.GraphicsTexture.html#Prowl_Runtime_GraphicsTexture_RandomWrite
+  name: RandomWrite
+  nameWithType: GraphicsTexture.RandomWrite
+  fullName: Prowl.Runtime.GraphicsTexture.RandomWrite
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: Prowl.Runtime.GraphicsTexture.#ctor*
   commentId: Overload:Prowl.Runtime.GraphicsTexture.#ctor
-  href: Prowl.Runtime.GraphicsTexture.html#Prowl_Runtime_GraphicsTexture__ctor_Prowl_Runtime_TextureType_Prowl_Runtime_TextureImageFormat_
+  href: Prowl.Runtime.GraphicsTexture.html#Prowl_Runtime_GraphicsTexture__ctor_Prowl_Runtime_TextureType_Prowl_Runtime_TextureImageFormat_System_Boolean_System_Int32_
   name: GraphicsTexture
   nameWithType: GraphicsTexture.GraphicsTexture
   fullName: Prowl.Runtime.GraphicsTexture.GraphicsTexture
@@ -1200,23 +1291,23 @@ references:
   name: TextureImageFormat
   nameWithType: TextureImageFormat
   fullName: Prowl.Runtime.TextureImageFormat
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: Prowl.Runtime.GraphicsTexture.Bind*
   commentId: Overload:Prowl.Runtime.GraphicsTexture.Bind
   href: Prowl.Runtime.GraphicsTexture.html#Prowl_Runtime_GraphicsTexture_Bind_System_Boolean_
   name: Bind
   nameWithType: GraphicsTexture.Bind
   fullName: Prowl.Runtime.GraphicsTexture.Bind
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
 - uid: Prowl.Runtime.GraphicsTexture.GenerateMipmap*
   commentId: Overload:Prowl.Runtime.GraphicsTexture.GenerateMipmap
   href: Prowl.Runtime.GraphicsTexture.html#Prowl_Runtime_GraphicsTexture_GenerateMipmap
@@ -1248,6 +1339,12 @@ references:
   name: SetWrapR
   nameWithType: GraphicsTexture.SetWrapR
   fullName: Prowl.Runtime.GraphicsTexture.SetWrapR
+- uid: Prowl.Runtime.GraphicsTexture.SetMaxLevel*
+  commentId: Overload:Prowl.Runtime.GraphicsTexture.SetMaxLevel
+  href: Prowl.Runtime.GraphicsTexture.html#Prowl_Runtime_GraphicsTexture_SetMaxLevel_System_Int32_
+  name: SetMaxLevel
+  nameWithType: GraphicsTexture.SetMaxLevel
+  fullName: Prowl.Runtime.GraphicsTexture.SetMaxLevel
 - uid: Prowl.Runtime.GraphicsTexture.SetTextureFilters*
   commentId: Overload:Prowl.Runtime.GraphicsTexture.SetTextureFilters
   href: Prowl.Runtime.GraphicsTexture.html#Prowl_Runtime_GraphicsTexture_SetTextureFilters_Prowl_Runtime_TextureMin_Prowl_Runtime_TextureMag_
@@ -1280,17 +1377,6 @@ references:
   name: GetTexImage
   nameWithType: GraphicsTexture.GetTexImage
   fullName: Prowl.Runtime.GraphicsTexture.GetTexImage
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
-  name: int
-  nameWithType: int
-  fullName: int
-  nameWithType.vb: Integer
-  fullName.vb: Integer
-  name.vb: Integer
 - uid: System.Void*
   isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system.void

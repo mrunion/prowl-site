@@ -1,0 +1,1055 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.DriveConstraint.SpringDrive
+  commentId: T:Prowl.Runtime.DriveConstraint.SpringDrive
+  id: DriveConstraint.SpringDrive
+  parent: Prowl.Runtime
+  children:
+  - Prowl.Runtime.DriveConstraint.SpringDrive.Create
+  - Prowl.Runtime.DriveConstraint.SpringDrive.Iterate(Jitter2.Dynamics.Constraints.ConstraintData@,Jitter2.TimeStep@)
+  - Prowl.Runtime.DriveConstraint.SpringDrive.Prepare(Jitter2.Dynamics.Constraints.ConstraintData@,Jitter2.TimeStep@)
+  - Prowl.Runtime.DriveConstraint.SpringDrive.ResetWarmStart
+  langs:
+  - csharp
+  - vb
+  name: DriveConstraint.SpringDrive
+  nameWithType: DriveConstraint.SpringDrive
+  fullName: Prowl.Runtime.DriveConstraint.SpringDrive
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Physics/Constraints/DriveConstraint.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SpringDrive
+    path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/DriveConstraint.cs
+    startLine: 122
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    The solver side of <xref href="Prowl.Runtime.DriveConstraint" data-throw-if-not-resolved="false"></xref>. Each drive is a soft constraint: the spring and damper are folded
+
+    into a bias and a softness, so the spring closes the error and the damper pulls toward the target velocity with
+
+    exactly the force the pair would give, solved together with every other constraint on the bodies. The impulse is
+
+    limited on each substep by the force times the substep's own time.
+  example: []
+  syntax:
+    content: 'public class DriveConstraint.SpringDrive : Constraint<DriveConstraint.SpringDrive.DriveData>, IDebugDrawable'
+    content.vb: Public Class DriveConstraint.SpringDrive Inherits Constraint(Of DriveConstraint.SpringDrive.DriveData) Implements IDebugDrawable
+  inheritance:
+  - System.Object
+  - Jitter2.Dynamics.Constraints.Constraint
+  - Jitter2.Dynamics.Constraints.Constraint{Prowl.Runtime.DriveConstraint.SpringDrive.DriveData}
+  implements:
+  - Jitter2.IDebugDrawable
+  inheritedMembers:
+  - Jitter2.Dynamics.Constraints.Constraint{Prowl.Runtime.DriveConstraint.SpringDrive.DriveData}.Data
+  - Jitter2.Dynamics.Constraints.Constraint{Prowl.Runtime.DriveConstraint.SpringDrive.DriveData}.IsSmallConstraint
+  - Jitter2.Dynamics.Constraints.Constraint.DefaultAngularSoftness
+  - Jitter2.Dynamics.Constraints.Constraint.DefaultAngularBias
+  - Jitter2.Dynamics.Constraints.Constraint.DefaultAngularLimitSoftness
+  - Jitter2.Dynamics.Constraints.Constraint.DefaultAngularLimitBias
+  - Jitter2.Dynamics.Constraints.Constraint.DefaultLinearSoftness
+  - Jitter2.Dynamics.Constraints.Constraint.DefaultLinearBias
+  - Jitter2.Dynamics.Constraints.Constraint.DefaultLinearLimitSoftness
+  - Jitter2.Dynamics.Constraints.Constraint.DefaultLinearLimitBias
+  - Jitter2.Dynamics.Constraints.Constraint.Body1
+  - Jitter2.Dynamics.Constraints.Constraint.Body2
+  - Jitter2.Dynamics.Constraints.Constraint.Handle
+  - Jitter2.Dynamics.Constraints.Constraint.IsValid
+  - Jitter2.Dynamics.Constraints.Constraint.SmallHandle
+  - Jitter2.Dynamics.Constraints.Constraint.CheckDataSize``1
+  - Jitter2.Dynamics.Constraints.Constraint.VerifyNotZero
+  - Jitter2.Dynamics.Constraints.Constraint.DispatchId
+  - Jitter2.Dynamics.Constraints.Constraint.RegisterFullConstraint(,)
+  - Jitter2.Dynamics.Constraints.Constraint.RegisterSmallConstraint(,)
+  - Jitter2.Dynamics.Constraints.Constraint.IsEnabled
+  - Jitter2.Dynamics.Constraints.Constraint.DebugDraw(Jitter2.IDebugDrawer)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.DriveConstraint.SpringDrive.Create
+  commentId: M:Prowl.Runtime.DriveConstraint.SpringDrive.Create
+  id: Create
+  parent: Prowl.Runtime.DriveConstraint.SpringDrive
+  langs:
+  - csharp
+  - vb
+  name: Create()
+  nameWithType: DriveConstraint.SpringDrive.Create()
+  fullName: Prowl.Runtime.DriveConstraint.SpringDrive.Create()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Physics/Constraints/DriveConstraint.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Create
+    path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/DriveConstraint.cs
+    startLine: 153
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Sets the solver dispatch id used by this instance. Override this in derived classes
+
+    to assign the correct registered solver pair. The id is later written into the
+
+    unmanaged header when the constraint is enabled.
+  example: []
+  syntax:
+    content: protected override void Create()
+    content.vb: Protected Overrides Sub Create()
+  overridden: Jitter2.Dynamics.Constraints.Constraint{Prowl.Runtime.DriveConstraint.SpringDrive.DriveData}.Create
+  overload: Prowl.Runtime.DriveConstraint.SpringDrive.Create*
+- uid: Prowl.Runtime.DriveConstraint.SpringDrive.ResetWarmStart
+  commentId: M:Prowl.Runtime.DriveConstraint.SpringDrive.ResetWarmStart
+  id: ResetWarmStart
+  parent: Prowl.Runtime.DriveConstraint.SpringDrive
+  langs:
+  - csharp
+  - vb
+  name: ResetWarmStart()
+  nameWithType: DriveConstraint.SpringDrive.ResetWarmStart()
+  fullName: Prowl.Runtime.DriveConstraint.SpringDrive.ResetWarmStart()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Physics/Constraints/DriveConstraint.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ResetWarmStart
+    path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/DriveConstraint.cs
+    startLine: 164
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Resets the cached warm-start state used by the solver for this constraint.
+  remarks: >-
+    This clears only persistent solver impulses. Constraint configuration remains unchanged.
+
+    Useful after restoring snapshots or other discontinuous state changes where preserving
+
+    warm-starting is undesirable.
+  example: []
+  syntax:
+    content: public override void ResetWarmStart()
+    content.vb: Public Overrides Sub ResetWarmStart()
+  overridden: Jitter2.Dynamics.Constraints.Constraint.ResetWarmStart
+  overload: Prowl.Runtime.DriveConstraint.SpringDrive.ResetWarmStart*
+- uid: Prowl.Runtime.DriveConstraint.SpringDrive.Prepare(Jitter2.Dynamics.Constraints.ConstraintData@,Jitter2.TimeStep@)
+  commentId: M:Prowl.Runtime.DriveConstraint.SpringDrive.Prepare(Jitter2.Dynamics.Constraints.ConstraintData@,Jitter2.TimeStep@)
+  id: Prepare(Jitter2.Dynamics.Constraints.ConstraintData@,Jitter2.TimeStep@)
+  parent: Prowl.Runtime.DriveConstraint.SpringDrive
+  langs:
+  - csharp
+  - vb
+  name: Prepare(ref ConstraintData, in TimeStep)
+  nameWithType: DriveConstraint.SpringDrive.Prepare(ref ConstraintData, in TimeStep)
+  fullName: Prowl.Runtime.DriveConstraint.SpringDrive.Prepare(ref Jitter2.Dynamics.Constraints.ConstraintData, in Jitter2.TimeStep)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Physics/Constraints/DriveConstraint.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Prepare
+    path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/DriveConstraint.cs
+    startLine: 235
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static void Prepare(ref ConstraintData constraint, in TimeStep timeStep)
+    parameters:
+    - id: constraint
+      type: Jitter2.Dynamics.Constraints.ConstraintData
+    - id: timeStep
+      type: Jitter2.TimeStep
+    content.vb: Public Shared Sub Prepare(constraint As ConstraintData, timeStep As TimeStep)
+  overload: Prowl.Runtime.DriveConstraint.SpringDrive.Prepare*
+  nameWithType.vb: DriveConstraint.SpringDrive.Prepare(ConstraintData, TimeStep)
+  fullName.vb: Prowl.Runtime.DriveConstraint.SpringDrive.Prepare(Jitter2.Dynamics.Constraints.ConstraintData, Jitter2.TimeStep)
+  name.vb: Prepare(ConstraintData, TimeStep)
+- uid: Prowl.Runtime.DriveConstraint.SpringDrive.Iterate(Jitter2.Dynamics.Constraints.ConstraintData@,Jitter2.TimeStep@)
+  commentId: M:Prowl.Runtime.DriveConstraint.SpringDrive.Iterate(Jitter2.Dynamics.Constraints.ConstraintData@,Jitter2.TimeStep@)
+  id: Iterate(Jitter2.Dynamics.Constraints.ConstraintData@,Jitter2.TimeStep@)
+  parent: Prowl.Runtime.DriveConstraint.SpringDrive
+  langs:
+  - csharp
+  - vb
+  name: Iterate(ref ConstraintData, in TimeStep)
+  nameWithType: DriveConstraint.SpringDrive.Iterate(ref ConstraintData, in TimeStep)
+  fullName: Prowl.Runtime.DriveConstraint.SpringDrive.Iterate(ref Jitter2.Dynamics.Constraints.ConstraintData, in Jitter2.TimeStep)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Physics/Constraints/DriveConstraint.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Iterate
+    path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/DriveConstraint.cs
+    startLine: 271
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static void Iterate(ref ConstraintData constraint, in TimeStep timeStep)
+    parameters:
+    - id: constraint
+      type: Jitter2.Dynamics.Constraints.ConstraintData
+    - id: timeStep
+      type: Jitter2.TimeStep
+    content.vb: Public Shared Sub Iterate(constraint As ConstraintData, timeStep As TimeStep)
+  overload: Prowl.Runtime.DriveConstraint.SpringDrive.Iterate*
+  nameWithType.vb: DriveConstraint.SpringDrive.Iterate(ConstraintData, TimeStep)
+  fullName.vb: Prowl.Runtime.DriveConstraint.SpringDrive.Iterate(Jitter2.Dynamics.Constraints.ConstraintData, Jitter2.TimeStep)
+  name.vb: Iterate(ConstraintData, TimeStep)
+references:
+- uid: Prowl.Runtime.DriveConstraint
+  commentId: T:Prowl.Runtime.DriveConstraint
+  href: Prowl.Runtime.DriveConstraint.html
+  name: DriveConstraint
+  nameWithType: DriveConstraint
+  fullName: Prowl.Runtime.DriveConstraint
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Jitter2.Dynamics.Constraints.Constraint
+  commentId: T:Jitter2.Dynamics.Constraints.Constraint
+  parent: Jitter2.Dynamics.Constraints
+  name: Constraint
+  nameWithType: Constraint
+  fullName: Jitter2.Dynamics.Constraints.Constraint
+- uid: Jitter2.Dynamics.Constraints.Constraint{Prowl.Runtime.DriveConstraint.SpringDrive.DriveData}
+  commentId: T:Jitter2.Dynamics.Constraints.Constraint{Prowl.Runtime.DriveConstraint.SpringDrive.DriveData}
+  parent: Jitter2.Dynamics.Constraints
+  definition: Jitter2.Dynamics.Constraints.Constraint`1
+  href: Prowl.Runtime.DriveConstraint.html
+  name: Constraint<DriveConstraint.SpringDrive.DriveData>
+  nameWithType: Constraint<DriveConstraint.SpringDrive.DriveData>
+  fullName: Jitter2.Dynamics.Constraints.Constraint<Prowl.Runtime.DriveConstraint.SpringDrive.DriveData>
+  nameWithType.vb: Constraint(Of DriveConstraint.SpringDrive.DriveData)
+  fullName.vb: Jitter2.Dynamics.Constraints.Constraint(Of Prowl.Runtime.DriveConstraint.SpringDrive.DriveData)
+  name.vb: Constraint(Of DriveConstraint.SpringDrive.DriveData)
+  spec.csharp:
+  - uid: Jitter2.Dynamics.Constraints.Constraint`1
+    name: Constraint
+  - name: <
+  - uid: Prowl.Runtime.DriveConstraint
+    name: DriveConstraint
+    href: Prowl.Runtime.DriveConstraint.html
+  - name: .
+  - uid: Prowl.Runtime.DriveConstraint.SpringDrive
+    name: SpringDrive
+    href: Prowl.Runtime.DriveConstraint.SpringDrive.html
+  - name: .
+  - uid: Prowl.Runtime.DriveConstraint.SpringDrive.DriveData
+    name: DriveData
+    href: Prowl.Runtime.DriveConstraint.SpringDrive.DriveData.html
+  - name: '>'
+  spec.vb:
+  - uid: Jitter2.Dynamics.Constraints.Constraint`1
+    name: Constraint
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.DriveConstraint
+    name: DriveConstraint
+    href: Prowl.Runtime.DriveConstraint.html
+  - name: .
+  - uid: Prowl.Runtime.DriveConstraint.SpringDrive
+    name: SpringDrive
+    href: Prowl.Runtime.DriveConstraint.SpringDrive.html
+  - name: .
+  - uid: Prowl.Runtime.DriveConstraint.SpringDrive.DriveData
+    name: DriveData
+    href: Prowl.Runtime.DriveConstraint.SpringDrive.DriveData.html
+  - name: )
+- uid: Jitter2.IDebugDrawable
+  commentId: T:Jitter2.IDebugDrawable
+  parent: Jitter2
+  name: IDebugDrawable
+  nameWithType: IDebugDrawable
+  fullName: Jitter2.IDebugDrawable
+- uid: Jitter2.Dynamics.Constraints.Constraint{Prowl.Runtime.DriveConstraint.SpringDrive.DriveData}.Data
+  commentId: P:Jitter2.Dynamics.Constraints.Constraint{Prowl.Runtime.DriveConstraint.SpringDrive.DriveData}.Data
+  parent: Jitter2.Dynamics.Constraints.Constraint{Prowl.Runtime.DriveConstraint.SpringDrive.DriveData}
+  definition: Jitter2.Dynamics.Constraints.Constraint`1.Data
+  name: Data
+  nameWithType: Constraint<DriveConstraint.SpringDrive.DriveData>.Data
+  fullName: Jitter2.Dynamics.Constraints.Constraint<Prowl.Runtime.DriveConstraint.SpringDrive.DriveData>.Data
+  nameWithType.vb: Constraint(Of DriveConstraint.SpringDrive.DriveData).Data
+  fullName.vb: Jitter2.Dynamics.Constraints.Constraint(Of Prowl.Runtime.DriveConstraint.SpringDrive.DriveData).Data
+- uid: Jitter2.Dynamics.Constraints.Constraint{Prowl.Runtime.DriveConstraint.SpringDrive.DriveData}.IsSmallConstraint
+  commentId: P:Jitter2.Dynamics.Constraints.Constraint{Prowl.Runtime.DriveConstraint.SpringDrive.DriveData}.IsSmallConstraint
+  parent: Jitter2.Dynamics.Constraints.Constraint{Prowl.Runtime.DriveConstraint.SpringDrive.DriveData}
+  definition: Jitter2.Dynamics.Constraints.Constraint`1.IsSmallConstraint
+  name: IsSmallConstraint
+  nameWithType: Constraint<DriveConstraint.SpringDrive.DriveData>.IsSmallConstraint
+  fullName: Jitter2.Dynamics.Constraints.Constraint<Prowl.Runtime.DriveConstraint.SpringDrive.DriveData>.IsSmallConstraint
+  nameWithType.vb: Constraint(Of DriveConstraint.SpringDrive.DriveData).IsSmallConstraint
+  fullName.vb: Jitter2.Dynamics.Constraints.Constraint(Of Prowl.Runtime.DriveConstraint.SpringDrive.DriveData).IsSmallConstraint
+- uid: Jitter2.Dynamics.Constraints.Constraint.DefaultAngularSoftness
+  commentId: F:Jitter2.Dynamics.Constraints.Constraint.DefaultAngularSoftness
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  name: DefaultAngularSoftness
+  nameWithType: Constraint.DefaultAngularSoftness
+  fullName: Jitter2.Dynamics.Constraints.Constraint.DefaultAngularSoftness
+- uid: Jitter2.Dynamics.Constraints.Constraint.DefaultAngularBias
+  commentId: F:Jitter2.Dynamics.Constraints.Constraint.DefaultAngularBias
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  name: DefaultAngularBias
+  nameWithType: Constraint.DefaultAngularBias
+  fullName: Jitter2.Dynamics.Constraints.Constraint.DefaultAngularBias
+- uid: Jitter2.Dynamics.Constraints.Constraint.DefaultAngularLimitSoftness
+  commentId: F:Jitter2.Dynamics.Constraints.Constraint.DefaultAngularLimitSoftness
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  name: DefaultAngularLimitSoftness
+  nameWithType: Constraint.DefaultAngularLimitSoftness
+  fullName: Jitter2.Dynamics.Constraints.Constraint.DefaultAngularLimitSoftness
+- uid: Jitter2.Dynamics.Constraints.Constraint.DefaultAngularLimitBias
+  commentId: F:Jitter2.Dynamics.Constraints.Constraint.DefaultAngularLimitBias
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  name: DefaultAngularLimitBias
+  nameWithType: Constraint.DefaultAngularLimitBias
+  fullName: Jitter2.Dynamics.Constraints.Constraint.DefaultAngularLimitBias
+- uid: Jitter2.Dynamics.Constraints.Constraint.DefaultLinearSoftness
+  commentId: F:Jitter2.Dynamics.Constraints.Constraint.DefaultLinearSoftness
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  name: DefaultLinearSoftness
+  nameWithType: Constraint.DefaultLinearSoftness
+  fullName: Jitter2.Dynamics.Constraints.Constraint.DefaultLinearSoftness
+- uid: Jitter2.Dynamics.Constraints.Constraint.DefaultLinearBias
+  commentId: F:Jitter2.Dynamics.Constraints.Constraint.DefaultLinearBias
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  name: DefaultLinearBias
+  nameWithType: Constraint.DefaultLinearBias
+  fullName: Jitter2.Dynamics.Constraints.Constraint.DefaultLinearBias
+- uid: Jitter2.Dynamics.Constraints.Constraint.DefaultLinearLimitSoftness
+  commentId: F:Jitter2.Dynamics.Constraints.Constraint.DefaultLinearLimitSoftness
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  name: DefaultLinearLimitSoftness
+  nameWithType: Constraint.DefaultLinearLimitSoftness
+  fullName: Jitter2.Dynamics.Constraints.Constraint.DefaultLinearLimitSoftness
+- uid: Jitter2.Dynamics.Constraints.Constraint.DefaultLinearLimitBias
+  commentId: F:Jitter2.Dynamics.Constraints.Constraint.DefaultLinearLimitBias
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  name: DefaultLinearLimitBias
+  nameWithType: Constraint.DefaultLinearLimitBias
+  fullName: Jitter2.Dynamics.Constraints.Constraint.DefaultLinearLimitBias
+- uid: Jitter2.Dynamics.Constraints.Constraint.Body1
+  commentId: P:Jitter2.Dynamics.Constraints.Constraint.Body1
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  name: Body1
+  nameWithType: Constraint.Body1
+  fullName: Jitter2.Dynamics.Constraints.Constraint.Body1
+- uid: Jitter2.Dynamics.Constraints.Constraint.Body2
+  commentId: P:Jitter2.Dynamics.Constraints.Constraint.Body2
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  name: Body2
+  nameWithType: Constraint.Body2
+  fullName: Jitter2.Dynamics.Constraints.Constraint.Body2
+- uid: Jitter2.Dynamics.Constraints.Constraint.Handle
+  commentId: P:Jitter2.Dynamics.Constraints.Constraint.Handle
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  name: Handle
+  nameWithType: Constraint.Handle
+  fullName: Jitter2.Dynamics.Constraints.Constraint.Handle
+- uid: Jitter2.Dynamics.Constraints.Constraint.IsValid
+  commentId: P:Jitter2.Dynamics.Constraints.Constraint.IsValid
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  name: IsValid
+  nameWithType: Constraint.IsValid
+  fullName: Jitter2.Dynamics.Constraints.Constraint.IsValid
+- uid: Jitter2.Dynamics.Constraints.Constraint.SmallHandle
+  commentId: P:Jitter2.Dynamics.Constraints.Constraint.SmallHandle
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  name: SmallHandle
+  nameWithType: Constraint.SmallHandle
+  fullName: Jitter2.Dynamics.Constraints.Constraint.SmallHandle
+- uid: Jitter2.Dynamics.Constraints.Constraint.CheckDataSize``1
+  commentId: M:Jitter2.Dynamics.Constraints.Constraint.CheckDataSize``1
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  name: CheckDataSize<T>()
+  nameWithType: Constraint.CheckDataSize<T>()
+  fullName: Jitter2.Dynamics.Constraints.Constraint.CheckDataSize<T>()
+  nameWithType.vb: Constraint.CheckDataSize(Of T)()
+  fullName.vb: Jitter2.Dynamics.Constraints.Constraint.CheckDataSize(Of T)()
+  name.vb: CheckDataSize(Of T)()
+  spec.csharp:
+  - uid: Jitter2.Dynamics.Constraints.Constraint.CheckDataSize``1
+    name: CheckDataSize
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Jitter2.Dynamics.Constraints.Constraint.CheckDataSize``1
+    name: CheckDataSize
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: )
+- uid: Jitter2.Dynamics.Constraints.Constraint.VerifyNotZero
+  commentId: M:Jitter2.Dynamics.Constraints.Constraint.VerifyNotZero
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  name: VerifyNotZero()
+  nameWithType: Constraint.VerifyNotZero()
+  fullName: Jitter2.Dynamics.Constraints.Constraint.VerifyNotZero()
+  spec.csharp:
+  - uid: Jitter2.Dynamics.Constraints.Constraint.VerifyNotZero
+    name: VerifyNotZero
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Jitter2.Dynamics.Constraints.Constraint.VerifyNotZero
+    name: VerifyNotZero
+  - name: (
+  - name: )
+- uid: Jitter2.Dynamics.Constraints.Constraint.DispatchId
+  commentId: P:Jitter2.Dynamics.Constraints.Constraint.DispatchId
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  name: DispatchId
+  nameWithType: Constraint.DispatchId
+  fullName: Jitter2.Dynamics.Constraints.Constraint.DispatchId
+- uid: Jitter2.Dynamics.Constraints.Constraint.RegisterFullConstraint(,)
+  commentId: M:Jitter2.Dynamics.Constraints.Constraint.RegisterFullConstraint(,)
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.void
+  name: RegisterFullConstraint(delegate*<ref ConstraintData, in TimeStep, void>, delegate*<ref ConstraintData, in TimeStep, void>)
+  nameWithType: Constraint.RegisterFullConstraint(delegate*<ref ConstraintData, in TimeStep, void>, delegate*<ref ConstraintData, in TimeStep, void>)
+  fullName: Jitter2.Dynamics.Constraints.Constraint.RegisterFullConstraint(delegate*<ref Jitter2.Dynamics.Constraints.ConstraintData, in Jitter2.TimeStep, void>, delegate*<ref Jitter2.Dynamics.Constraints.ConstraintData, in Jitter2.TimeStep, void>)
+  nameWithType.vb: Constraint.RegisterFullConstraint(, )
+  fullName.vb: Jitter2.Dynamics.Constraints.Constraint.RegisterFullConstraint(, )
+  name.vb: RegisterFullConstraint(, )
+  spec.csharp:
+  - uid: Jitter2.Dynamics.Constraints.Constraint.RegisterFullConstraint(,)
+    name: RegisterFullConstraint
+  - name: (
+  - name: delegate
+  - name: '*'
+  - name: <
+  - name: ref
+  - name: " "
+  - uid: Jitter2.Dynamics.Constraints.ConstraintData
+    name: ConstraintData
+  - name: ','
+  - name: " "
+  - name: in
+  - name: " "
+  - uid: Jitter2.TimeStep
+    name: TimeStep
+  - name: ','
+  - name: " "
+  - uid: System.Void
+    name: void
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.void
+  - name: '>'
+  - name: ','
+  - name: " "
+  - name: delegate
+  - name: '*'
+  - name: <
+  - name: ref
+  - name: " "
+  - uid: Jitter2.Dynamics.Constraints.ConstraintData
+    name: ConstraintData
+  - name: ','
+  - name: " "
+  - name: in
+  - name: " "
+  - uid: Jitter2.TimeStep
+    name: TimeStep
+  - name: ','
+  - name: " "
+  - uid: System.Void
+    name: void
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.void
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Jitter2.Dynamics.Constraints.Constraint.RegisterFullConstraint(,)
+    name: RegisterFullConstraint
+  - name: (
+  - name: ','
+  - name: " "
+  - name: )
+- uid: Jitter2.Dynamics.Constraints.Constraint.RegisterSmallConstraint(,)
+  commentId: M:Jitter2.Dynamics.Constraints.Constraint.RegisterSmallConstraint(,)
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.void
+  name: RegisterSmallConstraint(delegate*<ref SmallConstraintData, in TimeStep, void>, delegate*<ref SmallConstraintData, in TimeStep, void>)
+  nameWithType: Constraint.RegisterSmallConstraint(delegate*<ref SmallConstraintData, in TimeStep, void>, delegate*<ref SmallConstraintData, in TimeStep, void>)
+  fullName: Jitter2.Dynamics.Constraints.Constraint.RegisterSmallConstraint(delegate*<ref Jitter2.Dynamics.Constraints.SmallConstraintData, in Jitter2.TimeStep, void>, delegate*<ref Jitter2.Dynamics.Constraints.SmallConstraintData, in Jitter2.TimeStep, void>)
+  nameWithType.vb: Constraint.RegisterSmallConstraint(, )
+  fullName.vb: Jitter2.Dynamics.Constraints.Constraint.RegisterSmallConstraint(, )
+  name.vb: RegisterSmallConstraint(, )
+  spec.csharp:
+  - uid: Jitter2.Dynamics.Constraints.Constraint.RegisterSmallConstraint(,)
+    name: RegisterSmallConstraint
+  - name: (
+  - name: delegate
+  - name: '*'
+  - name: <
+  - name: ref
+  - name: " "
+  - uid: Jitter2.Dynamics.Constraints.SmallConstraintData
+    name: SmallConstraintData
+  - name: ','
+  - name: " "
+  - name: in
+  - name: " "
+  - uid: Jitter2.TimeStep
+    name: TimeStep
+  - name: ','
+  - name: " "
+  - uid: System.Void
+    name: void
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.void
+  - name: '>'
+  - name: ','
+  - name: " "
+  - name: delegate
+  - name: '*'
+  - name: <
+  - name: ref
+  - name: " "
+  - uid: Jitter2.Dynamics.Constraints.SmallConstraintData
+    name: SmallConstraintData
+  - name: ','
+  - name: " "
+  - name: in
+  - name: " "
+  - uid: Jitter2.TimeStep
+    name: TimeStep
+  - name: ','
+  - name: " "
+  - uid: System.Void
+    name: void
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.void
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Jitter2.Dynamics.Constraints.Constraint.RegisterSmallConstraint(,)
+    name: RegisterSmallConstraint
+  - name: (
+  - name: ','
+  - name: " "
+  - name: )
+- uid: Jitter2.Dynamics.Constraints.Constraint.IsEnabled
+  commentId: P:Jitter2.Dynamics.Constraints.Constraint.IsEnabled
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  name: IsEnabled
+  nameWithType: Constraint.IsEnabled
+  fullName: Jitter2.Dynamics.Constraints.Constraint.IsEnabled
+- uid: Jitter2.Dynamics.Constraints.Constraint.DebugDraw(Jitter2.IDebugDrawer)
+  commentId: M:Jitter2.Dynamics.Constraints.Constraint.DebugDraw(Jitter2.IDebugDrawer)
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  name: DebugDraw(IDebugDrawer)
+  nameWithType: Constraint.DebugDraw(IDebugDrawer)
+  fullName: Jitter2.Dynamics.Constraints.Constraint.DebugDraw(Jitter2.IDebugDrawer)
+  spec.csharp:
+  - uid: Jitter2.Dynamics.Constraints.Constraint.DebugDraw(Jitter2.IDebugDrawer)
+    name: DebugDraw
+  - name: (
+  - uid: Jitter2.IDebugDrawer
+    name: IDebugDrawer
+  - name: )
+  spec.vb:
+  - uid: Jitter2.Dynamics.Constraints.Constraint.DebugDraw(Jitter2.IDebugDrawer)
+    name: DebugDraw
+  - name: (
+  - uid: Jitter2.IDebugDrawer
+    name: IDebugDrawer
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Jitter2.Dynamics.Constraints
+  commentId: N:Jitter2.Dynamics.Constraints
+  name: Jitter2.Dynamics.Constraints
+  nameWithType: Jitter2.Dynamics.Constraints
+  fullName: Jitter2.Dynamics.Constraints
+  spec.csharp:
+  - uid: Jitter2
+    name: Jitter2
+  - name: .
+  - uid: Jitter2.Dynamics
+    name: Dynamics
+  - name: .
+  - uid: Jitter2.Dynamics.Constraints
+    name: Constraints
+  spec.vb:
+  - uid: Jitter2
+    name: Jitter2
+  - name: .
+  - uid: Jitter2.Dynamics
+    name: Dynamics
+  - name: .
+  - uid: Jitter2.Dynamics.Constraints
+    name: Constraints
+- uid: Jitter2.Dynamics.Constraints.Constraint`1
+  commentId: T:Jitter2.Dynamics.Constraints.Constraint`1
+  name: Constraint<T>
+  nameWithType: Constraint<T>
+  fullName: Jitter2.Dynamics.Constraints.Constraint<T>
+  nameWithType.vb: Constraint(Of T)
+  fullName.vb: Jitter2.Dynamics.Constraints.Constraint(Of T)
+  name.vb: Constraint(Of T)
+  spec.csharp:
+  - uid: Jitter2.Dynamics.Constraints.Constraint`1
+    name: Constraint
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: Jitter2.Dynamics.Constraints.Constraint`1
+    name: Constraint
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Jitter2
+  commentId: N:Jitter2
+  name: Jitter2
+  nameWithType: Jitter2
+  fullName: Jitter2
+- uid: Jitter2.Dynamics.Constraints.Constraint`1.Data
+  commentId: P:Jitter2.Dynamics.Constraints.Constraint`1.Data
+  name: Data
+  nameWithType: Constraint<T>.Data
+  fullName: Jitter2.Dynamics.Constraints.Constraint<T>.Data
+  nameWithType.vb: Constraint(Of T).Data
+  fullName.vb: Jitter2.Dynamics.Constraints.Constraint(Of T).Data
+- uid: Jitter2.Dynamics.Constraints.Constraint`1.IsSmallConstraint
+  commentId: P:Jitter2.Dynamics.Constraints.Constraint`1.IsSmallConstraint
+  name: IsSmallConstraint
+  nameWithType: Constraint<T>.IsSmallConstraint
+  fullName: Jitter2.Dynamics.Constraints.Constraint<T>.IsSmallConstraint
+  nameWithType.vb: Constraint(Of T).IsSmallConstraint
+  fullName.vb: Jitter2.Dynamics.Constraints.Constraint(Of T).IsSmallConstraint
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Jitter2.Dynamics.Constraints.Constraint{Prowl.Runtime.DriveConstraint.SpringDrive.DriveData}.Create
+  commentId: M:Jitter2.Dynamics.Constraints.Constraint{Prowl.Runtime.DriveConstraint.SpringDrive.DriveData}.Create
+  parent: Jitter2.Dynamics.Constraints.Constraint{Prowl.Runtime.DriveConstraint.SpringDrive.DriveData}
+  definition: Jitter2.Dynamics.Constraints.Constraint`1.Create
+  name: Create()
+  nameWithType: Constraint<DriveConstraint.SpringDrive.DriveData>.Create()
+  fullName: Jitter2.Dynamics.Constraints.Constraint<Prowl.Runtime.DriveConstraint.SpringDrive.DriveData>.Create()
+  nameWithType.vb: Constraint(Of DriveConstraint.SpringDrive.DriveData).Create()
+  fullName.vb: Jitter2.Dynamics.Constraints.Constraint(Of Prowl.Runtime.DriveConstraint.SpringDrive.DriveData).Create()
+  spec.csharp:
+  - uid: Jitter2.Dynamics.Constraints.Constraint{Prowl.Runtime.DriveConstraint.SpringDrive.DriveData}.Create
+    name: Create
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Jitter2.Dynamics.Constraints.Constraint{Prowl.Runtime.DriveConstraint.SpringDrive.DriveData}.Create
+    name: Create
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.DriveConstraint.SpringDrive.Create*
+  commentId: Overload:Prowl.Runtime.DriveConstraint.SpringDrive.Create
+  href: Prowl.Runtime.DriveConstraint.SpringDrive.html#Prowl_Runtime_DriveConstraint_SpringDrive_Create
+  name: Create
+  nameWithType: DriveConstraint.SpringDrive.Create
+  fullName: Prowl.Runtime.DriveConstraint.SpringDrive.Create
+- uid: Jitter2.Dynamics.Constraints.Constraint`1.Create
+  commentId: M:Jitter2.Dynamics.Constraints.Constraint`1.Create
+  name: Create()
+  nameWithType: Constraint<T>.Create()
+  fullName: Jitter2.Dynamics.Constraints.Constraint<T>.Create()
+  nameWithType.vb: Constraint(Of T).Create()
+  fullName.vb: Jitter2.Dynamics.Constraints.Constraint(Of T).Create()
+  spec.csharp:
+  - uid: Jitter2.Dynamics.Constraints.Constraint`1.Create
+    name: Create
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Jitter2.Dynamics.Constraints.Constraint`1.Create
+    name: Create
+  - name: (
+  - name: )
+- uid: Jitter2.Dynamics.Constraints.Constraint.ResetWarmStart
+  commentId: M:Jitter2.Dynamics.Constraints.Constraint.ResetWarmStart
+  parent: Jitter2.Dynamics.Constraints.Constraint
+  name: ResetWarmStart()
+  nameWithType: Constraint.ResetWarmStart()
+  fullName: Jitter2.Dynamics.Constraints.Constraint.ResetWarmStart()
+  spec.csharp:
+  - uid: Jitter2.Dynamics.Constraints.Constraint.ResetWarmStart
+    name: ResetWarmStart
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Jitter2.Dynamics.Constraints.Constraint.ResetWarmStart
+    name: ResetWarmStart
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.DriveConstraint.SpringDrive.ResetWarmStart*
+  commentId: Overload:Prowl.Runtime.DriveConstraint.SpringDrive.ResetWarmStart
+  href: Prowl.Runtime.DriveConstraint.SpringDrive.html#Prowl_Runtime_DriveConstraint_SpringDrive_ResetWarmStart
+  name: ResetWarmStart
+  nameWithType: DriveConstraint.SpringDrive.ResetWarmStart
+  fullName: Prowl.Runtime.DriveConstraint.SpringDrive.ResetWarmStart
+- uid: Prowl.Runtime.DriveConstraint.SpringDrive.Prepare*
+  commentId: Overload:Prowl.Runtime.DriveConstraint.SpringDrive.Prepare
+  href: Prowl.Runtime.DriveConstraint.SpringDrive.html#Prowl_Runtime_DriveConstraint_SpringDrive_Prepare_Jitter2_Dynamics_Constraints_ConstraintData__Jitter2_TimeStep__
+  name: Prepare
+  nameWithType: DriveConstraint.SpringDrive.Prepare
+  fullName: Prowl.Runtime.DriveConstraint.SpringDrive.Prepare
+- uid: Jitter2.Dynamics.Constraints.ConstraintData
+  commentId: T:Jitter2.Dynamics.Constraints.ConstraintData
+  parent: Jitter2.Dynamics.Constraints
+  name: ConstraintData
+  nameWithType: ConstraintData
+  fullName: Jitter2.Dynamics.Constraints.ConstraintData
+- uid: Jitter2.TimeStep
+  commentId: T:Jitter2.TimeStep
+  parent: Jitter2
+  name: TimeStep
+  nameWithType: TimeStep
+  fullName: Jitter2.TimeStep
+- uid: Prowl.Runtime.DriveConstraint.SpringDrive.Iterate*
+  commentId: Overload:Prowl.Runtime.DriveConstraint.SpringDrive.Iterate
+  href: Prowl.Runtime.DriveConstraint.SpringDrive.html#Prowl_Runtime_DriveConstraint_SpringDrive_Iterate_Jitter2_Dynamics_Constraints_ConstraintData__Jitter2_TimeStep__
+  name: Iterate
+  nameWithType: DriveConstraint.SpringDrive.Iterate
+  fullName: Prowl.Runtime.DriveConstraint.SpringDrive.Iterate

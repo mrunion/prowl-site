@@ -16,6 +16,7 @@ items:
   - Prowl.Runtime.Rigidbody3D.ApplyImpulse(Prowl.Vector.Float3)
   - Prowl.Runtime.Rigidbody3D.ApplyImpulse(Prowl.Vector.Float3,Prowl.Vector.Float3)
   - Prowl.Runtime.Rigidbody3D.CenterOfMass
+  - Prowl.Runtime.Rigidbody3D.CenterOfMassOverride
   - Prowl.Runtime.Rigidbody3D.Constraints
   - Prowl.Runtime.Rigidbody3D.CreateBody(Jitter2.World)
   - Prowl.Runtime.Rigidbody3D.DeactivationTime
@@ -24,6 +25,7 @@ items:
   - Prowl.Runtime.Rigidbody3D.Friction
   - Prowl.Runtime.Rigidbody3D.GetPointVelocity(Prowl.Vector.Float3)
   - Prowl.Runtime.Rigidbody3D.InertiaTensor
+  - Prowl.Runtime.Rigidbody3D.InertiaTensorOverride
   - Prowl.Runtime.Rigidbody3D.Interpolation
   - Prowl.Runtime.Rigidbody3D.IsActive
   - Prowl.Runtime.Rigidbody3D.LinearDamping
@@ -56,7 +58,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Rigidbody3D
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 32
+    startLine: 33
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -185,7 +187,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Constraints
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 63
+    startLine: 68
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -219,7 +221,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Interpolation
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 88
+    startLine: 93
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -253,7 +255,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: MotionType
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 103
+    startLine: 108
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -287,7 +289,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: EnableSpeculativeContacts
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 117
+    startLine: 122
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -318,7 +320,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: AffectedByGravity
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 131
+    startLine: 136
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -349,7 +351,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Mass
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 145
+    startLine: 150
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -362,6 +364,80 @@ items:
       type: System.Single
     content.vb: Public Property Mass As Single
   overload: Prowl.Runtime.Rigidbody3D.Mass*
+- uid: Prowl.Runtime.Rigidbody3D.InertiaTensorOverride
+  commentId: P:Prowl.Runtime.Rigidbody3D.InertiaTensorOverride
+  id: InertiaTensorOverride
+  parent: Prowl.Runtime.Rigidbody3D
+  langs:
+  - csharp
+  - vb
+  name: InertiaTensorOverride
+  nameWithType: Rigidbody3D.InertiaTensorOverride
+  fullName: Prowl.Runtime.Rigidbody3D.InertiaTensorOverride
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Physics/Rigidbody3D.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: InertiaTensorOverride
+    path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
+    startLine: 169
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Replaces the inertia worked out from the colliders with this diagonal, in the body's own space, in kg m^2, or null
+
+    to work it out from the colliders. Heavier than the shapes give, a body turns more steadily, which a jointed chain
+
+    of a light body and a heavy one needs.
+  example: []
+  syntax:
+    content: public Float3? InertiaTensorOverride { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{Prowl.Vector.Float3}
+    content.vb: Public Property InertiaTensorOverride As Float3?
+  overload: Prowl.Runtime.Rigidbody3D.InertiaTensorOverride*
+- uid: Prowl.Runtime.Rigidbody3D.CenterOfMassOverride
+  commentId: P:Prowl.Runtime.Rigidbody3D.CenterOfMassOverride
+  id: CenterOfMassOverride
+  parent: Prowl.Runtime.Rigidbody3D
+  langs:
+  - csharp
+  - vb
+  name: CenterOfMassOverride
+  nameWithType: Rigidbody3D.CenterOfMassOverride
+  fullName: Prowl.Runtime.Rigidbody3D.CenterOfMassOverride
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Physics/Rigidbody3D.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: CenterOfMassOverride
+    path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
+    startLine: 187
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Where the body's mass is centred, in metres along its own axes from its origin, or null for the origin itself.
+
+    The body turns about this point and gravity pulls through it, while its colliders, its Transform and
+
+    <xref href="Prowl.Runtime.Rigidbody3D.Position" data-throw-if-not-resolved="false"></xref> stay where they are. Changing it on a moving body keeps the body's motion, and rebuilds
+
+    the joints on it.
+  example: []
+  syntax:
+    content: public Float3? CenterOfMassOverride { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{Prowl.Vector.Float3}
+    content.vb: Public Property CenterOfMassOverride As Float3?
+  overload: Prowl.Runtime.Rigidbody3D.CenterOfMassOverride*
 - uid: Prowl.Runtime.Rigidbody3D.Friction
   commentId: P:Prowl.Runtime.Rigidbody3D.Friction
   id: Friction
@@ -380,7 +456,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Friction
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 162
+    startLine: 274
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -411,7 +487,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Restitution
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 179
+    startLine: 291
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -442,7 +518,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: LinearDamping
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 197
+    startLine: 309
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -476,7 +552,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: AngularDamping
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 215
+    startLine: 327
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -510,7 +586,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: EnableGyroscopicForces
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 233
+    startLine: 345
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -544,7 +620,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: DeactivationTime
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 248
+    startLine: 360
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -578,7 +654,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: LinearSleepThreshold
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 262
+    startLine: 374
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -609,7 +685,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: AngularSleepThreshold
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 276
+    startLine: 388
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -640,7 +716,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: IsActive
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 290
+    startLine: 402
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -671,7 +747,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: LinearVelocity
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 295
+    startLine: 407
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -702,7 +778,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: AngularVelocity
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 304
+    startLine: 416
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -733,7 +809,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Position
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 314
+    startLine: 426
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -767,7 +843,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Rotation
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 317
+    startLine: 429
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -798,7 +874,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Torque
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 322
+    startLine: 434
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -829,7 +905,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CreateBody
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 356
+    startLine: 468
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -860,7 +936,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: OnValidate
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 371
+    startLine: 484
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -888,7 +964,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Update
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 392
+    startLine: 508
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -917,7 +993,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: OnEnable
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 474
+    startLine: 590
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -949,7 +1025,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: OnDisable
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 502
+    startLine: 618
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -981,7 +1057,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: AddForce
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 665
+    startLine: 811
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1014,7 +1090,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: AddForceAtPosition
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 699
+    startLine: 845
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1054,7 +1130,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: AddTorque
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 725
+    startLine: 871
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1087,7 +1163,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetActive
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 771
+    startLine: 917
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1121,7 +1197,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetPointVelocity
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 781
+    startLine: 927
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1154,7 +1230,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CenterOfMass
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 800
+    startLine: 946
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1165,13 +1241,13 @@ items:
     <p></p>
 
 
-    This is not the point the body spins about. Jitter accumulates inertia about the body origin and
+    This is not the point the body spins about, which is its origin, or <xref href="Prowl.Runtime.Rigidbody3D.CenterOfMassOverride" data-throw-if-not-resolved="false"></xref>
 
-    never shifts it, so an off-centre collider rotates about the Transform's position rather than
+    when set. Setting that to this point, moved into the body's space, makes the body turn the way its shapes
 
-    about this. Shapes with no volume (a concave MeshCollider's triangles) contribute nothing, and a
+    weigh. Shapes with no volume (a concave MeshCollider's triangles) contribute nothing, and a body made only
 
-    body made only of those reports its origin.
+    of those reports its origin.
   example: []
   syntax:
     content: public Float3 CenterOfMass { get; }
@@ -1198,7 +1274,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: InertiaTensor
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 835
+    startLine: 981
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1234,7 +1310,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: ApplyImpulse
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 851
+    startLine: 997
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1267,7 +1343,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: ApplyImpulse
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 867
+    startLine: 1013
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1298,7 +1374,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: ApplyAngularImpulse
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 881
+    startLine: 1027
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1329,7 +1405,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: MovePosition
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 895
+    startLine: 1041
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1360,11 +1436,11 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: MoveRotation
     path: ../Prowl/Prowl.Runtime/Components/Physics/Rigidbody3D.cs
-    startLine: 912
+    startLine: 1058
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
-  summary: Rotates the rigidbody to a new rotation (teleport).
+  summary: Rotates the rigidbody to a new rotation about its origin (teleport).
   example: []
   syntax:
     content: public void MoveRotation(Quaternion rotation)
@@ -3372,19 +3448,16 @@ references:
   fullName: Prowl.Runtime.RigidbodyInterpolation
 - uid: Jitter2.Dynamics.MotionType.Dynamic
   commentId: F:Jitter2.Dynamics.MotionType.Dynamic
-  isExternal: true
   name: Dynamic
   nameWithType: MotionType.Dynamic
   fullName: Jitter2.Dynamics.MotionType.Dynamic
 - uid: Jitter2.Dynamics.MotionType.Kinematic
   commentId: F:Jitter2.Dynamics.MotionType.Kinematic
-  isExternal: true
   name: Kinematic
   nameWithType: MotionType.Kinematic
   fullName: Jitter2.Dynamics.MotionType.Kinematic
 - uid: Jitter2.Dynamics.MotionType.Static
   commentId: F:Jitter2.Dynamics.MotionType.Static
-  isExternal: true
   name: Static
   nameWithType: MotionType.Static
   fullName: Jitter2.Dynamics.MotionType.Static
@@ -3397,32 +3470,26 @@ references:
 - uid: Jitter2.Dynamics.MotionType
   commentId: T:Jitter2.Dynamics.MotionType
   parent: Jitter2.Dynamics
-  isExternal: true
   name: MotionType
   nameWithType: MotionType
   fullName: Jitter2.Dynamics.MotionType
 - uid: Jitter2.Dynamics
   commentId: N:Jitter2.Dynamics
-  isExternal: true
   name: Jitter2.Dynamics
   nameWithType: Jitter2.Dynamics
   fullName: Jitter2.Dynamics
   spec.csharp:
   - uid: Jitter2
     name: Jitter2
-    isExternal: true
   - name: .
   - uid: Jitter2.Dynamics
     name: Dynamics
-    isExternal: true
   spec.vb:
   - uid: Jitter2
     name: Jitter2
-    isExternal: true
   - name: .
   - uid: Jitter2.Dynamics
     name: Dynamics
-    isExternal: true
 - uid: Prowl.Runtime.Rigidbody3D.EnableSpeculativeContacts*
   commentId: Overload:Prowl.Runtime.Rigidbody3D.EnableSpeculativeContacts
   href: Prowl.Runtime.Rigidbody3D.html#Prowl_Runtime_Rigidbody3D_EnableSpeculativeContacts
@@ -3463,6 +3530,69 @@ references:
   nameWithType.vb: Single
   fullName.vb: Single
   name.vb: Single
+- uid: Prowl.Runtime.Rigidbody3D.InertiaTensorOverride*
+  commentId: Overload:Prowl.Runtime.Rigidbody3D.InertiaTensorOverride
+  href: Prowl.Runtime.Rigidbody3D.html#Prowl_Runtime_Rigidbody3D_InertiaTensorOverride
+  name: InertiaTensorOverride
+  nameWithType: Rigidbody3D.InertiaTensorOverride
+  fullName: Prowl.Runtime.Rigidbody3D.InertiaTensorOverride
+- uid: System.Nullable{Prowl.Vector.Float3}
+  commentId: T:System.Nullable{Prowl.Vector.Float3}
+  parent: System
+  definition: System.Nullable`1
+  name: Float3?
+  nameWithType: Float3?
+  fullName: Prowl.Vector.Float3?
+  spec.csharp:
+  - uid: Prowl.Vector.Float3
+    name: Float3
+    isExternal: true
+  - name: '?'
+  spec.vb:
+  - uid: Prowl.Vector.Float3
+    name: Float3
+    isExternal: true
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Prowl.Runtime.Rigidbody3D.Position
+  commentId: P:Prowl.Runtime.Rigidbody3D.Position
+  href: Prowl.Runtime.Rigidbody3D.html#Prowl_Runtime_Rigidbody3D_Position
+  name: Position
+  nameWithType: Rigidbody3D.Position
+  fullName: Prowl.Runtime.Rigidbody3D.Position
+- uid: Prowl.Runtime.Rigidbody3D.CenterOfMassOverride*
+  commentId: Overload:Prowl.Runtime.Rigidbody3D.CenterOfMassOverride
+  href: Prowl.Runtime.Rigidbody3D.html#Prowl_Runtime_Rigidbody3D_CenterOfMassOverride
+  name: CenterOfMassOverride
+  nameWithType: Rigidbody3D.CenterOfMassOverride
+  fullName: Prowl.Runtime.Rigidbody3D.CenterOfMassOverride
 - uid: Prowl.Runtime.Rigidbody3D.Friction*
   commentId: Overload:Prowl.Runtime.Rigidbody3D.Friction
   href: Prowl.Runtime.Rigidbody3D.html#Prowl_Runtime_Rigidbody3D_Friction
@@ -3559,12 +3689,6 @@ references:
   name: Position
   nameWithType: Rigidbody3D.Position
   fullName: Prowl.Runtime.Rigidbody3D.Position
-- uid: Prowl.Runtime.Rigidbody3D.Position
-  commentId: P:Prowl.Runtime.Rigidbody3D.Position
-  href: Prowl.Runtime.Rigidbody3D.html#Prowl_Runtime_Rigidbody3D_Position
-  name: Position
-  nameWithType: Rigidbody3D.Position
-  fullName: Prowl.Runtime.Rigidbody3D.Position
 - uid: Prowl.Runtime.Rigidbody3D.Rotation*
   commentId: Overload:Prowl.Runtime.Rigidbody3D.Rotation
   href: Prowl.Runtime.Rigidbody3D.html#Prowl_Runtime_Rigidbody3D_Rotation
@@ -3593,20 +3717,17 @@ references:
 - uid: Jitter2.World
   commentId: T:Jitter2.World
   parent: Jitter2
-  isExternal: true
   name: World
   nameWithType: World
   fullName: Jitter2.World
 - uid: Jitter2.Dynamics.RigidBody
   commentId: T:Jitter2.Dynamics.RigidBody
   parent: Jitter2.Dynamics
-  isExternal: true
   name: RigidBody
   nameWithType: RigidBody
   fullName: Jitter2.Dynamics.RigidBody
 - uid: Jitter2
   commentId: N:Jitter2
-  isExternal: true
   name: Jitter2
   nameWithType: Jitter2
   fullName: Jitter2
@@ -3759,6 +3880,12 @@ references:
   name: GetPointVelocity
   nameWithType: Rigidbody3D.GetPointVelocity
   fullName: Prowl.Runtime.Rigidbody3D.GetPointVelocity
+- uid: Prowl.Runtime.Rigidbody3D.CenterOfMassOverride
+  commentId: P:Prowl.Runtime.Rigidbody3D.CenterOfMassOverride
+  href: Prowl.Runtime.Rigidbody3D.html#Prowl_Runtime_Rigidbody3D_CenterOfMassOverride
+  name: CenterOfMassOverride
+  nameWithType: Rigidbody3D.CenterOfMassOverride
+  fullName: Prowl.Runtime.Rigidbody3D.CenterOfMassOverride
 - uid: Prowl.Runtime.Rigidbody3D.CenterOfMass*
   commentId: Overload:Prowl.Runtime.Rigidbody3D.CenterOfMass
   href: Prowl.Runtime.Rigidbody3D.html#Prowl_Runtime_Rigidbody3D_CenterOfMass

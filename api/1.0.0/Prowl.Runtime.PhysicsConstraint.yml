@@ -33,6 +33,8 @@ items:
   - Prowl.Runtime.PhysicsConstraint.RangeColor
   - Prowl.Runtime.PhysicsConstraint.RecreateConstraint
   - Prowl.Runtime.PhysicsConstraint.RemoveConstraint(Jitter2.Dynamics.Constraints.Constraint)
+  - Prowl.Runtime.PhysicsConstraint.RequireAxis(Prowl.Vector.Float3)
+  - Prowl.Runtime.PhysicsConstraint.SetLiveAxis(Jitter2.LinearMath.JVector@,Prowl.Vector.Float3)
   - Prowl.Runtime.PhysicsConstraint.WakeBodies
   - Prowl.Runtime.PhysicsConstraint.WorldAnchor(Prowl.Vector.Float3)
   - Prowl.Runtime.PhysicsConstraint.WorldAxis(Prowl.Vector.Float3)
@@ -80,6 +82,7 @@ items:
   - Prowl.Runtime.BallSocketConstraint
   - Prowl.Runtime.ConeLimitConstraint
   - Prowl.Runtime.DistanceLimitConstraint
+  - Prowl.Runtime.DriveConstraint
   - Prowl.Runtime.FixedAngleConstraint
   - Prowl.Runtime.HingeAngleConstraint
   - Prowl.Runtime.LinearMotorConstraint
@@ -499,7 +502,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: OnValidate
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 104
+    startLine: 107
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -527,7 +530,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetConstraint
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 114
+    startLine: 117
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -560,7 +563,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetConstraints
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 120
+    startLine: 123
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -593,7 +596,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CreateConstraint
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 129
+    startLine: 132
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -610,6 +613,75 @@ items:
       type: Jitter2.Dynamics.RigidBody
     content.vb: Protected MustOverride Sub CreateConstraint(world As World, body1 As RigidBody, body2 As RigidBody)
   overload: Prowl.Runtime.PhysicsConstraint.CreateConstraint*
+- uid: Prowl.Runtime.PhysicsConstraint.RequireAxis(Prowl.Vector.Float3)
+  commentId: M:Prowl.Runtime.PhysicsConstraint.RequireAxis(Prowl.Vector.Float3)
+  id: RequireAxis(Prowl.Vector.Float3)
+  parent: Prowl.Runtime.PhysicsConstraint
+  langs:
+  - csharp
+  - vb
+  name: RequireAxis(Float3)
+  nameWithType: PhysicsConstraint.RequireAxis(Float3)
+  fullName: Prowl.Runtime.PhysicsConstraint.RequireAxis(Prowl.Vector.Float3)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RequireAxis
+    path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
+    startLine: 135
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Rejects a zero axis, which has no direction to act along.
+  example: []
+  syntax:
+    content: protected static Float3 RequireAxis(Float3 axis)
+    parameters:
+    - id: axis
+      type: Prowl.Vector.Float3
+    return:
+      type: Prowl.Vector.Float3
+    content.vb: Protected Shared Function RequireAxis(axis As Float3) As Float3
+  overload: Prowl.Runtime.PhysicsConstraint.RequireAxis*
+- uid: Prowl.Runtime.PhysicsConstraint.SetLiveAxis(Jitter2.LinearMath.JVector@,Prowl.Vector.Float3)
+  commentId: M:Prowl.Runtime.PhysicsConstraint.SetLiveAxis(Jitter2.LinearMath.JVector@,Prowl.Vector.Float3)
+  id: SetLiveAxis(Jitter2.LinearMath.JVector@,Prowl.Vector.Float3)
+  parent: Prowl.Runtime.PhysicsConstraint
+  langs:
+  - csharp
+  - vb
+  name: SetLiveAxis(ref JVector, Float3)
+  nameWithType: PhysicsConstraint.SetLiveAxis(ref JVector, Float3)
+  fullName: Prowl.Runtime.PhysicsConstraint.SetLiveAxis(ref Jitter2.LinearMath.JVector, Prowl.Vector.Float3)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetLiveAxis
+    path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
+    startLine: 142
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Points an axis the live constraint keeps in a body's own space somewhere else, waking the bodies to follow it.
+  example: []
+  syntax:
+    content: protected void SetLiveAxis(ref JVector local, Float3 axis)
+    parameters:
+    - id: local
+      type: Jitter2.LinearMath.JVector
+    - id: axis
+      type: Prowl.Vector.Float3
+    content.vb: Protected Sub SetLiveAxis(local As JVector, axis As Float3)
+  overload: Prowl.Runtime.PhysicsConstraint.SetLiveAxis*
+  nameWithType.vb: PhysicsConstraint.SetLiveAxis(JVector, Float3)
+  fullName.vb: Prowl.Runtime.PhysicsConstraint.SetLiveAxis(Jitter2.LinearMath.JVector, Prowl.Vector.Float3)
+  name.vb: SetLiveAxis(JVector, Float3)
 - uid: Prowl.Runtime.PhysicsConstraint.DestroyConstraint
   commentId: M:Prowl.Runtime.PhysicsConstraint.DestroyConstraint
   id: DestroyConstraint
@@ -628,7 +700,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: DestroyConstraint
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 134
+    startLine: 151
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -656,7 +728,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: IsLive
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 144
+    startLine: 161
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -702,7 +774,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: WakeBodies
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 150
+    startLine: 167
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -733,7 +805,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: RemoveConstraint
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 164
+    startLine: 181
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -769,7 +841,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: RecreateConstraint
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 175
+    startLine: 192
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -797,7 +869,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: AnchorColor
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 221
+    startLine: 243
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -824,7 +896,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: ConnectedColor
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 222
+    startLine: 244
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -851,7 +923,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: LinkColor
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 223
+    startLine: 245
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -878,7 +950,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: AxisColor
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 224
+    startLine: 246
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -905,7 +977,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: RangeColor
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 225
+    startLine: 247
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -932,7 +1004,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: LimitColor
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 226
+    startLine: 248
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -959,7 +1031,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: MotorColor
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 227
+    startLine: 249
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -986,7 +1058,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: InactiveColor
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 228
+    startLine: 250
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1013,7 +1085,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GizmoScale
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 234
+    startLine: 256
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1047,7 +1119,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: BodyFrame
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 250
+    startLine: 272
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1085,7 +1157,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: WorldPivot
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 260
+    startLine: 282
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1116,7 +1188,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: WorldAnchor
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 263
+    startLine: 285
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1149,7 +1221,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: WorldConnectedAnchor
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 266
+    startLine: 288
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1182,7 +1254,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: WorldAxis
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 270
+    startLine: 292
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1215,7 +1287,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: WorldConnectedAxis
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 273
+    startLine: 295
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1248,7 +1320,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: DrawJointMarker
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 279
+    startLine: 301
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1279,7 +1351,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: DrawAnchorPair
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 286
+    startLine: 308
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1315,7 +1387,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: LocalToWorld
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 299
+    startLine: 321
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1350,7 +1422,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: LocalDirToWorld
     path: ../Prowl/Prowl.Runtime/Components/Physics/Constraints/PhysicsConstraint.cs
-    startLine: 308
+    startLine: 333
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -3599,7 +3671,6 @@ references:
 - uid: Jitter2.Dynamics.Constraints.Constraint
   commentId: T:Jitter2.Dynamics.Constraints.Constraint
   parent: Jitter2.Dynamics.Constraints
-  isExternal: true
   name: Constraint
   nameWithType: Constraint
   fullName: Jitter2.Dynamics.Constraints.Constraint
@@ -3612,34 +3683,27 @@ references:
   fullName: Prowl.Runtime.PhysicsConstraint
 - uid: Jitter2.Dynamics.Constraints
   commentId: N:Jitter2.Dynamics.Constraints
-  isExternal: true
   name: Jitter2.Dynamics.Constraints
   nameWithType: Jitter2.Dynamics.Constraints
   fullName: Jitter2.Dynamics.Constraints
   spec.csharp:
   - uid: Jitter2
     name: Jitter2
-    isExternal: true
   - name: .
   - uid: Jitter2.Dynamics
     name: Dynamics
-    isExternal: true
   - name: .
   - uid: Jitter2.Dynamics.Constraints
     name: Constraints
-    isExternal: true
   spec.vb:
   - uid: Jitter2
     name: Jitter2
-    isExternal: true
   - name: .
   - uid: Jitter2.Dynamics
     name: Dynamics
-    isExternal: true
   - name: .
   - uid: Jitter2.Dynamics.Constraints
     name: Constraints
-    isExternal: true
 - uid: Prowl.Runtime.PhysicsConstraint.GetConstraints*
   commentId: Overload:Prowl.Runtime.PhysicsConstraint.GetConstraints
   href: Prowl.Runtime.PhysicsConstraint.html#Prowl_Runtime_PhysicsConstraint_GetConstraints
@@ -3665,7 +3729,6 @@ references:
   - name: <
   - uid: Jitter2.Dynamics.Constraints.Constraint
     name: Constraint
-    isExternal: true
   - name: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
@@ -3677,7 +3740,6 @@ references:
   - name: " "
   - uid: Jitter2.Dynamics.Constraints.Constraint
     name: Constraint
-    isExternal: true
   - name: )
 - uid: System.Collections.Generic.IEnumerable`1
   commentId: T:System.Collections.Generic.IEnumerable`1
@@ -3753,45 +3815,96 @@ references:
 - uid: Jitter2.World
   commentId: T:Jitter2.World
   parent: Jitter2
-  isExternal: true
   name: World
   nameWithType: World
   fullName: Jitter2.World
 - uid: Jitter2.Dynamics.RigidBody
   commentId: T:Jitter2.Dynamics.RigidBody
   parent: Jitter2.Dynamics
-  isExternal: true
   name: RigidBody
   nameWithType: RigidBody
   fullName: Jitter2.Dynamics.RigidBody
 - uid: Jitter2
   commentId: N:Jitter2
-  isExternal: true
   name: Jitter2
   nameWithType: Jitter2
   fullName: Jitter2
 - uid: Jitter2.Dynamics
   commentId: N:Jitter2.Dynamics
-  isExternal: true
   name: Jitter2.Dynamics
   nameWithType: Jitter2.Dynamics
   fullName: Jitter2.Dynamics
   spec.csharp:
   - uid: Jitter2
     name: Jitter2
-    isExternal: true
   - name: .
   - uid: Jitter2.Dynamics
     name: Dynamics
-    isExternal: true
   spec.vb:
   - uid: Jitter2
     name: Jitter2
-    isExternal: true
   - name: .
   - uid: Jitter2.Dynamics
     name: Dynamics
-    isExternal: true
+- uid: Prowl.Runtime.PhysicsConstraint.RequireAxis*
+  commentId: Overload:Prowl.Runtime.PhysicsConstraint.RequireAxis
+  href: Prowl.Runtime.PhysicsConstraint.html#Prowl_Runtime_PhysicsConstraint_RequireAxis_Prowl_Vector_Float3_
+  name: RequireAxis
+  nameWithType: PhysicsConstraint.RequireAxis
+  fullName: Prowl.Runtime.PhysicsConstraint.RequireAxis
+- uid: Prowl.Vector.Float3
+  commentId: T:Prowl.Vector.Float3
+  parent: Prowl.Vector
+  isExternal: true
+  name: Float3
+  nameWithType: Float3
+  fullName: Prowl.Vector.Float3
+- uid: Prowl.Vector
+  commentId: N:Prowl.Vector
+  name: Prowl.Vector
+  nameWithType: Prowl.Vector
+  fullName: Prowl.Vector
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+- uid: Prowl.Runtime.PhysicsConstraint.SetLiveAxis*
+  commentId: Overload:Prowl.Runtime.PhysicsConstraint.SetLiveAxis
+  href: Prowl.Runtime.PhysicsConstraint.html#Prowl_Runtime_PhysicsConstraint_SetLiveAxis_Jitter2_LinearMath_JVector__Prowl_Vector_Float3_
+  name: SetLiveAxis
+  nameWithType: PhysicsConstraint.SetLiveAxis
+  fullName: Prowl.Runtime.PhysicsConstraint.SetLiveAxis
+- uid: Jitter2.LinearMath.JVector
+  commentId: T:Jitter2.LinearMath.JVector
+  parent: Jitter2.LinearMath
+  name: JVector
+  nameWithType: JVector
+  fullName: Jitter2.LinearMath.JVector
+- uid: Jitter2.LinearMath
+  commentId: N:Jitter2.LinearMath
+  name: Jitter2.LinearMath
+  nameWithType: Jitter2.LinearMath
+  fullName: Jitter2.LinearMath
+  spec.csharp:
+  - uid: Jitter2
+    name: Jitter2
+  - name: .
+  - uid: Jitter2.LinearMath
+    name: LinearMath
+  spec.vb:
+  - uid: Jitter2
+    name: Jitter2
+  - name: .
+  - uid: Jitter2.LinearMath
+    name: LinearMath
 - uid: Prowl.Runtime.PhysicsConstraint.DestroyConstraint*
   commentId: Overload:Prowl.Runtime.PhysicsConstraint.DestroyConstraint
   href: Prowl.Runtime.PhysicsConstraint.html#Prowl_Runtime_PhysicsConstraint_DestroyConstraint
@@ -3829,23 +3942,6 @@ references:
   name: Color
   nameWithType: Color
   fullName: Prowl.Vector.Color
-- uid: Prowl.Vector
-  commentId: N:Prowl.Vector
-  name: Prowl.Vector
-  nameWithType: Prowl.Vector
-  fullName: Prowl.Vector
-  spec.csharp:
-  - uid: Prowl
-    name: Prowl
-  - name: .
-  - uid: Prowl.Vector
-    name: Vector
-  spec.vb:
-  - uid: Prowl
-    name: Prowl
-  - name: .
-  - uid: Prowl.Vector
-    name: Vector
 - uid: Prowl.Runtime.PhysicsConstraint.GizmoScale*
   commentId: Overload:Prowl.Runtime.PhysicsConstraint.GizmoScale
   href: Prowl.Runtime.PhysicsConstraint.html#Prowl_Runtime_PhysicsConstraint_GizmoScale
@@ -3882,13 +3978,6 @@ references:
   name: WorldPivot
   nameWithType: PhysicsConstraint.WorldPivot
   fullName: Prowl.Runtime.PhysicsConstraint.WorldPivot
-- uid: Prowl.Vector.Float3
-  commentId: T:Prowl.Vector.Float3
-  parent: Prowl.Vector
-  isExternal: true
-  name: Float3
-  nameWithType: Float3
-  fullName: Prowl.Vector.Float3
 - uid: Prowl.Runtime.PhysicsConstraint.WorldAnchor*
   commentId: Overload:Prowl.Runtime.PhysicsConstraint.WorldAnchor
   href: Prowl.Runtime.PhysicsConstraint.html#Prowl_Runtime_PhysicsConstraint_WorldAnchor_Prowl_Vector_Float3_
@@ -3931,35 +4020,6 @@ references:
   name: LocalToWorld
   nameWithType: PhysicsConstraint.LocalToWorld
   fullName: Prowl.Runtime.PhysicsConstraint.LocalToWorld
-- uid: Jitter2.LinearMath.JVector
-  commentId: T:Jitter2.LinearMath.JVector
-  parent: Jitter2.LinearMath
-  isExternal: true
-  name: JVector
-  nameWithType: JVector
-  fullName: Jitter2.LinearMath.JVector
-- uid: Jitter2.LinearMath
-  commentId: N:Jitter2.LinearMath
-  isExternal: true
-  name: Jitter2.LinearMath
-  nameWithType: Jitter2.LinearMath
-  fullName: Jitter2.LinearMath
-  spec.csharp:
-  - uid: Jitter2
-    name: Jitter2
-    isExternal: true
-  - name: .
-  - uid: Jitter2.LinearMath
-    name: LinearMath
-    isExternal: true
-  spec.vb:
-  - uid: Jitter2
-    name: Jitter2
-    isExternal: true
-  - name: .
-  - uid: Jitter2.LinearMath
-    name: LinearMath
-    isExternal: true
 - uid: Prowl.Runtime.PhysicsConstraint.LocalDirToWorld*
   commentId: Overload:Prowl.Runtime.PhysicsConstraint.LocalDirToWorld
   href: Prowl.Runtime.PhysicsConstraint.html#Prowl_Runtime_PhysicsConstraint_LocalDirToWorld_Prowl_Vector_Float3_Prowl_Vector_Transform_

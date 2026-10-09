@@ -14,6 +14,7 @@ items:
   - Prowl.Runtime.LineRenderer.GetRenderingData(Prowl.Runtime.Rendering.ViewerData,Prowl.Runtime.Rendering.PropertyState@,Prowl.Runtime.Resources.Mesh@,Prowl.Vector.Float4x4@,Prowl.Runtime.Rendering.InstanceData[]@)
   - Prowl.Runtime.LineRenderer.Loop
   - Prowl.Runtime.LineRenderer.MarkDirty
+  - Prowl.Runtime.LineRenderer.MarkVisuallyDirty
   - Prowl.Runtime.LineRenderer.Material
   - Prowl.Runtime.LineRenderer.OnDisable
   - Prowl.Runtime.LineRenderer.OnEnable
@@ -28,6 +29,7 @@ items:
   - Prowl.Runtime.LineRenderer.TextureMode
   - Prowl.Runtime.LineRenderer.TextureTiling
   - Prowl.Runtime.LineRenderer.Update
+  - Prowl.Runtime.LineRenderer.VisualVersion
   langs:
   - csharp
   - vb
@@ -840,6 +842,70 @@ items:
   nameWithType.vb: LineRenderer.GetRenderingData(ViewerData, PropertyState, Mesh, Float4x4, InstanceData())
   fullName.vb: Prowl.Runtime.LineRenderer.GetRenderingData(Prowl.Runtime.Rendering.ViewerData, Prowl.Runtime.Rendering.PropertyState, Prowl.Runtime.Resources.Mesh, Prowl.Vector.Float4x4, Prowl.Runtime.Rendering.InstanceData())
   name.vb: GetRenderingData(ViewerData, PropertyState, Mesh, Float4x4, InstanceData())
+- uid: Prowl.Runtime.LineRenderer.MarkVisuallyDirty
+  commentId: M:Prowl.Runtime.LineRenderer.MarkVisuallyDirty
+  id: MarkVisuallyDirty
+  parent: Prowl.Runtime.LineRenderer
+  langs:
+  - csharp
+  - vb
+  name: MarkVisuallyDirty()
+  nameWithType: LineRenderer.MarkVisuallyDirty()
+  fullName: Prowl.Runtime.LineRenderer.MarkVisuallyDirty()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/LineRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MarkVisuallyDirty
+    path: ../Prowl/Prowl.Runtime/Components/LineRenderer.cs
+    startLine: 210
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Tells the renderer this line looks different in a way the engine cannot see, so cached shadows holding it are drawn again.
+  example: []
+  syntax:
+    content: public void MarkVisuallyDirty()
+    content.vb: Public Sub MarkVisuallyDirty()
+  overload: Prowl.Runtime.LineRenderer.MarkVisuallyDirty*
+- uid: Prowl.Runtime.LineRenderer.VisualVersion
+  commentId: P:Prowl.Runtime.LineRenderer.VisualVersion
+  id: VisualVersion
+  parent: Prowl.Runtime.LineRenderer
+  langs:
+  - csharp
+  - vb
+  name: VisualVersion
+  nameWithType: LineRenderer.VisualVersion
+  fullName: Prowl.Runtime.LineRenderer.VisualVersion
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/LineRenderer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: VisualVersion
+    path: ../Prowl/Prowl.Runtime/Components/LineRenderer.cs
+    startLine: 212
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Counts changes the renderer reports itself, such as a vertex shader that moves things by a value the engine
+
+    cannot see. Shadow maps holding the renderable redraw whenever it changes.
+  example: []
+  syntax:
+    content: public int VisualVersion { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property VisualVersion As Integer
+  overload: Prowl.Runtime.LineRenderer.VisualVersion*
+  implements:
+  - Prowl.Runtime.Rendering.IRenderable.VisualVersion
 - uid: Prowl.Runtime.LineRenderer.GetCullingData(System.Boolean@,Prowl.Vector.AABB@)
   commentId: M:Prowl.Runtime.LineRenderer.GetCullingData(System.Boolean@,Prowl.Vector.AABB@)
   id: GetCullingData(System.Boolean@,Prowl.Vector.AABB@)
@@ -858,7 +924,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetCullingData
     path: ../Prowl/Prowl.Runtime/Components/LineRenderer.cs
-    startLine: 207
+    startLine: 214
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -3584,6 +3650,25 @@ references:
     href: Prowl.Runtime.Rendering.InstanceData.html
   - name: (
   - name: )
+- uid: Prowl.Runtime.LineRenderer.MarkVisuallyDirty*
+  commentId: Overload:Prowl.Runtime.LineRenderer.MarkVisuallyDirty
+  href: Prowl.Runtime.LineRenderer.html#Prowl_Runtime_LineRenderer_MarkVisuallyDirty
+  name: MarkVisuallyDirty
+  nameWithType: LineRenderer.MarkVisuallyDirty
+  fullName: Prowl.Runtime.LineRenderer.MarkVisuallyDirty
+- uid: Prowl.Runtime.LineRenderer.VisualVersion*
+  commentId: Overload:Prowl.Runtime.LineRenderer.VisualVersion
+  href: Prowl.Runtime.LineRenderer.html#Prowl_Runtime_LineRenderer_VisualVersion
+  name: VisualVersion
+  nameWithType: LineRenderer.VisualVersion
+  fullName: Prowl.Runtime.LineRenderer.VisualVersion
+- uid: Prowl.Runtime.Rendering.IRenderable.VisualVersion
+  commentId: P:Prowl.Runtime.Rendering.IRenderable.VisualVersion
+  parent: Prowl.Runtime.Rendering.IRenderable
+  href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_VisualVersion
+  name: VisualVersion
+  nameWithType: IRenderable.VisualVersion
+  fullName: Prowl.Runtime.Rendering.IRenderable.VisualVersion
 - uid: Prowl.Runtime.LineRenderer.GetCullingData*
   commentId: Overload:Prowl.Runtime.LineRenderer.GetCullingData
   href: Prowl.Runtime.LineRenderer.html#Prowl_Runtime_LineRenderer_GetCullingData_System_Boolean__Prowl_Vector_AABB__

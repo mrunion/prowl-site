@@ -8,6 +8,7 @@ items:
   - Prowl.Runtime.Light.BakeMode
   - Prowl.Runtime.Light.CastShadows
   - Prowl.Runtime.Light.Color
+  - Prowl.Runtime.Light.DepthBias
   - Prowl.Runtime.Light.DoCastShadows
   - Prowl.Runtime.Light.GetForwardLightData
   - Prowl.Runtime.Light.GetLayer
@@ -16,12 +17,9 @@ items:
   - Prowl.Runtime.Light.GetLightPosition
   - Prowl.Runtime.Light.GetLightType
   - Prowl.Runtime.Light.Intensity
+  - Prowl.Runtime.Light.NormalBias
   - Prowl.Runtime.Light.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
-  - Prowl.Runtime.Light.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
-  - Prowl.Runtime.Light.ShadowBias
-  - Prowl.Runtime.Light.ShadowNormalBias
   - Prowl.Runtime.Light.ShadowQuality
-  - Prowl.Runtime.Light.ShadowSlot
   - Prowl.Runtime.Light.ShadowStrength
   langs:
   - csharp
@@ -234,60 +232,64 @@ items:
     return:
       type: System.Single
     content.vb: Public ShadowStrength As Single
-- uid: Prowl.Runtime.Light.ShadowBias
-  commentId: F:Prowl.Runtime.Light.ShadowBias
-  id: ShadowBias
+- uid: Prowl.Runtime.Light.DepthBias
+  commentId: F:Prowl.Runtime.Light.DepthBias
+  id: DepthBias
   parent: Prowl.Runtime.Light
   langs:
   - csharp
   - vb
-  name: ShadowBias
-  nameWithType: Light.ShadowBias
-  fullName: Prowl.Runtime.Light.ShadowBias
+  name: DepthBias
+  nameWithType: Light.DepthBias
+  fullName: Prowl.Runtime.Light.DepthBias
   type: Field
   source:
     remote:
       path: Prowl.Runtime/Components/Lights/Light.cs
       branch: main
       repo: https://github.com/ProwlEngine/Prowl.git
-    id: ShadowBias
+    id: DepthBias
     path: ../Prowl/Prowl.Runtime/Components/Lights/Light.cs
-    startLine: 38
+    startLine: 40
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: How far receivers are pushed toward the light before the shadow test, in shadow map texels.
+  example: []
   syntax:
-    content: public float ShadowBias
+    content: public float DepthBias
     return:
       type: System.Single
-    content.vb: Public ShadowBias As Single
-- uid: Prowl.Runtime.Light.ShadowNormalBias
-  commentId: F:Prowl.Runtime.Light.ShadowNormalBias
-  id: ShadowNormalBias
+    content.vb: Public DepthBias As Single
+- uid: Prowl.Runtime.Light.NormalBias
+  commentId: F:Prowl.Runtime.Light.NormalBias
+  id: NormalBias
   parent: Prowl.Runtime.Light
   langs:
   - csharp
   - vb
-  name: ShadowNormalBias
-  nameWithType: Light.ShadowNormalBias
-  fullName: Prowl.Runtime.Light.ShadowNormalBias
+  name: NormalBias
+  nameWithType: Light.NormalBias
+  fullName: Prowl.Runtime.Light.NormalBias
   type: Field
   source:
     remote:
       path: Prowl.Runtime/Components/Lights/Light.cs
       branch: main
       repo: https://github.com/ProwlEngine/Prowl.git
-    id: ShadowNormalBias
+    id: NormalBias
     path: ../Prowl/Prowl.Runtime/Components/Lights/Light.cs
-    startLine: 39
+    startLine: 43
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
+  summary: How far receivers are pushed out along their surface normal before the shadow test, in shadow map texels.
+  example: []
   syntax:
-    content: public float ShadowNormalBias
+    content: public float NormalBias
     return:
       type: System.Single
-    content.vb: Public ShadowNormalBias As Single
+    content.vb: Public NormalBias As Single
 - uid: Prowl.Runtime.Light.CastShadows
   commentId: F:Prowl.Runtime.Light.CastShadows
   id: CastShadows
@@ -306,7 +308,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CastShadows
     path: ../Prowl/Prowl.Runtime/Components/Lights/Light.cs
-    startLine: 40
+    startLine: 45
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -333,7 +335,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: ShadowQuality
     path: ../Prowl/Prowl.Runtime/Components/Lights/Light.cs
-    startLine: 41
+    startLine: 46
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -360,7 +362,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: BakeMode
     path: ../Prowl/Prowl.Runtime/Components/Lights/Light.cs
-    startLine: 46
+    startLine: 51
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -374,46 +376,6 @@ items:
     return:
       type: Prowl.Runtime.LightBakeMode
     content.vb: Public BakeMode As LightBakeMode
-- uid: Prowl.Runtime.Light.ShadowSlot
-  commentId: P:Prowl.Runtime.Light.ShadowSlot
-  id: ShadowSlot
-  parent: Prowl.Runtime.Light
-  langs:
-  - csharp
-  - vb
-  name: ShadowSlot
-  nameWithType: Light.ShadowSlot
-  fullName: Prowl.Runtime.Light.ShadowSlot
-  type: Property
-  source:
-    remote:
-      path: Prowl.Runtime/Components/Lights/Light.cs
-      branch: main
-      repo: https://github.com/ProwlEngine/Prowl.git
-    id: ShadowSlot
-    path: ../Prowl/Prowl.Runtime/Components/Lights/Light.cs
-    startLine: 55
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  summary: >-
-    Slot index into the per-light shadow arrays (point: <code>_PointShadowMatrices</code>,
-
-    spot: <code>_SpotShadowMatrices</code>). -1 if no shadow data was uploaded for this light
-
-    this frame. Directional lights store shadow data in the cascade arrays instead;
-
-    for them this remains -1 even when shadows are active.
-
-    Owned and populated by <xref href="Prowl.Runtime.Rendering.SceneLightSystem" data-throw-if-not-resolved="false"></xref> during reconcile.
-  example: []
-  syntax:
-    content: public int ShadowSlot { get; }
-    parameters: []
-    return:
-      type: System.Int32
-    content.vb: Public Property ShadowSlot As Integer
-  overload: Prowl.Runtime.Light.ShadowSlot*
 - uid: Prowl.Runtime.Light.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
   commentId: M:Prowl.Runtime.Light.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
   id: OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
@@ -432,7 +394,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: OnRenderCollect
     path: ../Prowl/Prowl.Runtime/Components/Lights/Light.cs
-    startLine: 58
+    startLine: 66
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -478,7 +440,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetLayer
     path: ../Prowl/Prowl.Runtime/Components/Lights/Light.cs
-    startLine: 63
+    startLine: 71
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -509,7 +471,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetLightID
     path: ../Prowl/Prowl.Runtime/Components/Lights/Light.cs
-    startLine: 64
+    startLine: 72
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -540,7 +502,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetLightType
     path: ../Prowl/Prowl.Runtime/Components/Lights/Light.cs
-    startLine: 65
+    startLine: 73
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -571,7 +533,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetLightPosition
     path: ../Prowl/Prowl.Runtime/Components/Lights/Light.cs
-    startLine: 66
+    startLine: 74
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -602,7 +564,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetLightDirection
     path: ../Prowl/Prowl.Runtime/Components/Lights/Light.cs
-    startLine: 67
+    startLine: 75
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -633,7 +595,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: DoCastShadows
     path: ../Prowl/Prowl.Runtime/Components/Lights/Light.cs
-    startLine: 68
+    startLine: 76
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -646,79 +608,6 @@ items:
   overload: Prowl.Runtime.Light.DoCastShadows*
   implements:
   - Prowl.Runtime.Rendering.IRenderableLight.DoCastShadows
-- uid: Prowl.Runtime.Light.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
-  commentId: M:Prowl.Runtime.Light.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
-  id: RenderShadows(Prowl.Runtime.Rendering.RenderPipeline,Prowl.Vector.Float3,System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable})
-  parent: Prowl.Runtime.Light
-  langs:
-  - csharp
-  - vb
-  name: RenderShadows(RenderPipeline, Float3, IReadOnlyList<IRenderable>)
-  nameWithType: Light.RenderShadows(RenderPipeline, Float3, IReadOnlyList<IRenderable>)
-  fullName: Prowl.Runtime.Light.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline, Prowl.Vector.Float3, System.Collections.Generic.IReadOnlyList<Prowl.Runtime.Rendering.IRenderable>)
-  type: Method
-  source:
-    remote:
-      path: Prowl.Runtime/Components/Lights/Light.cs
-      branch: main
-      repo: https://github.com/ProwlEngine/Prowl.git
-    id: RenderShadows
-    path: ../Prowl/Prowl.Runtime/Components/Lights/Light.cs
-    startLine: 93
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime
-  summary: >-
-    Render this light's shadow map(s) into the shared shadow atlas.
-
-    Called by the render pipeline during the shadow pass.
-
-
-    <p>
-
-    Implementations rent and submit their own <xref href="Prowl.Runtime.CommandBuffer" data-throw-if-not-resolved="false"></xref> per face
-
-    (point lights), cascade (directional), or single tile (spot). They CANNOT share
-
-    a CB across multiple faces because each face calls <xref href="Prowl.Runtime.Rendering.RenderPipeline.AssignCameraMatrices(Prowl.Vector.Float4x4%2cProwl.Vector.Float4x4)" data-throw-if-not-resolved="false"></xref>
-
-    which uploads view/proj into the single GlobalUniforms UBO sharing a CB would
-
-    queue all the face draws to execute against whatever matrices the LAST face
-
-    uploaded.
-
-    </p>
-
-
-    <p>
-
-    The shadow atlas itself has already been bound + cleared by the caller in a
-
-    separate setup CB before this method runs.
-
-    </p>
-  example: []
-  syntax:
-    content: public abstract void RenderShadows(RenderPipeline pipeline, Float3 shadowFocusPosition, IReadOnlyList<IRenderable> renderables)
-    parameters:
-    - id: pipeline
-      type: Prowl.Runtime.Rendering.RenderPipeline
-      description: The current render pipeline.
-    - id: shadowFocusPosition
-      type: Prowl.Vector.Float3
-      description: >-
-        World-space point shadows are prioritized around: the
-             rendering camera's position, or the camera's <xref href="Prowl.Runtime.Camera.ShadowFocus" data-throw-if-not-resolved="false"></xref> position when
-             set. Directional lights center their cascades on it; point and spot lights ignore it.
-    - id: renderables
-      type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable}
-      description: List of all renderables that could cast shadows.
-    content.vb: Public MustOverride Sub RenderShadows(pipeline As RenderPipeline, shadowFocusPosition As Float3, renderables As IReadOnlyList(Of IRenderable))
-  overload: Prowl.Runtime.Light.RenderShadows*
-  nameWithType.vb: Light.RenderShadows(RenderPipeline, Float3, IReadOnlyList(Of IRenderable))
-  fullName.vb: Prowl.Runtime.Light.RenderShadows(Prowl.Runtime.Rendering.RenderPipeline, Prowl.Vector.Float3, System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.Rendering.IRenderable))
-  name.vb: RenderShadows(RenderPipeline, Float3, IReadOnlyList(Of IRenderable))
 - uid: Prowl.Runtime.Light.GetForwardLightData
   commentId: M:Prowl.Runtime.Light.GetForwardLightData
   id: GetForwardLightData
@@ -737,7 +626,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetForwardLightData
     path: ../Prowl/Prowl.Runtime/Components/Lights/Light.cs
-    startLine: 95
+    startLine: 78
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -2921,23 +2810,6 @@ references:
   name: LightBakeMode
   nameWithType: LightBakeMode
   fullName: Prowl.Runtime.LightBakeMode
-- uid: Prowl.Runtime.Light.ShadowSlot*
-  commentId: Overload:Prowl.Runtime.Light.ShadowSlot
-  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_ShadowSlot
-  name: ShadowSlot
-  nameWithType: Light.ShadowSlot
-  fullName: Prowl.Runtime.Light.ShadowSlot
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
-  name: int
-  nameWithType: int
-  fullName: int
-  nameWithType.vb: Integer
-  fullName.vb: Integer
-  name.vb: Integer
 - uid: Prowl.Runtime.MonoBehaviour.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
   commentId: M:Prowl.Runtime.MonoBehaviour.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
   parent: Prowl.Runtime.MonoBehaviour
@@ -3184,6 +3056,17 @@ references:
     href: Prowl.Runtime.Rendering.IRenderableLight.html#Prowl_Runtime_Rendering_IRenderableLight_GetLayer
   - name: (
   - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: Prowl.Runtime.Light.GetLightID*
   commentId: Overload:Prowl.Runtime.Light.GetLightID
   href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_GetLightID
@@ -3322,129 +3205,6 @@ references:
     name: DoCastShadows
     href: Prowl.Runtime.Rendering.IRenderableLight.html#Prowl_Runtime_Rendering_IRenderableLight_DoCastShadows
   - name: (
-  - name: )
-- uid: Prowl.Runtime.CommandBuffer
-  commentId: T:Prowl.Runtime.CommandBuffer
-  parent: Prowl.Runtime
-  href: Prowl.Runtime.CommandBuffer.html
-  name: CommandBuffer
-  nameWithType: CommandBuffer
-  fullName: Prowl.Runtime.CommandBuffer
-- uid: Prowl.Runtime.Rendering.RenderPipeline.AssignCameraMatrices(Prowl.Vector.Float4x4,Prowl.Vector.Float4x4)
-  commentId: M:Prowl.Runtime.Rendering.RenderPipeline.AssignCameraMatrices(Prowl.Vector.Float4x4,Prowl.Vector.Float4x4)
-  parent: Prowl.Runtime.Rendering.RenderPipeline
-  isExternal: true
-  href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_AssignCameraMatrices_Prowl_Vector_Float4x4_Prowl_Vector_Float4x4_
-  name: AssignCameraMatrices(Float4x4, Float4x4)
-  nameWithType: RenderPipeline.AssignCameraMatrices(Float4x4, Float4x4)
-  fullName: Prowl.Runtime.Rendering.RenderPipeline.AssignCameraMatrices(Prowl.Vector.Float4x4, Prowl.Vector.Float4x4)
-  spec.csharp:
-  - uid: Prowl.Runtime.Rendering.RenderPipeline.AssignCameraMatrices(Prowl.Vector.Float4x4,Prowl.Vector.Float4x4)
-    name: AssignCameraMatrices
-    href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_AssignCameraMatrices_Prowl_Vector_Float4x4_Prowl_Vector_Float4x4_
-  - name: (
-  - uid: Prowl.Vector.Float4x4
-    name: Float4x4
-    isExternal: true
-  - name: ','
-  - name: " "
-  - uid: Prowl.Vector.Float4x4
-    name: Float4x4
-    isExternal: true
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.Rendering.RenderPipeline.AssignCameraMatrices(Prowl.Vector.Float4x4,Prowl.Vector.Float4x4)
-    name: AssignCameraMatrices
-    href: Prowl.Runtime.Rendering.RenderPipeline.html#Prowl_Runtime_Rendering_RenderPipeline_AssignCameraMatrices_Prowl_Vector_Float4x4_Prowl_Vector_Float4x4_
-  - name: (
-  - uid: Prowl.Vector.Float4x4
-    name: Float4x4
-    isExternal: true
-  - name: ','
-  - name: " "
-  - uid: Prowl.Vector.Float4x4
-    name: Float4x4
-    isExternal: true
-  - name: )
-- uid: Prowl.Runtime.Camera.ShadowFocus
-  commentId: F:Prowl.Runtime.Camera.ShadowFocus
-  href: Prowl.Runtime.Camera.html#Prowl_Runtime_Camera_ShadowFocus
-  name: ShadowFocus
-  nameWithType: Camera.ShadowFocus
-  fullName: Prowl.Runtime.Camera.ShadowFocus
-- uid: Prowl.Runtime.Light.RenderShadows*
-  commentId: Overload:Prowl.Runtime.Light.RenderShadows
-  href: Prowl.Runtime.Light.html#Prowl_Runtime_Light_RenderShadows_Prowl_Runtime_Rendering_RenderPipeline_Prowl_Vector_Float3_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Rendering_IRenderable__
-  name: RenderShadows
-  nameWithType: Light.RenderShadows
-  fullName: Prowl.Runtime.Light.RenderShadows
-- uid: Prowl.Runtime.Rendering.RenderPipeline
-  commentId: T:Prowl.Runtime.Rendering.RenderPipeline
-  parent: Prowl.Runtime.Rendering
-  href: Prowl.Runtime.Rendering.RenderPipeline.html
-  name: RenderPipeline
-  nameWithType: RenderPipeline
-  fullName: Prowl.Runtime.Rendering.RenderPipeline
-- uid: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable}
-  commentId: T:System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Rendering.IRenderable}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.IReadOnlyList`1
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
-  name: IReadOnlyList<IRenderable>
-  nameWithType: IReadOnlyList<IRenderable>
-  fullName: System.Collections.Generic.IReadOnlyList<Prowl.Runtime.Rendering.IRenderable>
-  nameWithType.vb: IReadOnlyList(Of IRenderable)
-  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.Rendering.IRenderable)
-  name.vb: IReadOnlyList(Of IRenderable)
-  spec.csharp:
-  - uid: System.Collections.Generic.IReadOnlyList`1
-    name: IReadOnlyList
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
-  - name: <
-  - uid: Prowl.Runtime.Rendering.IRenderable
-    name: IRenderable
-    href: Prowl.Runtime.Rendering.IRenderable.html
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IReadOnlyList`1
-    name: IReadOnlyList
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: Prowl.Runtime.Rendering.IRenderable
-    name: IRenderable
-    href: Prowl.Runtime.Rendering.IRenderable.html
-  - name: )
-- uid: System.Collections.Generic.IReadOnlyList`1
-  commentId: T:System.Collections.Generic.IReadOnlyList`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
-  name: IReadOnlyList<T>
-  nameWithType: IReadOnlyList<T>
-  fullName: System.Collections.Generic.IReadOnlyList<T>
-  nameWithType.vb: IReadOnlyList(Of T)
-  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
-  name.vb: IReadOnlyList(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.IReadOnlyList`1
-    name: IReadOnlyList
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IReadOnlyList`1
-    name: IReadOnlyList
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
   - name: )
 - uid: Prowl.Runtime.Light.GetForwardLightData*
   commentId: Overload:Prowl.Runtime.Light.GetForwardLightData

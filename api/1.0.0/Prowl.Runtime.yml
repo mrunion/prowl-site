@@ -83,6 +83,9 @@ items:
   - Prowl.Runtime.DirectionalLight.CascadeCount
   - Prowl.Runtime.DirectionalLight.Resolution
   - Prowl.Runtime.DistanceLimitConstraint
+  - Prowl.Runtime.DriveConstraint
+  - Prowl.Runtime.DriveConstraint.SpringDrive
+  - Prowl.Runtime.DriveConstraint.SpringDrive.DriveData
   - Prowl.Runtime.DualAxisCompositeBinding
   - Prowl.Runtime.EchoLogBridge
   - Prowl.Runtime.EchoLogger
@@ -119,9 +122,12 @@ items:
   - Prowl.Runtime.GraphTransitionRecord
   - Prowl.Runtime.Graphics
   - Prowl.Runtime.GraphicsBuffer
+  - Prowl.Runtime.GraphicsCapabilities
+  - Prowl.Runtime.GraphicsFeature
   - Prowl.Runtime.GraphicsFrameBuffer
   - Prowl.Runtime.GraphicsFrameBuffer.Attachment
   - Prowl.Runtime.GraphicsProgram
+  - Prowl.Runtime.GraphicsTarget
   - Prowl.Runtime.GraphicsTexture
   - Prowl.Runtime.GraphicsVertexArray
   - Prowl.Runtime.HeaderAttribute
@@ -267,6 +273,10 @@ items:
   - Prowl.Runtime.RasterizerState.WindingOrder
   - Prowl.Runtime.RaycastHit
   - Prowl.Runtime.ReadOnlyAttribute
+  - Prowl.Runtime.ReflectionProbe
+  - Prowl.Runtime.ReflectionProbeMode
+  - Prowl.Runtime.ReflectionProbeRefreshMode
+  - Prowl.Runtime.ReflectionProbeTimeSlicing
   - Prowl.Runtime.ReloadReason
   - Prowl.Runtime.ResourceEntry
   - Prowl.Runtime.Rigidbody3D
@@ -291,6 +301,8 @@ items:
   - Prowl.Runtime.SpotLight
   - Prowl.Runtime.SpotLight.Resolution
   - Prowl.Runtime.SpriteRenderer
+  - Prowl.Runtime.StereoEye
+  - Prowl.Runtime.StereoTargetEyeMask
   - Prowl.Runtime.TagLayerManager
   - Prowl.Runtime.TerrainCollider
   - Prowl.Runtime.TerrainCollisionFilter
@@ -314,6 +326,7 @@ items:
   - Prowl.Runtime.TimeScaleModifier
   - Prowl.Runtime.TooltipAttribute
   - Prowl.Runtime.Topology
+  - Prowl.Runtime.TrackedPoseDriver
   - Prowl.Runtime.TreeInstance
   - Prowl.Runtime.TreePrototype
   - Prowl.Runtime.TriggerShape
@@ -334,6 +347,18 @@ items:
   - Prowl.Runtime.Window
   - Prowl.Runtime.WindowMode
   - Prowl.Runtime.WiredNumber
+  - Prowl.Runtime.XR
+  - Prowl.Runtime.XRAxis
+  - Prowl.Runtime.XRButton
+  - Prowl.Runtime.XRHand
+  - Prowl.Runtime.XRHandJoint
+  - Prowl.Runtime.XRHandJointPose
+  - Prowl.Runtime.XRInput
+  - Prowl.Runtime.XRNode
+  - Prowl.Runtime.XRPose
+  - Prowl.Runtime.XRTouch
+  - Prowl.Runtime.XRTrackingOrigin
+  - Prowl.Runtime.XRView
   - Prowl.Runtime.ZipAssetSource
   langs:
   - csharp
@@ -955,6 +980,20 @@ references:
   name: CameraClearFlags
   nameWithType: CameraClearFlags
   fullName: Prowl.Runtime.CameraClearFlags
+- uid: Prowl.Runtime.StereoEye
+  commentId: T:Prowl.Runtime.StereoEye
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.StereoEye.html
+  name: StereoEye
+  nameWithType: StereoEye
+  fullName: Prowl.Runtime.StereoEye
+- uid: Prowl.Runtime.StereoTargetEyeMask
+  commentId: T:Prowl.Runtime.StereoTargetEyeMask
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.StereoTargetEyeMask.html
+  name: StereoTargetEyeMask
+  nameWithType: StereoTargetEyeMask
+  fullName: Prowl.Runtime.StereoTargetEyeMask
 - uid: Prowl.Runtime.Camera
   commentId: T:Prowl.Runtime.Camera
   parent: Prowl.Runtime
@@ -1109,6 +1148,7 @@ references:
     href: Prowl.Runtime.PointLight.Resolution.html
 - uid: Prowl.Runtime.SpotLight
   commentId: T:Prowl.Runtime.SpotLight
+  parent: Prowl.Runtime
   href: Prowl.Runtime.SpotLight.html
   name: SpotLight
   nameWithType: SpotLight
@@ -1320,6 +1360,64 @@ references:
   name: DistanceLimitConstraint
   nameWithType: DistanceLimitConstraint
   fullName: Prowl.Runtime.DistanceLimitConstraint
+- uid: Prowl.Runtime.DriveConstraint
+  commentId: T:Prowl.Runtime.DriveConstraint
+  href: Prowl.Runtime.DriveConstraint.html
+  name: DriveConstraint
+  nameWithType: DriveConstraint
+  fullName: Prowl.Runtime.DriveConstraint
+- uid: Prowl.Runtime.DriveConstraint.SpringDrive
+  commentId: T:Prowl.Runtime.DriveConstraint.SpringDrive
+  href: Prowl.Runtime.DriveConstraint.html
+  name: DriveConstraint.SpringDrive
+  nameWithType: DriveConstraint.SpringDrive
+  fullName: Prowl.Runtime.DriveConstraint.SpringDrive
+  spec.csharp:
+  - uid: Prowl.Runtime.DriveConstraint
+    name: DriveConstraint
+    href: Prowl.Runtime.DriveConstraint.html
+  - name: .
+  - uid: Prowl.Runtime.DriveConstraint.SpringDrive
+    name: SpringDrive
+    href: Prowl.Runtime.DriveConstraint.SpringDrive.html
+  spec.vb:
+  - uid: Prowl.Runtime.DriveConstraint
+    name: DriveConstraint
+    href: Prowl.Runtime.DriveConstraint.html
+  - name: .
+  - uid: Prowl.Runtime.DriveConstraint.SpringDrive
+    name: SpringDrive
+    href: Prowl.Runtime.DriveConstraint.SpringDrive.html
+- uid: Prowl.Runtime.DriveConstraint.SpringDrive.DriveData
+  commentId: T:Prowl.Runtime.DriveConstraint.SpringDrive.DriveData
+  href: Prowl.Runtime.DriveConstraint.html
+  name: DriveConstraint.SpringDrive.DriveData
+  nameWithType: DriveConstraint.SpringDrive.DriveData
+  fullName: Prowl.Runtime.DriveConstraint.SpringDrive.DriveData
+  spec.csharp:
+  - uid: Prowl.Runtime.DriveConstraint
+    name: DriveConstraint
+    href: Prowl.Runtime.DriveConstraint.html
+  - name: .
+  - uid: Prowl.Runtime.DriveConstraint.SpringDrive
+    name: SpringDrive
+    href: Prowl.Runtime.DriveConstraint.SpringDrive.html
+  - name: .
+  - uid: Prowl.Runtime.DriveConstraint.SpringDrive.DriveData
+    name: DriveData
+    href: Prowl.Runtime.DriveConstraint.SpringDrive.DriveData.html
+  spec.vb:
+  - uid: Prowl.Runtime.DriveConstraint
+    name: DriveConstraint
+    href: Prowl.Runtime.DriveConstraint.html
+  - name: .
+  - uid: Prowl.Runtime.DriveConstraint.SpringDrive
+    name: SpringDrive
+    href: Prowl.Runtime.DriveConstraint.SpringDrive.html
+  - name: .
+  - uid: Prowl.Runtime.DriveConstraint.SpringDrive.DriveData
+    name: DriveData
+    href: Prowl.Runtime.DriveConstraint.SpringDrive.DriveData.html
 - uid: Prowl.Runtime.FixedAngleConstraint
   commentId: T:Prowl.Runtime.FixedAngleConstraint
   href: Prowl.Runtime.FixedAngleConstraint.html
@@ -1478,6 +1576,33 @@ references:
   name: WheelCollider
   nameWithType: WheelCollider
   fullName: Prowl.Runtime.WheelCollider
+- uid: Prowl.Runtime.ReflectionProbeMode
+  commentId: T:Prowl.Runtime.ReflectionProbeMode
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.ReflectionProbeMode.html
+  name: ReflectionProbeMode
+  nameWithType: ReflectionProbeMode
+  fullName: Prowl.Runtime.ReflectionProbeMode
+- uid: Prowl.Runtime.ReflectionProbeRefreshMode
+  commentId: T:Prowl.Runtime.ReflectionProbeRefreshMode
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.ReflectionProbeRefreshMode.html
+  name: ReflectionProbeRefreshMode
+  nameWithType: ReflectionProbeRefreshMode
+  fullName: Prowl.Runtime.ReflectionProbeRefreshMode
+- uid: Prowl.Runtime.ReflectionProbeTimeSlicing
+  commentId: T:Prowl.Runtime.ReflectionProbeTimeSlicing
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.ReflectionProbeTimeSlicing.html
+  name: ReflectionProbeTimeSlicing
+  nameWithType: ReflectionProbeTimeSlicing
+  fullName: Prowl.Runtime.ReflectionProbeTimeSlicing
+- uid: Prowl.Runtime.ReflectionProbe
+  commentId: T:Prowl.Runtime.ReflectionProbe
+  href: Prowl.Runtime.ReflectionProbe.html
+  name: ReflectionProbe
+  nameWithType: ReflectionProbe
+  fullName: Prowl.Runtime.ReflectionProbe
 - uid: Prowl.Runtime.IMaterialRenderer
   commentId: T:Prowl.Runtime.IMaterialRenderer
   parent: Prowl.Runtime
@@ -1689,6 +1814,7 @@ references:
   fullName: Prowl.Runtime.ReadOnlyAttribute
 - uid: Prowl.Runtime.ButtonAttribute
   commentId: T:Prowl.Runtime.ButtonAttribute
+  parent: Prowl.Runtime
   href: Prowl.Runtime.ButtonAttribute.html
   name: ButtonAttribute
   nameWithType: ButtonAttribute
@@ -1836,6 +1962,27 @@ references:
   name: GraphicsProgram
   nameWithType: GraphicsProgram
   fullName: Prowl.Runtime.GraphicsProgram
+- uid: Prowl.Runtime.GraphicsTarget
+  commentId: T:Prowl.Runtime.GraphicsTarget
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.GraphicsTarget.html
+  name: GraphicsTarget
+  nameWithType: GraphicsTarget
+  fullName: Prowl.Runtime.GraphicsTarget
+- uid: Prowl.Runtime.GraphicsFeature
+  commentId: T:Prowl.Runtime.GraphicsFeature
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.GraphicsFeature.html
+  name: GraphicsFeature
+  nameWithType: GraphicsFeature
+  fullName: Prowl.Runtime.GraphicsFeature
+- uid: Prowl.Runtime.GraphicsCapabilities
+  commentId: T:Prowl.Runtime.GraphicsCapabilities
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.GraphicsCapabilities.html
+  name: GraphicsCapabilities
+  nameWithType: GraphicsCapabilities
+  fullName: Prowl.Runtime.GraphicsCapabilities
 - uid: Prowl.Runtime.GraphicsTexture
   commentId: T:Prowl.Runtime.GraphicsTexture
   parent: Prowl.Runtime
@@ -3063,6 +3210,94 @@ references:
   name: Window
   nameWithType: Window
   fullName: Prowl.Runtime.Window
+- uid: Prowl.Runtime.XRTrackingOrigin
+  commentId: T:Prowl.Runtime.XRTrackingOrigin
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.XRTrackingOrigin.html
+  name: XRTrackingOrigin
+  nameWithType: XRTrackingOrigin
+  fullName: Prowl.Runtime.XRTrackingOrigin
+- uid: Prowl.Runtime.XRNode
+  commentId: T:Prowl.Runtime.XRNode
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.XRNode.html
+  name: XRNode
+  nameWithType: XRNode
+  fullName: Prowl.Runtime.XRNode
+- uid: Prowl.Runtime.XRPose
+  commentId: T:Prowl.Runtime.XRPose
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.XRPose.html
+  name: XRPose
+  nameWithType: XRPose
+  fullName: Prowl.Runtime.XRPose
+- uid: Prowl.Runtime.XRView
+  commentId: T:Prowl.Runtime.XRView
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.XRView.html
+  name: XRView
+  nameWithType: XRView
+  fullName: Prowl.Runtime.XRView
+- uid: Prowl.Runtime.XR
+  commentId: T:Prowl.Runtime.XR
+  href: Prowl.Runtime.XR.html
+  name: XR
+  nameWithType: XR
+  fullName: Prowl.Runtime.XR
+- uid: Prowl.Runtime.TrackedPoseDriver
+  commentId: T:Prowl.Runtime.TrackedPoseDriver
+  href: Prowl.Runtime.TrackedPoseDriver.html
+  name: TrackedPoseDriver
+  nameWithType: TrackedPoseDriver
+  fullName: Prowl.Runtime.TrackedPoseDriver
+- uid: Prowl.Runtime.XRHand
+  commentId: T:Prowl.Runtime.XRHand
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.XRHand.html
+  name: XRHand
+  nameWithType: XRHand
+  fullName: Prowl.Runtime.XRHand
+- uid: Prowl.Runtime.XRButton
+  commentId: T:Prowl.Runtime.XRButton
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.XRButton.html
+  name: XRButton
+  nameWithType: XRButton
+  fullName: Prowl.Runtime.XRButton
+- uid: Prowl.Runtime.XRAxis
+  commentId: T:Prowl.Runtime.XRAxis
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.XRAxis.html
+  name: XRAxis
+  nameWithType: XRAxis
+  fullName: Prowl.Runtime.XRAxis
+- uid: Prowl.Runtime.XRTouch
+  commentId: T:Prowl.Runtime.XRTouch
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.XRTouch.html
+  name: XRTouch
+  nameWithType: XRTouch
+  fullName: Prowl.Runtime.XRTouch
+- uid: Prowl.Runtime.XRHandJoint
+  commentId: T:Prowl.Runtime.XRHandJoint
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.XRHandJoint.html
+  name: XRHandJoint
+  nameWithType: XRHandJoint
+  fullName: Prowl.Runtime.XRHandJoint
+- uid: Prowl.Runtime.XRHandJointPose
+  commentId: T:Prowl.Runtime.XRHandJointPose
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.XRHandJointPose.html
+  name: XRHandJointPose
+  nameWithType: XRHandJointPose
+  fullName: Prowl.Runtime.XRHandJointPose
+- uid: Prowl.Runtime.XRInput
+  commentId: T:Prowl.Runtime.XRInput
+  href: Prowl.Runtime.XRInput.html
+  name: XRInput
+  nameWithType: XRInput
+  fullName: Prowl.Runtime.XRInput
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
   name: Prowl.Runtime

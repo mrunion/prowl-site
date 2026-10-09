@@ -14,10 +14,10 @@ items:
   - Prowl.Runtime.Test.BakeMeshTests
   - Prowl.Runtime.Test.BaseTestComponent
   - Prowl.Runtime.Test.Boolean32MatrixTests
-  - Prowl.Runtime.Test.CameraShadowFocusTests
   - Prowl.Runtime.Test.CollisionProbeComponent
   - Prowl.Runtime.Test.ColorTests
   - Prowl.Runtime.Test.ComponentTests
+  - Prowl.Runtime.Test.ComputeShaderTests
   - Prowl.Runtime.Test.CounterComponent
   - Prowl.Runtime.Test.Crate
   - Prowl.Runtime.Test.CrateHolder
@@ -25,17 +25,18 @@ items:
   - Prowl.Runtime.Test.CrossRefComponent
   - Prowl.Runtime.Test.CursorLockTests
   - Prowl.Runtime.Test.DerivedTestComponent
-  - Prowl.Runtime.Test.DirectionalLightShadowMatrixTests
   - Prowl.Runtime.Test.EarlyComponent
   - Prowl.Runtime.Test.EarlyTick
   - Prowl.Runtime.Test.EngineObjectTests
   - Prowl.Runtime.Test.ExecuteAlwaysCounter
   - Prowl.Runtime.Test.ForgetsBaseDispose
+  - Prowl.Runtime.Test.ForwardLightTreesTests
   - Prowl.Runtime.Test.FrameLimiterTests
   - Prowl.Runtime.Test.GameObjectCloneTests
   - Prowl.Runtime.Test.GameResourcesTests
   - Prowl.Runtime.Test.GameplayHook
   - Prowl.Runtime.Test.GizmoProbe
+  - Prowl.Runtime.Test.GraphicsTargetTests
   - Prowl.Runtime.Test.HeadlessGraphicsTests
   - Prowl.Runtime.Test.HeadlessRunTests
   - Prowl.Runtime.Test.HierarchyTests
@@ -45,7 +46,7 @@ items:
   - Prowl.Runtime.Test.LateTick
   - Prowl.Runtime.Test.LayerMaskTests
   - Prowl.Runtime.Test.LifecycleTests
-  - Prowl.Runtime.Test.LightBVHTests
+  - Prowl.Runtime.Test.LightTreeTests
   - Prowl.Runtime.Test.MaterialTests
   - Prowl.Runtime.Test.MeshTests
   - Prowl.Runtime.Test.MidTick
@@ -78,6 +79,7 @@ items:
   - Prowl.Runtime.Test.PrefabTests
   - Prowl.Runtime.Test.ProwlActionTests
   - Prowl.Runtime.Test.RagdollBuilderTests
+  - Prowl.Runtime.Test.ReflectionProbeTests
   - Prowl.Runtime.Test.RegistryRenderTests
   - Prowl.Runtime.Test.RegistryStressTests
   - Prowl.Runtime.Test.RenderCollectProbe
@@ -107,7 +109,11 @@ items:
   - Prowl.Runtime.Test.SerializableComponent
   - Prowl.Runtime.Test.SerializationTests
   - Prowl.Runtime.Test.SessionProbe
+  - Prowl.Runtime.Test.ShaderDataTableTests
+  - Prowl.Runtime.Test.ShadowTests
   - Prowl.Runtime.Test.StartCounter
+  - Prowl.Runtime.Test.StaticGeometryTests
+  - Prowl.Runtime.Test.StereoCameraTests
   - Prowl.Runtime.Test.TagTick
   - Prowl.Runtime.Test.TerrainSceneTests
   - Prowl.Runtime.Test.TerrainTests
@@ -126,6 +132,8 @@ items:
   - Prowl.Runtime.Test.UpdateLoopTests
   - Prowl.Runtime.Test.WheelTests
   - Prowl.Runtime.Test.WindZoneTests
+  - Prowl.Runtime.Test.XRInputBindingTests
+  - Prowl.Runtime.Test.XRTrackingTests
   langs:
   - csharp
   - vb
@@ -225,12 +233,6 @@ references:
   name: Boolean32MatrixTests
   nameWithType: Boolean32MatrixTests
   fullName: Prowl.Runtime.Test.Boolean32MatrixTests
-- uid: Prowl.Runtime.Test.CameraShadowFocusTests
-  commentId: T:Prowl.Runtime.Test.CameraShadowFocusTests
-  href: Prowl.Runtime.Test.CameraShadowFocusTests.html
-  name: CameraShadowFocusTests
-  nameWithType: CameraShadowFocusTests
-  fullName: Prowl.Runtime.Test.CameraShadowFocusTests
 - uid: Prowl.Runtime.Test.ColorTests
   commentId: T:Prowl.Runtime.Test.ColorTests
   href: Prowl.Runtime.Test.ColorTests.html
@@ -358,18 +360,18 @@ references:
   name: ComponentTests
   nameWithType: ComponentTests
   fullName: Prowl.Runtime.Test.ComponentTests
+- uid: Prowl.Runtime.Test.ComputeShaderTests
+  commentId: T:Prowl.Runtime.Test.ComputeShaderTests
+  href: Prowl.Runtime.Test.ComputeShaderTests.html
+  name: ComputeShaderTests
+  nameWithType: ComputeShaderTests
+  fullName: Prowl.Runtime.Test.ComputeShaderTests
 - uid: Prowl.Runtime.Test.CursorLockTests
   commentId: T:Prowl.Runtime.Test.CursorLockTests
   href: Prowl.Runtime.Test.CursorLockTests.html
   name: CursorLockTests
   nameWithType: CursorLockTests
   fullName: Prowl.Runtime.Test.CursorLockTests
-- uid: Prowl.Runtime.Test.DirectionalLightShadowMatrixTests
-  commentId: T:Prowl.Runtime.Test.DirectionalLightShadowMatrixTests
-  href: Prowl.Runtime.Test.DirectionalLightShadowMatrixTests.html
-  name: DirectionalLightShadowMatrixTests
-  nameWithType: DirectionalLightShadowMatrixTests
-  fullName: Prowl.Runtime.Test.DirectionalLightShadowMatrixTests
 - uid: Prowl.Runtime.Test.EngineObjectTests
   commentId: T:Prowl.Runtime.Test.EngineObjectTests
   href: Prowl.Runtime.Test.EngineObjectTests.html
@@ -394,6 +396,12 @@ references:
   name: GameResourcesTests
   nameWithType: GameResourcesTests
   fullName: Prowl.Runtime.Test.GameResourcesTests
+- uid: Prowl.Runtime.Test.GraphicsTargetTests
+  commentId: T:Prowl.Runtime.Test.GraphicsTargetTests
+  href: Prowl.Runtime.Test.GraphicsTargetTests.html
+  name: GraphicsTargetTests
+  nameWithType: GraphicsTargetTests
+  fullName: Prowl.Runtime.Test.GraphicsTargetTests
 - uid: Prowl.Runtime.Test.HeadlessGraphicsTests
   commentId: T:Prowl.Runtime.Test.HeadlessGraphicsTests
   href: Prowl.Runtime.Test.HeadlessGraphicsTests.html
@@ -436,18 +444,30 @@ references:
   name: LifecycleTests
   nameWithType: LifecycleTests
   fullName: Prowl.Runtime.Test.LifecycleTests
-- uid: Prowl.Runtime.Test.LightBVHTests
-  commentId: T:Prowl.Runtime.Test.LightBVHTests
-  href: Prowl.Runtime.Test.LightBVHTests.html
-  name: LightBVHTests
-  nameWithType: LightBVHTests
-  fullName: Prowl.Runtime.Test.LightBVHTests
+- uid: Prowl.Runtime.Test.LightTreeTests
+  commentId: T:Prowl.Runtime.Test.LightTreeTests
+  href: Prowl.Runtime.Test.LightTreeTests.html
+  name: LightTreeTests
+  nameWithType: LightTreeTests
+  fullName: Prowl.Runtime.Test.LightTreeTests
+- uid: Prowl.Runtime.Test.ForwardLightTreesTests
+  commentId: T:Prowl.Runtime.Test.ForwardLightTreesTests
+  href: Prowl.Runtime.Test.ForwardLightTreesTests.html
+  name: ForwardLightTreesTests
+  nameWithType: ForwardLightTreesTests
+  fullName: Prowl.Runtime.Test.ForwardLightTreesTests
 - uid: Prowl.Runtime.Test.SceneLightSystemTests
   commentId: T:Prowl.Runtime.Test.SceneLightSystemTests
   href: Prowl.Runtime.Test.SceneLightSystemTests.html
   name: SceneLightSystemTests
   nameWithType: SceneLightSystemTests
   fullName: Prowl.Runtime.Test.SceneLightSystemTests
+- uid: Prowl.Runtime.Test.ShaderDataTableTests
+  commentId: T:Prowl.Runtime.Test.ShaderDataTableTests
+  href: Prowl.Runtime.Test.ShaderDataTableTests.html
+  name: ShaderDataTableTests
+  nameWithType: ShaderDataTableTests
+  fullName: Prowl.Runtime.Test.ShaderDataTableTests
 - uid: Prowl.Runtime.Test.LODTests
   commentId: T:Prowl.Runtime.Test.LODTests
   href: Prowl.Runtime.Test.LODTests.html
@@ -568,6 +588,12 @@ references:
   name: RagdollBuilderTests
   nameWithType: RagdollBuilderTests
   fullName: Prowl.Runtime.Test.RagdollBuilderTests
+- uid: Prowl.Runtime.Test.ReflectionProbeTests
+  commentId: T:Prowl.Runtime.Test.ReflectionProbeTests
+  href: Prowl.Runtime.Test.ReflectionProbeTests.html
+  name: ReflectionProbeTests
+  nameWithType: ReflectionProbeTests
+  fullName: Prowl.Runtime.Test.ReflectionProbeTests
 - uid: Prowl.Runtime.Test.RenderCollectProbe
   commentId: T:Prowl.Runtime.Test.RenderCollectProbe
   href: Prowl.Runtime.Test.RenderCollectProbe.html
@@ -779,12 +805,30 @@ references:
   name: SerializationTests
   nameWithType: SerializationTests
   fullName: Prowl.Runtime.Test.SerializationTests
+- uid: Prowl.Runtime.Test.ShadowTests
+  commentId: T:Prowl.Runtime.Test.ShadowTests
+  href: Prowl.Runtime.Test.ShadowTests.html
+  name: ShadowTests
+  nameWithType: ShadowTests
+  fullName: Prowl.Runtime.Test.ShadowTests
 - uid: Prowl.Runtime.Test.SMAAEffectTests
   commentId: T:Prowl.Runtime.Test.SMAAEffectTests
   href: Prowl.Runtime.Test.SMAAEffectTests.html
   name: SMAAEffectTests
   nameWithType: SMAAEffectTests
   fullName: Prowl.Runtime.Test.SMAAEffectTests
+- uid: Prowl.Runtime.Test.StaticGeometryTests
+  commentId: T:Prowl.Runtime.Test.StaticGeometryTests
+  href: Prowl.Runtime.Test.StaticGeometryTests.html
+  name: StaticGeometryTests
+  nameWithType: StaticGeometryTests
+  fullName: Prowl.Runtime.Test.StaticGeometryTests
+- uid: Prowl.Runtime.Test.StereoCameraTests
+  commentId: T:Prowl.Runtime.Test.StereoCameraTests
+  href: Prowl.Runtime.Test.StereoCameraTests.html
+  name: StereoCameraTests
+  nameWithType: StereoCameraTests
+  fullName: Prowl.Runtime.Test.StereoCameraTests
 - uid: Prowl.Runtime.Test.TerrainTests
   commentId: T:Prowl.Runtime.Test.TerrainTests
   href: Prowl.Runtime.Test.TerrainTests.html
@@ -905,6 +949,18 @@ references:
   name: WindZoneTests
   nameWithType: WindZoneTests
   fullName: Prowl.Runtime.Test.WindZoneTests
+- uid: Prowl.Runtime.Test.XRInputBindingTests
+  commentId: T:Prowl.Runtime.Test.XRInputBindingTests
+  href: Prowl.Runtime.Test.XRInputBindingTests.html
+  name: XRInputBindingTests
+  nameWithType: XRInputBindingTests
+  fullName: Prowl.Runtime.Test.XRInputBindingTests
+- uid: Prowl.Runtime.Test.XRTrackingTests
+  commentId: T:Prowl.Runtime.Test.XRTrackingTests
+  href: Prowl.Runtime.Test.XRTrackingTests.html
+  name: XRTrackingTests
+  nameWithType: XRTrackingTests
+  fullName: Prowl.Runtime.Test.XRTrackingTests
 - uid: Prowl.Runtime.Test
   commentId: N:Prowl.Runtime.Test
   name: Prowl.Runtime.Test

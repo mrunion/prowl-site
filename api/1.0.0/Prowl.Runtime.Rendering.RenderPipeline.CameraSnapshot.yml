@@ -22,7 +22,7 @@ items:
   - Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.PreviousViewProj
   - Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.Projection
   - Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.Scene
-  - Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.ShadowFocusPosition
+  - Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.ShadowView
   - Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.View
   - Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.ViewInverse
   - Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.WorldFrustum
@@ -40,7 +40,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CameraSnapshot
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 162
+    startLine: 296
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -74,7 +74,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: .ctor
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 162
+    startLine: 296
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -106,7 +106,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Scene
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 164
+    startLine: 298
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -133,7 +133,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CameraPosition
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 166
+    startLine: 300
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -142,37 +142,35 @@ items:
     return:
       type: Prowl.Vector.Float3
     content.vb: Public CameraPosition As Float3
-- uid: Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.ShadowFocusPosition
-  commentId: F:Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.ShadowFocusPosition
-  id: ShadowFocusPosition
+- uid: Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.ShadowView
+  commentId: F:Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.ShadowView
+  id: ShadowView
   parent: Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot
   langs:
   - csharp
   - vb
-  name: ShadowFocusPosition
-  nameWithType: RenderPipeline.CameraSnapshot.ShadowFocusPosition
-  fullName: Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.ShadowFocusPosition
+  name: ShadowView
+  nameWithType: RenderPipeline.CameraSnapshot.ShadowView
+  fullName: Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.ShadowView
   type: Field
   source:
     remote:
       path: Prowl.Runtime/Rendering/RenderPipeline.cs
       branch: main
       repo: https://github.com/ProwlEngine/Prowl.git
-    id: ShadowFocusPosition
+    id: ShadowView
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 170
+    startLine: 303
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
-  summary: >-
-    World-space center for directional shadow cascades this render: the camera's
-        <xref href="Prowl.Runtime.Camera.ShadowFocus" data-throw-if-not-resolved="false"></xref> position when set, otherwise <xref href="Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.CameraPosition" data-throw-if-not-resolved="false"></xref>.
+  summary: The view directional cascades are fitted to. Stereo renders replace it with one covering both eyes.
   example: []
   syntax:
-    content: public Float3 ShadowFocusPosition
+    content: public ShadowFitView ShadowView
     return:
-      type: Prowl.Vector.Float3
-    content.vb: Public ShadowFocusPosition As Float3
+      type: Prowl.Runtime.Rendering.ShadowFitView
+    content.vb: Public ShadowView As ShadowFitView
 - uid: Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.CameraRight
   commentId: F:Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.CameraRight
   id: CameraRight
@@ -191,7 +189,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CameraRight
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 172
+    startLine: 305
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -218,7 +216,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CameraUp
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 173
+    startLine: 306
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -245,7 +243,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CameraForward
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 174
+    startLine: 307
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -272,7 +270,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CullingMask
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 175
+    startLine: 308
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -299,7 +297,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: ClearFlags
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 176
+    startLine: 309
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -326,7 +324,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: NearClipPlane
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 177
+    startLine: 310
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -353,7 +351,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: FarClipPlane
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 178
+    startLine: 311
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -380,7 +378,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: PixelWidth
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 179
+    startLine: 312
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -407,7 +405,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: PixelHeight
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 180
+    startLine: 313
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -434,7 +432,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Aspect
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 181
+    startLine: 314
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -461,7 +459,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: View
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 182
+    startLine: 315
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -488,7 +486,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: ViewInverse
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 183
+    startLine: 316
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -515,7 +513,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Projection
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 184
+    startLine: 317
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -542,7 +540,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: NonJitteredProjection
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 185
+    startLine: 318
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -569,7 +567,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: PreviousViewProj
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 186
+    startLine: 319
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -596,7 +594,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: HasPreviousViewProj
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 187
+    startLine: 320
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -623,7 +621,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: WorldFrustum
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 188
+    startLine: 321
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -1028,18 +1026,13 @@ references:
   - name: .
   - uid: Prowl.Vector
     name: Vector
-- uid: Prowl.Runtime.Camera.ShadowFocus
-  commentId: F:Prowl.Runtime.Camera.ShadowFocus
-  href: Prowl.Runtime.Camera.html#Prowl_Runtime_Camera_ShadowFocus
-  name: ShadowFocus
-  nameWithType: Camera.ShadowFocus
-  fullName: Prowl.Runtime.Camera.ShadowFocus
-- uid: Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.CameraPosition
-  commentId: F:Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.CameraPosition
-  href: Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.html#Prowl_Runtime_Rendering_RenderPipeline_CameraSnapshot_CameraPosition
-  name: CameraPosition
-  nameWithType: RenderPipeline.CameraSnapshot.CameraPosition
-  fullName: Prowl.Runtime.Rendering.RenderPipeline.CameraSnapshot.CameraPosition
+- uid: Prowl.Runtime.Rendering.ShadowFitView
+  commentId: T:Prowl.Runtime.Rendering.ShadowFitView
+  parent: Prowl.Runtime.Rendering
+  href: Prowl.Runtime.Rendering.ShadowFitView.html
+  name: ShadowFitView
+  nameWithType: ShadowFitView
+  fullName: Prowl.Runtime.Rendering.ShadowFitView
 - uid: Prowl.Runtime.LayerMask
   commentId: T:Prowl.Runtime.LayerMask
   parent: Prowl.Runtime

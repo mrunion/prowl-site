@@ -7,12 +7,14 @@ items:
   children:
   - Prowl.Runtime.Resources.Cubemap.#ctor
   - Prowl.Runtime.Resources.Cubemap.#ctor(System.UInt32,System.Boolean,Prowl.Runtime.TextureImageFormat)
+  - Prowl.Runtime.Resources.Cubemap.#ctor(System.UInt32,System.Int32,System.Int32,Prowl.Runtime.TextureImageFormat)
   - Prowl.Runtime.Resources.Cubemap.BytesPerPixel
   - Prowl.Runtime.Resources.Cubemap.Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
   - Prowl.Runtime.Resources.Cubemap.EstimateBytes
   - Prowl.Runtime.Resources.Cubemap.FaceByteSize(System.Int32)
   - Prowl.Runtime.Resources.Cubemap.GetFaceData(System.Int32,System.Byte[],System.Int32)
-  - Prowl.Runtime.Resources.Cubemap.GetFaceTarget(System.Int32,System.Int32,System.Boolean)
+  - Prowl.Runtime.Resources.Cubemap.GetFaceTarget(System.Int32,System.Int32,System.Boolean,System.Int32)
+  - Prowl.Runtime.Resources.Cubemap.Layers
   - Prowl.Runtime.Resources.Cubemap.MipLevels
   - Prowl.Runtime.Resources.Cubemap.MipSize(System.Int32)
   - Prowl.Runtime.Resources.Cubemap.OnUnload
@@ -35,7 +37,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Cubemap
     path: ../Prowl/Prowl.Runtime/Resources/Cubemap.cs
-    startLine: 16
+    startLine: 17
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -46,7 +48,9 @@ items:
 
     store a roughness-convolved, GGX-prefiltered environment) and can be rendered into per
 
-    face and per mip via <xref href="Prowl.Runtime.Resources.Cubemap.GetFaceTarget(System.Int32%2cSystem.Int32%2cSystem.Boolean)" data-throw-if-not-resolved="false"></xref>.
+    face and per mip via <xref href="Prowl.Runtime.Resources.Cubemap.GetFaceTarget(System.Int32%2cSystem.Int32%2cSystem.Boolean%2cSystem.Int32)" data-throw-if-not-resolved="false"></xref>. Made with a layer count it is a cubemap array,
+
+    a <code>samplerCubeArray</code> holding that many cubes, which lives only at runtime and is never saved.
   example: []
   syntax:
     content: 'public sealed class Cubemap : Texture, IDisposable, ISerializable'
@@ -119,7 +123,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Size
     path: ../Prowl/Prowl.Runtime/Resources/Cubemap.cs
-    startLine: 22
+    startLine: 23
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -150,7 +154,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: MipLevels
     path: ../Prowl/Prowl.Runtime/Resources/Cubemap.cs
-    startLine: 25
+    startLine: 26
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -163,6 +167,37 @@ items:
       type: System.Int32
     content.vb: Public Property MipLevels As Integer
   overload: Prowl.Runtime.Resources.Cubemap.MipLevels*
+- uid: Prowl.Runtime.Resources.Cubemap.Layers
+  commentId: P:Prowl.Runtime.Resources.Cubemap.Layers
+  id: Layers
+  parent: Prowl.Runtime.Resources.Cubemap
+  langs:
+  - csharp
+  - vb
+  name: Layers
+  nameWithType: Cubemap.Layers
+  fullName: Prowl.Runtime.Resources.Cubemap.Layers
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/Cubemap.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Layers
+    path: ../Prowl/Prowl.Runtime/Resources/Cubemap.cs
+    startLine: 29
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  summary: How many cubes a cubemap array holds, 0 for a plain cubemap.
+  example: []
+  syntax:
+    content: public int Layers { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Layers As Integer
+  overload: Prowl.Runtime.Resources.Cubemap.Layers*
 - uid: Prowl.Runtime.Resources.Cubemap.#ctor
   commentId: M:Prowl.Runtime.Resources.Cubemap.#ctor
   id: '#ctor'
@@ -181,7 +216,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: .ctor
     path: ../Prowl/Prowl.Runtime/Resources/Cubemap.cs
-    startLine: 32
+    startLine: 36
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -210,7 +245,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: .ctor
     path: ../Prowl/Prowl.Runtime/Resources/Cubemap.cs
-    startLine: 40
+    startLine: 44
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -233,6 +268,46 @@ items:
   nameWithType.vb: Cubemap.New(UInteger, Boolean, TextureImageFormat)
   fullName.vb: Prowl.Runtime.Resources.Cubemap.New(UInteger, Boolean, Prowl.Runtime.TextureImageFormat)
   name.vb: New(UInteger, Boolean, TextureImageFormat)
+- uid: Prowl.Runtime.Resources.Cubemap.#ctor(System.UInt32,System.Int32,System.Int32,Prowl.Runtime.TextureImageFormat)
+  commentId: M:Prowl.Runtime.Resources.Cubemap.#ctor(System.UInt32,System.Int32,System.Int32,Prowl.Runtime.TextureImageFormat)
+  id: '#ctor(System.UInt32,System.Int32,System.Int32,Prowl.Runtime.TextureImageFormat)'
+  parent: Prowl.Runtime.Resources.Cubemap
+  langs:
+  - csharp
+  - vb
+  name: Cubemap(uint, int, int, TextureImageFormat)
+  nameWithType: Cubemap.Cubemap(uint, int, int, TextureImageFormat)
+  fullName: Prowl.Runtime.Resources.Cubemap.Cubemap(uint, int, int, Prowl.Runtime.TextureImageFormat)
+  type: Constructor
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/Cubemap.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: .ctor
+    path: ../Prowl/Prowl.Runtime/Resources/Cubemap.cs
+    startLine: 51
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  summary: Creates a cubemap array of <code class="paramref">layers</code> cubes, each with <code class="paramref">mipLevels</code> levels.
+  example: []
+  syntax:
+    content: public Cubemap(uint size, int mipLevels, int layers, TextureImageFormat imageFormat = TextureImageFormat.Short4)
+    parameters:
+    - id: size
+      type: System.UInt32
+    - id: mipLevels
+      type: System.Int32
+    - id: layers
+      type: System.Int32
+    - id: imageFormat
+      type: Prowl.Runtime.TextureImageFormat
+    content.vb: Public Sub New(size As UInteger, mipLevels As Integer, layers As Integer, imageFormat As TextureImageFormat = TextureImageFormat.Short4)
+  overload: Prowl.Runtime.Resources.Cubemap.#ctor*
+  nameWithType.vb: Cubemap.New(UInteger, Integer, Integer, TextureImageFormat)
+  fullName.vb: Prowl.Runtime.Resources.Cubemap.New(UInteger, Integer, Integer, Prowl.Runtime.TextureImageFormat)
+  name.vb: New(UInteger, Integer, Integer, TextureImageFormat)
 - uid: Prowl.Runtime.Resources.Cubemap.Recreate(System.UInt32,System.Boolean)
   commentId: M:Prowl.Runtime.Resources.Cubemap.Recreate(System.UInt32,System.Boolean)
   id: Recreate(System.UInt32,System.Boolean)
@@ -251,7 +326,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Recreate
     path: ../Prowl/Prowl.Runtime/Resources/Cubemap.cs
-    startLine: 47
+    startLine: 59
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -287,7 +362,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: MipSize
     path: ../Prowl/Prowl.Runtime/Resources/Cubemap.cs
-    startLine: 66
+    startLine: 89
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -321,7 +396,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetWrapModes
     path: ../Prowl/Prowl.Runtime/Resources/Cubemap.cs
-    startLine: 75
+    startLine: 98
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -350,7 +425,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: BytesPerPixel
     path: ../Prowl/Prowl.Runtime/Resources/Cubemap.cs
-    startLine: 85
+    startLine: 108
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -380,7 +455,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: FaceByteSize
     path: ../Prowl/Prowl.Runtime/Resources/Cubemap.cs
-    startLine: 109
+    startLine: 132
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -416,7 +491,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetFaceData
     path: ../Prowl/Prowl.Runtime/Resources/Cubemap.cs
-    startLine: 117
+    startLine: 140
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -456,7 +531,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetFaceData
     path: ../Prowl/Prowl.Runtime/Resources/Cubemap.cs
-    startLine: 126
+    startLine: 149
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -478,16 +553,16 @@ items:
   nameWithType.vb: Cubemap.GetFaceData(Integer, Byte(), Integer)
   fullName.vb: Prowl.Runtime.Resources.Cubemap.GetFaceData(Integer, Byte(), Integer)
   name.vb: GetFaceData(Integer, Byte(), Integer)
-- uid: Prowl.Runtime.Resources.Cubemap.GetFaceTarget(System.Int32,System.Int32,System.Boolean)
-  commentId: M:Prowl.Runtime.Resources.Cubemap.GetFaceTarget(System.Int32,System.Int32,System.Boolean)
-  id: GetFaceTarget(System.Int32,System.Int32,System.Boolean)
+- uid: Prowl.Runtime.Resources.Cubemap.GetFaceTarget(System.Int32,System.Int32,System.Boolean,System.Int32)
+  commentId: M:Prowl.Runtime.Resources.Cubemap.GetFaceTarget(System.Int32,System.Int32,System.Boolean,System.Int32)
+  id: GetFaceTarget(System.Int32,System.Int32,System.Boolean,System.Int32)
   parent: Prowl.Runtime.Resources.Cubemap
   langs:
   - csharp
   - vb
-  name: GetFaceTarget(int, int, bool)
-  nameWithType: Cubemap.GetFaceTarget(int, int, bool)
-  fullName: Prowl.Runtime.Resources.Cubemap.GetFaceTarget(int, int, bool)
+  name: GetFaceTarget(int, int, bool, int)
+  nameWithType: Cubemap.GetFaceTarget(int, int, bool, int)
+  fullName: Prowl.Runtime.Resources.Cubemap.GetFaceTarget(int, int, bool, int)
   type: Method
   source:
     remote:
@@ -496,18 +571,18 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetFaceTarget
     path: ../Prowl/Prowl.Runtime/Resources/Cubemap.cs
-    startLine: 136
+    startLine: 159
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
   summary: >-
-    A framebuffer that renders into one face at one mip level. With
-        <code class="paramref">withDepth</code> it also attaches a shared depth buffer (sized to the
+    A framebuffer that renders into one face at one mip level, of cube <code class="paramref">layer</code>
+        in an array. With <code class="paramref">withDepth</code> it also attaches a shared depth buffer (sized to the
         full face) so scene geometry can depth-test during capture. Cached and reused;
         disposed with the cubemap.
   example: []
   syntax:
-    content: public GraphicsFrameBuffer GetFaceTarget(int face, int mip, bool withDepth = false)
+    content: public GraphicsFrameBuffer GetFaceTarget(int face, int mip, bool withDepth = false, int layer = 0)
     parameters:
     - id: face
       type: System.Int32
@@ -515,13 +590,15 @@ items:
       type: System.Int32
     - id: withDepth
       type: System.Boolean
+    - id: layer
+      type: System.Int32
     return:
       type: Prowl.Runtime.GraphicsFrameBuffer
-    content.vb: Public Function GetFaceTarget(face As Integer, mip As Integer, withDepth As Boolean = False) As GraphicsFrameBuffer
+    content.vb: Public Function GetFaceTarget(face As Integer, mip As Integer, withDepth As Boolean = False, layer As Integer = 0) As GraphicsFrameBuffer
   overload: Prowl.Runtime.Resources.Cubemap.GetFaceTarget*
-  nameWithType.vb: Cubemap.GetFaceTarget(Integer, Integer, Boolean)
-  fullName.vb: Prowl.Runtime.Resources.Cubemap.GetFaceTarget(Integer, Integer, Boolean)
-  name.vb: GetFaceTarget(Integer, Integer, Boolean)
+  nameWithType.vb: Cubemap.GetFaceTarget(Integer, Integer, Boolean, Integer)
+  fullName.vb: Prowl.Runtime.Resources.Cubemap.GetFaceTarget(Integer, Integer, Boolean, Integer)
+  name.vb: GetFaceTarget(Integer, Integer, Boolean, Integer)
 - uid: Prowl.Runtime.Resources.Cubemap.EstimateBytes
   commentId: M:Prowl.Runtime.Resources.Cubemap.EstimateBytes
   id: EstimateBytes
@@ -540,7 +617,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: EstimateBytes
     path: ../Prowl/Prowl.Runtime/Resources/Cubemap.cs
-    startLine: 174
+    startLine: 198
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -571,7 +648,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: OnUnload
     path: ../Prowl/Prowl.Runtime/Resources/Cubemap.cs
-    startLine: 177
+    startLine: 201
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -603,7 +680,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Serialize
     path: ../Prowl/Prowl.Runtime/Resources/Cubemap.cs
-    startLine: 196
+    startLine: 220
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -640,7 +717,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Deserialize
     path: ../Prowl/Prowl.Runtime/Resources/Cubemap.cs
-    startLine: 219
+    startLine: 243
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -664,20 +741,20 @@ references:
   name: Texture
   nameWithType: Texture
   fullName: Prowl.Runtime.Resources.Texture
-- uid: Prowl.Runtime.Resources.Cubemap.GetFaceTarget(System.Int32,System.Int32,System.Boolean)
-  commentId: M:Prowl.Runtime.Resources.Cubemap.GetFaceTarget(System.Int32,System.Int32,System.Boolean)
+- uid: Prowl.Runtime.Resources.Cubemap.GetFaceTarget(System.Int32,System.Int32,System.Boolean,System.Int32)
+  commentId: M:Prowl.Runtime.Resources.Cubemap.GetFaceTarget(System.Int32,System.Int32,System.Boolean,System.Int32)
   isExternal: true
-  href: Prowl.Runtime.Resources.Cubemap.html#Prowl_Runtime_Resources_Cubemap_GetFaceTarget_System_Int32_System_Int32_System_Boolean_
-  name: GetFaceTarget(int, int, bool)
-  nameWithType: Cubemap.GetFaceTarget(int, int, bool)
-  fullName: Prowl.Runtime.Resources.Cubemap.GetFaceTarget(int, int, bool)
-  nameWithType.vb: Cubemap.GetFaceTarget(Integer, Integer, Boolean)
-  fullName.vb: Prowl.Runtime.Resources.Cubemap.GetFaceTarget(Integer, Integer, Boolean)
-  name.vb: GetFaceTarget(Integer, Integer, Boolean)
+  href: Prowl.Runtime.Resources.Cubemap.html#Prowl_Runtime_Resources_Cubemap_GetFaceTarget_System_Int32_System_Int32_System_Boolean_System_Int32_
+  name: GetFaceTarget(int, int, bool, int)
+  nameWithType: Cubemap.GetFaceTarget(int, int, bool, int)
+  fullName: Prowl.Runtime.Resources.Cubemap.GetFaceTarget(int, int, bool, int)
+  nameWithType.vb: Cubemap.GetFaceTarget(Integer, Integer, Boolean, Integer)
+  fullName.vb: Prowl.Runtime.Resources.Cubemap.GetFaceTarget(Integer, Integer, Boolean, Integer)
+  name.vb: GetFaceTarget(Integer, Integer, Boolean, Integer)
   spec.csharp:
-  - uid: Prowl.Runtime.Resources.Cubemap.GetFaceTarget(System.Int32,System.Int32,System.Boolean)
+  - uid: Prowl.Runtime.Resources.Cubemap.GetFaceTarget(System.Int32,System.Int32,System.Boolean,System.Int32)
     name: GetFaceTarget
-    href: Prowl.Runtime.Resources.Cubemap.html#Prowl_Runtime_Resources_Cubemap_GetFaceTarget_System_Int32_System_Int32_System_Boolean_
+    href: Prowl.Runtime.Resources.Cubemap.html#Prowl_Runtime_Resources_Cubemap_GetFaceTarget_System_Int32_System_Int32_System_Boolean_System_Int32_
   - name: (
   - uid: System.Int32
     name: int
@@ -695,11 +772,17 @@ references:
     name: bool
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
   spec.vb:
-  - uid: Prowl.Runtime.Resources.Cubemap.GetFaceTarget(System.Int32,System.Int32,System.Boolean)
+  - uid: Prowl.Runtime.Resources.Cubemap.GetFaceTarget(System.Int32,System.Int32,System.Boolean,System.Int32)
     name: GetFaceTarget
-    href: Prowl.Runtime.Resources.Cubemap.html#Prowl_Runtime_Resources_Cubemap_GetFaceTarget_System_Int32_System_Int32_System_Boolean_
+    href: Prowl.Runtime.Resources.Cubemap.html#Prowl_Runtime_Resources_Cubemap_GetFaceTarget_System_Int32_System_Int32_System_Boolean_System_Int32_
   - name: (
   - uid: System.Int32
     name: Integer
@@ -717,6 +800,12 @@ references:
     name: Boolean
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
 - uid: Prowl.Runtime.Resources
   commentId: N:Prowl.Runtime.Resources
@@ -1626,6 +1715,12 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
+- uid: Prowl.Runtime.Resources.Cubemap.Layers*
+  commentId: Overload:Prowl.Runtime.Resources.Cubemap.Layers
+  href: Prowl.Runtime.Resources.Cubemap.html#Prowl_Runtime_Resources_Cubemap_Layers
+  name: Layers
+  nameWithType: Cubemap.Layers
+  fullName: Prowl.Runtime.Resources.Cubemap.Layers
 - uid: Prowl.Runtime.Resources.Cubemap.#ctor*
   commentId: Overload:Prowl.Runtime.Resources.Cubemap.#ctor
   href: Prowl.Runtime.Resources.Cubemap.html#Prowl_Runtime_Resources_Cubemap__ctor
@@ -1784,7 +1879,7 @@ references:
   - name: )
 - uid: Prowl.Runtime.Resources.Cubemap.GetFaceTarget*
   commentId: Overload:Prowl.Runtime.Resources.Cubemap.GetFaceTarget
-  href: Prowl.Runtime.Resources.Cubemap.html#Prowl_Runtime_Resources_Cubemap_GetFaceTarget_System_Int32_System_Int32_System_Boolean_
+  href: Prowl.Runtime.Resources.Cubemap.html#Prowl_Runtime_Resources_Cubemap_GetFaceTarget_System_Int32_System_Int32_System_Boolean_System_Int32_
   name: GetFaceTarget
   nameWithType: Cubemap.GetFaceTarget
   fullName: Prowl.Runtime.Resources.Cubemap.GetFaceTarget

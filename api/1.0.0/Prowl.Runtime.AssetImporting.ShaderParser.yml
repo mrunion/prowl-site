@@ -5,6 +5,7 @@ items:
   id: ShaderParser
   parent: Prowl.Runtime.AssetImporting
   children:
+  - Prowl.Runtime.AssetImporting.ShaderParser.ExpandIncludes(System.String,System.String,System.Func{System.String,System.String},System.Int32)
   - Prowl.Runtime.AssetImporting.ShaderParser.ParseShader(System.String,System.String,Prowl.Runtime.Resources.Shader@)
   - Prowl.Runtime.AssetImporting.ShaderParser.ParseShader(System.String,System.String,System.Func{System.String,System.String},Prowl.Runtime.Resources.Shader@)
   - Prowl.Runtime.AssetImporting.ShaderParser.SliceTo(Prowl.Runtime.Utils.Tokenizer,System.String)
@@ -117,6 +118,51 @@ items:
   nameWithType.vb: ShaderParser.ParseShader(String, String, Func(Of String, String), Shader)
   fullName.vb: Prowl.Runtime.AssetImporting.ShaderParser.ParseShader(String, String, System.Func(Of String, String), Prowl.Runtime.Resources.Shader)
   name.vb: ParseShader(String, String, Func(Of String, String), Shader)
+- uid: Prowl.Runtime.AssetImporting.ShaderParser.ExpandIncludes(System.String,System.String,System.Func{System.String,System.String},System.Int32)
+  commentId: M:Prowl.Runtime.AssetImporting.ShaderParser.ExpandIncludes(System.String,System.String,System.Func{System.String,System.String},System.Int32)
+  id: ExpandIncludes(System.String,System.String,System.Func{System.String,System.String},System.Int32)
+  parent: Prowl.Runtime.AssetImporting.ShaderParser
+  langs:
+  - csharp
+  - vb
+  name: ExpandIncludes(string, string, Func<string, string?>?, int)
+  nameWithType: ShaderParser.ExpandIncludes(string, string, Func<string, string?>?, int)
+  fullName: Prowl.Runtime.AssetImporting.ShaderParser.ExpandIncludes(string, string, System.Func<string, string?>?, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/AssetImporting/ShaderParser.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ExpandIncludes
+    path: ../Prowl/Prowl.Runtime/AssetImporting/ShaderParser.cs
+    startLine: 279
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.AssetImporting
+  summary: >-
+    Replaces every <code>#include "Name"</code> in <code class="paramref">source</code> with Name.glsl, nested includes too. Paths are
+
+    relative to <code class="paramref">sourceFilePath</code>, read through <code class="paramref">includeResolver</code> when there is one.
+  example: []
+  syntax:
+    content: public static string ExpandIncludes(string sourceFilePath, string source, Func<string, string?>? includeResolver, int line = 0)
+    parameters:
+    - id: sourceFilePath
+      type: System.String
+    - id: source
+      type: System.String
+    - id: includeResolver
+      type: System.Func{System.String,System.String}
+    - id: line
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Shared Function ExpandIncludes(sourceFilePath As String, source As String, includeResolver As Func(Of String, String), line As Integer = 0) As String
+  overload: Prowl.Runtime.AssetImporting.ShaderParser.ExpandIncludes*
+  nameWithType.vb: ShaderParser.ExpandIncludes(String, String, Func(Of String, String), Integer)
+  fullName.vb: Prowl.Runtime.AssetImporting.ShaderParser.ExpandIncludes(String, String, System.Func(Of String, String), Integer)
+  name.vb: ExpandIncludes(String, String, Func(Of String, String), Integer)
 - uid: Prowl.Runtime.AssetImporting.ShaderParser.SliceTo(Prowl.Runtime.Utils.Tokenizer,System.String)
   commentId: M:Prowl.Runtime.AssetImporting.ShaderParser.SliceTo(Prowl.Runtime.Utils.Tokenizer,System.String)
   id: SliceTo(Prowl.Runtime.Utils.Tokenizer,System.String)
@@ -135,7 +181,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SliceTo
     path: ../Prowl/Prowl.Runtime/AssetImporting/ShaderParser.cs
-    startLine: 860
+    startLine: 862
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.AssetImporting
@@ -553,6 +599,23 @@ references:
   - name: " "
   - name: TResult
   - name: )
+- uid: Prowl.Runtime.AssetImporting.ShaderParser.ExpandIncludes*
+  commentId: Overload:Prowl.Runtime.AssetImporting.ShaderParser.ExpandIncludes
+  href: Prowl.Runtime.AssetImporting.ShaderParser.html#Prowl_Runtime_AssetImporting_ShaderParser_ExpandIncludes_System_String_System_String_System_Func_System_String_System_String__System_Int32_
+  name: ExpandIncludes
+  nameWithType: ShaderParser.ExpandIncludes
+  fullName: Prowl.Runtime.AssetImporting.ShaderParser.ExpandIncludes
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: Prowl.Runtime.AssetImporting.ShaderParser.SliceTo*
   commentId: Overload:Prowl.Runtime.AssetImporting.ShaderParser.SliceTo
   href: Prowl.Runtime.AssetImporting.ShaderParser.html#Prowl_Runtime_AssetImporting_ShaderParser_SliceTo_Prowl_Runtime_Utils_Tokenizer_System_String_

@@ -5,6 +5,7 @@ items:
   id: IRenderable
   parent: Prowl.Runtime.Rendering
   children:
+  - Prowl.Runtime.Rendering.IRenderable.DeformsEveryFrame
   - Prowl.Runtime.Rendering.IRenderable.GetCullingData(System.Boolean@,Prowl.Vector.AABB@)
   - Prowl.Runtime.Rendering.IRenderable.GetInstanceCount(Prowl.Runtime.Rendering.InstanceData[])
   - Prowl.Runtime.Rendering.IRenderable.GetLayer
@@ -13,6 +14,8 @@ items:
   - Prowl.Runtime.Rendering.IRenderable.GetRenderingData(Prowl.Runtime.Rendering.ViewerData,Prowl.Runtime.Rendering.PropertyState@,Prowl.Runtime.Resources.Mesh@,Prowl.Vector.Float4x4@,Prowl.Runtime.Rendering.InstanceData[]@)
   - Prowl.Runtime.Rendering.IRenderable.GetSubMeshIndex
   - Prowl.Runtime.Rendering.IRenderable.GetWorldToObjectMatrix(Prowl.Vector.Float4x4@)
+  - Prowl.Runtime.Rendering.IRenderable.IsStatic
+  - Prowl.Runtime.Rendering.IRenderable.VisualVersion
   langs:
   - csharp
   - vb
@@ -27,7 +30,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: IRenderable
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 44
+    startLine: 51
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -65,7 +68,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetMaterial
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 46
+    startLine: 53
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -93,7 +96,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetLayer
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 47
+    startLine: 54
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -121,7 +124,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetPosition
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 53
+    startLine: 60
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -154,7 +157,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetSubMeshIndex
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 58
+    startLine: 65
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -184,7 +187,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetRenderingData
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 68
+    startLine: 75
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -231,7 +234,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetInstanceCount
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 74
+    startLine: 81
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -270,7 +273,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetWorldToObjectMatrix
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 81
+    startLine: 88
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -293,6 +296,108 @@ items:
   nameWithType.vb: IRenderable.GetWorldToObjectMatrix(Float4x4)
   fullName.vb: Prowl.Runtime.Rendering.IRenderable.GetWorldToObjectMatrix(Prowl.Vector.Float4x4)
   name.vb: GetWorldToObjectMatrix(Float4x4)
+- uid: Prowl.Runtime.Rendering.IRenderable.DeformsEveryFrame
+  commentId: P:Prowl.Runtime.Rendering.IRenderable.DeformsEveryFrame
+  id: DeformsEveryFrame
+  parent: Prowl.Runtime.Rendering.IRenderable
+  langs:
+  - csharp
+  - vb
+  name: DeformsEveryFrame
+  nameWithType: IRenderable.DeformsEveryFrame
+  fullName: Prowl.Runtime.Rendering.IRenderable.DeformsEveryFrame
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderPipeline.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DeformsEveryFrame
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
+    startLine: 94
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: >-
+    True when the shape changes without the model matrix, mesh, material or instance data changing, such as
+
+    skinning. Shadow maps holding it are redrawn every frame, others are reused while nothing changed.
+  example: []
+  syntax:
+    content: bool DeformsEveryFrame { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property DeformsEveryFrame As Boolean
+  overload: Prowl.Runtime.Rendering.IRenderable.DeformsEveryFrame*
+- uid: Prowl.Runtime.Rendering.IRenderable.IsStatic
+  commentId: P:Prowl.Runtime.Rendering.IRenderable.IsStatic
+  id: IsStatic
+  parent: Prowl.Runtime.Rendering.IRenderable
+  langs:
+  - csharp
+  - vb
+  name: IsStatic
+  nameWithType: IRenderable.IsStatic
+  fullName: Prowl.Runtime.Rendering.IRenderable.IsStatic
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderPipeline.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsStatic
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
+    startLine: 100
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: >-
+    True for things that do not move, such as a renderer on a static GameObject. A point or spot light keeps the
+
+    shadow of its static casters in a layer of its own, so a moving caster only redraws itself on top.
+  example: []
+  syntax:
+    content: bool IsStatic { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsStatic As Boolean
+  overload: Prowl.Runtime.Rendering.IRenderable.IsStatic*
+- uid: Prowl.Runtime.Rendering.IRenderable.VisualVersion
+  commentId: P:Prowl.Runtime.Rendering.IRenderable.VisualVersion
+  id: VisualVersion
+  parent: Prowl.Runtime.Rendering.IRenderable
+  langs:
+  - csharp
+  - vb
+  name: VisualVersion
+  nameWithType: IRenderable.VisualVersion
+  fullName: Prowl.Runtime.Rendering.IRenderable.VisualVersion
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Rendering/RenderPipeline.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: VisualVersion
+    path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
+    startLine: 106
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Rendering
+  summary: >-
+    Counts changes the renderer reports itself, such as a vertex shader that moves things by a value the engine
+
+    cannot see. Shadow maps holding the renderable redraw whenever it changes.
+  example: []
+  syntax:
+    content: int VisualVersion { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property VisualVersion As Integer
+  overload: Prowl.Runtime.Rendering.IRenderable.VisualVersion*
 - uid: Prowl.Runtime.Rendering.IRenderable.GetCullingData(System.Boolean@,Prowl.Vector.AABB@)
   commentId: M:Prowl.Runtime.Rendering.IRenderable.GetCullingData(System.Boolean@,Prowl.Vector.AABB@)
   id: GetCullingData(System.Boolean@,Prowl.Vector.AABB@)
@@ -311,7 +416,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetCullingData
     path: ../Prowl/Prowl.Runtime/Rendering/RenderPipeline.cs
-    startLine: 83
+    startLine: 108
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Rendering
@@ -599,12 +704,12 @@ references:
   name: GetWorldToObjectMatrix
   nameWithType: IRenderable.GetWorldToObjectMatrix
   fullName: Prowl.Runtime.Rendering.IRenderable.GetWorldToObjectMatrix
-- uid: Prowl.Runtime.Rendering.IRenderable.GetCullingData*
-  commentId: Overload:Prowl.Runtime.Rendering.IRenderable.GetCullingData
-  href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_GetCullingData_System_Boolean__Prowl_Vector_AABB__
-  name: GetCullingData
-  nameWithType: IRenderable.GetCullingData
-  fullName: Prowl.Runtime.Rendering.IRenderable.GetCullingData
+- uid: Prowl.Runtime.Rendering.IRenderable.DeformsEveryFrame*
+  commentId: Overload:Prowl.Runtime.Rendering.IRenderable.DeformsEveryFrame
+  href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_DeformsEveryFrame
+  name: DeformsEveryFrame
+  nameWithType: IRenderable.DeformsEveryFrame
+  fullName: Prowl.Runtime.Rendering.IRenderable.DeformsEveryFrame
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -616,6 +721,24 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
+- uid: Prowl.Runtime.Rendering.IRenderable.IsStatic*
+  commentId: Overload:Prowl.Runtime.Rendering.IRenderable.IsStatic
+  href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_IsStatic
+  name: IsStatic
+  nameWithType: IRenderable.IsStatic
+  fullName: Prowl.Runtime.Rendering.IRenderable.IsStatic
+- uid: Prowl.Runtime.Rendering.IRenderable.VisualVersion*
+  commentId: Overload:Prowl.Runtime.Rendering.IRenderable.VisualVersion
+  href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_VisualVersion
+  name: VisualVersion
+  nameWithType: IRenderable.VisualVersion
+  fullName: Prowl.Runtime.Rendering.IRenderable.VisualVersion
+- uid: Prowl.Runtime.Rendering.IRenderable.GetCullingData*
+  commentId: Overload:Prowl.Runtime.Rendering.IRenderable.GetCullingData
+  href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_GetCullingData_System_Boolean__Prowl_Vector_AABB__
+  name: GetCullingData
+  nameWithType: IRenderable.GetCullingData
+  fullName: Prowl.Runtime.Rendering.IRenderable.GetCullingData
 - uid: Prowl.Vector.AABB
   commentId: T:Prowl.Vector.AABB
   parent: Prowl.Vector

@@ -55,7 +55,9 @@ items:
   - Prowl.Runtime.Resources.Scene.SetRootIndex(Prowl.Runtime.GameObject,System.Int32)
   - Prowl.Runtime.Resources.Scene.Skybox
   - Prowl.Runtime.Resources.Scene.Source
+  - Prowl.Runtime.Resources.Scene.StaticGeometry
   - Prowl.Runtime.Resources.Scene.Update
+  - Prowl.Runtime.Resources.Scene.UpdateStaticGeometry
   langs:
   - csharp
   - vb
@@ -658,7 +660,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Fog
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 417
+    startLine: 424
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -685,7 +687,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Ambient
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 445
+    startLine: 452
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -712,7 +714,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Skybox
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 467
+    startLine: 474
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -739,7 +741,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: BakedLighting
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 514
+    startLine: 521
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -766,7 +768,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: LightmapBake
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 545
+    startLine: 552
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -775,6 +777,72 @@ items:
     return:
       type: Prowl.Runtime.Resources.Scene.LightmapBakeSettings
     content.vb: Public LightmapBake As Scene.LightmapBakeSettings
+- uid: Prowl.Runtime.Resources.Scene.StaticGeometry
+  commentId: P:Prowl.Runtime.Resources.Scene.StaticGeometry
+  id: StaticGeometry
+  parent: Prowl.Runtime.Resources.Scene
+  langs:
+  - csharp
+  - vb
+  name: StaticGeometry
+  nameWithType: Scene.StaticGeometry
+  fullName: Prowl.Runtime.Resources.Scene.StaticGeometry
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/Scene.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: StaticGeometry
+    path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
+    startLine: 558
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  summary: This scene's static renderers merged for drawing, see <xref href="Prowl.Runtime.Resources.Scene.UpdateStaticGeometry" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public StaticGeometry StaticGeometry { get; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.Rendering.StaticGeometry
+    content.vb: Public ReadOnly Property StaticGeometry As StaticGeometry
+  overload: Prowl.Runtime.Resources.Scene.StaticGeometry*
+- uid: Prowl.Runtime.Resources.Scene.UpdateStaticGeometry
+  commentId: M:Prowl.Runtime.Resources.Scene.UpdateStaticGeometry
+  id: UpdateStaticGeometry
+  parent: Prowl.Runtime.Resources.Scene
+  langs:
+  - csharp
+  - vb
+  name: UpdateStaticGeometry()
+  nameWithType: Scene.UpdateStaticGeometry()
+  fullName: Prowl.Runtime.Resources.Scene.UpdateStaticGeometry()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/Scene.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: UpdateStaticGeometry
+    path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
+    startLine: 566
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  summary: >-
+    Merges every static MeshRenderer into world space geometry that draws in a few calls, replacing what was
+
+    merged before. The editor does this when a scene is saved, and the result is stored with it. Call it after
+
+    creating or changing static objects at runtime. A static renderer that changes afterwards drops out of the
+
+    merged geometry and draws on its own until this is called again.
+  example: []
+  syntax:
+    content: public void UpdateStaticGeometry()
+    content.vb: Public Sub UpdateStaticGeometry()
+  overload: Prowl.Runtime.Resources.Scene.UpdateStaticGeometry*
 - uid: Prowl.Runtime.Resources.Scene.ProbeVolume
   commentId: P:Prowl.Runtime.Resources.Scene.ProbeVolume
   id: ProbeVolume
@@ -793,7 +861,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: ProbeVolume
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 550
+    startLine: 576
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -824,7 +892,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: InvalidateProbeVolume
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 563
+    startLine: 589
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -852,7 +920,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Count
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 566
+    startLine: 592
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -883,7 +951,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: AllObjects
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 569
+    startLine: 595
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -914,7 +982,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SaveableObjects
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 572
+    startLine: 598
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -945,7 +1013,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: ActiveObjects
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 587
+    startLine: 613
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -976,7 +1044,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: RootObjects
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 590
+    startLine: 616
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1007,7 +1075,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: ActiveRootObjects
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 593
+    startLine: 619
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1038,7 +1106,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: IsEmpty
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 596
+    startLine: 622
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1069,7 +1137,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: IsActive
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 599
+    startLine: 625
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1100,7 +1168,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: .ctor
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 604
+    startLine: 630
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1131,7 +1199,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Enable
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 613
+    startLine: 639
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1162,7 +1230,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Disable
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 647
+    startLine: 673
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1193,7 +1261,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Add
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 681
+    startLine: 707
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1224,7 +1292,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetRootIndex
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 694
+    startLine: 720
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1263,7 +1331,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetRootIndex
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 716
+    startLine: 742
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1299,7 +1367,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Remove
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 737
+    startLine: 763
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1334,7 +1402,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: FindObjectsOfType
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 879
+    startLine: 911
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1367,7 +1435,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: FindObjectByID
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 895
+    startLine: 927
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1403,7 +1471,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: FindObjectByIdentifier
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 909
+    startLine: 941
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1439,7 +1507,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Clear
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 924
+    startLine: 956
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1467,7 +1535,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Flush
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 936
+    startLine: 968
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1495,7 +1563,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: OnDispose
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 955
+    startLine: 987
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1523,7 +1591,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: OnBeforeSerialize
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 989
+    startLine: 1024
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1552,7 +1620,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: OnAfterDeserialize
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 994
+    startLine: 1029
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1581,7 +1649,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Update
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 1021
+    startLine: 1056
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1614,7 +1682,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: FixedUpdate
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 1049
+    startLine: 1084
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1645,7 +1713,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CollectRenderables
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 1072
+    startLine: 1107
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1686,7 +1754,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: DrawGizmos
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 1082
+    startLine: 1118
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1714,7 +1782,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: OnGui
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 1095
+    startLine: 1131
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -1748,7 +1816,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Render
     path: ../Prowl/Prowl.Runtime/Resources/Scene.cs
-    startLine: 1161
+    startLine: 1197
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -2749,25 +2817,37 @@ references:
   - uid: Prowl.Runtime.Resources.Scene.LightmapBakeSettings
     name: LightmapBakeSettings
     href: Prowl.Runtime.Resources.Scene.LightmapBakeSettings.html
-- uid: Prowl.Runtime.Resources.Scene.BakedLighting
-  commentId: F:Prowl.Runtime.Resources.Scene.BakedLighting
-  href: Prowl.Runtime.Resources.Scene.html#Prowl_Runtime_Resources_Scene_BakedLighting
-  name: BakedLighting
-  nameWithType: Scene.BakedLighting
-  fullName: Prowl.Runtime.Resources.Scene.BakedLighting
-- uid: Prowl.Runtime.Resources.Scene.ProbeVolume*
-  commentId: Overload:Prowl.Runtime.Resources.Scene.ProbeVolume
-  href: Prowl.Runtime.Resources.Scene.html#Prowl_Runtime_Resources_Scene_ProbeVolume
-  name: ProbeVolume
-  nameWithType: Scene.ProbeVolume
-  fullName: Prowl.Runtime.Resources.Scene.ProbeVolume
-- uid: Prowl.Runtime.Rendering.LightProbeVolume
-  commentId: T:Prowl.Runtime.Rendering.LightProbeVolume
+- uid: Prowl.Runtime.Resources.Scene.UpdateStaticGeometry
+  commentId: M:Prowl.Runtime.Resources.Scene.UpdateStaticGeometry
+  href: Prowl.Runtime.Resources.Scene.html#Prowl_Runtime_Resources_Scene_UpdateStaticGeometry
+  name: UpdateStaticGeometry()
+  nameWithType: Scene.UpdateStaticGeometry()
+  fullName: Prowl.Runtime.Resources.Scene.UpdateStaticGeometry()
+  spec.csharp:
+  - uid: Prowl.Runtime.Resources.Scene.UpdateStaticGeometry
+    name: UpdateStaticGeometry
+    href: Prowl.Runtime.Resources.Scene.html#Prowl_Runtime_Resources_Scene_UpdateStaticGeometry
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Resources.Scene.UpdateStaticGeometry
+    name: UpdateStaticGeometry
+    href: Prowl.Runtime.Resources.Scene.html#Prowl_Runtime_Resources_Scene_UpdateStaticGeometry
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Resources.Scene.StaticGeometry*
+  commentId: Overload:Prowl.Runtime.Resources.Scene.StaticGeometry
+  href: Prowl.Runtime.Resources.Scene.html#Prowl_Runtime_Resources_Scene_StaticGeometry
+  name: StaticGeometry
+  nameWithType: Scene.StaticGeometry
+  fullName: Prowl.Runtime.Resources.Scene.StaticGeometry
+- uid: Prowl.Runtime.Rendering.StaticGeometry
+  commentId: T:Prowl.Runtime.Rendering.StaticGeometry
   parent: Prowl.Runtime.Rendering
-  href: Prowl.Runtime.Rendering.LightProbeVolume.html
-  name: LightProbeVolume
-  nameWithType: LightProbeVolume
-  fullName: Prowl.Runtime.Rendering.LightProbeVolume
+  href: Prowl.Runtime.Rendering.StaticGeometry.html
+  name: StaticGeometry
+  nameWithType: StaticGeometry
+  fullName: Prowl.Runtime.Rendering.StaticGeometry
 - uid: Prowl.Runtime.Rendering
   commentId: N:Prowl.Runtime.Rendering
   name: Prowl.Runtime.Rendering
@@ -2791,6 +2871,31 @@ references:
   - name: .
   - uid: Prowl.Runtime.Rendering
     name: Rendering
+- uid: Prowl.Runtime.Resources.Scene.UpdateStaticGeometry*
+  commentId: Overload:Prowl.Runtime.Resources.Scene.UpdateStaticGeometry
+  href: Prowl.Runtime.Resources.Scene.html#Prowl_Runtime_Resources_Scene_UpdateStaticGeometry
+  name: UpdateStaticGeometry
+  nameWithType: Scene.UpdateStaticGeometry
+  fullName: Prowl.Runtime.Resources.Scene.UpdateStaticGeometry
+- uid: Prowl.Runtime.Resources.Scene.BakedLighting
+  commentId: F:Prowl.Runtime.Resources.Scene.BakedLighting
+  href: Prowl.Runtime.Resources.Scene.html#Prowl_Runtime_Resources_Scene_BakedLighting
+  name: BakedLighting
+  nameWithType: Scene.BakedLighting
+  fullName: Prowl.Runtime.Resources.Scene.BakedLighting
+- uid: Prowl.Runtime.Resources.Scene.ProbeVolume*
+  commentId: Overload:Prowl.Runtime.Resources.Scene.ProbeVolume
+  href: Prowl.Runtime.Resources.Scene.html#Prowl_Runtime_Resources_Scene_ProbeVolume
+  name: ProbeVolume
+  nameWithType: Scene.ProbeVolume
+  fullName: Prowl.Runtime.Resources.Scene.ProbeVolume
+- uid: Prowl.Runtime.Rendering.LightProbeVolume
+  commentId: T:Prowl.Runtime.Rendering.LightProbeVolume
+  parent: Prowl.Runtime.Rendering
+  href: Prowl.Runtime.Rendering.LightProbeVolume.html
+  name: LightProbeVolume
+  nameWithType: LightProbeVolume
+  fullName: Prowl.Runtime.Rendering.LightProbeVolume
 - uid: Prowl.Runtime.Resources.Scene.InvalidateProbeVolume*
   commentId: Overload:Prowl.Runtime.Resources.Scene.InvalidateProbeVolume
   href: Prowl.Runtime.Resources.Scene.html#Prowl_Runtime_Resources_Scene_InvalidateProbeVolume

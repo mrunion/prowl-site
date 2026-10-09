@@ -6,7 +6,7 @@ items:
   parent: Prowl.Runtime.Resources
   children:
   - Prowl.Runtime.Resources.Texture2D.#ctor
-  - Prowl.Runtime.Resources.Texture2D.#ctor(System.UInt32,System.UInt32,System.Boolean,Prowl.Runtime.TextureImageFormat)
+  - Prowl.Runtime.Resources.Texture2D.#ctor(System.UInt32,System.UInt32,System.Boolean,Prowl.Runtime.TextureImageFormat,System.Boolean)
   - Prowl.Runtime.Resources.Texture2D.Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
   - Prowl.Runtime.Resources.Texture2D.EstimateBytes
   - Prowl.Runtime.Resources.Texture2D.FromFile(System.String,System.Boolean)
@@ -192,16 +192,16 @@ items:
   nameWithType.vb: Texture2D.New()
   fullName.vb: Prowl.Runtime.Resources.Texture2D.New()
   name.vb: New()
-- uid: Prowl.Runtime.Resources.Texture2D.#ctor(System.UInt32,System.UInt32,System.Boolean,Prowl.Runtime.TextureImageFormat)
-  commentId: M:Prowl.Runtime.Resources.Texture2D.#ctor(System.UInt32,System.UInt32,System.Boolean,Prowl.Runtime.TextureImageFormat)
-  id: '#ctor(System.UInt32,System.UInt32,System.Boolean,Prowl.Runtime.TextureImageFormat)'
+- uid: Prowl.Runtime.Resources.Texture2D.#ctor(System.UInt32,System.UInt32,System.Boolean,Prowl.Runtime.TextureImageFormat,System.Boolean)
+  commentId: M:Prowl.Runtime.Resources.Texture2D.#ctor(System.UInt32,System.UInt32,System.Boolean,Prowl.Runtime.TextureImageFormat,System.Boolean)
+  id: '#ctor(System.UInt32,System.UInt32,System.Boolean,Prowl.Runtime.TextureImageFormat,System.Boolean)'
   parent: Prowl.Runtime.Resources.Texture2D
   langs:
   - csharp
   - vb
-  name: Texture2D(uint, uint, bool, TextureImageFormat)
-  nameWithType: Texture2D.Texture2D(uint, uint, bool, TextureImageFormat)
-  fullName: Prowl.Runtime.Resources.Texture2D.Texture2D(uint, uint, bool, Prowl.Runtime.TextureImageFormat)
+  name: Texture2D(uint, uint, bool, TextureImageFormat, bool)
+  nameWithType: Texture2D.Texture2D(uint, uint, bool, TextureImageFormat, bool)
+  fullName: Prowl.Runtime.Resources.Texture2D.Texture2D(uint, uint, bool, Prowl.Runtime.TextureImageFormat, bool)
   type: Constructor
   source:
     remote:
@@ -210,14 +210,14 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: .ctor
     path: ../Prowl/Prowl.Runtime/Resources/Texture2D.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
   summary: Creates a <xref href="Prowl.Runtime.Resources.Texture2D" data-throw-if-not-resolved="false"></xref> with the desired parameters but no image data.
   example: []
   syntax:
-    content: public Texture2D(uint width, uint height, bool generateMipmaps = false, TextureImageFormat imageFormat = TextureImageFormat.Color4b)
+    content: public Texture2D(uint width, uint height, bool generateMipmaps = false, TextureImageFormat imageFormat = TextureImageFormat.Color4b, bool enableRandomWrite = false)
     parameters:
     - id: width
       type: System.UInt32
@@ -231,11 +231,14 @@ items:
     - id: imageFormat
       type: Prowl.Runtime.TextureImageFormat
       description: The image format for this <xref href="Prowl.Runtime.Resources.Texture2D" data-throw-if-not-resolved="false"></xref>.
-    content.vb: Public Sub New(width As UInteger, height As UInteger, generateMipmaps As Boolean = False, imageFormat As TextureImageFormat = TextureImageFormat.Color4b)
+    - id: enableRandomWrite
+      type: System.Boolean
+      description: Lets compute kernels write it through an image. Its size is then fixed.
+    content.vb: Public Sub New(width As UInteger, height As UInteger, generateMipmaps As Boolean = False, imageFormat As TextureImageFormat = TextureImageFormat.Color4b, enableRandomWrite As Boolean = False)
   overload: Prowl.Runtime.Resources.Texture2D.#ctor*
-  nameWithType.vb: Texture2D.New(UInteger, UInteger, Boolean, TextureImageFormat)
-  fullName.vb: Prowl.Runtime.Resources.Texture2D.New(UInteger, UInteger, Boolean, Prowl.Runtime.TextureImageFormat)
-  name.vb: New(UInteger, UInteger, Boolean, TextureImageFormat)
+  nameWithType.vb: Texture2D.New(UInteger, UInteger, Boolean, TextureImageFormat, Boolean)
+  fullName.vb: Prowl.Runtime.Resources.Texture2D.New(UInteger, UInteger, Boolean, Prowl.Runtime.TextureImageFormat, Boolean)
+  name.vb: New(UInteger, UInteger, Boolean, TextureImageFormat, Boolean)
 - uid: Prowl.Runtime.Resources.Texture2D.SetDataPtr(System.Void*,System.Int32,System.Int32,System.UInt32,System.UInt32)
   commentId: M:Prowl.Runtime.Resources.Texture2D.SetDataPtr(System.Void*,System.Int32,System.Int32,System.UInt32,System.UInt32)
   id: SetDataPtr(System.Void*,System.Int32,System.Int32,System.UInt32,System.UInt32)
@@ -254,7 +257,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetDataPtr
     path: ../Prowl/Prowl.Runtime/Resources/Texture2D.cs
-    startLine: 57
+    startLine: 61
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -301,7 +304,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetData
     path: ../Prowl/Prowl.Runtime/Resources/Texture2D.cs
-    startLine: 74
+    startLine: 78
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -351,7 +354,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetData
     path: ../Prowl/Prowl.Runtime/Resources/Texture2D.cs
-    startLine: 89
+    startLine: 93
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -389,7 +392,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetMipChain
     path: ../Prowl/Prowl.Runtime/Resources/Texture2D.cs
-    startLine: 100
+    startLine: 104
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -428,7 +431,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetDataPtr
     path: ../Prowl/Prowl.Runtime/Resources/Texture2D.cs
-    startLine: 123
+    startLine: 127
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -463,7 +466,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetData
     path: ../Prowl/Prowl.Runtime/Resources/Texture2D.cs
-    startLine: 134
+    startLine: 138
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -501,7 +504,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetSize
     path: ../Prowl/Prowl.Runtime/Resources/Texture2D.cs
-    startLine: 144
+    startLine: 148
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -531,7 +534,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetWrapModes
     path: ../Prowl/Prowl.Runtime/Resources/Texture2D.cs
-    startLine: 155
+    startLine: 159
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -566,7 +569,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetDepthCompareMode
     path: ../Prowl/Prowl.Runtime/Resources/Texture2D.cs
-    startLine: 170
+    startLine: 174
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -605,7 +608,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: RecreateImage
     path: ../Prowl/Prowl.Runtime/Resources/Texture2D.cs
-    startLine: 178
+    startLine: 182
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -646,7 +649,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: EstimateBytes
     path: ../Prowl/Prowl.Runtime/Resources/Texture2D.cs
-    startLine: 228
+    startLine: 232
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -677,7 +680,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Serialize
     path: ../Prowl/Prowl.Runtime/Resources/Texture2D.cs
-    startLine: 231
+    startLine: 235
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -714,7 +717,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Deserialize
     path: ../Prowl/Prowl.Runtime/Resources/Texture2D.cs
-    startLine: 246
+    startLine: 250
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -748,7 +751,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: FromImage
     path: ../Prowl/Prowl.Runtime/Resources/Texture2D.cs
-    startLine: 289
+    startLine: 293
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -788,7 +791,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: FromStream
     path: ../Prowl/Prowl.Runtime/Resources/Texture2D.cs
-    startLine: 328
+    startLine: 332
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -828,7 +831,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: FromFile
     path: ../Prowl/Prowl.Runtime/Resources/Texture2D.cs
-    startLine: 341
+    startLine: 345
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -868,7 +871,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: LoadFromFile
     path: ../Prowl/Prowl.Runtime/Resources/Texture2D.cs
-    startLine: 350
+    startLine: 354
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -906,7 +909,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: LoadFromStream
     path: ../Prowl/Prowl.Runtime/Resources/Texture2D.cs
-    startLine: 358
+    startLine: 362
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources
@@ -944,7 +947,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: LoadDefault
     path: ../Prowl/Prowl.Runtime/Resources/Texture2D.cs
-    startLine: 368
+    startLine: 372
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.Resources

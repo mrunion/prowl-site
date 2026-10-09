@@ -5,10 +5,11 @@ items:
   id: Graphics
   parent: Prowl.Runtime
   children:
+  - Prowl.Runtime.Graphics.Capabilities
   - Prowl.Runtime.Graphics.CompileProgram(System.String,System.String,System.String)
   - Prowl.Runtime.Graphics.CreateBuffer``1(Prowl.Runtime.BufferType,``0[],System.Boolean)
   - Prowl.Runtime.Graphics.CreateFramebuffer(Prowl.Runtime.GraphicsFrameBuffer.Attachment[],System.UInt32,System.UInt32)
-  - Prowl.Runtime.Graphics.CreateTexture(Prowl.Runtime.TextureType,Prowl.Runtime.TextureImageFormat)
+  - Prowl.Runtime.Graphics.CreateTexture(Prowl.Runtime.TextureType,Prowl.Runtime.TextureImageFormat,System.Boolean,System.Int32)
   - Prowl.Runtime.Graphics.CreateVertexArray(Prowl.Runtime.VertexFormat,Prowl.Runtime.GraphicsBuffer,Prowl.Runtime.GraphicsBuffer,Prowl.Runtime.VertexFormat,Prowl.Runtime.GraphicsBuffer)
   - Prowl.Runtime.Graphics.CurrentProgram
   - Prowl.Runtime.Graphics.DeferDispose(System.IDisposable)
@@ -25,16 +26,20 @@ items:
   - Prowl.Runtime.Graphics.MaxArrayTextureLayers
   - Prowl.Runtime.Graphics.MaxCubeMapTextureSize
   - Prowl.Runtime.Graphics.MaxFramebufferColorAttachments
+  - Prowl.Runtime.Graphics.MaxFramesInFlight
   - Prowl.Runtime.Graphics.MaxTextureSize
   - Prowl.Runtime.Graphics.Screenshot
   - Prowl.Runtime.Graphics.SetTextureCompareMode(Prowl.Runtime.GraphicsTexture,System.Boolean)
   - Prowl.Runtime.Graphics.SetTextureFilters(Prowl.Runtime.GraphicsTexture,Prowl.Runtime.TextureMin,Prowl.Runtime.TextureMag)
+  - Prowl.Runtime.Graphics.SetTextureMaxLevel(Prowl.Runtime.GraphicsTexture,System.Int32)
   - Prowl.Runtime.Graphics.SetWrapR(Prowl.Runtime.GraphicsTexture,Prowl.Runtime.TextureWrap)
   - Prowl.Runtime.Graphics.SetWrapS(Prowl.Runtime.GraphicsTexture,Prowl.Runtime.TextureWrap)
   - Prowl.Runtime.Graphics.SetWrapT(Prowl.Runtime.GraphicsTexture,Prowl.Runtime.TextureWrap)
+  - Prowl.Runtime.Graphics.ShaderPrelude
   - Prowl.Runtime.Graphics.StartRenderThread
   - Prowl.Runtime.Graphics.Submit(Prowl.Runtime.CommandBuffer)
   - Prowl.Runtime.Graphics.SubmitAndWait(Prowl.Runtime.CommandBuffer)
+  - Prowl.Runtime.Graphics.Target
   - Prowl.Runtime.Graphics.TexImage2D(Prowl.Runtime.GraphicsTexture,System.Int32,System.UInt32,System.UInt32,System.Int32,System.Void*)
   - Prowl.Runtime.Graphics.TexImage3D(Prowl.Runtime.GraphicsTexture,System.Int32,System.UInt32,System.UInt32,System.UInt32,System.Void*)
   - Prowl.Runtime.Graphics.TexImageCubeFace(Prowl.Runtime.GraphicsTexture,System.Int32,System.Int32,System.UInt32,System.Void*)
@@ -225,6 +230,71 @@ items:
     return:
       type: Silk.NET.OpenGL.GL
     content.vb: Public Shared GL As GL
+- uid: Prowl.Runtime.Graphics.Target
+  commentId: P:Prowl.Runtime.Graphics.Target
+  id: Target
+  parent: Prowl.Runtime.Graphics
+  langs:
+  - csharp
+  - vb
+  name: Target
+  nameWithType: Graphics.Target
+  fullName: Prowl.Runtime.Graphics.Target
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Graphics/Graphics.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Target
+    path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
+    startLine: 36
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    The kind of context to create and write shaders for: OpenGL ES on mobile, desktop OpenGL everywhere else. Can be
+
+    changed before the window opens, such as with --graphics-target OpenGLES to try the ES path on a desktop.
+  example: []
+  syntax:
+    content: public static GraphicsTarget Target { get; set; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.GraphicsTarget
+    content.vb: Public Shared Property Target As GraphicsTarget
+  overload: Prowl.Runtime.Graphics.Target*
+- uid: Prowl.Runtime.Graphics.Capabilities
+  commentId: P:Prowl.Runtime.Graphics.Capabilities
+  id: Capabilities
+  parent: Prowl.Runtime.Graphics
+  langs:
+  - csharp
+  - vb
+  name: Capabilities
+  nameWithType: Graphics.Capabilities
+  fullName: Prowl.Runtime.Graphics.Capabilities
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Graphics/Graphics.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Capabilities
+    path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
+    startLine: 41
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: What the context the engine is running on allows. Valid once the window has opened.
+  example: []
+  syntax:
+    content: public static GraphicsCapabilities Capabilities { get; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.GraphicsCapabilities
+    content.vb: Public Shared Property Capabilities As GraphicsCapabilities
+  overload: Prowl.Runtime.Graphics.Capabilities*
 - uid: Prowl.Runtime.Graphics.IsHeadless
   commentId: P:Prowl.Runtime.Graphics.IsHeadless
   id: IsHeadless
@@ -243,7 +313,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: IsHeadless
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 38
+    startLine: 49
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -281,7 +351,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CurrentProgram
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 40
+    startLine: 51
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -310,7 +380,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetCommandBuffer
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 45
+    startLine: 56
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -326,6 +396,44 @@ items:
   nameWithType.vb: Graphics.GetCommandBuffer(String)
   fullName.vb: Prowl.Runtime.Graphics.GetCommandBuffer(String)
   name.vb: GetCommandBuffer(String)
+- uid: Prowl.Runtime.Graphics.MaxFramesInFlight
+  commentId: P:Prowl.Runtime.Graphics.MaxFramesInFlight
+  id: MaxFramesInFlight
+  parent: Prowl.Runtime.Graphics
+  langs:
+  - csharp
+  - vb
+  name: MaxFramesInFlight
+  nameWithType: Graphics.MaxFramesInFlight
+  fullName: Prowl.Runtime.Graphics.MaxFramesInFlight
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Graphics/Graphics.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MaxFramesInFlight
+    path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
+    startLine: 125
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    How many frames may be in the pipeline at once. With 2 the main thread builds the next frame while the render
+
+    thread finishes the current one, so neither waits on the other, at one frame of extra input latency. 1 waits for
+
+    every frame to finish before starting the next. Running XR always uses 1, since OpenXR orders its frame calls
+
+    strictly and a headset should never show an older frame than it has to.
+  example: []
+  syntax:
+    content: public static int MaxFramesInFlight { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Shared Property MaxFramesInFlight As Integer
+  overload: Prowl.Runtime.Graphics.MaxFramesInFlight*
 - uid: Prowl.Runtime.Graphics.Submit(Prowl.Runtime.CommandBuffer)
   commentId: M:Prowl.Runtime.Graphics.Submit(Prowl.Runtime.CommandBuffer)
   id: Submit(Prowl.Runtime.CommandBuffer)
@@ -344,7 +452,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Submit
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 118
+    startLine: 140
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -377,7 +485,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SubmitAndWait
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 137
+    startLine: 159
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -411,7 +519,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: LastFrameWaitMs
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 167
+    startLine: 208
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -444,7 +552,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Initialize
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 195
+    startLine: 254
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -458,6 +566,42 @@ items:
   nameWithType.vb: Graphics.Initialize(Boolean)
   fullName.vb: Prowl.Runtime.Graphics.Initialize(Boolean)
   name.vb: Initialize(Boolean)
+- uid: Prowl.Runtime.Graphics.ShaderPrelude
+  commentId: P:Prowl.Runtime.Graphics.ShaderPrelude
+  id: ShaderPrelude
+  parent: Prowl.Runtime.Graphics
+  langs:
+  - csharp
+  - vb
+  name: ShaderPrelude
+  nameWithType: Graphics.ShaderPrelude
+  fullName: Prowl.Runtime.Graphics.ShaderPrelude
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Graphics/Graphics.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ShaderPrelude
+    path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
+    startLine: 294
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    What every shader starts with: the GLSL version of the context, ES precision defaults, and a define per optional
+
+    feature (PROWL_GLES, PROWL_STORAGE_BUFFERS, PROWL_VERTEX_STORAGE_BUFFERS, PROWL_FRAGMENT_STORAGE_BUFFERS,
+
+    PROWL_COMPUTE) so a shader can pick its data path.
+  example: []
+  syntax:
+    content: public static string ShaderPrelude { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property ShaderPrelude As String
+  overload: Prowl.Runtime.Graphics.ShaderPrelude*
 - uid: Prowl.Runtime.Graphics.StartRenderThread
   commentId: M:Prowl.Runtime.Graphics.StartRenderThread
   id: StartRenderThread
@@ -476,7 +620,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: StartRenderThread
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 224
+    startLine: 345
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -502,7 +646,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Dispose
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 330
+    startLine: 463
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -528,7 +672,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CreateBuffer
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 343
+    startLine: 476
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -568,7 +712,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CreateVertexArray
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 351
+    startLine: 484
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -610,7 +754,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CreateFramebuffer
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 361
+    startLine: 494
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -630,16 +774,16 @@ items:
   nameWithType.vb: Graphics.CreateFramebuffer(GraphicsFrameBuffer.Attachment(), UInteger, UInteger)
   fullName.vb: Prowl.Runtime.Graphics.CreateFramebuffer(Prowl.Runtime.GraphicsFrameBuffer.Attachment(), UInteger, UInteger)
   name.vb: CreateFramebuffer(Attachment(), UInteger, UInteger)
-- uid: Prowl.Runtime.Graphics.CreateTexture(Prowl.Runtime.TextureType,Prowl.Runtime.TextureImageFormat)
-  commentId: M:Prowl.Runtime.Graphics.CreateTexture(Prowl.Runtime.TextureType,Prowl.Runtime.TextureImageFormat)
-  id: CreateTexture(Prowl.Runtime.TextureType,Prowl.Runtime.TextureImageFormat)
+- uid: Prowl.Runtime.Graphics.CreateTexture(Prowl.Runtime.TextureType,Prowl.Runtime.TextureImageFormat,System.Boolean,System.Int32)
+  commentId: M:Prowl.Runtime.Graphics.CreateTexture(Prowl.Runtime.TextureType,Prowl.Runtime.TextureImageFormat,System.Boolean,System.Int32)
+  id: CreateTexture(Prowl.Runtime.TextureType,Prowl.Runtime.TextureImageFormat,System.Boolean,System.Int32)
   parent: Prowl.Runtime.Graphics
   langs:
   - csharp
   - vb
-  name: CreateTexture(TextureType, TextureImageFormat)
-  nameWithType: Graphics.CreateTexture(TextureType, TextureImageFormat)
-  fullName: Prowl.Runtime.Graphics.CreateTexture(Prowl.Runtime.TextureType, Prowl.Runtime.TextureImageFormat)
+  name: CreateTexture(TextureType, TextureImageFormat, bool, int)
+  nameWithType: Graphics.CreateTexture(TextureType, TextureImageFormat, bool, int)
+  fullName: Prowl.Runtime.Graphics.CreateTexture(Prowl.Runtime.TextureType, Prowl.Runtime.TextureImageFormat, bool, int)
   type: Method
   source:
     remote:
@@ -648,21 +792,28 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CreateTexture
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 364
+    startLine: 497
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
   syntax:
-    content: public static GraphicsTexture CreateTexture(TextureType type, TextureImageFormat format)
+    content: public static GraphicsTexture CreateTexture(TextureType type, TextureImageFormat format, bool randomWrite = false, int levels = 1)
     parameters:
     - id: type
       type: Prowl.Runtime.TextureType
     - id: format
       type: Prowl.Runtime.TextureImageFormat
+    - id: randomWrite
+      type: System.Boolean
+    - id: levels
+      type: System.Int32
     return:
       type: Prowl.Runtime.GraphicsTexture
-    content.vb: Public Shared Function CreateTexture(type As TextureType, format As TextureImageFormat) As GraphicsTexture
+    content.vb: Public Shared Function CreateTexture(type As TextureType, format As TextureImageFormat, randomWrite As Boolean = False, levels As Integer = 1) As GraphicsTexture
   overload: Prowl.Runtime.Graphics.CreateTexture*
+  nameWithType.vb: Graphics.CreateTexture(TextureType, TextureImageFormat, Boolean, Integer)
+  fullName.vb: Prowl.Runtime.Graphics.CreateTexture(Prowl.Runtime.TextureType, Prowl.Runtime.TextureImageFormat, Boolean, Integer)
+  name.vb: CreateTexture(TextureType, TextureImageFormat, Boolean, Integer)
 - uid: Prowl.Runtime.Graphics.CompileProgram(System.String,System.String,System.String)
   commentId: M:Prowl.Runtime.Graphics.CompileProgram(System.String,System.String,System.String)
   id: CompileProgram(System.String,System.String,System.String)
@@ -681,7 +832,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: CompileProgram
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 367
+    startLine: 500
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -719,7 +870,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: DeferDispose
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 376
+    startLine: 509
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -748,7 +899,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: FlushDeferredDisposes
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 383
+    startLine: 516
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -774,7 +925,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetWrapS
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 396
+    startLine: 529
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -805,7 +956,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetWrapT
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 397
+    startLine: 530
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -836,7 +987,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetWrapR
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 398
+    startLine: 531
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -867,7 +1018,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetTextureFilters
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 399
+    startLine: 532
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -882,6 +1033,40 @@ items:
       type: Prowl.Runtime.TextureMag
     content.vb: Public Shared Sub SetTextureFilters(texture As GraphicsTexture, min As TextureMin, mag As TextureMag)
   overload: Prowl.Runtime.Graphics.SetTextureFilters*
+- uid: Prowl.Runtime.Graphics.SetTextureMaxLevel(Prowl.Runtime.GraphicsTexture,System.Int32)
+  commentId: M:Prowl.Runtime.Graphics.SetTextureMaxLevel(Prowl.Runtime.GraphicsTexture,System.Int32)
+  id: SetTextureMaxLevel(Prowl.Runtime.GraphicsTexture,System.Int32)
+  parent: Prowl.Runtime.Graphics
+  langs:
+  - csharp
+  - vb
+  name: SetTextureMaxLevel(GraphicsTexture, int)
+  nameWithType: Graphics.SetTextureMaxLevel(GraphicsTexture, int)
+  fullName: Prowl.Runtime.Graphics.SetTextureMaxLevel(Prowl.Runtime.GraphicsTexture, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Graphics/Graphics.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetTextureMaxLevel
+    path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
+    startLine: 533
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: public static void SetTextureMaxLevel(GraphicsTexture texture, int level)
+    parameters:
+    - id: texture
+      type: Prowl.Runtime.GraphicsTexture
+    - id: level
+      type: System.Int32
+    content.vb: Public Shared Sub SetTextureMaxLevel(texture As GraphicsTexture, level As Integer)
+  overload: Prowl.Runtime.Graphics.SetTextureMaxLevel*
+  nameWithType.vb: Graphics.SetTextureMaxLevel(GraphicsTexture, Integer)
+  fullName.vb: Prowl.Runtime.Graphics.SetTextureMaxLevel(Prowl.Runtime.GraphicsTexture, Integer)
+  name.vb: SetTextureMaxLevel(GraphicsTexture, Integer)
 - uid: Prowl.Runtime.Graphics.SetTextureCompareMode(Prowl.Runtime.GraphicsTexture,System.Boolean)
   commentId: M:Prowl.Runtime.Graphics.SetTextureCompareMode(Prowl.Runtime.GraphicsTexture,System.Boolean)
   id: SetTextureCompareMode(Prowl.Runtime.GraphicsTexture,System.Boolean)
@@ -900,7 +1085,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetTextureCompareMode
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 400
+    startLine: 534
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -934,7 +1119,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GenerateMipmap
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 401
+    startLine: 535
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -963,7 +1148,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetTexImage
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 404
+    startLine: 538
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1001,7 +1186,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetTexImageCubeFace
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 412
+    startLine: 546
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1041,7 +1226,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: TexImage2D
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 419
+    startLine: 553
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1083,7 +1268,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: TexSubImage2D
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 428
+    startLine: 562
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1127,7 +1312,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: TexImageCubeFace
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 440
+    startLine: 574
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1171,7 +1356,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: TexImage3D
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 449
+    startLine: 583
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1213,7 +1398,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: TexSubImage3D
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 458
+    startLine: 592
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1261,7 +1446,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Screenshot
     path: ../Prowl/Prowl.Runtime/Graphics/Graphics.cs
-    startLine: 475
+    startLine: 609
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1616,6 +1801,32 @@ references:
   - uid: Silk.NET.OpenGL
     name: OpenGL
     isExternal: true
+- uid: Prowl.Runtime.Graphics.Target*
+  commentId: Overload:Prowl.Runtime.Graphics.Target
+  href: Prowl.Runtime.Graphics.html#Prowl_Runtime_Graphics_Target
+  name: Target
+  nameWithType: Graphics.Target
+  fullName: Prowl.Runtime.Graphics.Target
+- uid: Prowl.Runtime.GraphicsTarget
+  commentId: T:Prowl.Runtime.GraphicsTarget
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.GraphicsTarget.html
+  name: GraphicsTarget
+  nameWithType: GraphicsTarget
+  fullName: Prowl.Runtime.GraphicsTarget
+- uid: Prowl.Runtime.Graphics.Capabilities*
+  commentId: Overload:Prowl.Runtime.Graphics.Capabilities
+  href: Prowl.Runtime.Graphics.html#Prowl_Runtime_Graphics_Capabilities
+  name: Capabilities
+  nameWithType: Graphics.Capabilities
+  fullName: Prowl.Runtime.Graphics.Capabilities
+- uid: Prowl.Runtime.GraphicsCapabilities
+  commentId: T:Prowl.Runtime.GraphicsCapabilities
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.GraphicsCapabilities.html
+  name: GraphicsCapabilities
+  nameWithType: GraphicsCapabilities
+  fullName: Prowl.Runtime.GraphicsCapabilities
 - uid: Prowl.Runtime.Graphics.IsHeadless*
   commentId: Overload:Prowl.Runtime.Graphics.IsHeadless
   href: Prowl.Runtime.Graphics.html#Prowl_Runtime_Graphics_IsHeadless
@@ -1663,6 +1874,12 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: Prowl.Runtime.Graphics.MaxFramesInFlight*
+  commentId: Overload:Prowl.Runtime.Graphics.MaxFramesInFlight
+  href: Prowl.Runtime.Graphics.html#Prowl_Runtime_Graphics_MaxFramesInFlight
+  name: MaxFramesInFlight
+  nameWithType: Graphics.MaxFramesInFlight
+  fullName: Prowl.Runtime.Graphics.MaxFramesInFlight
 - uid: Prowl.Runtime.Graphics.Submit*
   commentId: Overload:Prowl.Runtime.Graphics.Submit
   href: Prowl.Runtime.Graphics.html#Prowl_Runtime_Graphics_Submit_Prowl_Runtime_CommandBuffer_
@@ -1713,6 +1930,12 @@ references:
   name: Initialize
   nameWithType: Graphics.Initialize
   fullName: Prowl.Runtime.Graphics.Initialize
+- uid: Prowl.Runtime.Graphics.ShaderPrelude*
+  commentId: Overload:Prowl.Runtime.Graphics.ShaderPrelude
+  href: Prowl.Runtime.Graphics.html#Prowl_Runtime_Graphics_ShaderPrelude
+  name: ShaderPrelude
+  nameWithType: Graphics.ShaderPrelude
+  fullName: Prowl.Runtime.Graphics.ShaderPrelude
 - uid: Prowl.Runtime.Graphics.StartRenderThread*
   commentId: Overload:Prowl.Runtime.Graphics.StartRenderThread
   href: Prowl.Runtime.Graphics.html#Prowl_Runtime_Graphics_StartRenderThread
@@ -1828,7 +2051,7 @@ references:
   fullName: Prowl.Runtime.GraphicsFrameBuffer
 - uid: Prowl.Runtime.Graphics.CreateTexture*
   commentId: Overload:Prowl.Runtime.Graphics.CreateTexture
-  href: Prowl.Runtime.Graphics.html#Prowl_Runtime_Graphics_CreateTexture_Prowl_Runtime_TextureType_Prowl_Runtime_TextureImageFormat_
+  href: Prowl.Runtime.Graphics.html#Prowl_Runtime_Graphics_CreateTexture_Prowl_Runtime_TextureType_Prowl_Runtime_TextureImageFormat_System_Boolean_System_Int32_
   name: CreateTexture
   nameWithType: Graphics.CreateTexture
   fullName: Prowl.Runtime.Graphics.CreateTexture
@@ -1924,6 +2147,12 @@ references:
   name: TextureMag
   nameWithType: TextureMag
   fullName: Prowl.Runtime.TextureMag
+- uid: Prowl.Runtime.Graphics.SetTextureMaxLevel*
+  commentId: Overload:Prowl.Runtime.Graphics.SetTextureMaxLevel
+  href: Prowl.Runtime.Graphics.html#Prowl_Runtime_Graphics_SetTextureMaxLevel_Prowl_Runtime_GraphicsTexture_System_Int32_
+  name: SetTextureMaxLevel
+  nameWithType: Graphics.SetTextureMaxLevel
+  fullName: Prowl.Runtime.Graphics.SetTextureMaxLevel
 - uid: Prowl.Runtime.Graphics.SetTextureCompareMode*
   commentId: Overload:Prowl.Runtime.Graphics.SetTextureCompareMode
   href: Prowl.Runtime.Graphics.html#Prowl_Runtime_Graphics_SetTextureCompareMode_Prowl_Runtime_GraphicsTexture_System_Boolean_

@@ -1,0 +1,4469 @@
+### YamlMime:ManagedReference
+items:
+- uid: VRShowcase.PhysicsHand
+  commentId: T:VRShowcase.PhysicsHand
+  id: PhysicsHand
+  parent: VRShowcase
+  children:
+  - VRShowcase.PhysicsHand.AddRecoil(System.Single,System.Single)
+  - VRShowcase.PhysicsHand.AimDirection
+  - VRShowcase.PhysicsHand.AngularVelocityTo(Prowl.Vector.Quaternion,Prowl.Vector.Quaternion,System.Single)
+  - VRShowcase.PhysicsHand.Body
+  - VRShowcase.PhysicsHand.BraceThreshold
+  - VRShowcase.PhysicsHand.Carry
+  - VRShowcase.PhysicsHand.Catch(VRShowcase.Grabbable)
+  - VRShowcase.PhysicsHand.Create(Prowl.Runtime.XRHand,Prowl.Vector.Transform,VRShowcase.VRBody,Prowl.Vector.Color)
+  - VRShowcase.PhysicsHand.FixedUpdate
+  - VRShowcase.PhysicsHand.Free
+  - VRShowcase.PhysicsHand.Ghost
+  - VRShowcase.PhysicsHand.GhostDistance
+  - VRShowcase.PhysicsHand.GrabRange
+  - VRShowcase.PhysicsHand.GrabSqueeze
+  - VRShowcase.PhysicsHand.GripLocal
+  - VRShowcase.PhysicsHand.GripOverride
+  - VRShowcase.PhysicsHand.GripPoint
+  - VRShowcase.PhysicsHand.GripTilt
+  - VRShowcase.PhysicsHand.GripValue
+  - VRShowcase.PhysicsHand.Hand
+  - VRShowcase.PhysicsHand.HandMass
+  - VRShowcase.PhysicsHand.Hang
+  - VRShowcase.PhysicsHand.Held
+  - VRShowcase.PhysicsHand.HeldMaxSeparation
+  - VRShowcase.PhysicsHand.HeldPoint
+  - VRShowcase.PhysicsHand.IsBusy
+  - VRShowcase.PhysicsHand.IsClimbing
+  - VRShowcase.PhysicsHand.IsHolding
+  - VRShowcase.PhysicsHand.IsTouchingSolid
+  - VRShowcase.PhysicsHand.LetGo
+  - VRShowcase.PhysicsHand.MaxSeparation
+  - VRShowcase.PhysicsHand.OnCollisionBegin(Prowl.Runtime.Collision)
+  - VRShowcase.PhysicsHand.OnCollisionStay(Prowl.Runtime.Collision)
+  - VRShowcase.PhysicsHand.OnDisable
+  - VRShowcase.PhysicsHand.OnEnable
+  - VRShowcase.PhysicsHand.Origin
+  - VRShowcase.PhysicsHand.Release(System.Boolean)
+  - VRShowcase.PhysicsHand.ReleaseSqueeze
+  - VRShowcase.PhysicsHand.Rigidbody
+  - VRShowcase.PhysicsHand.SeparationTime
+  - VRShowcase.PhysicsHand.Shared
+  - VRShowcase.PhysicsHand.SlideFriction
+  - VRShowcase.PhysicsHand.SlideOverride
+  - VRShowcase.PhysicsHand.SlideTrigger
+  - VRShowcase.PhysicsHand.Sliding
+  - VRShowcase.PhysicsHand.Support
+  - VRShowcase.PhysicsHand.Target
+  - VRShowcase.PhysicsHand.TargetOverride
+  - VRShowcase.PhysicsHand.Tilt
+  - VRShowcase.PhysicsHand.TriggerOverride
+  - VRShowcase.PhysicsHand.TriggerValue
+  - VRShowcase.PhysicsHand.TryGrab
+  - VRShowcase.PhysicsHand.TwistFriction
+  - VRShowcase.PhysicsHand.Update
+  - VRShowcase.PhysicsHand.Use(VRShowcase.HandTarget)
+  - VRShowcase.PhysicsHand.WristInertia
+  langs:
+  - csharp
+  - vb
+  name: PhysicsHand
+  nameWithType: PhysicsHand
+  fullName: VRShowcase.PhysicsHand
+  type: Class
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PhysicsHand
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 24
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: >-
+    A hand that is a rigidbody of its own. Each step it pushes toward the controller with a capped force and torque,
+
+    so it stops against walls and tables instead of passing through them, and anything it holds is joined to it,
+
+    so a heavy item drags on the hand and lags behind a light one. Pulled more than <xref href="VRShowcase.PhysicsHand.MaxSeparation" data-throw-if-not-resolved="false"></xref> from
+
+    the controller, it lets go and jumps back. A ghost hand shows where the controller is while they are apart.
+
+
+    <p>
+
+    A hand that cannot go where its controller is, because it holds on to something fixed or presses a held tool into
+
+    something solid, pushes the body the other way instead. That is what climbing is, and how pushing a hammer into the
+
+    ground lifts the player.
+
+    </p>
+
+    <p>
+
+    The hand model points its fingers along +Z with the palm toward the other hand and the thumb on top, and grips
+
+    around its own Y axis through <xref href="VRShowcase.PhysicsHand.GripPoint" data-throw-if-not-resolved="false"></xref>.
+
+    </p>
+  example: []
+  syntax:
+    content: 'public sealed class PhysicsHand : MonoBehaviour, IDisposable, ISerializationCallbackReceiver'
+    content.vb: Public NotInheritable Class PhysicsHand Inherits MonoBehaviour Implements IDisposable, ISerializationCallbackReceiver
+  inheritance:
+  - System.Object
+  - Prowl.Runtime.EngineObject
+  - Prowl.Runtime.MonoBehaviour
+  implements:
+  - System.IDisposable
+  - Prowl.Echo.ISerializationCallbackReceiver
+  inheritedMembers:
+  - Prowl.Runtime.MonoBehaviour.IsFromPrefab
+  - Prowl.Runtime.MonoBehaviour.HideFlags
+  - Prowl.Runtime.MonoBehaviour.DestroyCancellationToken
+  - Prowl.Runtime.MonoBehaviour.Identifier
+  - Prowl.Runtime.MonoBehaviour.SourceIdentifier
+  - Prowl.Runtime.MonoBehaviour.GameObject
+  - Prowl.Runtime.MonoBehaviour.Transform
+  - Prowl.Runtime.MonoBehaviour.HasStarted
+  - Prowl.Runtime.MonoBehaviour.HasBeenEnabled
+  - Prowl.Runtime.MonoBehaviour.Tag
+  - Prowl.Runtime.MonoBehaviour.Enabled
+  - Prowl.Runtime.MonoBehaviour.EnabledInHierarchy
+  - Prowl.Runtime.MonoBehaviour.Scene
+  - Prowl.Runtime.MonoBehaviour.CompareTag(System.String)
+  - Prowl.Runtime.MonoBehaviour.AddComponent``1
+  - Prowl.Runtime.MonoBehaviour.AddComponent(System.Type)
+  - Prowl.Runtime.MonoBehaviour.RemoveComponent``1({T})
+  - Prowl.Runtime.MonoBehaviour.RemoveComponent(Prowl.Runtime.MonoBehaviour)
+  - Prowl.Runtime.MonoBehaviour.RemoveSelf
+  - Prowl.Runtime.MonoBehaviour.GetComponent``1
+  - Prowl.Runtime.MonoBehaviour.GetComponent(System.Type)
+  - Prowl.Runtime.MonoBehaviour.GetComponentByIdentifier(System.Guid)
+  - Prowl.Runtime.MonoBehaviour.TryGetComponent``1({T}@)
+  - Prowl.Runtime.MonoBehaviour.GetComponents``1
+  - Prowl.Runtime.MonoBehaviour.GetComponents(System.Type)
+  - Prowl.Runtime.MonoBehaviour.GetComponentInParent``1(System.Boolean)
+  - Prowl.Runtime.MonoBehaviour.GetComponentInParent(System.Type,System.Boolean)
+  - Prowl.Runtime.MonoBehaviour.GetComponentsInParent``1(System.Boolean)
+  - Prowl.Runtime.MonoBehaviour.GetComponentsInParent(System.Type,System.Boolean)
+  - Prowl.Runtime.MonoBehaviour.GetComponentInChildren``1(System.Boolean)
+  - Prowl.Runtime.MonoBehaviour.GetComponentInChildren(System.Type,System.Boolean)
+  - Prowl.Runtime.MonoBehaviour.GetComponentsInChildren``1(System.Boolean)
+  - Prowl.Runtime.MonoBehaviour.GetComponentsInChildren(System.Type,System.Boolean)
+  - Prowl.Runtime.MonoBehaviour.GetSiblingIndex
+  - Prowl.Runtime.MonoBehaviour.SetSiblingIndex(System.Int32)
+  - Prowl.Runtime.MonoBehaviour.OnAddedToScene
+  - Prowl.Runtime.MonoBehaviour.OnRemovedFromScene
+  - Prowl.Runtime.MonoBehaviour.Start
+  - Prowl.Runtime.MonoBehaviour.LateUpdate
+  - Prowl.Runtime.MonoBehaviour.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
+  - Prowl.Runtime.MonoBehaviour.DrawGizmos
+  - Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
+  - Prowl.Runtime.MonoBehaviour.OnGui(Prowl.PaperUI.Paper)
+  - Prowl.Runtime.MonoBehaviour.OnCollisionEnd(Prowl.Runtime.Collision)
+  - Prowl.Runtime.MonoBehaviour.OnTriggerEnter(Prowl.Runtime.Rigidbody3D)
+  - Prowl.Runtime.MonoBehaviour.OnTriggerStay(Prowl.Runtime.Rigidbody3D)
+  - Prowl.Runtime.MonoBehaviour.OnTriggerExit(Prowl.Runtime.Rigidbody3D)
+  - Prowl.Runtime.MonoBehaviour.OnCharacterEnter(Prowl.Runtime.CharacterController)
+  - Prowl.Runtime.MonoBehaviour.OnCharacterStay(Prowl.Runtime.CharacterController)
+  - Prowl.Runtime.MonoBehaviour.OnCharacterExit(Prowl.Runtime.CharacterController)
+  - Prowl.Runtime.MonoBehaviour.OnBeforeSerialize
+  - Prowl.Runtime.MonoBehaviour.OnAfterDeserialize
+  - Prowl.Runtime.EngineObject.InstanceID
+  - Prowl.Runtime.EngineObject.Name
+  - Prowl.Runtime.EngineObject.IsDisposed
+  - Prowl.Runtime.EngineObject.CreatedInstance
+  - Prowl.Runtime.EngineObject.OnValidate
+  - Prowl.Runtime.EngineObject.Dispose
+  - Prowl.Runtime.EngineObject.Destroy
+  - Prowl.Runtime.EngineObject.IsDestroyQueued
+  - Prowl.Runtime.EngineObject.ProcessDestroyed
+  - Prowl.Runtime.EngineObject.Equals(System.Object)
+  - Prowl.Runtime.EngineObject.GetHashCode
+  - Prowl.Runtime.EngineObject.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  extensionMethods:
+  - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsNotValid
+  - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsValid
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: VRShowcase.PhysicsHand.Hand
+  commentId: F:VRShowcase.PhysicsHand.Hand
+  id: Hand
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: Hand
+  nameWithType: PhysicsHand.Hand
+  fullName: VRShowcase.PhysicsHand.Hand
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Hand
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 26
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  syntax:
+    content: public XRHand Hand
+    return:
+      type: Prowl.Runtime.XRHand
+    content.vb: Public Hand As XRHand
+- uid: VRShowcase.PhysicsHand.Origin
+  commentId: F:VRShowcase.PhysicsHand.Origin
+  id: Origin
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: Origin
+  nameWithType: PhysicsHand.Origin
+  fullName: VRShowcase.PhysicsHand.Origin
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Origin
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 27
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  syntax:
+    content: public Transform Origin
+    return:
+      type: Prowl.Vector.Transform
+    content.vb: Public Origin As Transform
+- uid: VRShowcase.PhysicsHand.Body
+  commentId: F:VRShowcase.PhysicsHand.Body
+  id: Body
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: Body
+  nameWithType: PhysicsHand.Body
+  fullName: VRShowcase.PhysicsHand.Body
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Body
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 28
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  syntax:
+    content: public VRBody Body
+    return:
+      type: VRShowcase.VRBody
+    content.vb: Public Body As VRBody
+- uid: VRShowcase.PhysicsHand.HandMass
+  commentId: F:VRShowcase.PhysicsHand.HandMass
+  id: HandMass
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: HandMass
+  nameWithType: PhysicsHand.HandMass
+  fullName: VRShowcase.PhysicsHand.HandMass
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: HandMass
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 31
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: The hand's mass and how hard its wrist is to turn, which the drives are tuned against.
+  example: []
+  syntax:
+    content: public const float HandMass = 2
+    return:
+      type: System.Single
+    content.vb: Public Const HandMass As Single = 2
+- uid: VRShowcase.PhysicsHand.WristInertia
+  commentId: F:VRShowcase.PhysicsHand.WristInertia
+  id: WristInertia
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: WristInertia
+  nameWithType: PhysicsHand.WristInertia
+  fullName: VRShowcase.PhysicsHand.WristInertia
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WristInertia
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 32
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  syntax:
+    content: public const float WristInertia = 0.02
+    return:
+      type: System.Single
+    content.vb: Public Const WristInertia As Single = 0.02
+- uid: VRShowcase.PhysicsHand.Free
+  commentId: F:VRShowcase.PhysicsHand.Free
+  id: Free
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: Free
+  nameWithType: PhysicsHand.Free
+  fullName: VRShowcase.PhysicsHand.Free
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Free
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 35
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: An empty hand. Two hands pushing down on a table can just lift the body, one cannot.
+  example: []
+  syntax:
+    content: public HandDrive Free
+    return:
+      type: VRShowcase.HandDrive
+    content.vb: Public Free As HandDrive
+- uid: VRShowcase.PhysicsHand.Carry
+  commentId: F:VRShowcase.PhysicsHand.Carry
+  id: Carry
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: Carry
+  nameWithType: PhysicsHand.Carry
+  fullName: VRShowcase.PhysicsHand.Carry
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Carry
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 38
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: Carrying something alone, unless the item sets its own <xref href="VRShowcase.Grabbable.CarryDrive" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public HandDrive Carry
+    return:
+      type: VRShowcase.HandDrive
+    content.vb: Public Carry As HandDrive
+- uid: VRShowcase.PhysicsHand.Shared
+  commentId: F:VRShowcase.PhysicsHand.Shared
+  id: Shared
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: Shared
+  nameWithType: PhysicsHand.Shared
+  fullName: VRShowcase.PhysicsHand.Shared
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Shared
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 41
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: Each hand while two share an item. The wrists follow more loosely, so the two grips aim it between them instead of fighting.
+  example: []
+  syntax:
+    content: public HandDrive Shared
+    return:
+      type: VRShowcase.HandDrive
+    content.vb: Public [Shared] As HandDrive
+- uid: VRShowcase.PhysicsHand.Support
+  commentId: F:VRShowcase.PhysicsHand.Support
+  id: Support
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: Support
+  nameWithType: PhysicsHand.Support
+  fullName: VRShowcase.PhysicsHand.Support
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Support
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 44
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: A hand bracing a support grip while another holds the item. It holds the item's place and leaves its aim alone.
+  example: []
+  syntax:
+    content: public HandDrive Support
+    return:
+      type: VRShowcase.HandDrive
+    content.vb: Public Support As HandDrive
+- uid: VRShowcase.PhysicsHand.Hang
+  commentId: F:VRShowcase.PhysicsHand.Hang
+  id: Hang
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: Hang
+  nameWithType: PhysicsHand.Hang
+  fullName: VRShowcase.PhysicsHand.Hang
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Hang
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 47
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: Hanging on to the world, followed tightly enough that the body hangs from one hand without sagging.
+  example: []
+  syntax:
+    content: public HandDrive Hang
+    return:
+      type: VRShowcase.HandDrive
+    content.vb: Public Hang As HandDrive
+- uid: VRShowcase.PhysicsHand.BraceThreshold
+  commentId: F:VRShowcase.PhysicsHand.BraceThreshold
+  id: BraceThreshold
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: BraceThreshold
+  nameWithType: PhysicsHand.BraceThreshold
+  fullName: VRShowcase.PhysicsHand.BraceThreshold
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: BraceThreshold
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 50
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: How hard the hand must push sideways on the body, in newtons, before the feet let the push move it.
+  example: []
+  syntax:
+    content: public float BraceThreshold
+    return:
+      type: System.Single
+    content.vb: Public BraceThreshold As Single
+- uid: VRShowcase.PhysicsHand.MaxSeparation
+  commentId: F:VRShowcase.PhysicsHand.MaxSeparation
+  id: MaxSeparation
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: MaxSeparation
+  nameWithType: PhysicsHand.MaxSeparation
+  fullName: VRShowcase.PhysicsHand.MaxSeparation
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MaxSeparation
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 53
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: How far the hand may be left behind its controller, empty and holding something, before it lets go and jumps back.
+  example: []
+  syntax:
+    content: public float MaxSeparation
+    return:
+      type: System.Single
+    content.vb: Public MaxSeparation As Single
+- uid: VRShowcase.PhysicsHand.HeldMaxSeparation
+  commentId: F:VRShowcase.PhysicsHand.HeldMaxSeparation
+  id: HeldMaxSeparation
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: HeldMaxSeparation
+  nameWithType: PhysicsHand.HeldMaxSeparation
+  fullName: VRShowcase.PhysicsHand.HeldMaxSeparation
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: HeldMaxSeparation
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 54
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  syntax:
+    content: public float HeldMaxSeparation
+    return:
+      type: System.Single
+    content.vb: Public HeldMaxSeparation As Single
+- uid: VRShowcase.PhysicsHand.SeparationTime
+  commentId: F:VRShowcase.PhysicsHand.SeparationTime
+  id: SeparationTime
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: SeparationTime
+  nameWithType: PhysicsHand.SeparationTime
+  fullName: VRShowcase.PhysicsHand.SeparationTime
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SeparationTime
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 57
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: How long the hand has to stay that far behind, so a fast swing never counts as being stuck.
+  example: []
+  syntax:
+    content: public float SeparationTime
+    return:
+      type: System.Single
+    content.vb: Public SeparationTime As Single
+- uid: VRShowcase.PhysicsHand.GrabSqueeze
+  commentId: F:VRShowcase.PhysicsHand.GrabSqueeze
+  id: GrabSqueeze
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: GrabSqueeze
+  nameWithType: PhysicsHand.GrabSqueeze
+  fullName: VRShowcase.PhysicsHand.GrabSqueeze
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GrabSqueeze
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 60
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: How far the grip has to be squeezed to grab, and let go of to release.
+  example: []
+  syntax:
+    content: public const float GrabSqueeze = 0.6
+    return:
+      type: System.Single
+    content.vb: Public Const GrabSqueeze As Single = 0.6
+- uid: VRShowcase.PhysicsHand.ReleaseSqueeze
+  commentId: F:VRShowcase.PhysicsHand.ReleaseSqueeze
+  id: ReleaseSqueeze
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: ReleaseSqueeze
+  nameWithType: PhysicsHand.ReleaseSqueeze
+  fullName: VRShowcase.PhysicsHand.ReleaseSqueeze
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ReleaseSqueeze
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 61
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  syntax:
+    content: public const float ReleaseSqueeze = 0.35
+    return:
+      type: System.Single
+    content.vb: Public Const ReleaseSqueeze As Single = 0.35
+- uid: VRShowcase.PhysicsHand.SlideTrigger
+  commentId: F:VRShowcase.PhysicsHand.SlideTrigger
+  id: SlideTrigger
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: SlideTrigger
+  nameWithType: PhysicsHand.SlideTrigger
+  fullName: VRShowcase.PhysicsHand.SlideTrigger
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SlideTrigger
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 64
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: How far the trigger has to be pulled to let a line grip slide.
+  example: []
+  syntax:
+    content: public const float SlideTrigger = 0.5
+    return:
+      type: System.Single
+    content.vb: Public Const SlideTrigger As Single = 0.5
+- uid: VRShowcase.PhysicsHand.SlideFriction
+  commentId: F:VRShowcase.PhysicsHand.SlideFriction
+  id: SlideFriction
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: SlideFriction
+  nameWithType: PhysicsHand.SlideFriction
+  fullName: VRShowcase.PhysicsHand.SlideFriction
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SlideFriction
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 67
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: How quickly a sliding grip slows an item sliding through the hand, and turning in it, per second.
+  example: []
+  syntax:
+    content: public float SlideFriction
+    return:
+      type: System.Single
+    content.vb: Public SlideFriction As Single
+- uid: VRShowcase.PhysicsHand.TwistFriction
+  commentId: F:VRShowcase.PhysicsHand.TwistFriction
+  id: TwistFriction
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: TwistFriction
+  nameWithType: PhysicsHand.TwistFriction
+  fullName: VRShowcase.PhysicsHand.TwistFriction
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TwistFriction
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 68
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  syntax:
+    content: public float TwistFriction
+    return:
+      type: System.Single
+    content.vb: Public TwistFriction As Single
+- uid: VRShowcase.PhysicsHand.GrabRange
+  commentId: F:VRShowcase.PhysicsHand.GrabRange
+  id: GrabRange
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: GrabRange
+  nameWithType: PhysicsHand.GrabRange
+  fullName: VRShowcase.PhysicsHand.GrabRange
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GrabRange
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 69
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  syntax:
+    content: public float GrabRange
+    return:
+      type: System.Single
+    content.vb: Public GrabRange As Single
+- uid: VRShowcase.PhysicsHand.GhostDistance
+  commentId: F:VRShowcase.PhysicsHand.GhostDistance
+  id: GhostDistance
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: GhostDistance
+  nameWithType: PhysicsHand.GhostDistance
+  fullName: VRShowcase.PhysicsHand.GhostDistance
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GhostDistance
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 70
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  syntax:
+    content: public float GhostDistance
+    return:
+      type: System.Single
+    content.vb: Public GhostDistance As Single
+- uid: VRShowcase.PhysicsHand.GripTilt
+  commentId: F:VRShowcase.PhysicsHand.GripTilt
+  id: GripTilt
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: GripTilt
+  nameWithType: PhysicsHand.GripTilt
+  fullName: VRShowcase.PhysicsHand.GripTilt
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GripTilt
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 76
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: >-
+    How far the hand is tipped forward from the controller's pointing ray, in degrees. A wrist held naturally
+
+    points a held sword ahead and a gun level, rather than straight up.
+  example: []
+  syntax:
+    content: public float GripTilt
+    return:
+      type: System.Single
+    content.vb: Public GripTilt As Single
+- uid: VRShowcase.PhysicsHand.TargetOverride
+  commentId: F:VRShowcase.PhysicsHand.TargetOverride
+  id: TargetOverride
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: TargetOverride
+  nameWithType: PhysicsHand.TargetOverride
+  fullName: VRShowcase.PhysicsHand.TargetOverride
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TargetOverride
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 140
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: >-
+    Drives the hand from something other than its controller, such as a scripted hand or a test. While set, it
+
+    gives the pose the hand reaches for, and the controller is ignored.
+  example: []
+  syntax:
+    content: public Func<(Float3 Position, Quaternion Rotation)>? TargetOverride
+    return:
+      type: System.Func{System.ValueTuple{Prowl.Vector.Float3,Prowl.Vector.Quaternion}}
+    content.vb: Public TargetOverride As Func(Of (Position As Float3, Rotation As Quaternion))
+- uid: VRShowcase.PhysicsHand.SlideOverride
+  commentId: F:VRShowcase.PhysicsHand.SlideOverride
+  id: SlideOverride
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: SlideOverride
+  nameWithType: PhysicsHand.SlideOverride
+  fullName: VRShowcase.PhysicsHand.SlideOverride
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SlideOverride
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 143
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: Overrides whether a line grip slides. Without it, the grip slides while the trigger is held.
+  example: []
+  syntax:
+    content: public bool? SlideOverride
+    return:
+      type: System.Nullable{System.Boolean}
+    content.vb: Public SlideOverride As Boolean?
+- uid: VRShowcase.PhysicsHand.GripOverride
+  commentId: F:VRShowcase.PhysicsHand.GripOverride
+  id: GripOverride
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: GripOverride
+  nameWithType: PhysicsHand.GripOverride
+  fullName: VRShowcase.PhysicsHand.GripOverride
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GripOverride
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 146
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: Overrides how far the grip is squeezed, from 0 to 1, for a scripted hand or a test. Without it, the controller's grip.
+  example: []
+  syntax:
+    content: public Func<float>? GripOverride
+    return:
+      type: System.Func{System.Single}
+    content.vb: Public GripOverride As Func(Of Single)
+- uid: VRShowcase.PhysicsHand.GripValue
+  commentId: P:VRShowcase.PhysicsHand.GripValue
+  id: GripValue
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: GripValue
+  nameWithType: PhysicsHand.GripValue
+  fullName: VRShowcase.PhysicsHand.GripValue
+  type: Property
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GripValue
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 148
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  syntax:
+    content: public float GripValue { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public ReadOnly Property GripValue As Single
+  overload: VRShowcase.PhysicsHand.GripValue*
+- uid: VRShowcase.PhysicsHand.TriggerOverride
+  commentId: F:VRShowcase.PhysicsHand.TriggerOverride
+  id: TriggerOverride
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: TriggerOverride
+  nameWithType: PhysicsHand.TriggerOverride
+  fullName: VRShowcase.PhysicsHand.TriggerOverride
+  type: Field
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TriggerOverride
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 151
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: Overrides how far the trigger is pulled, from 0 to 1, for a scripted hand or a test. Without it, the controller's trigger.
+  example: []
+  syntax:
+    content: public Func<float>? TriggerOverride
+    return:
+      type: System.Func{System.Single}
+    content.vb: Public TriggerOverride As Func(Of Single)
+- uid: VRShowcase.PhysicsHand.TriggerValue
+  commentId: P:VRShowcase.PhysicsHand.TriggerValue
+  id: TriggerValue
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: TriggerValue
+  nameWithType: PhysicsHand.TriggerValue
+  fullName: VRShowcase.PhysicsHand.TriggerValue
+  type: Property
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TriggerValue
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 153
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  syntax:
+    content: public float TriggerValue { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public ReadOnly Property TriggerValue As Single
+  overload: VRShowcase.PhysicsHand.TriggerValue*
+- uid: VRShowcase.PhysicsHand.LetGo
+  commentId: E:VRShowcase.PhysicsHand.LetGo
+  id: LetGo
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: LetGo
+  nameWithType: PhysicsHand.LetGo
+  fullName: VRShowcase.PhysicsHand.LetGo
+  type: Event
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LetGo
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 156
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: Raised when a hand lets go of an item nobody else holds and it did not go into a socket.
+  example: []
+  syntax:
+    content: public static event Action<PhysicsHand, Grabbable>? LetGo
+    return:
+      type: System.Action{VRShowcase.PhysicsHand,VRShowcase.Grabbable}
+    content.vb: Public Shared Event LetGo As Action(Of PhysicsHand, Grabbable)
+- uid: VRShowcase.PhysicsHand.Sliding
+  commentId: P:VRShowcase.PhysicsHand.Sliding
+  id: Sliding
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: Sliding
+  nameWithType: PhysicsHand.Sliding
+  fullName: VRShowcase.PhysicsHand.Sliding
+  type: Property
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Sliding
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 159
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: Whether a line grip slides along its line and turns about it instead of holding tight.
+  example: []
+  syntax:
+    content: public bool Sliding { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property Sliding As Boolean
+  overload: VRShowcase.PhysicsHand.Sliding*
+- uid: VRShowcase.PhysicsHand.Rigidbody
+  commentId: P:VRShowcase.PhysicsHand.Rigidbody
+  id: Rigidbody
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: Rigidbody
+  nameWithType: PhysicsHand.Rigidbody
+  fullName: VRShowcase.PhysicsHand.Rigidbody
+  type: Property
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Rigidbody
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 161
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  syntax:
+    content: public Rigidbody3D Rigidbody { get; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.Rigidbody3D
+    content.vb: Public ReadOnly Property Rigidbody As Rigidbody3D
+  overload: VRShowcase.PhysicsHand.Rigidbody*
+- uid: VRShowcase.PhysicsHand.Held
+  commentId: P:VRShowcase.PhysicsHand.Held
+  id: Held
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: Held
+  nameWithType: PhysicsHand.Held
+  fullName: VRShowcase.PhysicsHand.Held
+  type: Property
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Held
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 162
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  syntax:
+    content: public Grabbable? Held { get; }
+    parameters: []
+    return:
+      type: VRShowcase.Grabbable
+    content.vb: Public ReadOnly Property Held As Grabbable
+  overload: VRShowcase.PhysicsHand.Held*
+- uid: VRShowcase.PhysicsHand.HeldPoint
+  commentId: P:VRShowcase.PhysicsHand.HeldPoint
+  id: HeldPoint
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: HeldPoint
+  nameWithType: PhysicsHand.HeldPoint
+  fullName: VRShowcase.PhysicsHand.HeldPoint
+  type: Property
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: HeldPoint
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 163
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  syntax:
+    content: public GrabPoint? HeldPoint { get; }
+    parameters: []
+    return:
+      type: VRShowcase.GrabPoint
+    content.vb: Public ReadOnly Property HeldPoint As GrabPoint
+  overload: VRShowcase.PhysicsHand.HeldPoint*
+- uid: VRShowcase.PhysicsHand.IsHolding
+  commentId: P:VRShowcase.PhysicsHand.IsHolding
+  id: IsHolding
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: IsHolding
+  nameWithType: PhysicsHand.IsHolding
+  fullName: VRShowcase.PhysicsHand.IsHolding
+  type: Property
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsHolding
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 164
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  syntax:
+    content: public bool IsHolding { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsHolding As Boolean
+  overload: VRShowcase.PhysicsHand.IsHolding*
+- uid: VRShowcase.PhysicsHand.IsClimbing
+  commentId: P:VRShowcase.PhysicsHand.IsClimbing
+  id: IsClimbing
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: IsClimbing
+  nameWithType: PhysicsHand.IsClimbing
+  fullName: VRShowcase.PhysicsHand.IsClimbing
+  type: Property
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsClimbing
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 165
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  syntax:
+    content: public bool IsClimbing { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsClimbing As Boolean
+  overload: VRShowcase.PhysicsHand.IsClimbing*
+- uid: VRShowcase.PhysicsHand.Target
+  commentId: P:VRShowcase.PhysicsHand.Target
+  id: Target
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: Target
+  nameWithType: PhysicsHand.Target
+  fullName: VRShowcase.PhysicsHand.Target
+  type: Property
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Target
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 166
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  syntax:
+    content: public HandTarget? Target { get; }
+    parameters: []
+    return:
+      type: VRShowcase.HandTarget
+    content.vb: Public ReadOnly Property Target As HandTarget
+  overload: VRShowcase.PhysicsHand.Target*
+- uid: VRShowcase.PhysicsHand.IsBusy
+  commentId: P:VRShowcase.PhysicsHand.IsBusy
+  id: IsBusy
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: IsBusy
+  nameWithType: PhysicsHand.IsBusy
+  fullName: VRShowcase.PhysicsHand.IsBusy
+  type: Property
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsBusy
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 169
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: Holding something, climbing or working a target, so the hand is not free to point at UI.
+  example: []
+  syntax:
+    content: public bool IsBusy { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsBusy As Boolean
+  overload: VRShowcase.PhysicsHand.IsBusy*
+- uid: VRShowcase.PhysicsHand.GripLocal
+  commentId: P:VRShowcase.PhysicsHand.GripLocal
+  id: GripLocal
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: GripLocal
+  nameWithType: PhysicsHand.GripLocal
+  fullName: VRShowcase.PhysicsHand.GripLocal
+  type: Property
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GripLocal
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 174
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: Where gripped handles pass through the hand, in the hand's space.
+  example: []
+  syntax:
+    content: public Float3 GripLocal { get; }
+    parameters: []
+    return:
+      type: Prowl.Vector.Float3
+    content.vb: Public ReadOnly Property GripLocal As Float3
+  overload: VRShowcase.PhysicsHand.GripLocal*
+- uid: VRShowcase.PhysicsHand.GripPoint
+  commentId: P:VRShowcase.PhysicsHand.GripPoint
+  id: GripPoint
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: GripPoint
+  nameWithType: PhysicsHand.GripPoint
+  fullName: VRShowcase.PhysicsHand.GripPoint
+  type: Property
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GripPoint
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 176
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: The grip in the world, from the simulated pose, which is what joints and grabs have to agree with.
+  example: []
+  syntax:
+    content: public Float3 GripPoint { get; }
+    parameters: []
+    return:
+      type: Prowl.Vector.Float3
+    content.vb: Public ReadOnly Property GripPoint As Float3
+  overload: VRShowcase.PhysicsHand.GripPoint*
+- uid: VRShowcase.PhysicsHand.Create(Prowl.Runtime.XRHand,Prowl.Vector.Transform,VRShowcase.VRBody,Prowl.Vector.Color)
+  commentId: M:VRShowcase.PhysicsHand.Create(Prowl.Runtime.XRHand,Prowl.Vector.Transform,VRShowcase.VRBody,Prowl.Vector.Color)
+  id: Create(Prowl.Runtime.XRHand,Prowl.Vector.Transform,VRShowcase.VRBody,Prowl.Vector.Color)
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: Create(XRHand, Transform, VRBody, Color)
+  nameWithType: PhysicsHand.Create(XRHand, Transform, VRBody, Color)
+  fullName: VRShowcase.PhysicsHand.Create(Prowl.Runtime.XRHand, Prowl.Vector.Transform, VRShowcase.VRBody, Prowl.Vector.Color)
+  type: Method
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Create
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 179
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: 'Builds the hand: a rigidbody with palm and finger colliders and a jointed model, ready to add to the scene.'
+  example: []
+  syntax:
+    content: public static PhysicsHand Create(XRHand side, Transform origin, VRBody body, Color skin)
+    parameters:
+    - id: side
+      type: Prowl.Runtime.XRHand
+    - id: origin
+      type: Prowl.Vector.Transform
+    - id: body
+      type: VRShowcase.VRBody
+    - id: skin
+      type: Prowl.Vector.Color
+    return:
+      type: VRShowcase.PhysicsHand
+    content.vb: Public Shared Function Create(side As XRHand, origin As Transform, body As VRBody, skin As Color) As PhysicsHand
+  overload: VRShowcase.PhysicsHand.Create*
+- uid: VRShowcase.PhysicsHand.Ghost
+  commentId: P:VRShowcase.PhysicsHand.Ghost
+  id: Ghost
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: Ghost
+  nameWithType: PhysicsHand.Ghost
+  fullName: VRShowcase.PhysicsHand.Ghost
+  type: Property
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Ghost
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 217
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: The ghost has no physics and lives at the root of the scene, so it is added alongside the hand.
+  example: []
+  syntax:
+    content: public GameObject Ghost { get; }
+    parameters: []
+    return:
+      type: Prowl.Runtime.GameObject
+    content.vb: Public ReadOnly Property Ghost As GameObject
+  overload: VRShowcase.PhysicsHand.Ghost*
+- uid: VRShowcase.PhysicsHand.Tilt
+  commentId: P:VRShowcase.PhysicsHand.Tilt
+  id: Tilt
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: Tilt
+  nameWithType: PhysicsHand.Tilt
+  fullName: VRShowcase.PhysicsHand.Tilt
+  type: Property
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Tilt
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 322
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: The hand's turn forward from the controller's pointing ray, which leaves its fingers along the ray.
+  example: []
+  syntax:
+    content: public Quaternion Tilt { get; }
+    parameters: []
+    return:
+      type: Prowl.Vector.Quaternion
+    content.vb: Public ReadOnly Property Tilt As Quaternion
+  overload: VRShowcase.PhysicsHand.Tilt*
+- uid: VRShowcase.PhysicsHand.AimDirection
+  commentId: P:VRShowcase.PhysicsHand.AimDirection
+  id: AimDirection
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: AimDirection
+  nameWithType: PhysicsHand.AimDirection
+  fullName: VRShowcase.PhysicsHand.AimDirection
+  type: Property
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AimDirection
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 325
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: Where the controller points, from the simulated hand, for aiming at things out of reach.
+  example: []
+  syntax:
+    content: public Float3 AimDirection { get; }
+    parameters: []
+    return:
+      type: Prowl.Vector.Float3
+    content.vb: Public ReadOnly Property AimDirection As Float3
+  overload: VRShowcase.PhysicsHand.AimDirection*
+- uid: VRShowcase.PhysicsHand.FixedUpdate
+  commentId: M:VRShowcase.PhysicsHand.FixedUpdate
+  id: FixedUpdate
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: FixedUpdate()
+  nameWithType: PhysicsHand.FixedUpdate()
+  fullName: VRShowcase.PhysicsHand.FixedUpdate()
+  type: Method
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FixedUpdate
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 327
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: Called at fixed time intervals.
+  example: []
+  syntax:
+    content: public override void FixedUpdate()
+    content.vb: Public Overrides Sub FixedUpdate()
+  overridden: Prowl.Runtime.MonoBehaviour.FixedUpdate
+  overload: VRShowcase.PhysicsHand.FixedUpdate*
+- uid: VRShowcase.PhysicsHand.AddRecoil(System.Single,System.Single)
+  commentId: M:VRShowcase.PhysicsHand.AddRecoil(System.Single,System.Single)
+  id: AddRecoil(System.Single,System.Single)
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: AddRecoil(float, float)
+  nameWithType: PhysicsHand.AddRecoil(float, float)
+  fullName: VRShowcase.PhysicsHand.AddRecoil(float, float)
+  type: Method
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AddRecoil
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 419
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: Kicks the hand back by <code class="paramref">back</code> metres and its nose up by <code class="paramref">pitch</code> degrees, as a gun firing in it does.
+  example: []
+  syntax:
+    content: public void AddRecoil(float back, float pitch)
+    parameters:
+    - id: back
+      type: System.Single
+    - id: pitch
+      type: System.Single
+    content.vb: Public Sub AddRecoil(back As Single, pitch As Single)
+  overload: VRShowcase.PhysicsHand.AddRecoil*
+  nameWithType.vb: PhysicsHand.AddRecoil(Single, Single)
+  fullName.vb: VRShowcase.PhysicsHand.AddRecoil(Single, Single)
+  name.vb: AddRecoil(Single, Single)
+- uid: VRShowcase.PhysicsHand.OnCollisionBegin(Prowl.Runtime.Collision)
+  commentId: M:VRShowcase.PhysicsHand.OnCollisionBegin(Prowl.Runtime.Collision)
+  id: OnCollisionBegin(Prowl.Runtime.Collision)
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: OnCollisionBegin(Collision)
+  nameWithType: PhysicsHand.OnCollisionBegin(Collision)
+  fullName: VRShowcase.PhysicsHand.OnCollisionBegin(Prowl.Runtime.Collision)
+  type: Method
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnCollisionBegin
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 552
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: >-
+    Called after the physics step in which a collider on this GameObject, or one owned by its
+
+    <xref href="Prowl.Runtime.Rigidbody3D" data-throw-if-not-resolved="false"></xref>, begins touching another collider. Both sides receive it.
+  example: []
+  syntax:
+    content: public override void OnCollisionBegin(Collision collision)
+    parameters:
+    - id: collision
+      type: Prowl.Runtime.Collision
+    content.vb: Public Overrides Sub OnCollisionBegin(collision As Collision)
+  overridden: Prowl.Runtime.MonoBehaviour.OnCollisionBegin(Prowl.Runtime.Collision)
+  overload: VRShowcase.PhysicsHand.OnCollisionBegin*
+- uid: VRShowcase.PhysicsHand.OnCollisionStay(Prowl.Runtime.Collision)
+  commentId: M:VRShowcase.PhysicsHand.OnCollisionStay(Prowl.Runtime.Collision)
+  id: OnCollisionStay(Prowl.Runtime.Collision)
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: OnCollisionStay(Collision)
+  nameWithType: PhysicsHand.OnCollisionStay(Collision)
+  fullName: VRShowcase.PhysicsHand.OnCollisionStay(Prowl.Runtime.Collision)
+  type: Method
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnCollisionStay
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 553
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: Called after every physics step the contact persists, following <xref href="Prowl.Runtime.MonoBehaviour.OnCollisionBegin(Prowl.Runtime.Collision)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public override void OnCollisionStay(Collision collision)
+    parameters:
+    - id: collision
+      type: Prowl.Runtime.Collision
+    content.vb: Public Overrides Sub OnCollisionStay(collision As Collision)
+  overridden: Prowl.Runtime.MonoBehaviour.OnCollisionStay(Prowl.Runtime.Collision)
+  overload: VRShowcase.PhysicsHand.OnCollisionStay*
+- uid: VRShowcase.PhysicsHand.IsTouchingSolid
+  commentId: P:VRShowcase.PhysicsHand.IsTouchingSolid
+  id: IsTouchingSolid
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: IsTouchingSolid
+  nameWithType: PhysicsHand.IsTouchingSolid
+  fullName: VRShowcase.PhysicsHand.IsTouchingSolid
+  type: Property
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsTouchingSolid
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 566
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: Whether the hand itself pressed into something solid on the last step.
+  example: []
+  syntax:
+    content: public bool IsTouchingSolid { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsTouchingSolid As Boolean
+  overload: VRShowcase.PhysicsHand.IsTouchingSolid*
+- uid: VRShowcase.PhysicsHand.Update
+  commentId: M:VRShowcase.PhysicsHand.Update
+  id: Update
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: Update()
+  nameWithType: PhysicsHand.Update()
+  fullName: VRShowcase.PhysicsHand.Update()
+  type: Method
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Update
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 568
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: Called every frame.
+  example: []
+  syntax:
+    content: public override void Update()
+    content.vb: Public Overrides Sub Update()
+  overridden: Prowl.Runtime.MonoBehaviour.Update
+  overload: VRShowcase.PhysicsHand.Update*
+- uid: VRShowcase.PhysicsHand.TryGrab
+  commentId: M:VRShowcase.PhysicsHand.TryGrab
+  id: TryGrab
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: TryGrab()
+  nameWithType: PhysicsHand.TryGrab()
+  fullName: VRShowcase.PhysicsHand.TryGrab()
+  type: Method
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TryGrab
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 619
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: >-
+    Takes hold of whatever is nearest the grip and within reach: an item, a target like a slide or a string, or
+
+    something to climb. False when there is nothing to hold.
+  example: []
+  syntax:
+    content: public bool TryGrab()
+    return:
+      type: System.Boolean
+    content.vb: Public Function TryGrab() As Boolean
+  overload: VRShowcase.PhysicsHand.TryGrab*
+- uid: VRShowcase.PhysicsHand.Catch(VRShowcase.Grabbable)
+  commentId: M:VRShowcase.PhysicsHand.Catch(VRShowcase.Grabbable)
+  id: Catch(VRShowcase.Grabbable)
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: Catch(Grabbable)
+  nameWithType: PhysicsHand.Catch(Grabbable)
+  fullName: VRShowcase.PhysicsHand.Catch(VRShowcase.Grabbable)
+  type: Method
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Catch
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 703
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: Closes the hand on an item flying into it, from a little further than a grab reaches, pulling it into the grip.
+  example: []
+  syntax:
+    content: public bool Catch(Grabbable item)
+    parameters:
+    - id: item
+      type: VRShowcase.Grabbable
+    return:
+      type: System.Boolean
+    content.vb: Public Function [Catch](item As Grabbable) As Boolean
+  overload: VRShowcase.PhysicsHand.Catch*
+- uid: VRShowcase.PhysicsHand.Use(VRShowcase.HandTarget)
+  commentId: M:VRShowcase.PhysicsHand.Use(VRShowcase.HandTarget)
+  id: Use(VRShowcase.HandTarget)
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: Use(HandTarget)
+  nameWithType: PhysicsHand.Use(HandTarget)
+  fullName: VRShowcase.PhysicsHand.Use(VRShowcase.HandTarget)
+  type: Method
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Use
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 750
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: Starts working a target, such as a slide or a bowstring, with this hand.
+  example: []
+  syntax:
+    content: public void Use(HandTarget target)
+    parameters:
+    - id: target
+      type: VRShowcase.HandTarget
+    content.vb: Public Sub Use(target As HandTarget)
+  overload: VRShowcase.PhysicsHand.Use*
+- uid: VRShowcase.PhysicsHand.Release(System.Boolean)
+  commentId: M:VRShowcase.PhysicsHand.Release(System.Boolean)
+  id: Release(System.Boolean)
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: Release(bool)
+  nameWithType: PhysicsHand.Release(bool)
+  fullName: VRShowcase.PhysicsHand.Release(bool)
+  type: Method
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Release
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 968
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: >-
+    Lets go of whatever the hand has. A held item let go near a socket that fits goes into it, anything else leaves
+
+    with the motion it had over the last few steps, so it can be thrown.
+  example: []
+  syntax:
+    content: public void Release(bool intoSocket = true)
+    parameters:
+    - id: intoSocket
+      type: System.Boolean
+    content.vb: Public Sub Release(intoSocket As Boolean = True)
+  overload: VRShowcase.PhysicsHand.Release*
+  nameWithType.vb: PhysicsHand.Release(Boolean)
+  fullName.vb: VRShowcase.PhysicsHand.Release(Boolean)
+  name.vb: Release(Boolean)
+- uid: VRShowcase.PhysicsHand.OnEnable
+  commentId: M:VRShowcase.PhysicsHand.OnEnable
+  id: OnEnable
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: OnEnable()
+  nameWithType: PhysicsHand.OnEnable()
+  fullName: VRShowcase.PhysicsHand.OnEnable()
+  type: Method
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnEnable
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 1048
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: >-
+    Called when the object becomes enabled and active.
+
+    Only called when the GameObject is in a Scene and enabled.
+  example: []
+  syntax:
+    content: public override void OnEnable()
+    content.vb: Public Overrides Sub OnEnable()
+  overridden: Prowl.Runtime.MonoBehaviour.OnEnable
+  overload: VRShowcase.PhysicsHand.OnEnable*
+- uid: VRShowcase.PhysicsHand.OnDisable
+  commentId: M:VRShowcase.PhysicsHand.OnDisable
+  id: OnDisable
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: OnDisable()
+  nameWithType: PhysicsHand.OnDisable()
+  fullName: VRShowcase.PhysicsHand.OnDisable()
+  type: Method
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnDisable
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 1058
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: >-
+    Called when the object becomes disabled or inactive.
+
+    Only called when the GameObject was in a Scene and becomes disabled.
+  example: []
+  syntax:
+    content: public override void OnDisable()
+    content.vb: Public Overrides Sub OnDisable()
+  overridden: Prowl.Runtime.MonoBehaviour.OnDisable
+  overload: VRShowcase.PhysicsHand.OnDisable*
+- uid: VRShowcase.PhysicsHand.AngularVelocityTo(Prowl.Vector.Quaternion,Prowl.Vector.Quaternion,System.Single)
+  commentId: M:VRShowcase.PhysicsHand.AngularVelocityTo(Prowl.Vector.Quaternion,Prowl.Vector.Quaternion,System.Single)
+  id: AngularVelocityTo(Prowl.Vector.Quaternion,Prowl.Vector.Quaternion,System.Single)
+  parent: VRShowcase.PhysicsHand
+  langs:
+  - csharp
+  - vb
+  name: AngularVelocityTo(Quaternion, Quaternion, float)
+  nameWithType: PhysicsHand.AngularVelocityTo(Quaternion, Quaternion, float)
+  fullName: VRShowcase.PhysicsHand.AngularVelocityTo(Prowl.Vector.Quaternion, Prowl.Vector.Quaternion, float)
+  type: Method
+  source:
+    remote:
+      path: Samples/Runtime/VRShowcase/VRHands.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AngularVelocityTo
+    path: ../Prowl/Samples/Runtime/VRShowcase/VRHands.cs
+    startLine: 1072
+  assemblies:
+  - VRShowcase
+  namespace: VRShowcase
+  summary: The angular velocity that turns <code class="paramref">from</code> into <code class="paramref">to</code> over <code class="paramref">dt</code> seconds.
+  example: []
+  syntax:
+    content: public static Float3 AngularVelocityTo(Quaternion from, Quaternion to, float dt)
+    parameters:
+    - id: from
+      type: Prowl.Vector.Quaternion
+    - id: to
+      type: Prowl.Vector.Quaternion
+    - id: dt
+      type: System.Single
+    return:
+      type: Prowl.Vector.Float3
+    content.vb: Public Shared Function AngularVelocityTo(from As Quaternion, [to] As Quaternion, dt As Single) As Float3
+  overload: VRShowcase.PhysicsHand.AngularVelocityTo*
+  nameWithType.vb: PhysicsHand.AngularVelocityTo(Quaternion, Quaternion, Single)
+  fullName.vb: VRShowcase.PhysicsHand.AngularVelocityTo(Prowl.Vector.Quaternion, Prowl.Vector.Quaternion, Single)
+  name.vb: AngularVelocityTo(Quaternion, Quaternion, Single)
+references:
+- uid: VRShowcase.PhysicsHand.MaxSeparation
+  commentId: F:VRShowcase.PhysicsHand.MaxSeparation
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_MaxSeparation
+  name: MaxSeparation
+  nameWithType: PhysicsHand.MaxSeparation
+  fullName: VRShowcase.PhysicsHand.MaxSeparation
+- uid: VRShowcase.PhysicsHand.GripPoint
+  commentId: P:VRShowcase.PhysicsHand.GripPoint
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_GripPoint
+  name: GripPoint
+  nameWithType: PhysicsHand.GripPoint
+  fullName: VRShowcase.PhysicsHand.GripPoint
+- uid: VRShowcase
+  commentId: N:VRShowcase
+  name: VRShowcase
+  nameWithType: VRShowcase
+  fullName: VRShowcase
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.Runtime.EngineObject
+  commentId: T:Prowl.Runtime.EngineObject
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.EngineObject.html
+  name: EngineObject
+  nameWithType: EngineObject
+  fullName: Prowl.Runtime.EngineObject
+- uid: Prowl.Runtime.MonoBehaviour
+  commentId: T:Prowl.Runtime.MonoBehaviour
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.MonoBehaviour.html
+  name: MonoBehaviour
+  nameWithType: MonoBehaviour
+  fullName: Prowl.Runtime.MonoBehaviour
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Prowl.Echo.ISerializationCallbackReceiver
+  commentId: T:Prowl.Echo.ISerializationCallbackReceiver
+  parent: Prowl.Echo
+  isExternal: true
+  name: ISerializationCallbackReceiver
+  nameWithType: ISerializationCallbackReceiver
+  fullName: Prowl.Echo.ISerializationCallbackReceiver
+- uid: Prowl.Runtime.MonoBehaviour.IsFromPrefab
+  commentId: P:Prowl.Runtime.MonoBehaviour.IsFromPrefab
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_IsFromPrefab
+  name: IsFromPrefab
+  nameWithType: MonoBehaviour.IsFromPrefab
+  fullName: Prowl.Runtime.MonoBehaviour.IsFromPrefab
+- uid: Prowl.Runtime.MonoBehaviour.HideFlags
+  commentId: F:Prowl.Runtime.MonoBehaviour.HideFlags
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_HideFlags
+  name: HideFlags
+  nameWithType: MonoBehaviour.HideFlags
+  fullName: Prowl.Runtime.MonoBehaviour.HideFlags
+- uid: Prowl.Runtime.MonoBehaviour.DestroyCancellationToken
+  commentId: P:Prowl.Runtime.MonoBehaviour.DestroyCancellationToken
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DestroyCancellationToken
+  name: DestroyCancellationToken
+  nameWithType: MonoBehaviour.DestroyCancellationToken
+  fullName: Prowl.Runtime.MonoBehaviour.DestroyCancellationToken
+- uid: Prowl.Runtime.MonoBehaviour.Identifier
+  commentId: P:Prowl.Runtime.MonoBehaviour.Identifier
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Identifier
+  name: Identifier
+  nameWithType: MonoBehaviour.Identifier
+  fullName: Prowl.Runtime.MonoBehaviour.Identifier
+- uid: Prowl.Runtime.MonoBehaviour.SourceIdentifier
+  commentId: P:Prowl.Runtime.MonoBehaviour.SourceIdentifier
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_SourceIdentifier
+  name: SourceIdentifier
+  nameWithType: MonoBehaviour.SourceIdentifier
+  fullName: Prowl.Runtime.MonoBehaviour.SourceIdentifier
+- uid: Prowl.Runtime.MonoBehaviour.GameObject
+  commentId: P:Prowl.Runtime.MonoBehaviour.GameObject
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GameObject
+  name: GameObject
+  nameWithType: MonoBehaviour.GameObject
+  fullName: Prowl.Runtime.MonoBehaviour.GameObject
+- uid: Prowl.Runtime.MonoBehaviour.Transform
+  commentId: P:Prowl.Runtime.MonoBehaviour.Transform
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Transform
+  name: Transform
+  nameWithType: MonoBehaviour.Transform
+  fullName: Prowl.Runtime.MonoBehaviour.Transform
+- uid: Prowl.Runtime.MonoBehaviour.HasStarted
+  commentId: P:Prowl.Runtime.MonoBehaviour.HasStarted
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_HasStarted
+  name: HasStarted
+  nameWithType: MonoBehaviour.HasStarted
+  fullName: Prowl.Runtime.MonoBehaviour.HasStarted
+- uid: Prowl.Runtime.MonoBehaviour.HasBeenEnabled
+  commentId: P:Prowl.Runtime.MonoBehaviour.HasBeenEnabled
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_HasBeenEnabled
+  name: HasBeenEnabled
+  nameWithType: MonoBehaviour.HasBeenEnabled
+  fullName: Prowl.Runtime.MonoBehaviour.HasBeenEnabled
+- uid: Prowl.Runtime.MonoBehaviour.Tag
+  commentId: P:Prowl.Runtime.MonoBehaviour.Tag
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Tag
+  name: Tag
+  nameWithType: MonoBehaviour.Tag
+  fullName: Prowl.Runtime.MonoBehaviour.Tag
+- uid: Prowl.Runtime.MonoBehaviour.Enabled
+  commentId: P:Prowl.Runtime.MonoBehaviour.Enabled
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Enabled
+  name: Enabled
+  nameWithType: MonoBehaviour.Enabled
+  fullName: Prowl.Runtime.MonoBehaviour.Enabled
+- uid: Prowl.Runtime.MonoBehaviour.EnabledInHierarchy
+  commentId: P:Prowl.Runtime.MonoBehaviour.EnabledInHierarchy
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_EnabledInHierarchy
+  name: EnabledInHierarchy
+  nameWithType: MonoBehaviour.EnabledInHierarchy
+  fullName: Prowl.Runtime.MonoBehaviour.EnabledInHierarchy
+- uid: Prowl.Runtime.MonoBehaviour.Scene
+  commentId: P:Prowl.Runtime.MonoBehaviour.Scene
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Scene
+  name: Scene
+  nameWithType: MonoBehaviour.Scene
+  fullName: Prowl.Runtime.MonoBehaviour.Scene
+- uid: Prowl.Runtime.MonoBehaviour.CompareTag(System.String)
+  commentId: M:Prowl.Runtime.MonoBehaviour.CompareTag(System.String)
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_CompareTag_System_String_
+  name: CompareTag(string)
+  nameWithType: MonoBehaviour.CompareTag(string)
+  fullName: Prowl.Runtime.MonoBehaviour.CompareTag(string)
+  nameWithType.vb: MonoBehaviour.CompareTag(String)
+  fullName.vb: Prowl.Runtime.MonoBehaviour.CompareTag(String)
+  name.vb: CompareTag(String)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.CompareTag(System.String)
+    name: CompareTag
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_CompareTag_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.CompareTag(System.String)
+    name: CompareTag
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_CompareTag_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.AddComponent``1
+  commentId: M:Prowl.Runtime.MonoBehaviour.AddComponent``1
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_AddComponent__1
+  name: AddComponent<T>()
+  nameWithType: MonoBehaviour.AddComponent<T>()
+  fullName: Prowl.Runtime.MonoBehaviour.AddComponent<T>()
+  nameWithType.vb: MonoBehaviour.AddComponent(Of T)()
+  fullName.vb: Prowl.Runtime.MonoBehaviour.AddComponent(Of T)()
+  name.vb: AddComponent(Of T)()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.AddComponent``1
+    name: AddComponent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_AddComponent__1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.AddComponent``1
+    name: AddComponent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_AddComponent__1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.AddComponent(System.Type)
+  commentId: M:Prowl.Runtime.MonoBehaviour.AddComponent(System.Type)
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_AddComponent_System_Type_
+  name: AddComponent(Type)
+  nameWithType: MonoBehaviour.AddComponent(Type)
+  fullName: Prowl.Runtime.MonoBehaviour.AddComponent(System.Type)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.AddComponent(System.Type)
+    name: AddComponent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_AddComponent_System_Type_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.AddComponent(System.Type)
+    name: AddComponent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_AddComponent_System_Type_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.RemoveComponent``1({T})
+  commentId: M:Prowl.Runtime.MonoBehaviour.RemoveComponent``1(``0)
+  parent: Prowl.Runtime.MonoBehaviour
+  definition: Prowl.Runtime.MonoBehaviour.RemoveComponent``1(``0)
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_RemoveComponent__1___0_
+  name: RemoveComponent<T>(T)
+  nameWithType: MonoBehaviour.RemoveComponent<T>(T)
+  fullName: Prowl.Runtime.MonoBehaviour.RemoveComponent<T>(T)
+  nameWithType.vb: MonoBehaviour.RemoveComponent(Of T)(T)
+  fullName.vb: Prowl.Runtime.MonoBehaviour.RemoveComponent(Of T)(T)
+  name.vb: RemoveComponent(Of T)(T)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.RemoveComponent``1(``0)
+    name: RemoveComponent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_RemoveComponent__1___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.RemoveComponent``1(``0)
+    name: RemoveComponent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_RemoveComponent__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.RemoveComponent(Prowl.Runtime.MonoBehaviour)
+  commentId: M:Prowl.Runtime.MonoBehaviour.RemoveComponent(Prowl.Runtime.MonoBehaviour)
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_RemoveComponent_Prowl_Runtime_MonoBehaviour_
+  name: RemoveComponent(MonoBehaviour)
+  nameWithType: MonoBehaviour.RemoveComponent(MonoBehaviour)
+  fullName: Prowl.Runtime.MonoBehaviour.RemoveComponent(Prowl.Runtime.MonoBehaviour)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.RemoveComponent(Prowl.Runtime.MonoBehaviour)
+    name: RemoveComponent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_RemoveComponent_Prowl_Runtime_MonoBehaviour_
+  - name: (
+  - uid: Prowl.Runtime.MonoBehaviour
+    name: MonoBehaviour
+    href: Prowl.Runtime.MonoBehaviour.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.RemoveComponent(Prowl.Runtime.MonoBehaviour)
+    name: RemoveComponent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_RemoveComponent_Prowl_Runtime_MonoBehaviour_
+  - name: (
+  - uid: Prowl.Runtime.MonoBehaviour
+    name: MonoBehaviour
+    href: Prowl.Runtime.MonoBehaviour.html
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.RemoveSelf
+  commentId: M:Prowl.Runtime.MonoBehaviour.RemoveSelf
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_RemoveSelf
+  name: RemoveSelf()
+  nameWithType: MonoBehaviour.RemoveSelf()
+  fullName: Prowl.Runtime.MonoBehaviour.RemoveSelf()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.RemoveSelf
+    name: RemoveSelf
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_RemoveSelf
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.RemoveSelf
+    name: RemoveSelf
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_RemoveSelf
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.GetComponent``1
+  commentId: M:Prowl.Runtime.MonoBehaviour.GetComponent``1
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponent__1
+  name: GetComponent<T>()
+  nameWithType: MonoBehaviour.GetComponent<T>()
+  fullName: Prowl.Runtime.MonoBehaviour.GetComponent<T>()
+  nameWithType.vb: MonoBehaviour.GetComponent(Of T)()
+  fullName.vb: Prowl.Runtime.MonoBehaviour.GetComponent(Of T)()
+  name.vb: GetComponent(Of T)()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponent``1
+    name: GetComponent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponent__1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponent``1
+    name: GetComponent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponent__1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.GetComponent(System.Type)
+  commentId: M:Prowl.Runtime.MonoBehaviour.GetComponent(System.Type)
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponent_System_Type_
+  name: GetComponent(Type)
+  nameWithType: MonoBehaviour.GetComponent(Type)
+  fullName: Prowl.Runtime.MonoBehaviour.GetComponent(System.Type)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponent(System.Type)
+    name: GetComponent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponent_System_Type_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponent(System.Type)
+    name: GetComponent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponent_System_Type_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.GetComponentByIdentifier(System.Guid)
+  commentId: M:Prowl.Runtime.MonoBehaviour.GetComponentByIdentifier(System.Guid)
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentByIdentifier_System_Guid_
+  name: GetComponentByIdentifier(Guid)
+  nameWithType: MonoBehaviour.GetComponentByIdentifier(Guid)
+  fullName: Prowl.Runtime.MonoBehaviour.GetComponentByIdentifier(System.Guid)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentByIdentifier(System.Guid)
+    name: GetComponentByIdentifier
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentByIdentifier_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentByIdentifier(System.Guid)
+    name: GetComponentByIdentifier
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentByIdentifier_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.TryGetComponent``1({T}@)
+  commentId: M:Prowl.Runtime.MonoBehaviour.TryGetComponent``1(``0@)
+  parent: Prowl.Runtime.MonoBehaviour
+  definition: Prowl.Runtime.MonoBehaviour.TryGetComponent``1(``0@)
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_TryGetComponent__1___0__
+  name: TryGetComponent<T>(out T)
+  nameWithType: MonoBehaviour.TryGetComponent<T>(out T)
+  fullName: Prowl.Runtime.MonoBehaviour.TryGetComponent<T>(out T)
+  nameWithType.vb: MonoBehaviour.TryGetComponent(Of T)(T)
+  fullName.vb: Prowl.Runtime.MonoBehaviour.TryGetComponent(Of T)(T)
+  name.vb: TryGetComponent(Of T)(T)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.TryGetComponent``1(``0@)
+    name: TryGetComponent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_TryGetComponent__1___0__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: out
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.TryGetComponent``1(``0@)
+    name: TryGetComponent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_TryGetComponent__1___0__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.GetComponents``1
+  commentId: M:Prowl.Runtime.MonoBehaviour.GetComponents``1
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponents__1
+  name: GetComponents<T>()
+  nameWithType: MonoBehaviour.GetComponents<T>()
+  fullName: Prowl.Runtime.MonoBehaviour.GetComponents<T>()
+  nameWithType.vb: MonoBehaviour.GetComponents(Of T)()
+  fullName.vb: Prowl.Runtime.MonoBehaviour.GetComponents(Of T)()
+  name.vb: GetComponents(Of T)()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponents``1
+    name: GetComponents
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponents__1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponents``1
+    name: GetComponents
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponents__1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.GetComponents(System.Type)
+  commentId: M:Prowl.Runtime.MonoBehaviour.GetComponents(System.Type)
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponents_System_Type_
+  name: GetComponents(Type)
+  nameWithType: MonoBehaviour.GetComponents(Type)
+  fullName: Prowl.Runtime.MonoBehaviour.GetComponents(System.Type)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponents(System.Type)
+    name: GetComponents
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponents_System_Type_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponents(System.Type)
+    name: GetComponents
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponents_System_Type_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.GetComponentInParent``1(System.Boolean)
+  commentId: M:Prowl.Runtime.MonoBehaviour.GetComponentInParent``1(System.Boolean)
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentInParent__1_System_Boolean_
+  name: GetComponentInParent<T>(bool)
+  nameWithType: MonoBehaviour.GetComponentInParent<T>(bool)
+  fullName: Prowl.Runtime.MonoBehaviour.GetComponentInParent<T>(bool)
+  nameWithType.vb: MonoBehaviour.GetComponentInParent(Of T)(Boolean)
+  fullName.vb: Prowl.Runtime.MonoBehaviour.GetComponentInParent(Of T)(Boolean)
+  name.vb: GetComponentInParent(Of T)(Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentInParent``1(System.Boolean)
+    name: GetComponentInParent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentInParent__1_System_Boolean_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentInParent``1(System.Boolean)
+    name: GetComponentInParent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentInParent__1_System_Boolean_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.GetComponentInParent(System.Type,System.Boolean)
+  commentId: M:Prowl.Runtime.MonoBehaviour.GetComponentInParent(System.Type,System.Boolean)
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentInParent_System_Type_System_Boolean_
+  name: GetComponentInParent(Type, bool)
+  nameWithType: MonoBehaviour.GetComponentInParent(Type, bool)
+  fullName: Prowl.Runtime.MonoBehaviour.GetComponentInParent(System.Type, bool)
+  nameWithType.vb: MonoBehaviour.GetComponentInParent(Type, Boolean)
+  fullName.vb: Prowl.Runtime.MonoBehaviour.GetComponentInParent(System.Type, Boolean)
+  name.vb: GetComponentInParent(Type, Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentInParent(System.Type,System.Boolean)
+    name: GetComponentInParent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentInParent_System_Type_System_Boolean_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentInParent(System.Type,System.Boolean)
+    name: GetComponentInParent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentInParent_System_Type_System_Boolean_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.GetComponentsInParent``1(System.Boolean)
+  commentId: M:Prowl.Runtime.MonoBehaviour.GetComponentsInParent``1(System.Boolean)
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentsInParent__1_System_Boolean_
+  name: GetComponentsInParent<T>(bool)
+  nameWithType: MonoBehaviour.GetComponentsInParent<T>(bool)
+  fullName: Prowl.Runtime.MonoBehaviour.GetComponentsInParent<T>(bool)
+  nameWithType.vb: MonoBehaviour.GetComponentsInParent(Of T)(Boolean)
+  fullName.vb: Prowl.Runtime.MonoBehaviour.GetComponentsInParent(Of T)(Boolean)
+  name.vb: GetComponentsInParent(Of T)(Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentsInParent``1(System.Boolean)
+    name: GetComponentsInParent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentsInParent__1_System_Boolean_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentsInParent``1(System.Boolean)
+    name: GetComponentsInParent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentsInParent__1_System_Boolean_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.GetComponentsInParent(System.Type,System.Boolean)
+  commentId: M:Prowl.Runtime.MonoBehaviour.GetComponentsInParent(System.Type,System.Boolean)
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentsInParent_System_Type_System_Boolean_
+  name: GetComponentsInParent(Type, bool)
+  nameWithType: MonoBehaviour.GetComponentsInParent(Type, bool)
+  fullName: Prowl.Runtime.MonoBehaviour.GetComponentsInParent(System.Type, bool)
+  nameWithType.vb: MonoBehaviour.GetComponentsInParent(Type, Boolean)
+  fullName.vb: Prowl.Runtime.MonoBehaviour.GetComponentsInParent(System.Type, Boolean)
+  name.vb: GetComponentsInParent(Type, Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentsInParent(System.Type,System.Boolean)
+    name: GetComponentsInParent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentsInParent_System_Type_System_Boolean_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentsInParent(System.Type,System.Boolean)
+    name: GetComponentsInParent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentsInParent_System_Type_System_Boolean_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.GetComponentInChildren``1(System.Boolean)
+  commentId: M:Prowl.Runtime.MonoBehaviour.GetComponentInChildren``1(System.Boolean)
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentInChildren__1_System_Boolean_
+  name: GetComponentInChildren<T>(bool)
+  nameWithType: MonoBehaviour.GetComponentInChildren<T>(bool)
+  fullName: Prowl.Runtime.MonoBehaviour.GetComponentInChildren<T>(bool)
+  nameWithType.vb: MonoBehaviour.GetComponentInChildren(Of T)(Boolean)
+  fullName.vb: Prowl.Runtime.MonoBehaviour.GetComponentInChildren(Of T)(Boolean)
+  name.vb: GetComponentInChildren(Of T)(Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentInChildren``1(System.Boolean)
+    name: GetComponentInChildren
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentInChildren__1_System_Boolean_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentInChildren``1(System.Boolean)
+    name: GetComponentInChildren
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentInChildren__1_System_Boolean_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.GetComponentInChildren(System.Type,System.Boolean)
+  commentId: M:Prowl.Runtime.MonoBehaviour.GetComponentInChildren(System.Type,System.Boolean)
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentInChildren_System_Type_System_Boolean_
+  name: GetComponentInChildren(Type, bool)
+  nameWithType: MonoBehaviour.GetComponentInChildren(Type, bool)
+  fullName: Prowl.Runtime.MonoBehaviour.GetComponentInChildren(System.Type, bool)
+  nameWithType.vb: MonoBehaviour.GetComponentInChildren(Type, Boolean)
+  fullName.vb: Prowl.Runtime.MonoBehaviour.GetComponentInChildren(System.Type, Boolean)
+  name.vb: GetComponentInChildren(Type, Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentInChildren(System.Type,System.Boolean)
+    name: GetComponentInChildren
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentInChildren_System_Type_System_Boolean_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentInChildren(System.Type,System.Boolean)
+    name: GetComponentInChildren
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentInChildren_System_Type_System_Boolean_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.GetComponentsInChildren``1(System.Boolean)
+  commentId: M:Prowl.Runtime.MonoBehaviour.GetComponentsInChildren``1(System.Boolean)
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentsInChildren__1_System_Boolean_
+  name: GetComponentsInChildren<T>(bool)
+  nameWithType: MonoBehaviour.GetComponentsInChildren<T>(bool)
+  fullName: Prowl.Runtime.MonoBehaviour.GetComponentsInChildren<T>(bool)
+  nameWithType.vb: MonoBehaviour.GetComponentsInChildren(Of T)(Boolean)
+  fullName.vb: Prowl.Runtime.MonoBehaviour.GetComponentsInChildren(Of T)(Boolean)
+  name.vb: GetComponentsInChildren(Of T)(Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentsInChildren``1(System.Boolean)
+    name: GetComponentsInChildren
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentsInChildren__1_System_Boolean_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentsInChildren``1(System.Boolean)
+    name: GetComponentsInChildren
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentsInChildren__1_System_Boolean_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.GetComponentsInChildren(System.Type,System.Boolean)
+  commentId: M:Prowl.Runtime.MonoBehaviour.GetComponentsInChildren(System.Type,System.Boolean)
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentsInChildren_System_Type_System_Boolean_
+  name: GetComponentsInChildren(Type, bool)
+  nameWithType: MonoBehaviour.GetComponentsInChildren(Type, bool)
+  fullName: Prowl.Runtime.MonoBehaviour.GetComponentsInChildren(System.Type, bool)
+  nameWithType.vb: MonoBehaviour.GetComponentsInChildren(Type, Boolean)
+  fullName.vb: Prowl.Runtime.MonoBehaviour.GetComponentsInChildren(System.Type, Boolean)
+  name.vb: GetComponentsInChildren(Type, Boolean)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentsInChildren(System.Type,System.Boolean)
+    name: GetComponentsInChildren
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentsInChildren_System_Type_System_Boolean_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.GetComponentsInChildren(System.Type,System.Boolean)
+    name: GetComponentsInChildren
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetComponentsInChildren_System_Type_System_Boolean_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.GetSiblingIndex
+  commentId: M:Prowl.Runtime.MonoBehaviour.GetSiblingIndex
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetSiblingIndex
+  name: GetSiblingIndex()
+  nameWithType: MonoBehaviour.GetSiblingIndex()
+  fullName: Prowl.Runtime.MonoBehaviour.GetSiblingIndex()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.GetSiblingIndex
+    name: GetSiblingIndex
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetSiblingIndex
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.GetSiblingIndex
+    name: GetSiblingIndex
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_GetSiblingIndex
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.SetSiblingIndex(System.Int32)
+  commentId: M:Prowl.Runtime.MonoBehaviour.SetSiblingIndex(System.Int32)
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_SetSiblingIndex_System_Int32_
+  name: SetSiblingIndex(int)
+  nameWithType: MonoBehaviour.SetSiblingIndex(int)
+  fullName: Prowl.Runtime.MonoBehaviour.SetSiblingIndex(int)
+  nameWithType.vb: MonoBehaviour.SetSiblingIndex(Integer)
+  fullName.vb: Prowl.Runtime.MonoBehaviour.SetSiblingIndex(Integer)
+  name.vb: SetSiblingIndex(Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.SetSiblingIndex(System.Int32)
+    name: SetSiblingIndex
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_SetSiblingIndex_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.SetSiblingIndex(System.Int32)
+    name: SetSiblingIndex
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_SetSiblingIndex_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnAddedToScene
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnAddedToScene
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnAddedToScene
+  name: OnAddedToScene()
+  nameWithType: MonoBehaviour.OnAddedToScene()
+  fullName: Prowl.Runtime.MonoBehaviour.OnAddedToScene()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnAddedToScene
+    name: OnAddedToScene
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnAddedToScene
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnAddedToScene
+    name: OnAddedToScene
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnAddedToScene
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnRemovedFromScene
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnRemovedFromScene
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnRemovedFromScene
+  name: OnRemovedFromScene()
+  nameWithType: MonoBehaviour.OnRemovedFromScene()
+  fullName: Prowl.Runtime.MonoBehaviour.OnRemovedFromScene()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnRemovedFromScene
+    name: OnRemovedFromScene
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnRemovedFromScene
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnRemovedFromScene
+    name: OnRemovedFromScene
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnRemovedFromScene
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.Start
+  commentId: M:Prowl.Runtime.MonoBehaviour.Start
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Start
+  name: Start()
+  nameWithType: MonoBehaviour.Start()
+  fullName: Prowl.Runtime.MonoBehaviour.Start()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.Start
+    name: Start
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Start
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.Start
+    name: Start
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Start
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.LateUpdate
+  commentId: M:Prowl.Runtime.MonoBehaviour.LateUpdate
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_LateUpdate
+  name: LateUpdate()
+  nameWithType: MonoBehaviour.LateUpdate()
+  fullName: Prowl.Runtime.MonoBehaviour.LateUpdate()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.LateUpdate
+    name: LateUpdate
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_LateUpdate
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.LateUpdate
+    name: LateUpdate
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_LateUpdate
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnRenderCollect_Prowl_Runtime_Camera_System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderable__System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderableLight__
+  name: OnRenderCollect(Camera, List<IRenderable>, List<IRenderableLight>)
+  nameWithType: MonoBehaviour.OnRenderCollect(Camera, List<IRenderable>, List<IRenderableLight>)
+  fullName: Prowl.Runtime.MonoBehaviour.OnRenderCollect(Prowl.Runtime.Camera, System.Collections.Generic.List<Prowl.Runtime.Rendering.IRenderable>, System.Collections.Generic.List<Prowl.Runtime.Rendering.IRenderableLight>)
+  nameWithType.vb: MonoBehaviour.OnRenderCollect(Camera, List(Of IRenderable), List(Of IRenderableLight))
+  fullName.vb: Prowl.Runtime.MonoBehaviour.OnRenderCollect(Prowl.Runtime.Camera, System.Collections.Generic.List(Of Prowl.Runtime.Rendering.IRenderable), System.Collections.Generic.List(Of Prowl.Runtime.Rendering.IRenderableLight))
+  name.vb: OnRenderCollect(Camera, List(Of IRenderable), List(Of IRenderableLight))
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
+    name: OnRenderCollect
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnRenderCollect_Prowl_Runtime_Camera_System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderable__System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderableLight__
+  - name: (
+  - uid: Prowl.Runtime.Camera
+    name: Camera
+    href: Prowl.Runtime.Camera.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Prowl.Runtime.Rendering.IRenderable
+    name: IRenderable
+    href: Prowl.Runtime.Rendering.IRenderable.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Prowl.Runtime.Rendering.IRenderableLight
+    name: IRenderableLight
+    href: Prowl.Runtime.Rendering.IRenderableLight.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnRenderCollect(Prowl.Runtime.Camera,System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderable},System.Collections.Generic.List{Prowl.Runtime.Rendering.IRenderableLight})
+    name: OnRenderCollect
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnRenderCollect_Prowl_Runtime_Camera_System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderable__System_Collections_Generic_List_Prowl_Runtime_Rendering_IRenderableLight__
+  - name: (
+  - uid: Prowl.Runtime.Camera
+    name: Camera
+    href: Prowl.Runtime.Camera.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Rendering.IRenderable
+    name: IRenderable
+    href: Prowl.Runtime.Rendering.IRenderable.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Rendering.IRenderableLight
+    name: IRenderableLight
+    href: Prowl.Runtime.Rendering.IRenderableLight.html
+  - name: )
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.DrawGizmos
+  commentId: M:Prowl.Runtime.MonoBehaviour.DrawGizmos
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmos
+  name: DrawGizmos()
+  nameWithType: MonoBehaviour.DrawGizmos()
+  fullName: Prowl.Runtime.MonoBehaviour.DrawGizmos()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.DrawGizmos
+    name: DrawGizmos
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmos
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.DrawGizmos
+    name: DrawGizmos
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmos
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
+  commentId: M:Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmosSelected
+  name: DrawGizmosSelected()
+  nameWithType: MonoBehaviour.DrawGizmosSelected()
+  fullName: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
+    name: DrawGizmosSelected
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmosSelected
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.DrawGizmosSelected
+    name: DrawGizmosSelected
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_DrawGizmosSelected
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnGui(Prowl.PaperUI.Paper)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnGui(Prowl.PaperUI.Paper)
+  parent: Prowl.Runtime.MonoBehaviour
+  isExternal: true
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnGui_Prowl_PaperUI_Paper_
+  name: OnGui(Paper)
+  nameWithType: MonoBehaviour.OnGui(Paper)
+  fullName: Prowl.Runtime.MonoBehaviour.OnGui(Prowl.PaperUI.Paper)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnGui(Prowl.PaperUI.Paper)
+    name: OnGui
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnGui_Prowl_PaperUI_Paper_
+  - name: (
+  - uid: Prowl.PaperUI.Paper
+    name: Paper
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnGui(Prowl.PaperUI.Paper)
+    name: OnGui
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnGui_Prowl_PaperUI_Paper_
+  - name: (
+  - uid: Prowl.PaperUI.Paper
+    name: Paper
+    isExternal: true
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnCollisionEnd(Prowl.Runtime.Collision)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnCollisionEnd(Prowl.Runtime.Collision)
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionEnd_Prowl_Runtime_Collision_
+  name: OnCollisionEnd(Collision)
+  nameWithType: MonoBehaviour.OnCollisionEnd(Collision)
+  fullName: Prowl.Runtime.MonoBehaviour.OnCollisionEnd(Prowl.Runtime.Collision)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCollisionEnd(Prowl.Runtime.Collision)
+    name: OnCollisionEnd
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionEnd_Prowl_Runtime_Collision_
+  - name: (
+  - uid: Prowl.Runtime.Collision
+    name: Collision
+    href: Prowl.Runtime.Collision.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCollisionEnd(Prowl.Runtime.Collision)
+    name: OnCollisionEnd
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionEnd_Prowl_Runtime_Collision_
+  - name: (
+  - uid: Prowl.Runtime.Collision
+    name: Collision
+    href: Prowl.Runtime.Collision.html
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnTriggerEnter(Prowl.Runtime.Rigidbody3D)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnTriggerEnter(Prowl.Runtime.Rigidbody3D)
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerEnter_Prowl_Runtime_Rigidbody3D_
+  name: OnTriggerEnter(Rigidbody3D)
+  nameWithType: MonoBehaviour.OnTriggerEnter(Rigidbody3D)
+  fullName: Prowl.Runtime.MonoBehaviour.OnTriggerEnter(Prowl.Runtime.Rigidbody3D)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnTriggerEnter(Prowl.Runtime.Rigidbody3D)
+    name: OnTriggerEnter
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerEnter_Prowl_Runtime_Rigidbody3D_
+  - name: (
+  - uid: Prowl.Runtime.Rigidbody3D
+    name: Rigidbody3D
+    href: Prowl.Runtime.Rigidbody3D.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnTriggerEnter(Prowl.Runtime.Rigidbody3D)
+    name: OnTriggerEnter
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerEnter_Prowl_Runtime_Rigidbody3D_
+  - name: (
+  - uid: Prowl.Runtime.Rigidbody3D
+    name: Rigidbody3D
+    href: Prowl.Runtime.Rigidbody3D.html
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnTriggerStay(Prowl.Runtime.Rigidbody3D)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnTriggerStay(Prowl.Runtime.Rigidbody3D)
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerStay_Prowl_Runtime_Rigidbody3D_
+  name: OnTriggerStay(Rigidbody3D)
+  nameWithType: MonoBehaviour.OnTriggerStay(Rigidbody3D)
+  fullName: Prowl.Runtime.MonoBehaviour.OnTriggerStay(Prowl.Runtime.Rigidbody3D)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnTriggerStay(Prowl.Runtime.Rigidbody3D)
+    name: OnTriggerStay
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerStay_Prowl_Runtime_Rigidbody3D_
+  - name: (
+  - uid: Prowl.Runtime.Rigidbody3D
+    name: Rigidbody3D
+    href: Prowl.Runtime.Rigidbody3D.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnTriggerStay(Prowl.Runtime.Rigidbody3D)
+    name: OnTriggerStay
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerStay_Prowl_Runtime_Rigidbody3D_
+  - name: (
+  - uid: Prowl.Runtime.Rigidbody3D
+    name: Rigidbody3D
+    href: Prowl.Runtime.Rigidbody3D.html
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnTriggerExit(Prowl.Runtime.Rigidbody3D)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnTriggerExit(Prowl.Runtime.Rigidbody3D)
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerExit_Prowl_Runtime_Rigidbody3D_
+  name: OnTriggerExit(Rigidbody3D)
+  nameWithType: MonoBehaviour.OnTriggerExit(Rigidbody3D)
+  fullName: Prowl.Runtime.MonoBehaviour.OnTriggerExit(Prowl.Runtime.Rigidbody3D)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnTriggerExit(Prowl.Runtime.Rigidbody3D)
+    name: OnTriggerExit
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerExit_Prowl_Runtime_Rigidbody3D_
+  - name: (
+  - uid: Prowl.Runtime.Rigidbody3D
+    name: Rigidbody3D
+    href: Prowl.Runtime.Rigidbody3D.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnTriggerExit(Prowl.Runtime.Rigidbody3D)
+    name: OnTriggerExit
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnTriggerExit_Prowl_Runtime_Rigidbody3D_
+  - name: (
+  - uid: Prowl.Runtime.Rigidbody3D
+    name: Rigidbody3D
+    href: Prowl.Runtime.Rigidbody3D.html
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnCharacterEnter(Prowl.Runtime.CharacterController)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnCharacterEnter(Prowl.Runtime.CharacterController)
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterEnter_Prowl_Runtime_CharacterController_
+  name: OnCharacterEnter(CharacterController)
+  nameWithType: MonoBehaviour.OnCharacterEnter(CharacterController)
+  fullName: Prowl.Runtime.MonoBehaviour.OnCharacterEnter(Prowl.Runtime.CharacterController)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCharacterEnter(Prowl.Runtime.CharacterController)
+    name: OnCharacterEnter
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterEnter_Prowl_Runtime_CharacterController_
+  - name: (
+  - uid: Prowl.Runtime.CharacterController
+    name: CharacterController
+    href: Prowl.Runtime.CharacterController.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCharacterEnter(Prowl.Runtime.CharacterController)
+    name: OnCharacterEnter
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterEnter_Prowl_Runtime_CharacterController_
+  - name: (
+  - uid: Prowl.Runtime.CharacterController
+    name: CharacterController
+    href: Prowl.Runtime.CharacterController.html
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnCharacterStay(Prowl.Runtime.CharacterController)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnCharacterStay(Prowl.Runtime.CharacterController)
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterStay_Prowl_Runtime_CharacterController_
+  name: OnCharacterStay(CharacterController)
+  nameWithType: MonoBehaviour.OnCharacterStay(CharacterController)
+  fullName: Prowl.Runtime.MonoBehaviour.OnCharacterStay(Prowl.Runtime.CharacterController)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCharacterStay(Prowl.Runtime.CharacterController)
+    name: OnCharacterStay
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterStay_Prowl_Runtime_CharacterController_
+  - name: (
+  - uid: Prowl.Runtime.CharacterController
+    name: CharacterController
+    href: Prowl.Runtime.CharacterController.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCharacterStay(Prowl.Runtime.CharacterController)
+    name: OnCharacterStay
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterStay_Prowl_Runtime_CharacterController_
+  - name: (
+  - uid: Prowl.Runtime.CharacterController
+    name: CharacterController
+    href: Prowl.Runtime.CharacterController.html
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnCharacterExit(Prowl.Runtime.CharacterController)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnCharacterExit(Prowl.Runtime.CharacterController)
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterExit_Prowl_Runtime_CharacterController_
+  name: OnCharacterExit(CharacterController)
+  nameWithType: MonoBehaviour.OnCharacterExit(CharacterController)
+  fullName: Prowl.Runtime.MonoBehaviour.OnCharacterExit(Prowl.Runtime.CharacterController)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCharacterExit(Prowl.Runtime.CharacterController)
+    name: OnCharacterExit
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterExit_Prowl_Runtime_CharacterController_
+  - name: (
+  - uid: Prowl.Runtime.CharacterController
+    name: CharacterController
+    href: Prowl.Runtime.CharacterController.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCharacterExit(Prowl.Runtime.CharacterController)
+    name: OnCharacterExit
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCharacterExit_Prowl_Runtime_CharacterController_
+  - name: (
+  - uid: Prowl.Runtime.CharacterController
+    name: CharacterController
+    href: Prowl.Runtime.CharacterController.html
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnBeforeSerialize
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnBeforeSerialize
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnBeforeSerialize
+  name: OnBeforeSerialize()
+  nameWithType: MonoBehaviour.OnBeforeSerialize()
+  fullName: Prowl.Runtime.MonoBehaviour.OnBeforeSerialize()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnBeforeSerialize
+    name: OnBeforeSerialize
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnBeforeSerialize
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnBeforeSerialize
+    name: OnBeforeSerialize
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnBeforeSerialize
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.OnAfterDeserialize
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnAfterDeserialize
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnAfterDeserialize
+  name: OnAfterDeserialize()
+  nameWithType: MonoBehaviour.OnAfterDeserialize()
+  fullName: Prowl.Runtime.MonoBehaviour.OnAfterDeserialize()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnAfterDeserialize
+    name: OnAfterDeserialize
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnAfterDeserialize
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnAfterDeserialize
+    name: OnAfterDeserialize
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnAfterDeserialize
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.InstanceID
+  commentId: P:Prowl.Runtime.EngineObject.InstanceID
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_InstanceID
+  name: InstanceID
+  nameWithType: EngineObject.InstanceID
+  fullName: Prowl.Runtime.EngineObject.InstanceID
+- uid: Prowl.Runtime.EngineObject.Name
+  commentId: F:Prowl.Runtime.EngineObject.Name
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Name
+  name: Name
+  nameWithType: EngineObject.Name
+  fullName: Prowl.Runtime.EngineObject.Name
+- uid: Prowl.Runtime.EngineObject.IsDisposed
+  commentId: P:Prowl.Runtime.EngineObject.IsDisposed
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_IsDisposed
+  name: IsDisposed
+  nameWithType: EngineObject.IsDisposed
+  fullName: Prowl.Runtime.EngineObject.IsDisposed
+- uid: Prowl.Runtime.EngineObject.CreatedInstance
+  commentId: M:Prowl.Runtime.EngineObject.CreatedInstance
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_CreatedInstance
+  name: CreatedInstance()
+  nameWithType: EngineObject.CreatedInstance()
+  fullName: Prowl.Runtime.EngineObject.CreatedInstance()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.CreatedInstance
+    name: CreatedInstance
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_CreatedInstance
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.CreatedInstance
+    name: CreatedInstance
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_CreatedInstance
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.OnValidate
+  commentId: M:Prowl.Runtime.EngineObject.OnValidate
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnValidate
+  name: OnValidate()
+  nameWithType: EngineObject.OnValidate()
+  fullName: Prowl.Runtime.EngineObject.OnValidate()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.OnValidate
+    name: OnValidate
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnValidate
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.OnValidate
+    name: OnValidate
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnValidate
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Dispose
+  commentId: M:Prowl.Runtime.EngineObject.Dispose
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
+  name: Dispose()
+  nameWithType: EngineObject.Dispose()
+  fullName: Prowl.Runtime.EngineObject.Dispose()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.Dispose
+    name: Dispose
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.Dispose
+    name: Dispose
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Destroy
+  commentId: M:Prowl.Runtime.EngineObject.Destroy
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
+  name: Destroy()
+  nameWithType: EngineObject.Destroy()
+  fullName: Prowl.Runtime.EngineObject.Destroy()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.Destroy
+    name: Destroy
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.Destroy
+    name: Destroy
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.IsDestroyQueued
+  commentId: P:Prowl.Runtime.EngineObject.IsDestroyQueued
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_IsDestroyQueued
+  name: IsDestroyQueued
+  nameWithType: EngineObject.IsDestroyQueued
+  fullName: Prowl.Runtime.EngineObject.IsDestroyQueued
+- uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+  commentId: M:Prowl.Runtime.EngineObject.ProcessDestroyed
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
+  name: ProcessDestroyed()
+  nameWithType: EngineObject.ProcessDestroyed()
+  fullName: Prowl.Runtime.EngineObject.ProcessDestroyed()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+    name: ProcessDestroyed
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+    name: ProcessDestroyed
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+  commentId: M:Prowl.Runtime.EngineObject.Equals(System.Object)
+  parent: Prowl.Runtime.EngineObject
+  isExternal: true
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
+  name: Equals(object)
+  nameWithType: EngineObject.Equals(object)
+  fullName: Prowl.Runtime.EngineObject.Equals(object)
+  nameWithType.vb: EngineObject.Equals(Object)
+  fullName.vb: Prowl.Runtime.EngineObject.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+    name: Equals
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+    name: Equals
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.EngineObject.GetHashCode
+  commentId: M:Prowl.Runtime.EngineObject.GetHashCode
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
+  name: GetHashCode()
+  nameWithType: EngineObject.GetHashCode()
+  fullName: Prowl.Runtime.EngineObject.GetHashCode()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.GetHashCode
+    name: GetHashCode
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.GetHashCode
+    name: GetHashCode
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.ToString
+  commentId: M:Prowl.Runtime.EngineObject.ToString
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ToString
+  name: ToString()
+  nameWithType: EngineObject.ToString()
+  fullName: Prowl.Runtime.EngineObject.ToString()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.ToString
+    name: ToString
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ToString
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.ToString
+    name: ToString
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ToString
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsNotValid
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  parent: Prowl.Runtime.EngineObjectExtensions
+  definition: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  name: IsNotValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsNotValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsValid
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  parent: Prowl.Runtime.EngineObjectExtensions
+  definition: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  name: IsValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Echo
+  commentId: N:Prowl.Echo
+  name: Prowl.Echo
+  nameWithType: Prowl.Echo
+  fullName: Prowl.Echo
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Echo
+    name: Echo
+- uid: Prowl.Runtime.MonoBehaviour.RemoveComponent``1(``0)
+  commentId: M:Prowl.Runtime.MonoBehaviour.RemoveComponent``1(``0)
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_RemoveComponent__1___0_
+  name: RemoveComponent<T>(T)
+  nameWithType: MonoBehaviour.RemoveComponent<T>(T)
+  fullName: Prowl.Runtime.MonoBehaviour.RemoveComponent<T>(T)
+  nameWithType.vb: MonoBehaviour.RemoveComponent(Of T)(T)
+  fullName.vb: Prowl.Runtime.MonoBehaviour.RemoveComponent(Of T)(T)
+  name.vb: RemoveComponent(Of T)(T)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.RemoveComponent``1(``0)
+    name: RemoveComponent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_RemoveComponent__1___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.RemoveComponent``1(``0)
+    name: RemoveComponent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_RemoveComponent__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: Prowl.Runtime.MonoBehaviour.TryGetComponent``1(``0@)
+  commentId: M:Prowl.Runtime.MonoBehaviour.TryGetComponent``1(``0@)
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_TryGetComponent__1___0__
+  name: TryGetComponent<T>(out T)
+  nameWithType: MonoBehaviour.TryGetComponent<T>(out T)
+  fullName: Prowl.Runtime.MonoBehaviour.TryGetComponent<T>(out T)
+  nameWithType.vb: MonoBehaviour.TryGetComponent(Of T)(T)
+  fullName.vb: Prowl.Runtime.MonoBehaviour.TryGetComponent(Of T)(T)
+  name.vb: TryGetComponent(Of T)(T)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.TryGetComponent``1(``0@)
+    name: TryGetComponent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_TryGetComponent__1___0__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: out
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.TryGetComponent``1(``0@)
+    name: TryGetComponent
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_TryGetComponent__1___0__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  name: IsNotValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsNotValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+- uid: Prowl.Runtime.EngineObjectExtensions
+  commentId: T:Prowl.Runtime.EngineObjectExtensions
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.EngineObjectExtensions.html
+  name: EngineObjectExtensions
+  nameWithType: EngineObjectExtensions
+  fullName: Prowl.Runtime.EngineObjectExtensions
+- uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  name: IsValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime.XRHand
+  commentId: T:Prowl.Runtime.XRHand
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.XRHand.html
+  name: XRHand
+  nameWithType: XRHand
+  fullName: Prowl.Runtime.XRHand
+- uid: Prowl.Vector.Transform
+  commentId: T:Prowl.Vector.Transform
+  parent: Prowl.Vector
+  href: Prowl.Vector.Transform.html
+  name: Transform
+  nameWithType: Transform
+  fullName: Prowl.Vector.Transform
+- uid: Prowl.Vector
+  commentId: N:Prowl.Vector
+  name: Prowl.Vector
+  nameWithType: Prowl.Vector
+  fullName: Prowl.Vector
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+- uid: VRShowcase.VRBody
+  commentId: T:VRShowcase.VRBody
+  parent: VRShowcase
+  href: VRShowcase.VRBody.html
+  name: VRBody
+  nameWithType: VRBody
+  fullName: VRShowcase.VRBody
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: VRShowcase.HandDrive
+  commentId: T:VRShowcase.HandDrive
+  parent: VRShowcase
+  href: VRShowcase.HandDrive.html
+  name: HandDrive
+  nameWithType: HandDrive
+  fullName: VRShowcase.HandDrive
+- uid: VRShowcase.Grabbable.CarryDrive
+  commentId: F:VRShowcase.Grabbable.CarryDrive
+  href: VRShowcase.Grabbable.html#VRShowcase_Grabbable_CarryDrive
+  name: CarryDrive
+  nameWithType: Grabbable.CarryDrive
+  fullName: VRShowcase.Grabbable.CarryDrive
+- uid: System.Func{System.ValueTuple{Prowl.Vector.Float3,Prowl.Vector.Quaternion}}
+  commentId: T:System.Func{System.ValueTuple{Prowl.Vector.Float3,Prowl.Vector.Quaternion}}
+  parent: System
+  definition: System.Func`1
+  href: https://learn.microsoft.com/dotnet/api/system.func-1
+  name: Func<(Float3 Position, Quaternion Rotation)>
+  nameWithType: Func<(Float3 Position, Quaternion Rotation)>
+  fullName: System.Func<(Prowl.Vector.Float3 Position, Prowl.Vector.Quaternion Rotation)>
+  nameWithType.vb: Func(Of (Position As Float3, Rotation As Quaternion))
+  fullName.vb: System.Func(Of (Position As Prowl.Vector.Float3, Rotation As Prowl.Vector.Quaternion))
+  name.vb: Func(Of (Position As Float3, Rotation As Quaternion))
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - name: (
+  - uid: Prowl.Vector.Float3
+    name: Float3
+    isExternal: true
+  - name: " "
+  - uid: System.ValueTuple{Prowl.Vector.Float3,Prowl.Vector.Quaternion}.Position
+    name: Position
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-prowl.vector.float3,prowl.vector.quaternion-.position
+  - name: ','
+  - name: " "
+  - uid: Prowl.Vector.Quaternion
+    name: Quaternion
+    isExternal: true
+  - name: " "
+  - uid: System.ValueTuple{Prowl.Vector.Float3,Prowl.Vector.Quaternion}.Rotation
+    name: Rotation
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-prowl.vector.float3,prowl.vector.quaternion-.rotation
+  - name: )
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: (
+  - uid: System.ValueTuple{Prowl.Vector.Float3,Prowl.Vector.Quaternion}.Position
+    name: Position
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-prowl.vector.float3,prowl.vector.quaternion-.position
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: Prowl.Vector.Float3
+    name: Float3
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{Prowl.Vector.Float3,Prowl.Vector.Quaternion}.Rotation
+    name: Rotation
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-prowl.vector.float3,prowl.vector.quaternion-.rotation
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: Prowl.Vector.Quaternion
+    name: Quaternion
+    isExternal: true
+  - name: )
+  - name: )
+- uid: System.Func`1
+  commentId: T:System.Func`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-1
+  name: Func<TResult>
+  nameWithType: Func<TResult>
+  fullName: System.Func<TResult>
+  nameWithType.vb: Func(Of TResult)
+  fullName.vb: System.Func(Of TResult)
+  name.vb: Func(Of TResult)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool?
+  nameWithType: bool?
+  fullName: bool?
+  nameWithType.vb: Boolean?
+  fullName.vb: Boolean?
+  name.vb: Boolean?
+  spec.csharp:
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  spec.vb:
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Func{System.Single}
+  commentId: T:System.Func{System.Single}
+  parent: System
+  definition: System.Func`1
+  href: https://learn.microsoft.com/dotnet/api/system.func-1
+  name: Func<float>
+  nameWithType: Func<float>
+  fullName: System.Func<float>
+  nameWithType.vb: Func(Of Single)
+  fullName.vb: System.Func(Of Single)
+  name.vb: Func(Of Single)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+- uid: VRShowcase.PhysicsHand.GripValue*
+  commentId: Overload:VRShowcase.PhysicsHand.GripValue
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_GripValue
+  name: GripValue
+  nameWithType: PhysicsHand.GripValue
+  fullName: VRShowcase.PhysicsHand.GripValue
+- uid: VRShowcase.PhysicsHand.TriggerValue*
+  commentId: Overload:VRShowcase.PhysicsHand.TriggerValue
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_TriggerValue
+  name: TriggerValue
+  nameWithType: PhysicsHand.TriggerValue
+  fullName: VRShowcase.PhysicsHand.TriggerValue
+- uid: System.Action{VRShowcase.PhysicsHand,VRShowcase.Grabbable}
+  commentId: T:System.Action{VRShowcase.PhysicsHand,VRShowcase.Grabbable}
+  parent: System
+  definition: System.Action`2
+  href: https://learn.microsoft.com/dotnet/api/system.action-2
+  name: Action<PhysicsHand, Grabbable>
+  nameWithType: Action<PhysicsHand, Grabbable>
+  fullName: System.Action<VRShowcase.PhysicsHand, VRShowcase.Grabbable>
+  nameWithType.vb: Action(Of PhysicsHand, Grabbable)
+  fullName.vb: System.Action(Of VRShowcase.PhysicsHand, VRShowcase.Grabbable)
+  name.vb: Action(Of PhysicsHand, Grabbable)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: <
+  - uid: VRShowcase.PhysicsHand
+    name: PhysicsHand
+    href: VRShowcase.PhysicsHand.html
+  - name: ','
+  - name: " "
+  - uid: VRShowcase.Grabbable
+    name: Grabbable
+    href: VRShowcase.Grabbable.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: VRShowcase.PhysicsHand
+    name: PhysicsHand
+    href: VRShowcase.PhysicsHand.html
+  - name: ','
+  - name: " "
+  - uid: VRShowcase.Grabbable
+    name: Grabbable
+    href: VRShowcase.Grabbable.html
+  - name: )
+- uid: System.Action`2
+  commentId: T:System.Action`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-2
+  name: Action<T1, T2>
+  nameWithType: Action<T1, T2>
+  fullName: System.Action<T1, T2>
+  nameWithType.vb: Action(Of T1, T2)
+  fullName.vb: System.Action(Of T1, T2)
+  name.vb: Action(Of T1, T2)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: <
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+- uid: VRShowcase.PhysicsHand.Sliding*
+  commentId: Overload:VRShowcase.PhysicsHand.Sliding
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_Sliding
+  name: Sliding
+  nameWithType: PhysicsHand.Sliding
+  fullName: VRShowcase.PhysicsHand.Sliding
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: VRShowcase.PhysicsHand.Rigidbody*
+  commentId: Overload:VRShowcase.PhysicsHand.Rigidbody
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_Rigidbody
+  name: Rigidbody
+  nameWithType: PhysicsHand.Rigidbody
+  fullName: VRShowcase.PhysicsHand.Rigidbody
+- uid: Prowl.Runtime.Rigidbody3D
+  commentId: T:Prowl.Runtime.Rigidbody3D
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.Rigidbody3D.html
+  name: Rigidbody3D
+  nameWithType: Rigidbody3D
+  fullName: Prowl.Runtime.Rigidbody3D
+- uid: VRShowcase.PhysicsHand.Held*
+  commentId: Overload:VRShowcase.PhysicsHand.Held
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_Held
+  name: Held
+  nameWithType: PhysicsHand.Held
+  fullName: VRShowcase.PhysicsHand.Held
+- uid: VRShowcase.Grabbable
+  commentId: T:VRShowcase.Grabbable
+  parent: VRShowcase
+  href: VRShowcase.Grabbable.html
+  name: Grabbable
+  nameWithType: Grabbable
+  fullName: VRShowcase.Grabbable
+- uid: VRShowcase.PhysicsHand.HeldPoint*
+  commentId: Overload:VRShowcase.PhysicsHand.HeldPoint
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_HeldPoint
+  name: HeldPoint
+  nameWithType: PhysicsHand.HeldPoint
+  fullName: VRShowcase.PhysicsHand.HeldPoint
+- uid: VRShowcase.GrabPoint
+  commentId: T:VRShowcase.GrabPoint
+  parent: VRShowcase
+  href: VRShowcase.GrabPoint.html
+  name: GrabPoint
+  nameWithType: GrabPoint
+  fullName: VRShowcase.GrabPoint
+- uid: VRShowcase.PhysicsHand.IsHolding*
+  commentId: Overload:VRShowcase.PhysicsHand.IsHolding
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_IsHolding
+  name: IsHolding
+  nameWithType: PhysicsHand.IsHolding
+  fullName: VRShowcase.PhysicsHand.IsHolding
+- uid: VRShowcase.PhysicsHand.IsClimbing*
+  commentId: Overload:VRShowcase.PhysicsHand.IsClimbing
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_IsClimbing
+  name: IsClimbing
+  nameWithType: PhysicsHand.IsClimbing
+  fullName: VRShowcase.PhysicsHand.IsClimbing
+- uid: VRShowcase.PhysicsHand.Target*
+  commentId: Overload:VRShowcase.PhysicsHand.Target
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_Target
+  name: Target
+  nameWithType: PhysicsHand.Target
+  fullName: VRShowcase.PhysicsHand.Target
+- uid: VRShowcase.HandTarget
+  commentId: T:VRShowcase.HandTarget
+  parent: VRShowcase
+  href: VRShowcase.HandTarget.html
+  name: HandTarget
+  nameWithType: HandTarget
+  fullName: VRShowcase.HandTarget
+- uid: VRShowcase.PhysicsHand.IsBusy*
+  commentId: Overload:VRShowcase.PhysicsHand.IsBusy
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_IsBusy
+  name: IsBusy
+  nameWithType: PhysicsHand.IsBusy
+  fullName: VRShowcase.PhysicsHand.IsBusy
+- uid: VRShowcase.PhysicsHand.GripLocal*
+  commentId: Overload:VRShowcase.PhysicsHand.GripLocal
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_GripLocal
+  name: GripLocal
+  nameWithType: PhysicsHand.GripLocal
+  fullName: VRShowcase.PhysicsHand.GripLocal
+- uid: Prowl.Vector.Float3
+  commentId: T:Prowl.Vector.Float3
+  parent: Prowl.Vector
+  isExternal: true
+  name: Float3
+  nameWithType: Float3
+  fullName: Prowl.Vector.Float3
+- uid: VRShowcase.PhysicsHand.GripPoint*
+  commentId: Overload:VRShowcase.PhysicsHand.GripPoint
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_GripPoint
+  name: GripPoint
+  nameWithType: PhysicsHand.GripPoint
+  fullName: VRShowcase.PhysicsHand.GripPoint
+- uid: VRShowcase.PhysicsHand.Create*
+  commentId: Overload:VRShowcase.PhysicsHand.Create
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_Create_Prowl_Runtime_XRHand_Prowl_Vector_Transform_VRShowcase_VRBody_Prowl_Vector_Color_
+  name: Create
+  nameWithType: PhysicsHand.Create
+  fullName: VRShowcase.PhysicsHand.Create
+- uid: Prowl.Vector.Color
+  commentId: T:Prowl.Vector.Color
+  parent: Prowl.Vector
+  isExternal: true
+  name: Color
+  nameWithType: Color
+  fullName: Prowl.Vector.Color
+- uid: VRShowcase.PhysicsHand
+  commentId: T:VRShowcase.PhysicsHand
+  parent: VRShowcase
+  href: VRShowcase.PhysicsHand.html
+  name: PhysicsHand
+  nameWithType: PhysicsHand
+  fullName: VRShowcase.PhysicsHand
+- uid: VRShowcase.PhysicsHand.Ghost*
+  commentId: Overload:VRShowcase.PhysicsHand.Ghost
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_Ghost
+  name: Ghost
+  nameWithType: PhysicsHand.Ghost
+  fullName: VRShowcase.PhysicsHand.Ghost
+- uid: Prowl.Runtime.GameObject
+  commentId: T:Prowl.Runtime.GameObject
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.GameObject.html
+  name: GameObject
+  nameWithType: GameObject
+  fullName: Prowl.Runtime.GameObject
+- uid: VRShowcase.PhysicsHand.Tilt*
+  commentId: Overload:VRShowcase.PhysicsHand.Tilt
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_Tilt
+  name: Tilt
+  nameWithType: PhysicsHand.Tilt
+  fullName: VRShowcase.PhysicsHand.Tilt
+- uid: Prowl.Vector.Quaternion
+  commentId: T:Prowl.Vector.Quaternion
+  parent: Prowl.Vector
+  isExternal: true
+  name: Quaternion
+  nameWithType: Quaternion
+  fullName: Prowl.Vector.Quaternion
+- uid: VRShowcase.PhysicsHand.AimDirection*
+  commentId: Overload:VRShowcase.PhysicsHand.AimDirection
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_AimDirection
+  name: AimDirection
+  nameWithType: PhysicsHand.AimDirection
+  fullName: VRShowcase.PhysicsHand.AimDirection
+- uid: Prowl.Runtime.MonoBehaviour.FixedUpdate
+  commentId: M:Prowl.Runtime.MonoBehaviour.FixedUpdate
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_FixedUpdate
+  name: FixedUpdate()
+  nameWithType: MonoBehaviour.FixedUpdate()
+  fullName: Prowl.Runtime.MonoBehaviour.FixedUpdate()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.FixedUpdate
+    name: FixedUpdate
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_FixedUpdate
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.FixedUpdate
+    name: FixedUpdate
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_FixedUpdate
+  - name: (
+  - name: )
+- uid: VRShowcase.PhysicsHand.FixedUpdate*
+  commentId: Overload:VRShowcase.PhysicsHand.FixedUpdate
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_FixedUpdate
+  name: FixedUpdate
+  nameWithType: PhysicsHand.FixedUpdate
+  fullName: VRShowcase.PhysicsHand.FixedUpdate
+- uid: VRShowcase.PhysicsHand.AddRecoil*
+  commentId: Overload:VRShowcase.PhysicsHand.AddRecoil
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_AddRecoil_System_Single_System_Single_
+  name: AddRecoil
+  nameWithType: PhysicsHand.AddRecoil
+  fullName: VRShowcase.PhysicsHand.AddRecoil
+- uid: Prowl.Runtime.MonoBehaviour.OnCollisionBegin(Prowl.Runtime.Collision)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnCollisionBegin(Prowl.Runtime.Collision)
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionBegin_Prowl_Runtime_Collision_
+  name: OnCollisionBegin(Collision)
+  nameWithType: MonoBehaviour.OnCollisionBegin(Collision)
+  fullName: Prowl.Runtime.MonoBehaviour.OnCollisionBegin(Prowl.Runtime.Collision)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCollisionBegin(Prowl.Runtime.Collision)
+    name: OnCollisionBegin
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionBegin_Prowl_Runtime_Collision_
+  - name: (
+  - uid: Prowl.Runtime.Collision
+    name: Collision
+    href: Prowl.Runtime.Collision.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCollisionBegin(Prowl.Runtime.Collision)
+    name: OnCollisionBegin
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionBegin_Prowl_Runtime_Collision_
+  - name: (
+  - uid: Prowl.Runtime.Collision
+    name: Collision
+    href: Prowl.Runtime.Collision.html
+  - name: )
+- uid: VRShowcase.PhysicsHand.OnCollisionBegin*
+  commentId: Overload:VRShowcase.PhysicsHand.OnCollisionBegin
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_OnCollisionBegin_Prowl_Runtime_Collision_
+  name: OnCollisionBegin
+  nameWithType: PhysicsHand.OnCollisionBegin
+  fullName: VRShowcase.PhysicsHand.OnCollisionBegin
+- uid: Prowl.Runtime.Collision
+  commentId: T:Prowl.Runtime.Collision
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.Collision.html
+  name: Collision
+  nameWithType: Collision
+  fullName: Prowl.Runtime.Collision
+- uid: Prowl.Runtime.MonoBehaviour.OnCollisionStay(Prowl.Runtime.Collision)
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnCollisionStay(Prowl.Runtime.Collision)
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionStay_Prowl_Runtime_Collision_
+  name: OnCollisionStay(Collision)
+  nameWithType: MonoBehaviour.OnCollisionStay(Collision)
+  fullName: Prowl.Runtime.MonoBehaviour.OnCollisionStay(Prowl.Runtime.Collision)
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCollisionStay(Prowl.Runtime.Collision)
+    name: OnCollisionStay
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionStay_Prowl_Runtime_Collision_
+  - name: (
+  - uid: Prowl.Runtime.Collision
+    name: Collision
+    href: Prowl.Runtime.Collision.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnCollisionStay(Prowl.Runtime.Collision)
+    name: OnCollisionStay
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnCollisionStay_Prowl_Runtime_Collision_
+  - name: (
+  - uid: Prowl.Runtime.Collision
+    name: Collision
+    href: Prowl.Runtime.Collision.html
+  - name: )
+- uid: VRShowcase.PhysicsHand.OnCollisionStay*
+  commentId: Overload:VRShowcase.PhysicsHand.OnCollisionStay
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_OnCollisionStay_Prowl_Runtime_Collision_
+  name: OnCollisionStay
+  nameWithType: PhysicsHand.OnCollisionStay
+  fullName: VRShowcase.PhysicsHand.OnCollisionStay
+- uid: VRShowcase.PhysicsHand.IsTouchingSolid*
+  commentId: Overload:VRShowcase.PhysicsHand.IsTouchingSolid
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_IsTouchingSolid
+  name: IsTouchingSolid
+  nameWithType: PhysicsHand.IsTouchingSolid
+  fullName: VRShowcase.PhysicsHand.IsTouchingSolid
+- uid: Prowl.Runtime.MonoBehaviour.Update
+  commentId: M:Prowl.Runtime.MonoBehaviour.Update
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Update
+  name: Update()
+  nameWithType: MonoBehaviour.Update()
+  fullName: Prowl.Runtime.MonoBehaviour.Update()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.Update
+    name: Update
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Update
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.Update
+    name: Update
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Update
+  - name: (
+  - name: )
+- uid: VRShowcase.PhysicsHand.Update*
+  commentId: Overload:VRShowcase.PhysicsHand.Update
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_Update
+  name: Update
+  nameWithType: PhysicsHand.Update
+  fullName: VRShowcase.PhysicsHand.Update
+- uid: VRShowcase.PhysicsHand.TryGrab*
+  commentId: Overload:VRShowcase.PhysicsHand.TryGrab
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_TryGrab
+  name: TryGrab
+  nameWithType: PhysicsHand.TryGrab
+  fullName: VRShowcase.PhysicsHand.TryGrab
+- uid: VRShowcase.PhysicsHand.Catch*
+  commentId: Overload:VRShowcase.PhysicsHand.Catch
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_Catch_VRShowcase_Grabbable_
+  name: Catch
+  nameWithType: PhysicsHand.Catch
+  fullName: VRShowcase.PhysicsHand.Catch
+- uid: VRShowcase.PhysicsHand.Use*
+  commentId: Overload:VRShowcase.PhysicsHand.Use
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_Use_VRShowcase_HandTarget_
+  name: Use
+  nameWithType: PhysicsHand.Use
+  fullName: VRShowcase.PhysicsHand.Use
+- uid: VRShowcase.PhysicsHand.Release*
+  commentId: Overload:VRShowcase.PhysicsHand.Release
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_Release_System_Boolean_
+  name: Release
+  nameWithType: PhysicsHand.Release
+  fullName: VRShowcase.PhysicsHand.Release
+- uid: Prowl.Runtime.MonoBehaviour.OnEnable
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnEnable
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnEnable
+  name: OnEnable()
+  nameWithType: MonoBehaviour.OnEnable()
+  fullName: Prowl.Runtime.MonoBehaviour.OnEnable()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnEnable
+    name: OnEnable
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnEnable
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnEnable
+    name: OnEnable
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnEnable
+  - name: (
+  - name: )
+- uid: VRShowcase.PhysicsHand.OnEnable*
+  commentId: Overload:VRShowcase.PhysicsHand.OnEnable
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_OnEnable
+  name: OnEnable
+  nameWithType: PhysicsHand.OnEnable
+  fullName: VRShowcase.PhysicsHand.OnEnable
+- uid: Prowl.Runtime.MonoBehaviour.OnDisable
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnDisable
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDisable
+  name: OnDisable()
+  nameWithType: MonoBehaviour.OnDisable()
+  fullName: Prowl.Runtime.MonoBehaviour.OnDisable()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnDisable
+    name: OnDisable
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDisable
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnDisable
+    name: OnDisable
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDisable
+  - name: (
+  - name: )
+- uid: VRShowcase.PhysicsHand.OnDisable*
+  commentId: Overload:VRShowcase.PhysicsHand.OnDisable
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_OnDisable
+  name: OnDisable
+  nameWithType: PhysicsHand.OnDisable
+  fullName: VRShowcase.PhysicsHand.OnDisable
+- uid: VRShowcase.PhysicsHand.AngularVelocityTo*
+  commentId: Overload:VRShowcase.PhysicsHand.AngularVelocityTo
+  href: VRShowcase.PhysicsHand.html#VRShowcase_PhysicsHand_AngularVelocityTo_Prowl_Vector_Quaternion_Prowl_Vector_Quaternion_System_Single_
+  name: AngularVelocityTo
+  nameWithType: PhysicsHand.AngularVelocityTo
+  fullName: VRShowcase.PhysicsHand.AngularVelocityTo

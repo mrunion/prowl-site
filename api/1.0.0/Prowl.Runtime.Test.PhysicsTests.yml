@@ -43,6 +43,18 @@ items:
   - Prowl.Runtime.Test.PhysicsTests.CylinderCollider_RegistersShape
   - Prowl.Runtime.Test.PhysicsTests.Dispose
   - Prowl.Runtime.Test.PhysicsTests.DistanceLimit_HoldsTheTargetByDefault_AndAllowsItsRange
+  - Prowl.Runtime.Test.PhysicsTests.Drive_BetweenFreeBodies_GivesThePairNoSpin
+  - Prowl.Runtime.Test.PhysicsTests.Drive_FromASpinningBody_KeepsUpWithIt
+  - Prowl.Runtime.Test.PhysicsTests.Drive_FrozenAxis_LeavesTheForceToTheFreeAxes
+  - Prowl.Runtime.Test.PhysicsTests.Drive_FrozenRotationAxis_LeavesTheTorqueToTheFreeAxes
+  - Prowl.Runtime.Test.PhysicsTests.Drive_MaximumForce_LimitsThePush
+  - Prowl.Runtime.Test.PhysicsTests.Drive_OnAStaticBody_PushesNothing
+  - Prowl.Runtime.Test.PhysicsTests.Drive_PushesTheConnectedBodyBack
+  - Prowl.Runtime.Test.PhysicsTests.Drive_Rotation_TurnsTheBodyToItsTarget
+  - Prowl.Runtime.Test.PhysicsTests.Drive_SpringAndDamper_SettleOnTheTargetWithoutOvershoot
+  - Prowl.Runtime.Test.PhysicsTests.Drive_WithAMovedCenterOfMassAndNoRotationDrive_PutsTheOriginOnTarget
+  - Prowl.Runtime.Test.PhysicsTests.Drive_WithAMovedCenterOfMass_PutsTheOriginOnTarget
+  - Prowl.Runtime.Test.PhysicsTests.EveryConstraintAxis_RejectsZero
   - Prowl.Runtime.Test.PhysicsTests.FirstCollisionListener_PicksUpContactsAlreadyTouching
   - Prowl.Runtime.Test.PhysicsTests.FreezePosition_PinsTheFrozenAxis_AndLeavesOthersFree
   - Prowl.Runtime.Test.PhysicsTests.FreezeRotation_KeepsTheBodyUpright
@@ -55,7 +67,10 @@ items:
   - Prowl.Runtime.Test.PhysicsTests.IgnoreCollisionBetween_SeparatesBodiesAlreadyTouching
   - Prowl.Runtime.Test.PhysicsTests.IgnoredCollisions_AreScopedToTheirOwnWorld
   - Prowl.Runtime.Test.PhysicsTests.Joint_Active_ReflectsAndControlsAllOfItsConstraints
+  - Prowl.Runtime.Test.PhysicsTests.LinearMotor_AxisChangedWhileLive_DrivesAlongTheNewAxis
+  - Prowl.Runtime.Test.PhysicsTests.LinearMotor_MaximumForce_IsTheForceItPushesWith
   - Prowl.Runtime.Test.PhysicsTests.LinearMotor_PositiveVelocity_MovesItsBodyAlongTheAxis
+  - Prowl.Runtime.Test.PhysicsTests.LinearMotor_ZeroAxis_IsRejected
   - Prowl.Runtime.Test.PhysicsTests.Linecast_HitsOnlyBetweenTheTwoPoints
   - Prowl.Runtime.Test.PhysicsTests.LogOnce_ReportsOnce_CountsTheRest_AndResetsOnPlayModeChange
   - Prowl.Runtime.Test.PhysicsTests.MassDependentForceModes_MoveHeavyBodiesLess(Prowl.Runtime.ForceMode)
@@ -65,6 +80,7 @@ items:
   - Prowl.Runtime.Test.PhysicsTests.MeshCollider_Concave_RegistersTriangleMesh
   - Prowl.Runtime.Test.PhysicsTests.MeshCollider_Convex_OnDynamicBody_RestsOnFloor
   - Prowl.Runtime.Test.PhysicsTests.MeshCollider_Convex_RegistersHull
+  - Prowl.Runtime.Test.PhysicsTests.Motors_SubstepCountChangedAfterwards_KeepTheirForce(System.Int32)
   - Prowl.Runtime.Test.PhysicsTests.MovingRigidbodyTransform_IsSeenByQueries_WhenAutoSyncOn
   - Prowl.Runtime.Test.PhysicsTests.MovingRigidbodyTransform_NeedsManualSync_WhenAutoSyncOff
   - Prowl.Runtime.Test.PhysicsTests.PartialRotationFreeze_PreservesAccelerationTorqueOnFreeAxis
@@ -78,9 +94,19 @@ items:
   - Prowl.Runtime.Test.PhysicsTests.Raycast_LayerMask_RespectsGameObjectLayer
   - Prowl.Runtime.Test.PhysicsTests.Raycast_OnAPlacedBox_IsExactWhateverItsSize(System.Single)
   - Prowl.Runtime.Test.PhysicsTests.Raycast_StartingInsideAPlacedBox_HasNoNaNNormal
+  - Prowl.Runtime.Test.PhysicsTests.RebuildingABodysShapesThrowsNothingInsideJitter
+  - Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_ChangedWhileMovingKeepsTheMotion
+  - Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_HangsBelowAPivot
+  - Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_IsWhatTheBodyTurnsAbout
+  - Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_JointsHoldTheSamePoint
+  - Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_KeepsJointLimits
+  - Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_MovePositionAndRotationUseTheOrigin
+  - Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_InertiaTensorOverride_SetsHowHardItIsToTurn
   - Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_Mass_RejectsZeroAndNegative
   - Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_OutOfRangeFields_AreClampedOnValidate
+  - Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_Settings_CanChangeAfterTheWorldDroppedTheBody
   - Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_SleepThresholds_ReachTheMatchingAxis
+  - Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_ZeroInertiaInSavedData_IsClamped
   - Prowl.Runtime.Test.PhysicsTests.Rigidbody_CreatesQueryableBody_OnEnable
   - Prowl.Runtime.Test.PhysicsTests.Rigidbody_InitialTransformPosition_PlacesBody
   - Prowl.Runtime.Test.PhysicsTests.Rigidbody_LayerChange_ReachesQueries
@@ -3891,6 +3917,956 @@ items:
   - type: Xunit.FactAttribute
     ctor: Xunit.FactAttribute.#ctor
     arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_Settings_CanChangeAfterTheWorldDroppedTheBody
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_Settings_CanChangeAfterTheWorldDroppedTheBody
+  id: Rigidbody3D_Settings_CanChangeAfterTheWorldDroppedTheBody
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Rigidbody3D_Settings_CanChangeAfterTheWorldDroppedTheBody()
+  nameWithType: PhysicsTests.Rigidbody3D_Settings_CanChangeAfterTheWorldDroppedTheBody()
+  fullName: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_Settings_CanChangeAfterTheWorldDroppedTheBody()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Rigidbody3D_Settings_CanChangeAfterTheWorldDroppedTheBody
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2095
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Rigidbody3D_Settings_CanChangeAfterTheWorldDroppedTheBody()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Rigidbody3D_Settings_CanChangeAfterTheWorldDroppedTheBody()
+  overload: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_Settings_CanChangeAfterTheWorldDroppedTheBody*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.LinearMotor_AxisChangedWhileLive_DrivesAlongTheNewAxis
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.LinearMotor_AxisChangedWhileLive_DrivesAlongTheNewAxis
+  id: LinearMotor_AxisChangedWhileLive_DrivesAlongTheNewAxis
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: LinearMotor_AxisChangedWhileLive_DrivesAlongTheNewAxis()
+  nameWithType: PhysicsTests.LinearMotor_AxisChangedWhileLive_DrivesAlongTheNewAxis()
+  fullName: Prowl.Runtime.Test.PhysicsTests.LinearMotor_AxisChangedWhileLive_DrivesAlongTheNewAxis()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LinearMotor_AxisChangedWhileLive_DrivesAlongTheNewAxis
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2114
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void LinearMotor_AxisChangedWhileLive_DrivesAlongTheNewAxis()
+    content.vb: >-
+      <Fact>
+
+      Public Sub LinearMotor_AxisChangedWhileLive_DrivesAlongTheNewAxis()
+  overload: Prowl.Runtime.Test.PhysicsTests.LinearMotor_AxisChangedWhileLive_DrivesAlongTheNewAxis*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.LinearMotor_MaximumForce_IsTheForceItPushesWith
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.LinearMotor_MaximumForce_IsTheForceItPushesWith
+  id: LinearMotor_MaximumForce_IsTheForceItPushesWith
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: LinearMotor_MaximumForce_IsTheForceItPushesWith()
+  nameWithType: PhysicsTests.LinearMotor_MaximumForce_IsTheForceItPushesWith()
+  fullName: Prowl.Runtime.Test.PhysicsTests.LinearMotor_MaximumForce_IsTheForceItPushesWith()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LinearMotor_MaximumForce_IsTheForceItPushesWith
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2142
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void LinearMotor_MaximumForce_IsTheForceItPushesWith()
+    content.vb: >-
+      <Fact>
+
+      Public Sub LinearMotor_MaximumForce_IsTheForceItPushesWith()
+  overload: Prowl.Runtime.Test.PhysicsTests.LinearMotor_MaximumForce_IsTheForceItPushesWith*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_InertiaTensorOverride_SetsHowHardItIsToTurn
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_InertiaTensorOverride_SetsHowHardItIsToTurn
+  id: Rigidbody3D_InertiaTensorOverride_SetsHowHardItIsToTurn
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Rigidbody3D_InertiaTensorOverride_SetsHowHardItIsToTurn()
+  nameWithType: PhysicsTests.Rigidbody3D_InertiaTensorOverride_SetsHowHardItIsToTurn()
+  fullName: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_InertiaTensorOverride_SetsHowHardItIsToTurn()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Rigidbody3D_InertiaTensorOverride_SetsHowHardItIsToTurn
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2164
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Rigidbody3D_InertiaTensorOverride_SetsHowHardItIsToTurn()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Rigidbody3D_InertiaTensorOverride_SetsHowHardItIsToTurn()
+  overload: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_InertiaTensorOverride_SetsHowHardItIsToTurn*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_IsWhatTheBodyTurnsAbout
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_IsWhatTheBodyTurnsAbout
+  id: Rigidbody3D_CenterOfMassOverride_IsWhatTheBodyTurnsAbout
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Rigidbody3D_CenterOfMassOverride_IsWhatTheBodyTurnsAbout()
+  nameWithType: PhysicsTests.Rigidbody3D_CenterOfMassOverride_IsWhatTheBodyTurnsAbout()
+  fullName: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_IsWhatTheBodyTurnsAbout()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Rigidbody3D_CenterOfMassOverride_IsWhatTheBodyTurnsAbout
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2202
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Rigidbody3D_CenterOfMassOverride_IsWhatTheBodyTurnsAbout()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Rigidbody3D_CenterOfMassOverride_IsWhatTheBodyTurnsAbout()
+  overload: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_IsWhatTheBodyTurnsAbout*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_HangsBelowAPivot
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_HangsBelowAPivot
+  id: Rigidbody3D_CenterOfMassOverride_HangsBelowAPivot
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Rigidbody3D_CenterOfMassOverride_HangsBelowAPivot()
+  nameWithType: PhysicsTests.Rigidbody3D_CenterOfMassOverride_HangsBelowAPivot()
+  fullName: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_HangsBelowAPivot()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Rigidbody3D_CenterOfMassOverride_HangsBelowAPivot
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2222
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Rigidbody3D_CenterOfMassOverride_HangsBelowAPivot()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Rigidbody3D_CenterOfMassOverride_HangsBelowAPivot()
+  overload: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_HangsBelowAPivot*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_ChangedWhileMovingKeepsTheMotion
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_ChangedWhileMovingKeepsTheMotion
+  id: Rigidbody3D_CenterOfMassOverride_ChangedWhileMovingKeepsTheMotion
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Rigidbody3D_CenterOfMassOverride_ChangedWhileMovingKeepsTheMotion()
+  nameWithType: PhysicsTests.Rigidbody3D_CenterOfMassOverride_ChangedWhileMovingKeepsTheMotion()
+  fullName: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_ChangedWhileMovingKeepsTheMotion()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Rigidbody3D_CenterOfMassOverride_ChangedWhileMovingKeepsTheMotion
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2238
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Rigidbody3D_CenterOfMassOverride_ChangedWhileMovingKeepsTheMotion()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Rigidbody3D_CenterOfMassOverride_ChangedWhileMovingKeepsTheMotion()
+  overload: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_ChangedWhileMovingKeepsTheMotion*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_MovePositionAndRotationUseTheOrigin
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_MovePositionAndRotationUseTheOrigin
+  id: Rigidbody3D_CenterOfMassOverride_MovePositionAndRotationUseTheOrigin
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Rigidbody3D_CenterOfMassOverride_MovePositionAndRotationUseTheOrigin()
+  nameWithType: PhysicsTests.Rigidbody3D_CenterOfMassOverride_MovePositionAndRotationUseTheOrigin()
+  fullName: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_MovePositionAndRotationUseTheOrigin()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Rigidbody3D_CenterOfMassOverride_MovePositionAndRotationUseTheOrigin
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2257
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Rigidbody3D_CenterOfMassOverride_MovePositionAndRotationUseTheOrigin()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Rigidbody3D_CenterOfMassOverride_MovePositionAndRotationUseTheOrigin()
+  overload: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_MovePositionAndRotationUseTheOrigin*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_JointsHoldTheSamePoint
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_JointsHoldTheSamePoint
+  id: Rigidbody3D_CenterOfMassOverride_JointsHoldTheSamePoint
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Rigidbody3D_CenterOfMassOverride_JointsHoldTheSamePoint()
+  nameWithType: PhysicsTests.Rigidbody3D_CenterOfMassOverride_JointsHoldTheSamePoint()
+  fullName: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_JointsHoldTheSamePoint()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Rigidbody3D_CenterOfMassOverride_JointsHoldTheSamePoint
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2271
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Rigidbody3D_CenterOfMassOverride_JointsHoldTheSamePoint()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Rigidbody3D_CenterOfMassOverride_JointsHoldTheSamePoint()
+  overload: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_JointsHoldTheSamePoint*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_WithAMovedCenterOfMass_PutsTheOriginOnTarget
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Drive_WithAMovedCenterOfMass_PutsTheOriginOnTarget
+  id: Drive_WithAMovedCenterOfMass_PutsTheOriginOnTarget
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Drive_WithAMovedCenterOfMass_PutsTheOriginOnTarget()
+  nameWithType: PhysicsTests.Drive_WithAMovedCenterOfMass_PutsTheOriginOnTarget()
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_WithAMovedCenterOfMass_PutsTheOriginOnTarget()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Drive_WithAMovedCenterOfMass_PutsTheOriginOnTarget
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2291
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Drive_WithAMovedCenterOfMass_PutsTheOriginOnTarget()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Drive_WithAMovedCenterOfMass_PutsTheOriginOnTarget()
+  overload: Prowl.Runtime.Test.PhysicsTests.Drive_WithAMovedCenterOfMass_PutsTheOriginOnTarget*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_WithAMovedCenterOfMassAndNoRotationDrive_PutsTheOriginOnTarget
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Drive_WithAMovedCenterOfMassAndNoRotationDrive_PutsTheOriginOnTarget
+  id: Drive_WithAMovedCenterOfMassAndNoRotationDrive_PutsTheOriginOnTarget
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Drive_WithAMovedCenterOfMassAndNoRotationDrive_PutsTheOriginOnTarget()
+  nameWithType: PhysicsTests.Drive_WithAMovedCenterOfMassAndNoRotationDrive_PutsTheOriginOnTarget()
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_WithAMovedCenterOfMassAndNoRotationDrive_PutsTheOriginOnTarget()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Drive_WithAMovedCenterOfMassAndNoRotationDrive_PutsTheOriginOnTarget
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2325
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Drive_WithAMovedCenterOfMassAndNoRotationDrive_PutsTheOriginOnTarget()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Drive_WithAMovedCenterOfMassAndNoRotationDrive_PutsTheOriginOnTarget()
+  overload: Prowl.Runtime.Test.PhysicsTests.Drive_WithAMovedCenterOfMassAndNoRotationDrive_PutsTheOriginOnTarget*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_FrozenAxis_LeavesTheForceToTheFreeAxes
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Drive_FrozenAxis_LeavesTheForceToTheFreeAxes
+  id: Drive_FrozenAxis_LeavesTheForceToTheFreeAxes
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Drive_FrozenAxis_LeavesTheForceToTheFreeAxes()
+  nameWithType: PhysicsTests.Drive_FrozenAxis_LeavesTheForceToTheFreeAxes()
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_FrozenAxis_LeavesTheForceToTheFreeAxes()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Drive_FrozenAxis_LeavesTheForceToTheFreeAxes
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2342
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Drive_FrozenAxis_LeavesTheForceToTheFreeAxes()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Drive_FrozenAxis_LeavesTheForceToTheFreeAxes()
+  overload: Prowl.Runtime.Test.PhysicsTests.Drive_FrozenAxis_LeavesTheForceToTheFreeAxes*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_FrozenRotationAxis_LeavesTheTorqueToTheFreeAxes
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Drive_FrozenRotationAxis_LeavesTheTorqueToTheFreeAxes
+  id: Drive_FrozenRotationAxis_LeavesTheTorqueToTheFreeAxes
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Drive_FrozenRotationAxis_LeavesTheTorqueToTheFreeAxes()
+  nameWithType: PhysicsTests.Drive_FrozenRotationAxis_LeavesTheTorqueToTheFreeAxes()
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_FrozenRotationAxis_LeavesTheTorqueToTheFreeAxes()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Drive_FrozenRotationAxis_LeavesTheTorqueToTheFreeAxes
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2358
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Drive_FrozenRotationAxis_LeavesTheTorqueToTheFreeAxes()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Drive_FrozenRotationAxis_LeavesTheTorqueToTheFreeAxes()
+  overload: Prowl.Runtime.Test.PhysicsTests.Drive_FrozenRotationAxis_LeavesTheTorqueToTheFreeAxes*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_OnAStaticBody_PushesNothing
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Drive_OnAStaticBody_PushesNothing
+  id: Drive_OnAStaticBody_PushesNothing
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Drive_OnAStaticBody_PushesNothing()
+  nameWithType: PhysicsTests.Drive_OnAStaticBody_PushesNothing()
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_OnAStaticBody_PushesNothing()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Drive_OnAStaticBody_PushesNothing
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2380
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Drive_OnAStaticBody_PushesNothing()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Drive_OnAStaticBody_PushesNothing()
+  overload: Prowl.Runtime.Test.PhysicsTests.Drive_OnAStaticBody_PushesNothing*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_BetweenFreeBodies_GivesThePairNoSpin
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Drive_BetweenFreeBodies_GivesThePairNoSpin
+  id: Drive_BetweenFreeBodies_GivesThePairNoSpin
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Drive_BetweenFreeBodies_GivesThePairNoSpin()
+  nameWithType: PhysicsTests.Drive_BetweenFreeBodies_GivesThePairNoSpin()
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_BetweenFreeBodies_GivesThePairNoSpin()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Drive_BetweenFreeBodies_GivesThePairNoSpin
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2393
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Drive_BetweenFreeBodies_GivesThePairNoSpin()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Drive_BetweenFreeBodies_GivesThePairNoSpin()
+  overload: Prowl.Runtime.Test.PhysicsTests.Drive_BetweenFreeBodies_GivesThePairNoSpin*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_FromASpinningBody_KeepsUpWithIt
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Drive_FromASpinningBody_KeepsUpWithIt
+  id: Drive_FromASpinningBody_KeepsUpWithIt
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Drive_FromASpinningBody_KeepsUpWithIt()
+  nameWithType: PhysicsTests.Drive_FromASpinningBody_KeepsUpWithIt()
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_FromASpinningBody_KeepsUpWithIt()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Drive_FromASpinningBody_KeepsUpWithIt
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2418
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Drive_FromASpinningBody_KeepsUpWithIt()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Drive_FromASpinningBody_KeepsUpWithIt()
+  overload: Prowl.Runtime.Test.PhysicsTests.Drive_FromASpinningBody_KeepsUpWithIt*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.Motors_SubstepCountChangedAfterwards_KeepTheirForce(System.Int32)
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Motors_SubstepCountChangedAfterwards_KeepTheirForce(System.Int32)
+  id: Motors_SubstepCountChangedAfterwards_KeepTheirForce(System.Int32)
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Motors_SubstepCountChangedAfterwards_KeepTheirForce(int)
+  nameWithType: PhysicsTests.Motors_SubstepCountChangedAfterwards_KeepTheirForce(int)
+  fullName: Prowl.Runtime.Test.PhysicsTests.Motors_SubstepCountChangedAfterwards_KeepTheirForce(int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Motors_SubstepCountChangedAfterwards_KeepTheirForce
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2440
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Theory]
+
+      [InlineData(new object[] { 1 })]
+
+      [InlineData(new object[] { 6 })]
+
+      public void Motors_SubstepCountChangedAfterwards_KeepTheirForce(int substeps)
+    parameters:
+    - id: substeps
+      type: System.Int32
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() { 1 })>
+
+      <InlineData(New Object() { 6 })>
+
+      Public Sub Motors_SubstepCountChangedAfterwards_KeepTheirForce(substeps As Integer)
+  overload: Prowl.Runtime.Test.PhysicsTests.Motors_SubstepCountChangedAfterwards_KeepTheirForce*
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
+  nameWithType.vb: PhysicsTests.Motors_SubstepCountChangedAfterwards_KeepTheirForce(Integer)
+  fullName.vb: Prowl.Runtime.Test.PhysicsTests.Motors_SubstepCountChangedAfterwards_KeepTheirForce(Integer)
+  name.vb: Motors_SubstepCountChangedAfterwards_KeepTheirForce(Integer)
+- uid: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_KeepsJointLimits
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_KeepsJointLimits
+  id: Rigidbody3D_CenterOfMassOverride_KeepsJointLimits
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Rigidbody3D_CenterOfMassOverride_KeepsJointLimits()
+  nameWithType: PhysicsTests.Rigidbody3D_CenterOfMassOverride_KeepsJointLimits()
+  fullName: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_KeepsJointLimits()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Rigidbody3D_CenterOfMassOverride_KeepsJointLimits
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2468
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Rigidbody3D_CenterOfMassOverride_KeepsJointLimits()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Rigidbody3D_CenterOfMassOverride_KeepsJointLimits()
+  overload: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_KeepsJointLimits*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_ZeroInertiaInSavedData_IsClamped
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_ZeroInertiaInSavedData_IsClamped
+  id: Rigidbody3D_ZeroInertiaInSavedData_IsClamped
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Rigidbody3D_ZeroInertiaInSavedData_IsClamped()
+  nameWithType: PhysicsTests.Rigidbody3D_ZeroInertiaInSavedData_IsClamped()
+  fullName: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_ZeroInertiaInSavedData_IsClamped()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Rigidbody3D_ZeroInertiaInSavedData_IsClamped
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2489
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Rigidbody3D_ZeroInertiaInSavedData_IsClamped()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Rigidbody3D_ZeroInertiaInSavedData_IsClamped()
+  overload: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_ZeroInertiaInSavedData_IsClamped*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.LinearMotor_ZeroAxis_IsRejected
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.LinearMotor_ZeroAxis_IsRejected
+  id: LinearMotor_ZeroAxis_IsRejected
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: LinearMotor_ZeroAxis_IsRejected()
+  nameWithType: PhysicsTests.LinearMotor_ZeroAxis_IsRejected()
+  fullName: Prowl.Runtime.Test.PhysicsTests.LinearMotor_ZeroAxis_IsRejected()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LinearMotor_ZeroAxis_IsRejected
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2502
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void LinearMotor_ZeroAxis_IsRejected()
+    content.vb: >-
+      <Fact>
+
+      Public Sub LinearMotor_ZeroAxis_IsRejected()
+  overload: Prowl.Runtime.Test.PhysicsTests.LinearMotor_ZeroAxis_IsRejected*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.EveryConstraintAxis_RejectsZero
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.EveryConstraintAxis_RejectsZero
+  id: EveryConstraintAxis_RejectsZero
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: EveryConstraintAxis_RejectsZero()
+  nameWithType: PhysicsTests.EveryConstraintAxis_RejectsZero()
+  fullName: Prowl.Runtime.Test.PhysicsTests.EveryConstraintAxis_RejectsZero()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: EveryConstraintAxis_RejectsZero
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2513
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void EveryConstraintAxis_RejectsZero()
+    content.vb: >-
+      <Fact>
+
+      Public Sub EveryConstraintAxis_RejectsZero()
+  overload: Prowl.Runtime.Test.PhysicsTests.EveryConstraintAxis_RejectsZero*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_SpringAndDamper_SettleOnTheTargetWithoutOvershoot
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Drive_SpringAndDamper_SettleOnTheTargetWithoutOvershoot
+  id: Drive_SpringAndDamper_SettleOnTheTargetWithoutOvershoot
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Drive_SpringAndDamper_SettleOnTheTargetWithoutOvershoot()
+  nameWithType: PhysicsTests.Drive_SpringAndDamper_SettleOnTheTargetWithoutOvershoot()
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_SpringAndDamper_SettleOnTheTargetWithoutOvershoot()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Drive_SpringAndDamper_SettleOnTheTargetWithoutOvershoot
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2555
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Drive_SpringAndDamper_SettleOnTheTargetWithoutOvershoot()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Drive_SpringAndDamper_SettleOnTheTargetWithoutOvershoot()
+  overload: Prowl.Runtime.Test.PhysicsTests.Drive_SpringAndDamper_SettleOnTheTargetWithoutOvershoot*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_MaximumForce_LimitsThePush
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Drive_MaximumForce_LimitsThePush
+  id: Drive_MaximumForce_LimitsThePush
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Drive_MaximumForce_LimitsThePush()
+  nameWithType: PhysicsTests.Drive_MaximumForce_LimitsThePush()
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_MaximumForce_LimitsThePush()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Drive_MaximumForce_LimitsThePush
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2573
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Drive_MaximumForce_LimitsThePush()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Drive_MaximumForce_LimitsThePush()
+  overload: Prowl.Runtime.Test.PhysicsTests.Drive_MaximumForce_LimitsThePush*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_Rotation_TurnsTheBodyToItsTarget
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Drive_Rotation_TurnsTheBodyToItsTarget
+  id: Drive_Rotation_TurnsTheBodyToItsTarget
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Drive_Rotation_TurnsTheBodyToItsTarget()
+  nameWithType: PhysicsTests.Drive_Rotation_TurnsTheBodyToItsTarget()
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_Rotation_TurnsTheBodyToItsTarget()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Drive_Rotation_TurnsTheBodyToItsTarget
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2588
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Drive_Rotation_TurnsTheBodyToItsTarget()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Drive_Rotation_TurnsTheBodyToItsTarget()
+  overload: Prowl.Runtime.Test.PhysicsTests.Drive_Rotation_TurnsTheBodyToItsTarget*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_PushesTheConnectedBodyBack
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.Drive_PushesTheConnectedBodyBack
+  id: Drive_PushesTheConnectedBodyBack
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: Drive_PushesTheConnectedBodyBack()
+  nameWithType: PhysicsTests.Drive_PushesTheConnectedBodyBack()
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_PushesTheConnectedBodyBack()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Drive_PushesTheConnectedBodyBack
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2604
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Drive_PushesTheConnectedBodyBack()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Drive_PushesTheConnectedBodyBack()
+  overload: Prowl.Runtime.Test.PhysicsTests.Drive_PushesTheConnectedBodyBack*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Prowl.Runtime.Test.PhysicsTests.RebuildingABodysShapesThrowsNothingInsideJitter
+  commentId: M:Prowl.Runtime.Test.PhysicsTests.RebuildingABodysShapesThrowsNothingInsideJitter
+  id: RebuildingABodysShapesThrowsNothingInsideJitter
+  parent: Prowl.Runtime.Test.PhysicsTests
+  langs:
+  - csharp
+  - vb
+  name: RebuildingABodysShapesThrowsNothingInsideJitter()
+  nameWithType: PhysicsTests.RebuildingABodysShapesThrowsNothingInsideJitter()
+  fullName: Prowl.Runtime.Test.PhysicsTests.RebuildingABodysShapesThrowsNothingInsideJitter()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime.Test/PhysicsTests.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: RebuildingABodysShapesThrowsNothingInsideJitter
+    path: ../Prowl/Prowl.Runtime.Test/PhysicsTests.cs
+    startLine: 2627
+  assemblies:
+  - Prowl.Runtime.Test
+  namespace: Prowl.Runtime.Test
+  syntax:
+    content: >-
+      [Fact]
+
+      public void RebuildingABodysShapesThrowsNothingInsideJitter()
+    content.vb: >-
+      <Fact>
+
+      Public Sub RebuildingABodysShapesThrowsNothingInsideJitter()
+  overload: Prowl.Runtime.Test.PhysicsTests.RebuildingABodysShapesThrowsNothingInsideJitter*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
 references:
 - uid: Prowl.Runtime.Test
   commentId: N:Prowl.Runtime.Test
@@ -5236,3 +6212,170 @@ references:
   name: PrismaticJoint_Limits_AreMeasuredAlongItsOwnAxis
   nameWithType: PhysicsTests.PrismaticJoint_Limits_AreMeasuredAlongItsOwnAxis
   fullName: Prowl.Runtime.Test.PhysicsTests.PrismaticJoint_Limits_AreMeasuredAlongItsOwnAxis
+- uid: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_Settings_CanChangeAfterTheWorldDroppedTheBody*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_Settings_CanChangeAfterTheWorldDroppedTheBody
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Rigidbody3D_Settings_CanChangeAfterTheWorldDroppedTheBody
+  name: Rigidbody3D_Settings_CanChangeAfterTheWorldDroppedTheBody
+  nameWithType: PhysicsTests.Rigidbody3D_Settings_CanChangeAfterTheWorldDroppedTheBody
+  fullName: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_Settings_CanChangeAfterTheWorldDroppedTheBody
+- uid: Prowl.Runtime.Test.PhysicsTests.LinearMotor_AxisChangedWhileLive_DrivesAlongTheNewAxis*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.LinearMotor_AxisChangedWhileLive_DrivesAlongTheNewAxis
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_LinearMotor_AxisChangedWhileLive_DrivesAlongTheNewAxis
+  name: LinearMotor_AxisChangedWhileLive_DrivesAlongTheNewAxis
+  nameWithType: PhysicsTests.LinearMotor_AxisChangedWhileLive_DrivesAlongTheNewAxis
+  fullName: Prowl.Runtime.Test.PhysicsTests.LinearMotor_AxisChangedWhileLive_DrivesAlongTheNewAxis
+- uid: Prowl.Runtime.Test.PhysicsTests.LinearMotor_MaximumForce_IsTheForceItPushesWith*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.LinearMotor_MaximumForce_IsTheForceItPushesWith
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_LinearMotor_MaximumForce_IsTheForceItPushesWith
+  name: LinearMotor_MaximumForce_IsTheForceItPushesWith
+  nameWithType: PhysicsTests.LinearMotor_MaximumForce_IsTheForceItPushesWith
+  fullName: Prowl.Runtime.Test.PhysicsTests.LinearMotor_MaximumForce_IsTheForceItPushesWith
+- uid: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_InertiaTensorOverride_SetsHowHardItIsToTurn*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_InertiaTensorOverride_SetsHowHardItIsToTurn
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Rigidbody3D_InertiaTensorOverride_SetsHowHardItIsToTurn
+  name: Rigidbody3D_InertiaTensorOverride_SetsHowHardItIsToTurn
+  nameWithType: PhysicsTests.Rigidbody3D_InertiaTensorOverride_SetsHowHardItIsToTurn
+  fullName: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_InertiaTensorOverride_SetsHowHardItIsToTurn
+- uid: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_IsWhatTheBodyTurnsAbout*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_IsWhatTheBodyTurnsAbout
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Rigidbody3D_CenterOfMassOverride_IsWhatTheBodyTurnsAbout
+  name: Rigidbody3D_CenterOfMassOverride_IsWhatTheBodyTurnsAbout
+  nameWithType: PhysicsTests.Rigidbody3D_CenterOfMassOverride_IsWhatTheBodyTurnsAbout
+  fullName: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_IsWhatTheBodyTurnsAbout
+- uid: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_HangsBelowAPivot*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_HangsBelowAPivot
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Rigidbody3D_CenterOfMassOverride_HangsBelowAPivot
+  name: Rigidbody3D_CenterOfMassOverride_HangsBelowAPivot
+  nameWithType: PhysicsTests.Rigidbody3D_CenterOfMassOverride_HangsBelowAPivot
+  fullName: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_HangsBelowAPivot
+- uid: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_ChangedWhileMovingKeepsTheMotion*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_ChangedWhileMovingKeepsTheMotion
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Rigidbody3D_CenterOfMassOverride_ChangedWhileMovingKeepsTheMotion
+  name: Rigidbody3D_CenterOfMassOverride_ChangedWhileMovingKeepsTheMotion
+  nameWithType: PhysicsTests.Rigidbody3D_CenterOfMassOverride_ChangedWhileMovingKeepsTheMotion
+  fullName: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_ChangedWhileMovingKeepsTheMotion
+- uid: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_MovePositionAndRotationUseTheOrigin*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_MovePositionAndRotationUseTheOrigin
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Rigidbody3D_CenterOfMassOverride_MovePositionAndRotationUseTheOrigin
+  name: Rigidbody3D_CenterOfMassOverride_MovePositionAndRotationUseTheOrigin
+  nameWithType: PhysicsTests.Rigidbody3D_CenterOfMassOverride_MovePositionAndRotationUseTheOrigin
+  fullName: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_MovePositionAndRotationUseTheOrigin
+- uid: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_JointsHoldTheSamePoint*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_JointsHoldTheSamePoint
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Rigidbody3D_CenterOfMassOverride_JointsHoldTheSamePoint
+  name: Rigidbody3D_CenterOfMassOverride_JointsHoldTheSamePoint
+  nameWithType: PhysicsTests.Rigidbody3D_CenterOfMassOverride_JointsHoldTheSamePoint
+  fullName: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_JointsHoldTheSamePoint
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_WithAMovedCenterOfMass_PutsTheOriginOnTarget*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Drive_WithAMovedCenterOfMass_PutsTheOriginOnTarget
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Drive_WithAMovedCenterOfMass_PutsTheOriginOnTarget
+  name: Drive_WithAMovedCenterOfMass_PutsTheOriginOnTarget
+  nameWithType: PhysicsTests.Drive_WithAMovedCenterOfMass_PutsTheOriginOnTarget
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_WithAMovedCenterOfMass_PutsTheOriginOnTarget
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_WithAMovedCenterOfMassAndNoRotationDrive_PutsTheOriginOnTarget*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Drive_WithAMovedCenterOfMassAndNoRotationDrive_PutsTheOriginOnTarget
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Drive_WithAMovedCenterOfMassAndNoRotationDrive_PutsTheOriginOnTarget
+  name: Drive_WithAMovedCenterOfMassAndNoRotationDrive_PutsTheOriginOnTarget
+  nameWithType: PhysicsTests.Drive_WithAMovedCenterOfMassAndNoRotationDrive_PutsTheOriginOnTarget
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_WithAMovedCenterOfMassAndNoRotationDrive_PutsTheOriginOnTarget
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_FrozenAxis_LeavesTheForceToTheFreeAxes*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Drive_FrozenAxis_LeavesTheForceToTheFreeAxes
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Drive_FrozenAxis_LeavesTheForceToTheFreeAxes
+  name: Drive_FrozenAxis_LeavesTheForceToTheFreeAxes
+  nameWithType: PhysicsTests.Drive_FrozenAxis_LeavesTheForceToTheFreeAxes
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_FrozenAxis_LeavesTheForceToTheFreeAxes
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_FrozenRotationAxis_LeavesTheTorqueToTheFreeAxes*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Drive_FrozenRotationAxis_LeavesTheTorqueToTheFreeAxes
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Drive_FrozenRotationAxis_LeavesTheTorqueToTheFreeAxes
+  name: Drive_FrozenRotationAxis_LeavesTheTorqueToTheFreeAxes
+  nameWithType: PhysicsTests.Drive_FrozenRotationAxis_LeavesTheTorqueToTheFreeAxes
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_FrozenRotationAxis_LeavesTheTorqueToTheFreeAxes
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_OnAStaticBody_PushesNothing*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Drive_OnAStaticBody_PushesNothing
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Drive_OnAStaticBody_PushesNothing
+  name: Drive_OnAStaticBody_PushesNothing
+  nameWithType: PhysicsTests.Drive_OnAStaticBody_PushesNothing
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_OnAStaticBody_PushesNothing
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_BetweenFreeBodies_GivesThePairNoSpin*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Drive_BetweenFreeBodies_GivesThePairNoSpin
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Drive_BetweenFreeBodies_GivesThePairNoSpin
+  name: Drive_BetweenFreeBodies_GivesThePairNoSpin
+  nameWithType: PhysicsTests.Drive_BetweenFreeBodies_GivesThePairNoSpin
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_BetweenFreeBodies_GivesThePairNoSpin
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_FromASpinningBody_KeepsUpWithIt*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Drive_FromASpinningBody_KeepsUpWithIt
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Drive_FromASpinningBody_KeepsUpWithIt
+  name: Drive_FromASpinningBody_KeepsUpWithIt
+  nameWithType: PhysicsTests.Drive_FromASpinningBody_KeepsUpWithIt
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_FromASpinningBody_KeepsUpWithIt
+- uid: Prowl.Runtime.Test.PhysicsTests.Motors_SubstepCountChangedAfterwards_KeepTheirForce*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Motors_SubstepCountChangedAfterwards_KeepTheirForce
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Motors_SubstepCountChangedAfterwards_KeepTheirForce_System_Int32_
+  name: Motors_SubstepCountChangedAfterwards_KeepTheirForce
+  nameWithType: PhysicsTests.Motors_SubstepCountChangedAfterwards_KeepTheirForce
+  fullName: Prowl.Runtime.Test.PhysicsTests.Motors_SubstepCountChangedAfterwards_KeepTheirForce
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_KeepsJointLimits*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_KeepsJointLimits
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Rigidbody3D_CenterOfMassOverride_KeepsJointLimits
+  name: Rigidbody3D_CenterOfMassOverride_KeepsJointLimits
+  nameWithType: PhysicsTests.Rigidbody3D_CenterOfMassOverride_KeepsJointLimits
+  fullName: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_CenterOfMassOverride_KeepsJointLimits
+- uid: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_ZeroInertiaInSavedData_IsClamped*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_ZeroInertiaInSavedData_IsClamped
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Rigidbody3D_ZeroInertiaInSavedData_IsClamped
+  name: Rigidbody3D_ZeroInertiaInSavedData_IsClamped
+  nameWithType: PhysicsTests.Rigidbody3D_ZeroInertiaInSavedData_IsClamped
+  fullName: Prowl.Runtime.Test.PhysicsTests.Rigidbody3D_ZeroInertiaInSavedData_IsClamped
+- uid: Prowl.Runtime.Test.PhysicsTests.LinearMotor_ZeroAxis_IsRejected*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.LinearMotor_ZeroAxis_IsRejected
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_LinearMotor_ZeroAxis_IsRejected
+  name: LinearMotor_ZeroAxis_IsRejected
+  nameWithType: PhysicsTests.LinearMotor_ZeroAxis_IsRejected
+  fullName: Prowl.Runtime.Test.PhysicsTests.LinearMotor_ZeroAxis_IsRejected
+- uid: Prowl.Runtime.Test.PhysicsTests.EveryConstraintAxis_RejectsZero*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.EveryConstraintAxis_RejectsZero
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_EveryConstraintAxis_RejectsZero
+  name: EveryConstraintAxis_RejectsZero
+  nameWithType: PhysicsTests.EveryConstraintAxis_RejectsZero
+  fullName: Prowl.Runtime.Test.PhysicsTests.EveryConstraintAxis_RejectsZero
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_SpringAndDamper_SettleOnTheTargetWithoutOvershoot*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Drive_SpringAndDamper_SettleOnTheTargetWithoutOvershoot
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Drive_SpringAndDamper_SettleOnTheTargetWithoutOvershoot
+  name: Drive_SpringAndDamper_SettleOnTheTargetWithoutOvershoot
+  nameWithType: PhysicsTests.Drive_SpringAndDamper_SettleOnTheTargetWithoutOvershoot
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_SpringAndDamper_SettleOnTheTargetWithoutOvershoot
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_MaximumForce_LimitsThePush*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Drive_MaximumForce_LimitsThePush
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Drive_MaximumForce_LimitsThePush
+  name: Drive_MaximumForce_LimitsThePush
+  nameWithType: PhysicsTests.Drive_MaximumForce_LimitsThePush
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_MaximumForce_LimitsThePush
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_Rotation_TurnsTheBodyToItsTarget*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Drive_Rotation_TurnsTheBodyToItsTarget
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Drive_Rotation_TurnsTheBodyToItsTarget
+  name: Drive_Rotation_TurnsTheBodyToItsTarget
+  nameWithType: PhysicsTests.Drive_Rotation_TurnsTheBodyToItsTarget
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_Rotation_TurnsTheBodyToItsTarget
+- uid: Prowl.Runtime.Test.PhysicsTests.Drive_PushesTheConnectedBodyBack*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.Drive_PushesTheConnectedBodyBack
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_Drive_PushesTheConnectedBodyBack
+  name: Drive_PushesTheConnectedBodyBack
+  nameWithType: PhysicsTests.Drive_PushesTheConnectedBodyBack
+  fullName: Prowl.Runtime.Test.PhysicsTests.Drive_PushesTheConnectedBodyBack
+- uid: Prowl.Runtime.Test.PhysicsTests.RebuildingABodysShapesThrowsNothingInsideJitter*
+  commentId: Overload:Prowl.Runtime.Test.PhysicsTests.RebuildingABodysShapesThrowsNothingInsideJitter
+  href: Prowl.Runtime.Test.PhysicsTests.html#Prowl_Runtime_Test_PhysicsTests_RebuildingABodysShapesThrowsNothingInsideJitter
+  name: RebuildingABodysShapesThrowsNothingInsideJitter
+  nameWithType: PhysicsTests.RebuildingABodysShapesThrowsNothingInsideJitter
+  fullName: Prowl.Runtime.Test.PhysicsTests.RebuildingABodysShapesThrowsNothingInsideJitter

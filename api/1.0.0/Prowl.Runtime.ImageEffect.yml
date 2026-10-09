@@ -6,11 +6,13 @@ items:
   parent: Prowl.Runtime
   children:
   - Prowl.Runtime.ImageEffect.Enabled
+  - Prowl.Runtime.ImageEffect.GetEyeState``1(Prowl.Runtime.Camera)
   - Prowl.Runtime.ImageEffect.OnDisable
   - Prowl.Runtime.ImageEffect.OnPostRender(Prowl.Runtime.Camera)
   - Prowl.Runtime.ImageEffect.OnPreCull(Prowl.Runtime.Camera)
   - Prowl.Runtime.ImageEffect.OnPreRender(Prowl.Runtime.Camera)
   - Prowl.Runtime.ImageEffect.OnRenderEffect(Prowl.Runtime.Rendering.RenderContext)
+  - Prowl.Runtime.ImageEffect.ReleaseEyeStates``1(System.Action{``0})
   - Prowl.Runtime.ImageEffect.Stage
   - Prowl.Runtime.ImageEffect.TransformsToLDR
   langs:
@@ -312,6 +314,83 @@ items:
     content: public virtual void OnDisable()
     content.vb: Public Overridable Sub OnDisable()
   overload: Prowl.Runtime.ImageEffect.OnDisable*
+- uid: Prowl.Runtime.ImageEffect.GetEyeState``1(Prowl.Runtime.Camera)
+  commentId: M:Prowl.Runtime.ImageEffect.GetEyeState``1(Prowl.Runtime.Camera)
+  id: GetEyeState``1(Prowl.Runtime.Camera)
+  parent: Prowl.Runtime.ImageEffect
+  langs:
+  - csharp
+  - vb
+  name: GetEyeState<T>(Camera)
+  nameWithType: ImageEffect.GetEyeState<T>(Camera)
+  fullName: Prowl.Runtime.ImageEffect.GetEyeState<T>(Prowl.Runtime.Camera)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Camera.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetEyeState
+    path: ../Prowl/Prowl.Runtime/Components/Camera.cs
+    startLine: 59
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    State kept apart for each eye the camera renders, so temporal history from one eye never feeds the other.
+
+    A mono camera only ever uses one.
+  example: []
+  syntax:
+    content: 'protected T GetEyeState<T>(Camera camera) where T : class, new()'
+    parameters:
+    - id: camera
+      type: Prowl.Runtime.Camera
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Protected Function GetEyeState(Of T As {Class, New})(camera As Camera) As T
+  overload: Prowl.Runtime.ImageEffect.GetEyeState*
+  nameWithType.vb: ImageEffect.GetEyeState(Of T)(Camera)
+  fullName.vb: Prowl.Runtime.ImageEffect.GetEyeState(Of T)(Prowl.Runtime.Camera)
+  name.vb: GetEyeState(Of T)(Camera)
+- uid: Prowl.Runtime.ImageEffect.ReleaseEyeStates``1(System.Action{``0})
+  commentId: M:Prowl.Runtime.ImageEffect.ReleaseEyeStates``1(System.Action{``0})
+  id: ReleaseEyeStates``1(System.Action{``0})
+  parent: Prowl.Runtime.ImageEffect
+  langs:
+  - csharp
+  - vb
+  name: ReleaseEyeStates<T>(Action<T>)
+  nameWithType: ImageEffect.ReleaseEyeStates<T>(Action<T>)
+  fullName: Prowl.Runtime.ImageEffect.ReleaseEyeStates<T>(System.Action<T>)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/Camera.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ReleaseEyeStates
+    path: ../Prowl/Prowl.Runtime/Components/Camera.cs
+    startLine: 63
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Hands every eye state created so far to <code class="paramref">release</code>, then forgets them.
+  example: []
+  syntax:
+    content: 'protected void ReleaseEyeStates<T>(Action<T> release) where T : class'
+    parameters:
+    - id: release
+      type: System.Action{{T}}
+    typeParameters:
+    - id: T
+    content.vb: Protected Sub ReleaseEyeStates(Of T As Class)(release As Action(Of T))
+  overload: Prowl.Runtime.ImageEffect.ReleaseEyeStates*
+  nameWithType.vb: ImageEffect.ReleaseEyeStates(Of T)(Action(Of T))
+  fullName.vb: Prowl.Runtime.ImageEffect.ReleaseEyeStates(Of T)(System.Action(Of T))
+  name.vb: ReleaseEyeStates(Of T)(Action(Of T))
 references:
 - uid: Prowl.Runtime
   commentId: N:Prowl.Runtime
@@ -732,3 +811,82 @@ references:
   name: OnDisable
   nameWithType: ImageEffect.OnDisable
   fullName: Prowl.Runtime.ImageEffect.OnDisable
+- uid: Prowl.Runtime.ImageEffect.GetEyeState*
+  commentId: Overload:Prowl.Runtime.ImageEffect.GetEyeState
+  href: Prowl.Runtime.ImageEffect.html#Prowl_Runtime_ImageEffect_GetEyeState__1_Prowl_Runtime_Camera_
+  name: GetEyeState
+  nameWithType: ImageEffect.GetEyeState
+  fullName: Prowl.Runtime.ImageEffect.GetEyeState
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: Prowl.Runtime.ImageEffect.ReleaseEyeStates*
+  commentId: Overload:Prowl.Runtime.ImageEffect.ReleaseEyeStates
+  href: Prowl.Runtime.ImageEffect.html#Prowl_Runtime_ImageEffect_ReleaseEyeStates__1_System_Action___0__
+  name: ReleaseEyeStates
+  nameWithType: ImageEffect.ReleaseEyeStates
+  fullName: Prowl.Runtime.ImageEffect.ReleaseEyeStates
+- uid: System.Action{{T}}
+  commentId: T:System.Action{``0}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

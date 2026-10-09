@@ -1,0 +1,1947 @@
+### YamlMime:ManagedReference
+items:
+- uid: Prowl.Runtime.Resources.ComputeShader
+  commentId: T:Prowl.Runtime.Resources.ComputeShader
+  id: ComputeShader
+  parent: Prowl.Runtime.Resources
+  children:
+  - Prowl.Runtime.Resources.ComputeShader.Dispatch(System.Int32,System.Int32,System.Int32,System.Int32)
+  - Prowl.Runtime.Resources.ComputeShader.DispatchIndirect(System.Int32,Prowl.Runtime.Resources.ComputeBuffer,System.UInt32)
+  - Prowl.Runtime.Resources.ComputeShader.FindKernel(System.String)
+  - Prowl.Runtime.Resources.ComputeShader.FromSource(System.String,System.String)
+  - Prowl.Runtime.Resources.ComputeShader.GetKernelThreadGroupSizes(System.Int32,System.UInt32@,System.UInt32@,System.UInt32@)
+  - Prowl.Runtime.Resources.ComputeShader.HasKernel(System.String)
+  - Prowl.Runtime.Resources.ComputeShader.IsSupported
+  - Prowl.Runtime.Resources.ComputeShader.OnUnload
+  - Prowl.Runtime.Resources.ComputeShader.SetBool(System.String,System.Boolean)
+  - Prowl.Runtime.Resources.ComputeShader.SetBuffer(System.Int32,System.String,Prowl.Runtime.Resources.ComputeBuffer)
+  - Prowl.Runtime.Resources.ComputeShader.SetFloat(System.String,System.Single)
+  - Prowl.Runtime.Resources.ComputeShader.SetInt(System.String,System.Int32)
+  - Prowl.Runtime.Resources.ComputeShader.SetMatrix(System.String,Prowl.Vector.Float4x4)
+  - Prowl.Runtime.Resources.ComputeShader.SetMatrixArray(System.String,Prowl.Vector.Float4x4[])
+  - Prowl.Runtime.Resources.ComputeShader.SetTexture(System.Int32,System.String,Prowl.Runtime.Resources.RenderTexture)
+  - Prowl.Runtime.Resources.ComputeShader.SetTexture(System.Int32,System.String,Prowl.Runtime.Resources.Texture2D)
+  - Prowl.Runtime.Resources.ComputeShader.SetTexture(System.Int32,System.String,Prowl.Runtime.Resources.Texture3D)
+  - Prowl.Runtime.Resources.ComputeShader.SetVector(System.String,Prowl.Vector.Float2)
+  - Prowl.Runtime.Resources.ComputeShader.SetVector(System.String,Prowl.Vector.Float3)
+  - Prowl.Runtime.Resources.ComputeShader.SetVector(System.String,Prowl.Vector.Float4)
+  - Prowl.Runtime.Resources.ComputeShader.TakeContent(Prowl.Runtime.Asset)
+  langs:
+  - csharp
+  - vb
+  name: ComputeShader
+  nameWithType: ComputeShader
+  fullName: Prowl.Runtime.Resources.ComputeShader
+  type: Class
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ComputeShader
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 33
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  summary: >-
+    GLSL that runs on the GPU outside of drawing. A <code>.compute</code> file declares its entry points with
+
+    <code>#pragma kernel Name X Y Z</code>, the thread group size (Y and Z default to 1), and each one is a plain
+
+    <code>void Name()</code> function reading <code>gl_GlobalInvocationID</code> and friends. Storage blocks and images need no
+
+    binding layout, the engine assigns them and binds by name.
+
+
+    <p></p>
+
+
+    Values set with <xref href="Prowl.Runtime.Resources.ComputeShader.SetFloat(System.String%2cSystem.Single)" data-throw-if-not-resolved="false"></xref> and the like apply to every kernel, buffers and textures are set per kernel.
+
+    Needs compute support, see <xref href="Prowl.Runtime.Resources.ComputeShader.IsSupported" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: 'public sealed class ComputeShader : Asset, IDisposable'
+    content.vb: Public NotInheritable Class ComputeShader Inherits Asset Implements IDisposable
+  inheritance:
+  - System.Object
+  - Prowl.Runtime.EngineObject
+  - Prowl.Runtime.Asset
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - Prowl.Runtime.Asset.AssetID
+  - Prowl.Runtime.Asset.AssetPath
+  - Prowl.Runtime.Asset.State
+  - Prowl.Runtime.Asset.ContentVersion
+  - Prowl.Runtime.Asset.IsFromDatabase
+  - Prowl.Runtime.Asset.IsLoaded
+  - Prowl.Runtime.Asset.IsMissing
+  - Prowl.Runtime.Asset.Load
+  - Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+  - Prowl.Runtime.Asset.HasChanged(System.Int32@)
+  - Prowl.Runtime.EngineObject.InstanceID
+  - Prowl.Runtime.EngineObject.Name
+  - Prowl.Runtime.EngineObject.IsDisposed
+  - Prowl.Runtime.EngineObject.CreatedInstance
+  - Prowl.Runtime.EngineObject.OnValidate
+  - Prowl.Runtime.EngineObject.Dispose
+  - Prowl.Runtime.EngineObject.Destroy
+  - Prowl.Runtime.EngineObject.IsDestroyQueued
+  - Prowl.Runtime.EngineObject.ProcessDestroyed
+  - Prowl.Runtime.EngineObject.Equals(System.Object)
+  - Prowl.Runtime.EngineObject.GetHashCode
+  - Prowl.Runtime.EngineObject.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  extensionMethods:
+  - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsNotValid
+  - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsValid
+  - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+- uid: Prowl.Runtime.Resources.ComputeShader.IsSupported
+  commentId: P:Prowl.Runtime.Resources.ComputeShader.IsSupported
+  id: IsSupported
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: IsSupported
+  nameWithType: ComputeShader.IsSupported
+  fullName: Prowl.Runtime.Resources.ComputeShader.IsSupported
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: IsSupported
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 48
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  summary: Whether this device and graphics target can run compute shaders at all.
+  example: []
+  syntax:
+    content: public static bool IsSupported { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared ReadOnly Property IsSupported As Boolean
+  overload: Prowl.Runtime.Resources.ComputeShader.IsSupported*
+- uid: Prowl.Runtime.Resources.ComputeShader.FromSource(System.String,System.String)
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.FromSource(System.String,System.String)
+  id: FromSource(System.String,System.String)
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: FromSource(string, string)
+  nameWithType: ComputeShader.FromSource(string, string)
+  fullName: Prowl.Runtime.Resources.ComputeShader.FromSource(string, string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FromSource
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 51
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  summary: Builds a compute shader from GLSL, with its includes already expanded.
+  example: []
+  syntax:
+    content: public static ComputeShader FromSource(string name, string source)
+    parameters:
+    - id: name
+      type: System.String
+    - id: source
+      type: System.String
+    return:
+      type: Prowl.Runtime.Resources.ComputeShader
+    content.vb: Public Shared Function FromSource(name As String, source As String) As ComputeShader
+  overload: Prowl.Runtime.Resources.ComputeShader.FromSource*
+  nameWithType.vb: ComputeShader.FromSource(String, String)
+  fullName.vb: Prowl.Runtime.Resources.ComputeShader.FromSource(String, String)
+  name.vb: FromSource(String, String)
+- uid: Prowl.Runtime.Resources.ComputeShader.FindKernel(System.String)
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.FindKernel(System.String)
+  id: FindKernel(System.String)
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: FindKernel(string)
+  nameWithType: ComputeShader.FindKernel(string)
+  fullName: Prowl.Runtime.Resources.ComputeShader.FindKernel(string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FindKernel
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 93
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  summary: The kernel's index, for the per kernel setters and <xref href="Prowl.Runtime.Resources.ComputeShader.Dispatch(System.Int32%2cSystem.Int32%2cSystem.Int32%2cSystem.Int32)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public int FindKernel(string name)
+    parameters:
+    - id: name
+      type: System.String
+    return:
+      type: System.Int32
+    content.vb: Public Function FindKernel(name As String) As Integer
+  overload: Prowl.Runtime.Resources.ComputeShader.FindKernel*
+  nameWithType.vb: ComputeShader.FindKernel(String)
+  fullName.vb: Prowl.Runtime.Resources.ComputeShader.FindKernel(String)
+  name.vb: FindKernel(String)
+- uid: Prowl.Runtime.Resources.ComputeShader.HasKernel(System.String)
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.HasKernel(System.String)
+  id: HasKernel(System.String)
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: HasKernel(string)
+  nameWithType: ComputeShader.HasKernel(string)
+  fullName: Prowl.Runtime.Resources.ComputeShader.HasKernel(string)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: HasKernel
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 100
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  syntax:
+    content: public bool HasKernel(string name)
+    parameters:
+    - id: name
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function HasKernel(name As String) As Boolean
+  overload: Prowl.Runtime.Resources.ComputeShader.HasKernel*
+  nameWithType.vb: ComputeShader.HasKernel(String)
+  fullName.vb: Prowl.Runtime.Resources.ComputeShader.HasKernel(String)
+  name.vb: HasKernel(String)
+- uid: Prowl.Runtime.Resources.ComputeShader.GetKernelThreadGroupSizes(System.Int32,System.UInt32@,System.UInt32@,System.UInt32@)
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.GetKernelThreadGroupSizes(System.Int32,System.UInt32@,System.UInt32@,System.UInt32@)
+  id: GetKernelThreadGroupSizes(System.Int32,System.UInt32@,System.UInt32@,System.UInt32@)
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: GetKernelThreadGroupSizes(int, out uint, out uint, out uint)
+  nameWithType: ComputeShader.GetKernelThreadGroupSizes(int, out uint, out uint, out uint)
+  fullName: Prowl.Runtime.Resources.ComputeShader.GetKernelThreadGroupSizes(int, out uint, out uint, out uint)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GetKernelThreadGroupSizes
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 110
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  syntax:
+    content: public void GetKernelThreadGroupSizes(int kernel, out uint x, out uint y, out uint z)
+    parameters:
+    - id: kernel
+      type: System.Int32
+    - id: x
+      type: System.UInt32
+    - id: y
+      type: System.UInt32
+    - id: z
+      type: System.UInt32
+    content.vb: Public Sub GetKernelThreadGroupSizes(kernel As Integer, x As UInteger, y As UInteger, z As UInteger)
+  overload: Prowl.Runtime.Resources.ComputeShader.GetKernelThreadGroupSizes*
+  nameWithType.vb: ComputeShader.GetKernelThreadGroupSizes(Integer, UInteger, UInteger, UInteger)
+  fullName.vb: Prowl.Runtime.Resources.ComputeShader.GetKernelThreadGroupSizes(Integer, UInteger, UInteger, UInteger)
+  name.vb: GetKernelThreadGroupSizes(Integer, UInteger, UInteger, UInteger)
+- uid: Prowl.Runtime.Resources.ComputeShader.SetFloat(System.String,System.Single)
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.SetFloat(System.String,System.Single)
+  id: SetFloat(System.String,System.Single)
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: SetFloat(string, float)
+  nameWithType: ComputeShader.SetFloat(string, float)
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetFloat(string, float)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetFloat
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 168
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  syntax:
+    content: public void SetFloat(string name, float value)
+    parameters:
+    - id: name
+      type: System.String
+    - id: value
+      type: System.Single
+    content.vb: Public Sub SetFloat(name As String, value As Single)
+  overload: Prowl.Runtime.Resources.ComputeShader.SetFloat*
+  nameWithType.vb: ComputeShader.SetFloat(String, Single)
+  fullName.vb: Prowl.Runtime.Resources.ComputeShader.SetFloat(String, Single)
+  name.vb: SetFloat(String, Single)
+- uid: Prowl.Runtime.Resources.ComputeShader.SetInt(System.String,System.Int32)
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.SetInt(System.String,System.Int32)
+  id: SetInt(System.String,System.Int32)
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: SetInt(string, int)
+  nameWithType: ComputeShader.SetInt(string, int)
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetInt(string, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetInt
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 169
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  syntax:
+    content: public void SetInt(string name, int value)
+    parameters:
+    - id: name
+      type: System.String
+    - id: value
+      type: System.Int32
+    content.vb: Public Sub SetInt(name As String, value As Integer)
+  overload: Prowl.Runtime.Resources.ComputeShader.SetInt*
+  nameWithType.vb: ComputeShader.SetInt(String, Integer)
+  fullName.vb: Prowl.Runtime.Resources.ComputeShader.SetInt(String, Integer)
+  name.vb: SetInt(String, Integer)
+- uid: Prowl.Runtime.Resources.ComputeShader.SetBool(System.String,System.Boolean)
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.SetBool(System.String,System.Boolean)
+  id: SetBool(System.String,System.Boolean)
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: SetBool(string, bool)
+  nameWithType: ComputeShader.SetBool(string, bool)
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetBool(string, bool)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetBool
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 170
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  syntax:
+    content: public void SetBool(string name, bool value)
+    parameters:
+    - id: name
+      type: System.String
+    - id: value
+      type: System.Boolean
+    content.vb: Public Sub SetBool(name As String, value As Boolean)
+  overload: Prowl.Runtime.Resources.ComputeShader.SetBool*
+  nameWithType.vb: ComputeShader.SetBool(String, Boolean)
+  fullName.vb: Prowl.Runtime.Resources.ComputeShader.SetBool(String, Boolean)
+  name.vb: SetBool(String, Boolean)
+- uid: Prowl.Runtime.Resources.ComputeShader.SetVector(System.String,Prowl.Vector.Float2)
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.SetVector(System.String,Prowl.Vector.Float2)
+  id: SetVector(System.String,Prowl.Vector.Float2)
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: SetVector(string, Float2)
+  nameWithType: ComputeShader.SetVector(string, Float2)
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetVector(string, Prowl.Vector.Float2)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetVector
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 171
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  syntax:
+    content: public void SetVector(string name, Float2 value)
+    parameters:
+    - id: name
+      type: System.String
+    - id: value
+      type: Prowl.Vector.Float2
+    content.vb: Public Sub SetVector(name As String, value As Float2)
+  overload: Prowl.Runtime.Resources.ComputeShader.SetVector*
+  nameWithType.vb: ComputeShader.SetVector(String, Float2)
+  fullName.vb: Prowl.Runtime.Resources.ComputeShader.SetVector(String, Prowl.Vector.Float2)
+  name.vb: SetVector(String, Float2)
+- uid: Prowl.Runtime.Resources.ComputeShader.SetVector(System.String,Prowl.Vector.Float3)
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.SetVector(System.String,Prowl.Vector.Float3)
+  id: SetVector(System.String,Prowl.Vector.Float3)
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: SetVector(string, Float3)
+  nameWithType: ComputeShader.SetVector(string, Float3)
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetVector(string, Prowl.Vector.Float3)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetVector
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 172
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  syntax:
+    content: public void SetVector(string name, Float3 value)
+    parameters:
+    - id: name
+      type: System.String
+    - id: value
+      type: Prowl.Vector.Float3
+    content.vb: Public Sub SetVector(name As String, value As Float3)
+  overload: Prowl.Runtime.Resources.ComputeShader.SetVector*
+  nameWithType.vb: ComputeShader.SetVector(String, Float3)
+  fullName.vb: Prowl.Runtime.Resources.ComputeShader.SetVector(String, Prowl.Vector.Float3)
+  name.vb: SetVector(String, Float3)
+- uid: Prowl.Runtime.Resources.ComputeShader.SetVector(System.String,Prowl.Vector.Float4)
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.SetVector(System.String,Prowl.Vector.Float4)
+  id: SetVector(System.String,Prowl.Vector.Float4)
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: SetVector(string, Float4)
+  nameWithType: ComputeShader.SetVector(string, Float4)
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetVector(string, Prowl.Vector.Float4)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetVector
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 173
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  syntax:
+    content: public void SetVector(string name, Float4 value)
+    parameters:
+    - id: name
+      type: System.String
+    - id: value
+      type: Prowl.Vector.Float4
+    content.vb: Public Sub SetVector(name As String, value As Float4)
+  overload: Prowl.Runtime.Resources.ComputeShader.SetVector*
+  nameWithType.vb: ComputeShader.SetVector(String, Float4)
+  fullName.vb: Prowl.Runtime.Resources.ComputeShader.SetVector(String, Prowl.Vector.Float4)
+  name.vb: SetVector(String, Float4)
+- uid: Prowl.Runtime.Resources.ComputeShader.SetMatrix(System.String,Prowl.Vector.Float4x4)
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.SetMatrix(System.String,Prowl.Vector.Float4x4)
+  id: SetMatrix(System.String,Prowl.Vector.Float4x4)
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: SetMatrix(string, Float4x4)
+  nameWithType: ComputeShader.SetMatrix(string, Float4x4)
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetMatrix(string, Prowl.Vector.Float4x4)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetMatrix
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 174
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  syntax:
+    content: public void SetMatrix(string name, Float4x4 value)
+    parameters:
+    - id: name
+      type: System.String
+    - id: value
+      type: Prowl.Vector.Float4x4
+    content.vb: Public Sub SetMatrix(name As String, value As Float4x4)
+  overload: Prowl.Runtime.Resources.ComputeShader.SetMatrix*
+  nameWithType.vb: ComputeShader.SetMatrix(String, Float4x4)
+  fullName.vb: Prowl.Runtime.Resources.ComputeShader.SetMatrix(String, Prowl.Vector.Float4x4)
+  name.vb: SetMatrix(String, Float4x4)
+- uid: Prowl.Runtime.Resources.ComputeShader.SetMatrixArray(System.String,Prowl.Vector.Float4x4[])
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.SetMatrixArray(System.String,Prowl.Vector.Float4x4[])
+  id: SetMatrixArray(System.String,Prowl.Vector.Float4x4[])
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: SetMatrixArray(string, Float4x4[])
+  nameWithType: ComputeShader.SetMatrixArray(string, Float4x4[])
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetMatrixArray(string, Prowl.Vector.Float4x4[])
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetMatrixArray
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 175
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  syntax:
+    content: public void SetMatrixArray(string name, Float4x4[] values)
+    parameters:
+    - id: name
+      type: System.String
+    - id: values
+      type: Prowl.Vector.Float4x4[]
+    content.vb: Public Sub SetMatrixArray(name As String, values As Float4x4())
+  overload: Prowl.Runtime.Resources.ComputeShader.SetMatrixArray*
+  nameWithType.vb: ComputeShader.SetMatrixArray(String, Float4x4())
+  fullName.vb: Prowl.Runtime.Resources.ComputeShader.SetMatrixArray(String, Prowl.Vector.Float4x4())
+  name.vb: SetMatrixArray(String, Float4x4())
+- uid: Prowl.Runtime.Resources.ComputeShader.SetBuffer(System.Int32,System.String,Prowl.Runtime.Resources.ComputeBuffer)
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.SetBuffer(System.Int32,System.String,Prowl.Runtime.Resources.ComputeBuffer)
+  id: SetBuffer(System.Int32,System.String,Prowl.Runtime.Resources.ComputeBuffer)
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: SetBuffer(int, string, ComputeBuffer)
+  nameWithType: ComputeShader.SetBuffer(int, string, ComputeBuffer)
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetBuffer(int, string, Prowl.Runtime.Resources.ComputeBuffer)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetBuffer
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 178
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  summary: Binds a buffer to the kernel's storage or uniform block of that name.
+  example: []
+  syntax:
+    content: public void SetBuffer(int kernel, string name, ComputeBuffer buffer)
+    parameters:
+    - id: kernel
+      type: System.Int32
+    - id: name
+      type: System.String
+    - id: buffer
+      type: Prowl.Runtime.Resources.ComputeBuffer
+    content.vb: Public Sub SetBuffer(kernel As Integer, name As String, buffer As ComputeBuffer)
+  overload: Prowl.Runtime.Resources.ComputeShader.SetBuffer*
+  nameWithType.vb: ComputeShader.SetBuffer(Integer, String, ComputeBuffer)
+  fullName.vb: Prowl.Runtime.Resources.ComputeShader.SetBuffer(Integer, String, Prowl.Runtime.Resources.ComputeBuffer)
+  name.vb: SetBuffer(Integer, String, ComputeBuffer)
+- uid: Prowl.Runtime.Resources.ComputeShader.SetTexture(System.Int32,System.String,Prowl.Runtime.Resources.Texture2D)
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.SetTexture(System.Int32,System.String,Prowl.Runtime.Resources.Texture2D)
+  id: SetTexture(System.Int32,System.String,Prowl.Runtime.Resources.Texture2D)
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: SetTexture(int, string, Texture2D)
+  nameWithType: ComputeShader.SetTexture(int, string, Texture2D)
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetTexture(int, string, Prowl.Runtime.Resources.Texture2D)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetTexture
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 181
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  summary: Binds a texture to the kernel's sampler or image of that name. An image reads and writes the texture directly.
+  example: []
+  syntax:
+    content: public void SetTexture(int kernel, string name, Texture2D texture)
+    parameters:
+    - id: kernel
+      type: System.Int32
+    - id: name
+      type: System.String
+    - id: texture
+      type: Prowl.Runtime.Resources.Texture2D
+    content.vb: Public Sub SetTexture(kernel As Integer, name As String, texture As Texture2D)
+  overload: Prowl.Runtime.Resources.ComputeShader.SetTexture*
+  nameWithType.vb: ComputeShader.SetTexture(Integer, String, Texture2D)
+  fullName.vb: Prowl.Runtime.Resources.ComputeShader.SetTexture(Integer, String, Prowl.Runtime.Resources.Texture2D)
+  name.vb: SetTexture(Integer, String, Texture2D)
+- uid: Prowl.Runtime.Resources.ComputeShader.SetTexture(System.Int32,System.String,Prowl.Runtime.Resources.RenderTexture)
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.SetTexture(System.Int32,System.String,Prowl.Runtime.Resources.RenderTexture)
+  id: SetTexture(System.Int32,System.String,Prowl.Runtime.Resources.RenderTexture)
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: SetTexture(int, string, RenderTexture)
+  nameWithType: ComputeShader.SetTexture(int, string, RenderTexture)
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetTexture(int, string, Prowl.Runtime.Resources.RenderTexture)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetTexture
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 188
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  syntax:
+    content: public void SetTexture(int kernel, string name, RenderTexture texture)
+    parameters:
+    - id: kernel
+      type: System.Int32
+    - id: name
+      type: System.String
+    - id: texture
+      type: Prowl.Runtime.Resources.RenderTexture
+    content.vb: Public Sub SetTexture(kernel As Integer, name As String, texture As RenderTexture)
+  overload: Prowl.Runtime.Resources.ComputeShader.SetTexture*
+  nameWithType.vb: ComputeShader.SetTexture(Integer, String, RenderTexture)
+  fullName.vb: Prowl.Runtime.Resources.ComputeShader.SetTexture(Integer, String, Prowl.Runtime.Resources.RenderTexture)
+  name.vb: SetTexture(Integer, String, RenderTexture)
+- uid: Prowl.Runtime.Resources.ComputeShader.SetTexture(System.Int32,System.String,Prowl.Runtime.Resources.Texture3D)
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.SetTexture(System.Int32,System.String,Prowl.Runtime.Resources.Texture3D)
+  id: SetTexture(System.Int32,System.String,Prowl.Runtime.Resources.Texture3D)
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: SetTexture(int, string, Texture3D)
+  nameWithType: ComputeShader.SetTexture(int, string, Texture3D)
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetTexture(int, string, Prowl.Runtime.Resources.Texture3D)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetTexture
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 190
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  syntax:
+    content: public void SetTexture(int kernel, string name, Texture3D texture)
+    parameters:
+    - id: kernel
+      type: System.Int32
+    - id: name
+      type: System.String
+    - id: texture
+      type: Prowl.Runtime.Resources.Texture3D
+    content.vb: Public Sub SetTexture(kernel As Integer, name As String, texture As Texture3D)
+  overload: Prowl.Runtime.Resources.ComputeShader.SetTexture*
+  nameWithType.vb: ComputeShader.SetTexture(Integer, String, Texture3D)
+  fullName.vb: Prowl.Runtime.Resources.ComputeShader.SetTexture(Integer, String, Prowl.Runtime.Resources.Texture3D)
+  name.vb: SetTexture(Integer, String, Texture3D)
+- uid: Prowl.Runtime.Resources.ComputeShader.Dispatch(System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.Dispatch(System.Int32,System.Int32,System.Int32,System.Int32)
+  id: Dispatch(System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: Dispatch(int, int, int, int)
+  nameWithType: ComputeShader.Dispatch(int, int, int, int)
+  fullName: Prowl.Runtime.Resources.ComputeShader.Dispatch(int, int, int, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Dispatch
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 197
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  summary: Runs the kernel over the given number of thread groups, in order with the rendering submitted around it.
+  example: []
+  syntax:
+    content: public void Dispatch(int kernel, int threadGroupsX, int threadGroupsY, int threadGroupsZ)
+    parameters:
+    - id: kernel
+      type: System.Int32
+    - id: threadGroupsX
+      type: System.Int32
+    - id: threadGroupsY
+      type: System.Int32
+    - id: threadGroupsZ
+      type: System.Int32
+    content.vb: Public Sub Dispatch(kernel As Integer, threadGroupsX As Integer, threadGroupsY As Integer, threadGroupsZ As Integer)
+  overload: Prowl.Runtime.Resources.ComputeShader.Dispatch*
+  nameWithType.vb: ComputeShader.Dispatch(Integer, Integer, Integer, Integer)
+  fullName.vb: Prowl.Runtime.Resources.ComputeShader.Dispatch(Integer, Integer, Integer, Integer)
+  name.vb: Dispatch(Integer, Integer, Integer, Integer)
+- uid: Prowl.Runtime.Resources.ComputeShader.DispatchIndirect(System.Int32,Prowl.Runtime.Resources.ComputeBuffer,System.UInt32)
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.DispatchIndirect(System.Int32,Prowl.Runtime.Resources.ComputeBuffer,System.UInt32)
+  id: DispatchIndirect(System.Int32,Prowl.Runtime.Resources.ComputeBuffer,System.UInt32)
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: DispatchIndirect(int, ComputeBuffer, uint)
+  nameWithType: ComputeShader.DispatchIndirect(int, ComputeBuffer, uint)
+  fullName: Prowl.Runtime.Resources.ComputeShader.DispatchIndirect(int, Prowl.Runtime.Resources.ComputeBuffer, uint)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DispatchIndirect
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 205
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  summary: Runs the kernel with its thread group counts read from three uints in <code class="paramref">arguments</code>.
+  example: []
+  syntax:
+    content: public void DispatchIndirect(int kernel, ComputeBuffer arguments, uint argumentsOffset = 0)
+    parameters:
+    - id: kernel
+      type: System.Int32
+    - id: arguments
+      type: Prowl.Runtime.Resources.ComputeBuffer
+    - id: argumentsOffset
+      type: System.UInt32
+    content.vb: Public Sub DispatchIndirect(kernel As Integer, arguments As ComputeBuffer, argumentsOffset As UInteger = 0)
+  overload: Prowl.Runtime.Resources.ComputeShader.DispatchIndirect*
+  nameWithType.vb: ComputeShader.DispatchIndirect(Integer, ComputeBuffer, UInteger)
+  fullName.vb: Prowl.Runtime.Resources.ComputeShader.DispatchIndirect(Integer, Prowl.Runtime.Resources.ComputeBuffer, UInteger)
+  name.vb: DispatchIndirect(Integer, ComputeBuffer, UInteger)
+- uid: Prowl.Runtime.Resources.ComputeShader.TakeContent(Prowl.Runtime.Asset)
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.TakeContent(Prowl.Runtime.Asset)
+  id: TakeContent(Prowl.Runtime.Asset)
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: TakeContent(Asset)
+  nameWithType: ComputeShader.TakeContent(Asset)
+  fullName: Prowl.Runtime.Resources.ComputeShader.TakeContent(Prowl.Runtime.Asset)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TakeContent
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 214
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  summary: Moves the payload of a freshly read copy into this object. The copy owns nothing afterwards.
+  example: []
+  syntax:
+    content: protected override void TakeContent(Asset staging)
+    parameters:
+    - id: staging
+      type: Prowl.Runtime.Asset
+    content.vb: Protected Overrides Sub TakeContent(staging As Asset)
+  overridden: Prowl.Runtime.Asset.TakeContent(Prowl.Runtime.Asset)
+  overload: Prowl.Runtime.Resources.ComputeShader.TakeContent*
+- uid: Prowl.Runtime.Resources.ComputeShader.OnUnload
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.OnUnload
+  id: OnUnload
+  parent: Prowl.Runtime.Resources.ComputeShader
+  langs:
+  - csharp
+  - vb
+  name: OnUnload()
+  nameWithType: ComputeShader.OnUnload()
+  fullName: Prowl.Runtime.Resources.ComputeShader.OnUnload()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/ComputeShader.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnUnload
+    path: ../Prowl/Prowl.Runtime/Resources/ComputeShader.cs
+    startLine: 220
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.Resources
+  summary: >-
+    Frees native resources and anything derived from the payload. Runs when the asset unloads, before a refill
+
+    and when a runtime asset is disposed. The database resets every field to its shell value afterwards.
+  example: []
+  syntax:
+    content: protected override void OnUnload()
+    content.vb: Protected Overrides Sub OnUnload()
+  overridden: Prowl.Runtime.Asset.OnUnload
+  overload: Prowl.Runtime.Resources.ComputeShader.OnUnload*
+references:
+- uid: Prowl.Runtime.Resources.ComputeShader.SetFloat(System.String,System.Single)
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.SetFloat(System.String,System.Single)
+  isExternal: true
+  href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_SetFloat_System_String_System_Single_
+  name: SetFloat(string, float)
+  nameWithType: ComputeShader.SetFloat(string, float)
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetFloat(string, float)
+  nameWithType.vb: ComputeShader.SetFloat(String, Single)
+  fullName.vb: Prowl.Runtime.Resources.ComputeShader.SetFloat(String, Single)
+  name.vb: SetFloat(String, Single)
+  spec.csharp:
+  - uid: Prowl.Runtime.Resources.ComputeShader.SetFloat(System.String,System.Single)
+    name: SetFloat
+    href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_SetFloat_System_String_System_Single_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Resources.ComputeShader.SetFloat(System.String,System.Single)
+    name: SetFloat
+    href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_SetFloat_System_String_System_Single_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+- uid: Prowl.Runtime.Resources.ComputeShader.IsSupported
+  commentId: P:Prowl.Runtime.Resources.ComputeShader.IsSupported
+  href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_IsSupported
+  name: IsSupported
+  nameWithType: ComputeShader.IsSupported
+  fullName: Prowl.Runtime.Resources.ComputeShader.IsSupported
+- uid: Prowl.Runtime.Resources
+  commentId: N:Prowl.Runtime.Resources
+  name: Prowl.Runtime.Resources
+  nameWithType: Prowl.Runtime.Resources
+  fullName: Prowl.Runtime.Resources
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Prowl.Runtime.EngineObject
+  commentId: T:Prowl.Runtime.EngineObject
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.EngineObject.html
+  name: EngineObject
+  nameWithType: EngineObject
+  fullName: Prowl.Runtime.EngineObject
+- uid: Prowl.Runtime.Asset
+  commentId: T:Prowl.Runtime.Asset
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.Asset.html
+  name: Asset
+  nameWithType: Asset
+  fullName: Prowl.Runtime.Asset
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Prowl.Runtime.Asset.AssetID
+  commentId: P:Prowl.Runtime.Asset.AssetID
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_AssetID
+  name: AssetID
+  nameWithType: Asset.AssetID
+  fullName: Prowl.Runtime.Asset.AssetID
+- uid: Prowl.Runtime.Asset.AssetPath
+  commentId: P:Prowl.Runtime.Asset.AssetPath
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_AssetPath
+  name: AssetPath
+  nameWithType: Asset.AssetPath
+  fullName: Prowl.Runtime.Asset.AssetPath
+- uid: Prowl.Runtime.Asset.State
+  commentId: P:Prowl.Runtime.Asset.State
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_State
+  name: State
+  nameWithType: Asset.State
+  fullName: Prowl.Runtime.Asset.State
+- uid: Prowl.Runtime.Asset.ContentVersion
+  commentId: P:Prowl.Runtime.Asset.ContentVersion
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_ContentVersion
+  name: ContentVersion
+  nameWithType: Asset.ContentVersion
+  fullName: Prowl.Runtime.Asset.ContentVersion
+- uid: Prowl.Runtime.Asset.IsFromDatabase
+  commentId: P:Prowl.Runtime.Asset.IsFromDatabase
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_IsFromDatabase
+  name: IsFromDatabase
+  nameWithType: Asset.IsFromDatabase
+  fullName: Prowl.Runtime.Asset.IsFromDatabase
+- uid: Prowl.Runtime.Asset.IsLoaded
+  commentId: P:Prowl.Runtime.Asset.IsLoaded
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_IsLoaded
+  name: IsLoaded
+  nameWithType: Asset.IsLoaded
+  fullName: Prowl.Runtime.Asset.IsLoaded
+- uid: Prowl.Runtime.Asset.IsMissing
+  commentId: P:Prowl.Runtime.Asset.IsMissing
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_IsMissing
+  name: IsMissing
+  nameWithType: Asset.IsMissing
+  fullName: Prowl.Runtime.Asset.IsMissing
+- uid: Prowl.Runtime.Asset.Load
+  commentId: M:Prowl.Runtime.Asset.Load
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_Load
+  name: Load()
+  nameWithType: Asset.Load()
+  fullName: Prowl.Runtime.Asset.Load()
+  spec.csharp:
+  - uid: Prowl.Runtime.Asset.Load
+    name: Load
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_Load
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Asset.Load
+    name: Load
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_Load
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+  commentId: M:Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+  parent: Prowl.Runtime.Asset
+  isExternal: true
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_LoadAsync_System_Threading_CancellationToken_
+  name: LoadAsync(CancellationToken)
+  nameWithType: Asset.LoadAsync(CancellationToken)
+  fullName: Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+    name: LoadAsync
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_LoadAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Asset.LoadAsync(System.Threading.CancellationToken)
+    name: LoadAsync
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_LoadAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: Prowl.Runtime.Asset.HasChanged(System.Int32@)
+  commentId: M:Prowl.Runtime.Asset.HasChanged(System.Int32@)
+  parent: Prowl.Runtime.Asset
+  isExternal: true
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_HasChanged_System_Int32__
+  name: HasChanged(ref int)
+  nameWithType: Asset.HasChanged(ref int)
+  fullName: Prowl.Runtime.Asset.HasChanged(ref int)
+  nameWithType.vb: Asset.HasChanged(Integer)
+  fullName.vb: Prowl.Runtime.Asset.HasChanged(Integer)
+  name.vb: HasChanged(Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Asset.HasChanged(System.Int32@)
+    name: HasChanged
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_HasChanged_System_Int32__
+  - name: (
+  - name: ref
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Asset.HasChanged(System.Int32@)
+    name: HasChanged
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_HasChanged_System_Int32__
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.EngineObject.InstanceID
+  commentId: P:Prowl.Runtime.EngineObject.InstanceID
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_InstanceID
+  name: InstanceID
+  nameWithType: EngineObject.InstanceID
+  fullName: Prowl.Runtime.EngineObject.InstanceID
+- uid: Prowl.Runtime.EngineObject.Name
+  commentId: F:Prowl.Runtime.EngineObject.Name
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Name
+  name: Name
+  nameWithType: EngineObject.Name
+  fullName: Prowl.Runtime.EngineObject.Name
+- uid: Prowl.Runtime.EngineObject.IsDisposed
+  commentId: P:Prowl.Runtime.EngineObject.IsDisposed
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_IsDisposed
+  name: IsDisposed
+  nameWithType: EngineObject.IsDisposed
+  fullName: Prowl.Runtime.EngineObject.IsDisposed
+- uid: Prowl.Runtime.EngineObject.CreatedInstance
+  commentId: M:Prowl.Runtime.EngineObject.CreatedInstance
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_CreatedInstance
+  name: CreatedInstance()
+  nameWithType: EngineObject.CreatedInstance()
+  fullName: Prowl.Runtime.EngineObject.CreatedInstance()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.CreatedInstance
+    name: CreatedInstance
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_CreatedInstance
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.CreatedInstance
+    name: CreatedInstance
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_CreatedInstance
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.OnValidate
+  commentId: M:Prowl.Runtime.EngineObject.OnValidate
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnValidate
+  name: OnValidate()
+  nameWithType: EngineObject.OnValidate()
+  fullName: Prowl.Runtime.EngineObject.OnValidate()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.OnValidate
+    name: OnValidate
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnValidate
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.OnValidate
+    name: OnValidate
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_OnValidate
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Dispose
+  commentId: M:Prowl.Runtime.EngineObject.Dispose
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
+  name: Dispose()
+  nameWithType: EngineObject.Dispose()
+  fullName: Prowl.Runtime.EngineObject.Dispose()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.Dispose
+    name: Dispose
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.Dispose
+    name: Dispose
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Dispose
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Destroy
+  commentId: M:Prowl.Runtime.EngineObject.Destroy
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
+  name: Destroy()
+  nameWithType: EngineObject.Destroy()
+  fullName: Prowl.Runtime.EngineObject.Destroy()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.Destroy
+    name: Destroy
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.Destroy
+    name: Destroy
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Destroy
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.IsDestroyQueued
+  commentId: P:Prowl.Runtime.EngineObject.IsDestroyQueued
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_IsDestroyQueued
+  name: IsDestroyQueued
+  nameWithType: EngineObject.IsDestroyQueued
+  fullName: Prowl.Runtime.EngineObject.IsDestroyQueued
+- uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+  commentId: M:Prowl.Runtime.EngineObject.ProcessDestroyed
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
+  name: ProcessDestroyed()
+  nameWithType: EngineObject.ProcessDestroyed()
+  fullName: Prowl.Runtime.EngineObject.ProcessDestroyed()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+    name: ProcessDestroyed
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.ProcessDestroyed
+    name: ProcessDestroyed
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ProcessDestroyed
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+  commentId: M:Prowl.Runtime.EngineObject.Equals(System.Object)
+  parent: Prowl.Runtime.EngineObject
+  isExternal: true
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
+  name: Equals(object)
+  nameWithType: EngineObject.Equals(object)
+  fullName: Prowl.Runtime.EngineObject.Equals(object)
+  nameWithType.vb: EngineObject.Equals(Object)
+  fullName.vb: Prowl.Runtime.EngineObject.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+    name: Equals
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.Equals(System.Object)
+    name: Equals
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_Equals_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.EngineObject.GetHashCode
+  commentId: M:Prowl.Runtime.EngineObject.GetHashCode
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
+  name: GetHashCode()
+  nameWithType: EngineObject.GetHashCode()
+  fullName: Prowl.Runtime.EngineObject.GetHashCode()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.GetHashCode
+    name: GetHashCode
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.GetHashCode
+    name: GetHashCode
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_GetHashCode
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.EngineObject.ToString
+  commentId: M:Prowl.Runtime.EngineObject.ToString
+  parent: Prowl.Runtime.EngineObject
+  href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ToString
+  name: ToString()
+  nameWithType: EngineObject.ToString()
+  fullName: Prowl.Runtime.EngineObject.ToString()
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObject.ToString
+    name: ToString
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ToString
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObject.ToString
+    name: ToString
+    href: Prowl.Runtime.EngineObject.html#Prowl_Runtime_EngineObject_ToString
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsNotValid
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  parent: Prowl.Runtime.EngineObjectExtensions
+  definition: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  name: IsNotValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsNotValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+- uid: Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsValid
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  parent: Prowl.Runtime.EngineObjectExtensions
+  definition: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  name: IsValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+- uid: System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  parent: Prowl.Runtime.RuntimeUtils
+  definition: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+- uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  name: IsNotValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsNotValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsNotValid(Prowl.Runtime.EngineObject)
+    name: IsNotValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsNotValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+- uid: Prowl.Runtime.EngineObjectExtensions
+  commentId: T:Prowl.Runtime.EngineObjectExtensions
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.EngineObjectExtensions.html
+  name: EngineObjectExtensions
+  nameWithType: EngineObjectExtensions
+  fullName: Prowl.Runtime.EngineObjectExtensions
+- uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  commentId: M:Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  name: IsValid(EngineObject)
+  nameWithType: EngineObjectExtensions.IsValid(EngineObject)
+  fullName: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+  spec.csharp:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.EngineObjectExtensions.IsValid(Prowl.Runtime.EngineObject)
+    name: IsValid
+    href: Prowl.Runtime.EngineObjectExtensions.html#Prowl_Runtime_EngineObjectExtensions_IsValid_Prowl_Runtime_EngineObject_
+  - name: (
+  - uid: Prowl.Runtime.EngineObject
+    name: EngineObject
+    href: Prowl.Runtime.EngineObject.html
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  commentId: M:Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+  isExternal: true
+  href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  name: GetSerializableFields(object)
+  nameWithType: RuntimeUtils.GetSerializableFields(object)
+  fullName: Prowl.Runtime.RuntimeUtils.GetSerializableFields(object)
+  nameWithType.vb: RuntimeUtils.GetSerializableFields(Object)
+  fullName.vb: Prowl.Runtime.RuntimeUtils.GetSerializableFields(Object)
+  name.vb: GetSerializableFields(Object)
+  spec.csharp:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.RuntimeUtils.GetSerializableFields(System.Object)
+    name: GetSerializableFields
+    href: Prowl.Runtime.RuntimeUtils.html#Prowl_Runtime_RuntimeUtils_GetSerializableFields_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Prowl.Runtime.RuntimeUtils
+  commentId: T:Prowl.Runtime.RuntimeUtils
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.RuntimeUtils.html
+  name: RuntimeUtils
+  nameWithType: RuntimeUtils
+  fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime.Resources.ComputeShader.IsSupported*
+  commentId: Overload:Prowl.Runtime.Resources.ComputeShader.IsSupported
+  href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_IsSupported
+  name: IsSupported
+  nameWithType: ComputeShader.IsSupported
+  fullName: Prowl.Runtime.Resources.ComputeShader.IsSupported
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Runtime.Resources.ComputeShader.FromSource*
+  commentId: Overload:Prowl.Runtime.Resources.ComputeShader.FromSource
+  href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_FromSource_System_String_System_String_
+  name: FromSource
+  nameWithType: ComputeShader.FromSource
+  fullName: Prowl.Runtime.Resources.ComputeShader.FromSource
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Prowl.Runtime.Resources.ComputeShader
+  commentId: T:Prowl.Runtime.Resources.ComputeShader
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.ComputeShader.html
+  name: ComputeShader
+  nameWithType: ComputeShader
+  fullName: Prowl.Runtime.Resources.ComputeShader
+- uid: Prowl.Runtime.Resources.ComputeShader.Dispatch(System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:Prowl.Runtime.Resources.ComputeShader.Dispatch(System.Int32,System.Int32,System.Int32,System.Int32)
+  isExternal: true
+  href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_Dispatch_System_Int32_System_Int32_System_Int32_System_Int32_
+  name: Dispatch(int, int, int, int)
+  nameWithType: ComputeShader.Dispatch(int, int, int, int)
+  fullName: Prowl.Runtime.Resources.ComputeShader.Dispatch(int, int, int, int)
+  nameWithType.vb: ComputeShader.Dispatch(Integer, Integer, Integer, Integer)
+  fullName.vb: Prowl.Runtime.Resources.ComputeShader.Dispatch(Integer, Integer, Integer, Integer)
+  name.vb: Dispatch(Integer, Integer, Integer, Integer)
+  spec.csharp:
+  - uid: Prowl.Runtime.Resources.ComputeShader.Dispatch(System.Int32,System.Int32,System.Int32,System.Int32)
+    name: Dispatch
+    href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_Dispatch_System_Int32_System_Int32_System_Int32_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Resources.ComputeShader.Dispatch(System.Int32,System.Int32,System.Int32,System.Int32)
+    name: Dispatch
+    href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_Dispatch_System_Int32_System_Int32_System_Int32_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Prowl.Runtime.Resources.ComputeShader.FindKernel*
+  commentId: Overload:Prowl.Runtime.Resources.ComputeShader.FindKernel
+  href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_FindKernel_System_String_
+  name: FindKernel
+  nameWithType: ComputeShader.FindKernel
+  fullName: Prowl.Runtime.Resources.ComputeShader.FindKernel
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Runtime.Resources.ComputeShader.HasKernel*
+  commentId: Overload:Prowl.Runtime.Resources.ComputeShader.HasKernel
+  href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_HasKernel_System_String_
+  name: HasKernel
+  nameWithType: ComputeShader.HasKernel
+  fullName: Prowl.Runtime.Resources.ComputeShader.HasKernel
+- uid: Prowl.Runtime.Resources.ComputeShader.GetKernelThreadGroupSizes*
+  commentId: Overload:Prowl.Runtime.Resources.ComputeShader.GetKernelThreadGroupSizes
+  href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_GetKernelThreadGroupSizes_System_Int32_System_UInt32__System_UInt32__System_UInt32__
+  name: GetKernelThreadGroupSizes
+  nameWithType: ComputeShader.GetKernelThreadGroupSizes
+  fullName: Prowl.Runtime.Resources.ComputeShader.GetKernelThreadGroupSizes
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: Prowl.Runtime.Resources.ComputeShader.SetFloat*
+  commentId: Overload:Prowl.Runtime.Resources.ComputeShader.SetFloat
+  href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_SetFloat_System_String_System_Single_
+  name: SetFloat
+  nameWithType: ComputeShader.SetFloat
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetFloat
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: Prowl.Runtime.Resources.ComputeShader.SetInt*
+  commentId: Overload:Prowl.Runtime.Resources.ComputeShader.SetInt
+  href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_SetInt_System_String_System_Int32_
+  name: SetInt
+  nameWithType: ComputeShader.SetInt
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetInt
+- uid: Prowl.Runtime.Resources.ComputeShader.SetBool*
+  commentId: Overload:Prowl.Runtime.Resources.ComputeShader.SetBool
+  href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_SetBool_System_String_System_Boolean_
+  name: SetBool
+  nameWithType: ComputeShader.SetBool
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetBool
+- uid: Prowl.Runtime.Resources.ComputeShader.SetVector*
+  commentId: Overload:Prowl.Runtime.Resources.ComputeShader.SetVector
+  href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_SetVector_System_String_Prowl_Vector_Float2_
+  name: SetVector
+  nameWithType: ComputeShader.SetVector
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetVector
+- uid: Prowl.Vector.Float2
+  commentId: T:Prowl.Vector.Float2
+  parent: Prowl.Vector
+  isExternal: true
+  name: Float2
+  nameWithType: Float2
+  fullName: Prowl.Vector.Float2
+- uid: Prowl.Vector
+  commentId: N:Prowl.Vector
+  name: Prowl.Vector
+  nameWithType: Prowl.Vector
+  fullName: Prowl.Vector
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Vector
+    name: Vector
+- uid: Prowl.Vector.Float3
+  commentId: T:Prowl.Vector.Float3
+  parent: Prowl.Vector
+  isExternal: true
+  name: Float3
+  nameWithType: Float3
+  fullName: Prowl.Vector.Float3
+- uid: Prowl.Vector.Float4
+  commentId: T:Prowl.Vector.Float4
+  parent: Prowl.Vector
+  isExternal: true
+  name: Float4
+  nameWithType: Float4
+  fullName: Prowl.Vector.Float4
+- uid: Prowl.Runtime.Resources.ComputeShader.SetMatrix*
+  commentId: Overload:Prowl.Runtime.Resources.ComputeShader.SetMatrix
+  href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_SetMatrix_System_String_Prowl_Vector_Float4x4_
+  name: SetMatrix
+  nameWithType: ComputeShader.SetMatrix
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetMatrix
+- uid: Prowl.Vector.Float4x4
+  commentId: T:Prowl.Vector.Float4x4
+  parent: Prowl.Vector
+  isExternal: true
+  name: Float4x4
+  nameWithType: Float4x4
+  fullName: Prowl.Vector.Float4x4
+- uid: Prowl.Runtime.Resources.ComputeShader.SetMatrixArray*
+  commentId: Overload:Prowl.Runtime.Resources.ComputeShader.SetMatrixArray
+  href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_SetMatrixArray_System_String_Prowl_Vector_Float4x4___
+  name: SetMatrixArray
+  nameWithType: ComputeShader.SetMatrixArray
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetMatrixArray
+- uid: Prowl.Vector.Float4x4[]
+  isExternal: true
+  name: Float4x4[]
+  nameWithType: Float4x4[]
+  fullName: Prowl.Vector.Float4x4[]
+  nameWithType.vb: Float4x4()
+  fullName.vb: Prowl.Vector.Float4x4()
+  name.vb: Float4x4()
+  spec.csharp:
+  - uid: Prowl.Vector.Float4x4
+    name: Float4x4
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Prowl.Vector.Float4x4
+    name: Float4x4
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Resources.ComputeShader.SetBuffer*
+  commentId: Overload:Prowl.Runtime.Resources.ComputeShader.SetBuffer
+  href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_SetBuffer_System_Int32_System_String_Prowl_Runtime_Resources_ComputeBuffer_
+  name: SetBuffer
+  nameWithType: ComputeShader.SetBuffer
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetBuffer
+- uid: Prowl.Runtime.Resources.ComputeBuffer
+  commentId: T:Prowl.Runtime.Resources.ComputeBuffer
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.ComputeBuffer.html
+  name: ComputeBuffer
+  nameWithType: ComputeBuffer
+  fullName: Prowl.Runtime.Resources.ComputeBuffer
+- uid: Prowl.Runtime.Resources.ComputeShader.SetTexture*
+  commentId: Overload:Prowl.Runtime.Resources.ComputeShader.SetTexture
+  href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_SetTexture_System_Int32_System_String_Prowl_Runtime_Resources_Texture2D_
+  name: SetTexture
+  nameWithType: ComputeShader.SetTexture
+  fullName: Prowl.Runtime.Resources.ComputeShader.SetTexture
+- uid: Prowl.Runtime.Resources.Texture2D
+  commentId: T:Prowl.Runtime.Resources.Texture2D
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.Texture2D.html
+  name: Texture2D
+  nameWithType: Texture2D
+  fullName: Prowl.Runtime.Resources.Texture2D
+- uid: Prowl.Runtime.Resources.RenderTexture
+  commentId: T:Prowl.Runtime.Resources.RenderTexture
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.RenderTexture.html
+  name: RenderTexture
+  nameWithType: RenderTexture
+  fullName: Prowl.Runtime.Resources.RenderTexture
+- uid: Prowl.Runtime.Resources.Texture3D
+  commentId: T:Prowl.Runtime.Resources.Texture3D
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.Texture3D.html
+  name: Texture3D
+  nameWithType: Texture3D
+  fullName: Prowl.Runtime.Resources.Texture3D
+- uid: Prowl.Runtime.Resources.ComputeShader.Dispatch*
+  commentId: Overload:Prowl.Runtime.Resources.ComputeShader.Dispatch
+  href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_Dispatch_System_Int32_System_Int32_System_Int32_System_Int32_
+  name: Dispatch
+  nameWithType: ComputeShader.Dispatch
+  fullName: Prowl.Runtime.Resources.ComputeShader.Dispatch
+- uid: Prowl.Runtime.Resources.ComputeShader.DispatchIndirect*
+  commentId: Overload:Prowl.Runtime.Resources.ComputeShader.DispatchIndirect
+  href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_DispatchIndirect_System_Int32_Prowl_Runtime_Resources_ComputeBuffer_System_UInt32_
+  name: DispatchIndirect
+  nameWithType: ComputeShader.DispatchIndirect
+  fullName: Prowl.Runtime.Resources.ComputeShader.DispatchIndirect
+- uid: Prowl.Runtime.Asset.TakeContent(Prowl.Runtime.Asset)
+  commentId: M:Prowl.Runtime.Asset.TakeContent(Prowl.Runtime.Asset)
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_TakeContent_Prowl_Runtime_Asset_
+  name: TakeContent(Asset)
+  nameWithType: Asset.TakeContent(Asset)
+  fullName: Prowl.Runtime.Asset.TakeContent(Prowl.Runtime.Asset)
+  spec.csharp:
+  - uid: Prowl.Runtime.Asset.TakeContent(Prowl.Runtime.Asset)
+    name: TakeContent
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_TakeContent_Prowl_Runtime_Asset_
+  - name: (
+  - uid: Prowl.Runtime.Asset
+    name: Asset
+    href: Prowl.Runtime.Asset.html
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Asset.TakeContent(Prowl.Runtime.Asset)
+    name: TakeContent
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_TakeContent_Prowl_Runtime_Asset_
+  - name: (
+  - uid: Prowl.Runtime.Asset
+    name: Asset
+    href: Prowl.Runtime.Asset.html
+  - name: )
+- uid: Prowl.Runtime.Resources.ComputeShader.TakeContent*
+  commentId: Overload:Prowl.Runtime.Resources.ComputeShader.TakeContent
+  href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_TakeContent_Prowl_Runtime_Asset_
+  name: TakeContent
+  nameWithType: ComputeShader.TakeContent
+  fullName: Prowl.Runtime.Resources.ComputeShader.TakeContent
+- uid: Prowl.Runtime.Asset.OnUnload
+  commentId: M:Prowl.Runtime.Asset.OnUnload
+  parent: Prowl.Runtime.Asset
+  href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_OnUnload
+  name: OnUnload()
+  nameWithType: Asset.OnUnload()
+  fullName: Prowl.Runtime.Asset.OnUnload()
+  spec.csharp:
+  - uid: Prowl.Runtime.Asset.OnUnload
+    name: OnUnload
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_OnUnload
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.Asset.OnUnload
+    name: OnUnload
+    href: Prowl.Runtime.Asset.html#Prowl_Runtime_Asset_OnUnload
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.Resources.ComputeShader.OnUnload*
+  commentId: Overload:Prowl.Runtime.Resources.ComputeShader.OnUnload
+  href: Prowl.Runtime.Resources.ComputeShader.html#Prowl_Runtime_Resources_ComputeShader_OnUnload
+  name: OnUnload
+  nameWithType: ComputeShader.OnUnload
+  fullName: Prowl.Runtime.Resources.ComputeShader.OnUnload

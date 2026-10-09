@@ -17,17 +17,21 @@ items:
   - Prowl.Runtime.CommandBuffer.ClearProperties
   - Prowl.Runtime.CommandBuffer.ClearRenderTarget(Prowl.Runtime.ClearFlags,Prowl.Vector.Color,System.Single,System.Int32)
   - Prowl.Runtime.CommandBuffer.DisableScissor
+  - Prowl.Runtime.CommandBuffer.DispatchCompute(Prowl.Runtime.Resources.ComputeShader,System.Int32,Prowl.Runtime.Resources.ComputeBuffer,System.UInt32)
+  - Prowl.Runtime.CommandBuffer.DispatchCompute(Prowl.Runtime.Resources.ComputeShader,System.Int32,System.Int32,System.Int32,System.Int32)
   - Prowl.Runtime.CommandBuffer.Dispose
   - Prowl.Runtime.CommandBuffer.DrawArrays(Prowl.Runtime.GraphicsVertexArray,Prowl.Runtime.Topology,System.Int32,System.UInt32)
   - Prowl.Runtime.CommandBuffer.DrawIndexed(Prowl.Runtime.GraphicsVertexArray,Prowl.Runtime.Topology,System.UInt32,System.UInt32,System.Int32,System.Boolean)
   - Prowl.Runtime.CommandBuffer.DrawIndexedInstanced(Prowl.Runtime.GraphicsVertexArray,Prowl.Runtime.Topology,System.UInt32,System.UInt32,System.UInt32,System.Int32,System.Boolean)
-  - Prowl.Runtime.CommandBuffer.DrawMesh(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material,System.Int32,Prowl.Vector.Float4x4@,Prowl.Runtime.Rendering.PropertyState,System.Int32)
+  - Prowl.Runtime.CommandBuffer.DrawMesh(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material,System.Int32,Prowl.Vector.Float4x4@,Prowl.Runtime.Rendering.PropertyState,System.Int32,System.Nullable{System.Boolean})
   - Prowl.Runtime.CommandBuffer.EndSample
   - Prowl.Runtime.CommandBuffer.GenerateMipmap(Prowl.Runtime.GraphicsTexture)
   - Prowl.Runtime.CommandBuffer.GenerateMipmap(Prowl.Runtime.Resources.Texture2D)
   - Prowl.Runtime.CommandBuffer.Name
   - Prowl.Runtime.CommandBuffer.SetBuffer(System.String,Prowl.Runtime.GraphicsBuffer,System.UInt32)
   - Prowl.Runtime.CommandBuffer.SetColor(System.String,Prowl.Vector.Color)
+  - Prowl.Runtime.CommandBuffer.SetDepthBias(System.Single,System.Single)
+  - Prowl.Runtime.CommandBuffer.SetDepthClamp(System.Boolean)
   - Prowl.Runtime.CommandBuffer.SetFloat(System.String,System.Single)
   - Prowl.Runtime.CommandBuffer.SetGlobalBuffer(System.String,Prowl.Runtime.GraphicsBuffer,System.UInt32)
   - Prowl.Runtime.CommandBuffer.SetGlobalColor(System.String,Prowl.Vector.Color)
@@ -517,6 +521,81 @@ items:
       type: Prowl.Runtime.GraphicsProgram
     content.vb: Public Sub SetShader(program As GraphicsProgram)
   overload: Prowl.Runtime.CommandBuffer.SetShader*
+- uid: Prowl.Runtime.CommandBuffer.SetDepthBias(System.Single,System.Single)
+  commentId: M:Prowl.Runtime.CommandBuffer.SetDepthBias(System.Single,System.Single)
+  id: SetDepthBias(System.Single,System.Single)
+  parent: Prowl.Runtime.CommandBuffer
+  langs:
+  - csharp
+  - vb
+  name: SetDepthBias(float, float)
+  nameWithType: CommandBuffer.SetDepthBias(float, float)
+  fullName: Prowl.Runtime.CommandBuffer.SetDepthBias(float, float)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetDepthBias
+    path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
+    startLine: 202
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Offsets the depth of following draws by slopeScale times the polygon's depth slope plus
+        constant depth units. Both zero turns the offset off. Not part of the raster state, so passes
+        keep it until it is set again.
+  example: []
+  syntax:
+    content: public void SetDepthBias(float slopeScale, float constant)
+    parameters:
+    - id: slopeScale
+      type: System.Single
+    - id: constant
+      type: System.Single
+    content.vb: Public Sub SetDepthBias(slopeScale As Single, constant As Single)
+  overload: Prowl.Runtime.CommandBuffer.SetDepthBias*
+  nameWithType.vb: CommandBuffer.SetDepthBias(Single, Single)
+  fullName.vb: Prowl.Runtime.CommandBuffer.SetDepthBias(Single, Single)
+  name.vb: SetDepthBias(Single, Single)
+- uid: Prowl.Runtime.CommandBuffer.SetDepthClamp(System.Boolean)
+  commentId: M:Prowl.Runtime.CommandBuffer.SetDepthClamp(System.Boolean)
+  id: SetDepthClamp(System.Boolean)
+  parent: Prowl.Runtime.CommandBuffer
+  langs:
+  - csharp
+  - vb
+  name: SetDepthClamp(bool)
+  nameWithType: CommandBuffer.SetDepthClamp(bool)
+  fullName: Prowl.Runtime.CommandBuffer.SetDepthClamp(bool)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SetDepthClamp
+    path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
+    startLine: 211
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Clamps depth into the depth range instead of clipping at the near and far planes. Not part
+        of the raster state, so passes keep it until it is set again.
+  example: []
+  syntax:
+    content: public void SetDepthClamp(bool enabled)
+    parameters:
+    - id: enabled
+      type: System.Boolean
+    content.vb: Public Sub SetDepthClamp(enabled As Boolean)
+  overload: Prowl.Runtime.CommandBuffer.SetDepthClamp*
+  nameWithType.vb: CommandBuffer.SetDepthClamp(Boolean)
+  fullName.vb: Prowl.Runtime.CommandBuffer.SetDepthClamp(Boolean)
+  name.vb: SetDepthClamp(Boolean)
 - uid: Prowl.Runtime.CommandBuffer.SetProperties(Prowl.Runtime.Rendering.PropertyState)
   commentId: M:Prowl.Runtime.CommandBuffer.SetProperties(Prowl.Runtime.Rendering.PropertyState)
   id: SetProperties(Prowl.Runtime.Rendering.PropertyState)
@@ -535,7 +614,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetProperties
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 203
+    startLine: 221
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -568,7 +647,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetMaterialProperties
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 214
+    startLine: 232
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -602,7 +681,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: ClearProperties
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 243
+    startLine: 261
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -630,7 +709,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetInstanceProperties
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 250
+    startLine: 268
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -663,7 +742,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: ClearInstanceProperties
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 258
+    startLine: 276
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -689,7 +768,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetGlobalTexture
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 264
+    startLine: 282
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -725,7 +804,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: ClearGlobalTexture
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 273
+    startLine: 291
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -757,7 +836,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetGlobalInt
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 280
+    startLine: 298
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -791,7 +870,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetGlobalFloat
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 287
+    startLine: 305
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -825,7 +904,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetGlobalVector
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 294
+    startLine: 312
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -859,7 +938,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetGlobalVector
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 301
+    startLine: 319
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -893,7 +972,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetGlobalVector
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 308
+    startLine: 326
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -927,7 +1006,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetGlobalColor
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 315
+    startLine: 333
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -961,7 +1040,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetGlobalMatrix
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 322
+    startLine: 340
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -995,7 +1074,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetGlobalMatrices
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 329
+    startLine: 347
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1029,7 +1108,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetGlobalBuffer
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 336
+    startLine: 354
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1065,7 +1144,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetGlobalTexture3D
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 344
+    startLine: 362
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1099,7 +1178,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetGlobalTextureCube
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 353
+    startLine: 371
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1133,7 +1212,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: ClearAllGlobals
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 362
+    startLine: 380
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1159,7 +1238,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetFloat
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 370
+    startLine: 388
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1193,7 +1272,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetInt
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 377
+    startLine: 395
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1227,7 +1306,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetVector
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 384
+    startLine: 402
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1261,7 +1340,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetVector
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 391
+    startLine: 409
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1295,7 +1374,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetVector
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 398
+    startLine: 416
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1329,7 +1408,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetColor
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 405
+    startLine: 423
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1363,7 +1442,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetMatrix
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 410
+    startLine: 428
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1397,7 +1476,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetMatrixArray
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 420
+    startLine: 438
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1431,7 +1510,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetTexture
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 429
+    startLine: 447
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1465,7 +1544,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetTexture
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 436
+    startLine: 454
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1499,7 +1578,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetTexture
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 443
+    startLine: 461
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1533,7 +1612,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SetBuffer
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 450
+    startLine: 468
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1569,7 +1648,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: UpdateBuffer
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 463
+    startLine: 481
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1612,7 +1691,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: UpdateTexture
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 473
+    startLine: 491
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1660,7 +1739,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GenerateMipmap
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 484
+    startLine: 502
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1689,7 +1768,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GenerateMipmap
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 490
+    startLine: 508
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1718,7 +1797,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: DrawIndexed
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 498
+    startLine: 516
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1742,6 +1821,91 @@ items:
   nameWithType.vb: CommandBuffer.DrawIndexed(GraphicsVertexArray, Topology, UInteger, UInteger, Integer, Boolean)
   fullName.vb: Prowl.Runtime.CommandBuffer.DrawIndexed(Prowl.Runtime.GraphicsVertexArray, Prowl.Runtime.Topology, UInteger, UInteger, Integer, Boolean)
   name.vb: DrawIndexed(GraphicsVertexArray, Topology, UInteger, UInteger, Integer, Boolean)
+- uid: Prowl.Runtime.CommandBuffer.DispatchCompute(Prowl.Runtime.Resources.ComputeShader,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:Prowl.Runtime.CommandBuffer.DispatchCompute(Prowl.Runtime.Resources.ComputeShader,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: DispatchCompute(Prowl.Runtime.Resources.ComputeShader,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: Prowl.Runtime.CommandBuffer
+  langs:
+  - csharp
+  - vb
+  name: DispatchCompute(ComputeShader, int, int, int, int)
+  nameWithType: CommandBuffer.DispatchCompute(ComputeShader, int, int, int, int)
+  fullName: Prowl.Runtime.CommandBuffer.DispatchCompute(Prowl.Runtime.Resources.ComputeShader, int, int, int, int)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DispatchCompute
+    path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
+    startLine: 553
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Runs a compute kernel over the given number of thread groups, with the parameters the shader holds right now.
+
+    Later draws and dispatches see everything it wrote.
+  example: []
+  syntax:
+    content: public void DispatchCompute(ComputeShader shader, int kernel, int threadGroupsX, int threadGroupsY, int threadGroupsZ)
+    parameters:
+    - id: shader
+      type: Prowl.Runtime.Resources.ComputeShader
+    - id: kernel
+      type: System.Int32
+    - id: threadGroupsX
+      type: System.Int32
+    - id: threadGroupsY
+      type: System.Int32
+    - id: threadGroupsZ
+      type: System.Int32
+    content.vb: Public Sub DispatchCompute(shader As ComputeShader, kernel As Integer, threadGroupsX As Integer, threadGroupsY As Integer, threadGroupsZ As Integer)
+  overload: Prowl.Runtime.CommandBuffer.DispatchCompute*
+  nameWithType.vb: CommandBuffer.DispatchCompute(ComputeShader, Integer, Integer, Integer, Integer)
+  fullName.vb: Prowl.Runtime.CommandBuffer.DispatchCompute(Prowl.Runtime.Resources.ComputeShader, Integer, Integer, Integer, Integer)
+  name.vb: DispatchCompute(ComputeShader, Integer, Integer, Integer, Integer)
+- uid: Prowl.Runtime.CommandBuffer.DispatchCompute(Prowl.Runtime.Resources.ComputeShader,System.Int32,Prowl.Runtime.Resources.ComputeBuffer,System.UInt32)
+  commentId: M:Prowl.Runtime.CommandBuffer.DispatchCompute(Prowl.Runtime.Resources.ComputeShader,System.Int32,Prowl.Runtime.Resources.ComputeBuffer,System.UInt32)
+  id: DispatchCompute(Prowl.Runtime.Resources.ComputeShader,System.Int32,Prowl.Runtime.Resources.ComputeBuffer,System.UInt32)
+  parent: Prowl.Runtime.CommandBuffer
+  langs:
+  - csharp
+  - vb
+  name: DispatchCompute(ComputeShader, int, ComputeBuffer, uint)
+  nameWithType: CommandBuffer.DispatchCompute(ComputeShader, int, ComputeBuffer, uint)
+  fullName: Prowl.Runtime.CommandBuffer.DispatchCompute(Prowl.Runtime.Resources.ComputeShader, int, Prowl.Runtime.Resources.ComputeBuffer, uint)
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DispatchCompute
+    path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
+    startLine: 564
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Runs a compute kernel with its group counts read from <code class="paramref">arguments</code>, three uints at <code class="paramref">argumentsOffset</code> bytes.
+  example: []
+  syntax:
+    content: public void DispatchCompute(ComputeShader shader, int kernel, ComputeBuffer arguments, uint argumentsOffset = 0)
+    parameters:
+    - id: shader
+      type: Prowl.Runtime.Resources.ComputeShader
+    - id: kernel
+      type: System.Int32
+    - id: arguments
+      type: Prowl.Runtime.Resources.ComputeBuffer
+    - id: argumentsOffset
+      type: System.UInt32
+    content.vb: Public Sub DispatchCompute(shader As ComputeShader, kernel As Integer, arguments As ComputeBuffer, argumentsOffset As UInteger = 0)
+  overload: Prowl.Runtime.CommandBuffer.DispatchCompute*
+  nameWithType.vb: CommandBuffer.DispatchCompute(ComputeShader, Integer, ComputeBuffer, UInteger)
+  fullName.vb: Prowl.Runtime.CommandBuffer.DispatchCompute(Prowl.Runtime.Resources.ComputeShader, Integer, Prowl.Runtime.Resources.ComputeBuffer, UInteger)
+  name.vb: DispatchCompute(ComputeShader, Integer, ComputeBuffer, UInteger)
 - uid: Prowl.Runtime.CommandBuffer.DrawIndexedInstanced(Prowl.Runtime.GraphicsVertexArray,Prowl.Runtime.Topology,System.UInt32,System.UInt32,System.UInt32,System.Int32,System.Boolean)
   commentId: M:Prowl.Runtime.CommandBuffer.DrawIndexedInstanced(Prowl.Runtime.GraphicsVertexArray,Prowl.Runtime.Topology,System.UInt32,System.UInt32,System.UInt32,System.Int32,System.Boolean)
   id: DrawIndexedInstanced(Prowl.Runtime.GraphicsVertexArray,Prowl.Runtime.Topology,System.UInt32,System.UInt32,System.UInt32,System.Int32,System.Boolean)
@@ -1760,7 +1924,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: DrawIndexedInstanced
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 516
+    startLine: 582
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1804,7 +1968,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: DrawArrays
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 533
+    startLine: 599
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1824,16 +1988,16 @@ items:
   nameWithType.vb: CommandBuffer.DrawArrays(GraphicsVertexArray, Topology, Integer, UInteger)
   fullName.vb: Prowl.Runtime.CommandBuffer.DrawArrays(Prowl.Runtime.GraphicsVertexArray, Prowl.Runtime.Topology, Integer, UInteger)
   name.vb: DrawArrays(GraphicsVertexArray, Topology, Integer, UInteger)
-- uid: Prowl.Runtime.CommandBuffer.DrawMesh(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material,System.Int32,Prowl.Vector.Float4x4@,Prowl.Runtime.Rendering.PropertyState,System.Int32)
-  commentId: M:Prowl.Runtime.CommandBuffer.DrawMesh(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material,System.Int32,Prowl.Vector.Float4x4@,Prowl.Runtime.Rendering.PropertyState,System.Int32)
-  id: DrawMesh(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material,System.Int32,Prowl.Vector.Float4x4@,Prowl.Runtime.Rendering.PropertyState,System.Int32)
+- uid: Prowl.Runtime.CommandBuffer.DrawMesh(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material,System.Int32,Prowl.Vector.Float4x4@,Prowl.Runtime.Rendering.PropertyState,System.Int32,System.Nullable{System.Boolean})
+  commentId: M:Prowl.Runtime.CommandBuffer.DrawMesh(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material,System.Int32,Prowl.Vector.Float4x4@,Prowl.Runtime.Rendering.PropertyState,System.Int32,System.Nullable{System.Boolean})
+  id: DrawMesh(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material,System.Int32,Prowl.Vector.Float4x4@,Prowl.Runtime.Rendering.PropertyState,System.Int32,System.Nullable{System.Boolean})
   parent: Prowl.Runtime.CommandBuffer
   langs:
   - csharp
   - vb
-  name: DrawMesh(Mesh, Material, int, in Float4x4, PropertyState?, int)
-  nameWithType: CommandBuffer.DrawMesh(Mesh, Material, int, in Float4x4, PropertyState?, int)
-  fullName: Prowl.Runtime.CommandBuffer.DrawMesh(Prowl.Runtime.Resources.Mesh, Prowl.Runtime.Resources.Material, int, in Prowl.Vector.Float4x4, Prowl.Runtime.Rendering.PropertyState?, int)
+  name: DrawMesh(Mesh, Material, int, in Float4x4, PropertyState?, int, bool?)
+  nameWithType: CommandBuffer.DrawMesh(Mesh, Material, int, in Float4x4, PropertyState?, int, bool?)
+  fullName: Prowl.Runtime.CommandBuffer.DrawMesh(Prowl.Runtime.Resources.Mesh, Prowl.Runtime.Resources.Material, int, in Prowl.Vector.Float4x4, Prowl.Runtime.Rendering.PropertyState?, int, bool?)
   type: Method
   source:
     remote:
@@ -1842,7 +2006,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: DrawMesh
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 548
+    startLine: 615
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1850,10 +2014,11 @@ items:
     Encode a single mesh draw. Sets the mesh-attribute keywords on
         <code class="paramref">material</code>, fetches the variant program, binds shader +
         raster state + properties, then issues the draw. The mesh must already be
-        uploaded (call <code>mesh.Upload()</code> first; CB-friendly).
+        uploaded (call <code>mesh.Upload()</code> first; CB-friendly). <code class="paramref">depthTest</code> overrides whether the pass tests depth, for
+        a pass shared by two surfaces that need different answers.
   example: []
   syntax:
-    content: public void DrawMesh(Mesh mesh, Material material, int passIndex = 0, in Float4x4 model = default, PropertyState? instanceProperties = null, int subMeshIndex = -1)
+    content: public void DrawMesh(Mesh mesh, Material material, int passIndex = 0, in Float4x4 model = default, PropertyState? instanceProperties = null, int subMeshIndex = -1, bool? depthTest = null)
     parameters:
     - id: mesh
       type: Prowl.Runtime.Resources.Mesh
@@ -1867,11 +2032,13 @@ items:
       type: Prowl.Runtime.Rendering.PropertyState
     - id: subMeshIndex
       type: System.Int32
-    content.vb: Public Sub DrawMesh(mesh As Mesh, material As Material, passIndex As Integer = 0, model As Float4x4 = Nothing, instanceProperties As PropertyState = Nothing, subMeshIndex As Integer = -1)
+    - id: depthTest
+      type: System.Nullable{System.Boolean}
+    content.vb: Public Sub DrawMesh(mesh As Mesh, material As Material, passIndex As Integer = 0, model As Float4x4 = Nothing, instanceProperties As PropertyState = Nothing, subMeshIndex As Integer = -1, depthTest As Boolean? = Nothing)
   overload: Prowl.Runtime.CommandBuffer.DrawMesh*
-  nameWithType.vb: CommandBuffer.DrawMesh(Mesh, Material, Integer, Float4x4, PropertyState, Integer)
-  fullName.vb: Prowl.Runtime.CommandBuffer.DrawMesh(Prowl.Runtime.Resources.Mesh, Prowl.Runtime.Resources.Material, Integer, Prowl.Vector.Float4x4, Prowl.Runtime.Rendering.PropertyState, Integer)
-  name.vb: DrawMesh(Mesh, Material, Integer, Float4x4, PropertyState, Integer)
+  nameWithType.vb: CommandBuffer.DrawMesh(Mesh, Material, Integer, Float4x4, PropertyState, Integer, Boolean?)
+  fullName.vb: Prowl.Runtime.CommandBuffer.DrawMesh(Prowl.Runtime.Resources.Mesh, Prowl.Runtime.Resources.Material, Integer, Prowl.Vector.Float4x4, Prowl.Runtime.Rendering.PropertyState, Integer, Boolean?)
+  name.vb: DrawMesh(Mesh, Material, Integer, Float4x4, PropertyState, Integer, Boolean?)
 - uid: Prowl.Runtime.CommandBuffer.Blit(Prowl.Runtime.Resources.RenderTexture,Prowl.Runtime.Resources.RenderTexture,Prowl.Runtime.Resources.Material,System.Int32,System.Boolean,System.Boolean,Prowl.Vector.Color)
   commentId: M:Prowl.Runtime.CommandBuffer.Blit(Prowl.Runtime.Resources.RenderTexture,Prowl.Runtime.Resources.RenderTexture,Prowl.Runtime.Resources.Material,System.Int32,System.Boolean,System.Boolean,Prowl.Vector.Color)
   id: Blit(Prowl.Runtime.Resources.RenderTexture,Prowl.Runtime.Resources.RenderTexture,Prowl.Runtime.Resources.Material,System.Int32,System.Boolean,System.Boolean,Prowl.Vector.Color)
@@ -1890,7 +2057,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Blit
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 609
+    startLine: 683
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1939,7 +2106,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Blit
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 642
+    startLine: 716
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1977,7 +2144,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Blit
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 655
+    startLine: 729
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -2018,7 +2185,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Blit
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 664
+    startLine: 738
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -2056,7 +2223,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: BeginSample
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 671
+    startLine: 745
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -2088,7 +2255,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: EndSample
     path: ../Prowl/Prowl.Runtime/Graphics/Commands/CommandBuffer.cs
-    startLine: 876
+    startLine: 957
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -2708,6 +2875,29 @@ references:
   name: GraphicsProgram
   nameWithType: GraphicsProgram
   fullName: Prowl.Runtime.GraphicsProgram
+- uid: Prowl.Runtime.CommandBuffer.SetDepthBias*
+  commentId: Overload:Prowl.Runtime.CommandBuffer.SetDepthBias
+  href: Prowl.Runtime.CommandBuffer.html#Prowl_Runtime_CommandBuffer_SetDepthBias_System_Single_System_Single_
+  name: SetDepthBias
+  nameWithType: CommandBuffer.SetDepthBias
+  fullName: Prowl.Runtime.CommandBuffer.SetDepthBias
+- uid: Prowl.Runtime.CommandBuffer.SetDepthClamp*
+  commentId: Overload:Prowl.Runtime.CommandBuffer.SetDepthClamp
+  href: Prowl.Runtime.CommandBuffer.html#Prowl_Runtime_CommandBuffer_SetDepthClamp_System_Boolean_
+  name: SetDepthClamp
+  nameWithType: CommandBuffer.SetDepthClamp
+  fullName: Prowl.Runtime.CommandBuffer.SetDepthClamp
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: Prowl.Runtime.CommandBuffer.SetProperties*
   commentId: Overload:Prowl.Runtime.CommandBuffer.SetProperties
   href: Prowl.Runtime.CommandBuffer.html#Prowl_Runtime_CommandBuffer_SetProperties_Prowl_Runtime_Rendering_PropertyState_
@@ -3129,17 +3319,26 @@ references:
   name: Topology
   nameWithType: Topology
   fullName: Prowl.Runtime.Topology
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
+- uid: Prowl.Runtime.CommandBuffer.DispatchCompute*
+  commentId: Overload:Prowl.Runtime.CommandBuffer.DispatchCompute
+  href: Prowl.Runtime.CommandBuffer.html#Prowl_Runtime_CommandBuffer_DispatchCompute_Prowl_Runtime_Resources_ComputeShader_System_Int32_System_Int32_System_Int32_System_Int32_
+  name: DispatchCompute
+  nameWithType: CommandBuffer.DispatchCompute
+  fullName: Prowl.Runtime.CommandBuffer.DispatchCompute
+- uid: Prowl.Runtime.Resources.ComputeShader
+  commentId: T:Prowl.Runtime.Resources.ComputeShader
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.ComputeShader.html
+  name: ComputeShader
+  nameWithType: ComputeShader
+  fullName: Prowl.Runtime.Resources.ComputeShader
+- uid: Prowl.Runtime.Resources.ComputeBuffer
+  commentId: T:Prowl.Runtime.Resources.ComputeBuffer
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.ComputeBuffer.html
+  name: ComputeBuffer
+  nameWithType: ComputeBuffer
+  fullName: Prowl.Runtime.Resources.ComputeBuffer
 - uid: Prowl.Runtime.CommandBuffer.DrawIndexedInstanced*
   commentId: Overload:Prowl.Runtime.CommandBuffer.DrawIndexedInstanced
   href: Prowl.Runtime.CommandBuffer.html#Prowl_Runtime_CommandBuffer_DrawIndexedInstanced_Prowl_Runtime_GraphicsVertexArray_Prowl_Runtime_Topology_System_UInt32_System_UInt32_System_UInt32_System_Int32_System_Boolean_
@@ -3154,7 +3353,7 @@ references:
   fullName: Prowl.Runtime.CommandBuffer.DrawArrays
 - uid: Prowl.Runtime.CommandBuffer.DrawMesh*
   commentId: Overload:Prowl.Runtime.CommandBuffer.DrawMesh
-  href: Prowl.Runtime.CommandBuffer.html#Prowl_Runtime_CommandBuffer_DrawMesh_Prowl_Runtime_Resources_Mesh_Prowl_Runtime_Resources_Material_System_Int32_Prowl_Vector_Float4x4__Prowl_Runtime_Rendering_PropertyState_System_Int32_
+  href: Prowl.Runtime.CommandBuffer.html#Prowl_Runtime_CommandBuffer_DrawMesh_Prowl_Runtime_Resources_Mesh_Prowl_Runtime_Resources_Material_System_Int32_Prowl_Vector_Float4x4__Prowl_Runtime_Rendering_PropertyState_System_Int32_System_Nullable_System_Boolean__
   name: DrawMesh
   nameWithType: CommandBuffer.DrawMesh
   fullName: Prowl.Runtime.CommandBuffer.DrawMesh
@@ -3165,6 +3364,57 @@ references:
   name: Mesh
   nameWithType: Mesh
   fullName: Prowl.Runtime.Resources.Mesh
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool?
+  nameWithType: bool?
+  fullName: bool?
+  nameWithType.vb: Boolean?
+  fullName.vb: Boolean?
+  name.vb: Boolean?
+  spec.csharp:
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  spec.vb:
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Prowl.Runtime.CommandBuffer.Blit*
   commentId: Overload:Prowl.Runtime.CommandBuffer.Blit
   href: Prowl.Runtime.CommandBuffer.html#Prowl_Runtime_CommandBuffer_Blit_Prowl_Runtime_Resources_RenderTexture_Prowl_Runtime_Resources_RenderTexture_Prowl_Runtime_Resources_Material_System_Int32_System_Boolean_System_Boolean_Prowl_Vector_Color_

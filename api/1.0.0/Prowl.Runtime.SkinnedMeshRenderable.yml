@@ -6,6 +6,7 @@ items:
   parent: Prowl.Runtime
   children:
   - Prowl.Runtime.SkinnedMeshRenderable.#ctor(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.Resources.Material,Prowl.Vector.Float4x4,System.Int32,Prowl.Vector.AABB,Prowl.Runtime.Rendering.PropertyState,System.Int32)
+  - Prowl.Runtime.SkinnedMeshRenderable.DeformsEveryFrame
   - Prowl.Runtime.SkinnedMeshRenderable.GetCullingData(System.Boolean@,Prowl.Vector.AABB@)
   - Prowl.Runtime.SkinnedMeshRenderable.GetLayer
   - Prowl.Runtime.SkinnedMeshRenderable.GetMaterial
@@ -320,6 +321,42 @@ items:
   nameWithType.vb: SkinnedMeshRenderable.GetWorldToObjectMatrix(Float4x4)
   fullName.vb: Prowl.Runtime.SkinnedMeshRenderable.GetWorldToObjectMatrix(Prowl.Vector.Float4x4)
   name.vb: GetWorldToObjectMatrix(Float4x4)
+- uid: Prowl.Runtime.SkinnedMeshRenderable.DeformsEveryFrame
+  commentId: P:Prowl.Runtime.SkinnedMeshRenderable.DeformsEveryFrame
+  id: DeformsEveryFrame
+  parent: Prowl.Runtime.SkinnedMeshRenderable
+  langs:
+  - csharp
+  - vb
+  name: DeformsEveryFrame
+  nameWithType: SkinnedMeshRenderable.DeformsEveryFrame
+  fullName: Prowl.Runtime.SkinnedMeshRenderable.DeformsEveryFrame
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/SkinnedMeshRenderable.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DeformsEveryFrame
+    path: ../Prowl/Prowl.Runtime/SkinnedMeshRenderable.cs
+    startLine: 59
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    True when the shape changes without the model matrix, mesh, material or instance data changing, such as
+
+    skinning. Shadow maps holding it are redrawn every frame, others are reused while nothing changed.
+  example: []
+  syntax:
+    content: public bool DeformsEveryFrame { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property DeformsEveryFrame As Boolean
+  overload: Prowl.Runtime.SkinnedMeshRenderable.DeformsEveryFrame*
+  implements:
+  - Prowl.Runtime.Rendering.IRenderable.DeformsEveryFrame
 - uid: Prowl.Runtime.SkinnedMeshRenderable.GetCullingData(System.Boolean@,Prowl.Vector.AABB@)
   commentId: M:Prowl.Runtime.SkinnedMeshRenderable.GetCullingData(System.Boolean@,Prowl.Vector.AABB@)
   id: GetCullingData(System.Boolean@,Prowl.Vector.AABB@)
@@ -338,7 +375,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GetCullingData
     path: ../Prowl/Prowl.Runtime/SkinnedMeshRenderable.cs
-    startLine: 58
+    startLine: 61
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime
@@ -1064,6 +1101,30 @@ references:
     name: Float4x4
     isExternal: true
   - name: )
+- uid: Prowl.Runtime.SkinnedMeshRenderable.DeformsEveryFrame*
+  commentId: Overload:Prowl.Runtime.SkinnedMeshRenderable.DeformsEveryFrame
+  href: Prowl.Runtime.SkinnedMeshRenderable.html#Prowl_Runtime_SkinnedMeshRenderable_DeformsEveryFrame
+  name: DeformsEveryFrame
+  nameWithType: SkinnedMeshRenderable.DeformsEveryFrame
+  fullName: Prowl.Runtime.SkinnedMeshRenderable.DeformsEveryFrame
+- uid: Prowl.Runtime.Rendering.IRenderable.DeformsEveryFrame
+  commentId: P:Prowl.Runtime.Rendering.IRenderable.DeformsEveryFrame
+  parent: Prowl.Runtime.Rendering.IRenderable
+  href: Prowl.Runtime.Rendering.IRenderable.html#Prowl_Runtime_Rendering_IRenderable_DeformsEveryFrame
+  name: DeformsEveryFrame
+  nameWithType: IRenderable.DeformsEveryFrame
+  fullName: Prowl.Runtime.Rendering.IRenderable.DeformsEveryFrame
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: Prowl.Runtime.SkinnedMeshRenderable.GetCullingData*
   commentId: Overload:Prowl.Runtime.SkinnedMeshRenderable.GetCullingData
   href: Prowl.Runtime.SkinnedMeshRenderable.html#Prowl_Runtime_SkinnedMeshRenderable_GetCullingData_System_Boolean__Prowl_Vector_AABB__
@@ -1115,14 +1176,3 @@ references:
     name: AABB
     isExternal: true
   - name: )
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
