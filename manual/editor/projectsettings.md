@@ -16,6 +16,8 @@ The General page stores the project’s identifying information:
 
 These values provide project metadata for builds. The last opened scene is also remembered by the editor, but is not an editable field on this page.
 
+![Project Settings panel](../../media/screenshots/projectsettings_general_default.png)
+
 ## Editor
 
 The Editor page stores per-project editor preferences. It currently has no visible controls in the Project Settings panel. The selected [Game view](game.md) resolution preset is also saved with these project editor settings, so the Game view uses the last selected preset next time.
@@ -136,6 +138,19 @@ Assets controls how long unused assets stay loaded and the player’s asset memo
 
 - **Unused Grace Period (s)** sets how many seconds an asset remains loaded after nothing references it. This can avoid reloading an asset that is used again shortly afterward.
 - **Player Memory Budget (MB)** sets the loaded asset memory budget for a built game. When the budget is exceeded, unused assets can be freed earlier. Set it to `0` for no budget. The editor does not use this limit.
+
+## XR
+
+![Project Settings panel showing XR options](../../media/screenshots/projectsettings_xr_default.png)
+
+The XR page configures when the project starts an OpenXR session and how it renders to a headset:
+
+- **Start In Play Mode** starts XR automatically when you enter Play Mode. Leave it off if your game code starts XR itself.
+- **Start In Player** starts XR automatically when a built player launches.
+- **Tracking Origin** selects the reference point for tracked poses. **Floor** measures height from the floor; **Seated** measures from the position where tracking starts.
+- **Render Scale** scales the headset runtime's recommended eye resolution. Lower values reduce rendering cost and image detail; higher values increase both. The new scale applies the next time XR starts.
+
+XR requires an OpenXR runtime with OpenGL support, such as SteamVR or the Meta app. The editor and built player use the configured tracking origin when starting XR automatically.
 
 ## Related guides
 
