@@ -27,6 +27,8 @@ Find **Tint** in the material's Properties. Click the color field to open its co
 
 The **Albedo** texture is white by default, so the Tint sets the visible base color. If you later assign an Albedo texture, Tint multiplies with that texture.
 
+Click the **Apply** button at the bottom of the material properties to save the changes to the Material.
+
 ## 4. Apply the material to an object
 
 1. Select your mesh object in the **Hierarchy**.
