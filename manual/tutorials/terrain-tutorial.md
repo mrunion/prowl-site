@@ -73,7 +73,8 @@ Terrain details are small repeated objects painted into a density map. We’ll u
 
 1. Open the **Details** tab and select the first empty detail prototype tile. A new Terrain Data asset includes one empty detail prototype; if the list is empty, select **+** to add one.
 2. Set **Render Mode** to **Texture Billboard**.
-3. Assign `Sprite_0001.png` from the `Flat` folder to **Texture**. Leave **Grass Material** empty so the terrain’s default detail material is used.
+3. Assign `Sprite_0001.png` from the `Flat` folder to **Texture**. This image supplies the plant shape and transparency; it is tinted by the prototype’s **Healthy Color** and **Dry Color**. Leave **Grass Material** empty to use the terrain’s detail material. Set **Healthy Color** to a natural medium green such as `#5F8F3AFF` and **Dry Color** to a muted straw green such as `#A6A05A` for a varied, leafy look.
+   ![Terrain Details prototype with the foliage texture and color settings](../../media/screenshots/tutorial_terrain_details.png)
 4. Set **Min Width** to `0.7`, **Max Width** to `1.2`, **Min Height** to `0.8`, and **Max Height** to `1.5`. Leave **Noise Spread** near its default. Keep **Align To Normal** enabled so the plants follow slopes.
 5. In the Scene View, drag short strokes over the grass-painted clearing and the lower slopes. Avoid painting the path and steep rocky areas. Add a little at a time; high density can create many instances.
 6. If the plants are too large, lower both width and height values. If they are too sparse or dense, adjust the prototype paint with **Undo** where possible, or change **Detail Density** in **Settings** before painting more.
@@ -81,22 +82,24 @@ Terrain details are small repeated objects painted into a density map. We’ll u
 
 If the texture looks like a rectangle, confirm that you assigned the individual transparent `Sprite_0001.png` from `Flat`, not a preview image or sprite sheet. If the details are not visible at a distance, open **Settings** and increase **Detail Distance** modestly.
 
-<!-- Screenshot TODO: Details tab with the selected billboard prototype and grass painted across a patch of terrain. -->
+![Terrain with grass details painted over the clearing and lower slopes](../../media/screenshots/tutorial_terrain_terraingrasspainted.png)
 
 ## 5. Add a tree prototype and place trees
 
-1. In the Project panel, confirm that `tree_oak.glb` has finished importing. Expand the model asset if needed so you can see its mesh sub-assets.
+1. In the Project panel, confirm that `tree_oak.glb` has finished importing. Expand the model asset if needed so you can see its mesh sub-assets. Select the model asset and set its **Unit Scale** to `3` so the tree size better matches the terrain.
+   ![Tree model import settings with Unit Scale set to 3](../../media/screenshots/tutorial_terrain_treeunitscale.png)
 2. Select the terrain and open the **Trees** tab. Select **+** to add a tree prototype.
 3. In the prototype settings, assign the imported oak **Mesh**. Use the asset picker and choose the mesh sub-asset from `tree_oak.glb`, not the model’s prefab/root asset. If the imported model has materials, assign them in the **Materials** slots shown below the Mesh field; otherwise Prowl uses the default Standard material.
 4. Set **Bend Factor** to `0` for this first pass. The prototype is now available for placement.
 5. Set **Brush Size** to around `18` and **Trees Per Stroke** to `1` or `2`.
+   ![Terrain Trees tab with the oak prototype and placement brush settings](../../media/screenshots/tutorial_terrain_trees.png)
 6. Click in the Scene View on the hills and around the clearing to place trees. Leave the center of the clearing and the path open. Keep clicks spaced apart to avoid crowding.
 7. Hold **Shift** and click a tree you want to remove. Reduce **Brush Size** if the erase area is too broad.
 8. Save with **Save to TerrainData**.
 
 If the mesh is missing or the prototype remains named **Empty**, reopen the asset picker and select the mesh sub-asset. The terrain tree renderer expects a mesh, while the imported `.glb` file itself is a prefab containing that mesh.
 
-<!-- Screenshot TODO: Trees tab and finished terrain with trees arranged around, not across, the open clearing and path. -->
+![Terrain with trees placed around the open clearing and path](../../media/screenshots/tutorial_terrain_treespainted.png)
 
 ## 6. Tune vegetation visibility and save
 
