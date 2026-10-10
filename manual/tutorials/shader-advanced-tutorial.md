@@ -10,7 +10,7 @@ You’ll need a Prowl project with a mesh object and a camera. Add at least one 
 
 1. In the **Project** panel, open your project’s `Assets` folder.
 2. Right-click an empty area and choose **Create > Shader**.
-3. Name the file `Paint.shader`. The *.shader* extension should be added automatically. Extensions do noy show on assets by default but they can be toggled to be displayed from the View settings menu.
+3. Name the file `Paint.shader`. The *.shader* extension should be added automatically. Extensions do not show on assets by default but they can be toggled to be displayed from the View settings menu.
 4. Open the file in your code editor. Replace its contents with the shader below and save it. Prowl imports shader files when they change; check the Console for import or compilation errors.
 
 ## 2. Add a color property and lit passes

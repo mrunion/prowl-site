@@ -10,7 +10,7 @@ You’ll need a Prowl project with a mesh object in a scene. The shader can rend
 
 1. In the **Project** panel, open your project’s `Assets` folder.
 2. Right-click an empty area and choose **Create > Shader**.
-3. Name the file `SolidColor.shader`. The *.shader* extension should be added automatically. Extensions do noy show on assets by default but they can be toggled to be displayed from the View settings menu.
+3. Name the file `SolidColor.shader`. The *.shader* extension should be added automatically. Extensions do not show on assets by default but they can be toggled to be displayed from the View settings menu.
 4. Open the file in your code editor.
 
 The new shader file starts from a general purpose PBR example, which includes more code than this exercise needs. Replace its contents with the minimal shader below. Save the file; Prowl imports shader files when they change. Check the Console for import or shader compilation errors.
