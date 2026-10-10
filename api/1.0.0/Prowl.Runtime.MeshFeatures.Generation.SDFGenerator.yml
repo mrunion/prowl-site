@@ -6,6 +6,8 @@ items:
   parent: Prowl.Runtime.MeshFeatures.Generation
   children:
   - Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Generate(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options)
+  - Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.MinResolution
+  - Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.PaddingVoxels
   langs:
   - csharp
   - vb
@@ -20,20 +22,32 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: SDFGenerator
     path: ../Prowl/Prowl.Runtime/Resources/MeshFeatures/Generation/SDFGenerator.cs
-    startLine: 24
+    startLine: 30
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.MeshFeatures.Generation
   summary: >-
-    CPU-side generator for an unsigned distance field stored in <xref href="Prowl.Runtime.MeshFeatures.MeshSDF" data-throw-if-not-resolved="false"></xref>.
+    CPU generator for the signed distance field stored in <xref href="Prowl.Runtime.MeshFeatures.MeshSDF" data-throw-if-not-resolved="false"></xref>, negative inside.
 
-    Brute-force iterates every triangle per voxel, with a cheap per-triangle bounding-sphere
 
-    reject so far-away triangles never reach the exact closest-point computation.
-  remarks: >-
-    The field is unsigned values are always &gt;= 0. Sufficient for sphere tracing from
+    <p></p>
 
-    outside the surface (the use case for raymarched previews and proximity queries).
+
+    Exact distances are found only near the surface, where each triangle visits the voxels around it. Every other
+
+    voxel takes the closest triangle of a neighbour in sweeps along each axis and measures the exact distance to it,
+
+    so the cost grows with the voxels and the triangles rather than their product.
+
+
+    <p></p>
+
+
+    A voxel is inside when rays along at least two of the three axes cross the surface an odd number of times
+
+    before reaching it. Counting crossings ignores which way a triangle faces, so flipped and one sided triangles
+
+    change nothing, and a hole or a stray plane only misleads the axis it lines up with, which the other two outvote.
   example: []
   syntax:
     content: public static class SDFGenerator
@@ -48,6 +62,64 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+- uid: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.MinResolution
+  commentId: F:Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.MinResolution
+  id: MinResolution
+  parent: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator
+  langs:
+  - csharp
+  - vb
+  name: MinResolution
+  nameWithType: SDFGenerator.MinResolution
+  fullName: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.MinResolution
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/MeshFeatures/Generation/SDFGenerator.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MinResolution
+    path: ../Prowl/Prowl.Runtime/Resources/MeshFeatures/Generation/SDFGenerator.cs
+    startLine: 44
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.MeshFeatures.Generation
+  summary: Fewest voxels along the longest axis, padding included.
+  example: []
+  syntax:
+    content: public const int MinResolution = 8
+    return:
+      type: System.Int32
+    content.vb: Public Const MinResolution As Integer = 8
+- uid: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.PaddingVoxels
+  commentId: F:Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.PaddingVoxels
+  id: PaddingVoxels
+  parent: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator
+  langs:
+  - csharp
+  - vb
+  name: PaddingVoxels
+  nameWithType: SDFGenerator.PaddingVoxels
+  fullName: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.PaddingVoxels
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/MeshFeatures/Generation/SDFGenerator.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PaddingVoxels
+    path: ../Prowl/Prowl.Runtime/Resources/MeshFeatures/Generation/SDFGenerator.cs
+    startLine: 47
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.MeshFeatures.Generation
+  summary: Voxels of margin on every side of the mesh bounds.
+  example: []
+  syntax:
+    content: public const int PaddingVoxels = 2
+    return:
+      type: System.Int32
+    content.vb: Public Const PaddingVoxels As Integer = 2
 - uid: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Generate(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options)
   commentId: M:Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Generate(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options)
   id: Generate(Prowl.Runtime.Resources.Mesh,Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options)
@@ -66,7 +138,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Generate
     path: ../Prowl/Prowl.Runtime/Resources/MeshFeatures/Generation/SDFGenerator.cs
-    startLine: 53
+    startLine: 63
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.MeshFeatures.Generation
@@ -383,6 +455,17 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Generate*
   commentId: Overload:Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Generate
   href: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.html#Prowl_Runtime_MeshFeatures_Generation_SDFGenerator_Generate_Prowl_Runtime_Resources_Mesh_Prowl_Runtime_MeshFeatures_Generation_SDFGenerator_Options_

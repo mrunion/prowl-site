@@ -6,9 +6,8 @@ items:
   parent: Prowl.Runtime.MeshFeatures.Generation
   children:
   - Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.Default
-  - Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.MaxDistanceFraction
-  - Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.PaddingFraction
-  - Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.Resolution
+  - Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.MaxResolution
+  - Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.VoxelSize
   langs:
   - csharp
   - vb
@@ -23,7 +22,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Options
     path: ../Prowl/Prowl.Runtime/Resources/MeshFeatures/Generation/SDFGenerator.cs
-    startLine: 26
+    startLine: 32
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.MeshFeatures.Generation
@@ -39,98 +38,64 @@ items:
   - System.Object.ReferenceEquals(System.Object,System.Object)
   extensionMethods:
   - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
-- uid: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.Resolution
-  commentId: F:Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.Resolution
-  id: Resolution
+- uid: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.VoxelSize
+  commentId: F:Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.VoxelSize
+  id: VoxelSize
   parent: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options
   langs:
   - csharp
   - vb
-  name: Resolution
-  nameWithType: SDFGenerator.Options.Resolution
-  fullName: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.Resolution
+  name: VoxelSize
+  nameWithType: SDFGenerator.Options.VoxelSize
+  fullName: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.VoxelSize
   type: Field
   source:
     remote:
       path: Prowl.Runtime/Resources/MeshFeatures/Generation/SDFGenerator.cs
       branch: main
       repo: https://github.com/ProwlEngine/Prowl.git
-    id: Resolution
+    id: VoxelSize
     path: ../Prowl/Prowl.Runtime/Resources/MeshFeatures/Generation/SDFGenerator.cs
-    startLine: 29
+    startLine: 35
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.MeshFeatures.Generation
-  summary: Grid resolution along each axis. Default 64.
+  summary: Edge length of a voxel in mesh units. Small meshes use smaller voxels to keep a usable grid.
   example: []
   syntax:
-    content: public int Resolution
+    content: public float VoxelSize
+    return:
+      type: System.Single
+    content.vb: Public VoxelSize As Single
+- uid: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.MaxResolution
+  commentId: F:Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.MaxResolution
+  id: MaxResolution
+  parent: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options
+  langs:
+  - csharp
+  - vb
+  name: MaxResolution
+  nameWithType: SDFGenerator.Options.MaxResolution
+  fullName: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.MaxResolution
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Resources/MeshFeatures/Generation/SDFGenerator.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MaxResolution
+    path: ../Prowl/Prowl.Runtime/Resources/MeshFeatures/Generation/SDFGenerator.cs
+    startLine: 38
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime.MeshFeatures.Generation
+  summary: Most voxels along any axis, padding included. Large meshes use larger voxels to stay within it.
+  example: []
+  syntax:
+    content: public int MaxResolution
     return:
       type: System.Int32
-    content.vb: Public Resolution As Integer
-- uid: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.PaddingFraction
-  commentId: F:Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.PaddingFraction
-  id: PaddingFraction
-  parent: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options
-  langs:
-  - csharp
-  - vb
-  name: PaddingFraction
-  nameWithType: SDFGenerator.Options.PaddingFraction
-  fullName: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.PaddingFraction
-  type: Field
-  source:
-    remote:
-      path: Prowl.Runtime/Resources/MeshFeatures/Generation/SDFGenerator.cs
-      branch: main
-      repo: https://github.com/ProwlEngine/Prowl.git
-    id: PaddingFraction
-    path: ../Prowl/Prowl.Runtime/Resources/MeshFeatures/Generation/SDFGenerator.cs
-    startLine: 32
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime.MeshFeatures.Generation
-  summary: Margin added around the source mesh AABB, as fraction of the longest bounds axis. Default 0.1.
-  example: []
-  syntax:
-    content: public float PaddingFraction
-    return:
-      type: System.Single
-    content.vb: Public PaddingFraction As Single
-- uid: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.MaxDistanceFraction
-  commentId: F:Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.MaxDistanceFraction
-  id: MaxDistanceFraction
-  parent: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options
-  langs:
-  - csharp
-  - vb
-  name: MaxDistanceFraction
-  nameWithType: SDFGenerator.Options.MaxDistanceFraction
-  fullName: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.MaxDistanceFraction
-  type: Field
-  source:
-    remote:
-      path: Prowl.Runtime/Resources/MeshFeatures/Generation/SDFGenerator.cs
-      branch: main
-      repo: https://github.com/ProwlEngine/Prowl.git
-    id: MaxDistanceFraction
-    path: ../Prowl/Prowl.Runtime/Resources/MeshFeatures/Generation/SDFGenerator.cs
-    startLine: 39
-  assemblies:
-  - Prowl.Runtime
-  namespace: Prowl.Runtime.MeshFeatures.Generation
-  summary: >-
-    Distance values are clamped to <code>MaxDistanceFraction × longest_axis</code>. Smaller
-
-    values dramatically speed up generation because more triangles get sphere-rejected.
-
-    Default 0.25.
-  example: []
-  syntax:
-    content: public float MaxDistanceFraction
-    return:
-      type: System.Single
-    content.vb: Public MaxDistanceFraction As Single
+    content.vb: Public MaxResolution As Integer
 - uid: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.Default
   commentId: P:Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.Default
   id: Default
@@ -149,7 +114,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Default
     path: ../Prowl/Prowl.Runtime/Resources/MeshFeatures/Generation/SDFGenerator.cs
-    startLine: 41
+    startLine: 40
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.MeshFeatures.Generation
@@ -492,17 +457,6 @@ references:
   - name: .
   - uid: Prowl.Runtime
     name: Runtime
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
-  name: int
-  nameWithType: int
-  fullName: int
-  nameWithType.vb: Integer
-  fullName.vb: Integer
-  name.vb: Integer
 - uid: System.Single
   commentId: T:System.Single
   parent: System
@@ -514,6 +468,17 @@ references:
   nameWithType.vb: Single
   fullName.vb: Single
   name.vb: Single
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.Default*
   commentId: Overload:Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.Default
   href: Prowl.Runtime.MeshFeatures.Generation.SDFGenerator.Options.html#Prowl_Runtime_MeshFeatures_Generation_SDFGenerator_Options_Default

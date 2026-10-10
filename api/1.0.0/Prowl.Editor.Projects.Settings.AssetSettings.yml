@@ -6,10 +6,13 @@ items:
   parent: Prowl.Editor.Projects.Settings
   children:
   - Prowl.Editor.Projects.Settings.AssetSettings.Apply
+  - Prowl.Editor.Projects.Settings.AssetSettings.GenerateMeshSDFs
   - Prowl.Editor.Projects.Settings.AssetSettings.GracePeriodSeconds
   - Prowl.Editor.Projects.Settings.AssetSettings.MemoryBudgetMB
   - Prowl.Editor.Projects.Settings.AssetSettings.OnGUI(Prowl.PaperUI.Paper,System.Single)
   - Prowl.Editor.Projects.Settings.AssetSettings.ResetToDefaults
+  - Prowl.Editor.Projects.Settings.AssetSettings.SDFMaxResolution
+  - Prowl.Editor.Projects.Settings.AssetSettings.SDFVoxelSize
   langs:
   - csharp
   - vb
@@ -24,14 +27,14 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: AssetSettings
     path: ../Prowl/Prowl.Editor/Projects/Settings/AssetSettings.cs
-    startLine: 14
+    startLine: 15
   assemblies:
   - Prowl.Editor
   namespace: Prowl.Editor.Projects.Settings
   summary: >-
-    How long assets nothing uses stay loaded, and how much memory a built game lets loaded assets take before
+    How long assets nothing uses stay loaded, how much memory a built game lets loaded assets take before
 
-    freeing unused ones early.
+    freeing unused ones early, and how every mesh's signed distance field is built.
   example: []
   syntax:
     content: >-
@@ -86,7 +89,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GracePeriodSeconds
     path: ../Prowl/Prowl.Editor/Projects/Settings/AssetSettings.cs
-    startLine: 18
+    startLine: 19
   assemblies:
   - Prowl.Editor
   namespace: Prowl.Editor.Projects.Settings
@@ -115,7 +118,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: MemoryBudgetMB
     path: ../Prowl/Prowl.Editor/Projects/Settings/AssetSettings.cs
-    startLine: 21
+    startLine: 22
   assemblies:
   - Prowl.Editor
   namespace: Prowl.Editor.Projects.Settings
@@ -126,6 +129,93 @@ items:
     return:
       type: System.Int32
     content.vb: Public MemoryBudgetMB As Integer
+- uid: Prowl.Editor.Projects.Settings.AssetSettings.GenerateMeshSDFs
+  commentId: F:Prowl.Editor.Projects.Settings.AssetSettings.GenerateMeshSDFs
+  id: GenerateMeshSDFs
+  parent: Prowl.Editor.Projects.Settings.AssetSettings
+  langs:
+  - csharp
+  - vb
+  name: GenerateMeshSDFs
+  nameWithType: AssetSettings.GenerateMeshSDFs
+  fullName: Prowl.Editor.Projects.Settings.AssetSettings.GenerateMeshSDFs
+  type: Field
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Settings/AssetSettings.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: GenerateMeshSDFs
+    path: ../Prowl/Prowl.Editor/Projects/Settings/AssetSettings.cs
+    startLine: 25
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Projects.Settings
+  summary: Whether every imported mesh gets a signed distance field.
+  example: []
+  syntax:
+    content: public bool GenerateMeshSDFs
+    return:
+      type: System.Boolean
+    content.vb: Public GenerateMeshSDFs As Boolean
+- uid: Prowl.Editor.Projects.Settings.AssetSettings.SDFVoxelSize
+  commentId: F:Prowl.Editor.Projects.Settings.AssetSettings.SDFVoxelSize
+  id: SDFVoxelSize
+  parent: Prowl.Editor.Projects.Settings.AssetSettings
+  langs:
+  - csharp
+  - vb
+  name: SDFVoxelSize
+  nameWithType: AssetSettings.SDFVoxelSize
+  fullName: Prowl.Editor.Projects.Settings.AssetSettings.SDFVoxelSize
+  type: Field
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Settings/AssetSettings.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SDFVoxelSize
+    path: ../Prowl/Prowl.Editor/Projects/Settings/AssetSettings.cs
+    startLine: 28
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Projects.Settings
+  summary: Edge length of an SDF voxel in mesh units.
+  example: []
+  syntax:
+    content: public float SDFVoxelSize
+    return:
+      type: System.Single
+    content.vb: Public SDFVoxelSize As Single
+- uid: Prowl.Editor.Projects.Settings.AssetSettings.SDFMaxResolution
+  commentId: F:Prowl.Editor.Projects.Settings.AssetSettings.SDFMaxResolution
+  id: SDFMaxResolution
+  parent: Prowl.Editor.Projects.Settings.AssetSettings
+  langs:
+  - csharp
+  - vb
+  name: SDFMaxResolution
+  nameWithType: AssetSettings.SDFMaxResolution
+  fullName: Prowl.Editor.Projects.Settings.AssetSettings.SDFMaxResolution
+  type: Field
+  source:
+    remote:
+      path: Prowl.Editor/Projects/Settings/AssetSettings.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SDFMaxResolution
+    path: ../Prowl/Prowl.Editor/Projects/Settings/AssetSettings.cs
+    startLine: 31
+  assemblies:
+  - Prowl.Editor
+  namespace: Prowl.Editor.Projects.Settings
+  summary: Most SDF voxels along any axis of a mesh.
+  example: []
+  syntax:
+    content: public int SDFMaxResolution
+    return:
+      type: System.Int32
+    content.vb: Public SDFMaxResolution As Integer
 - uid: Prowl.Editor.Projects.Settings.AssetSettings.Apply
   commentId: M:Prowl.Editor.Projects.Settings.AssetSettings.Apply
   id: Apply
@@ -144,7 +234,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Apply
     path: ../Prowl/Prowl.Editor/Projects/Settings/AssetSettings.cs
-    startLine: 23
+    startLine: 33
   assemblies:
   - Prowl.Editor
   namespace: Prowl.Editor.Projects.Settings
@@ -172,7 +262,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: ResetToDefaults
     path: ../Prowl/Prowl.Editor/Projects/Settings/AssetSettings.cs
-    startLine: 25
+    startLine: 45
   assemblies:
   - Prowl.Editor
   namespace: Prowl.Editor.Projects.Settings
@@ -200,7 +290,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: OnGUI
     path: ../Prowl/Prowl.Editor/Projects/Settings/AssetSettings.cs
-    startLine: 31
+    startLine: 54
   assemblies:
   - Prowl.Editor
   namespace: Prowl.Editor.Projects.Settings
@@ -607,6 +697,17 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: Prowl.Editor.Projects.Settings.ProjectSettingsBase.Apply
   commentId: M:Prowl.Editor.Projects.Settings.ProjectSettingsBase.Apply
   parent: Prowl.Editor.Projects.Settings.ProjectSettingsBase

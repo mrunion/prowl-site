@@ -5,7 +5,7 @@ items:
   id: MeshFeatureImporter
   parent: Prowl.Editor.Importers
   children:
-  - Prowl.Editor.Importers.MeshFeatureImporter.GenerateAll(Prowl.Runtime.Resources.Mesh,Prowl.Echo.EchoObject,Prowl.Editor.Importers.ImportContext,System.String)
+  - Prowl.Editor.Importers.MeshFeatureImporter.GenerateAll(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Resources.Mesh},Prowl.Echo.EchoObject,Prowl.Editor.Importers.ImportContext,System.Collections.Generic.IReadOnlyList{System.String})
   langs:
   - csharp
   - vb
@@ -20,7 +20,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: MeshFeatureImporter
     path: ../Prowl/Prowl.Editor/AssetsDatabase/Importers/MeshFeatureImporter.cs
-    startLine: 14
+    startLine: 17
   assemblies:
   - Prowl.Editor
   namespace: Prowl.Editor.Importers
@@ -44,16 +44,16 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: Prowl.Editor.Importers.MeshFeatureImporter.GenerateAll(Prowl.Runtime.Resources.Mesh,Prowl.Echo.EchoObject,Prowl.Editor.Importers.ImportContext,System.String)
-  commentId: M:Prowl.Editor.Importers.MeshFeatureImporter.GenerateAll(Prowl.Runtime.Resources.Mesh,Prowl.Echo.EchoObject,Prowl.Editor.Importers.ImportContext,System.String)
-  id: GenerateAll(Prowl.Runtime.Resources.Mesh,Prowl.Echo.EchoObject,Prowl.Editor.Importers.ImportContext,System.String)
+- uid: Prowl.Editor.Importers.MeshFeatureImporter.GenerateAll(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Resources.Mesh},Prowl.Echo.EchoObject,Prowl.Editor.Importers.ImportContext,System.Collections.Generic.IReadOnlyList{System.String})
+  commentId: M:Prowl.Editor.Importers.MeshFeatureImporter.GenerateAll(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Resources.Mesh},Prowl.Echo.EchoObject,Prowl.Editor.Importers.ImportContext,System.Collections.Generic.IReadOnlyList{System.String})
+  id: GenerateAll(System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Resources.Mesh},Prowl.Echo.EchoObject,Prowl.Editor.Importers.ImportContext,System.Collections.Generic.IReadOnlyList{System.String})
   parent: Prowl.Editor.Importers.MeshFeatureImporter
   langs:
   - csharp
   - vb
-  name: GenerateAll(Mesh, EchoObject?, ImportContext, string)
-  nameWithType: MeshFeatureImporter.GenerateAll(Mesh, EchoObject?, ImportContext, string)
-  fullName: Prowl.Editor.Importers.MeshFeatureImporter.GenerateAll(Prowl.Runtime.Resources.Mesh, Prowl.Echo.EchoObject?, Prowl.Editor.Importers.ImportContext, string)
+  name: GenerateAll(IReadOnlyList<Mesh>, EchoObject?, ImportContext, IReadOnlyList<string>)
+  nameWithType: MeshFeatureImporter.GenerateAll(IReadOnlyList<Mesh>, EchoObject?, ImportContext, IReadOnlyList<string>)
+  fullName: Prowl.Editor.Importers.MeshFeatureImporter.GenerateAll(System.Collections.Generic.IReadOnlyList<Prowl.Runtime.Resources.Mesh>, Prowl.Echo.EchoObject?, Prowl.Editor.Importers.ImportContext, System.Collections.Generic.IReadOnlyList<string>)
   type: Method
   source:
     remote:
@@ -62,37 +62,37 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: GenerateAll
     path: ../Prowl/Prowl.Editor/AssetsDatabase/Importers/MeshFeatureImporter.cs
-    startLine: 24
+    startLine: 27
   assemblies:
   - Prowl.Editor
   namespace: Prowl.Editor.Importers
   summary: >-
-    Generate every enabled feature for the mesh and attach them as sub-assets.
+    Generate every enabled feature for each mesh and attach them as sub-assets.
 
     Sub-asset names are <code>{meshName}_{featureKey}</code> for deterministic GUIDs
 
     across reimports.
   example: []
   syntax:
-    content: public static void GenerateAll(Mesh mesh, EchoObject? settings, ImportContext ctx, string ownerIdentity)
+    content: public static void GenerateAll(IReadOnlyList<Mesh> meshes, EchoObject? settings, ImportContext ctx, IReadOnlyList<string> ownerIdentities)
     parameters:
-    - id: mesh
-      type: Prowl.Runtime.Resources.Mesh
+    - id: meshes
+      type: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Resources.Mesh}
     - id: settings
       type: Prowl.Echo.EchoObject
     - id: ctx
       type: Prowl.Editor.Importers.ImportContext
-    - id: ownerIdentity
-      type: System.String
+    - id: ownerIdentities
+      type: System.Collections.Generic.IReadOnlyList{System.String}
       description: >-
-        The sub-asset identity of the mesh these features belong to, so each
-            feature keys off its owner plus its own spec key. Registration order would not do here: a feature
-            that stops generating shifts every later one onto the wrong GUID.
-    content.vb: Public Shared Sub GenerateAll(mesh As Mesh, settings As EchoObject, ctx As ImportContext, ownerIdentity As String)
+        The sub-asset identity of each mesh, so each feature keys off its owner
+            plus its own spec key. Registration order would not do here: a feature that stops generating shifts
+            every later one onto the wrong GUID.
+    content.vb: Public Shared Sub GenerateAll(meshes As IReadOnlyList(Of Mesh), settings As EchoObject, ctx As ImportContext, ownerIdentities As IReadOnlyList(Of String))
   overload: Prowl.Editor.Importers.MeshFeatureImporter.GenerateAll*
-  nameWithType.vb: MeshFeatureImporter.GenerateAll(Mesh, EchoObject, ImportContext, String)
-  fullName.vb: Prowl.Editor.Importers.MeshFeatureImporter.GenerateAll(Prowl.Runtime.Resources.Mesh, Prowl.Echo.EchoObject, Prowl.Editor.Importers.ImportContext, String)
-  name.vb: GenerateAll(Mesh, EchoObject, ImportContext, String)
+  nameWithType.vb: MeshFeatureImporter.GenerateAll(IReadOnlyList(Of Mesh), EchoObject, ImportContext, IReadOnlyList(Of String))
+  fullName.vb: Prowl.Editor.Importers.MeshFeatureImporter.GenerateAll(System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.Resources.Mesh), Prowl.Echo.EchoObject, Prowl.Editor.Importers.ImportContext, System.Collections.Generic.IReadOnlyList(Of String))
+  name.vb: GenerateAll(IReadOnlyList(Of Mesh), EchoObject, ImportContext, IReadOnlyList(Of String))
 references:
 - uid: Prowl.Runtime.MeshFeatures.MeshFeatureRegistry
   commentId: T:Prowl.Runtime.MeshFeatures.MeshFeatureRegistry
@@ -369,17 +369,43 @@ references:
   fullName: System
 - uid: Prowl.Editor.Importers.MeshFeatureImporter.GenerateAll*
   commentId: Overload:Prowl.Editor.Importers.MeshFeatureImporter.GenerateAll
-  href: Prowl.Editor.Importers.MeshFeatureImporter.html#Prowl_Editor_Importers_MeshFeatureImporter_GenerateAll_Prowl_Runtime_Resources_Mesh_Prowl_Echo_EchoObject_Prowl_Editor_Importers_ImportContext_System_String_
+  href: Prowl.Editor.Importers.MeshFeatureImporter.html#Prowl_Editor_Importers_MeshFeatureImporter_GenerateAll_System_Collections_Generic_IReadOnlyList_Prowl_Runtime_Resources_Mesh__Prowl_Echo_EchoObject_Prowl_Editor_Importers_ImportContext_System_Collections_Generic_IReadOnlyList_System_String__
   name: GenerateAll
   nameWithType: MeshFeatureImporter.GenerateAll
   fullName: Prowl.Editor.Importers.MeshFeatureImporter.GenerateAll
-- uid: Prowl.Runtime.Resources.Mesh
-  commentId: T:Prowl.Runtime.Resources.Mesh
-  parent: Prowl.Runtime.Resources
-  href: Prowl.Runtime.Resources.Mesh.html
-  name: Mesh
-  nameWithType: Mesh
-  fullName: Prowl.Runtime.Resources.Mesh
+- uid: System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Resources.Mesh}
+  commentId: T:System.Collections.Generic.IReadOnlyList{Prowl.Runtime.Resources.Mesh}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<Mesh>
+  nameWithType: IReadOnlyList<Mesh>
+  fullName: System.Collections.Generic.IReadOnlyList<Prowl.Runtime.Resources.Mesh>
+  nameWithType.vb: IReadOnlyList(Of Mesh)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Prowl.Runtime.Resources.Mesh)
+  name.vb: IReadOnlyList(Of Mesh)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Prowl.Runtime.Resources.Mesh
+    name: Mesh
+    href: Prowl.Runtime.Resources.Mesh.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.Resources.Mesh
+    name: Mesh
+    href: Prowl.Runtime.Resources.Mesh.html
+  - name: )
 - uid: Prowl.Echo.EchoObject
   commentId: T:Prowl.Echo.EchoObject
   parent: Prowl.Echo
@@ -387,40 +413,106 @@ references:
   name: EchoObject
   nameWithType: EchoObject
   fullName: Prowl.Echo.EchoObject
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
-- uid: Prowl.Runtime.Resources
-  commentId: N:Prowl.Runtime.Resources
-  name: Prowl.Runtime.Resources
-  nameWithType: Prowl.Runtime.Resources
-  fullName: Prowl.Runtime.Resources
+- uid: System.Collections.Generic.IReadOnlyList{System.String}
+  commentId: T:System.Collections.Generic.IReadOnlyList{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<string>
+  nameWithType: IReadOnlyList<string>
+  fullName: System.Collections.Generic.IReadOnlyList<string>
+  nameWithType.vb: IReadOnlyList(Of String)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of String)
+  name.vb: IReadOnlyList(Of String)
   spec.csharp:
-  - uid: Prowl
-    name: Prowl
-  - name: .
-  - uid: Prowl.Runtime
-    name: Runtime
-  - name: .
-  - uid: Prowl.Runtime.Resources
-    name: Resources
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
   spec.vb:
-  - uid: Prowl
-    name: Prowl
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
   - name: .
-  - uid: Prowl.Runtime
-    name: Runtime
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
   - name: .
-  - uid: Prowl.Runtime.Resources
-    name: Resources
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: Prowl.Echo
   commentId: N:Prowl.Echo
   name: Prowl.Echo

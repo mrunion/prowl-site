@@ -9,10 +9,10 @@ items:
   - Prowl.Runtime.MeshFeatures.MeshSDF.Bounds
   - Prowl.Runtime.MeshFeatures.MeshSDF.Deserialize(Prowl.Echo.EchoObject,Prowl.Echo.SerializationContext)
   - Prowl.Runtime.MeshFeatures.MeshSDF.MaxDistance
-  - Prowl.Runtime.MeshFeatures.MeshSDF.Padding
   - Prowl.Runtime.MeshFeatures.MeshSDF.Resolution
   - Prowl.Runtime.MeshFeatures.MeshSDF.Serialize(Prowl.Echo.EchoObject@,Prowl.Echo.SerializationContext)
   - Prowl.Runtime.MeshFeatures.MeshSDF.Volume
+  - Prowl.Runtime.MeshFeatures.MeshSDF.VoxelSize
   langs:
   - csharp
   - vb
@@ -27,25 +27,23 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: MeshSDF
     path: ../Prowl/Prowl.Runtime/Resources/MeshFeatures/MeshSDF.cs
-    startLine: 22
+    startLine: 21
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.MeshFeatures
   summary: >-
-    A Signed Distance Field for a mesh, stored as a single-channel float 3D texture.
+    A Signed Distance Field for a mesh, stored as a single channel 16 bit 3D texture of cubic voxels.
 
     Distances are measured in mesh-local units. Sign convention: negative inside, positive outside.
   remarks: >-
     Created by <xref href="Prowl.Runtime.MeshFeatures.Generation.SDFGenerator" data-throw-if-not-resolved="false"></xref> during asset
 
-    import. Treat as read-only once imported to change it, edit the parent asset's importer
-
-    settings and reimport.
+    import with the project's SDF settings. Treat as read-only, changing those settings reimports every mesh.
 
 
     Volume sampling (GPU shader):
       uvw = (localPos - Bounds.Min) / (Bounds.Max - Bounds.Min);
-      distance = texture(volume, uvw).r;
+      distance = texture(volume, uvw).r * MaxDistance;
   example: []
   syntax:
     content: 'public sealed class MeshSDF : Asset, IDisposable, IMeshFeature, ISerializable'
@@ -106,11 +104,11 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Volume
     path: ../Prowl/Prowl.Runtime/Resources/MeshFeatures/MeshSDF.cs
-    startLine: 31
+    startLine: 30
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.MeshFeatures
-  summary: Float3D texture holding signed distances, layout matches <xref href="Prowl.Runtime.MeshFeatures.MeshSDF.Resolution" data-throw-if-not-resolved="false"></xref>.
+  summary: Signed distances divided by <xref href="Prowl.Runtime.MeshFeatures.MeshSDF.MaxDistance" data-throw-if-not-resolved="false"></xref>, as signed normalized shorts. Layout matches <xref href="Prowl.Runtime.MeshFeatures.MeshSDF.Resolution" data-throw-if-not-resolved="false"></xref>.
   example: []
   syntax:
     content: public Texture3D? Volume { get; set; }
@@ -137,7 +135,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Bounds
     path: ../Prowl/Prowl.Runtime/Resources/MeshFeatures/MeshSDF.cs
-    startLine: 34
+    startLine: 33
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.MeshFeatures
@@ -168,7 +166,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Resolution
     path: ../Prowl/Prowl.Runtime/Resources/MeshFeatures/MeshSDF.cs
-    startLine: 37
+    startLine: 36
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.MeshFeatures
@@ -181,37 +179,37 @@ items:
       type: Prowl.Vector.Int3
     content.vb: Public Property Resolution As Int3
   overload: Prowl.Runtime.MeshFeatures.MeshSDF.Resolution*
-- uid: Prowl.Runtime.MeshFeatures.MeshSDF.Padding
-  commentId: P:Prowl.Runtime.MeshFeatures.MeshSDF.Padding
-  id: Padding
+- uid: Prowl.Runtime.MeshFeatures.MeshSDF.VoxelSize
+  commentId: P:Prowl.Runtime.MeshFeatures.MeshSDF.VoxelSize
+  id: VoxelSize
   parent: Prowl.Runtime.MeshFeatures.MeshSDF
   langs:
   - csharp
   - vb
-  name: Padding
-  nameWithType: MeshSDF.Padding
-  fullName: Prowl.Runtime.MeshFeatures.MeshSDF.Padding
+  name: VoxelSize
+  nameWithType: MeshSDF.VoxelSize
+  fullName: Prowl.Runtime.MeshFeatures.MeshSDF.VoxelSize
   type: Property
   source:
     remote:
       path: Prowl.Runtime/Resources/MeshFeatures/MeshSDF.cs
       branch: main
       repo: https://github.com/ProwlEngine/Prowl.git
-    id: Padding
+    id: VoxelSize
     path: ../Prowl/Prowl.Runtime/Resources/MeshFeatures/MeshSDF.cs
-    startLine: 40
+    startLine: 39
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.MeshFeatures
-  summary: Extra margin around the source mesh bounds, in mesh-local units.
+  summary: Edge length of every voxel, in mesh-local units.
   example: []
   syntax:
-    content: public float Padding { get; set; }
+    content: public float VoxelSize { get; set; }
     parameters: []
     return:
       type: System.Single
-    content.vb: Public Property Padding As Single
-  overload: Prowl.Runtime.MeshFeatures.MeshSDF.Padding*
+    content.vb: Public Property VoxelSize As Single
+  overload: Prowl.Runtime.MeshFeatures.MeshSDF.VoxelSize*
 - uid: Prowl.Runtime.MeshFeatures.MeshSDF.MaxDistance
   commentId: P:Prowl.Runtime.MeshFeatures.MeshSDF.MaxDistance
   id: MaxDistance
@@ -230,14 +228,11 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: MaxDistance
     path: ../Prowl/Prowl.Runtime/Resources/MeshFeatures/MeshSDF.cs
-    startLine: 46
+    startLine: 42
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.MeshFeatures
-  summary: >-
-    Distance values are clamped to this during generation. Useful for narrow-band SDFs
-
-    and for normalizing for visualization.
+  summary: The distance a stored value of one stands for, the diagonal of <xref href="Prowl.Runtime.MeshFeatures.MeshSDF.Bounds" data-throw-if-not-resolved="false"></xref>.
   example: []
   syntax:
     content: public float MaxDistance { get; set; }
@@ -264,7 +259,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: .ctor
     path: ../Prowl/Prowl.Runtime/Resources/MeshFeatures/MeshSDF.cs
-    startLine: 48
+    startLine: 44
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.MeshFeatures
@@ -293,7 +288,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Serialize
     path: ../Prowl/Prowl.Runtime/Resources/MeshFeatures/MeshSDF.cs
-    startLine: 50
+    startLine: 46
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.MeshFeatures
@@ -330,7 +325,7 @@ items:
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Deserialize
     path: ../Prowl/Prowl.Runtime/Resources/MeshFeatures/MeshSDF.cs
-    startLine: 68
+    startLine: 64
   assemblies:
   - Prowl.Runtime
   namespace: Prowl.Runtime.MeshFeatures
@@ -1074,6 +1069,12 @@ references:
   name: RuntimeUtils
   nameWithType: RuntimeUtils
   fullName: Prowl.Runtime.RuntimeUtils
+- uid: Prowl.Runtime.MeshFeatures.MeshSDF.MaxDistance
+  commentId: P:Prowl.Runtime.MeshFeatures.MeshSDF.MaxDistance
+  href: Prowl.Runtime.MeshFeatures.MeshSDF.html#Prowl_Runtime_MeshFeatures_MeshSDF_MaxDistance
+  name: MaxDistance
+  nameWithType: MeshSDF.MaxDistance
+  fullName: Prowl.Runtime.MeshFeatures.MeshSDF.MaxDistance
 - uid: Prowl.Runtime.MeshFeatures.MeshSDF.Resolution
   commentId: P:Prowl.Runtime.MeshFeatures.MeshSDF.Resolution
   href: Prowl.Runtime.MeshFeatures.MeshSDF.html#Prowl_Runtime_MeshFeatures_MeshSDF_Resolution
@@ -1159,12 +1160,12 @@ references:
   name: Int3
   nameWithType: Int3
   fullName: Prowl.Vector.Int3
-- uid: Prowl.Runtime.MeshFeatures.MeshSDF.Padding*
-  commentId: Overload:Prowl.Runtime.MeshFeatures.MeshSDF.Padding
-  href: Prowl.Runtime.MeshFeatures.MeshSDF.html#Prowl_Runtime_MeshFeatures_MeshSDF_Padding
-  name: Padding
-  nameWithType: MeshSDF.Padding
-  fullName: Prowl.Runtime.MeshFeatures.MeshSDF.Padding
+- uid: Prowl.Runtime.MeshFeatures.MeshSDF.VoxelSize*
+  commentId: Overload:Prowl.Runtime.MeshFeatures.MeshSDF.VoxelSize
+  href: Prowl.Runtime.MeshFeatures.MeshSDF.html#Prowl_Runtime_MeshFeatures_MeshSDF_VoxelSize
+  name: VoxelSize
+  nameWithType: MeshSDF.VoxelSize
+  fullName: Prowl.Runtime.MeshFeatures.MeshSDF.VoxelSize
 - uid: System.Single
   commentId: T:System.Single
   parent: System
@@ -1176,6 +1177,12 @@ references:
   nameWithType.vb: Single
   fullName.vb: Single
   name.vb: Single
+- uid: Prowl.Runtime.MeshFeatures.MeshSDF.Bounds
+  commentId: P:Prowl.Runtime.MeshFeatures.MeshSDF.Bounds
+  href: Prowl.Runtime.MeshFeatures.MeshSDF.html#Prowl_Runtime_MeshFeatures_MeshSDF_Bounds
+  name: Bounds
+  nameWithType: MeshSDF.Bounds
+  fullName: Prowl.Runtime.MeshFeatures.MeshSDF.Bounds
 - uid: Prowl.Runtime.MeshFeatures.MeshSDF.MaxDistance*
   commentId: Overload:Prowl.Runtime.MeshFeatures.MeshSDF.MaxDistance
   href: Prowl.Runtime.MeshFeatures.MeshSDF.html#Prowl_Runtime_MeshFeatures_MeshSDF_MaxDistance

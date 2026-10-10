@@ -1,37 +1,92 @@
 ### YamlMime:ManagedReference
 items:
-- uid: RenderingShowcase.Sweep
-  commentId: T:RenderingShowcase.Sweep
-  id: Sweep
-  parent: RenderingShowcase
+- uid: Prowl.Runtime.VolumetricClouds
+  commentId: T:Prowl.Runtime.VolumetricClouds
+  id: VolumetricClouds
+  parent: Prowl.Runtime
   children:
-  - RenderingShowcase.Sweep.Speed
-  - RenderingShowcase.Sweep.Target
-  - RenderingShowcase.Sweep.Update
-  - RenderingShowcase.Sweep.Width
+  - Prowl.Runtime.VolumetricClouds.Albedo
+  - Prowl.Runtime.VolumetricClouds.Altitude
+  - Prowl.Runtime.VolumetricClouds.AmbientBrightness
+  - Prowl.Runtime.VolumetricClouds.AmbientSaturation
+  - Prowl.Runtime.VolumetricClouds.Coverage
+  - Prowl.Runtime.VolumetricClouds.Density
+  - Prowl.Runtime.VolumetricClouds.DetailScale
+  - Prowl.Runtime.VolumetricClouds.Erosion
+  - Prowl.Runtime.VolumetricClouds.ErosionNoise
+  - Prowl.Runtime.VolumetricClouds.FarParticleSize
+  - Prowl.Runtime.VolumetricClouds.FarRadiusMultiplier
+  - Prowl.Runtime.VolumetricClouds.HorizonFade
+  - Prowl.Runtime.VolumetricClouds.Layers
+  - Prowl.Runtime.VolumetricClouds.LightSamples
+  - Prowl.Runtime.VolumetricClouds.MarchToSun
+  - Prowl.Runtime.VolumetricClouds.Noise
+  - Prowl.Runtime.VolumetricClouds.OnDisable
+  - Prowl.Runtime.VolumetricClouds.OnEnable
+  - Prowl.Runtime.VolumetricClouds.ParticleGrid
+  - Prowl.Runtime.VolumetricClouds.PatternScale
+  - Prowl.Runtime.VolumetricClouds.PlanetRadius
+  - Prowl.Runtime.VolumetricClouds.PuffScale
+  - Prowl.Runtime.VolumetricClouds.PuffStrength
+  - Prowl.Runtime.VolumetricClouds.Radius
+  - Prowl.Runtime.VolumetricClouds.Resolution
+  - Prowl.Runtime.VolumetricClouds.SilverLining
+  - Prowl.Runtime.VolumetricClouds.SunBrightness
+  - Prowl.Runtime.VolumetricClouds.TemporalUpscale
+  - Prowl.Runtime.VolumetricClouds.Thickness
+  - Prowl.Runtime.VolumetricClouds.Update
+  - Prowl.Runtime.VolumetricClouds.WindDirection
+  - Prowl.Runtime.VolumetricClouds.WindOffset
+  - Prowl.Runtime.VolumetricClouds.WindSpeed
+  - Prowl.Runtime.VolumetricClouds.WindVector
   langs:
   - csharp
   - vb
-  name: Sweep
-  nameWithType: Sweep
-  fullName: RenderingShowcase.Sweep
+  name: VolumetricClouds
+  nameWithType: VolumetricClouds
+  fullName: Prowl.Runtime.VolumetricClouds
   type: Class
   source:
     remote:
-      path: Samples/Runtime/RenderingShowcase/Program.cs
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
       branch: main
       repo: https://github.com/ProwlEngine/Prowl.git
-    id: Sweep
-    path: ../Prowl/Samples/Runtime/RenderingShowcase/Program.cs
-    startLine: 637
+    id: VolumetricClouds
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 74
   assemblies:
-  - RenderingShowcase
-  namespace: RenderingShowcase
-  summary: Points its light at a target that slides from side to side.
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Volumetric clouds over the whole scene, with optional flat cloud layers above or below them.
+
+
+    <p></p>
+
+
+    The cloud layer is not ray marched through the view. A grid of camera facing particles covers the sky around the
+
+    camera, each taking its density from a coverage map and eroding its edges with 3D noise, and only marching a few
+
+    steps toward the sun to light itself. Where there is no cloud the particles collapse and cost nothing. A second,
+
+    sparser grid with larger particles reaches further out. Everything is drawn at a reduced resolution and scaled
+
+    up over the scene.
   example: []
   syntax:
-    content: 'public sealed class Sweep : MonoBehaviour, IDisposable, ISerializationCallbackReceiver'
-    content.vb: Public NotInheritable Class Sweep Inherits MonoBehaviour Implements IDisposable, ISerializationCallbackReceiver
+    content: >-
+      [AddComponentMenu("Rendering/Volumetric Clouds", "")]
+
+      [ComponentIcon("")]
+
+      public sealed class VolumetricClouds : MonoBehaviour, IDisposable, ISerializationCallbackReceiver
+    content.vb: >-
+      <AddComponentMenu("Rendering/Volumetric Clouds", "")>
+
+      <ComponentIcon("")>
+
+      Public NotInheritable Class VolumetricClouds Inherits MonoBehaviour Implements IDisposable, ISerializationCallbackReceiver
   inheritance:
   - System.Object
   - Prowl.Runtime.EngineObject
@@ -77,8 +132,6 @@ items:
   - Prowl.Runtime.MonoBehaviour.SetSiblingIndex(System.Int32)
   - Prowl.Runtime.MonoBehaviour.OnAddedToScene
   - Prowl.Runtime.MonoBehaviour.OnRemovedFromScene
-  - Prowl.Runtime.MonoBehaviour.OnEnable
-  - Prowl.Runtime.MonoBehaviour.OnDisable
   - Prowl.Runtime.MonoBehaviour.Start
   - Prowl.Runtime.MonoBehaviour.FixedUpdate
   - Prowl.Runtime.MonoBehaviour.LateUpdate
@@ -116,122 +169,1244 @@ items:
   - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsNotValid
   - Prowl.Runtime.EngineObject.Prowl.Runtime.EngineObjectExtensions.IsValid
   - System.Object.Prowl.Runtime.RuntimeUtils.GetSerializableFields
-- uid: RenderingShowcase.Sweep.Target
-  commentId: F:RenderingShowcase.Sweep.Target
-  id: Target
-  parent: RenderingShowcase.Sweep
+  attributes:
+  - type: Prowl.Runtime.AddComponentMenuAttribute
+    ctor: Prowl.Runtime.AddComponentMenuAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Rendering/Volumetric Clouds
+    - type: System.String
+      value: ''
+  - type: Prowl.Runtime.ComponentIconAttribute
+    ctor: Prowl.Runtime.ComponentIconAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: 
+- uid: Prowl.Runtime.VolumetricClouds.Altitude
+  commentId: F:Prowl.Runtime.VolumetricClouds.Altitude
+  id: Altitude
+  parent: Prowl.Runtime.VolumetricClouds
   langs:
   - csharp
   - vb
-  name: Target
-  nameWithType: Sweep.Target
-  fullName: RenderingShowcase.Sweep.Target
+  name: Altitude
+  nameWithType: VolumetricClouds.Altitude
+  fullName: Prowl.Runtime.VolumetricClouds.Altitude
   type: Field
   source:
     remote:
-      path: Samples/Runtime/RenderingShowcase/Program.cs
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
       branch: main
       repo: https://github.com/ProwlEngine/Prowl.git
-    id: Target
-    path: ../Prowl/Samples/Runtime/RenderingShowcase/Program.cs
-    startLine: 639
+    id: Altitude
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 81
   assemblies:
-  - RenderingShowcase
-  namespace: RenderingShowcase
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Height of the cloud base above zero, in meters.
+  example: []
   syntax:
-    content: public Float3 Target
-    return:
-      type: Prowl.Vector.Float3
-    content.vb: Public Target As Float3
-- uid: RenderingShowcase.Sweep.Width
-  commentId: F:RenderingShowcase.Sweep.Width
-  id: Width
-  parent: RenderingShowcase.Sweep
-  langs:
-  - csharp
-  - vb
-  name: Width
-  nameWithType: Sweep.Width
-  fullName: RenderingShowcase.Sweep.Width
-  type: Field
-  source:
-    remote:
-      path: Samples/Runtime/RenderingShowcase/Program.cs
-      branch: main
-      repo: https://github.com/ProwlEngine/Prowl.git
-    id: Width
-    path: ../Prowl/Samples/Runtime/RenderingShowcase/Program.cs
-    startLine: 640
-  assemblies:
-  - RenderingShowcase
-  namespace: RenderingShowcase
-  syntax:
-    content: public float Width
+    content: >-
+      [Header("Shape")]
+
+      public float Altitude
     return:
       type: System.Single
-    content.vb: Public Width As Single
-- uid: RenderingShowcase.Sweep.Speed
-  commentId: F:RenderingShowcase.Sweep.Speed
-  id: Speed
-  parent: RenderingShowcase.Sweep
+    content.vb: >-
+      <Header("Shape")>
+
+      Public Altitude As Single
+  attributes:
+  - type: Prowl.Runtime.HeaderAttribute
+    ctor: Prowl.Runtime.HeaderAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Shape
+- uid: Prowl.Runtime.VolumetricClouds.Thickness
+  commentId: F:Prowl.Runtime.VolumetricClouds.Thickness
+  id: Thickness
+  parent: Prowl.Runtime.VolumetricClouds
   langs:
   - csharp
   - vb
-  name: Speed
-  nameWithType: Sweep.Speed
-  fullName: RenderingShowcase.Sweep.Speed
+  name: Thickness
+  nameWithType: VolumetricClouds.Thickness
+  fullName: Prowl.Runtime.VolumetricClouds.Thickness
   type: Field
   source:
     remote:
-      path: Samples/Runtime/RenderingShowcase/Program.cs
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
       branch: main
       repo: https://github.com/ProwlEngine/Prowl.git
-    id: Speed
-    path: ../Prowl/Samples/Runtime/RenderingShowcase/Program.cs
-    startLine: 641
+    id: Thickness
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 84
   assemblies:
-  - RenderingShowcase
-  namespace: RenderingShowcase
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: How tall the cloud layer is, in meters.
+  example: []
   syntax:
-    content: public float Speed
+    content: public float Thickness
     return:
       type: System.Single
-    content.vb: Public Speed As Single
-- uid: RenderingShowcase.Sweep.Update
-  commentId: M:RenderingShowcase.Sweep.Update
+    content.vb: Public Thickness As Single
+- uid: Prowl.Runtime.VolumetricClouds.Coverage
+  commentId: F:Prowl.Runtime.VolumetricClouds.Coverage
+  id: Coverage
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: Coverage
+  nameWithType: VolumetricClouds.Coverage
+  fullName: Prowl.Runtime.VolumetricClouds.Coverage
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Coverage
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 88
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: How much of the sky is covered.
+  example: []
+  syntax:
+    content: >-
+      [Range(0, 1)]
+
+      public float Coverage
+    return:
+      type: System.Single
+    content.vb: >-
+      <Range(0, 1)>
+
+      Public Coverage As Single
+  attributes:
+  - type: Prowl.Runtime.RangeAttribute
+    ctor: Prowl.Runtime.RangeAttribute.#ctor(System.Single,System.Single)
+    arguments:
+    - type: System.Single
+      value: 0
+    - type: System.Single
+      value: 1
+- uid: Prowl.Runtime.VolumetricClouds.Density
+  commentId: F:Prowl.Runtime.VolumetricClouds.Density
+  id: Density
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: Density
+  nameWithType: VolumetricClouds.Density
+  fullName: Prowl.Runtime.VolumetricClouds.Density
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Density
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 91
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: How quickly light dims inside the clouds. Higher looks heavier and darker underneath.
+  example: []
+  syntax:
+    content: public float Density
+    return:
+      type: System.Single
+    content.vb: Public Density As Single
+- uid: Prowl.Runtime.VolumetricClouds.PatternScale
+  commentId: F:Prowl.Runtime.VolumetricClouds.PatternScale
+  id: PatternScale
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: PatternScale
+  nameWithType: VolumetricClouds.PatternScale
+  fullName: Prowl.Runtime.VolumetricClouds.PatternScale
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PatternScale
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 94
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Size of the weather pattern in meters, how far apart clusters of clouds are.
+  example: []
+  syntax:
+    content: public float PatternScale
+    return:
+      type: System.Single
+    content.vb: Public PatternScale As Single
+- uid: Prowl.Runtime.VolumetricClouds.Erosion
+  commentId: F:Prowl.Runtime.VolumetricClouds.Erosion
+  id: Erosion
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: Erosion
+  nameWithType: VolumetricClouds.Erosion
+  fullName: Prowl.Runtime.VolumetricClouds.Erosion
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Erosion
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 98
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: How much the detail noise eats into cloud edges.
+  example: []
+  syntax:
+    content: >-
+      [Range(0, 1)]
+
+      public float Erosion
+    return:
+      type: System.Single
+    content.vb: >-
+      <Range(0, 1)>
+
+      Public Erosion As Single
+  attributes:
+  - type: Prowl.Runtime.RangeAttribute
+    ctor: Prowl.Runtime.RangeAttribute.#ctor(System.Single,System.Single)
+    arguments:
+    - type: System.Single
+      value: 0
+    - type: System.Single
+      value: 1
+- uid: Prowl.Runtime.VolumetricClouds.DetailScale
+  commentId: F:Prowl.Runtime.VolumetricClouds.DetailScale
+  id: DetailScale
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: DetailScale
+  nameWithType: VolumetricClouds.DetailScale
+  fullName: Prowl.Runtime.VolumetricClouds.DetailScale
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: DetailScale
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 101
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Size of the detail noise in meters.
+  example: []
+  syntax:
+    content: public float DetailScale
+    return:
+      type: System.Single
+    content.vb: Public DetailScale As Single
+- uid: Prowl.Runtime.VolumetricClouds.PuffStrength
+  commentId: F:Prowl.Runtime.VolumetricClouds.PuffStrength
+  id: PuffStrength
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: PuffStrength
+  nameWithType: VolumetricClouds.PuffStrength
+  fullName: Prowl.Runtime.VolumetricClouds.PuffStrength
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PuffStrength
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 108
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    How much billowy puffs drawn on each particle eat into thin cloud, detail at screen resolution on top of
+
+    <xref href="Prowl.Runtime.VolumetricClouds.Erosion" data-throw-if-not-resolved="false"></xref>. Kept mild, since a particle's puffs are only an impression of the cloud behind it.
+  example: []
+  syntax:
+    content: >-
+      [Range(0, 1)]
+
+      public float PuffStrength
+    return:
+      type: System.Single
+    content.vb: >-
+      <Range(0, 1)>
+
+      Public PuffStrength As Single
+  attributes:
+  - type: Prowl.Runtime.RangeAttribute
+    ctor: Prowl.Runtime.RangeAttribute.#ctor(System.Single,System.Single)
+    arguments:
+    - type: System.Single
+      value: 0
+    - type: System.Single
+      value: 1
+- uid: Prowl.Runtime.VolumetricClouds.PuffScale
+  commentId: F:Prowl.Runtime.VolumetricClouds.PuffScale
+  id: PuffScale
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: PuffScale
+  nameWithType: VolumetricClouds.PuffScale
+  fullName: Prowl.Runtime.VolumetricClouds.PuffScale
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PuffScale
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 111
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: How many puffs fit across one particle.
+  example: []
+  syntax:
+    content: public float PuffScale
+    return:
+      type: System.Single
+    content.vb: Public PuffScale As Single
+- uid: Prowl.Runtime.VolumetricClouds.WindSpeed
+  commentId: F:Prowl.Runtime.VolumetricClouds.WindSpeed
+  id: WindSpeed
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: WindSpeed
+  nameWithType: VolumetricClouds.WindSpeed
+  fullName: Prowl.Runtime.VolumetricClouds.WindSpeed
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WindSpeed
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 115
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Wind speed in meters a second.
+  example: []
+  syntax:
+    content: >-
+      [Header("Wind")]
+
+      public float WindSpeed
+    return:
+      type: System.Single
+    content.vb: >-
+      <Header("Wind")>
+
+      Public WindSpeed As Single
+  attributes:
+  - type: Prowl.Runtime.HeaderAttribute
+    ctor: Prowl.Runtime.HeaderAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Wind
+- uid: Prowl.Runtime.VolumetricClouds.WindDirection
+  commentId: F:Prowl.Runtime.VolumetricClouds.WindDirection
+  id: WindDirection
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: WindDirection
+  nameWithType: VolumetricClouds.WindDirection
+  fullName: Prowl.Runtime.VolumetricClouds.WindDirection
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WindDirection
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 118
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Compass direction the wind blows toward, in degrees around Y.
+  example: []
+  syntax:
+    content: public float WindDirection
+    return:
+      type: System.Single
+    content.vb: Public WindDirection As Single
+- uid: Prowl.Runtime.VolumetricClouds.Albedo
+  commentId: F:Prowl.Runtime.VolumetricClouds.Albedo
+  id: Albedo
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: Albedo
+  nameWithType: VolumetricClouds.Albedo
+  fullName: Prowl.Runtime.VolumetricClouds.Albedo
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Albedo
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 121
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: >-
+      [Header("Lighting")]
+
+      public Color Albedo
+    return:
+      type: Prowl.Vector.Color
+    content.vb: >-
+      <Header("Lighting")>
+
+      Public Albedo As Color
+  attributes:
+  - type: Prowl.Runtime.HeaderAttribute
+    ctor: Prowl.Runtime.HeaderAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Lighting
+- uid: Prowl.Runtime.VolumetricClouds.SunBrightness
+  commentId: F:Prowl.Runtime.VolumetricClouds.SunBrightness
+  id: SunBrightness
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: SunBrightness
+  nameWithType: VolumetricClouds.SunBrightness
+  fullName: Prowl.Runtime.VolumetricClouds.SunBrightness
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SunBrightness
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 124
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Scales the sunlight the clouds receive.
+  example: []
+  syntax:
+    content: public float SunBrightness
+    return:
+      type: System.Single
+    content.vb: Public SunBrightness As Single
+- uid: Prowl.Runtime.VolumetricClouds.AmbientBrightness
+  commentId: F:Prowl.Runtime.VolumetricClouds.AmbientBrightness
+  id: AmbientBrightness
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: AmbientBrightness
+  nameWithType: VolumetricClouds.AmbientBrightness
+  fullName: Prowl.Runtime.VolumetricClouds.AmbientBrightness
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AmbientBrightness
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 127
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Scales the sky light the clouds receive.
+  example: []
+  syntax:
+    content: public float AmbientBrightness
+    return:
+      type: System.Single
+    content.vb: Public AmbientBrightness As Single
+- uid: Prowl.Runtime.VolumetricClouds.AmbientSaturation
+  commentId: F:Prowl.Runtime.VolumetricClouds.AmbientSaturation
+  id: AmbientSaturation
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: AmbientSaturation
+  nameWithType: VolumetricClouds.AmbientSaturation
+  fullName: Prowl.Runtime.VolumetricClouds.AmbientSaturation
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: AmbientSaturation
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 131
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: How much of the sky's color the sky light keeps. Lower greys it, so clouds do not turn blue.
+  example: []
+  syntax:
+    content: >-
+      [Range(0, 1)]
+
+      public float AmbientSaturation
+    return:
+      type: System.Single
+    content.vb: >-
+      <Range(0, 1)>
+
+      Public AmbientSaturation As Single
+  attributes:
+  - type: Prowl.Runtime.RangeAttribute
+    ctor: Prowl.Runtime.RangeAttribute.#ctor(System.Single,System.Single)
+    arguments:
+    - type: System.Single
+      value: 0
+    - type: System.Single
+      value: 1
+- uid: Prowl.Runtime.VolumetricClouds.SilverLining
+  commentId: F:Prowl.Runtime.VolumetricClouds.SilverLining
+  id: SilverLining
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: SilverLining
+  nameWithType: VolumetricClouds.SilverLining
+  fullName: Prowl.Runtime.VolumetricClouds.SilverLining
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: SilverLining
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 135
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: How bright the rim around the sun gets when looking through thin cloud toward it.
+  example: []
+  syntax:
+    content: >-
+      [Range(0, 1)]
+
+      public float SilverLining
+    return:
+      type: System.Single
+    content.vb: >-
+      <Range(0, 1)>
+
+      Public SilverLining As Single
+  attributes:
+  - type: Prowl.Runtime.RangeAttribute
+    ctor: Prowl.Runtime.RangeAttribute.#ctor(System.Single,System.Single)
+    arguments:
+    - type: System.Single
+      value: 0
+    - type: System.Single
+      value: 1
+- uid: Prowl.Runtime.VolumetricClouds.HorizonFade
+  commentId: F:Prowl.Runtime.VolumetricClouds.HorizonFade
+  id: HorizonFade
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: HorizonFade
+  nameWithType: VolumetricClouds.HorizonFade
+  fullName: Prowl.Runtime.VolumetricClouds.HorizonFade
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: HorizonFade
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 138
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Beyond about this distance in meters the clouds fade into the sky behind them.
+  example: []
+  syntax:
+    content: public float HorizonFade
+    return:
+      type: System.Single
+    content.vb: Public HorizonFade As Single
+- uid: Prowl.Runtime.VolumetricClouds.Radius
+  commentId: F:Prowl.Runtime.VolumetricClouds.Radius
+  id: Radius
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: Radius
+  nameWithType: VolumetricClouds.Radius
+  fullName: Prowl.Runtime.VolumetricClouds.Radius
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Radius
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 142
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Radius in meters of the detailed particle grid around the camera.
+  example: []
+  syntax:
+    content: >-
+      [Header("Quality")]
+
+      public float Radius
+    return:
+      type: System.Single
+    content.vb: >-
+      <Header("Quality")>
+
+      Public Radius As Single
+  attributes:
+  - type: Prowl.Runtime.HeaderAttribute
+    ctor: Prowl.Runtime.HeaderAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Quality
+- uid: Prowl.Runtime.VolumetricClouds.ParticleGrid
+  commentId: F:Prowl.Runtime.VolumetricClouds.ParticleGrid
+  id: ParticleGrid
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: ParticleGrid
+  nameWithType: VolumetricClouds.ParticleGrid
+  fullName: Prowl.Runtime.VolumetricClouds.ParticleGrid
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ParticleGrid
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 146
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Particles along each side of the detailed grid. The far grid uses the same count.
+  example: []
+  syntax:
+    content: >-
+      [Range(32, 256)]
+
+      public int ParticleGrid
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Range(32, 256)>
+
+      Public ParticleGrid As Integer
+  attributes:
+  - type: Prowl.Runtime.RangeAttribute
+    ctor: Prowl.Runtime.RangeAttribute.#ctor(System.Single,System.Single)
+    arguments:
+    - type: System.Single
+      value: 32
+    - type: System.Single
+      value: 256
+- uid: Prowl.Runtime.VolumetricClouds.FarRadiusMultiplier
+  commentId: F:Prowl.Runtime.VolumetricClouds.FarRadiusMultiplier
+  id: FarRadiusMultiplier
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: FarRadiusMultiplier
+  nameWithType: VolumetricClouds.FarRadiusMultiplier
+  fullName: Prowl.Runtime.VolumetricClouds.FarRadiusMultiplier
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FarRadiusMultiplier
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 150
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: How much further than <xref href="Prowl.Runtime.VolumetricClouds.Radius" data-throw-if-not-resolved="false"></xref> the far grid reaches.
+  example: []
+  syntax:
+    content: >-
+      [Range(2, 8)]
+
+      public float FarRadiusMultiplier
+    return:
+      type: System.Single
+    content.vb: >-
+      <Range(2, 8)>
+
+      Public FarRadiusMultiplier As Single
+  attributes:
+  - type: Prowl.Runtime.RangeAttribute
+    ctor: Prowl.Runtime.RangeAttribute.#ctor(System.Single,System.Single)
+    arguments:
+    - type: System.Single
+      value: 2
+    - type: System.Single
+      value: 8
+- uid: Prowl.Runtime.VolumetricClouds.FarParticleSize
+  commentId: F:Prowl.Runtime.VolumetricClouds.FarParticleSize
+  id: FarParticleSize
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: FarParticleSize
+  nameWithType: VolumetricClouds.FarParticleSize
+  fullName: Prowl.Runtime.VolumetricClouds.FarParticleSize
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: FarParticleSize
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 154
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: How much bigger far grid particles are than the detailed ones.
+  example: []
+  syntax:
+    content: >-
+      [Range(1, 8)]
+
+      public float FarParticleSize
+    return:
+      type: System.Single
+    content.vb: >-
+      <Range(1, 8)>
+
+      Public FarParticleSize As Single
+  attributes:
+  - type: Prowl.Runtime.RangeAttribute
+    ctor: Prowl.Runtime.RangeAttribute.#ctor(System.Single,System.Single)
+    arguments:
+    - type: System.Single
+      value: 1
+    - type: System.Single
+      value: 8
+- uid: Prowl.Runtime.VolumetricClouds.MarchToSun
+  commentId: F:Prowl.Runtime.VolumetricClouds.MarchToSun
+  id: MarchToSun
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: MarchToSun
+  nameWithType: VolumetricClouds.MarchToSun
+  fullName: Prowl.Runtime.VolumetricClouds.MarchToSun
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: MarchToSun
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 161
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Marches toward the sun for every pixel of cloud instead of reading the sun map, which is drawn once a frame
+
+    from the same march. Sharper self shadowing from the detail noise, at <xref href="Prowl.Runtime.VolumetricClouds.LightSamples" data-throw-if-not-resolved="false"></xref> extra reads of
+
+    the coverage and noise per pixel.
+  example: []
+  syntax:
+    content: public bool MarchToSun
+    return:
+      type: System.Boolean
+    content.vb: Public MarchToSun As Boolean
+- uid: Prowl.Runtime.VolumetricClouds.LightSamples
+  commentId: F:Prowl.Runtime.VolumetricClouds.LightSamples
+  id: LightSamples
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: LightSamples
+  nameWithType: VolumetricClouds.LightSamples
+  fullName: Prowl.Runtime.VolumetricClouds.LightSamples
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: LightSamples
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 165
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Samples taken toward the sun for each pixel of cloud, when <xref href="Prowl.Runtime.VolumetricClouds.MarchToSun" data-throw-if-not-resolved="false"></xref> is on.
+  example: []
+  syntax:
+    content: >-
+      [Range(1, 12)]
+
+      public int LightSamples
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Range(1, 12)>
+
+      Public LightSamples As Integer
+  attributes:
+  - type: Prowl.Runtime.RangeAttribute
+    ctor: Prowl.Runtime.RangeAttribute.#ctor(System.Single,System.Single)
+    arguments:
+    - type: System.Single
+      value: 1
+    - type: System.Single
+      value: 12
+- uid: Prowl.Runtime.VolumetricClouds.Resolution
+  commentId: F:Prowl.Runtime.VolumetricClouds.Resolution
+  id: Resolution
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: Resolution
+  nameWithType: VolumetricClouds.Resolution
+  fullName: Prowl.Runtime.VolumetricClouds.Resolution
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Resolution
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 171
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Resolution the clouds are built at before they are scaled up over the scene. With
+
+    <xref href="Prowl.Runtime.VolumetricClouds.TemporalUpscale" data-throw-if-not-resolved="false"></xref> on, only a quarter of these pixels are drawn each frame.
+  example: []
+  syntax:
+    content: public CloudResolution Resolution
+    return:
+      type: Prowl.Runtime.CloudResolution
+    content.vb: Public Resolution As CloudResolution
+- uid: Prowl.Runtime.VolumetricClouds.TemporalUpscale
+  commentId: F:Prowl.Runtime.VolumetricClouds.TemporalUpscale
+  id: TemporalUpscale
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: TemporalUpscale
+  nameWithType: VolumetricClouds.TemporalUpscale
+  fullName: Prowl.Runtime.VolumetricClouds.TemporalUpscale
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: TemporalUpscale
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 178
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Draws a quarter of the clouds' pixels each frame, a different one of every 2x2 block in turn, and fills in the
+
+    rest from earlier frames moved to where the clouds are now. About a quarter of the cost for the same sharpness
+
+    once settled, a little soft for a few frames after fast camera turns.
+  example: []
+  syntax:
+    content: public bool TemporalUpscale
+    return:
+      type: System.Boolean
+    content.vb: Public TemporalUpscale As Boolean
+- uid: Prowl.Runtime.VolumetricClouds.PlanetRadius
+  commentId: F:Prowl.Runtime.VolumetricClouds.PlanetRadius
+  id: PlanetRadius
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: PlanetRadius
+  nameWithType: VolumetricClouds.PlanetRadius
+  fullName: Prowl.Runtime.VolumetricClouds.PlanetRadius
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: PlanetRadius
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 182
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: Radius of the planet in meters, which curves the cloud layers down toward the horizon.
+  example: []
+  syntax:
+    content: public float PlanetRadius
+    return:
+      type: System.Single
+    content.vb: Public PlanetRadius As Single
+- uid: Prowl.Runtime.VolumetricClouds.Noise
+  commentId: F:Prowl.Runtime.VolumetricClouds.Noise
+  id: Noise
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: Noise
+  nameWithType: VolumetricClouds.Noise
+  fullName: Prowl.Runtime.VolumetricClouds.Noise
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Noise
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 189
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: >-
+      [Header("Noise")]
+
+      public Texture2D? Noise
+    return:
+      type: Prowl.Runtime.Resources.Texture2D
+    content.vb: >-
+      <Header("Noise")>
+
+      Public Noise As Texture2D
+  attributes:
+  - type: Prowl.Runtime.HeaderAttribute
+    ctor: Prowl.Runtime.HeaderAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Noise
+- uid: Prowl.Runtime.VolumetricClouds.ErosionNoise
+  commentId: F:Prowl.Runtime.VolumetricClouds.ErosionNoise
+  id: ErosionNoise
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: ErosionNoise
+  nameWithType: VolumetricClouds.ErosionNoise
+  fullName: Prowl.Runtime.VolumetricClouds.ErosionNoise
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: ErosionNoise
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 195
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Tiling 3D noise that erodes the clouds' edges: R at the base scale, G three times finer. Empty uses the built in
+
+    one.
+  example: []
+  syntax:
+    content: public Texture3D? ErosionNoise
+    return:
+      type: Prowl.Runtime.Resources.Texture3D
+    content.vb: Public ErosionNoise As Texture3D
+- uid: Prowl.Runtime.VolumetricClouds.Layers
+  commentId: F:Prowl.Runtime.VolumetricClouds.Layers
+  id: Layers
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: Layers
+  nameWithType: VolumetricClouds.Layers
+  fullName: Prowl.Runtime.VolumetricClouds.Layers
+  type: Field
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: Layers
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 198
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  syntax:
+    content: >-
+      [Header("Flat Layers")]
+
+      public List<CloudLayer> Layers
+    return:
+      type: System.Collections.Generic.List{Prowl.Runtime.CloudLayer}
+    content.vb: >-
+      <Header("Flat Layers")>
+
+      Public Layers As List(Of CloudLayer)
+  attributes:
+  - type: Prowl.Runtime.HeaderAttribute
+    ctor: Prowl.Runtime.HeaderAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Flat Layers
+- uid: Prowl.Runtime.VolumetricClouds.WindOffset
+  commentId: P:Prowl.Runtime.VolumetricClouds.WindOffset
+  id: WindOffset
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: WindOffset
+  nameWithType: VolumetricClouds.WindOffset
+  fullName: Prowl.Runtime.VolumetricClouds.WindOffset
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WindOffset
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 204
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: How far the wind has carried the clouds, in meters on the XZ plane.
+  example: []
+  syntax:
+    content: public Float2 WindOffset { get; }
+    parameters: []
+    return:
+      type: Prowl.Vector.Float2
+    content.vb: Public ReadOnly Property WindOffset As Float2
+  overload: Prowl.Runtime.VolumetricClouds.WindOffset*
+- uid: Prowl.Runtime.VolumetricClouds.WindVector
+  commentId: P:Prowl.Runtime.VolumetricClouds.WindVector
+  id: WindVector
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: WindVector
+  nameWithType: VolumetricClouds.WindVector
+  fullName: Prowl.Runtime.VolumetricClouds.WindVector
+  type: Property
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: WindVector
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 210
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: The direction the wind blows toward on the XZ plane.
+  example: []
+  syntax:
+    content: public Float2 WindVector { get; }
+    parameters: []
+    return:
+      type: Prowl.Vector.Float2
+    content.vb: Public ReadOnly Property WindVector As Float2
+  overload: Prowl.Runtime.VolumetricClouds.WindVector*
+- uid: Prowl.Runtime.VolumetricClouds.OnEnable
+  commentId: M:Prowl.Runtime.VolumetricClouds.OnEnable
+  id: OnEnable
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: OnEnable()
+  nameWithType: VolumetricClouds.OnEnable()
+  fullName: Prowl.Runtime.VolumetricClouds.OnEnable()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnEnable
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 224
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Called when the object becomes enabled and active.
+
+    Only called when the GameObject is in a Scene and enabled.
+  example: []
+  syntax:
+    content: public override void OnEnable()
+    content.vb: Public Overrides Sub OnEnable()
+  overridden: Prowl.Runtime.MonoBehaviour.OnEnable
+  overload: Prowl.Runtime.VolumetricClouds.OnEnable*
+- uid: Prowl.Runtime.VolumetricClouds.OnDisable
+  commentId: M:Prowl.Runtime.VolumetricClouds.OnDisable
+  id: OnDisable
+  parent: Prowl.Runtime.VolumetricClouds
+  langs:
+  - csharp
+  - vb
+  name: OnDisable()
+  nameWithType: VolumetricClouds.OnDisable()
+  fullName: Prowl.Runtime.VolumetricClouds.OnDisable()
+  type: Method
+  source:
+    remote:
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
+      branch: main
+      repo: https://github.com/ProwlEngine/Prowl.git
+    id: OnDisable
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 226
+  assemblies:
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
+  summary: >-
+    Called when the object becomes disabled or inactive.
+
+    Only called when the GameObject was in a Scene and becomes disabled.
+  example: []
+  syntax:
+    content: public override void OnDisable()
+    content.vb: Public Overrides Sub OnDisable()
+  overridden: Prowl.Runtime.MonoBehaviour.OnDisable
+  overload: Prowl.Runtime.VolumetricClouds.OnDisable*
+- uid: Prowl.Runtime.VolumetricClouds.Update
+  commentId: M:Prowl.Runtime.VolumetricClouds.Update
   id: Update
-  parent: RenderingShowcase.Sweep
+  parent: Prowl.Runtime.VolumetricClouds
   langs:
   - csharp
   - vb
   name: Update()
-  nameWithType: Sweep.Update()
-  fullName: RenderingShowcase.Sweep.Update()
+  nameWithType: VolumetricClouds.Update()
+  fullName: Prowl.Runtime.VolumetricClouds.Update()
   type: Method
   source:
     remote:
-      path: Samples/Runtime/RenderingShowcase/Program.cs
+      path: Prowl.Runtime/Components/VolumetricClouds.cs
       branch: main
       repo: https://github.com/ProwlEngine/Prowl.git
     id: Update
-    path: ../Prowl/Samples/Runtime/RenderingShowcase/Program.cs
-    startLine: 643
+    path: ../Prowl/Prowl.Runtime/Components/VolumetricClouds.cs
+    startLine: 245
   assemblies:
-  - RenderingShowcase
-  namespace: RenderingShowcase
+  - Prowl.Runtime
+  namespace: Prowl.Runtime
   summary: Called every frame.
   example: []
   syntax:
     content: public override void Update()
     content.vb: Public Overrides Sub Update()
   overridden: Prowl.Runtime.MonoBehaviour.Update
-  overload: RenderingShowcase.Sweep.Update*
+  overload: Prowl.Runtime.VolumetricClouds.Update*
 references:
-- uid: RenderingShowcase
-  commentId: N:RenderingShowcase
-  name: RenderingShowcase
-  nameWithType: RenderingShowcase
-  fullName: RenderingShowcase
+- uid: Prowl.Runtime
+  commentId: N:Prowl.Runtime
+  name: Prowl.Runtime
+  nameWithType: Prowl.Runtime
+  fullName: Prowl.Runtime
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -1124,44 +2299,6 @@ references:
     href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnRemovedFromScene
   - name: (
   - name: )
-- uid: Prowl.Runtime.MonoBehaviour.OnEnable
-  commentId: M:Prowl.Runtime.MonoBehaviour.OnEnable
-  parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnEnable
-  name: OnEnable()
-  nameWithType: MonoBehaviour.OnEnable()
-  fullName: Prowl.Runtime.MonoBehaviour.OnEnable()
-  spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.OnEnable
-    name: OnEnable
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnEnable
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.OnEnable
-    name: OnEnable
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnEnable
-  - name: (
-  - name: )
-- uid: Prowl.Runtime.MonoBehaviour.OnDisable
-  commentId: M:Prowl.Runtime.MonoBehaviour.OnDisable
-  parent: Prowl.Runtime.MonoBehaviour
-  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDisable
-  name: OnDisable()
-  nameWithType: MonoBehaviour.OnDisable()
-  fullName: Prowl.Runtime.MonoBehaviour.OnDisable()
-  spec.csharp:
-  - uid: Prowl.Runtime.MonoBehaviour.OnDisable
-    name: OnDisable
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDisable
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: Prowl.Runtime.MonoBehaviour.OnDisable
-    name: OnDisable
-    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDisable
-  - name: (
-  - name: )
 - uid: Prowl.Runtime.MonoBehaviour.Start
   commentId: M:Prowl.Runtime.MonoBehaviour.Start
   parent: Prowl.Runtime.MonoBehaviour
@@ -2019,23 +3156,6 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Prowl.Runtime
-  commentId: N:Prowl.Runtime
-  name: Prowl.Runtime
-  nameWithType: Prowl.Runtime
-  fullName: Prowl.Runtime
-  spec.csharp:
-  - uid: Prowl
-    name: Prowl
-  - name: .
-  - uid: Prowl.Runtime
-    name: Runtime
-  spec.vb:
-  - uid: Prowl
-    name: Prowl
-  - name: .
-  - uid: Prowl.Runtime
-    name: Runtime
 - uid: Prowl.Echo
   commentId: N:Prowl.Echo
   name: Prowl.Echo
@@ -2209,13 +3329,30 @@ references:
   name: RuntimeUtils
   nameWithType: RuntimeUtils
   fullName: Prowl.Runtime.RuntimeUtils
-- uid: Prowl.Vector.Float3
-  commentId: T:Prowl.Vector.Float3
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: Prowl.Runtime.VolumetricClouds.Erosion
+  commentId: F:Prowl.Runtime.VolumetricClouds.Erosion
+  href: Prowl.Runtime.VolumetricClouds.html#Prowl_Runtime_VolumetricClouds_Erosion
+  name: Erosion
+  nameWithType: VolumetricClouds.Erosion
+  fullName: Prowl.Runtime.VolumetricClouds.Erosion
+- uid: Prowl.Vector.Color
+  commentId: T:Prowl.Vector.Color
   parent: Prowl.Vector
   isExternal: true
-  name: Float3
-  nameWithType: Float3
-  fullName: Prowl.Vector.Float3
+  name: Color
+  nameWithType: Color
+  fullName: Prowl.Vector.Color
 - uid: Prowl.Vector
   commentId: N:Prowl.Vector
   name: Prowl.Vector
@@ -2233,17 +3370,263 @@ references:
   - name: .
   - uid: Prowl.Vector
     name: Vector
-- uid: System.Single
-  commentId: T:System.Single
+- uid: System.Int32
+  commentId: T:System.Int32
   parent: System
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.single
-  name: float
-  nameWithType: float
-  fullName: float
-  nameWithType.vb: Single
-  fullName.vb: Single
-  name.vb: Single
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Prowl.Runtime.VolumetricClouds.Radius
+  commentId: F:Prowl.Runtime.VolumetricClouds.Radius
+  href: Prowl.Runtime.VolumetricClouds.html#Prowl_Runtime_VolumetricClouds_Radius
+  name: Radius
+  nameWithType: VolumetricClouds.Radius
+  fullName: Prowl.Runtime.VolumetricClouds.Radius
+- uid: Prowl.Runtime.VolumetricClouds.LightSamples
+  commentId: F:Prowl.Runtime.VolumetricClouds.LightSamples
+  href: Prowl.Runtime.VolumetricClouds.html#Prowl_Runtime_VolumetricClouds_LightSamples
+  name: LightSamples
+  nameWithType: VolumetricClouds.LightSamples
+  fullName: Prowl.Runtime.VolumetricClouds.LightSamples
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Prowl.Runtime.VolumetricClouds.MarchToSun
+  commentId: F:Prowl.Runtime.VolumetricClouds.MarchToSun
+  href: Prowl.Runtime.VolumetricClouds.html#Prowl_Runtime_VolumetricClouds_MarchToSun
+  name: MarchToSun
+  nameWithType: VolumetricClouds.MarchToSun
+  fullName: Prowl.Runtime.VolumetricClouds.MarchToSun
+- uid: Prowl.Runtime.VolumetricClouds.TemporalUpscale
+  commentId: F:Prowl.Runtime.VolumetricClouds.TemporalUpscale
+  href: Prowl.Runtime.VolumetricClouds.html#Prowl_Runtime_VolumetricClouds_TemporalUpscale
+  name: TemporalUpscale
+  nameWithType: VolumetricClouds.TemporalUpscale
+  fullName: Prowl.Runtime.VolumetricClouds.TemporalUpscale
+- uid: Prowl.Runtime.CloudResolution
+  commentId: T:Prowl.Runtime.CloudResolution
+  parent: Prowl.Runtime
+  href: Prowl.Runtime.CloudResolution.html
+  name: CloudResolution
+  nameWithType: CloudResolution
+  fullName: Prowl.Runtime.CloudResolution
+- uid: Prowl.Runtime.Resources.Texture2D
+  commentId: T:Prowl.Runtime.Resources.Texture2D
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.Texture2D.html
+  name: Texture2D
+  nameWithType: Texture2D
+  fullName: Prowl.Runtime.Resources.Texture2D
+- uid: Prowl.Runtime.Resources
+  commentId: N:Prowl.Runtime.Resources
+  name: Prowl.Runtime.Resources
+  nameWithType: Prowl.Runtime.Resources
+  fullName: Prowl.Runtime.Resources
+  spec.csharp:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+  spec.vb:
+  - uid: Prowl
+    name: Prowl
+  - name: .
+  - uid: Prowl.Runtime
+    name: Runtime
+  - name: .
+  - uid: Prowl.Runtime.Resources
+    name: Resources
+- uid: Prowl.Runtime.Resources.Texture3D
+  commentId: T:Prowl.Runtime.Resources.Texture3D
+  parent: Prowl.Runtime.Resources
+  href: Prowl.Runtime.Resources.Texture3D.html
+  name: Texture3D
+  nameWithType: Texture3D
+  fullName: Prowl.Runtime.Resources.Texture3D
+- uid: System.Collections.Generic.List{Prowl.Runtime.CloudLayer}
+  commentId: T:System.Collections.Generic.List{Prowl.Runtime.CloudLayer}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<CloudLayer>
+  nameWithType: List<CloudLayer>
+  fullName: System.Collections.Generic.List<Prowl.Runtime.CloudLayer>
+  nameWithType.vb: List(Of CloudLayer)
+  fullName.vb: System.Collections.Generic.List(Of Prowl.Runtime.CloudLayer)
+  name.vb: List(Of CloudLayer)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Prowl.Runtime.CloudLayer
+    name: CloudLayer
+    href: Prowl.Runtime.CloudLayer.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Prowl.Runtime.CloudLayer
+    name: CloudLayer
+    href: Prowl.Runtime.CloudLayer.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Prowl.Runtime.VolumetricClouds.WindOffset*
+  commentId: Overload:Prowl.Runtime.VolumetricClouds.WindOffset
+  href: Prowl.Runtime.VolumetricClouds.html#Prowl_Runtime_VolumetricClouds_WindOffset
+  name: WindOffset
+  nameWithType: VolumetricClouds.WindOffset
+  fullName: Prowl.Runtime.VolumetricClouds.WindOffset
+- uid: Prowl.Vector.Float2
+  commentId: T:Prowl.Vector.Float2
+  parent: Prowl.Vector
+  isExternal: true
+  name: Float2
+  nameWithType: Float2
+  fullName: Prowl.Vector.Float2
+- uid: Prowl.Runtime.VolumetricClouds.WindVector*
+  commentId: Overload:Prowl.Runtime.VolumetricClouds.WindVector
+  href: Prowl.Runtime.VolumetricClouds.html#Prowl_Runtime_VolumetricClouds_WindVector
+  name: WindVector
+  nameWithType: VolumetricClouds.WindVector
+  fullName: Prowl.Runtime.VolumetricClouds.WindVector
+- uid: Prowl.Runtime.MonoBehaviour.OnEnable
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnEnable
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnEnable
+  name: OnEnable()
+  nameWithType: MonoBehaviour.OnEnable()
+  fullName: Prowl.Runtime.MonoBehaviour.OnEnable()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnEnable
+    name: OnEnable
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnEnable
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnEnable
+    name: OnEnable
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnEnable
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.VolumetricClouds.OnEnable*
+  commentId: Overload:Prowl.Runtime.VolumetricClouds.OnEnable
+  href: Prowl.Runtime.VolumetricClouds.html#Prowl_Runtime_VolumetricClouds_OnEnable
+  name: OnEnable
+  nameWithType: VolumetricClouds.OnEnable
+  fullName: Prowl.Runtime.VolumetricClouds.OnEnable
+- uid: Prowl.Runtime.MonoBehaviour.OnDisable
+  commentId: M:Prowl.Runtime.MonoBehaviour.OnDisable
+  parent: Prowl.Runtime.MonoBehaviour
+  href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDisable
+  name: OnDisable()
+  nameWithType: MonoBehaviour.OnDisable()
+  fullName: Prowl.Runtime.MonoBehaviour.OnDisable()
+  spec.csharp:
+  - uid: Prowl.Runtime.MonoBehaviour.OnDisable
+    name: OnDisable
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDisable
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Prowl.Runtime.MonoBehaviour.OnDisable
+    name: OnDisable
+    href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_OnDisable
+  - name: (
+  - name: )
+- uid: Prowl.Runtime.VolumetricClouds.OnDisable*
+  commentId: Overload:Prowl.Runtime.VolumetricClouds.OnDisable
+  href: Prowl.Runtime.VolumetricClouds.html#Prowl_Runtime_VolumetricClouds_OnDisable
+  name: OnDisable
+  nameWithType: VolumetricClouds.OnDisable
+  fullName: Prowl.Runtime.VolumetricClouds.OnDisable
 - uid: Prowl.Runtime.MonoBehaviour.Update
   commentId: M:Prowl.Runtime.MonoBehaviour.Update
   parent: Prowl.Runtime.MonoBehaviour
@@ -2263,9 +3646,9 @@ references:
     href: Prowl.Runtime.MonoBehaviour.html#Prowl_Runtime_MonoBehaviour_Update
   - name: (
   - name: )
-- uid: RenderingShowcase.Sweep.Update*
-  commentId: Overload:RenderingShowcase.Sweep.Update
-  href: RenderingShowcase.Sweep.html#RenderingShowcase_Sweep_Update
+- uid: Prowl.Runtime.VolumetricClouds.Update*
+  commentId: Overload:Prowl.Runtime.VolumetricClouds.Update
+  href: Prowl.Runtime.VolumetricClouds.html#Prowl_Runtime_VolumetricClouds_Update
   name: Update
-  nameWithType: Sweep.Update
-  fullName: RenderingShowcase.Sweep.Update
+  nameWithType: VolumetricClouds.Update
+  fullName: Prowl.Runtime.VolumetricClouds.Update

@@ -7,6 +7,9 @@ These tutorials guide you through practical tasks in Prowl, starting with editor
 - [Paint: Create and Apply a Material](material-tutorial.md) — create a material, choose the Standard shader, set its Tint color, and assign it to an object.
 - [Physics Basics: Drop Cubes onto the Floor](physics-tutorial.md) — add colliders and rigid bodies to the default scene and watch both cubes fall onto the Floor.
 - [Shader Basics: Make a Solid Color Shader](shader-basics-tutorial.md) — create a minimal forward shader, expose a color property, then use it from a material.
+
+## Advanced
+
 - [Shader Advanced: Make a Lit Paint Material](shader-advanced-tutorial.md) — create a colored PBR shader that responds to lights and supports screen-space effects and shadow casting.
 - [Shader Textures: Add UVs and Sample an Image](shader-textured-tutorial.md) — pass mesh UVs from the vertex shader and sample a downloadable texture in the fragment shader.
 
@@ -14,4 +17,4 @@ These tutorials guide you through practical tasks in Prowl, starting with editor
 
 More tutorials can expand these topics with additional rendering workflows:
 
-- **Terrain** — create a Terrain Data asset, sculpt the landscape, paint surface layers, and add details.
+- [Terrain: Sculpt a Landscape and Add Vegetation](terrain-tutorial.md) — create and sculpt a Terrain Data asset, paint surface layers, and add grass details and trees with CC0 assets.
