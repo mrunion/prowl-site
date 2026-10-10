@@ -108,9 +108,12 @@ If the mesh is missing or the prototype remains named **Empty**, reopen the asse
 3. If the grass looks too dense, lower **Detail Density**. **Detail Cascades** reduces detail density farther from the camera; leave it at its default for now.
 4. Look around the terrain in Scene View and check the result from the camera’s Game View. Adjust the paint or prototypes if vegetation blocks the path or hides the terrain shape.
 5. Click **Save to TerrainData** if the Unsaved edits banner is visible, then save the scene.
+   ![Terrain Settings with vegetation visibility controls](../../media/screenshots/tutorial_terrain_settings.png)
 
 You now have a sculpted, textured terrain with painted foliage and placed trees. For more detail on the controls and terrain physics, see the [Terrain reference](../terrain/terrain.md).
 
 ## What you learned
 
 Terrain shape, surface painting, foliage density, and tree placement are stored in a Terrain Data asset. The Terrain component provides separate tools for editing each part, while its Settings tab controls terrain dimensions, rendering, and vegetation distance. To keep a project organized, keep the Terrain Data asset and the source textures and models together under `Assets`.
+
+![Completed terrain tutorial scene](../../media/screenshots/tutorial_terrain_finalresult.png)
