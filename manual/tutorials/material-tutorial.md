@@ -44,4 +44,4 @@ Save the project to preserve your material asset. Any object that uses `Paint` s
 
 ## What you learned
 
-You created a Material asset, selected a shader, changed a color property, and assigned the material to a renderer. The shader defines the material controls; the material stores the values and assets that customize how an object looks. Continue with the [Shaders tutorial](shader-tutorial.md) to learn how those controls are defined.
+You created a Material asset, selected a shader, changed a color property, and assigned the material to a renderer. The shader defines the material controls; the material stores the values and assets that customize how an object looks. Continue with [Shader Basics](shader-basics-tutorial.md) to learn how those controls are defined, then try [Shader Advanced](shader-advanced-tutorial.md) for a lit PBR material.
