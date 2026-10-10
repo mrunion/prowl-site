@@ -5,6 +5,7 @@ These tutorials guide you through practical tasks in Prowl, starting with editor
 ## Beginner
 
 - [Paint: Create and Apply a Material](material-tutorial.md) — create a material, choose the Standard shader, set its Tint color, and assign it to an object.
+- [Physics Basics: Drop Cubes onto the Floor](physics-tutorial.md) — add colliders and rigid bodies to the default scene and watch both cubes fall onto the Floor.
 - [Shader Basics: Make a Solid Color Shader](shader-basics-tutorial.md) — create a minimal forward shader, expose a color property, then use it from a material.
 - [Shader Advanced: Make a Lit Paint Material](shader-advanced-tutorial.md) — create a colored PBR shader that responds to lights and supports screen-space effects and shadow casting.
 
