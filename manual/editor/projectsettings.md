@@ -134,10 +134,15 @@ The page estimates output latency from the selected buffer size and sample rate.
 
 ![Project Settings panel showing asset loading and memory settings](../../media/screenshots/projectsettings_assets_default.png)
 
-Assets controls how long unused assets stay loaded and the player’s asset memory budget:
+Assets controls how long unused assets stay loaded, the player’s asset memory budget, and whether mesh signed distance fields (SDFs) are generated during import:
 
 - **Unused Grace Period (s)** sets how many seconds an asset remains loaded after nothing references it. This can avoid reloading an asset that is used again shortly afterward.
 - **Player Memory Budget (MB)** sets the loaded asset memory budget for a built game. When the budget is exceeded, unused assets can be freed earlier. Set it to `0` for no budget. The editor does not use this limit.
+- **Generate SDFs** generates a signed distance field for each imported mesh. Mesh SDFs provide a voxelized representation of distance to the mesh surface for features that need it. This is off by default; enabling it adds processing and memory use during mesh import and for the generated data.
+- **Voxel Size** sets the requested edge length of each SDF voxel in mesh units. Smaller values produce a finer field and more voxels; larger values produce a coarser field. The size may be increased to respect the resolution limit.
+- **Max Resolution** limits the number of voxels along the mesh's longest axis, including padding. It ranges from 8 to 256 and defaults to 128. When this limit requires it, the actual voxel size is increased beyond the requested **Voxel Size**.
+
+Changing the SDF toggle or either generation value shows **Apply and Reimport Meshes**. Select it to save the settings and reimport meshes so the change takes effect; changing these options can therefore trigger substantial import work.
 
 ## XR
 
